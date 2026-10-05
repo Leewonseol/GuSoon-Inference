@@ -1,0 +1,26 @@
+check_id,check_type,table_name,record_id,severity,problem,details,recommended_action
+ROW_COUNT_MATCH-001,ROW_COUNT_MATCH,events,,INFO,ROW_COUNT_MATCHED,"csv_data_rows=172, duckdb_rows=172, csv_header_columns=18, duckdb_columns=18, csv_ragged_rows=0",None
+ROW_COUNT_MATCH-002,ROW_COUNT_MATCH,event_relations,,INFO,ROW_COUNT_MATCHED,"csv_data_rows=91, duckdb_rows=91, csv_header_columns=10, duckdb_columns=10, csv_ragged_rows=0",None
+ROW_COUNT_MATCH-003,ROW_COUNT_MATCH,attestations,,INFO,ROW_COUNT_MATCHED,"csv_data_rows=172, duckdb_rows=172, csv_header_columns=13, duckdb_columns=13, csv_ragged_rows=0",None
+ROW_COUNT_MATCH-004,ROW_COUNT_MATCH,event_families,,INFO,ROW_COUNT_MATCHED,"csv_data_rows=42, duckdb_rows=42, csv_header_columns=7, duckdb_columns=7, csv_ragged_rows=0",None
+ROW_COUNT_MATCH-005,ROW_COUNT_MATCH,source_records,,INFO,ROW_COUNT_MATCHED,"csv_data_rows=4, duckdb_rows=4, csv_header_columns=9, duckdb_columns=9, csv_ragged_rows=0",None
+DUPLICATE_EVENT_ID-001,DUPLICATE_EVENT_ID,events,,INFO,NO_ISSUE_FOUND,All event_id values are unique,None
+EVENT_WITHOUT_ATTESTATION-001,EVENT_WITHOUT_ATTESTATION,events,,INFO,NO_ISSUE_FOUND,Every event has at least one attestation,None
+ATTESTATION_DANGLING_EVENT_ID-001,ATTESTATION_DANGLING_EVENT_ID,attestations,,INFO,NO_ISSUE_FOUND,All attestations.event_id values exist in events.event_id,None
+RELATION_DANGLING_EVENT_ID-001,RELATION_DANGLING_EVENT_ID,event_relations,,INFO,NO_ISSUE_FOUND,All event_relations.from_event_id values exist in events.event_id,None
+RELATION_DANGLING_EVENT_ID-002,RELATION_DANGLING_EVENT_ID,event_relations,,INFO,NO_ISSUE_FOUND,All event_relations.to_event_id values exist in events.event_id,None
+DANGLING_EVENT_FAMILY_ID-001,DANGLING_EVENT_FAMILY_ID,events,,INFO,NO_ISSUE_FOUND,All events.event_family_id values exist in event_families.event_family_id,None
+DANGLING_SOURCE_RECORD_ID-001,DANGLING_SOURCE_RECORD_ID,attestations,,INFO,NO_ISSUE_FOUND,All attestations.source_record_id values exist in source_records.source_record_id,None
+SELF_LOOP_RELATION-001,SELF_LOOP_RELATION,event_relations,,INFO,NO_ISSUE_FOUND,No relation has from_event_id = to_event_id,None
+EXACT_DUPLICATE_ROW-001,EXACT_DUPLICATE_ROW,events,,INFO,NO_ISSUE_FOUND,No fully identical rows across 18 columns,None
+EXACT_DUPLICATE_ROW-002,EXACT_DUPLICATE_ROW,event_relations,,INFO,NO_ISSUE_FOUND,No fully identical rows across 10 columns,None
+EXACT_DUPLICATE_ROW-003,EXACT_DUPLICATE_ROW,attestations,,INFO,NO_ISSUE_FOUND,No fully identical rows across 13 columns,None
+EXACT_DUPLICATE_ROW-004,EXACT_DUPLICATE_ROW,event_families,,INFO,NO_ISSUE_FOUND,No fully identical rows across 7 columns,None
+EXACT_DUPLICATE_ROW-005,EXACT_DUPLICATE_ROW,source_records,,INFO,NO_ISSUE_FOUND,No fully identical rows across 9 columns,None
+CORE_FIELD_NULL_OR_BLANK-001,CORE_FIELD_NULL_OR_BLANK,events,AT0010,WARNING,NULL_VALUE,Core field 'target_or_content' is NULL/empty (csv data row 10),Fill the field from the source in a new data version or document why it is empty
+CORE_FIELD_NULL_OR_BLANK-002,CORE_FIELD_NULL_OR_BLANK,events,AT0118,WARNING,NULL_VALUE,Core field 'target_or_content' is NULL/empty (csv data row 118),Fill the field from the source in a new data version or document why it is empty
+CORE_FIELD_NULL_OR_BLANK-003,CORE_FIELD_NULL_OR_BLANK,event_relations,,INFO,NO_ISSUE_FOUND,"No NULL/blank values in core fields: relation_id, relation_layer, from_event_id, to_event_id, relation_type, confidence",None
+CORE_FIELD_NULL_OR_BLANK-004,CORE_FIELD_NULL_OR_BLANK,attestations,,INFO,NO_ISSUE_FOUND,"No NULL/blank values in core fields: attestation_id, event_id, source_record_id, report_lunar_date, speaker_or_reporting_actor, attestation_mode, proposition_ko",None
+CORE_FIELD_NULL_OR_BLANK-005,CORE_FIELD_NULL_OR_BLANK,event_families,,INFO,NO_ISSUE_FOUND,"No NULL/blank values in core fields: event_family_id, semantic_class",None
+CORE_FIELD_NULL_OR_BLANK-006,CORE_FIELD_NULL_OR_BLANK,source_records,,INFO,NO_ISSUE_FOUND,"No NULL/blank values in core fields: source_record_id, source_work, record_date_lunar, source_url",None
+TEMPORAL_PROCEDURAL_CYCLE-001,TEMPORAL_PROCEDURAL_CYCLE,event_relations,,INFO,NO_ISSUE_FOUND,"TEMPORAL_PROCEDURAL graph is acyclic (nodes=92, edges=71); all relation types treated as directed from_event_id -> to_event_id",None
