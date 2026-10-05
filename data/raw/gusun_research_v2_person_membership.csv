@@ -1,0 +1,12 @@
+﻿person,yu_jehee_list,jamideok_big_thief_list,confrontation_with_jamideok,arrest_order,arrested,detained,interrogated,evidence_source_record_id,notes
+변지돌,DIRECT,NOT_MENTIONED,NO_EVIDENCE,DIRECT,DIRECT,DIRECT,UNKNOWN,SRC2_006,"한재욱 공초의 유제희 명단에 명시. 2/28 체포 지시, 2/29 이미 공주진에서 잡혀간 상태."
+변재돌,DIRECT,NOT_MENTIONED,NO_EVIDENCE,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,SRC2_006,한재욱 공초의 유제희 명단에 명시. 자미덕 공초의 남편 '재돌'과 동일인인지는 이 CSV에서 확정하지 않음.
+재돌,UNKNOWN_ALIAS,NOT_MENTIONED,NO_EVIDENCE,UNKNOWN,CLAIMED_BY_JAMIDEOK_AS_ALREADY_ARRESTED,UNKNOWN,UNKNOWN,SRC2_006,자미덕의 남편. 자미덕은 한 비장이 '이미 체포되었다'고 말했다고 진술. 변재돌과 동일인 여부는 별도 검토.
+정원돌,DIRECT,DIRECT,NO_EVIDENCE,DIRECT,UNKNOWN,UNKNOWN,UNKNOWN,SRC2_006,"유제희 명단에도, 자미덕이 큰 도적이라고 말하라고 요구받았다고 한 명시 목록에도 포함."
+김명신,DIRECT,NOT_MENTIONED,NO_EVIDENCE,DIRECT,DIRECT,DIRECT,DIRECT,SRC2_006,유제희 명단에 포함. 3/4 병사 지시로 체포. 자미덕의 큰 도적 명시 목록에는 이름이 없음.
+김성손,DIRECT,DIRECT,NO_EVIDENCE,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,SRC2_006,유제희 명단과 자미덕의 큰 도적 명시 목록 모두에 포함.
+김흥득,DIRECT,DIRECT,NO_EVIDENCE,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,SRC2_006,유제희 명단과 자미덕의 큰 도적 명시 목록 모두에 포함.
+김흥길,DIRECT,NOT_MENTIONED,NO_EVIDENCE,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,SRC2_006,유제희 명단에는 포함되나 자미덕의 큰 도적 명시 목록에는 이름이 없음.
+김갑득,NOT_MENTIONED,DIRECT,NO_EVIDENCE,DIRECT,DIRECT,UNKNOWN,UNKNOWN,SRC2_006,자미덕의 큰 도적 명시 목록에 포함. 3/4 병사 지시로 김명신과 함께 체포.
+이집거,NOT_MENTIONED,DIRECT,DIRECT,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,SRC2_006,자미덕의 큰 도적 명시 목록에 직접 포함되고 자미덕과 대질. 유제희 명단에는 이름이 없음.
+자미덕,NOT_APPLICABLE,NOT_APPLICABLE,DIRECT,NOT_ORIGINAL_TARGET,DIRECT,DIRECT,DIRECT,SRC2_006,변지돌을 못 잡은 뒤 체포되어 병영에서 신문·비장청 다모방 구류. 이집거와 대질.

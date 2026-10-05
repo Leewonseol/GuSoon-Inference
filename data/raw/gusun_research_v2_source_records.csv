@@ -1,0 +1,10 @@
+﻿source_record_id,source_work,record_lunar_date,source_title,source_url,source_domain,source_tier,case_role,notes
+SRC2_001,조선왕조실록 정조실록,1793-05-12,전 부사 구순 사건에 대한 충청도 관찰사 이형원 장계 및 정조 처분,https://sillok.history.go.kr/id/kva_11705012_003,sillok.history.go.kr,S1_PRIMARY,이형원 재조사·장계,후일 6월 13일 안핵에서 도난 여부·사망 원인 등 일부 판단이 수정됨.
+SRC2_002,비변사등록,1793-05-27,충청도 암행어사 이조원이 구순 사건을 아뢰고 엄핵을 청함,https://db.history.go.kr/common/compareViewer.do?levelId=bb_181r_001_05_0510&type=joseon,db.history.go.kr,S1_PRIMARY,이조원 복명·비변사 논의,이조원의 판단은 6월 13일 홍대협 안핵 결과와 구분해 보존.
+SRC2_003,조선왕조실록 정조실록,1793-05-27,호서 암행어사 이조원이 구순 사건을 알리고 정조가 재조사를 명함,https://sillok.history.go.kr/id/kva_11705027_002,sillok.history.go.kr,S1_PRIMARY,이조원 복명 교차확인,비변사등록 5월 27일 기사와 같은 단계의 판단을 교차확인.
+SRC2_004,승정원일기,1793-05-28,홍대협을 충청도 공주 안핵어사로 차하,https://sjw.history.go.kr/search/inspectionDayList.do?wday=17930528L0,sjw.history.go.kr,S1_PRIMARY,독립 안핵 파견,홍대협이 지세랑 호칭이 이번 사건에서 처음 생긴 말이 아닐 가능성을 언급.
+SRC2_005,비변사등록,1793-06-11,충청도 암행어사 윤노동 별단 중 구순 사건,https://db.history.go.kr/common/compareViewer.do?levelId=bb_181r_001_06_0070&type=joseon,db.history.go.kr,S1_PRIMARY,홍대협 복명 직전의 독립 평가,비변사는 안핵어사 복명 전이라 처리를 보류.
+SRC2_006,조선왕조실록 정조실록,1793-06-13,호서 안핵어사 홍대협 복명과 정조의 최종 심리·처분,https://sillok.history.go.kr/id/kva_11706013_003,sillok.history.go.kr,S1_PRIMARY,핵심 안핵·최종 판단,"명업·이진욱·조계완·자미덕·한재욱·유제희 공초, 홍대협 평가, 정조 판정·처분 포함."
+SRC2_007,조선왕조실록 정조실록,1793-06-16,전 충청도 관찰사 이형원을 유임,https://sillok.history.go.kr/id/kva_11706016_002,sillok.history.go.kr,S1_PRIMARY,사건 직후 인사 후속,6월 13일 파직 뒤 6월 16일 유임 기록. 사건 본체와 분리.
+SRC2_008,한국민족문화대백과사전,,홍대협,https://encykorea.aks.ac.kr/Article/E0064022,encykorea.aks.ac.kr,S3_BACKGROUND,인물 배경,1793년 호서안핵어사 경력 확인용. 사건 F 생성에는 사용하지 않음.
+SRC2_009,한국민족문화대백과사전,,"이형원(李亨元, 1739~1798)",https://encykorea.aks.ac.kr/Article/E0046535,encykorea.aks.ac.kr,S3_BACKGROUND,인물 배경,인물 생애·관직 배경 확인용. 사건 F 생성에는 사용하지 않음.

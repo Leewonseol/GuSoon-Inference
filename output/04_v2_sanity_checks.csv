@@ -1,0 +1,8 @@
+check_id,description,result,prop_ids,detail
+S1,자미덕 진술: 정원돌·이집거·김갑득·김성손·김흥득 등을 큰 도적이라고 말하도록 요구받음,FOUND,P0081,set_status=OPEN_SET_EXPLICIT_MEMBERS
+S2,자미덕과 이집거의 대질,FOUND,P0083,
+S3,자미덕: 대질 때 한 비장의 지휘로 거짓으로 꾸며 말함,FOUND,P0084,
+S4,한재욱의 사주 부인,FOUND,P0093,
+S5,한재욱 진술 속 유제희 명단: 변지돌·변재돌·정원돌·김명신·김성손·김흥득·김흥길 등,FOUND,P0087,set_status=OPEN_SET_EXPLICIT_MEMBERS
+S6,김명신 사망 발생과 사망 원인 판단이 별개 proposition으로 존재,FOUND,P0006|P0040|P0025|P0102|P0106,DEATH_OCCURRENCE=P0006|P0040; DEATH_CAUSE=P0025|P0102|P0106; note: occurrence proposition(s) P0040 also carry cause wording in predicate (not modified)
+S7,병영의 하급 보조자 = 한재욱 동일시가 사실로 들어가 있지 않음,NOT_PRESENT (OK),,'하급 보조자' propositions=P0027|P0028; none link it to 한재욱 in subject/predicate/object_or_content/named_entities; person_membership rows mentioning it=0
