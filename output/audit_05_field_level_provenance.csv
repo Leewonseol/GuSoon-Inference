@@ -1,0 +1,1035 @@
+event_id,attestation_id,source_record_id,speaker_or_reporting_actor,field,value,classification,evidence_ids,explanation,proposition_ko
+AT0001,ATT0001,SRC001,이형원,actor,구순,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이형원 장계는 구순을 청주 덕평에 사는 전 부사로 적었다.
+AT0001,ATT0001,SRC001,이형원,action,거주,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이형원 장계는 구순을 청주 덕평에 사는 전 부사로 적었다.
+AT0001,ATT0001,SRC001,이형원,target_or_content,청주 덕평,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이형원 장계는 구순을 청주 덕평에 사는 전 부사로 적었다.
+AT0001,ATT0001,SRC001,이형원,historical_place,청주 덕평,DIRECTLY_SUPPORTED,,ATT0001 '청주 덕평',이형원 장계는 구순을 청주 덕평에 사는 전 부사로 적었다.
+AT0002,ATT0002,SRC001,이형원,actor,김명신,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이형원 장계는 김명신을 구순 집 이웃에 사는 반족으로 적었다.
+AT0002,ATT0002,SRC001,이형원,action,거주/신분,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이형원 장계는 김명신을 구순 집 이웃에 사는 반족으로 적었다.
+AT0002,ATT0002,SRC001,이형원,target_or_content,구순 집 이웃의 반족,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이형원 장계는 김명신을 구순 집 이웃에 사는 반족으로 적었다.
+AT0002,ATT0002,SRC001,이형원,historical_place,청주 덕평,DERIVED_FROM_LINKED_STRUCTURE,AT0001,ATT0002는 '구순 집 이웃'만 말함. 같은 SRC001 보고의 ATT0001(구순 거주지)에서 이어짐.,이형원 장계는 김명신을 구순 집 이웃에 사는 반족으로 적었다.
+AT0003,ATT0003,SRC001,이형원,actor,이형원,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이형원은 구순 집에 도난이 있었다는 내용을 장계했다.
+AT0003,ATT0003,SRC001,이형원,action,장계,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이형원은 구순 집에 도난이 있었다는 내용을 장계했다.
+AT0003,ATT0003,SRC001,이형원,target_or_content,구순 집에 도난이 있었다는 내용,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이형원은 구순 집에 도난이 있었다는 내용을 장계했다.
+AT0003,ATT0003,SRC001,이형원,claim_topic,THEFT_REALITY,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이형원은 구순 집에 도난이 있었다는 내용을 장계했다.
+AT0003,ATT0003,SRC001,이형원,conflict_group,THEFT_REALITY,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",이형원은 구순 집에 도난이 있었다는 내용을 장계했다.
+AT0004,ATT0004,SRC001,이형원,actor,이형원,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이형원은 구순이 김명신을 도적 괴수라고 말했다고 장계했다.
+AT0004,ATT0004,SRC001,이형원,action,장계,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이형원은 구순이 김명신을 도적 괴수라고 말했다고 장계했다.
+AT0004,ATT0004,SRC001,이형원,target_or_content,구순이 김명신을 도적 괴수라고 말했다는 내용,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이형원은 구순이 김명신을 도적 괴수라고 말했다고 장계했다.
+AT0004,ATT0004,SRC001,이형원,claim_topic,SUSPECT_IDENTIFICATION,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이형원은 구순이 김명신을 도적 괴수라고 말했다고 장계했다.
+AT0005,ATT0005,SRC001,이형원,actor,구순,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이형원 장계에는 구순이 김명신을 도적의 괴수라고 말했다고 적혀 있다.
+AT0005,ATT0005,SRC001,이형원,action,지목했다고 보고됨,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이형원 장계에는 구순이 김명신을 도적의 괴수라고 말했다고 적혀 있다.
+AT0005,ATT0005,SRC001,이형원,target_or_content,김명신을 도적 괴수로 지목,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이형원 장계에는 구순이 김명신을 도적의 괴수라고 말했다고 적혀 있다.
+AT0005,ATT0005,SRC001,이형원,claim_topic,SUSPECT_IDENTIFICATION,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이형원 장계에는 구순이 김명신을 도적의 괴수라고 말했다고 적혀 있다.
+AT0006,ATT0006,SRC001,이형원,actor,충청병영,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이형원은 병영이 김명신을 잡았다고 보고했다.
+AT0006,ATT0006,SRC001,이형원,action,체포했다고 보고됨,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이형원은 병영이 김명신을 잡았다고 보고했다.
+AT0006,ATT0006,SRC001,이형원,target_or_content,김명신,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이형원은 병영이 김명신을 잡았다고 보고했다.
+AT0006,ATT0006,SRC001,이형원,historical_place,충청병영,AMBIGUOUS,,ATT0006 '병영이 김명신을 잡았다': '병영'은 행위 주체. 체포 장소는 명시 없음(행위자 기관을 장소로 옮긴 것).,이형원은 병영이 김명신을 잡았다고 보고했다.
+AT0006,ATT0006,SRC001,이형원,occurrence_lunar_start,1793-03-04,IMPORTED_FROM_OTHER_ATTESTATION,AT0097;AT0101,"1793-03-04는 이진욱 진술(SRC004)의 날짜. ATT0006(이형원, SRC001)에는 날짜 없음.",이형원은 병영이 김명신을 잡았다고 보고했다.
+AT0006,ATT0006,SRC001,이형원,occurrence_lunar_end,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,이형원은 병영이 김명신을 잡았다고 보고했다.
+AT0006,ATT0006,SRC001,이형원,claim_topic,DETENTION,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이형원은 병영이 김명신을 잡았다고 보고했다.
+AT0007,ATT0007,SRC001,이형원,actor,김명신,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이형원은 김명신이 달포 이상 구금되었다고 보고했다.
+AT0007,ATT0007,SRC001,이형원,action,구금 상태라고 보고됨,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이형원은 김명신이 달포 이상 구금되었다고 보고했다.
+AT0007,ATT0007,SRC001,이형원,target_or_content,달포 이상,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이형원은 김명신이 달포 이상 구금되었다고 보고했다.
+AT0007,ATT0007,SRC001,이형원,historical_place,충청병영,IMPORTED_FROM_OTHER_ATTESTATION,AT0042,"ATT0007은 구금 장소를 말하지 않음. '병영 옥'은 ATT0042(이조원, SRC002)에만 있음.",이형원은 김명신이 달포 이상 구금되었다고 보고했다.
+AT0007,ATT0007,SRC001,이형원,occurrence_lunar_start,1793-03-04,IMPORTED_FROM_OTHER_ATTESTATION,AT0097;AT0101,"1793-03-04는 이진욱 진술(SRC004)의 날짜. ATT0007(이형원, SRC001)에는 날짜 없음.",이형원은 김명신이 달포 이상 구금되었다고 보고했다.
+AT0007,ATT0007,SRC001,이형원,occurrence_lunar_end,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,이형원은 김명신이 달포 이상 구금되었다고 보고했다.
+AT0007,ATT0007,SRC001,이형원,claim_topic,DETENTION,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이형원은 김명신이 달포 이상 구금되었다고 보고했다.
+AT0008,ATT0008,SRC001,이형원,actor,충청병영,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이형원은 병영이 김명신을 달포 이상 조사했다고 보고했다.
+AT0008,ATT0008,SRC001,이형원,action,조사했다고 보고됨,DIRECTLY_SUPPORTED,,'조사' 행위 자체는 직접 근거. 단 family=EF_ACT_RECORD_REPORT 분류는 행위와 맞지 않음.,이형원은 병영이 김명신을 달포 이상 조사했다고 보고했다.
+AT0008,ATT0008,SRC001,이형원,target_or_content,김명신,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이형원은 병영이 김명신을 달포 이상 조사했다고 보고했다.
+AT0008,ATT0008,SRC001,이형원,historical_place,충청병영,AMBIGUOUS,,ATT0008 '병영이 … 조사했다': 기관 주체를 장소로 옮긴 것으로 보임.,이형원은 병영이 김명신을 달포 이상 조사했다고 보고했다.
+AT0008,ATT0008,SRC001,이형원,occurrence_lunar_start,1793-03-04,IMPORTED_FROM_OTHER_ATTESTATION,AT0097;AT0101,"1793-03-04는 이진욱 진술(SRC004)의 날짜. ATT0008(이형원, SRC001)에는 날짜 없음.",이형원은 병영이 김명신을 달포 이상 조사했다고 보고했다.
+AT0008,ATT0008,SRC001,이형원,occurrence_lunar_end,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,이형원은 병영이 김명신을 달포 이상 조사했다고 보고했다.
+AT0008,ATT0008,SRC001,이형원,claim_topic,DETENTION,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이형원은 병영이 김명신을 달포 이상 조사했다고 보고했다.
+AT0009,ATT0009,SRC001,이형원,actor,수사,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이형원은 달포 이상 조사했으나 끝내 확실한 증거를 찾지 못했다고 보고했다.
+AT0009,ATT0009,SRC001,이형원,action,물증 상태,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이형원은 달포 이상 조사했으나 끝내 확실한 증거를 찾지 못했다고 보고했다.
+AT0009,ATT0009,SRC001,이형원,target_or_content,확실한 증거를 찾지 못함,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이형원은 달포 이상 조사했으나 끝내 확실한 증거를 찾지 못했다고 보고했다.
+AT0009,ATT0009,SRC001,이형원,historical_place,충청병영,DERIVED_FROM_LINKED_STRUCTURE,AT0008,같은 보고·같은 조사 결과 상태. 단 AT0008의 장소 자체가 AMBIGUOUS.,이형원은 달포 이상 조사했으나 끝내 확실한 증거를 찾지 못했다고 보고했다.
+AT0009,ATT0009,SRC001,이형원,occurrence_lunar_start,1793-03-04,IMPORTED_FROM_OTHER_ATTESTATION,AT0097;AT0101,"1793-03-04는 이진욱 진술(SRC004)의 날짜. ATT0009(이형원, SRC001)에는 날짜 없음.",이형원은 달포 이상 조사했으나 끝내 확실한 증거를 찾지 못했다고 보고했다.
+AT0009,ATT0009,SRC001,이형원,occurrence_lunar_end,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,이형원은 달포 이상 조사했으나 끝내 확실한 증거를 찾지 못했다고 보고했다.
+AT0009,ATT0009,SRC001,이형원,claim_topic,EVIDENCE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이형원은 달포 이상 조사했으나 끝내 확실한 증거를 찾지 못했다고 보고했다.
+AT0010,ATT0010,SRC001,이형원,actor,김명신,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이형원 장계는 김명신이 구금·조사 뒤 죽었다고 보고했다.
+AT0010,ATT0010,SRC001,이형원,action,사망했다고 보고됨,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이형원 장계는 김명신이 구금·조사 뒤 죽었다고 보고했다.
+AT0010,ATT0010,SRC001,이형원,historical_place,충청병영 옥,IMPORTED_FROM_OTHER_ATTESTATION,AT0042;REL0083,"ATT0010에는 장소 없음. '병영 옥'은 ATT0042(이조원, SRC002)의 표현으로, REL0083로만 연결됨.",이형원 장계는 김명신이 구금·조사 뒤 죽었다고 보고했다.
+AT0010,ATT0010,SRC001,이형원,occurrence_lunar_end,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,보고 기록일을 상한으로 사용(source_records.record_date_lunar).,이형원 장계는 김명신이 구금·조사 뒤 죽었다고 보고했다.
+AT0010,ATT0010,SRC001,이형원,claim_topic,DEATH_CAUSE,UNSUPPORTED,,ATT0010에는 원인 진술 없음(시간 순서 '구금·조사 뒤'만). DEATH_CAUSE는 근거 없음.,이형원 장계는 김명신이 구금·조사 뒤 죽었다고 보고했다.
+AT0010,ATT0010,SRC001,이형원,conflict_group,DEATH_CAUSE,UNSUPPORTED,,ATT0010에는 원인 진술 없음(시간 순서 '구금·조사 뒤'만). DEATH_CAUSE는 근거 없음.,이형원 장계는 김명신이 구금·조사 뒤 죽었다고 보고했다.
+AT0011,ATT0011,SRC001,이형원,actor,이형원,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이형원은 다른 무고한 평민들도 많이 모진 형벌을 받았다고 보고했다.
+AT0011,ATT0011,SRC001,이형원,action,보고,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이형원은 다른 무고한 평민들도 많이 모진 형벌을 받았다고 보고했다.
+AT0011,ATT0011,SRC001,이형원,target_or_content,다른 무고한 평민들도 악형을 받았다는 내용,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이형원은 다른 무고한 평민들도 많이 모진 형벌을 받았다고 보고했다.
+AT0011,ATT0011,SRC001,이형원,occurrence_lunar_end,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,보고 기록일을 상한으로 사용(source_records.record_date_lunar).,이형원은 다른 무고한 평민들도 많이 모진 형벌을 받았다고 보고했다.
+AT0011,ATT0011,SRC001,이형원,claim_topic,INVESTIGATION_HARM,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이형원은 다른 무고한 평민들도 많이 모진 형벌을 받았다고 보고했다.
+AT0012,ATT0012,SRC001,이형원,actor,이형원/각 진영 영장,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이형원은 각 진영의 영장들에게 함께 조사하게 했다고 보고했다.
+AT0012,ATT0012,SRC001,이형원,action,회동 조사 실시했다고 보고됨,AMBIGUOUS,,ATT0012 '영장들에게 함께 조사하게 했다'(사역=지시) → action '회동 조사 실시'는 지시와 수행을 합침.,이형원은 각 진영의 영장들에게 함께 조사하게 했다고 보고했다.
+AT0012,ATT0012,SRC001,이형원,target_or_content,관련자,AMBIGUOUS,,'관련자'는 ATT0012에 없는 자리표시자.,이형원은 각 진영의 영장들에게 함께 조사하게 했다고 보고했다.
+AT0012,ATT0012,SRC001,이형원,historical_place,충청도,IMPORTED_FROM_OTHER_ATTESTATION,AT0172,ATT0012는 '각 진영'만 말함. 이형원이 충청도 관찰사라는 정보는 ATT0172(SRC004)에 있음.,이형원은 각 진영의 영장들에게 함께 조사하게 했다고 보고했다.
+AT0012,ATT0012,SRC001,이형원,occurrence_lunar_end,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,보고 기록일을 상한으로 사용(source_records.record_date_lunar).,이형원은 각 진영의 영장들에게 함께 조사하게 했다고 보고했다.
+AT0012,ATT0012,SRC001,이형원,claim_topic,REINVESTIGATION,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이형원은 각 진영의 영장들에게 함께 조사하게 했다고 보고했다.
+AT0013,ATT0013,SRC001,이형원,actor,회동 조사 응답자들,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이형원 장계에는 회동 조사 응답자들이 구순과 김명신 사이에 원한이 있었다고 진술했다고 적혀 있다.
+AT0013,ATT0013,SRC001,이형원,action,공초,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이형원 장계에는 회동 조사 응답자들이 구순과 김명신 사이에 원한이 있었다고 진술했다고 적혀 있다.
+AT0013,ATT0013,SRC001,이형원,target_or_content,구순과 김명신 사이에 원한이 있었다는 주장,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이형원 장계에는 회동 조사 응답자들이 구순과 김명신 사이에 원한이 있었다고 진술했다고 적혀 있다.
+AT0013,ATT0013,SRC001,이형원,occurrence_lunar_end,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,보고 기록일을 상한으로 사용(source_records.record_date_lunar).,이형원 장계에는 회동 조사 응답자들이 구순과 김명신 사이에 원한이 있었다고 진술했다고 적혀 있다.
+AT0013,ATT0013,SRC001,이형원,claim_topic,MOTIVE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이형원 장계에는 회동 조사 응답자들이 구순과 김명신 사이에 원한이 있었다고 진술했다고 적혀 있다.
+AT0013,ATT0013,SRC001,이형원,conflict_group,MOTIVE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",이형원 장계에는 회동 조사 응답자들이 구순과 김명신 사이에 원한이 있었다고 진술했다고 적혀 있다.
+AT0014,ATT0014,SRC001,이형원,actor,회동 조사 응답자들,DERIVED_FROM_LINKED_STRUCTURE,AT0013,ATT0014 '응답자들이'. '회동 조사' 수식은 같은 보고의 AT0012/AT0013에서.,이형원 장계에는 응답자들이 구순이 도난 상황을 꾸몄다고 진술했다고 적혀 있다.
+AT0014,ATT0014,SRC001,이형원,action,공초,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이형원 장계에는 응답자들이 구순이 도난 상황을 꾸몄다고 진술했다고 적혀 있다.
+AT0014,ATT0014,SRC001,이형원,target_or_content,구순이 도난 상황을 꾸몄다는 주장,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이형원 장계에는 응답자들이 구순이 도난 상황을 꾸몄다고 진술했다고 적혀 있다.
+AT0014,ATT0014,SRC001,이형원,occurrence_lunar_end,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,보고 기록일을 상한으로 사용(source_records.record_date_lunar).,이형원 장계에는 응답자들이 구순이 도난 상황을 꾸몄다고 진술했다고 적혀 있다.
+AT0014,ATT0014,SRC001,이형원,claim_topic,THEFT_FABRICATION,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이형원 장계에는 응답자들이 구순이 도난 상황을 꾸몄다고 진술했다고 적혀 있다.
+AT0014,ATT0014,SRC001,이형원,conflict_group,THEFT_REALITY,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",이형원 장계에는 응답자들이 구순이 도난 상황을 꾸몄다고 진술했다고 적혀 있다.
+AT0015,ATT0015,SRC001,이형원,actor,회동 조사 응답자들,DERIVED_FROM_LINKED_STRUCTURE,AT0013,같음.,이형원 장계에는 응답자들이 구순이 김명신을 도적 괴수로 몰았다고 진술했다고 적혀 있다.
+AT0015,ATT0015,SRC001,이형원,action,공초,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이형원 장계에는 응답자들이 구순이 김명신을 도적 괴수로 몰았다고 진술했다고 적혀 있다.
+AT0015,ATT0015,SRC001,이형원,target_or_content,구순이 김명신을 도적 괴수로 몰았다는 주장,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이형원 장계에는 응답자들이 구순이 김명신을 도적 괴수로 몰았다고 진술했다고 적혀 있다.
+AT0015,ATT0015,SRC001,이형원,occurrence_lunar_end,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,보고 기록일을 상한으로 사용(source_records.record_date_lunar).,이형원 장계에는 응답자들이 구순이 김명신을 도적 괴수로 몰았다고 진술했다고 적혀 있다.
+AT0015,ATT0015,SRC001,이형원,claim_topic,SUSPECT_IDENTIFICATION,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이형원 장계에는 응답자들이 구순이 김명신을 도적 괴수로 몰았다고 진술했다고 적혀 있다.
+AT0016,ATT0016,SRC001,이형원,actor,회동 조사 응답자들,AMBIGUOUS,AT0013,ATT0016 '…진술이 실려 있다': 진술자 미명시.,이형원 장계에는 김명신 외 전후 체포자들도 구순 집에서 미워하던 사람들이었다는 진술이 실려 있다.
+AT0016,ATT0016,SRC001,이형원,action,공초,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이형원 장계에는 김명신 외 전후 체포자들도 구순 집에서 미워하던 사람들이었다는 진술이 실려 있다.
+AT0016,ATT0016,SRC001,이형원,target_or_content,전후 체포자들이 구순 집에서 미워하던 사람들이었다는 주장,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이형원 장계에는 김명신 외 전후 체포자들도 구순 집에서 미워하던 사람들이었다는 진술이 실려 있다.
+AT0016,ATT0016,SRC001,이형원,occurrence_lunar_end,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,보고 기록일을 상한으로 사용(source_records.record_date_lunar).,이형원 장계에는 김명신 외 전후 체포자들도 구순 집에서 미워하던 사람들이었다는 진술이 실려 있다.
+AT0016,ATT0016,SRC001,이형원,claim_topic,TARGET_SELECTION,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이형원 장계에는 김명신 외 전후 체포자들도 구순 집에서 미워하던 사람들이었다는 진술이 실려 있다.
+AT0017,ATT0017,SRC001,이형원,actor,이형원,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이형원은 청주 영장 이문협이 토포 직책에 있으면서 조사를 병영 비장에게 전적으로 맡겼다고 평가했다.
+AT0017,ATT0017,SRC001,이형원,action,평가,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이형원은 청주 영장 이문협이 토포 직책에 있으면서 조사를 병영 비장에게 전적으로 맡겼다고 평가했다.
+AT0017,ATT0017,SRC001,이형원,target_or_content,이문협이 토포 직책을 맡고도 수사를 비장에게 전적으로 맡겼다고 판단,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이형원은 청주 영장 이문협이 토포 직책에 있으면서 조사를 병영 비장에게 전적으로 맡겼다고 평가했다.
+AT0017,ATT0017,SRC001,이형원,occurrence_lunar_start,1793-05-12,AMBIGUOUS,SRC001,이형원 장계 안의 평가·건의를 기록일(1793-05-12)에 DAY 정밀도로 고정. 장계 작성일은 기록에 없음.,이형원은 청주 영장 이문협이 토포 직책에 있으면서 조사를 병영 비장에게 전적으로 맡겼다고 평가했다.
+AT0017,ATT0017,SRC001,이형원,occurrence_lunar_end,1793-05-12,AMBIGUOUS,SRC001,이형원 장계 안의 평가·건의를 기록일(1793-05-12)에 DAY 정밀도로 고정. 장계 작성일은 기록에 없음.,이형원은 청주 영장 이문협이 토포 직책에 있으면서 조사를 병영 비장에게 전적으로 맡겼다고 평가했다.
+AT0017,ATT0017,SRC001,이형원,claim_topic,INSTITUTIONAL_FAILURE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이형원은 청주 영장 이문협이 토포 직책에 있으면서 조사를 병영 비장에게 전적으로 맡겼다고 평가했다.
+AT0018,ATT0018,SRC001,이형원,actor,이형원,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이형원은 이문협을 파출할 것을 건의했다.
+AT0018,ATT0018,SRC001,이형원,action,건의,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이형원은 이문협을 파출할 것을 건의했다.
+AT0018,ATT0018,SRC001,이형원,target_or_content,이문협 파출,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이형원은 이문협을 파출할 것을 건의했다.
+AT0018,ATT0018,SRC001,이형원,occurrence_lunar_start,1793-05-12,AMBIGUOUS,SRC001,이형원 장계 안의 평가·건의를 기록일(1793-05-12)에 DAY 정밀도로 고정. 장계 작성일은 기록에 없음.,이형원은 이문협을 파출할 것을 건의했다.
+AT0018,ATT0018,SRC001,이형원,occurrence_lunar_end,1793-05-12,AMBIGUOUS,SRC001,이형원 장계 안의 평가·건의를 기록일(1793-05-12)에 DAY 정밀도로 고정. 장계 작성일은 기록에 없음.,이형원은 이문협을 파출할 것을 건의했다.
+AT0019,ATT0019,SRC001,이형원,actor,이형원,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이형원은 이광섭이 허황한 말을 믿고 죄 없는 사람을 잘못 잡았다고 평가했다.
+AT0019,ATT0019,SRC001,이형원,action,평가,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이형원은 이광섭이 허황한 말을 믿고 죄 없는 사람을 잘못 잡았다고 평가했다.
+AT0019,ATT0019,SRC001,이형원,target_or_content,이광섭이 허황한 말을 믿고 무고한 사람을 잘못 잡았다고 판단,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이형원은 이광섭이 허황한 말을 믿고 죄 없는 사람을 잘못 잡았다고 평가했다.
+AT0019,ATT0019,SRC001,이형원,occurrence_lunar_start,1793-05-12,AMBIGUOUS,SRC001,이형원 장계 안의 평가·건의를 기록일(1793-05-12)에 DAY 정밀도로 고정. 장계 작성일은 기록에 없음.,이형원은 이광섭이 허황한 말을 믿고 죄 없는 사람을 잘못 잡았다고 평가했다.
+AT0019,ATT0019,SRC001,이형원,occurrence_lunar_end,1793-05-12,AMBIGUOUS,SRC001,이형원 장계 안의 평가·건의를 기록일(1793-05-12)에 DAY 정밀도로 고정. 장계 작성일은 기록에 없음.,이형원은 이광섭이 허황한 말을 믿고 죄 없는 사람을 잘못 잡았다고 평가했다.
+AT0019,ATT0019,SRC001,이형원,claim_topic,COMMAND_FAILURE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이형원은 이광섭이 허황한 말을 믿고 죄 없는 사람을 잘못 잡았다고 평가했다.
+AT0020,ATT0020,SRC001,비변사,actor,비변사,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,비변사는 이광섭을 파직하자고 청했다.
+AT0020,ATT0020,SRC001,비변사,action,복계,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,비변사는 이광섭을 파직하자고 청했다.
+AT0020,ATT0020,SRC001,비변사,target_or_content,이광섭 파직 요청,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,비변사는 이광섭을 파직하자고 청했다.
+AT0020,ATT0020,SRC001,비변사,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,비변사는 이광섭을 파직하자고 청했다.
+AT0020,ATT0020,SRC001,비변사,occurrence_lunar_start,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,비변사는 이광섭을 파직하자고 청했다.
+AT0020,ATT0020,SRC001,비변사,occurrence_lunar_end,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,비변사는 이광섭을 파직하자고 청했다.
+AT0021,ATT0021,SRC001,비변사,actor,비변사,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,비변사는 이광섭을 잡아다 신문하자고 청했다.
+AT0021,ATT0021,SRC001,비변사,action,복계,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,비변사는 이광섭을 잡아다 신문하자고 청했다.
+AT0021,ATT0021,SRC001,비변사,target_or_content,이광섭 나문 요청,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,비변사는 이광섭을 잡아다 신문하자고 청했다.
+AT0021,ATT0021,SRC001,비변사,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,비변사는 이광섭을 잡아다 신문하자고 청했다.
+AT0021,ATT0021,SRC001,비변사,occurrence_lunar_start,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,비변사는 이광섭을 잡아다 신문하자고 청했다.
+AT0021,ATT0021,SRC001,비변사,occurrence_lunar_end,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,비변사는 이광섭을 잡아다 신문하자고 청했다.
+AT0022,ATT0022,SRC001,비변사,actor,비변사,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,비변사는 이광섭을 엄히 감죄하자고 청했다.
+AT0022,ATT0022,SRC001,비변사,action,복계,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,비변사는 이광섭을 엄히 감죄하자고 청했다.
+AT0022,ATT0022,SRC001,비변사,target_or_content,이광섭 엄한 감죄 요청,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,비변사는 이광섭을 엄히 감죄하자고 청했다.
+AT0022,ATT0022,SRC001,비변사,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,비변사는 이광섭을 엄히 감죄하자고 청했다.
+AT0022,ATT0022,SRC001,비변사,occurrence_lunar_start,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,비변사는 이광섭을 엄히 감죄하자고 청했다.
+AT0022,ATT0022,SRC001,비변사,occurrence_lunar_end,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,비변사는 이광섭을 엄히 감죄하자고 청했다.
+AT0023,ATT0023,SRC001,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 이광섭 파직 요청을 윤허했다.
+AT0023,ATT0023,SRC001,정조,action,윤허,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 이광섭 파직 요청을 윤허했다.
+AT0023,ATT0023,SRC001,정조,target_or_content,이광섭 파직 요청,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 이광섭 파직 요청을 윤허했다.
+AT0023,ATT0023,SRC001,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 이광섭 파직 요청을 윤허했다.
+AT0023,ATT0023,SRC001,정조,occurrence_lunar_start,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 이광섭 파직 요청을 윤허했다.
+AT0023,ATT0023,SRC001,정조,occurrence_lunar_end,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 이광섭 파직 요청을 윤허했다.
+AT0024,ATT0024,SRC001,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 이광섭 나문 요청을 윤허했다.
+AT0024,ATT0024,SRC001,정조,action,윤허,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 이광섭 나문 요청을 윤허했다.
+AT0024,ATT0024,SRC001,정조,target_or_content,이광섭 나문 요청,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 이광섭 나문 요청을 윤허했다.
+AT0024,ATT0024,SRC001,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 이광섭 나문 요청을 윤허했다.
+AT0024,ATT0024,SRC001,정조,occurrence_lunar_start,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 이광섭 나문 요청을 윤허했다.
+AT0024,ATT0024,SRC001,정조,occurrence_lunar_end,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 이광섭 나문 요청을 윤허했다.
+AT0025,ATT0025,SRC001,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 이광섭 엄한 감죄 요청을 윤허했다.
+AT0025,ATT0025,SRC001,정조,action,윤허,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 이광섭 엄한 감죄 요청을 윤허했다.
+AT0025,ATT0025,SRC001,정조,target_or_content,이광섭 엄한 감죄 요청,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 이광섭 엄한 감죄 요청을 윤허했다.
+AT0025,ATT0025,SRC001,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 이광섭 엄한 감죄 요청을 윤허했다.
+AT0025,ATT0025,SRC001,정조,occurrence_lunar_start,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 이광섭 엄한 감죄 요청을 윤허했다.
+AT0025,ATT0025,SRC001,정조,occurrence_lunar_end,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 이광섭 엄한 감죄 요청을 윤허했다.
+AT0026,ATT0026,SRC001,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 당시 도 장계와 조사 문건을 근거로 구순이 도난을 꾸몄다는 방향을 받아들였다.
+AT0026,ATT0026,SRC001,정조,action,판단,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 당시 도 장계와 조사 문건을 근거로 구순이 도난을 꾸몄다는 방향을 받아들였다.
+AT0026,ATT0026,SRC001,정조,target_or_content,도난 자체가 없었다는 방향을 당시 장계·조사에 따라 받아들임,AMBIGUOUS,,ATT0026 '구순이 도난을 꾸몄다는 방향을 받아들였다' vs target '도난 자체가 없었다는 방향'. 구순의 조작 행위(주체)가 빠지고 '도난 부재'로 바뀜.,정조는 당시 도 장계와 조사 문건을 근거로 구순이 도난을 꾸몄다는 방향을 받아들였다.
+AT0026,ATT0026,SRC001,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 당시 도 장계와 조사 문건을 근거로 구순이 도난을 꾸몄다는 방향을 받아들였다.
+AT0026,ATT0026,SRC001,정조,occurrence_lunar_start,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 당시 도 장계와 조사 문건을 근거로 구순이 도난을 꾸몄다는 방향을 받아들였다.
+AT0026,ATT0026,SRC001,정조,occurrence_lunar_end,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 당시 도 장계와 조사 문건을 근거로 구순이 도난을 꾸몄다는 방향을 받아들였다.
+AT0026,ATT0026,SRC001,정조,claim_topic,THEFT_REALITY,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",정조는 당시 도 장계와 조사 문건을 근거로 구순이 도난을 꾸몄다는 방향을 받아들였다.
+AT0026,ATT0026,SRC001,정조,conflict_group,THEFT_REALITY,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",정조는 당시 도 장계와 조사 문건을 근거로 구순이 도난을 꾸몄다는 방향을 받아들였다.
+AT0027,ATT0027,SRC001,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 구순을 의금부로 잡아오라고 명했다.
+AT0027,ATT0027,SRC001,정조,action,명령,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 구순을 의금부로 잡아오라고 명했다.
+AT0027,ATT0027,SRC001,정조,target_or_content,구순을 의금부로 잡아오게 함,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 구순을 의금부로 잡아오라고 명했다.
+AT0027,ATT0027,SRC001,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 구순을 의금부로 잡아오라고 명했다.
+AT0027,ATT0027,SRC001,정조,occurrence_lunar_start,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 구순을 의금부로 잡아오라고 명했다.
+AT0027,ATT0027,SRC001,정조,occurrence_lunar_end,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 구순을 의금부로 잡아오라고 명했다.
+AT0028,ATT0028,SRC001,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 구순을 수금하라고 명했다.
+AT0028,ATT0028,SRC001,정조,action,명령,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 구순을 수금하라고 명했다.
+AT0028,ATT0028,SRC001,정조,target_or_content,구순 수금,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 구순을 수금하라고 명했다.
+AT0028,ATT0028,SRC001,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 구순을 수금하라고 명했다.
+AT0028,ATT0028,SRC001,정조,occurrence_lunar_start,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 구순을 수금하라고 명했다.
+AT0028,ATT0028,SRC001,정조,occurrence_lunar_end,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 구순을 수금하라고 명했다.
+AT0029,ATT0029,SRC001,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 구순을 엄히 조사하라고 명했다.
+AT0029,ATT0029,SRC001,정조,action,명령,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 구순을 엄히 조사하라고 명했다.
+AT0029,ATT0029,SRC001,정조,target_or_content,구순 엄한 조사,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 구순을 엄히 조사하라고 명했다.
+AT0029,ATT0029,SRC001,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 구순을 엄히 조사하라고 명했다.
+AT0029,ATT0029,SRC001,정조,occurrence_lunar_start,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 구순을 엄히 조사하라고 명했다.
+AT0029,ATT0029,SRC001,정조,occurrence_lunar_end,1793-05-12,DERIVED_FROM_LINKED_STRUCTURE,SRC001,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 구순을 엄히 조사하라고 명했다.
+AT0030,ATT0030,SRC002,이조원,actor,이조원,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,충청도 암행어사 이조원은 비변사 당상들과 함께 입시했다.
+AT0030,ATT0030,SRC002,이조원,action,입시,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,충청도 암행어사 이조원은 비변사 당상들과 함께 입시했다.
+AT0030,ATT0030,SRC002,이조원,target_or_content,비변사 당상들과 함께,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,충청도 암행어사 이조원은 비변사 당상들과 함께 입시했다.
+AT0030,ATT0030,SRC002,이조원,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,충청도 암행어사 이조원은 비변사 당상들과 함께 입시했다.
+AT0030,ATT0030,SRC002,이조원,occurrence_lunar_start,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,공식 행위·발화의 기록일(source_records.record_date_lunar).,충청도 암행어사 이조원은 비변사 당상들과 함께 입시했다.
+AT0030,ATT0030,SRC002,이조원,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,공식 행위·발화의 기록일(source_records.record_date_lunar).,충청도 암행어사 이조원은 비변사 당상들과 함께 입시했다.
+AT0031,ATT0031,SRC002,이조원,actor,이조원,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이조원은 입시 자리에서 구순 사건을 보고했다.
+AT0031,ATT0031,SRC002,이조원,action,보고,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이조원은 입시 자리에서 구순 사건을 보고했다.
+AT0031,ATT0031,SRC002,이조원,target_or_content,구순 사건,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이조원은 입시 자리에서 구순 사건을 보고했다.
+AT0031,ATT0031,SRC002,이조원,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,이조원은 입시 자리에서 구순 사건을 보고했다.
+AT0031,ATT0031,SRC002,이조원,occurrence_lunar_start,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,공식 행위·발화의 기록일(source_records.record_date_lunar).,이조원은 입시 자리에서 구순 사건을 보고했다.
+AT0031,ATT0031,SRC002,이조원,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,공식 행위·발화의 기록일(source_records.record_date_lunar).,이조원은 입시 자리에서 구순 사건을 보고했다.
+AT0032,ATT0032,SRC002,이조원,actor,구순 집,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이조원은 구순 집 앞에 큰길이 있고 마을이 매우 크다고 보고했다.
+AT0032,ATT0032,SRC002,이조원,action,입지라고 보고됨,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이조원은 구순 집 앞에 큰길이 있고 마을이 매우 크다고 보고했다.
+AT0032,ATT0032,SRC002,이조원,target_or_content,앞에 큰길이 있고 마을이 큼,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이조원은 구순 집 앞에 큰길이 있고 마을이 매우 크다고 보고했다.
+AT0032,ATT0032,SRC002,이조원,historical_place,청주 덕평,IMPORTED_FROM_OTHER_ATTESTATION,AT0001,"ATT0032(이조원, SRC002)는 '구순 집 앞'만 말함. '청주 덕평'은 ATT0001(SRC001)에서 옴.",이조원은 구순 집 앞에 큰길이 있고 마을이 매우 크다고 보고했다.
+AT0032,ATT0032,SRC002,이조원,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,보고 기록일을 상한으로 사용(source_records.record_date_lunar).,이조원은 구순 집 앞에 큰길이 있고 마을이 매우 크다고 보고했다.
+AT0032,ATT0032,SRC002,이조원,claim_topic,LOCAL_CONTEXT,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이조원은 구순 집 앞에 큰길이 있고 마을이 매우 크다고 보고했다.
+AT0033,ATT0033,SRC002,이조원,actor,이조원,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이조원은 주변 환경과 목격자 부재를 근거로 화적 침입 자체가 이치에 맞지 않는다고 주장했다.
+AT0033,ATT0033,SRC002,이조원,action,판단·보고,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이조원은 주변 환경과 목격자 부재를 근거로 화적 침입 자체가 이치에 맞지 않는다고 주장했다.
+AT0033,ATT0033,SRC002,이조원,target_or_content,화적 침입 자체가 이치에 맞지 않는다는 주장,DIRECTLY_SUPPORTED,,ATT0033과 같음. 단 명제의 근거('주변 환경과 목격자 부재')가 target에서 빠짐.,이조원은 주변 환경과 목격자 부재를 근거로 화적 침입 자체가 이치에 맞지 않는다고 주장했다.
+AT0033,ATT0033,SRC002,이조원,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,보고 기록일을 상한으로 사용(source_records.record_date_lunar).,이조원은 주변 환경과 목격자 부재를 근거로 화적 침입 자체가 이치에 맞지 않는다고 주장했다.
+AT0033,ATT0033,SRC002,이조원,claim_topic,THEFT_REALITY,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이조원은 주변 환경과 목격자 부재를 근거로 화적 침입 자체가 이치에 맞지 않는다고 주장했다.
+AT0033,ATT0033,SRC002,이조원,conflict_group,THEFT_REALITY,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",이조원은 주변 환경과 목격자 부재를 근거로 화적 침입 자체가 이치에 맞지 않는다고 주장했다.
+AT0034,ATT0034,SRC002,이조원,actor,김명신,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이조원은 김명신이 구순과 이웃하여 살았다고 보고했다.
+AT0034,ATT0034,SRC002,이조원,action,거주,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이조원은 김명신이 구순과 이웃하여 살았다고 보고했다.
+AT0034,ATT0034,SRC002,이조원,target_or_content,구순과 이웃,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이조원은 김명신이 구순과 이웃하여 살았다고 보고했다.
+AT0034,ATT0034,SRC002,이조원,historical_place,청주 덕평,IMPORTED_FROM_OTHER_ATTESTATION,AT0001;REL0072,ATT0034(SRC002)에는 지명 없음. ATT0001(SRC001)에서 옴.,이조원은 김명신이 구순과 이웃하여 살았다고 보고했다.
+AT0034,ATT0034,SRC002,이조원,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,보고 기록일을 상한으로 사용(source_records.record_date_lunar).,이조원은 김명신이 구순과 이웃하여 살았다고 보고했다.
+AT0034,ATT0034,SRC002,이조원,claim_topic,RELATIONSHIP,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이조원은 김명신이 구순과 이웃하여 살았다고 보고했다.
+AT0035,ATT0035,SRC002,이조원,actor,이조원,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이조원은 김명신이 구순의 거상 중 행실을 비판한 일이 있었다고 보고했다.
+AT0035,ATT0035,SRC002,이조원,action,보고,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이조원은 김명신이 구순의 거상 중 행실을 비판한 일이 있었다고 보고했다.
+AT0035,ATT0035,SRC002,이조원,target_or_content,김명신이 구순의 거상 중 행실을 비판했다는 내용,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이조원은 김명신이 구순의 거상 중 행실을 비판한 일이 있었다고 보고했다.
+AT0035,ATT0035,SRC002,이조원,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,보고 기록일을 상한으로 사용(source_records.record_date_lunar).,이조원은 김명신이 구순의 거상 중 행실을 비판한 일이 있었다고 보고했다.
+AT0035,ATT0035,SRC002,이조원,claim_topic,RELATIONSHIP_CONFLICT,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이조원은 김명신이 구순의 거상 중 행실을 비판한 일이 있었다고 보고했다.
+AT0036,ATT0036,SRC002,이조원,actor,이조원,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이조원은 피우 관련 일에서 구순과 김명신 사이에 갈등이 있었다고 보고했다.
+AT0036,ATT0036,SRC002,이조원,action,보고,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이조원은 피우 관련 일에서 구순과 김명신 사이에 갈등이 있었다고 보고했다.
+AT0036,ATT0036,SRC002,이조원,target_or_content,피우하러 왔을 때 구순이 김명신의 형 접촉을 허락하지 않았다는 내용,UNSUPPORTED,,"ATT0036은 '피우 관련 일에서 구순과 김명신 사이에 갈등이 있었다'만 말함. target의 '김명신의 형', '접촉 불허'는 어떤 attestation에도 없음.",이조원은 피우 관련 일에서 구순과 김명신 사이에 갈등이 있었다고 보고했다.
+AT0036,ATT0036,SRC002,이조원,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,보고 기록일을 상한으로 사용(source_records.record_date_lunar).,이조원은 피우 관련 일에서 구순과 김명신 사이에 갈등이 있었다고 보고했다.
+AT0036,ATT0036,SRC002,이조원,claim_topic,RELATIONSHIP_CONFLICT,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이조원은 피우 관련 일에서 구순과 김명신 사이에 갈등이 있었다고 보고했다.
+AT0037,ATT0037,SRC002,이조원,actor,이조원,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이조원은 구순이 김명신에게 앙심을 품고 모함을 꾀했다고 주장했다.
+AT0037,ATT0037,SRC002,이조원,action,주장,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이조원은 구순이 김명신에게 앙심을 품고 모함을 꾀했다고 주장했다.
+AT0037,ATT0037,SRC002,이조원,target_or_content,구순이 앙심을 품어 김명신을 모함하려 했다는 주장,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이조원은 구순이 김명신에게 앙심을 품고 모함을 꾀했다고 주장했다.
+AT0037,ATT0037,SRC002,이조원,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,보고 기록일을 상한으로 사용(source_records.record_date_lunar).,이조원은 구순이 김명신에게 앙심을 품고 모함을 꾀했다고 주장했다.
+AT0037,ATT0037,SRC002,이조원,claim_topic,MOTIVE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이조원은 구순이 김명신에게 앙심을 품고 모함을 꾀했다고 주장했다.
+AT0037,ATT0037,SRC002,이조원,conflict_group,MOTIVE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",이조원은 구순이 김명신에게 앙심을 품고 모함을 꾀했다고 주장했다.
+AT0038,ATT0038,SRC002,이조원,actor,이조원,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이조원은 구순이 도적을 맞은 모양을 꾸몄다고 주장했다.
+AT0038,ATT0038,SRC002,이조원,action,주장,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이조원은 구순이 도적을 맞은 모양을 꾸몄다고 주장했다.
+AT0038,ATT0038,SRC002,이조원,target_or_content,구순이 도난 상황을 꾸몄다는 주장,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이조원은 구순이 도적을 맞은 모양을 꾸몄다고 주장했다.
+AT0038,ATT0038,SRC002,이조원,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,보고 기록일을 상한으로 사용(source_records.record_date_lunar).,이조원은 구순이 도적을 맞은 모양을 꾸몄다고 주장했다.
+AT0038,ATT0038,SRC002,이조원,claim_topic,THEFT_REALITY,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이조원은 구순이 도적을 맞은 모양을 꾸몄다고 주장했다.
+AT0038,ATT0038,SRC002,이조원,conflict_group,THEFT_REALITY,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",이조원은 구순이 도적을 맞은 모양을 꾸몄다고 주장했다.
+AT0039,ATT0039,SRC002,이조원,actor,이조원,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이조원은 구순이 지세랑이라는 말을 만들어 퍼뜨렸다고 주장했다.
+AT0039,ATT0039,SRC002,이조원,action,주장,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이조원은 구순이 지세랑이라는 말을 만들어 퍼뜨렸다고 주장했다.
+AT0039,ATT0039,SRC002,이조원,target_or_content,구순이 지세랑 호칭을 만들어 퍼뜨렸다는 주장,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이조원은 구순이 지세랑이라는 말을 만들어 퍼뜨렸다고 주장했다.
+AT0039,ATT0039,SRC002,이조원,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,보고 기록일을 상한으로 사용(source_records.record_date_lunar).,이조원은 구순이 지세랑이라는 말을 만들어 퍼뜨렸다고 주장했다.
+AT0039,ATT0039,SRC002,이조원,claim_topic,JISE_ORIGIN,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이조원은 구순이 지세랑이라는 말을 만들어 퍼뜨렸다고 주장했다.
+AT0039,ATT0039,SRC002,이조원,conflict_group,JISE_ORIGIN,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",이조원은 구순이 지세랑이라는 말을 만들어 퍼뜨렸다고 주장했다.
+AT0040,ATT0040,SRC002,이조원,actor,이조원,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이조원은 구순이 작은 궤짝의 돈을 도둑맞았다고 꾸몄다고 주장했다.
+AT0040,ATT0040,SRC002,이조원,action,주장,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이조원은 구순이 작은 궤짝의 돈을 도둑맞았다고 꾸몄다고 주장했다.
+AT0040,ATT0040,SRC002,이조원,target_or_content,작은 궤짝의 돈을 도둑맞았다고 꾸몄다는 주장,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이조원은 구순이 작은 궤짝의 돈을 도둑맞았다고 꾸몄다고 주장했다.
+AT0040,ATT0040,SRC002,이조원,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,보고 기록일을 상한으로 사용(source_records.record_date_lunar).,이조원은 구순이 작은 궤짝의 돈을 도둑맞았다고 꾸몄다고 주장했다.
+AT0040,ATT0040,SRC002,이조원,claim_topic,FABRICATION_DETAILS,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이조원은 구순이 작은 궤짝의 돈을 도둑맞았다고 꾸몄다고 주장했다.
+AT0041,ATT0041,SRC002,이조원,actor,이조원,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이조원은 구순이 노비의 상처를 도적을 막다 입은 창상이라고 꾸몄다고 주장했다.
+AT0041,ATT0041,SRC002,이조원,action,주장,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이조원은 구순이 노비의 상처를 도적을 막다 입은 창상이라고 꾸몄다고 주장했다.
+AT0041,ATT0041,SRC002,이조원,target_or_content,노비의 상처를 도적의 창상으로 꾸몄다는 주장,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이조원은 구순이 노비의 상처를 도적을 막다 입은 창상이라고 꾸몄다고 주장했다.
+AT0041,ATT0041,SRC002,이조원,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,보고 기록일을 상한으로 사용(source_records.record_date_lunar).,이조원은 구순이 노비의 상처를 도적을 막다 입은 창상이라고 꾸몄다고 주장했다.
+AT0041,ATT0041,SRC002,이조원,claim_topic,FABRICATION_DETAILS,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이조원은 구순이 노비의 상처를 도적을 막다 입은 창상이라고 꾸몄다고 주장했다.
+AT0042,ATT0042,SRC002,이조원,actor,이조원,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이조원은 김명신이 병영 옥에서 원통하게 죽었다고 보고했다.
+AT0042,ATT0042,SRC002,이조원,action,보고,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이조원은 김명신이 병영 옥에서 원통하게 죽었다고 보고했다.
+AT0042,ATT0042,SRC002,이조원,target_or_content,김명신이 병영 옥에서 원통하게 죽었다는 판단,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이조원은 김명신이 병영 옥에서 원통하게 죽었다고 보고했다.
+AT0042,ATT0042,SRC002,이조원,historical_place,충청병영,DIRECTLY_SUPPORTED,,ATT0042 '병영 옥에서'('충청' 접두는 정규화),이조원은 김명신이 병영 옥에서 원통하게 죽었다고 보고했다.
+AT0042,ATT0042,SRC002,이조원,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,보고 기록일을 상한으로 사용(source_records.record_date_lunar).,이조원은 김명신이 병영 옥에서 원통하게 죽었다고 보고했다.
+AT0042,ATT0042,SRC002,이조원,claim_topic,DEATH_CAUSE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이조원은 김명신이 병영 옥에서 원통하게 죽었다고 보고했다.
+AT0042,ATT0042,SRC002,이조원,conflict_group,DEATH_CAUSE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",이조원은 김명신이 병영 옥에서 원통하게 죽었다고 보고했다.
+AT0043,ATT0043,SRC002,이조원,actor,이조원,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이조원은 김명신이 죽은 뒤 그의 아내도 사망했다고 보고했다.
+AT0043,ATT0043,SRC002,이조원,action,보고,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이조원은 김명신이 죽은 뒤 그의 아내도 사망했다고 보고했다.
+AT0043,ATT0043,SRC002,이조원,target_or_content,김명신 사망 뒤 아내도 사망,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이조원은 김명신이 죽은 뒤 그의 아내도 사망했다고 보고했다.
+AT0043,ATT0043,SRC002,이조원,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,보고 기록일을 상한으로 사용(source_records.record_date_lunar).,이조원은 김명신이 죽은 뒤 그의 아내도 사망했다고 보고했다.
+AT0043,ATT0043,SRC002,이조원,claim_topic,DEATH_SEQUENCE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이조원은 김명신이 죽은 뒤 그의 아내도 사망했다고 보고했다.
+AT0044,ATT0044,SRC002,이조원,actor,이조원,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이조원은 병사가 초기에 자세히 조사하지 않고 보조자에게 일을 맡겼다고 보고했다.
+AT0044,ATT0044,SRC002,이조원,action,보고,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이조원은 병사가 초기에 자세히 조사하지 않고 보조자에게 일을 맡겼다고 보고했다.
+AT0044,ATT0044,SRC002,이조원,target_or_content,병사가 처음부터 자세히 조사하지 않고 보조자에게 맡겼다는 주장,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이조원은 병사가 초기에 자세히 조사하지 않고 보조자에게 일을 맡겼다고 보고했다.
+AT0044,ATT0044,SRC002,이조원,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,보고 기록일을 상한으로 사용(source_records.record_date_lunar).,이조원은 병사가 초기에 자세히 조사하지 않고 보조자에게 일을 맡겼다고 보고했다.
+AT0044,ATT0044,SRC002,이조원,claim_topic,COMMAND_FAILURE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이조원은 병사가 초기에 자세히 조사하지 않고 보조자에게 일을 맡겼다고 보고했다.
+AT0045,ATT0045,SRC002,이조원,actor,이조원,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이조원은 문제의 병영 보조자가 구순의 가객이었다고 주장했다.
+AT0045,ATT0045,SRC002,이조원,action,주장,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이조원은 문제의 병영 보조자가 구순의 가객이었다고 주장했다.
+AT0045,ATT0045,SRC002,이조원,target_or_content,병영 보조자가 구순의 가객이었다는 주장,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이조원은 문제의 병영 보조자가 구순의 가객이었다고 주장했다.
+AT0045,ATT0045,SRC002,이조원,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,보고 기록일을 상한으로 사용(source_records.record_date_lunar).,이조원은 문제의 병영 보조자가 구순의 가객이었다고 주장했다.
+AT0045,ATT0045,SRC002,이조원,claim_topic,HAN_GUSUN_RELATION,IMPORTED_FROM_OTHER_ATTESTATION,AT0132;REL0082,ATT0045는 '병영 보조자'라고만 함. '한재욱'과의 관계 쟁점(HAN_GUSUN_RELATION)은 REL0082의 동일시를 통해서만 생김.,이조원은 문제의 병영 보조자가 구순의 가객이었다고 주장했다.
+AT0045,ATT0045,SRC002,이조원,conflict_group,HAN_GUSUN_RELATION,IMPORTED_FROM_OTHER_ATTESTATION,AT0132;REL0082,ATT0045는 '병영 보조자'라고만 함. '한재욱'과의 관계 쟁점(HAN_GUSUN_RELATION)은 REL0082의 동일시를 통해서만 생김.,이조원은 문제의 병영 보조자가 구순의 가객이었다고 주장했다.
+AT0046,ATT0046,SRC002,정민시 등,actor,비변사 당상들,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,비변사 당상들은 구순을 엄히 신문하자고 건의했다.
+AT0046,ATT0046,SRC002,정민시 등,action,건의,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,비변사 당상들은 구순을 엄히 신문하자고 건의했다.
+AT0046,ATT0046,SRC002,정민시 등,target_or_content,구순 엄문,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,비변사 당상들은 구순을 엄히 신문하자고 건의했다.
+AT0046,ATT0046,SRC002,정민시 등,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,비변사 당상들은 구순을 엄히 신문하자고 건의했다.
+AT0046,ATT0046,SRC002,정민시 등,occurrence_lunar_start,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,공식 행위·발화의 기록일(source_records.record_date_lunar).,비변사 당상들은 구순을 엄히 신문하자고 건의했다.
+AT0046,ATT0046,SRC002,정민시 등,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,공식 행위·발화의 기록일(source_records.record_date_lunar).,비변사 당상들은 구순을 엄히 신문하자고 건의했다.
+AT0047,ATT0047,SRC002,정민시 등,actor,비변사 당상들,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,비변사 당상들은 이조원을 파직하자고 건의했다.
+AT0047,ATT0047,SRC002,정민시 등,action,건의,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,비변사 당상들은 이조원을 파직하자고 건의했다.
+AT0047,ATT0047,SRC002,정민시 등,target_or_content,이조원 파직,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,비변사 당상들은 이조원을 파직하자고 건의했다.
+AT0047,ATT0047,SRC002,정민시 등,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,비변사 당상들은 이조원을 파직하자고 건의했다.
+AT0047,ATT0047,SRC002,정민시 등,occurrence_lunar_start,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,공식 행위·발화의 기록일(source_records.record_date_lunar).,비변사 당상들은 이조원을 파직하자고 건의했다.
+AT0047,ATT0047,SRC002,정민시 등,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,공식 행위·발화의 기록일(source_records.record_date_lunar).,비변사 당상들은 이조원을 파직하자고 건의했다.
+AT0048,ATT0048,SRC002,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 이조원이 중대한 사안을 직접 조사하지 않고 전해 들은 말을 보고한 조사 방식을 비판했다.
+AT0048,ATT0048,SRC002,정조,action,비판,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 이조원이 중대한 사안을 직접 조사하지 않고 전해 들은 말을 보고한 조사 방식을 비판했다.
+AT0048,ATT0048,SRC002,정조,target_or_content,이조원이 직접 출도·안핵하지 않고 전언을 보고한 점,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 이조원이 중대한 사안을 직접 조사하지 않고 전해 들은 말을 보고한 조사 방식을 비판했다.
+AT0048,ATT0048,SRC002,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 이조원이 중대한 사안을 직접 조사하지 않고 전해 들은 말을 보고한 조사 방식을 비판했다.
+AT0048,ATT0048,SRC002,정조,occurrence_lunar_start,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 이조원이 중대한 사안을 직접 조사하지 않고 전해 들은 말을 보고한 조사 방식을 비판했다.
+AT0048,ATT0048,SRC002,정조,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 이조원이 중대한 사안을 직접 조사하지 않고 전해 들은 말을 보고한 조사 방식을 비판했다.
+AT0049,ATT0049,SRC002,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 이조원을 파직하도록 했다.
+AT0049,ATT0049,SRC002,정조,action,명령,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 이조원을 파직하도록 했다.
+AT0049,ATT0049,SRC002,정조,target_or_content,이조원 파직,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 이조원을 파직하도록 했다.
+AT0049,ATT0049,SRC002,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 이조원을 파직하도록 했다.
+AT0049,ATT0049,SRC002,정조,occurrence_lunar_start,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 이조원을 파직하도록 했다.
+AT0049,ATT0049,SRC002,정조,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 이조원을 파직하도록 했다.
+AT0050,ATT0050,SRC002,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 구순을 의금부에 엄히 가두라고 명했다.
+AT0050,ATT0050,SRC002,정조,action,명령,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 구순을 의금부에 엄히 가두라고 명했다.
+AT0050,ATT0050,SRC002,정조,target_or_content,구순을 의금부에 엄히 가둠,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 구순을 의금부에 엄히 가두라고 명했다.
+AT0050,ATT0050,SRC002,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 구순을 의금부에 엄히 가두라고 명했다.
+AT0050,ATT0050,SRC002,정조,occurrence_lunar_start,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 구순을 의금부에 엄히 가두라고 명했다.
+AT0050,ATT0050,SRC002,정조,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 구순을 의금부에 엄히 가두라고 명했다.
+AT0051,ATT0051,SRC002,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 당일 개좌하라고 명했다.
+AT0051,ATT0051,SRC002,정조,action,명령,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 당일 개좌하라고 명했다.
+AT0051,ATT0051,SRC002,정조,target_or_content,당일 개좌,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 당일 개좌하라고 명했다.
+AT0051,ATT0051,SRC002,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 당일 개좌하라고 명했다.
+AT0051,ATT0051,SRC002,정조,occurrence_lunar_start,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 당일 개좌하라고 명했다.
+AT0051,ATT0051,SRC002,정조,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 당일 개좌하라고 명했다.
+AT0052,ATT0052,SRC002,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 구순을 반복해 신문하라고 명했다.
+AT0052,ATT0052,SRC002,정조,action,명령,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 구순을 반복해 신문하라고 명했다.
+AT0052,ATT0052,SRC002,정조,target_or_content,구순 반복 신문,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 구순을 반복해 신문하라고 명했다.
+AT0052,ATT0052,SRC002,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 구순을 반복해 신문하라고 명했다.
+AT0052,ATT0052,SRC002,정조,occurrence_lunar_start,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 구순을 반복해 신문하라고 명했다.
+AT0052,ATT0052,SRC002,정조,occurrence_lunar_end,1793-05-27,DERIVED_FROM_LINKED_STRUCTURE,SRC002,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 구순을 반복해 신문하라고 명했다.
+AT0053,ATT0053,SRC003,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 홍대협에게 구순 사건을 들었는지 물었다.
+AT0053,ATT0053,SRC003,정조,action,질문,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 홍대협에게 구순 사건을 들었는지 물었다.
+AT0053,ATT0053,SRC003,정조,target_or_content,홍대협에게 구순 사건을 들었는지 물음,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 홍대협에게 구순 사건을 들었는지 물었다.
+AT0053,ATT0053,SRC003,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 홍대협에게 구순 사건을 들었는지 물었다.
+AT0053,ATT0053,SRC003,정조,occurrence_lunar_start,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 홍대협에게 구순 사건을 들었는지 물었다.
+AT0053,ATT0053,SRC003,정조,occurrence_lunar_end,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 홍대협에게 구순 사건을 들었는지 물었다.
+AT0054,ATT0054,SRC003,홍대협,actor,홍대협,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,홍대협은 돌아오는 길에 구순 사건의 대강을 조금 들었다고 답했다.
+AT0054,ATT0054,SRC003,홍대협,action,답변,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,홍대협은 돌아오는 길에 구순 사건의 대강을 조금 들었다고 답했다.
+AT0054,ATT0054,SRC003,홍대협,target_or_content,귀로에 사건 개요를 조금 들었다고 함,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,홍대협은 돌아오는 길에 구순 사건의 대강을 조금 들었다고 답했다.
+AT0054,ATT0054,SRC003,홍대협,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,홍대협은 돌아오는 길에 구순 사건의 대강을 조금 들었다고 답했다.
+AT0054,ATT0054,SRC003,홍대협,occurrence_lunar_start,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003,공식 행위·발화의 기록일(source_records.record_date_lunar).,홍대협은 돌아오는 길에 구순 사건의 대강을 조금 들었다고 답했다.
+AT0054,ATT0054,SRC003,홍대협,occurrence_lunar_end,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003,공식 행위·발화의 기록일(source_records.record_date_lunar).,홍대협은 돌아오는 길에 구순 사건의 대강을 조금 들었다고 답했다.
+AT0055,ATT0055,SRC003,홍대협,actor,홍대협,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,홍대협은 전년 호서 화적들이 지세랑 호칭을 쓴 적이 있다고 들었다고 답했다.
+AT0055,ATT0055,SRC003,홍대협,action,답변,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,홍대협은 전년 호서 화적들이 지세랑 호칭을 쓴 적이 있다고 들었다고 답했다.
+AT0055,ATT0055,SRC003,홍대협,target_or_content,전년 호서 화적들이 지세랑 호칭을 쓴 적이 있다고 들었다고 함,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,홍대협은 전년 호서 화적들이 지세랑 호칭을 쓴 적이 있다고 들었다고 답했다.
+AT0055,ATT0055,SRC003,홍대협,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,홍대협은 전년 호서 화적들이 지세랑 호칭을 쓴 적이 있다고 들었다고 답했다.
+AT0055,ATT0055,SRC003,홍대협,occurrence_lunar_start,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003,공식 행위·발화의 기록일(source_records.record_date_lunar).,홍대협은 전년 호서 화적들이 지세랑 호칭을 쓴 적이 있다고 들었다고 답했다.
+AT0055,ATT0055,SRC003,홍대협,occurrence_lunar_end,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003,공식 행위·발화의 기록일(source_records.record_date_lunar).,홍대협은 전년 호서 화적들이 지세랑 호칭을 쓴 적이 있다고 들었다고 답했다.
+AT0055,ATT0055,SRC003,홍대협,claim_topic,JISE_ORIGIN,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",홍대협은 전년 호서 화적들이 지세랑 호칭을 쓴 적이 있다고 들었다고 답했다.
+AT0055,ATT0055,SRC003,홍대협,conflict_group,JISE_ORIGIN,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",홍대협은 전년 호서 화적들이 지세랑 호칭을 쓴 적이 있다고 들었다고 답했다.
+AT0056,ATT0056,SRC003,홍대협,actor,홍대협,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,홍대협은 지세랑 호칭이 이번 사건에서 처음 생긴 말은 아닌 듯하다고 의견을 밝혔다.
+AT0056,ATT0056,SRC003,홍대협,action,의견,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,홍대협은 지세랑 호칭이 이번 사건에서 처음 생긴 말은 아닌 듯하다고 의견을 밝혔다.
+AT0056,ATT0056,SRC003,홍대협,target_or_content,지세랑 호칭이 이번에 처음 만들어진 말은 아닌 듯하다고 말함,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,홍대협은 지세랑 호칭이 이번 사건에서 처음 생긴 말은 아닌 듯하다고 의견을 밝혔다.
+AT0056,ATT0056,SRC003,홍대협,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,홍대협은 지세랑 호칭이 이번 사건에서 처음 생긴 말은 아닌 듯하다고 의견을 밝혔다.
+AT0056,ATT0056,SRC003,홍대협,occurrence_lunar_start,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003,공식 행위·발화의 기록일(source_records.record_date_lunar).,홍대협은 지세랑 호칭이 이번 사건에서 처음 생긴 말은 아닌 듯하다고 의견을 밝혔다.
+AT0056,ATT0056,SRC003,홍대협,occurrence_lunar_end,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003,공식 행위·발화의 기록일(source_records.record_date_lunar).,홍대협은 지세랑 호칭이 이번 사건에서 처음 생긴 말은 아닌 듯하다고 의견을 밝혔다.
+AT0056,ATT0056,SRC003,홍대협,claim_topic,JISE_ORIGIN,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",홍대협은 지세랑 호칭이 이번 사건에서 처음 생긴 말은 아닌 듯하다고 의견을 밝혔다.
+AT0056,ATT0056,SRC003,홍대협,conflict_group,JISE_ORIGIN,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",홍대협은 지세랑 호칭이 이번 사건에서 처음 생긴 말은 아닌 듯하다고 의견을 밝혔다.
+AT0057,ATT0057,SRC003,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 홍대협에게 현지로 내려가라고 명했다.
+AT0057,ATT0057,SRC003,정조,action,명령,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 홍대협에게 현지로 내려가라고 명했다.
+AT0057,ATT0057,SRC003,정조,target_or_content,홍대협 현지 하행,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 홍대협에게 현지로 내려가라고 명했다.
+AT0057,ATT0057,SRC003,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 홍대협에게 현지로 내려가라고 명했다.
+AT0057,ATT0057,SRC003,정조,occurrence_lunar_start,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 홍대협에게 현지로 내려가라고 명했다.
+AT0057,ATT0057,SRC003,정조,occurrence_lunar_end,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 홍대협에게 현지로 내려가라고 명했다.
+AT0058,ATT0058,SRC003,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 홍대협에게 사건을 자세히 조사하라고 명했다.
+AT0058,ATT0058,SRC003,정조,action,명령,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 홍대협에게 사건을 자세히 조사하라고 명했다.
+AT0058,ATT0058,SRC003,정조,target_or_content,홍대협 자세한 조사,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 홍대협에게 사건을 자세히 조사하라고 명했다.
+AT0058,ATT0058,SRC003,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 홍대협에게 사건을 자세히 조사하라고 명했다.
+AT0058,ATT0058,SRC003,정조,occurrence_lunar_start,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 홍대협에게 사건을 자세히 조사하라고 명했다.
+AT0058,ATT0058,SRC003,정조,occurrence_lunar_end,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 홍대협에게 사건을 자세히 조사하라고 명했다.
+AT0059,ATT0059,SRC003,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 홍대협에게 조사 뒤 돌아오라고 명했다.
+AT0059,ATT0059,SRC003,정조,action,명령,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 홍대협에게 조사 뒤 돌아오라고 명했다.
+AT0059,ATT0059,SRC003,정조,target_or_content,홍대협 복귀,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 홍대협에게 조사 뒤 돌아오라고 명했다.
+AT0059,ATT0059,SRC003,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 홍대협에게 조사 뒤 돌아오라고 명했다.
+AT0059,ATT0059,SRC003,정조,occurrence_lunar_start,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 홍대협에게 조사 뒤 돌아오라고 명했다.
+AT0059,ATT0059,SRC003,정조,occurrence_lunar_end,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 홍대협에게 조사 뒤 돌아오라고 명했다.
+AT0060,ATT0060,SRC003,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 홍대협을 충청도 공주 안핵어사로 차하했다.
+AT0060,ATT0060,SRC003,정조,action,차하,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 홍대협을 충청도 공주 안핵어사로 차하했다.
+AT0060,ATT0060,SRC003,정조,target_or_content,홍대협을 충청도 공주 안핵어사로 임명,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 홍대협을 충청도 공주 안핵어사로 차하했다.
+AT0060,ATT0060,SRC003,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 홍대협을 충청도 공주 안핵어사로 차하했다.
+AT0060,ATT0060,SRC003,정조,occurrence_lunar_start,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 홍대협을 충청도 공주 안핵어사로 차하했다.
+AT0060,ATT0060,SRC003,정조,occurrence_lunar_end,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 홍대협을 충청도 공주 안핵어사로 차하했다.
+AT0061,ATT0061,SRC004,홍대협,actor,홍대협,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,홍대협은 공주목에 도착했다고 서계했다.
+AT0061,ATT0061,SRC004,홍대협,action,도착,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,홍대협은 공주목에 도착했다고 서계했다.
+AT0061,ATT0061,SRC004,홍대협,target_or_content,공주목,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,홍대협은 공주목에 도착했다고 서계했다.
+AT0061,ATT0061,SRC004,홍대협,historical_place,공주목,DIRECTLY_SUPPORTED,,ATT0061 '공주목',홍대협은 공주목에 도착했다고 서계했다.
+AT0061,ATT0061,SRC004,홍대협,occurrence_lunar_start,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003;REL0054;REL0071,하한 1793-05-28은 안핵어사 임명 기록(SRC003) 날짜.,홍대협은 공주목에 도착했다고 서계했다.
+AT0061,ATT0061,SRC004,홍대협,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,홍대협은 공주목에 도착했다고 서계했다.
+AT0062,ATT0062,SRC004,홍대협,actor,홍대협,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,홍대협은 응당 신문할 사람들을 차례로 신문했다고 서계했다.
+AT0062,ATT0062,SRC004,홍대협,action,신문,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,홍대협은 응당 신문할 사람들을 차례로 신문했다고 서계했다.
+AT0062,ATT0062,SRC004,홍대협,target_or_content,응당 신문할 사람들,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,홍대협은 응당 신문할 사람들을 차례로 신문했다고 서계했다.
+AT0062,ATT0062,SRC004,홍대협,historical_place,공주목,DERIVED_FROM_LINKED_STRUCTURE,AT0061;REL0055,같은 서계의 ATT0061(공주목 도착)에서 이어짐.,홍대협은 응당 신문할 사람들을 차례로 신문했다고 서계했다.
+AT0062,ATT0062,SRC004,홍대협,occurrence_lunar_start,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003;REL0054;REL0071,하한 1793-05-28은 안핵어사 임명 기록(SRC003) 날짜.,홍대협은 응당 신문할 사람들을 차례로 신문했다고 서계했다.
+AT0062,ATT0062,SRC004,홍대협,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,홍대협은 응당 신문할 사람들을 차례로 신문했다고 서계했다.
+AT0063,ATT0063,SRC004,명업,actor,명업,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,명업은 자신이 구순 집 계집종의 남편이라고 진술했다.
+AT0063,ATT0063,SRC004,명업,action,신분 진술,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,명업은 자신이 구순 집 계집종의 남편이라고 진술했다.
+AT0063,ATT0063,SRC004,명업,target_or_content,구순 집 계집종의 남편,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,명업은 자신이 구순 집 계집종의 남편이라고 진술했다.
+AT0063,ATT0063,SRC004,명업,historical_place,구순 집,DIRECTLY_SUPPORTED,,ATT0063 '구순 집 계집종의 남편',명업은 자신이 구순 집 계집종의 남편이라고 진술했다.
+AT0064,ATT0064,SRC004,명업,actor,명업,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,명업은 구순 집 바깥 사랑에 들어 살았다고 진술했다.
+AT0064,ATT0064,SRC004,명업,action,거주 상태 진술,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,명업은 구순 집 바깥 사랑에 들어 살았다고 진술했다.
+AT0064,ATT0064,SRC004,명업,target_or_content,구순 집 바깥 사랑에 들어 살았음,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,명업은 구순 집 바깥 사랑에 들어 살았다고 진술했다.
+AT0064,ATT0064,SRC004,명업,historical_place,구순 집,DIRECTLY_SUPPORTED,,ATT0064 '구순 집 바깥 사랑',명업은 구순 집 바깥 사랑에 들어 살았다고 진술했다.
+AT0065,ATT0065,SRC004,명업,actor,나복,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,명업은 2월 22일 밤 나복이 찾아와 자신을 불렀다고 진술했다.
+AT0065,ATT0065,SRC004,명업,action,찾아와 부름,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,명업은 2월 22일 밤 나복이 찾아와 자신을 불렀다고 진술했다.
+AT0065,ATT0065,SRC004,명업,target_or_content,명업,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,명업은 2월 22일 밤 나복이 찾아와 자신을 불렀다고 진술했다.
+AT0065,ATT0065,SRC004,명업,historical_place,구순 집,AMBIGUOUS,AT0064,ATT0065는 장소를 말하지 않음. 명업 거주지(ATT0064)에서 추정한 값이나 relation 연결 없음.,명업은 2월 22일 밤 나복이 찾아와 자신을 불렀다고 진술했다.
+AT0065,ATT0065,SRC004,명업,occurrence_lunar_start,1793-02-22,DIRECTLY_SUPPORTED,,ATT0065 '2월 22일 밤',명업은 2월 22일 밤 나복이 찾아와 자신을 불렀다고 진술했다.
+AT0065,ATT0065,SRC004,명업,occurrence_lunar_end,1793-02-22,DIRECTLY_SUPPORTED,,ATT0065 '2월 22일 밤',명업은 2월 22일 밤 나복이 찾아와 자신을 불렀다고 진술했다.
+AT0066,ATT0066,SRC004,명업,actor,나복,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,명업은 나복이 도적이 들었다고 말했다고 진술했다.
+AT0066,ATT0066,SRC004,명업,action,말했다고 전해짐,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,명업은 나복이 도적이 들었다고 말했다고 진술했다.
+AT0066,ATT0066,SRC004,명업,target_or_content,도적이 들었다는 내용,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,명업은 나복이 도적이 들었다고 말했다고 진술했다.
+AT0066,ATT0066,SRC004,명업,historical_place,구순 집,AMBIGUOUS,AT0065;REL0003,장소 명시 없음. AT0065의 장소 자체가 AMBIGUOUS.,명업은 나복이 도적이 들었다고 말했다고 진술했다.
+AT0066,ATT0066,SRC004,명업,occurrence_lunar_start,1793-02-22,DERIVED_FROM_LINKED_STRUCTURE,AT0065;REL0003,AT0065의 날짜에서 relation으로 이어짐.,명업은 나복이 도적이 들었다고 말했다고 진술했다.
+AT0066,ATT0066,SRC004,명업,occurrence_lunar_end,1793-02-22,DERIVED_FROM_LINKED_STRUCTURE,AT0065;REL0003,AT0065의 날짜에서 relation으로 이어짐.,명업은 나복이 도적이 들었다고 말했다고 진술했다.
+AT0066,ATT0066,SRC004,명업,claim_topic,THEFT_REALITY,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",명업은 나복이 도적이 들었다고 말했다고 진술했다.
+AT0066,ATT0066,SRC004,명업,conflict_group,THEFT_REALITY,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",명업은 나복이 도적이 들었다고 말했다고 진술했다.
+AT0067,ATT0067,SRC004,명업,actor,명업,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,명업은 나복의 말을 듣고 집 안으로 들어갔다고 진술했다.
+AT0067,ATT0067,SRC004,명업,action,들어감,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,명업은 나복의 말을 듣고 집 안으로 들어갔다고 진술했다.
+AT0067,ATT0067,SRC004,명업,target_or_content,구순 집 안,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,명업은 나복의 말을 듣고 집 안으로 들어갔다고 진술했다.
+AT0067,ATT0067,SRC004,명업,historical_place,구순 집,AMBIGUOUS,AT0066;REL0004,ATT0067 '집 안으로 들어갔다': 누구 집인지 명시 없음.,명업은 나복의 말을 듣고 집 안으로 들어갔다고 진술했다.
+AT0067,ATT0067,SRC004,명업,occurrence_lunar_start,1793-02-22,DERIVED_FROM_LINKED_STRUCTURE,AT0065;REL0004,AT0065의 날짜에서 relation으로 이어짐.,명업은 나복의 말을 듣고 집 안으로 들어갔다고 진술했다.
+AT0067,ATT0067,SRC004,명업,occurrence_lunar_end,1793-02-22,DERIVED_FROM_LINKED_STRUCTURE,AT0065;REL0004,AT0065의 날짜에서 relation으로 이어짐.,명업은 나복의 말을 듣고 집 안으로 들어갔다고 진술했다.
+AT0068,ATT0068,SRC004,명업,actor,나복,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,"명업은 나복이 30여 명의 도적, 횃불, 지세대감 자칭, 금품 절취를 말했다고 진술했다."
+AT0068,ATT0068,SRC004,명업,action,말했다고 전해짐,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,"명업은 나복이 30여 명의 도적, 횃불, 지세대감 자칭, 금품 절취를 말했다고 진술했다."
+AT0068,ATT0068,SRC004,명업,target_or_content,도적 30여 명·횃불·지세대감·금품 절취,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,"명업은 나복이 30여 명의 도적, 횃불, 지세대감 자칭, 금품 절취를 말했다고 진술했다."
+AT0068,ATT0068,SRC004,명업,historical_place,구순 집,AMBIGUOUS,,장소 명시 없음. AT0065~0067과 relation 연결 없음.,"명업은 나복이 30여 명의 도적, 횃불, 지세대감 자칭, 금품 절취를 말했다고 진술했다."
+AT0068,ATT0068,SRC004,명업,occurrence_lunar_start,1793-02-22,AMBIGUOUS,AT0065,ATT0068에는 날짜 없음. AT0065~0067과 relation 연결도 없음(REL0066은 이 날짜를 '확정'으로 사용).,"명업은 나복이 30여 명의 도적, 횃불, 지세대감 자칭, 금품 절취를 말했다고 진술했다."
+AT0068,ATT0068,SRC004,명업,occurrence_lunar_end,1793-02-22,AMBIGUOUS,AT0065,ATT0068에는 날짜 없음. AT0065~0067과 relation 연결도 없음(REL0066은 이 날짜를 '확정'으로 사용).,"명업은 나복이 30여 명의 도적, 횃불, 지세대감 자칭, 금품 절취를 말했다고 진술했다."
+AT0068,ATT0068,SRC004,명업,claim_topic,THEFT_DESCRIPTION,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.","명업은 나복이 30여 명의 도적, 횃불, 지세대감 자칭, 금품 절취를 말했다고 진술했다."
+AT0068,ATT0068,SRC004,명업,conflict_group,THEFT_REALITY,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.","명업은 나복이 30여 명의 도적, 횃불, 지세대감 자칭, 금품 절취를 말했다고 진술했다."
+AT0069,ATT0069,SRC004,명업,actor,구순·김명신,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,명업은 김명신과 구순이 본래 친숙하여 날마다 상종했다고 진술했다.
+AT0069,ATT0069,SRC004,명업,action,관계 상태,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,명업은 김명신과 구순이 본래 친숙하여 날마다 상종했다고 진술했다.
+AT0069,ATT0069,SRC004,명업,target_or_content,친숙하여 날마다 상종,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,명업은 김명신과 구순이 본래 친숙하여 날마다 상종했다고 진술했다.
+AT0069,ATT0069,SRC004,명업,historical_place,청주 덕평,IMPORTED_FROM_OTHER_ATTESTATION,AT0001,"ATT0069(명업, SRC004)에는 지명 없음. '청주 덕평'은 ATT0001(이형원, SRC001)에서 옴.",명업은 김명신과 구순이 본래 친숙하여 날마다 상종했다고 진술했다.
+AT0069,ATT0069,SRC004,명업,occurrence_lunar_end,1793-02-EARLY,AMBIGUOUS,AT0070,ATT0069 '본래 친숙'. 2월 초 이전이라는 상한은 relation 없이 AT0070에서 추정.,명업은 김명신과 구순이 본래 친숙하여 날마다 상종했다고 진술했다.
+AT0069,ATT0069,SRC004,명업,claim_topic,RELATIONSHIP,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",명업은 김명신과 구순이 본래 친숙하여 날마다 상종했다고 진술했다.
+AT0070,ATT0070,SRC004,명업,actor,김명신,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,명업은 2월 초 김명신이 구순에게 편지를 보냈다고 진술했다.
+AT0070,ATT0070,SRC004,명업,action,편지를 보냄,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,명업은 2월 초 김명신이 구순에게 편지를 보냈다고 진술했다.
+AT0070,ATT0070,SRC004,명업,target_or_content,구순,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,명업은 2월 초 김명신이 구순에게 편지를 보냈다고 진술했다.
+AT0070,ATT0070,SRC004,명업,occurrence_lunar_start,1793-02-EARLY,DIRECTLY_SUPPORTED,,ATT0070 '2월 초',명업은 2월 초 김명신이 구순에게 편지를 보냈다고 진술했다.
+AT0070,ATT0070,SRC004,명업,occurrence_lunar_end,1793-02-EARLY,DIRECTLY_SUPPORTED,,ATT0070 '2월 초',명업은 2월 초 김명신이 구순에게 편지를 보냈다고 진술했다.
+AT0070,ATT0070,SRC004,명업,claim_topic,RELATIONSHIP_CONFLICT,DERIVED_FROM_LINKED_STRUCTURE,AT0071;REL0001,편지 송부 자체는 갈등이 아님. 같은 편지의 내용(AT0071)에서 옴.,명업은 2월 초 김명신이 구순에게 편지를 보냈다고 진술했다.
+AT0071,ATT0071,SRC004,명업,actor,김명신,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,명업은 그 편지에서 김명신이 박거사 관련 일로 구순을 힐책했다고 진술했다.
+AT0071,ATT0071,SRC004,명업,action,편지로 힐책했다고 전해짐,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,명업은 그 편지에서 김명신이 박거사 관련 일로 구순을 힐책했다고 진술했다.
+AT0071,ATT0071,SRC004,명업,target_or_content,박거사 관련 일,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,명업은 그 편지에서 김명신이 박거사 관련 일로 구순을 힐책했다고 진술했다.
+AT0071,ATT0071,SRC004,명업,occurrence_lunar_start,1793-02-EARLY,DERIVED_FROM_LINKED_STRUCTURE,AT0070;REL0001,같은 편지.,명업은 그 편지에서 김명신이 박거사 관련 일로 구순을 힐책했다고 진술했다.
+AT0071,ATT0071,SRC004,명업,occurrence_lunar_end,1793-02-EARLY,DERIVED_FROM_LINKED_STRUCTURE,AT0070;REL0001,같은 편지.,명업은 그 편지에서 김명신이 박거사 관련 일로 구순을 힐책했다고 진술했다.
+AT0071,ATT0071,SRC004,명업,claim_topic,RELATIONSHIP_CONFLICT,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",명업은 그 편지에서 김명신이 박거사 관련 일로 구순을 힐책했다고 진술했다.
+AT0072,ATT0072,SRC004,명업,actor,구순·김명신,DERIVED_FROM_LINKED_STRUCTURE,AT0071;REL0002,ATT0072 '두 사람이'.,명업은 그 편지 이후 두 사람이 다시 왕래하지 않았다고 진술했다.
+AT0072,ATT0072,SRC004,명업,action,왕래 상태,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,명업은 그 편지 이후 두 사람이 다시 왕래하지 않았다고 진술했다.
+AT0072,ATT0072,SRC004,명업,target_or_content,왕래 단절,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,명업은 그 편지 이후 두 사람이 다시 왕래하지 않았다고 진술했다.
+AT0072,ATT0072,SRC004,명업,historical_place,청주 덕평,IMPORTED_FROM_OTHER_ATTESTATION,AT0001,ATT0072(명업)에는 지명 없음. ATT0001(SRC001)에서 옴.,명업은 그 편지 이후 두 사람이 다시 왕래하지 않았다고 진술했다.
+AT0072,ATT0072,SRC004,명업,occurrence_lunar_start,1793-02-EARLY,DERIVED_FROM_LINKED_STRUCTURE,AT0071;REL0002,ATT0072 '그 편지 이후'.,명업은 그 편지 이후 두 사람이 다시 왕래하지 않았다고 진술했다.
+AT0072,ATT0072,SRC004,명업,claim_topic,RELATIONSHIP_CONFLICT,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",명업은 그 편지 이후 두 사람이 다시 왕래하지 않았다고 진술했다.
+AT0073,ATT0073,SRC004,명업,actor,구순,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,명업은 구순이 소장을 올렸다고 진술했다.
+AT0073,ATT0073,SRC004,명업,action,소장 제출,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,명업은 구순이 소장을 올렸다고 진술했다.
+AT0073,ATT0073,SRC004,명업,target_or_content,도난 사건,IMPORTED_FROM_OTHER_ATTESTATION,AT0120;REL0073,ATT0073 '소장을 올렸다'(내용 미명시). '도난 사건'은 ATT0120(한재욱)에서.,명업은 구순이 소장을 올렸다고 진술했다.
+AT0073,ATT0073,SRC004,명업,historical_place,진영,IMPORTED_FROM_OTHER_ATTESTATION,AT0120;REL0073,ATT0073(명업)은 '소장을 올렸다'만 말함. '진영'은 ATT0120(한재욱)에만 있고 REL0073은 후보(candidate) 연결.,명업은 구순이 소장을 올렸다고 진술했다.
+AT0073,ATT0073,SRC004,명업,occurrence_lunar_end,1793-02-28,UNSUPPORTED,,"상한 1793-02-28을 주는 attestation이 없고, 날짜가 있는 사건(AT0081 등)으로 가는 relation 경로도 없음.",명업은 구순이 소장을 올렸다고 진술했다.
+AT0073,ATT0073,SRC004,명업,claim_topic,COMPLAINT,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",명업은 구순이 소장을 올렸다고 진술했다.
+AT0074,ATT0074,SRC004,명업,actor,미상 관서,AMBIGUOUS,,ATT0074 수동형 '체포령이 내려졌다'. '미상 관서'는 자리표시자.,명업의 공초는 구순의 소장 제출 뒤 체포령이 내려졌다고 전한다.
+AT0074,ATT0074,SRC004,명업,action,체포령 발령,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,명업의 공초는 구순의 소장 제출 뒤 체포령이 내려졌다고 전한다.
+AT0074,ATT0074,SRC004,명업,target_or_content,관련 대상,AMBIGUOUS,,'관련 대상'은 자리표시자.,명업의 공초는 구순의 소장 제출 뒤 체포령이 내려졌다고 전한다.
+AT0074,ATT0074,SRC004,명업,occurrence_lunar_end,1793-02-28,UNSUPPORTED,,"상한 1793-02-28을 주는 attestation이 없고, 날짜가 있는 사건(AT0081 등)으로 가는 relation 경로도 없음.",명업의 공초는 구순의 소장 제출 뒤 체포령이 내려졌다고 전한다.
+AT0074,ATT0074,SRC004,명업,claim_topic,ARREST_ORDER,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",명업의 공초는 구순의 소장 제출 뒤 체포령이 내려졌다고 전한다.
+AT0075,ATT0075,SRC004,명업,actor,장교·나졸,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,명업은 체포령 뒤 장교와 나졸들이 구순 집에 왔다고 진술했다.
+AT0075,ATT0075,SRC004,명업,action,도착,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,명업은 체포령 뒤 장교와 나졸들이 구순 집에 왔다고 진술했다.
+AT0075,ATT0075,SRC004,명업,target_or_content,구순 집,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,명업은 체포령 뒤 장교와 나졸들이 구순 집에 왔다고 진술했다.
+AT0075,ATT0075,SRC004,명업,historical_place,구순 집,DIRECTLY_SUPPORTED,,ATT0075 '구순 집에 왔다',명업은 체포령 뒤 장교와 나졸들이 구순 집에 왔다고 진술했다.
+AT0075,ATT0075,SRC004,명업,occurrence_lunar_end,1793-02-28,UNSUPPORTED,,"상한 1793-02-28을 주는 attestation이 없고, 날짜가 있는 사건(AT0081 등)으로 가는 relation 경로도 없음.",명업은 체포령 뒤 장교와 나졸들이 구순 집에 왔다고 진술했다.
+AT0076,ATT0076,SRC004,명업,actor,구순,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,명업은 구순이 장교 한 명을 안행랑으로 불러들였다고 진술했다.
+AT0076,ATT0076,SRC004,명업,action,불러들임,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,명업은 구순이 장교 한 명을 안행랑으로 불러들였다고 진술했다.
+AT0076,ATT0076,SRC004,명업,target_or_content,장교 한 명,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,명업은 구순이 장교 한 명을 안행랑으로 불러들였다고 진술했다.
+AT0076,ATT0076,SRC004,명업,historical_place,구순 집 안행랑,DIRECTLY_SUPPORTED,,ATT0076 '안행랑',명업은 구순이 장교 한 명을 안행랑으로 불러들였다고 진술했다.
+AT0076,ATT0076,SRC004,명업,occurrence_lunar_end,1793-02-28,UNSUPPORTED,,"상한 1793-02-28을 주는 attestation이 없고, 날짜가 있는 사건(AT0081 등)으로 가는 relation 경로도 없음.",명업은 구순이 장교 한 명을 안행랑으로 불러들였다고 진술했다.
+AT0077,ATT0077,SRC004,명업,actor,구순·장교,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,명업은 구순과 장교가 조용히 이야기했으나 내용은 듣지 못했다고 진술했다.
+AT0077,ATT0077,SRC004,명업,action,조용히 대화,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,명업은 구순과 장교가 조용히 이야기했으나 내용은 듣지 못했다고 진술했다.
+AT0077,ATT0077,SRC004,명업,target_or_content,내용 미상,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,명업은 구순과 장교가 조용히 이야기했으나 내용은 듣지 못했다고 진술했다.
+AT0077,ATT0077,SRC004,명업,historical_place,구순 집 안행랑,DERIVED_FROM_LINKED_STRUCTURE,AT0076;REL0008,같은 명업 진술의 AT0076에서 이어짐.,명업은 구순과 장교가 조용히 이야기했으나 내용은 듣지 못했다고 진술했다.
+AT0077,ATT0077,SRC004,명업,occurrence_lunar_end,1793-02-28,UNSUPPORTED,,"상한 1793-02-28을 주는 attestation이 없고, 날짜가 있는 사건(AT0081 등)으로 가는 relation 경로도 없음.",명업은 구순과 장교가 조용히 이야기했으나 내용은 듣지 못했다고 진술했다.
+AT0077,ATT0077,SRC004,명업,claim_topic,PRIVATE_CONTACT,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",명업은 구순과 장교가 조용히 이야기했으나 내용은 듣지 못했다고 진술했다.
+AT0078,ATT0078,SRC004,명업,actor,명업,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,명업은 병영 뜰에서 공초를 받을 때 처음에는 사실대로 말했다고 진술했다.
+AT0078,ATT0078,SRC004,명업,action,과거 진술 경위 설명,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,명업은 병영 뜰에서 공초를 받을 때 처음에는 사실대로 말했다고 진술했다.
+AT0078,ATT0078,SRC004,명업,target_or_content,병영 뜰 공초에서 처음에는 사실대로 말했다고 함,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,명업은 병영 뜰에서 공초를 받을 때 처음에는 사실대로 말했다고 진술했다.
+AT0078,ATT0078,SRC004,명업,historical_place,충청병영,DIRECTLY_SUPPORTED,,ATT0078 '병영 뜰',명업은 병영 뜰에서 공초를 받을 때 처음에는 사실대로 말했다고 진술했다.
+AT0078,ATT0078,SRC004,명업,claim_topic,TESTIMONY_CHANGE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",명업은 병영 뜰에서 공초를 받을 때 처음에는 사실대로 말했다고 진술했다.
+AT0079,ATT0079,SRC004,명업,actor,명업,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,명업은 병영에서 위협을 두려워했다고 설명했다.
+AT0079,ATT0079,SRC004,명업,action,진술 경위 설명,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,명업은 병영에서 위협을 두려워했다고 설명했다.
+AT0079,ATT0079,SRC004,명업,target_or_content,위협을 두려워했다는 내용,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,명업은 병영에서 위협을 두려워했다고 설명했다.
+AT0079,ATT0079,SRC004,명업,historical_place,충청병영,DIRECTLY_SUPPORTED,,ATT0079 '병영에서',명업은 병영에서 위협을 두려워했다고 설명했다.
+AT0079,ATT0079,SRC004,명업,claim_topic,TESTIMONY_CHANGE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",명업은 병영에서 위협을 두려워했다고 설명했다.
+AT0080,ATT0080,SRC004,명업,actor,명업,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,명업은 뒤에 도적을 맞지 않은 것으로 진술을 바꿨다고 설명했다.
+AT0080,ATT0080,SRC004,명업,action,과거 진술 변경 설명,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,명업은 뒤에 도적을 맞지 않은 것으로 진술을 바꿨다고 설명했다.
+AT0080,ATT0080,SRC004,명업,target_or_content,도난이 없었다는 취지로 바꿈,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,명업은 뒤에 도적을 맞지 않은 것으로 진술을 바꿨다고 설명했다.
+AT0080,ATT0080,SRC004,명업,historical_place,충청병영,DERIVED_FROM_LINKED_STRUCTURE,AT0079,같은 parent_fact(F060)의 AT0079에서 이어짐.,명업은 뒤에 도적을 맞지 않은 것으로 진술을 바꿨다고 설명했다.
+AT0080,ATT0080,SRC004,명업,claim_topic,TESTIMONY_CHANGE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",명업은 뒤에 도적을 맞지 않은 것으로 진술을 바꿨다고 설명했다.
+AT0081,ATT0081,SRC004,이진욱,actor,충청병영,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이진욱은 2월 28일 밤 병영에서 자신을 비장청으로 불렀다고 진술했다.
+AT0081,ATT0081,SRC004,이진욱,action,호출,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이진욱은 2월 28일 밤 병영에서 자신을 비장청으로 불렀다고 진술했다.
+AT0081,ATT0081,SRC004,이진욱,target_or_content,이진욱을 비장청으로 부름,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이진욱은 2월 28일 밤 병영에서 자신을 비장청으로 불렀다고 진술했다.
+AT0081,ATT0081,SRC004,이진욱,historical_place,충청병영 비장청,DIRECTLY_SUPPORTED,,ATT0081 '병영에서 … 비장청으로',이진욱은 2월 28일 밤 병영에서 자신을 비장청으로 불렀다고 진술했다.
+AT0081,ATT0081,SRC004,이진욱,occurrence_lunar_start,1793-02-28,DIRECTLY_SUPPORTED,,ATT0081 '2월 28일 밤',이진욱은 2월 28일 밤 병영에서 자신을 비장청으로 불렀다고 진술했다.
+AT0081,ATT0081,SRC004,이진욱,occurrence_lunar_end,1793-02-28,DIRECTLY_SUPPORTED,,ATT0081 '2월 28일 밤',이진욱은 2월 28일 밤 병영에서 자신을 비장청으로 불렀다고 진술했다.
+AT0082,ATT0082,SRC004,이진욱,actor,한재욱,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이진욱은 한재욱이 자신을 비장청 방안으로 불러들였다고 진술했다.
+AT0082,ATT0082,SRC004,이진욱,action,방안으로 불러들임,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이진욱은 한재욱이 자신을 비장청 방안으로 불러들였다고 진술했다.
+AT0082,ATT0082,SRC004,이진욱,target_or_content,이진욱,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이진욱은 한재욱이 자신을 비장청 방안으로 불러들였다고 진술했다.
+AT0082,ATT0082,SRC004,이진욱,historical_place,충청병영 비장청,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0014,ATT0082 '비장청 방안'. '충청병영'은 AT0081에서.,이진욱은 한재욱이 자신을 비장청 방안으로 불러들였다고 진술했다.
+AT0082,ATT0082,SRC004,이진욱,occurrence_lunar_start,1793-02-28,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0014,AT0081에서 relation으로 이어짐.,이진욱은 한재욱이 자신을 비장청 방안으로 불러들였다고 진술했다.
+AT0082,ATT0082,SRC004,이진욱,occurrence_lunar_end,1793-02-28,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0014,AT0081에서 relation으로 이어짐.,이진욱은 한재욱이 자신을 비장청 방안으로 불러들였다고 진술했다.
+AT0083,ATT0083,SRC004,이진욱,actor,한재욱,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이진욱은 한재욱이 자신과 조계완 등에게 덕평으로 가라고 지시했다고 진술했다.
+AT0083,ATT0083,SRC004,이진욱,action,출동 지시,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이진욱은 한재욱이 자신과 조계완 등에게 덕평으로 가라고 지시했다고 진술했다.
+AT0083,ATT0083,SRC004,이진욱,target_or_content,이진욱·조계완 등에게 덕평으로 가도록 함,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이진욱은 한재욱이 자신과 조계완 등에게 덕평으로 가라고 지시했다고 진술했다.
+AT0083,ATT0083,SRC004,이진욱,historical_place,충청병영 비장청,DERIVED_FROM_LINKED_STRUCTURE,AT0082;REL0015,장소 명시 없음. 같은 진술 흐름의 AT0082에서.,이진욱은 한재욱이 자신과 조계완 등에게 덕평으로 가라고 지시했다고 진술했다.
+AT0083,ATT0083,SRC004,이진욱,occurrence_lunar_start,1793-02-28,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0015,AT0081에서 relation으로 이어짐.,이진욱은 한재욱이 자신과 조계완 등에게 덕평으로 가라고 지시했다고 진술했다.
+AT0083,ATT0083,SRC004,이진욱,occurrence_lunar_end,1793-02-28,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0015,AT0081에서 relation으로 이어짐.,이진욱은 한재욱이 자신과 조계완 등에게 덕평으로 가라고 지시했다고 진술했다.
+AT0084,ATT0084,SRC004,이진욱,actor,한재욱,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이진욱은 한재욱이 변지돌을 잡아오라고 지시했다고 진술했다.
+AT0084,ATT0084,SRC004,이진욱,action,체포 지시,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이진욱은 한재욱이 변지돌을 잡아오라고 지시했다고 진술했다.
+AT0084,ATT0084,SRC004,이진욱,target_or_content,변지돌,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이진욱은 한재욱이 변지돌을 잡아오라고 지시했다고 진술했다.
+AT0084,ATT0084,SRC004,이진욱,historical_place,충청병영 비장청,DERIVED_FROM_LINKED_STRUCTURE,AT0082;REL0016,같음.,이진욱은 한재욱이 변지돌을 잡아오라고 지시했다고 진술했다.
+AT0084,ATT0084,SRC004,이진욱,occurrence_lunar_start,1793-02-28,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0016,AT0081에서 relation으로 이어짐.,이진욱은 한재욱이 변지돌을 잡아오라고 지시했다고 진술했다.
+AT0084,ATT0084,SRC004,이진욱,occurrence_lunar_end,1793-02-28,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0016,AT0081에서 relation으로 이어짐.,이진욱은 한재욱이 변지돌을 잡아오라고 지시했다고 진술했다.
+AT0085,ATT0085,SRC004,이진욱,actor,한재욱,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이진욱은 한재욱이 정원돌을 잡아오라고 지시했다고 진술했다.
+AT0085,ATT0085,SRC004,이진욱,action,체포 지시,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이진욱은 한재욱이 정원돌을 잡아오라고 지시했다고 진술했다.
+AT0085,ATT0085,SRC004,이진욱,target_or_content,정원돌,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이진욱은 한재욱이 정원돌을 잡아오라고 지시했다고 진술했다.
+AT0085,ATT0085,SRC004,이진욱,historical_place,충청병영 비장청,DERIVED_FROM_LINKED_STRUCTURE,AT0082;REL0017,같음.,이진욱은 한재욱이 정원돌을 잡아오라고 지시했다고 진술했다.
+AT0085,ATT0085,SRC004,이진욱,occurrence_lunar_start,1793-02-28,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0017,AT0081에서 relation으로 이어짐.,이진욱은 한재욱이 정원돌을 잡아오라고 지시했다고 진술했다.
+AT0085,ATT0085,SRC004,이진욱,occurrence_lunar_end,1793-02-28,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0017,AT0081에서 relation으로 이어짐.,이진욱은 한재욱이 정원돌을 잡아오라고 지시했다고 진술했다.
+AT0086,ATT0086,SRC004,이진욱,actor,한재욱 측,UNSUPPORTED,,ATT0086 수동형 '철편 네 개가 만들어졌다'. 행위자를 한재욱 쪽에 귀속할 근거 없음.,이진욱은 체포 작전을 위해 철편 네 개가 만들어졌다고 진술했다.
+AT0086,ATT0086,SRC004,이진욱,action,철편 준비,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이진욱은 체포 작전을 위해 철편 네 개가 만들어졌다고 진술했다.
+AT0086,ATT0086,SRC004,이진욱,target_or_content,철편 4개,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이진욱은 체포 작전을 위해 철편 네 개가 만들어졌다고 진술했다.
+AT0086,ATT0086,SRC004,이진욱,historical_place,충청병영,AMBIGUOUS,AT0083;REL0018,ATT0086은 장소·행위자 없는 수동형.,이진욱은 체포 작전을 위해 철편 네 개가 만들어졌다고 진술했다.
+AT0086,ATT0086,SRC004,이진욱,occurrence_lunar_start,1793-02-28,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0018,AT0081 이후.,이진욱은 체포 작전을 위해 철편 네 개가 만들어졌다고 진술했다.
+AT0086,ATT0086,SRC004,이진욱,occurrence_lunar_end,1793-02-29,DERIVED_FROM_LINKED_STRUCTURE,AT0089;REL0020,새벽(AT0089) 이전.,이진욱은 체포 작전을 위해 철편 네 개가 만들어졌다고 진술했다.
+AT0087,ATT0087,SRC004,이진욱,actor,한재욱 측,UNSUPPORTED,,ATT0087 수동형 '제공됐다'. 근거 없음.,이진욱은 체포 작전을 위해 철편 네 개가 제공됐다고 진술했다.
+AT0087,ATT0087,SRC004,이진욱,action,철편 제공,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이진욱은 체포 작전을 위해 철편 네 개가 제공됐다고 진술했다.
+AT0087,ATT0087,SRC004,이진욱,target_or_content,철편 4개,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이진욱은 체포 작전을 위해 철편 네 개가 제공됐다고 진술했다.
+AT0087,ATT0087,SRC004,이진욱,historical_place,충청병영,AMBIGUOUS,AT0086;REL0019,같음.,이진욱은 체포 작전을 위해 철편 네 개가 제공됐다고 진술했다.
+AT0087,ATT0087,SRC004,이진욱,occurrence_lunar_start,1793-02-28,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0019,AT0081 이후.,이진욱은 체포 작전을 위해 철편 네 개가 제공됐다고 진술했다.
+AT0087,ATT0087,SRC004,이진욱,occurrence_lunar_end,1793-02-29,DERIVED_FROM_LINKED_STRUCTURE,AT0089;REL0020,새벽(AT0089) 이전.,이진욱은 체포 작전을 위해 철편 네 개가 제공됐다고 진술했다.
+AT0088,ATT0088,SRC004,이진욱,actor,한재욱,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이진욱은 한재욱이 변지돌의 힘을 이유로 조심하라고 말했다고 진술했다.
+AT0088,ATT0088,SRC004,이진욱,action,주의를 줬다고 전해짐,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이진욱은 한재욱이 변지돌의 힘을 이유로 조심하라고 말했다고 진술했다.
+AT0088,ATT0088,SRC004,이진욱,target_or_content,변지돌이 힘이 세니 조심하라는 내용,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이진욱은 한재욱이 변지돌의 힘을 이유로 조심하라고 말했다고 진술했다.
+AT0088,ATT0088,SRC004,이진욱,historical_place,충청병영 비장청,AMBIGUOUS,,장소 명시 없음. 다른 행과 relation 연결 없음.,이진욱은 한재욱이 변지돌의 힘을 이유로 조심하라고 말했다고 진술했다.
+AT0088,ATT0088,SRC004,이진욱,occurrence_lunar_start,1793-02-28,AMBIGUOUS,,ATT0088에는 날짜 없음. relation 연결 없음.,이진욱은 한재욱이 변지돌의 힘을 이유로 조심하라고 말했다고 진술했다.
+AT0088,ATT0088,SRC004,이진욱,occurrence_lunar_end,1793-02-29,AMBIGUOUS,,ATT0088에는 날짜 없음. relation 연결 없음.,이진욱은 한재욱이 변지돌의 힘을 이유로 조심하라고 말했다고 진술했다.
+AT0089,ATT0089,SRC004,이진욱,actor,이진욱·조계완 등,DERIVED_FROM_LINKED_STRUCTURE,AT0083,ATT0089는 '이진욱은 … 기다렸다'. '조계완 등'은 ATT0083에서.,이진욱은 날이 밝아 새벽을 기다렸다고 진술했다.
+AT0089,ATT0089,SRC004,이진욱,action,새벽까지 기다림,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이진욱은 날이 밝아 새벽을 기다렸다고 진술했다.
+AT0089,ATT0089,SRC004,이진욱,target_or_content,출발 시점,AMBIGUOUS,,'출발 시점'은 자리표시자.,이진욱은 날이 밝아 새벽을 기다렸다고 진술했다.
+AT0089,ATT0089,SRC004,이진욱,historical_place,충청병영→덕평,DERIVED_FROM_LINKED_STRUCTURE,AT0083;REL0020,'덕평'은 같은 화자의 ATT0083('덕평으로 가라')에서.,이진욱은 날이 밝아 새벽을 기다렸다고 진술했다.
+AT0089,ATT0089,SRC004,이진욱,occurrence_lunar_start,1793-02-29,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0020-REL0027,2/28 밤(AT0081) → '날이 밝아' 새벽 → relation 사슬. 2/28 다음 날을 2/29로 본 날짜 계산 포함.,이진욱은 날이 밝아 새벽을 기다렸다고 진술했다.
+AT0089,ATT0089,SRC004,이진욱,occurrence_lunar_end,1793-02-29,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0020-REL0027,2/28 밤(AT0081) → '날이 밝아' 새벽 → relation 사슬. 2/28 다음 날을 2/29로 본 날짜 계산 포함.,이진욱은 날이 밝아 새벽을 기다렸다고 진술했다.
+AT0090,ATT0090,SRC004,이진욱,actor,이진욱·조계완 등,DERIVED_FROM_LINKED_STRUCTURE,AT0083,ATT0090 '일행이 나갔다'. 구성원은 ATT0083에서.,이진욱은 새벽에 일행이 나갔다고 진술했다.
+AT0090,ATT0090,SRC004,이진욱,action,출발,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이진욱은 새벽에 일행이 나갔다고 진술했다.
+AT0090,ATT0090,SRC004,이진욱,target_or_content,덕평 방면,DERIVED_FROM_LINKED_STRUCTURE,AT0083,'덕평 방면'은 같은 화자의 ATT0083에서.,이진욱은 새벽에 일행이 나갔다고 진술했다.
+AT0090,ATT0090,SRC004,이진욱,historical_place,충청병영→덕평,DERIVED_FROM_LINKED_STRUCTURE,AT0083;REL0021,같음.,이진욱은 새벽에 일행이 나갔다고 진술했다.
+AT0090,ATT0090,SRC004,이진욱,occurrence_lunar_start,1793-02-29,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0020-REL0027,2/28 밤(AT0081) → '날이 밝아' 새벽 → relation 사슬. 2/28 다음 날을 2/29로 본 날짜 계산 포함.,이진욱은 새벽에 일행이 나갔다고 진술했다.
+AT0090,ATT0090,SRC004,이진욱,occurrence_lunar_end,1793-02-29,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0020-REL0027,2/28 밤(AT0081) → '날이 밝아' 새벽 → relation 사슬. 2/28 다음 날을 2/29로 본 날짜 계산 포함.,이진욱은 새벽에 일행이 나갔다고 진술했다.
+AT0091,ATT0091,SRC004,이진욱,actor,변지돌,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이진욱은 현장에 나갔을 때 변지돌이 이미 공주진에 붙잡혀 있었다고 진술했다.
+AT0091,ATT0091,SRC004,이진욱,action,체포 상태,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이진욱은 현장에 나갔을 때 변지돌이 이미 공주진에 붙잡혀 있었다고 진술했다.
+AT0091,ATT0091,SRC004,이진욱,target_or_content,이미 공주진에서 붙잡힘,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이진욱은 현장에 나갔을 때 변지돌이 이미 공주진에 붙잡혀 있었다고 진술했다.
+AT0091,ATT0091,SRC004,이진욱,historical_place,공주진,DIRECTLY_SUPPORTED,,ATT0091 '공주진',이진욱은 현장에 나갔을 때 변지돌이 이미 공주진에 붙잡혀 있었다고 진술했다.
+AT0091,ATT0091,SRC004,이진욱,occurrence_lunar_start,1793-02-29,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0020-REL0027,2/28 밤(AT0081) → '날이 밝아' 새벽 → relation 사슬. 2/28 다음 날을 2/29로 본 날짜 계산 포함.,이진욱은 현장에 나갔을 때 변지돌이 이미 공주진에 붙잡혀 있었다고 진술했다.
+AT0091,ATT0091,SRC004,이진욱,occurrence_lunar_end,1793-02-29,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0020-REL0027,2/28 밤(AT0081) → '날이 밝아' 새벽 → relation 사슬. 2/28 다음 날을 2/29로 본 날짜 계산 포함.,이진욱은 현장에 나갔을 때 변지돌이 이미 공주진에 붙잡혀 있었다고 진술했다.
+AT0092,ATT0092,SRC004,이진욱,actor,병영 장교 일행,DERIVED_FROM_LINKED_STRUCTURE,AT0101,ATT0092 주어는 화자 이진욱(암묵). '장교 일행'은 ATT0101 표현.,이진욱은 변지돌 대신 재돌의 처 자미덕만을 잡았다고 진술했다.
+AT0092,ATT0092,SRC004,이진욱,action,체포,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이진욱은 변지돌 대신 재돌의 처 자미덕만을 잡았다고 진술했다.
+AT0092,ATT0092,SRC004,이진욱,target_or_content,자미덕,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이진욱은 변지돌 대신 재돌의 처 자미덕만을 잡았다고 진술했다.
+AT0092,ATT0092,SRC004,이진욱,occurrence_lunar_start,1793-02-29,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0020-REL0027,2/28 밤(AT0081) → '날이 밝아' 새벽 → relation 사슬. 2/28 다음 날을 2/29로 본 날짜 계산 포함.,이진욱은 변지돌 대신 재돌의 처 자미덕만을 잡았다고 진술했다.
+AT0092,ATT0092,SRC004,이진욱,occurrence_lunar_end,1793-02-29,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0020-REL0027,2/28 밤(AT0081) → '날이 밝아' 새벽 → relation 사슬. 2/28 다음 날을 2/29로 본 날짜 계산 포함.,이진욱은 변지돌 대신 재돌의 처 자미덕만을 잡았다고 진술했다.
+AT0093,ATT0093,SRC004,이진욱,actor,병영 장교 일행,DERIVED_FROM_LINKED_STRUCTURE,AT0092;REL0024,같음.,이진욱은 자미덕을 잡은 뒤 그대로 구순 집으로 갔다고 진술했다.
+AT0093,ATT0093,SRC004,이진욱,action,이동,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이진욱은 자미덕을 잡은 뒤 그대로 구순 집으로 갔다고 진술했다.
+AT0093,ATT0093,SRC004,이진욱,target_or_content,자미덕을 데리고 구순 집으로 감,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이진욱은 자미덕을 잡은 뒤 그대로 구순 집으로 갔다고 진술했다.
+AT0093,ATT0093,SRC004,이진욱,historical_place,구순 집,DIRECTLY_SUPPORTED,,ATT0093 '구순 집으로 갔다',이진욱은 자미덕을 잡은 뒤 그대로 구순 집으로 갔다고 진술했다.
+AT0093,ATT0093,SRC004,이진욱,occurrence_lunar_start,1793-02-29,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0020-REL0027,2/28 밤(AT0081) → '날이 밝아' 새벽 → relation 사슬. 2/28 다음 날을 2/29로 본 날짜 계산 포함.,이진욱은 자미덕을 잡은 뒤 그대로 구순 집으로 갔다고 진술했다.
+AT0093,ATT0093,SRC004,이진욱,occurrence_lunar_end,1793-02-29,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0020-REL0027,2/28 밤(AT0081) → '날이 밝아' 새벽 → relation 사슬. 2/28 다음 날을 2/29로 본 날짜 계산 포함.,이진욱은 자미덕을 잡은 뒤 그대로 구순 집으로 갔다고 진술했다.
+AT0094,ATT0094,SRC004,이진욱,actor,병영 장교 일행,DERIVED_FROM_LINKED_STRUCTURE,AT0093;REL0025,같음.,이진욱은 구순 집에서 도적맞은 상황을 물었다고 진술했다.
+AT0094,ATT0094,SRC004,이진욱,action,질문,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이진욱은 구순 집에서 도적맞은 상황을 물었다고 진술했다.
+AT0094,ATT0094,SRC004,이진욱,target_or_content,구순에게 도난 상황을 물음,DERIVED_FROM_LINKED_STRUCTURE,AT0095;REL0026,ATT0094는 질문 대상을 명시하지 않음. '구순에게'는 응답자(AT0095)에서.,이진욱은 구순 집에서 도적맞은 상황을 물었다고 진술했다.
+AT0094,ATT0094,SRC004,이진욱,historical_place,구순 집,DIRECTLY_SUPPORTED,,ATT0094 '구순 집에서',이진욱은 구순 집에서 도적맞은 상황을 물었다고 진술했다.
+AT0094,ATT0094,SRC004,이진욱,occurrence_lunar_start,1793-02-29,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0020-REL0027,2/28 밤(AT0081) → '날이 밝아' 새벽 → relation 사슬. 2/28 다음 날을 2/29로 본 날짜 계산 포함.,이진욱은 구순 집에서 도적맞은 상황을 물었다고 진술했다.
+AT0094,ATT0094,SRC004,이진욱,occurrence_lunar_end,1793-02-29,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0020-REL0027,2/28 밤(AT0081) → '날이 밝아' 새벽 → relation 사슬. 2/28 다음 날을 2/29로 본 날짜 계산 포함.,이진욱은 구순 집에서 도적맞은 상황을 물었다고 진술했다.
+AT0095,ATT0095,SRC004,이진욱,actor,구순,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이진욱은 구순이 잃은 물건들을 낱낱이 말했다고 진술했다.
+AT0095,ATT0095,SRC004,이진욱,action,응답했다고 전해짐,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이진욱은 구순이 잃은 물건들을 낱낱이 말했다고 진술했다.
+AT0095,ATT0095,SRC004,이진욱,target_or_content,잃은 물건들을 열거,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이진욱은 구순이 잃은 물건들을 낱낱이 말했다고 진술했다.
+AT0095,ATT0095,SRC004,이진욱,historical_place,구순 집,DERIVED_FROM_LINKED_STRUCTURE,AT0094;REL0026,같은 문답 흐름.,이진욱은 구순이 잃은 물건들을 낱낱이 말했다고 진술했다.
+AT0095,ATT0095,SRC004,이진욱,occurrence_lunar_start,1793-02-29,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0020-REL0027,2/28 밤(AT0081) → '날이 밝아' 새벽 → relation 사슬. 2/28 다음 날을 2/29로 본 날짜 계산 포함.,이진욱은 구순이 잃은 물건들을 낱낱이 말했다고 진술했다.
+AT0095,ATT0095,SRC004,이진욱,occurrence_lunar_end,1793-02-29,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0020-REL0027,2/28 밤(AT0081) → '날이 밝아' 새벽 → relation 사슬. 2/28 다음 날을 2/29로 본 날짜 계산 포함.,이진욱은 구순이 잃은 물건들을 낱낱이 말했다고 진술했다.
+AT0096,ATT0096,SRC004,이진욱,actor,구순,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이진욱은 구순이 도적들이 스스로 지세대사라고 했다고 말했다고 진술했다.
+AT0096,ATT0096,SRC004,이진욱,action,응답했다고 전해짐,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이진욱은 구순이 도적들이 스스로 지세대사라고 했다고 말했다고 진술했다.
+AT0096,ATT0096,SRC004,이진욱,target_or_content,도적들이 지세대사라고 자칭했다는 내용,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이진욱은 구순이 도적들이 스스로 지세대사라고 했다고 말했다고 진술했다.
+AT0096,ATT0096,SRC004,이진욱,historical_place,구순 집,DERIVED_FROM_LINKED_STRUCTURE,AT0094;REL0027,같은 문답 흐름.,이진욱은 구순이 도적들이 스스로 지세대사라고 했다고 말했다고 진술했다.
+AT0096,ATT0096,SRC004,이진욱,occurrence_lunar_start,1793-02-29,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0020-REL0027,2/28 밤(AT0081) → '날이 밝아' 새벽 → relation 사슬. 2/28 다음 날을 2/29로 본 날짜 계산 포함.,이진욱은 구순이 도적들이 스스로 지세대사라고 했다고 말했다고 진술했다.
+AT0096,ATT0096,SRC004,이진욱,occurrence_lunar_end,1793-02-29,DERIVED_FROM_LINKED_STRUCTURE,AT0081;REL0020-REL0027,2/28 밤(AT0081) → '날이 밝아' 새벽 → relation 사슬. 2/28 다음 날을 2/29로 본 날짜 계산 포함.,이진욱은 구순이 도적들이 스스로 지세대사라고 했다고 말했다고 진술했다.
+AT0096,ATT0096,SRC004,이진욱,claim_topic,JISE_ORIGIN,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",이진욱은 구순이 도적들이 스스로 지세대사라고 했다고 말했다고 진술했다.
+AT0096,ATT0096,SRC004,이진욱,conflict_group,JISE_ORIGIN,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",이진욱은 구순이 도적들이 스스로 지세대사라고 했다고 말했다고 진술했다.
+AT0097,ATT0097,SRC004,이진욱,actor,병사 이광섭,DERIVED_FROM_LINKED_STRUCTURE,SRC001(source_title),ATT0097은 '병사'만 말함. '이광섭'은 source_records.source_title에서.,이진욱은 3월 4일 병사가 풍각 김생원을 잡아오라고 명했다고 진술했다.
+AT0097,ATT0097,SRC004,이진욱,action,체포 지시,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이진욱은 3월 4일 병사가 풍각 김생원을 잡아오라고 명했다고 진술했다.
+AT0097,ATT0097,SRC004,이진욱,target_or_content,풍각 김생원(김명신),DERIVED_FROM_LINKED_STRUCTURE,AT0099,'(김명신)'은 같은 화자의 식별 진술 ATT0099에서.,이진욱은 3월 4일 병사가 풍각 김생원을 잡아오라고 명했다고 진술했다.
+AT0097,ATT0097,SRC004,이진욱,historical_place,충청병영,AMBIGUOUS,,ATT0097은 명령 장소를 말하지 않음. 병사→병영은 배경지식.,이진욱은 3월 4일 병사가 풍각 김생원을 잡아오라고 명했다고 진술했다.
+AT0097,ATT0097,SRC004,이진욱,occurrence_lunar_start,1793-03-04,DIRECTLY_SUPPORTED,,ATT0097 '3월 4일',이진욱은 3월 4일 병사가 풍각 김생원을 잡아오라고 명했다고 진술했다.
+AT0097,ATT0097,SRC004,이진욱,occurrence_lunar_end,1793-03-04,DIRECTLY_SUPPORTED,,ATT0097 '3월 4일',이진욱은 3월 4일 병사가 풍각 김생원을 잡아오라고 명했다고 진술했다.
+AT0098,ATT0098,SRC004,이진욱,actor,병사 이광섭,DERIVED_FROM_LINKED_STRUCTURE,SRC001(source_title),같음.,이진욱은 3월 4일 병사가 흥덕 김생원을 잡아오라고 명했다고 진술했다.
+AT0098,ATT0098,SRC004,이진욱,action,체포 지시,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이진욱은 3월 4일 병사가 흥덕 김생원을 잡아오라고 명했다고 진술했다.
+AT0098,ATT0098,SRC004,이진욱,target_or_content,흥덕 김생원(김갑득),DERIVED_FROM_LINKED_STRUCTURE,AT0100,'(김갑득)'은 ATT0100에서.,이진욱은 3월 4일 병사가 흥덕 김생원을 잡아오라고 명했다고 진술했다.
+AT0098,ATT0098,SRC004,이진욱,historical_place,충청병영,AMBIGUOUS,,같음.,이진욱은 3월 4일 병사가 흥덕 김생원을 잡아오라고 명했다고 진술했다.
+AT0098,ATT0098,SRC004,이진욱,occurrence_lunar_start,1793-03-04,DIRECTLY_SUPPORTED,,ATT0098 '3월 4일',이진욱은 3월 4일 병사가 흥덕 김생원을 잡아오라고 명했다고 진술했다.
+AT0098,ATT0098,SRC004,이진욱,occurrence_lunar_end,1793-03-04,DIRECTLY_SUPPORTED,,ATT0098 '3월 4일',이진욱은 3월 4일 병사가 흥덕 김생원을 잡아오라고 명했다고 진술했다.
+AT0099,ATT0099,SRC004,이진욱,actor,풍각 김생원,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이진욱은 풍각 김생원이 김명신이라고 진술했다.
+AT0099,ATT0099,SRC004,이진욱,action,인물 식별,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이진욱은 풍각 김생원이 김명신이라고 진술했다.
+AT0099,ATT0099,SRC004,이진욱,target_or_content,김명신,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이진욱은 풍각 김생원이 김명신이라고 진술했다.
+AT0099,ATT0099,SRC004,이진욱,occurrence_lunar_start,1793-03-04,AMBIGUOUS,AT0097,시점 없는 식별 진술에 명령 날짜를 붙임.,이진욱은 풍각 김생원이 김명신이라고 진술했다.
+AT0099,ATT0099,SRC004,이진욱,occurrence_lunar_end,1793-03-04,AMBIGUOUS,AT0097,시점 없는 식별 진술에 명령 날짜를 붙임.,이진욱은 풍각 김생원이 김명신이라고 진술했다.
+AT0100,ATT0100,SRC004,이진욱,actor,흥덕 김생원,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이진욱은 흥덕 김생원이 김갑득이라고 진술했다.
+AT0100,ATT0100,SRC004,이진욱,action,인물 식별,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이진욱은 흥덕 김생원이 김갑득이라고 진술했다.
+AT0100,ATT0100,SRC004,이진욱,target_or_content,김갑득,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이진욱은 흥덕 김생원이 김갑득이라고 진술했다.
+AT0100,ATT0100,SRC004,이진욱,occurrence_lunar_start,1793-03-04,AMBIGUOUS,AT0097,시점 없는 식별 진술에 명령 날짜를 붙임.,이진욱은 흥덕 김생원이 김갑득이라고 진술했다.
+AT0100,ATT0100,SRC004,이진욱,occurrence_lunar_end,1793-03-04,AMBIGUOUS,AT0097,시점 없는 식별 진술에 명령 날짜를 붙임.,이진욱은 흥덕 김생원이 김갑득이라고 진술했다.
+AT0101,ATT0101,SRC004,이진욱,actor,장교 일행,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이진욱은 병사의 분부에 따라 장교 일행이 김명신을 잡아왔다고 진술했다.
+AT0101,ATT0101,SRC004,이진욱,action,잡아옴,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이진욱은 병사의 분부에 따라 장교 일행이 김명신을 잡아왔다고 진술했다.
+AT0101,ATT0101,SRC004,이진욱,target_or_content,김명신,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이진욱은 병사의 분부에 따라 장교 일행이 김명신을 잡아왔다고 진술했다.
+AT0101,ATT0101,SRC004,이진욱,occurrence_lunar_start,1793-03-04,AMBIGUOUS,REL0036,명령(3/4) 뒤 집행이라는 하한만 근거. 같은 날 집행했다는 진술 없음.,이진욱은 병사의 분부에 따라 장교 일행이 김명신을 잡아왔다고 진술했다.
+AT0101,ATT0101,SRC004,이진욱,occurrence_lunar_end,1793-03-04,AMBIGUOUS,REL0036,명령(3/4) 뒤 집행이라는 하한만 근거. 같은 날 집행했다는 진술 없음.,이진욱은 병사의 분부에 따라 장교 일행이 김명신을 잡아왔다고 진술했다.
+AT0102,ATT0102,SRC004,이진욱,actor,장교 일행,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,이진욱은 병사의 분부에 따라 장교 일행이 김갑득을 잡아왔다고 진술했다.
+AT0102,ATT0102,SRC004,이진욱,action,잡아옴,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,이진욱은 병사의 분부에 따라 장교 일행이 김갑득을 잡아왔다고 진술했다.
+AT0102,ATT0102,SRC004,이진욱,target_or_content,김갑득,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,이진욱은 병사의 분부에 따라 장교 일행이 김갑득을 잡아왔다고 진술했다.
+AT0102,ATT0102,SRC004,이진욱,occurrence_lunar_start,1793-03-04,AMBIGUOUS,REL0037,명령(3/4) 뒤 집행이라는 하한만 근거. 같은 날 집행했다는 진술 없음.,이진욱은 병사의 분부에 따라 장교 일행이 김갑득을 잡아왔다고 진술했다.
+AT0102,ATT0102,SRC004,이진욱,occurrence_lunar_end,1793-03-04,AMBIGUOUS,REL0037,명령(3/4) 뒤 집행이라는 하한만 근거. 같은 날 집행했다는 진술 없음.,이진욱은 병사의 분부에 따라 장교 일행이 김갑득을 잡아왔다고 진술했다.
+AT0103,ATT0103,SRC004,조계완,actor,조계완,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,조계완은 김명신을 잡으러 가는 길에 구순 집에 들렀다고 진술했다.
+AT0103,ATT0103,SRC004,조계완,action,들름,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,조계완은 김명신을 잡으러 가는 길에 구순 집에 들렀다고 진술했다.
+AT0103,ATT0103,SRC004,조계완,target_or_content,김명신 체포 길에 구순 집에 들어감,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,조계완은 김명신을 잡으러 가는 길에 구순 집에 들렀다고 진술했다.
+AT0103,ATT0103,SRC004,조계완,historical_place,구순 집,DIRECTLY_SUPPORTED,,ATT0103 '구순 집에 들렀다',조계완은 김명신을 잡으러 가는 길에 구순 집에 들렀다고 진술했다.
+AT0103,ATT0103,SRC004,조계완,occurrence_lunar_start,1793-03-04,IMPORTED_FROM_OTHER_ATTESTATION,AT0097,조계완 진술에는 날짜 없음. 3/4는 이진욱 진술(ATT0097)의 날짜이며 조계완 행과 relation 연결 없음.,조계완은 김명신을 잡으러 가는 길에 구순 집에 들렀다고 진술했다.
+AT0103,ATT0103,SRC004,조계완,occurrence_lunar_end,1793-03-04,IMPORTED_FROM_OTHER_ATTESTATION,AT0097,조계완 진술에는 날짜 없음. 3/4는 이진욱 진술(ATT0097)의 날짜이며 조계완 행과 relation 연결 없음.,조계완은 김명신을 잡으러 가는 길에 구순 집에 들렀다고 진술했다.
+AT0104,ATT0104,SRC004,조계완,actor,구순,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,조계완은 구순이 왜 다시 왔느냐고 물었다고 진술했다.
+AT0104,ATT0104,SRC004,조계완,action,질문했다고 전해짐,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,조계완은 구순이 왜 다시 왔느냐고 물었다고 진술했다.
+AT0104,ATT0104,SRC004,조계완,target_or_content,왜 다시 왔는지 질문,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,조계완은 구순이 왜 다시 왔느냐고 물었다고 진술했다.
+AT0104,ATT0104,SRC004,조계완,historical_place,구순 집,DERIVED_FROM_LINKED_STRUCTURE,AT0103;REL0038,같은 조계완 진술 흐름.,조계완은 구순이 왜 다시 왔느냐고 물었다고 진술했다.
+AT0104,ATT0104,SRC004,조계완,occurrence_lunar_start,1793-03-04,IMPORTED_FROM_OTHER_ATTESTATION,AT0097,조계완 진술에는 날짜 없음. 3/4는 이진욱 진술(ATT0097)의 날짜이며 조계완 행과 relation 연결 없음.,조계완은 구순이 왜 다시 왔느냐고 물었다고 진술했다.
+AT0104,ATT0104,SRC004,조계완,occurrence_lunar_end,1793-03-04,IMPORTED_FROM_OTHER_ATTESTATION,AT0097,조계완 진술에는 날짜 없음. 3/4는 이진욱 진술(ATT0097)의 날짜이며 조계완 행과 relation 연결 없음.,조계완은 구순이 왜 다시 왔느냐고 물었다고 진술했다.
+AT0105,ATT0105,SRC004,조계완,actor,조계완,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,조계완은 풍각의 상주를 잡으러 왔다고 구순에게 답했다고 진술했다.
+AT0105,ATT0105,SRC004,조계완,action,답변,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,조계완은 풍각의 상주를 잡으러 왔다고 구순에게 답했다고 진술했다.
+AT0105,ATT0105,SRC004,조계완,target_or_content,풍각 상주를 잡으러 왔다고 말함,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,조계완은 풍각의 상주를 잡으러 왔다고 구순에게 답했다고 진술했다.
+AT0105,ATT0105,SRC004,조계완,historical_place,구순 집,DERIVED_FROM_LINKED_STRUCTURE,AT0104;REL0039,같음.,조계완은 풍각의 상주를 잡으러 왔다고 구순에게 답했다고 진술했다.
+AT0105,ATT0105,SRC004,조계완,occurrence_lunar_start,1793-03-04,IMPORTED_FROM_OTHER_ATTESTATION,AT0097,조계완 진술에는 날짜 없음. 3/4는 이진욱 진술(ATT0097)의 날짜이며 조계완 행과 relation 연결 없음.,조계완은 풍각의 상주를 잡으러 왔다고 구순에게 답했다고 진술했다.
+AT0105,ATT0105,SRC004,조계완,occurrence_lunar_end,1793-03-04,IMPORTED_FROM_OTHER_ATTESTATION,AT0097,조계완 진술에는 날짜 없음. 3/4는 이진욱 진술(ATT0097)의 날짜이며 조계완 행과 relation 연결 없음.,조계완은 풍각의 상주를 잡으러 왔다고 구순에게 답했다고 진술했다.
+AT0106,ATT0106,SRC004,조계완,actor,구순,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,조계완은 구순이 수사가 이제야 바른 길을 얻었다는 취지로 말했다고 진술했다.
+AT0106,ATT0106,SRC004,조계완,action,말했다고 전해짐,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,조계완은 구순이 수사가 이제야 바른 길을 얻었다는 취지로 말했다고 진술했다.
+AT0106,ATT0106,SRC004,조계완,target_or_content,이제야 도적을 다스리는 일이 바른 길을 얻었다는 취지,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,조계완은 구순이 수사가 이제야 바른 길을 얻었다는 취지로 말했다고 진술했다.
+AT0106,ATT0106,SRC004,조계완,historical_place,구순 집,DERIVED_FROM_LINKED_STRUCTURE,AT0105;REL0040,같음.,조계완은 구순이 수사가 이제야 바른 길을 얻었다는 취지로 말했다고 진술했다.
+AT0106,ATT0106,SRC004,조계완,occurrence_lunar_start,1793-03-04,IMPORTED_FROM_OTHER_ATTESTATION,AT0097,조계완 진술에는 날짜 없음. 3/4는 이진욱 진술(ATT0097)의 날짜이며 조계완 행과 relation 연결 없음.,조계완은 구순이 수사가 이제야 바른 길을 얻었다는 취지로 말했다고 진술했다.
+AT0106,ATT0106,SRC004,조계완,occurrence_lunar_end,1793-03-04,IMPORTED_FROM_OTHER_ATTESTATION,AT0097,조계완 진술에는 날짜 없음. 3/4는 이진욱 진술(ATT0097)의 날짜이며 조계완 행과 relation 연결 없음.,조계완은 구순이 수사가 이제야 바른 길을 얻었다는 취지로 말했다고 진술했다.
+AT0107,ATT0107,SRC004,조계완,actor,구순,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,조계완은 구순이 서찰 한 장을 꺼내 자신에게 건넸다고 진술했다.
+AT0107,ATT0107,SRC004,조계완,action,서찰을 건넸다고 전해짐,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,조계완은 구순이 서찰 한 장을 꺼내 자신에게 건넸다고 진술했다.
+AT0107,ATT0107,SRC004,조계완,target_or_content,조계완,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,조계완은 구순이 서찰 한 장을 꺼내 자신에게 건넸다고 진술했다.
+AT0107,ATT0107,SRC004,조계완,historical_place,구순 집,DERIVED_FROM_LINKED_STRUCTURE,AT0106;REL0041,같음.,조계완은 구순이 서찰 한 장을 꺼내 자신에게 건넸다고 진술했다.
+AT0107,ATT0107,SRC004,조계완,occurrence_lunar_start,1793-03-04,IMPORTED_FROM_OTHER_ATTESTATION,AT0097,조계완 진술에는 날짜 없음. 3/4는 이진욱 진술(ATT0097)의 날짜이며 조계완 행과 relation 연결 없음.,조계완은 구순이 서찰 한 장을 꺼내 자신에게 건넸다고 진술했다.
+AT0107,ATT0107,SRC004,조계완,occurrence_lunar_end,1793-03-04,IMPORTED_FROM_OTHER_ATTESTATION,AT0097,조계완 진술에는 날짜 없음. 3/4는 이진욱 진술(ATT0097)의 날짜이며 조계완 행과 relation 연결 없음.,조계완은 구순이 서찰 한 장을 꺼내 자신에게 건넸다고 진술했다.
+AT0108,ATT0108,SRC004,조계완,actor,구순,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,조계완은 구순이 그 서찰을 병사에게 전해 달라고 요청했다고 진술했다.
+AT0108,ATT0108,SRC004,조계완,action,요청했다고 전해짐,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,조계완은 구순이 그 서찰을 병사에게 전해 달라고 요청했다고 진술했다.
+AT0108,ATT0108,SRC004,조계완,target_or_content,서찰을 병사에게 전달해 달라는 요청,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,조계완은 구순이 그 서찰을 병사에게 전해 달라고 요청했다고 진술했다.
+AT0108,ATT0108,SRC004,조계완,historical_place,구순 집,DERIVED_FROM_LINKED_STRUCTURE,AT0107;REL0042,같음.,조계완은 구순이 그 서찰을 병사에게 전해 달라고 요청했다고 진술했다.
+AT0108,ATT0108,SRC004,조계완,occurrence_lunar_start,1793-03-04,IMPORTED_FROM_OTHER_ATTESTATION,AT0097,조계완 진술에는 날짜 없음. 3/4는 이진욱 진술(ATT0097)의 날짜이며 조계완 행과 relation 연결 없음.,조계완은 구순이 그 서찰을 병사에게 전해 달라고 요청했다고 진술했다.
+AT0108,ATT0108,SRC004,조계완,occurrence_lunar_end,1793-03-04,IMPORTED_FROM_OTHER_ATTESTATION,AT0097,조계완 진술에는 날짜 없음. 3/4는 이진욱 진술(ATT0097)의 날짜이며 조계완 행과 relation 연결 없음.,조계완은 구순이 그 서찰을 병사에게 전해 달라고 요청했다고 진술했다.
+AT0109,ATT0109,SRC004,자미덕,actor,재돌,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,자미덕은 자신의 남편 재돌이 아산에 나가 있었다고 진술했다.
+AT0109,ATT0109,SRC004,자미덕,action,부재 상태,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,자미덕은 자신의 남편 재돌이 아산에 나가 있었다고 진술했다.
+AT0109,ATT0109,SRC004,자미덕,target_or_content,아산에 나가 있었음,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,자미덕은 자신의 남편 재돌이 아산에 나가 있었다고 진술했다.
+AT0109,ATT0109,SRC004,자미덕,historical_place,아산,DIRECTLY_SUPPORTED,,ATT0109 '아산',자미덕은 자신의 남편 재돌이 아산에 나가 있었다고 진술했다.
+AT0110,ATT0110,SRC004,자미덕,actor,병영 장교,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,자미덕은 병영 장교가 갑자기 찾아와 자신을 붙잡았다고 진술했다.
+AT0110,ATT0110,SRC004,자미덕,action,체포,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,자미덕은 병영 장교가 갑자기 찾아와 자신을 붙잡았다고 진술했다.
+AT0110,ATT0110,SRC004,자미덕,target_or_content,자미덕,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,자미덕은 병영 장교가 갑자기 찾아와 자신을 붙잡았다고 진술했다.
+AT0110,ATT0110,SRC004,자미덕,historical_place,병영,UNSUPPORTED,AT0111,ATT0110 '병영 장교가 갑자기 찾아와 자신을 붙잡았다': '병영'은 장교의 소속. ATT0111 '병영으로 데려갔다'는 체포 장소가 병영이 아님을 시사 → 값이 같은 화자의 다음 진술과 긴장.,자미덕은 병영 장교가 갑자기 찾아와 자신을 붙잡았다고 진술했다.
+AT0110,ATT0110,SRC004,자미덕,occurrence_lunar_start,1793-02-29,IMPORTED_FROM_OTHER_ATTESTATION,AT0092;REL0077,자미덕 진술에는 날짜 없음. 1793-02-29는 이진욱 진술(AT0092)에서 후보 연결 REL0077(SAME_EVENT_CANDIDATE)을 통해 옴.,자미덕은 병영 장교가 갑자기 찾아와 자신을 붙잡았다고 진술했다.
+AT0111,ATT0111,SRC004,자미덕,actor,병영 장교,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,자미덕은 병영 장교가 자신을 병영으로 데려갔다고 진술했다.
+AT0111,ATT0111,SRC004,자미덕,action,이송,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,자미덕은 병영 장교가 자신을 병영으로 데려갔다고 진술했다.
+AT0111,ATT0111,SRC004,자미덕,target_or_content,자미덕을 병영으로 데려감,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,자미덕은 병영 장교가 자신을 병영으로 데려갔다고 진술했다.
+AT0111,ATT0111,SRC004,자미덕,historical_place,병영,DIRECTLY_SUPPORTED,,ATT0111 '병영으로 데려갔다'(목적지),자미덕은 병영 장교가 자신을 병영으로 데려갔다고 진술했다.
+AT0111,ATT0111,SRC004,자미덕,occurrence_lunar_start,1793-02-29,IMPORTED_FROM_OTHER_ATTESTATION,AT0092;REL0077,자미덕 진술에는 날짜 없음. 1793-02-29는 이진욱 진술(AT0092)에서 후보 연결 REL0077(SAME_EVENT_CANDIDATE)을 통해 옴.,자미덕은 병영 장교가 자신을 병영으로 데려갔다고 진술했다.
+AT0112,ATT0112,SRC004,자미덕,actor,병영,DERIVED_FROM_LINKED_STRUCTURE,AT0111;REL0029,"ATT0112 수동형 '신문을 받았다'. 신문 주체 미명시, 이송지(병영)에서 이어짐.",자미덕은 도적 혐의로 한 차례 신문을 받았다고 진술했다.
+AT0112,ATT0112,SRC004,자미덕,action,신문,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,자미덕은 도적 혐의로 한 차례 신문을 받았다고 진술했다.
+AT0112,ATT0112,SRC004,자미덕,target_or_content,자미덕을 도적 혐의로 한 차례 신문,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,자미덕은 도적 혐의로 한 차례 신문을 받았다고 진술했다.
+AT0112,ATT0112,SRC004,자미덕,historical_place,병영,DERIVED_FROM_LINKED_STRUCTURE,AT0111;REL0029,이송 뒤 신문. 신문 장소는 명시 없음.,자미덕은 도적 혐의로 한 차례 신문을 받았다고 진술했다.
+AT0112,ATT0112,SRC004,자미덕,occurrence_lunar_start,1793-02-29,IMPORTED_FROM_OTHER_ATTESTATION,AT0092;REL0077,자미덕 진술에는 날짜 없음. 1793-02-29는 이진욱 진술(AT0092)에서 후보 연결 REL0077(SAME_EVENT_CANDIDATE)을 통해 옴.,자미덕은 도적 혐의로 한 차례 신문을 받았다고 진술했다.
+AT0113,ATT0113,SRC004,자미덕,actor,자미덕,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,자미덕은 신문 뒤 비장청 다모방에 구류되었다고 진술했다.
+AT0113,ATT0113,SRC004,자미덕,action,구류,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,자미덕은 신문 뒤 비장청 다모방에 구류되었다고 진술했다.
+AT0113,ATT0113,SRC004,자미덕,target_or_content,비장청 다모방,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,자미덕은 신문 뒤 비장청 다모방에 구류되었다고 진술했다.
+AT0113,ATT0113,SRC004,자미덕,historical_place,충청병영 비장청,DERIVED_FROM_LINKED_STRUCTURE,AT0081,ATT0113 '비장청 다모방'. '충청병영' 접두는 ATT0081에서.,자미덕은 신문 뒤 비장청 다모방에 구류되었다고 진술했다.
+AT0113,ATT0113,SRC004,자미덕,occurrence_lunar_start,1793-02-29,IMPORTED_FROM_OTHER_ATTESTATION,AT0092;REL0077,자미덕 진술에는 날짜 없음. 1793-02-29는 이진욱 진술(AT0092)에서 후보 연결 REL0077(SAME_EVENT_CANDIDATE)을 통해 옴.,자미덕은 신문 뒤 비장청 다모방에 구류되었다고 진술했다.
+AT0114,ATT0114,SRC004,자미덕,actor,한재욱,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,자미덕은 한재욱이 이후 매일 자신을 방안으로 불러들였다고 진술했다.
+AT0114,ATT0114,SRC004,자미덕,action,매일 불러들였다고 주장됨,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,자미덕은 한재욱이 이후 매일 자신을 방안으로 불러들였다고 진술했다.
+AT0114,ATT0114,SRC004,자미덕,target_or_content,자미덕,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,자미덕은 한재욱이 이후 매일 자신을 방안으로 불러들였다고 진술했다.
+AT0114,ATT0114,SRC004,자미덕,historical_place,비장청 방,DERIVED_FROM_LINKED_STRUCTURE,AT0113;REL0031,ATT0114 '방안으로'. 비장청은 AT0113에서.,자미덕은 한재욱이 이후 매일 자신을 방안으로 불러들였다고 진술했다.
+AT0114,ATT0114,SRC004,자미덕,occurrence_lunar_start,1793-02-29,IMPORTED_FROM_OTHER_ATTESTATION,AT0092;REL0077,자미덕 진술에는 날짜 없음. 1793-02-29는 이진욱 진술(AT0092)에서 후보 연결 REL0077(SAME_EVENT_CANDIDATE)을 통해 옴.,자미덕은 한재욱이 이후 매일 자신을 방안으로 불러들였다고 진술했다.
+AT0114,ATT0114,SRC004,자미덕,claim_topic,COACHING,AMBIGUOUS,AT0116,ATT0114 '매일 방안으로 불러들였다'는 사주를 말하지 않음. COACHING은 해석적 묶음.,자미덕은 한재욱이 이후 매일 자신을 방안으로 불러들였다고 진술했다.
+AT0114,ATT0114,SRC004,자미덕,conflict_group,COACHING,AMBIGUOUS,AT0116,ATT0114 '매일 방안으로 불러들였다'는 사주를 말하지 않음. COACHING은 해석적 묶음.,자미덕은 한재욱이 이후 매일 자신을 방안으로 불러들였다고 진술했다.
+AT0115,ATT0115,SRC004,자미덕,actor,한재욱,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,자미덕은 한재욱이 남편 재돌이 이미 체포되었다고 말했다고 진술했다.
+AT0115,ATT0115,SRC004,자미덕,action,말했다고 주장됨,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,자미덕은 한재욱이 남편 재돌이 이미 체포되었다고 말했다고 진술했다.
+AT0115,ATT0115,SRC004,자미덕,target_or_content,재돌이 이미 체포되었다는 내용,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,자미덕은 한재욱이 남편 재돌이 이미 체포되었다고 말했다고 진술했다.
+AT0115,ATT0115,SRC004,자미덕,historical_place,비장청 방,AMBIGUOUS,AT0114,장소 명시 없음. AT0114와 relation 없음.,자미덕은 한재욱이 남편 재돌이 이미 체포되었다고 말했다고 진술했다.
+AT0115,ATT0115,SRC004,자미덕,occurrence_lunar_start,1793-02-29,IMPORTED_FROM_OTHER_ATTESTATION,AT0092;REL0077,자미덕 진술에는 날짜 없음. 1793-02-29는 이진욱 진술(AT0092)에서 후보 연결 REL0077(SAME_EVENT_CANDIDATE)을 통해 옴.,자미덕은 한재욱이 남편 재돌이 이미 체포되었다고 말했다고 진술했다.
+AT0115,ATT0115,SRC004,자미덕,claim_topic,COACHING,AMBIGUOUS,AT0116,ATT0115는 사주를 말하지 않음.,자미덕은 한재욱이 남편 재돌이 이미 체포되었다고 말했다고 진술했다.
+AT0115,ATT0115,SRC004,자미덕,conflict_group,COACHING,AMBIGUOUS,AT0116,ATT0115는 사주를 말하지 않음.,자미덕은 한재욱이 남편 재돌이 이미 체포되었다고 말했다고 진술했다.
+AT0116,ATT0116,SRC004,자미덕,actor,한재욱,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,자미덕은 한재욱이 특정 인물들을 큰 도적이라고 말하면 자신과 남편을 석방하겠다고 회유했다고 진술했다.
+AT0116,ATT0116,SRC004,자미덕,action,회유했다고 주장됨,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,자미덕은 한재욱이 특정 인물들을 큰 도적이라고 말하면 자신과 남편을 석방하겠다고 회유했다고 진술했다.
+AT0116,ATT0116,SRC004,자미덕,target_or_content,여러 사람을 큰 도적이라 말하면 부부를 석방하겠다는 조건,AMBIGUOUS,,ATT0116 '특정 인물들' vs target '여러 사람'. 지시 대상의 성격 표현이 다름.,자미덕은 한재욱이 특정 인물들을 큰 도적이라고 말하면 자신과 남편을 석방하겠다고 회유했다고 진술했다.
+AT0116,ATT0116,SRC004,자미덕,historical_place,비장청 방,AMBIGUOUS,AT0114,장소 명시 없음. AT0114와 relation 없음.,자미덕은 한재욱이 특정 인물들을 큰 도적이라고 말하면 자신과 남편을 석방하겠다고 회유했다고 진술했다.
+AT0116,ATT0116,SRC004,자미덕,occurrence_lunar_start,1793-02-29,IMPORTED_FROM_OTHER_ATTESTATION,AT0092;REL0077,자미덕 진술에는 날짜 없음. 1793-02-29는 이진욱 진술(AT0092)에서 후보 연결 REL0077(SAME_EVENT_CANDIDATE)을 통해 옴.,자미덕은 한재욱이 특정 인물들을 큰 도적이라고 말하면 자신과 남편을 석방하겠다고 회유했다고 진술했다.
+AT0116,ATT0116,SRC004,자미덕,claim_topic,COACHING,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",자미덕은 한재욱이 특정 인물들을 큰 도적이라고 말하면 자신과 남편을 석방하겠다고 회유했다고 진술했다.
+AT0116,ATT0116,SRC004,자미덕,conflict_group,COACHING,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",자미덕은 한재욱이 특정 인물들을 큰 도적이라고 말하면 자신과 남편을 석방하겠다고 회유했다고 진술했다.
+AT0117,ATT0117,SRC004,자미덕,actor,한재욱,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,자미덕은 한재욱이 자신에게 떡과 밥을 주었다고 진술했다.
+AT0117,ATT0117,SRC004,자미덕,action,떡·밥을 주었다고 주장됨,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,자미덕은 한재욱이 자신에게 떡과 밥을 주었다고 진술했다.
+AT0117,ATT0117,SRC004,자미덕,target_or_content,자미덕,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,자미덕은 한재욱이 자신에게 떡과 밥을 주었다고 진술했다.
+AT0117,ATT0117,SRC004,자미덕,historical_place,비장청,AMBIGUOUS,,장소 명시 없음.,자미덕은 한재욱이 자신에게 떡과 밥을 주었다고 진술했다.
+AT0117,ATT0117,SRC004,자미덕,occurrence_lunar_start,1793-02-29,IMPORTED_FROM_OTHER_ATTESTATION,AT0092;REL0077,자미덕 진술에는 날짜 없음. 1793-02-29는 이진욱 진술(AT0092)에서 후보 연결 REL0077(SAME_EVENT_CANDIDATE)을 통해 옴.,자미덕은 한재욱이 자신에게 떡과 밥을 주었다고 진술했다.
+AT0117,ATT0117,SRC004,자미덕,claim_topic,COACHING,AMBIGUOUS,AT0116,ATT0117 '떡과 밥을 주었다'는 사주를 말하지 않음.,자미덕은 한재욱이 자신에게 떡과 밥을 주었다고 진술했다.
+AT0117,ATT0117,SRC004,자미덕,conflict_group,COACHING,AMBIGUOUS,AT0116,ATT0117 '떡과 밥을 주었다'는 사주를 말하지 않음.,자미덕은 한재욱이 자신에게 떡과 밥을 주었다고 진술했다.
+AT0118,ATT0118,SRC004,자미덕,actor,자미덕·이집거,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,자미덕은 이집거와 대질했다고 진술했다.
+AT0118,ATT0118,SRC004,자미덕,action,대질,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,자미덕은 이집거와 대질했다고 진술했다.
+AT0118,ATT0118,SRC004,자미덕,historical_place,병영,UNSUPPORTED,,대질 장소는 어떤 attestation에도 없음. AT0118은 구금 행들과 relation 연결도 없음.,자미덕은 이집거와 대질했다고 진술했다.
+AT0119,ATT0119,SRC004,자미덕,actor,자미덕,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,자미덕은 이집거와 대질할 때 한재욱의 지휘에 따라 거짓으로 말했다고 진술했다.
+AT0119,ATT0119,SRC004,자미덕,action,과거 진술 경위 설명,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,자미덕은 이집거와 대질할 때 한재욱의 지휘에 따라 거짓으로 말했다고 진술했다.
+AT0119,ATT0119,SRC004,자미덕,target_or_content,한재욱 지휘에 따라 거짓말을 꾸몄다고 주장,AMBIGUOUS,,ATT0119 '거짓으로 말했다' vs target '거짓말을 꾸몄다'. 표현이 강해지고 '이집거와 대질할 때' 맥락이 빠짐.,자미덕은 이집거와 대질할 때 한재욱의 지휘에 따라 거짓으로 말했다고 진술했다.
+AT0119,ATT0119,SRC004,자미덕,historical_place,병영,UNSUPPORTED,,같음(대질 장소 미상).,자미덕은 이집거와 대질할 때 한재욱의 지휘에 따라 거짓으로 말했다고 진술했다.
+AT0119,ATT0119,SRC004,자미덕,claim_topic,COACHING,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",자미덕은 이집거와 대질할 때 한재욱의 지휘에 따라 거짓으로 말했다고 진술했다.
+AT0119,ATT0119,SRC004,자미덕,conflict_group,COACHING,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",자미덕은 이집거와 대질할 때 한재욱의 지휘에 따라 거짓으로 말했다고 진술했다.
+AT0120,ATT0120,SRC004,한재욱,actor,구순,IMPORTED_FROM_OTHER_ATTESTATION,AT0073;REL0073,ATT0120(한재욱) '구순 집 도난이 진영에 정소된 뒤': 정소 주체 미명시. '구순'은 ATT0073(명업)에서 후보 연결로.,한재욱은 구순 집 도난이 진영에 정소된 뒤라고 진술했다.
+AT0120,ATT0120,SRC004,한재욱,action,정소했다고 전해짐,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,한재욱은 구순 집 도난이 진영에 정소된 뒤라고 진술했다.
+AT0120,ATT0120,SRC004,한재욱,target_or_content,도난 사건,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,한재욱은 구순 집 도난이 진영에 정소된 뒤라고 진술했다.
+AT0120,ATT0120,SRC004,한재욱,historical_place,진영,DIRECTLY_SUPPORTED,,ATT0120 '진영에 정소된',한재욱은 구순 집 도난이 진영에 정소된 뒤라고 진술했다.
+AT0120,ATT0120,SRC004,한재욱,occurrence_lunar_end,1793-02-28,UNSUPPORTED,,"상한 1793-02-28을 주는 attestation이 없고, 날짜가 있는 사건(AT0081 등)으로 가는 relation 경로도 없음.",한재욱은 구순 집 도난이 진영에 정소된 뒤라고 진술했다.
+AT0120,ATT0120,SRC004,한재욱,claim_topic,COMPLAINT,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",한재욱은 구순 집 도난이 진영에 정소된 뒤라고 진술했다.
+AT0121,ATT0121,SRC004,한재욱,actor,한재욱/병영,AMBIGUOUS,,ATT0121의 '병영'은 유제희 소속(병영 아전)이지 행위 주체가 아님. '/병영' 추가.,한재욱은 도적의 진상을 탐지하려고 병영 아전 유제희를 내보냈다고 진술했다.
+AT0121,ATT0121,SRC004,한재욱,action,파견,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,한재욱은 도적의 진상을 탐지하려고 병영 아전 유제희를 내보냈다고 진술했다.
+AT0121,ATT0121,SRC004,한재욱,target_or_content,유제희를 도적 진상 탐문에 보냄,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,한재욱은 도적의 진상을 탐지하려고 병영 아전 유제희를 내보냈다고 진술했다.
+AT0121,ATT0121,SRC004,한재욱,historical_place,덕평 방면,IMPORTED_FROM_OTHER_ATTESTATION,AT0001;AT0083,ATT0121(한재욱)은 '내보냈다'만 말함. '덕평'은 ATT0001(SRC001)·ATT0083(이진욱)에만 있음.,한재욱은 도적의 진상을 탐지하려고 병영 아전 유제희를 내보냈다고 진술했다.
+AT0121,ATT0121,SRC004,한재욱,occurrence_lunar_end,1793-02-28,UNSUPPORTED,,"상한 1793-02-28을 주는 attestation이 없고, 날짜가 있는 사건(AT0081 등)으로 가는 relation 경로도 없음.",한재욱은 도적의 진상을 탐지하려고 병영 아전 유제희를 내보냈다고 진술했다.
+AT0122,ATT0122,SRC004,한재욱,actor,유제희,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,한재욱은 유제희가 여러 사람의 이름을 적었다고 진술했다.
+AT0122,ATT0122,SRC004,한재욱,action,이름을 기록,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,한재욱은 유제희가 여러 사람의 이름을 적었다고 진술했다.
+AT0122,ATT0122,SRC004,한재욱,target_or_content,변지돌·변재돌·정원돌·김명신·김성손·김흥득·김흥길,UNSUPPORTED,AT0135;AT0084;AT0085,"ATT0122 '여러 사람의 이름을 적었다'에는 이름 없음. 7명 중 변재돌·김성손·김흥득·김흥길은 어떤 attestation에도 없고, 김명신·원돌은 ATT0135(유제희, REL0075 후보 연결), 변지돌·정원돌은 이진욱 진술(체포 지시 대상)에만 있음.",한재욱은 유제희가 여러 사람의 이름을 적었다고 진술했다.
+AT0122,ATT0122,SRC004,한재욱,historical_place,병영,UNSUPPORTED,AT0123,ATT0122에는 장소 없음. 같은 화자의 ATT0123 '이름을 적어 병영으로 돌아왔다'는 기록이 병영 밖에서 이루어졌음을 시사 → 값과 긴장.,한재욱은 유제희가 여러 사람의 이름을 적었다고 진술했다.
+AT0122,ATT0122,SRC004,한재욱,occurrence_lunar_end,1793-02-28,UNSUPPORTED,,"상한 1793-02-28을 주는 attestation이 없고, 날짜가 있는 사건(AT0081 등)으로 가는 relation 경로도 없음.",한재욱은 유제희가 여러 사람의 이름을 적었다고 진술했다.
+AT0122,ATT0122,SRC004,한재욱,claim_topic,SUSPECT_LIST,DERIVED_FROM_LINKED_STRUCTURE,AT0121,명단을 '용의자 명단'으로 보는 것은 ATT0121 '도적의 진상을 탐지하려고'에서.,한재욱은 유제희가 여러 사람의 이름을 적었다고 진술했다.
+AT0123,ATT0123,SRC004,한재욱,actor,유제희,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,한재욱은 유제희가 여러 사람의 이름을 적어 병영으로 돌아왔다고 진술했다.
+AT0123,ATT0123,SRC004,한재욱,action,병영으로 돌아옴,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,한재욱은 유제희가 여러 사람의 이름을 적어 병영으로 돌아왔다고 진술했다.
+AT0123,ATT0123,SRC004,한재욱,target_or_content,기록한 이름 목록,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,한재욱은 유제희가 여러 사람의 이름을 적어 병영으로 돌아왔다고 진술했다.
+AT0123,ATT0123,SRC004,한재욱,historical_place,병영,DIRECTLY_SUPPORTED,,ATT0123 '병영으로 돌아왔다',한재욱은 유제희가 여러 사람의 이름을 적어 병영으로 돌아왔다고 진술했다.
+AT0123,ATT0123,SRC004,한재욱,occurrence_lunar_end,1793-02-28,UNSUPPORTED,,"상한 1793-02-28을 주는 attestation이 없고, 날짜가 있는 사건(AT0081 등)으로 가는 relation 경로도 없음.",한재욱은 유제희가 여러 사람의 이름을 적어 병영으로 돌아왔다고 진술했다.
+AT0123,ATT0123,SRC004,한재욱,claim_topic,SUSPECT_LIST,DERIVED_FROM_LINKED_STRUCTURE,AT0121,같음.,한재욱은 유제희가 여러 사람의 이름을 적어 병영으로 돌아왔다고 진술했다.
+AT0124,ATT0124,SRC004,한재욱,actor,유제희,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,한재욱은 유제희가 자신이 직접 염탐해 이름들을 알아냈다고 말했다고 진술했다.
+AT0124,ATT0124,SRC004,한재욱,action,보고했다고 전해짐,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,한재욱은 유제희가 자신이 직접 염탐해 이름들을 알아냈다고 말했다고 진술했다.
+AT0124,ATT0124,SRC004,한재욱,target_or_content,스스로 염탐해 이름들을 알아냈다는 내용,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,한재욱은 유제희가 자신이 직접 염탐해 이름들을 알아냈다고 말했다고 진술했다.
+AT0124,ATT0124,SRC004,한재욱,historical_place,병영,AMBIGUOUS,AT0123,장소 명시 없음. AT0123과 relation 없음.,한재욱은 유제희가 자신이 직접 염탐해 이름들을 알아냈다고 말했다고 진술했다.
+AT0124,ATT0124,SRC004,한재욱,occurrence_lunar_end,1793-02-28,UNSUPPORTED,,"상한 1793-02-28을 주는 attestation이 없고, 날짜가 있는 사건(AT0081 등)으로 가는 relation 경로도 없음.",한재욱은 유제희가 자신이 직접 염탐해 이름들을 알아냈다고 말했다고 진술했다.
+AT0124,ATT0124,SRC004,한재욱,claim_topic,SUSPECT_LIST,DERIVED_FROM_LINKED_STRUCTURE,AT0121,같음.,한재욱은 유제희가 자신이 직접 염탐해 이름들을 알아냈다고 말했다고 진술했다.
+AT0125,ATT0125,SRC004,한재욱,actor,한재욱,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,한재욱은 자미덕을 방 안으로 불러들인 사실은 인정했다.
+AT0125,ATT0125,SRC004,한재욱,action,방으로 불러들임,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,한재욱은 자미덕을 방 안으로 불러들인 사실은 인정했다.
+AT0125,ATT0125,SRC004,한재욱,target_or_content,자미덕,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,한재욱은 자미덕을 방 안으로 불러들인 사실은 인정했다.
+AT0125,ATT0125,SRC004,한재욱,historical_place,비장청,IMPORTED_FROM_OTHER_ATTESTATION,AT0113;REL0078,"ATT0125(한재욱)는 '방 안'만 말함. '비장청'은 자미덕 진술(ATT0113)에서, 후보 연결 REL0078을 통해 옴.",한재욱은 자미덕을 방 안으로 불러들인 사실은 인정했다.
+AT0125,ATT0125,SRC004,한재욱,claim_topic,COACHING,AMBIGUOUS,REL0078,한재욱이 인정한 '방 안으로 불러들인 사실'을 사주 충돌 그룹(COACHING)에 넣음. 인정된 중립 행위가 사주 쟁점으로 묶임.,한재욱은 자미덕을 방 안으로 불러들인 사실은 인정했다.
+AT0125,ATT0125,SRC004,한재욱,conflict_group,COACHING,AMBIGUOUS,REL0078,한재욱이 인정한 '방 안으로 불러들인 사실'을 사주 충돌 그룹(COACHING)에 넣음. 인정된 중립 행위가 사주 쟁점으로 묶임.,한재욱은 자미덕을 방 안으로 불러들인 사실은 인정했다.
+AT0126,ATT0126,SRC004,한재욱,actor,한재욱,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,한재욱은 먹고 남은 밥을 자미덕에게 준 사실은 인정했다.
+AT0126,ATT0126,SRC004,한재욱,action,남은 밥을 줌,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,한재욱은 먹고 남은 밥을 자미덕에게 준 사실은 인정했다.
+AT0126,ATT0126,SRC004,한재욱,target_or_content,자미덕,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,한재욱은 먹고 남은 밥을 자미덕에게 준 사실은 인정했다.
+AT0126,ATT0126,SRC004,한재욱,historical_place,비장청,IMPORTED_FROM_OTHER_ATTESTATION,AT0113;REL0079,같음(REL0079 후보 연결).,한재욱은 먹고 남은 밥을 자미덕에게 준 사실은 인정했다.
+AT0126,ATT0126,SRC004,한재욱,claim_topic,COACHING,AMBIGUOUS,REL0079,한재욱이 인정한 '남은 밥을 준 사실'을 COACHING에 넣음.,한재욱은 먹고 남은 밥을 자미덕에게 준 사실은 인정했다.
+AT0126,ATT0126,SRC004,한재욱,conflict_group,COACHING,AMBIGUOUS,REL0079,한재욱이 인정한 '남은 밥을 준 사실'을 COACHING에 넣음.,한재욱은 먹고 남은 밥을 자미덕에게 준 사실은 인정했다.
+AT0127,ATT0127,SRC004,한재욱,actor,유제희,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,한재욱은 유제희가 석단 공초에서 김명신이 도적 괴수라고 했다는 내용을 전했다고 진술했다.
+AT0127,ATT0127,SRC004,한재욱,action,전달했다고 전해짐,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,한재욱은 유제희가 석단 공초에서 김명신이 도적 괴수라고 했다는 내용을 전했다고 진술했다.
+AT0127,ATT0127,SRC004,한재욱,target_or_content,석단 공초에서 김명신이 도적 괴수라고 했다는 내용,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,한재욱은 유제희가 석단 공초에서 김명신이 도적 괴수라고 했다는 내용을 전했다고 진술했다.
+AT0127,ATT0127,SRC004,한재욱,historical_place,비장청,UNSUPPORTED,,한재욱 진술 흐름(REL0033~0035) 어디에도 장소 없음.,한재욱은 유제희가 석단 공초에서 김명신이 도적 괴수라고 했다는 내용을 전했다고 진술했다.
+AT0127,ATT0127,SRC004,한재욱,claim_topic,SEOKDAN_INFORMATION,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",한재욱은 유제희가 석단 공초에서 김명신이 도적 괴수라고 했다는 내용을 전했다고 진술했다.
+AT0128,ATT0128,SRC004,한재욱,actor,유제희,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,한재욱은 유제희가 자미덕에게 다시 확인해 보라고 말했다고 진술했다.
+AT0128,ATT0128,SRC004,한재욱,action,재확인 요청했다고 전해짐,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,한재욱은 유제희가 자미덕에게 다시 확인해 보라고 말했다고 진술했다.
+AT0128,ATT0128,SRC004,한재욱,target_or_content,자미덕에게 다시 확인,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,한재욱은 유제희가 자미덕에게 다시 확인해 보라고 말했다고 진술했다.
+AT0128,ATT0128,SRC004,한재욱,historical_place,비장청,UNSUPPORTED,,같음.,한재욱은 유제희가 자미덕에게 다시 확인해 보라고 말했다고 진술했다.
+AT0128,ATT0128,SRC004,한재욱,claim_topic,SEOKDAN_INFORMATION,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",한재욱은 유제희가 자미덕에게 다시 확인해 보라고 말했다고 진술했다.
+AT0129,ATT0129,SRC004,한재욱,actor,한재욱,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,한재욱은 유제희의 말을 따라 자미덕에게 다시 물었다고 진술했다.
+AT0129,ATT0129,SRC004,한재욱,action,재질문,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,한재욱은 유제희의 말을 따라 자미덕에게 다시 물었다고 진술했다.
+AT0129,ATT0129,SRC004,한재욱,target_or_content,자미덕,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,한재욱은 유제희의 말을 따라 자미덕에게 다시 물었다고 진술했다.
+AT0129,ATT0129,SRC004,한재욱,historical_place,비장청,UNSUPPORTED,,같음.,한재욱은 유제희의 말을 따라 자미덕에게 다시 물었다고 진술했다.
+AT0130,ATT0130,SRC004,한재욱,actor,자미덕,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,한재욱은 재질문에 자미덕이 모른다고 답했다고 진술했다.
+AT0130,ATT0130,SRC004,한재욱,action,답변했다고 전해짐,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,한재욱은 재질문에 자미덕이 모른다고 답했다고 진술했다.
+AT0130,ATT0130,SRC004,한재욱,target_or_content,모른다고 답함,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,한재욱은 재질문에 자미덕이 모른다고 답했다고 진술했다.
+AT0130,ATT0130,SRC004,한재욱,historical_place,비장청,UNSUPPORTED,,같음.,한재욱은 재질문에 자미덕이 모른다고 답했다고 진술했다.
+AT0131,ATT0131,SRC004,한재욱,actor,한재욱,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,한재욱은 자미덕을 은밀히 사주한 일이 없다고 진술했다.
+AT0131,ATT0131,SRC004,한재욱,action,부인,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,한재욱은 자미덕을 은밀히 사주한 일이 없다고 진술했다.
+AT0131,ATT0131,SRC004,한재욱,target_or_content,자미덕을 은밀히 사주한 적 없음,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,한재욱은 자미덕을 은밀히 사주한 일이 없다고 진술했다.
+AT0131,ATT0131,SRC004,한재욱,historical_place,비장청,UNSUPPORTED,,부인 발화의 장소는 안핵 공초 자리. '비장청'은 주장된 사주의 장소로 보이나 그것도 명시 없음.,한재욱은 자미덕을 은밀히 사주한 일이 없다고 진술했다.
+AT0131,ATT0131,SRC004,한재욱,claim_topic,COACHING,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",한재욱은 자미덕을 은밀히 사주한 일이 없다고 진술했다.
+AT0131,ATT0131,SRC004,한재욱,conflict_group,COACHING,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",한재욱은 자미덕을 은밀히 사주한 일이 없다고 진술했다.
+AT0132,ATT0132,SRC004,한재욱,actor,한재욱,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,한재욱은 구순과 평생 모르는 사이라고 진술했다.
+AT0132,ATT0132,SRC004,한재욱,action,부인,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,한재욱은 구순과 평생 모르는 사이라고 진술했다.
+AT0132,ATT0132,SRC004,한재욱,target_or_content,구순과 평생 모르는 사이라고 함,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,한재욱은 구순과 평생 모르는 사이라고 진술했다.
+AT0132,ATT0132,SRC004,한재욱,claim_topic,HAN_GUSUN_RELATION,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",한재욱은 구순과 평생 모르는 사이라고 진술했다.
+AT0132,ATT0132,SRC004,한재욱,conflict_group,HAN_GUSUN_RELATION,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",한재욱은 구순과 평생 모르는 사이라고 진술했다.
+AT0133,ATT0133,SRC004,유제희,actor,유제희,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,유제희는 당초 현지에 가서 탐문했다고 진술했다.
+AT0133,ATT0133,SRC004,유제희,action,현지 탐문,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,유제희는 당초 현지에 가서 탐문했다고 진술했다.
+AT0133,ATT0133,SRC004,유제희,target_or_content,덕평 일대,IMPORTED_FROM_OTHER_ATTESTATION,AT0001;AT0083,ATT0133 '현지'. '덕평 일대'는 다른 화자의 attestation에서.,유제희는 당초 현지에 가서 탐문했다고 진술했다.
+AT0133,ATT0133,SRC004,유제희,historical_place,덕평,IMPORTED_FROM_OTHER_ATTESTATION,AT0001;AT0083;REL0010,ATT0133은 '현지'만 말함. '덕평'은 다른 화자의 attestation에서.,유제희는 당초 현지에 가서 탐문했다고 진술했다.
+AT0133,ATT0133,SRC004,유제희,occurrence_lunar_end,1793-02-28,UNSUPPORTED,,"상한 1793-02-28을 주는 attestation이 없고, 날짜가 있는 사건(AT0081 등)으로 가는 relation 경로도 없음.",유제희는 당초 현지에 가서 탐문했다고 진술했다.
+AT0134,ATT0134,SRC004,유제희,actor,구순,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,유제희는 탐문 중 구순이 풍각 김상제가 매우 수상하다고 말했다고 진술했다.
+AT0134,ATT0134,SRC004,유제희,action,말했다고 전해짐,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,유제희는 탐문 중 구순이 풍각 김상제가 매우 수상하다고 말했다고 진술했다.
+AT0134,ATT0134,SRC004,유제희,target_or_content,풍각 김상제도 매우 수상하다는 내용,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,유제희는 탐문 중 구순이 풍각 김상제가 매우 수상하다고 말했다고 진술했다.
+AT0134,ATT0134,SRC004,유제희,historical_place,덕평,IMPORTED_FROM_OTHER_ATTESTATION,AT0001;AT0083,같음.,유제희는 탐문 중 구순이 풍각 김상제가 매우 수상하다고 말했다고 진술했다.
+AT0134,ATT0134,SRC004,유제희,occurrence_lunar_end,1793-02-28,UNSUPPORTED,,"상한 1793-02-28을 주는 attestation이 없고, 날짜가 있는 사건(AT0081 등)으로 가는 relation 경로도 없음.",유제희는 탐문 중 구순이 풍각 김상제가 매우 수상하다고 말했다고 진술했다.
+AT0134,ATT0134,SRC004,유제희,claim_topic,SUSPECT_IDENTIFICATION,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",유제희는 탐문 중 구순이 풍각 김상제가 매우 수상하다고 말했다고 진술했다.
+AT0135,ATT0135,SRC004,유제희,actor,유제희,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,유제희는 구순의 말을 듣고 김명신을 원돌 등의 이름과 함께 기록했다고 진술했다.
+AT0135,ATT0135,SRC004,유제희,action,기록,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,유제희는 구순의 말을 듣고 김명신을 원돌 등의 이름과 함께 기록했다고 진술했다.
+AT0135,ATT0135,SRC004,유제희,target_or_content,김명신을 원돌 등의 이름과 함께 기록,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,유제희는 구순의 말을 듣고 김명신을 원돌 등의 이름과 함께 기록했다고 진술했다.
+AT0135,ATT0135,SRC004,유제희,historical_place,병영,UNSUPPORTED,AT0123,ATT0135에는 장소 없음. ATT0123(한재욱) '적어 병영으로 돌아왔다'와 긴장.,유제희는 구순의 말을 듣고 김명신을 원돌 등의 이름과 함께 기록했다고 진술했다.
+AT0135,ATT0135,SRC004,유제희,occurrence_lunar_end,1793-02-28,UNSUPPORTED,,"상한 1793-02-28을 주는 attestation이 없고, 날짜가 있는 사건(AT0081 등)으로 가는 relation 경로도 없음.",유제희는 구순의 말을 듣고 김명신을 원돌 등의 이름과 함께 기록했다고 진술했다.
+AT0135,ATT0135,SRC004,유제희,claim_topic,SUSPECT_LIST,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",유제희는 구순의 말을 듣고 김명신을 원돌 등의 이름과 함께 기록했다고 진술했다.
+AT0136,ATT0136,SRC004,유제희,actor,유제희,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,유제희는 기록한 이름들을 위에 올렸다고 진술했다.
+AT0136,ATT0136,SRC004,유제희,action,상신,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,유제희는 기록한 이름들을 위에 올렸다고 진술했다.
+AT0136,ATT0136,SRC004,유제희,target_or_content,기록한 이름 목록,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,유제희는 기록한 이름들을 위에 올렸다고 진술했다.
+AT0136,ATT0136,SRC004,유제희,historical_place,병영,IMPORTED_FROM_OTHER_ATTESTATION,AT0123;REL0076,ATT0136 '위에 올렸다'. '병영'은 한재욱의 ATT0123에서 후보 연결 REL0076으로.,유제희는 기록한 이름들을 위에 올렸다고 진술했다.
+AT0136,ATT0136,SRC004,유제희,occurrence_lunar_end,1793-02-28,UNSUPPORTED,,"상한 1793-02-28을 주는 attestation이 없고, 날짜가 있는 사건(AT0081 등)으로 가는 relation 경로도 없음.",유제희는 기록한 이름들을 위에 올렸다고 진술했다.
+AT0136,ATT0136,SRC004,유제희,claim_topic,SUSPECT_LIST,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",유제희는 기록한 이름들을 위에 올렸다고 진술했다.
+AT0137,ATT0137,SRC004,홍대협,actor,홍대협,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,홍대협은 내려가는 길에 사건에 대해 널리 탐문했다고 서계했다.
+AT0137,ATT0137,SRC004,홍대협,action,광범위 탐문,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,홍대협은 내려가는 길에 사건에 대해 널리 탐문했다고 서계했다.
+AT0137,ATT0137,SRC004,홍대협,target_or_content,구순 사건,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,홍대협은 내려가는 길에 사건에 대해 널리 탐문했다고 서계했다.
+AT0137,ATT0137,SRC004,홍대협,historical_place,호서 이동 중,UNSUPPORTED,AT0055,ATT0137 '내려가는 길에'. '호서'는 ATT0055의 다른 맥락('전년 호서 화적')에만 있음.,홍대협은 내려가는 길에 사건에 대해 널리 탐문했다고 서계했다.
+AT0137,ATT0137,SRC004,홍대협,occurrence_lunar_start,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003;REL0054;REL0071,하한 1793-05-28은 안핵어사 임명 기록(SRC003) 날짜.,홍대협은 내려가는 길에 사건에 대해 널리 탐문했다고 서계했다.
+AT0137,ATT0137,SRC004,홍대협,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,홍대협은 내려가는 길에 사건에 대해 널리 탐문했다고 서계했다.
+AT0138,ATT0138,SRC004,홍대협,actor,탐문 대상자들,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,홍대협은 이동 중 탐문에서는 사람들이 애당초 도적을 맞지 않았다고 말했다고 보고했다.
+AT0138,ATT0138,SRC004,홍대협,action,전언,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,홍대협은 이동 중 탐문에서는 사람들이 애당초 도적을 맞지 않았다고 말했다고 보고했다.
+AT0138,ATT0138,SRC004,홍대협,target_or_content,애당초 도적을 맞지 않았다는 말,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,홍대협은 이동 중 탐문에서는 사람들이 애당초 도적을 맞지 않았다고 말했다고 보고했다.
+AT0138,ATT0138,SRC004,홍대협,historical_place,호서,UNSUPPORTED,AT0055,같음.,홍대협은 이동 중 탐문에서는 사람들이 애당초 도적을 맞지 않았다고 말했다고 보고했다.
+AT0138,ATT0138,SRC004,홍대협,occurrence_lunar_start,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003;REL0054;REL0071,하한 1793-05-28은 안핵어사 임명 기록(SRC003) 날짜.,홍대협은 이동 중 탐문에서는 사람들이 애당초 도적을 맞지 않았다고 말했다고 보고했다.
+AT0138,ATT0138,SRC004,홍대협,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,홍대협은 이동 중 탐문에서는 사람들이 애당초 도적을 맞지 않았다고 말했다고 보고했다.
+AT0138,ATT0138,SRC004,홍대협,claim_topic,THEFT_REALITY,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",홍대협은 이동 중 탐문에서는 사람들이 애당초 도적을 맞지 않았다고 말했다고 보고했다.
+AT0138,ATT0138,SRC004,홍대협,conflict_group,THEFT_REALITY,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",홍대협은 이동 중 탐문에서는 사람들이 애당초 도적을 맞지 않았다고 말했다고 보고했다.
+AT0139,ATT0139,SRC004,홍대협,actor,홍대협,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,홍대협은 정식 조사 결과 약간의 도난은 실제였다고 판단했다.
+AT0139,ATT0139,SRC004,홍대협,action,판단,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,홍대협은 정식 조사 결과 약간의 도난은 실제였다고 판단했다.
+AT0139,ATT0139,SRC004,홍대협,target_or_content,약간의 실제 도난은 있었다,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,홍대협은 정식 조사 결과 약간의 도난은 실제였다고 판단했다.
+AT0139,ATT0139,SRC004,홍대협,historical_place,공주목,DERIVED_FROM_LINKED_STRUCTURE,AT0062;REL0057,"정식 조사(AT0062, 공주목)에서 이어짐.",홍대협은 정식 조사 결과 약간의 도난은 실제였다고 판단했다.
+AT0139,ATT0139,SRC004,홍대협,occurrence_lunar_start,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003;REL0054;REL0071,하한 1793-05-28은 안핵어사 임명 기록(SRC003) 날짜.,홍대협은 정식 조사 결과 약간의 도난은 실제였다고 판단했다.
+AT0139,ATT0139,SRC004,홍대협,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,홍대협은 정식 조사 결과 약간의 도난은 실제였다고 판단했다.
+AT0139,ATT0139,SRC004,홍대협,claim_topic,THEFT_REALITY,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",홍대협은 정식 조사 결과 약간의 도난은 실제였다고 판단했다.
+AT0139,ATT0139,SRC004,홍대협,conflict_group,THEFT_REALITY,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",홍대협은 정식 조사 결과 약간의 도난은 실제였다고 판단했다.
+AT0140,ATT0140,SRC004,홍대협,actor,홍대협,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,홍대협은 실제 도난이 있었다고 판단했다.
+AT0140,ATT0140,SRC004,홍대협,action,판단,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,홍대협은 실제 도난이 있었다고 판단했다.
+AT0140,ATT0140,SRC004,홍대협,target_or_content,실제 도난 존재,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,홍대협은 실제 도난이 있었다고 판단했다.
+AT0140,ATT0140,SRC004,홍대협,historical_place,공주목,AMBIGUOUS,,판단 장소 명시 없음. relation 없음.,홍대협은 실제 도난이 있었다고 판단했다.
+AT0140,ATT0140,SRC004,홍대협,occurrence_lunar_start,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003;REL0054;REL0071,하한 1793-05-28은 안핵어사 임명 기록(SRC003) 날짜.,홍대협은 실제 도난이 있었다고 판단했다.
+AT0140,ATT0140,SRC004,홍대협,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,홍대협은 실제 도난이 있었다고 판단했다.
+AT0140,ATT0140,SRC004,홍대협,claim_topic,THEFT_REALITY,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",홍대협은 실제 도난이 있었다고 판단했다.
+AT0140,ATT0140,SRC004,홍대협,conflict_group,THEFT_REALITY,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",홍대협은 실제 도난이 있었다고 판단했다.
+AT0141,ATT0141,SRC004,홍대협,actor,홍대협,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,홍대협은 그 도난이 보통 좀도둑 수준이라고 판단했다.
+AT0141,ATT0141,SRC004,홍대협,action,판단,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,홍대협은 그 도난이 보통 좀도둑 수준이라고 판단했다.
+AT0141,ATT0141,SRC004,홍대협,target_or_content,도난 규모는 보통 좀도둑 수준,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,홍대협은 그 도난이 보통 좀도둑 수준이라고 판단했다.
+AT0141,ATT0141,SRC004,홍대협,historical_place,공주목,AMBIGUOUS,,같음.,홍대협은 그 도난이 보통 좀도둑 수준이라고 판단했다.
+AT0141,ATT0141,SRC004,홍대협,occurrence_lunar_start,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003;REL0054;REL0071,하한 1793-05-28은 안핵어사 임명 기록(SRC003) 날짜.,홍대협은 그 도난이 보통 좀도둑 수준이라고 판단했다.
+AT0141,ATT0141,SRC004,홍대협,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,홍대협은 그 도난이 보통 좀도둑 수준이라고 판단했다.
+AT0141,ATT0141,SRC004,홍대협,claim_topic,THEFT_SCALE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",홍대협은 그 도난이 보통 좀도둑 수준이라고 판단했다.
+AT0142,ATT0142,SRC004,홍대협,actor,홍대협,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,홍대협은 지세 호칭의 기원을 여러 차례 조사했다고 보고했다.
+AT0142,ATT0142,SRC004,홍대협,action,반복 조사,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,홍대협은 지세 호칭의 기원을 여러 차례 조사했다고 보고했다.
+AT0142,ATT0142,SRC004,홍대협,target_or_content,지세 호칭의 기원,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,홍대협은 지세 호칭의 기원을 여러 차례 조사했다고 보고했다.
+AT0142,ATT0142,SRC004,홍대협,historical_place,공주목,AMBIGUOUS,,같음(REL0058은 AT0143과만 연결).,홍대협은 지세 호칭의 기원을 여러 차례 조사했다고 보고했다.
+AT0142,ATT0142,SRC004,홍대협,occurrence_lunar_start,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003;REL0054;REL0071,하한 1793-05-28은 안핵어사 임명 기록(SRC003) 날짜.,홍대협은 지세 호칭의 기원을 여러 차례 조사했다고 보고했다.
+AT0142,ATT0142,SRC004,홍대협,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,홍대협은 지세 호칭의 기원을 여러 차례 조사했다고 보고했다.
+AT0143,ATT0143,SRC004,홍대협,actor,지세 호칭 조사,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,홍대협은 지세 호칭의 기원에 대해 끝내 단서를 얻지 못했다고 보고했다.
+AT0143,ATT0143,SRC004,홍대협,action,결과,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,홍대협은 지세 호칭의 기원에 대해 끝내 단서를 얻지 못했다고 보고했다.
+AT0143,ATT0143,SRC004,홍대협,target_or_content,단서를 얻지 못함,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,홍대협은 지세 호칭의 기원에 대해 끝내 단서를 얻지 못했다고 보고했다.
+AT0143,ATT0143,SRC004,홍대협,historical_place,공주목,AMBIGUOUS,AT0142;REL0058,같음.,홍대협은 지세 호칭의 기원에 대해 끝내 단서를 얻지 못했다고 보고했다.
+AT0143,ATT0143,SRC004,홍대협,occurrence_lunar_start,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003;REL0054;REL0071,하한 1793-05-28은 안핵어사 임명 기록(SRC003) 날짜.,홍대협은 지세 호칭의 기원에 대해 끝내 단서를 얻지 못했다고 보고했다.
+AT0143,ATT0143,SRC004,홍대협,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,홍대협은 지세 호칭의 기원에 대해 끝내 단서를 얻지 못했다고 보고했다.
+AT0143,ATT0143,SRC004,홍대협,claim_topic,JISE_ORIGIN,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",홍대협은 지세 호칭의 기원에 대해 끝내 단서를 얻지 못했다고 보고했다.
+AT0143,ATT0143,SRC004,홍대협,conflict_group,JISE_ORIGIN,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",홍대협은 지세 호칭의 기원에 대해 끝내 단서를 얻지 못했다고 보고했다.
+AT0144,ATT0144,SRC004,홍대협,actor,홍대협,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,홍대협은 지세 호칭에 대해 별도의 채탐도 실시했다고 보고했다.
+AT0144,ATT0144,SRC004,홍대협,action,별도 채탐,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,홍대협은 지세 호칭에 대해 별도의 채탐도 실시했다고 보고했다.
+AT0144,ATT0144,SRC004,홍대협,target_or_content,지세 호칭 관련 정보,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,홍대협은 지세 호칭에 대해 별도의 채탐도 실시했다고 보고했다.
+AT0144,ATT0144,SRC004,홍대협,historical_place,호서,UNSUPPORTED,AT0055,'호서'는 다른 맥락에만 있음.,홍대협은 지세 호칭에 대해 별도의 채탐도 실시했다고 보고했다.
+AT0144,ATT0144,SRC004,홍대협,occurrence_lunar_start,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003;REL0054;REL0071,하한 1793-05-28은 안핵어사 임명 기록(SRC003) 날짜.,홍대협은 지세 호칭에 대해 별도의 채탐도 실시했다고 보고했다.
+AT0144,ATT0144,SRC004,홍대협,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,홍대협은 지세 호칭에 대해 별도의 채탐도 실시했다고 보고했다.
+AT0145,ATT0145,SRC004,홍대협,actor,별도 채탐,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,홍대협은 별도 채탐에서 나온 말들이 서로 달랐다고 보고했다.
+AT0145,ATT0145,SRC004,홍대협,action,결과,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,홍대협은 별도 채탐에서 나온 말들이 서로 달랐다고 보고했다.
+AT0145,ATT0145,SRC004,홍대협,target_or_content,말들이 서로 달랐음,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,홍대협은 별도 채탐에서 나온 말들이 서로 달랐다고 보고했다.
+AT0145,ATT0145,SRC004,홍대협,historical_place,호서,UNSUPPORTED,AT0055,같음.,홍대협은 별도 채탐에서 나온 말들이 서로 달랐다고 보고했다.
+AT0145,ATT0145,SRC004,홍대협,occurrence_lunar_start,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003;REL0054;REL0071,하한 1793-05-28은 안핵어사 임명 기록(SRC003) 날짜.,홍대협은 별도 채탐에서 나온 말들이 서로 달랐다고 보고했다.
+AT0145,ATT0145,SRC004,홍대협,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,홍대협은 별도 채탐에서 나온 말들이 서로 달랐다고 보고했다.
+AT0145,ATT0145,SRC004,홍대협,claim_topic,JISE_ORIGIN,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",홍대협은 별도 채탐에서 나온 말들이 서로 달랐다고 보고했다.
+AT0145,ATT0145,SRC004,홍대협,conflict_group,JISE_ORIGIN,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",홍대협은 별도 채탐에서 나온 말들이 서로 달랐다고 보고했다.
+AT0146,ATT0146,SRC004,홍대협,actor,홍대협,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,홍대협은 이광섭이 장물을 확보하지 못한 상태에서 큰 도적으로 판단했다고 평가했다.
+AT0146,ATT0146,SRC004,홍대협,action,평가,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,홍대협은 이광섭이 장물을 확보하지 못한 상태에서 큰 도적으로 판단했다고 평가했다.
+AT0146,ATT0146,SRC004,홍대협,target_or_content,이광섭이 장물 없이 큰 도적으로 판단,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,홍대협은 이광섭이 장물을 확보하지 못한 상태에서 큰 도적으로 판단했다고 평가했다.
+AT0146,ATT0146,SRC004,홍대협,occurrence_lunar_start,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003;REL0054;REL0071,하한 1793-05-28은 안핵어사 임명 기록(SRC003) 날짜.,홍대협은 이광섭이 장물을 확보하지 못한 상태에서 큰 도적으로 판단했다고 평가했다.
+AT0146,ATT0146,SRC004,홍대협,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,홍대협은 이광섭이 장물을 확보하지 못한 상태에서 큰 도적으로 판단했다고 평가했다.
+AT0146,ATT0146,SRC004,홍대협,claim_topic,COMMAND_FAILURE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",홍대협은 이광섭이 장물을 확보하지 못한 상태에서 큰 도적으로 판단했다고 평가했다.
+AT0147,ATT0147,SRC004,홍대협,actor,홍대협,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,홍대협은 이문협이 장물을 먼저 확보하지 않고 장교와 나졸을 풀어 사람부터 잡았다고 평가했다.
+AT0147,ATT0147,SRC004,홍대협,action,평가,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,홍대협은 이문협이 장물을 먼저 확보하지 않고 장교와 나졸을 풀어 사람부터 잡았다고 평가했다.
+AT0147,ATT0147,SRC004,홍대협,target_or_content,이문협이 장물보다 사람 체포를 앞세웠음,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,홍대협은 이문협이 장물을 먼저 확보하지 않고 장교와 나졸을 풀어 사람부터 잡았다고 평가했다.
+AT0147,ATT0147,SRC004,홍대협,occurrence_lunar_start,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003;REL0054;REL0071,하한 1793-05-28은 안핵어사 임명 기록(SRC003) 날짜.,홍대협은 이문협이 장물을 먼저 확보하지 않고 장교와 나졸을 풀어 사람부터 잡았다고 평가했다.
+AT0147,ATT0147,SRC004,홍대협,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,홍대협은 이문협이 장물을 먼저 확보하지 않고 장교와 나졸을 풀어 사람부터 잡았다고 평가했다.
+AT0147,ATT0147,SRC004,홍대협,claim_topic,INVESTIGATION_METHOD,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",홍대협은 이문협이 장물을 먼저 확보하지 않고 장교와 나졸을 풀어 사람부터 잡았다고 평가했다.
+AT0148,ATT0148,SRC004,홍대협,actor,홍대협,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,홍대협은 김명신의 사망이 질병 때문이었다고 보고했다.
+AT0148,ATT0148,SRC004,홍대협,action,보고,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,홍대협은 김명신의 사망이 질병 때문이었다고 보고했다.
+AT0148,ATT0148,SRC004,홍대협,target_or_content,김명신 사망은 질병 때문이었다는 판단,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,홍대협은 김명신의 사망이 질병 때문이었다고 보고했다.
+AT0148,ATT0148,SRC004,홍대협,occurrence_lunar_start,1793-05-28,DERIVED_FROM_LINKED_STRUCTURE,SRC003;REL0054;REL0071,하한 1793-05-28은 안핵어사 임명 기록(SRC003) 날짜.,홍대협은 김명신의 사망이 질병 때문이었다고 보고했다.
+AT0148,ATT0148,SRC004,홍대협,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,홍대협은 김명신의 사망이 질병 때문이었다고 보고했다.
+AT0148,ATT0148,SRC004,홍대협,claim_topic,DEATH_CAUSE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",홍대협은 김명신의 사망이 질병 때문이었다고 보고했다.
+AT0148,ATT0148,SRC004,홍대협,conflict_group,DEATH_CAUSE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",홍대협은 김명신의 사망이 질병 때문이었다고 보고했다.
+AT0149,ATT0149,SRC004,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 공주목 안핵의 핵심을 세 가지 의안으로 분리했다.
+AT0149,ATT0149,SRC004,정조,action,쟁점 설정,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 공주목 안핵의 핵심을 세 가지 의안으로 분리했다.
+AT0149,ATT0149,SRC004,정조,target_or_content,도난 여부·김명신 사망원인·지세 호칭 날조 여부를 세 의안으로 분리,AMBIGUOUS,REL0060;REL0061;REL0062,ATT0149 '세 가지 의안으로 분리했다'(의안 내용 없음). target의 세 의안 이름은 relation basis와 연결된 판단 행에서 역으로 구성됨. 'REL0062'가 가리키는 AT0155는 '날조 여부'가 아니라 호칭의 기원.,정조는 공주목 안핵의 핵심을 세 가지 의안으로 분리했다.
+AT0149,ATT0149,SRC004,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 공주목 안핵의 핵심을 세 가지 의안으로 분리했다.
+AT0149,ATT0149,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 공주목 안핵의 핵심을 세 가지 의안으로 분리했다.
+AT0149,ATT0149,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 공주목 안핵의 핵심을 세 가지 의안으로 분리했다.
+AT0150,ATT0150,SRC004,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 안핵 서계를 토대로 도난이 실제로 있었다고 판단했다.
+AT0150,ATT0150,SRC004,정조,action,최종 판단,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 안핵 서계를 토대로 도난이 실제로 있었다고 판단했다.
+AT0150,ATT0150,SRC004,정조,target_or_content,도난은 실제로 있었음,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 안핵 서계를 토대로 도난이 실제로 있었다고 판단했다.
+AT0150,ATT0150,SRC004,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 안핵 서계를 토대로 도난이 실제로 있었다고 판단했다.
+AT0150,ATT0150,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 안핵 서계를 토대로 도난이 실제로 있었다고 판단했다.
+AT0150,ATT0150,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 안핵 서계를 토대로 도난이 실제로 있었다고 판단했다.
+AT0150,ATT0150,SRC004,정조,claim_topic,THEFT_REALITY,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",정조는 안핵 서계를 토대로 도난이 실제로 있었다고 판단했다.
+AT0150,ATT0150,SRC004,정조,conflict_group,THEFT_REALITY,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",정조는 안핵 서계를 토대로 도난이 실제로 있었다고 판단했다.
+AT0151,ATT0151,SRC004,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 김명신이 전염병에 걸려 죽은 것으로 판단했다.
+AT0151,ATT0151,SRC004,정조,action,최종 판단,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 김명신이 전염병에 걸려 죽은 것으로 판단했다.
+AT0151,ATT0151,SRC004,정조,target_or_content,김명신은 전염병으로 사망,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 김명신이 전염병에 걸려 죽은 것으로 판단했다.
+AT0151,ATT0151,SRC004,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 김명신이 전염병에 걸려 죽은 것으로 판단했다.
+AT0151,ATT0151,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 김명신이 전염병에 걸려 죽은 것으로 판단했다.
+AT0151,ATT0151,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 김명신이 전염병에 걸려 죽은 것으로 판단했다.
+AT0151,ATT0151,SRC004,정조,claim_topic,DEATH_CAUSE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",정조는 김명신이 전염병에 걸려 죽은 것으로 판단했다.
+AT0151,ATT0151,SRC004,정조,conflict_group,DEATH_CAUSE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",정조는 김명신이 전염병에 걸려 죽은 것으로 판단했다.
+AT0152,ATT0152,SRC004,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 김명신의 아내가 전염병에 걸려 죽은 것으로 판단했다.
+AT0152,ATT0152,SRC004,정조,action,최종 판단,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 김명신의 아내가 전염병에 걸려 죽은 것으로 판단했다.
+AT0152,ATT0152,SRC004,정조,target_or_content,김명신의 아내는 전염병으로 사망,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 김명신의 아내가 전염병에 걸려 죽은 것으로 판단했다.
+AT0152,ATT0152,SRC004,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 김명신의 아내가 전염병에 걸려 죽은 것으로 판단했다.
+AT0152,ATT0152,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 김명신의 아내가 전염병에 걸려 죽은 것으로 판단했다.
+AT0152,ATT0152,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 김명신의 아내가 전염병에 걸려 죽은 것으로 판단했다.
+AT0152,ATT0152,SRC004,정조,claim_topic,DEATH_CAUSE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",정조는 김명신의 아내가 전염병에 걸려 죽은 것으로 판단했다.
+AT0152,ATT0152,SRC004,정조,conflict_group,DEATH_CAUSE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",정조는 김명신의 아내가 전염병에 걸려 죽은 것으로 판단했다.
+AT0153,ATT0153,SRC004,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 김명신이 곤장이나 평범한 신문을 받지 않았다고 판단했다.
+AT0153,ATT0153,SRC004,정조,action,최종 판단,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 김명신이 곤장이나 평범한 신문을 받지 않았다고 판단했다.
+AT0153,ATT0153,SRC004,정조,target_or_content,김명신이 곤장 한 대도 맞지 않았고 평범한 신문도 받지 않았다고 판단,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 김명신이 곤장이나 평범한 신문을 받지 않았다고 판단했다.
+AT0153,ATT0153,SRC004,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 김명신이 곤장이나 평범한 신문을 받지 않았다고 판단했다.
+AT0153,ATT0153,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 김명신이 곤장이나 평범한 신문을 받지 않았다고 판단했다.
+AT0153,ATT0153,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 김명신이 곤장이나 평범한 신문을 받지 않았다고 판단했다.
+AT0153,ATT0153,SRC004,정조,claim_topic,TREATMENT_OF_KIM,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",정조는 김명신이 곤장이나 평범한 신문을 받지 않았다고 판단했다.
+AT0154,ATT0154,SRC004,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 김명신 부처의 죽음을 구순 때문에 직접 발생한 것으로 단정하기 어렵다고 판단했다.
+AT0154,ATT0154,SRC004,정조,action,최종 판단,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 김명신 부처의 죽음을 구순 때문에 직접 발생한 것으로 단정하기 어렵다고 판단했다.
+AT0154,ATT0154,SRC004,정조,target_or_content,구순 때문에 직접 죽었다고 단정하기는 어렵다고 판단,AMBIGUOUS,,ATT0154 '김명신 부처의 죽음을 …'. target에서 대상('김명신 부처')이 빠짐.,정조는 김명신 부처의 죽음을 구순 때문에 직접 발생한 것으로 단정하기 어렵다고 판단했다.
+AT0154,ATT0154,SRC004,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 김명신 부처의 죽음을 구순 때문에 직접 발생한 것으로 단정하기 어렵다고 판단했다.
+AT0154,ATT0154,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 김명신 부처의 죽음을 구순 때문에 직접 발생한 것으로 단정하기 어렵다고 판단했다.
+AT0154,ATT0154,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 김명신 부처의 죽음을 구순 때문에 직접 발생한 것으로 단정하기 어렵다고 판단했다.
+AT0154,ATT0154,SRC004,정조,claim_topic,DEATH_CAUSE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",정조는 김명신 부처의 죽음을 구순 때문에 직접 발생한 것으로 단정하기 어렵다고 판단했다.
+AT0154,ATT0154,SRC004,정조,conflict_group,DEATH_CAUSE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",정조는 김명신 부처의 죽음을 구순 때문에 직접 발생한 것으로 단정하기 어렵다고 판단했다.
+AT0155,ATT0155,SRC004,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 지세 계열 호칭이 이전부터 무식한 좀도둑들이 쓰던 말이라고 판단했다.
+AT0155,ATT0155,SRC004,정조,action,최종 판단,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 지세 계열 호칭이 이전부터 무식한 좀도둑들이 쓰던 말이라고 판단했다.
+AT0155,ATT0155,SRC004,정조,target_or_content,지세 호칭은 이전부터 좀도둑들이 쓰던 말이라고 판단,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 지세 계열 호칭이 이전부터 무식한 좀도둑들이 쓰던 말이라고 판단했다.
+AT0155,ATT0155,SRC004,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 지세 계열 호칭이 이전부터 무식한 좀도둑들이 쓰던 말이라고 판단했다.
+AT0155,ATT0155,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 지세 계열 호칭이 이전부터 무식한 좀도둑들이 쓰던 말이라고 판단했다.
+AT0155,ATT0155,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 지세 계열 호칭이 이전부터 무식한 좀도둑들이 쓰던 말이라고 판단했다.
+AT0155,ATT0155,SRC004,정조,claim_topic,JISE_ORIGIN,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",정조는 지세 계열 호칭이 이전부터 무식한 좀도둑들이 쓰던 말이라고 판단했다.
+AT0155,ATT0155,SRC004,정조,conflict_group,JISE_ORIGIN,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",정조는 지세 계열 호칭이 이전부터 무식한 좀도둑들이 쓰던 말이라고 판단했다.
+AT0156,ATT0156,SRC004,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 구순이 지세 호칭을 스스로 만들어냈다는 죄는 인정하지 않았다.
+AT0156,ATT0156,SRC004,정조,action,최종 판단,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 구순이 지세 호칭을 스스로 만들어냈다는 죄는 인정하지 않았다.
+AT0156,ATT0156,SRC004,정조,target_or_content,구순이 지세 호칭을 직접 날조한 죄는 인정하지 않음,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 구순이 지세 호칭을 스스로 만들어냈다는 죄는 인정하지 않았다.
+AT0156,ATT0156,SRC004,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 구순이 지세 호칭을 스스로 만들어냈다는 죄는 인정하지 않았다.
+AT0156,ATT0156,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 구순이 지세 호칭을 스스로 만들어냈다는 죄는 인정하지 않았다.
+AT0156,ATT0156,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 구순이 지세 호칭을 스스로 만들어냈다는 죄는 인정하지 않았다.
+AT0156,ATT0156,SRC004,정조,claim_topic,JISE_ORIGIN,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",정조는 구순이 지세 호칭을 스스로 만들어냈다는 죄는 인정하지 않았다.
+AT0156,ATT0156,SRC004,정조,conflict_group,JISE_ORIGIN,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",정조는 구순이 지세 호칭을 스스로 만들어냈다는 죄는 인정하지 않았다.
+AT0157,ATT0157,SRC004,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 구순이 사적 감정을 품었다고 판단했다.
+AT0157,ATT0157,SRC004,정조,action,평가,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 구순이 사적 감정을 품었다고 판단했다.
+AT0157,ATT0157,SRC004,정조,target_or_content,구순이 사적 감정을 품었다고 판단,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 구순이 사적 감정을 품었다고 판단했다.
+AT0157,ATT0157,SRC004,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 구순이 사적 감정을 품었다고 판단했다.
+AT0157,ATT0157,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 구순이 사적 감정을 품었다고 판단했다.
+AT0157,ATT0157,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 구순이 사적 감정을 품었다고 판단했다.
+AT0157,ATT0157,SRC004,정조,claim_topic,MOTIVE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",정조는 구순이 사적 감정을 품었다고 판단했다.
+AT0157,ATT0157,SRC004,정조,conflict_group,MOTIVE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.conflict_group과도 일치.",정조는 구순이 사적 감정을 품었다고 판단했다.
+AT0158,ATT0158,SRC004,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 구순이 병영의 탐문자에게 김명신의 이름을 적어 주었다고 판단했다.
+AT0158,ATT0158,SRC004,정조,action,평가,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 구순이 병영의 탐문자에게 김명신의 이름을 적어 주었다고 판단했다.
+AT0158,ATT0158,SRC004,정조,target_or_content,구순이 병영 탐문자에게 김명신 이름을 적어 주었다고 판단,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 구순이 병영의 탐문자에게 김명신의 이름을 적어 주었다고 판단했다.
+AT0158,ATT0158,SRC004,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 구순이 병영의 탐문자에게 김명신의 이름을 적어 주었다고 판단했다.
+AT0158,ATT0158,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 구순이 병영의 탐문자에게 김명신의 이름을 적어 주었다고 판단했다.
+AT0158,ATT0158,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 구순이 병영의 탐문자에게 김명신의 이름을 적어 주었다고 판단했다.
+AT0158,ATT0158,SRC004,정조,claim_topic,SUSPECT_IDENTIFICATION,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",정조는 구순이 병영의 탐문자에게 김명신의 이름을 적어 주었다고 판단했다.
+AT0159,ATT0159,SRC004,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 그로 인해 김명신이 횡액을 입었다고 판단했다.
+AT0159,ATT0159,SRC004,정조,action,평가,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 그로 인해 김명신이 횡액을 입었다고 판단했다.
+AT0159,ATT0159,SRC004,정조,target_or_content,그 결과 김명신이 횡액을 입었다고 판단,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 그로 인해 김명신이 횡액을 입었다고 판단했다.
+AT0159,ATT0159,SRC004,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 그로 인해 김명신이 횡액을 입었다고 판단했다.
+AT0159,ATT0159,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 그로 인해 김명신이 횡액을 입었다고 판단했다.
+AT0159,ATT0159,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 그로 인해 김명신이 횡액을 입었다고 판단했다.
+AT0159,ATT0159,SRC004,정조,claim_topic,CAUSAL_RESPONSIBILITY,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",정조는 그로 인해 김명신이 횡액을 입었다고 판단했다.
+AT0160,ATT0160,SRC004,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 구순을 감하여 외딴 섬에 정배하라고 명했다.
+AT0160,ATT0160,SRC004,정조,action,처분,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 구순을 감하여 외딴 섬에 정배하라고 명했다.
+AT0160,ATT0160,SRC004,정조,target_or_content,구순을 감하여 절도 정배,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 구순을 감하여 외딴 섬에 정배하라고 명했다.
+AT0160,ATT0160,SRC004,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 구순을 감하여 외딴 섬에 정배하라고 명했다.
+AT0160,ATT0160,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 구순을 감하여 외딴 섬에 정배하라고 명했다.
+AT0160,ATT0160,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 구순을 감하여 외딴 섬에 정배하라고 명했다.
+AT0161,ATT0161,SRC004,정조,actor,정조,DERIVED_FROM_LINKED_STRUCTURE,AT0160;REL0090,ATT0161 '기사의 최종 처분에는 …'. 처분 주체 미명시.,기사의 최종 처분에는 구순을 신지도에 유배한 것으로 기록되어 있다.
+AT0161,ATT0161,SRC004,정조,action,처분,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,기사의 최종 처분에는 구순을 신지도에 유배한 것으로 기록되어 있다.
+AT0161,ATT0161,SRC004,정조,target_or_content,구순을 신지도에 유배,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,기사의 최종 처분에는 구순을 신지도에 유배한 것으로 기록되어 있다.
+AT0161,ATT0161,SRC004,정조,historical_place,신지도,DIRECTLY_SUPPORTED,,ATT0161 '신지도'(목적지 의미; Audit B 참조),기사의 최종 처분에는 구순을 신지도에 유배한 것으로 기록되어 있다.
+AT0161,ATT0161,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,기사의 최종 처분에는 구순을 신지도에 유배한 것으로 기록되어 있다.
+AT0161,ATT0161,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,기사의 최종 처분에는 구순을 신지도에 유배한 것으로 기록되어 있다.
+AT0162,ATT0162,SRC004,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 이광섭과 구순 사이의 세혐이 막 해소되었다고 판단했다.
+AT0162,ATT0162,SRC004,정조,action,평가,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 이광섭과 구순 사이의 세혐이 막 해소되었다고 판단했다.
+AT0162,ATT0162,SRC004,정조,target_or_content,이광섭과 구순의 세혐이 막 해소되었다고 판단,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 이광섭과 구순 사이의 세혐이 막 해소되었다고 판단했다.
+AT0162,ATT0162,SRC004,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 이광섭과 구순 사이의 세혐이 막 해소되었다고 판단했다.
+AT0162,ATT0162,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 이광섭과 구순 사이의 세혐이 막 해소되었다고 판단했다.
+AT0162,ATT0162,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 이광섭과 구순 사이의 세혐이 막 해소되었다고 판단했다.
+AT0162,ATT0162,SRC004,정조,claim_topic,GWANGSEOP_GUSUN_RELATION,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",정조는 이광섭과 구순 사이의 세혐이 막 해소되었다고 판단했다.
+AT0163,ATT0163,SRC004,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 이광섭이 구순 편을 들었다고 평가했다.
+AT0163,ATT0163,SRC004,정조,action,평가,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 이광섭이 구순 편을 들었다고 평가했다.
+AT0163,ATT0163,SRC004,정조,target_or_content,이광섭이 구순 편을 들었다고 판단,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 이광섭이 구순 편을 들었다고 평가했다.
+AT0163,ATT0163,SRC004,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 이광섭이 구순 편을 들었다고 평가했다.
+AT0163,ATT0163,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 이광섭이 구순 편을 들었다고 평가했다.
+AT0163,ATT0163,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 이광섭이 구순 편을 들었다고 평가했다.
+AT0163,ATT0163,SRC004,정조,claim_topic,COMMAND_FAILURE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",정조는 이광섭이 구순 편을 들었다고 평가했다.
+AT0164,ATT0164,SRC004,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 이광섭이 아전들을 풀어놓았다고 평가했다.
+AT0164,ATT0164,SRC004,정조,action,평가,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 이광섭이 아전들을 풀어놓았다고 평가했다.
+AT0164,ATT0164,SRC004,정조,target_or_content,이광섭이 아전들을 풀어놓았다고 판단,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 이광섭이 아전들을 풀어놓았다고 평가했다.
+AT0164,ATT0164,SRC004,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 이광섭이 아전들을 풀어놓았다고 평가했다.
+AT0164,ATT0164,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 이광섭이 아전들을 풀어놓았다고 평가했다.
+AT0164,ATT0164,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 이광섭이 아전들을 풀어놓았다고 평가했다.
+AT0164,ATT0164,SRC004,정조,claim_topic,COMMAND_FAILURE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",정조는 이광섭이 아전들을 풀어놓았다고 평가했다.
+AT0165,ATT0165,SRC004,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 이광섭이 거짓을 살피지 않았다고 평가했다.
+AT0165,ATT0165,SRC004,정조,action,평가,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 이광섭이 거짓을 살피지 않았다고 평가했다.
+AT0165,ATT0165,SRC004,정조,target_or_content,이광섭이 거짓을 살피지 않았다고 판단,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 이광섭이 거짓을 살피지 않았다고 평가했다.
+AT0165,ATT0165,SRC004,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 이광섭이 거짓을 살피지 않았다고 평가했다.
+AT0165,ATT0165,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 이광섭이 거짓을 살피지 않았다고 평가했다.
+AT0165,ATT0165,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 이광섭이 거짓을 살피지 않았다고 평가했다.
+AT0165,ATT0165,SRC004,정조,claim_topic,COMMAND_FAILURE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",정조는 이광섭이 거짓을 살피지 않았다고 평가했다.
+AT0166,ATT0166,SRC004,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 이광섭이 비장에게 일을 맡겼다고 평가했다.
+AT0166,ATT0166,SRC004,정조,action,평가,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 이광섭이 비장에게 일을 맡겼다고 평가했다.
+AT0166,ATT0166,SRC004,정조,target_or_content,이광섭이 비장에게 일을 맡겼다고 판단,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 이광섭이 비장에게 일을 맡겼다고 평가했다.
+AT0166,ATT0166,SRC004,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 이광섭이 비장에게 일을 맡겼다고 평가했다.
+AT0166,ATT0166,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 이광섭이 비장에게 일을 맡겼다고 평가했다.
+AT0166,ATT0166,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 이광섭이 비장에게 일을 맡겼다고 평가했다.
+AT0166,ATT0166,SRC004,정조,claim_topic,COMMAND_FAILURE,DIRECTLY_SUPPORTED,,"attestation 명제의 주제와 같고, attestation.claim_topic과도 일치.",정조는 이광섭이 비장에게 일을 맡겼다고 평가했다.
+AT0167,ATT0167,SRC004,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 이광섭을 먼 곳에 무기한 정배하라고 명했다.
+AT0167,ATT0167,SRC004,정조,action,처분,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 이광섭을 먼 곳에 무기한 정배하라고 명했다.
+AT0167,ATT0167,SRC004,정조,target_or_content,이광섭을 먼 곳에 무기한 정배,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 이광섭을 먼 곳에 무기한 정배하라고 명했다.
+AT0167,ATT0167,SRC004,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 이광섭을 먼 곳에 무기한 정배하라고 명했다.
+AT0167,ATT0167,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 이광섭을 먼 곳에 무기한 정배하라고 명했다.
+AT0167,ATT0167,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 이광섭을 먼 곳에 무기한 정배하라고 명했다.
+AT0168,ATT0168,SRC004,정조,actor,정조,DERIVED_FROM_LINKED_STRUCTURE,AT0167;REL0091,같음.,기사의 최종 처분에는 이광섭을 영동현에 유배한 것으로 기록되어 있다.
+AT0168,ATT0168,SRC004,정조,action,처분,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,기사의 최종 처분에는 이광섭을 영동현에 유배한 것으로 기록되어 있다.
+AT0168,ATT0168,SRC004,정조,target_or_content,이광섭을 영동현에 유배,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,기사의 최종 처분에는 이광섭을 영동현에 유배한 것으로 기록되어 있다.
+AT0168,ATT0168,SRC004,정조,historical_place,영동현,DIRECTLY_SUPPORTED,,ATT0168 '영동현'(목적지 의미),기사의 최종 처분에는 이광섭을 영동현에 유배한 것으로 기록되어 있다.
+AT0168,ATT0168,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,기사의 최종 처분에는 이광섭을 영동현에 유배한 것으로 기록되어 있다.
+AT0168,ATT0168,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,기사의 최종 처분에는 이광섭을 영동현에 유배한 것으로 기록되어 있다.
+AT0169,ATT0169,SRC004,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 병영 비장 한재욱에게 엄한 형장을 세 차례 치게 하라고 명했다.
+AT0169,ATT0169,SRC004,정조,action,처분,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 병영 비장 한재욱에게 엄한 형장을 세 차례 치게 하라고 명했다.
+AT0169,ATT0169,SRC004,정조,target_or_content,한재욱에게 엄한 형장 3차례,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 병영 비장 한재욱에게 엄한 형장을 세 차례 치게 하라고 명했다.
+AT0169,ATT0169,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 병영 비장 한재욱에게 엄한 형장을 세 차례 치게 하라고 명했다.
+AT0169,ATT0169,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 병영 비장 한재욱에게 엄한 형장을 세 차례 치게 하라고 명했다.
+AT0170,ATT0170,SRC004,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 한재욱을 먼 섬에 종으로 보내라고 명했다.
+AT0170,ATT0170,SRC004,정조,action,처분,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 한재욱을 먼 섬에 종으로 보내라고 명했다.
+AT0170,ATT0170,SRC004,정조,target_or_content,한재욱을 먼 섬에 종으로 보냄,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 한재욱을 먼 섬에 종으로 보내라고 명했다.
+AT0170,ATT0170,SRC004,정조,historical_place,원도,AMBIGUOUS,,'원도'는 ATT0170 '먼 섬'의 범주어. 지명 아님.,정조는 한재욱을 먼 섬에 종으로 보내라고 명했다.
+AT0170,ATT0170,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 한재욱을 먼 섬에 종으로 보내라고 명했다.
+AT0170,ATT0170,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 한재욱을 먼 섬에 종으로 보내라고 명했다.
+AT0171,ATT0171,SRC004,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 구순의 도난 여부에 관해 도신 장계와 어사 보고가 크게 달랐다고 지적했다.
+AT0171,ATT0171,SRC004,정조,action,평가,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 구순의 도난 여부에 관해 도신 장계와 어사 보고가 크게 달랐다고 지적했다.
+AT0171,ATT0171,SRC004,정조,target_or_content,이형원의 장계와 홍대협의 안핵이 크게 달랐다고 판단,AMBIGUOUS,,"ATT0171 '도신 장계와 어사 보고'. target은 '이형원', '홍대협'으로 특정했으나 '어사'는 이조원일 수도 있음(CSV에 두 어사 존재). 쟁점('구순의 도난 여부')도 빠짐.",정조는 구순의 도난 여부에 관해 도신 장계와 어사 보고가 크게 달랐다고 지적했다.
+AT0171,ATT0171,SRC004,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 구순의 도난 여부에 관해 도신 장계와 어사 보고가 크게 달랐다고 지적했다.
+AT0171,ATT0171,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 구순의 도난 여부에 관해 도신 장계와 어사 보고가 크게 달랐다고 지적했다.
+AT0171,ATT0171,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 구순의 도난 여부에 관해 도신 장계와 어사 보고가 크게 달랐다고 지적했다.
+AT0172,ATT0172,SRC004,정조,actor,정조,DIRECTLY_SUPPORTED,,attestation 명제(또는 화자)에 같은 행위자가 나옴.,정조는 충청도 관찰사 이형원을 파직했다.
+AT0172,ATT0172,SRC004,정조,action,처분,DIRECTLY_SUPPORTED,,attestation 명제의 서술어를 옮기거나 같은 뜻으로 줄인 것.,정조는 충청도 관찰사 이형원을 파직했다.
+AT0172,ATT0172,SRC004,정조,target_or_content,충청 감사 이형원 파직,DIRECTLY_SUPPORTED,,attestation 명제에 같은 내용이 있음.,정조는 충청도 관찰사 이형원을 파직했다.
+AT0172,ATT0172,SRC004,정조,historical_place,한양,UNSUPPORTED,,'한양'은 어떤 attestation 명제·source_records에도 없음. 조정 기록이라는 배경지식으로 채운 값.,정조는 충청도 관찰사 이형원을 파직했다.
+AT0172,ATT0172,SRC004,정조,occurrence_lunar_start,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 충청도 관찰사 이형원을 파직했다.
+AT0172,ATT0172,SRC004,정조,occurrence_lunar_end,1793-06-13,DERIVED_FROM_LINKED_STRUCTURE,SRC004,공식 행위·발화의 기록일(source_records.record_date_lunar).,정조는 충청도 관찰사 이형원을 파직했다.

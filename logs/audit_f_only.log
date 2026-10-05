@@ -1,0 +1,27 @@
+2026-10-05 09:52:00,791 [INFO] sha256 before gusun_events_v1.csv 96b4441c71c6aa7407c7031899c5efb18ad4125a95526493e214d7f92f1ad0d2
+2026-10-05 09:52:00,791 [INFO] sha256 before gusun_attestations_v1.csv cd57d526e15ed0c110078173d3ab9662759a84bdc836330c507e4d67e5034dfb
+2026-10-05 09:52:00,791 [INFO] sha256 before gusun_event_relations_v1.csv e585e6c48d14831777f05d86394e03743a1df163ff770d8b78c6750efd821e5b
+2026-10-05 09:52:00,792 [INFO] sha256 before gusun_event_families_v1.csv 8b3c5566858d9669607dd6e4d316c94ce0769b29b6d8b06dd3ebd3e5688ab9c1
+2026-10-05 09:52:00,792 [INFO] sha256 before gusun_source_records_v1.csv e2acb1ab37d85753722374f064fcef2d9cdd0c1033e5f897b3d413e6fcc545f9
+2026-10-05 09:52:00,798 [INFO] wrote output/audit_01_event_attestation_separation.csv (172 rows)
+2026-10-05 09:52:00,801 [INFO] wrote output/audit_02_atomicity_temporal_layers.csv (172 rows)
+2026-10-05 09:52:00,802 [INFO] wrote output/audit_03_actor_participant_structure.csv (172 rows)
+2026-10-05 09:52:00,803 [INFO] wrote output/audit_04_person_set_membership.csv (13 rows)
+2026-10-05 09:52:00,803 [INFO] wrote output/audit_04_key_questions.csv (6 rows)
+2026-10-05 09:52:00,813 [INFO] wrote output/audit_05_field_level_provenance.csv (1034 rows)
+2026-10-05 09:52:00,814 [INFO] wrote output/audit_06_relation_meaning_overreach.csv (91 rows)
+2026-10-05 09:52:00,818 [INFO] wrote output/audit_master_summary.csv (303 rows)
+2026-10-05 09:52:00,819 [INFO] sha256 after  gusun_events_v1.csv 96b4441c71c6aa7407c7031899c5efb18ad4125a95526493e214d7f92f1ad0d2 UNCHANGED
+2026-10-05 09:52:00,819 [INFO] sha256 after  gusun_attestations_v1.csv cd57d526e15ed0c110078173d3ab9662759a84bdc836330c507e4d67e5034dfb UNCHANGED
+2026-10-05 09:52:00,819 [INFO] sha256 after  gusun_event_relations_v1.csv e585e6c48d14831777f05d86394e03743a1df163ff770d8b78c6750efd821e5b UNCHANGED
+2026-10-05 09:52:00,819 [INFO] sha256 after  gusun_event_families_v1.csv 8b3c5566858d9669607dd6e4d316c94ce0769b29b6d8b06dd3ebd3e5688ab9c1 UNCHANGED
+2026-10-05 09:52:00,819 [INFO] sha256 after  gusun_source_records_v1.csv e2acb1ab37d85753722374f064fcef2d9cdd0c1033e5f897b3d413e6fcc545f9 UNCHANGED
+2026-10-05 09:52:00,820 [INFO] A {'CLEAN_EVENT': 141, 'AMBIGUOUS': 2, 'EVENT_AND_ATTESTATION_MIXED': 29}
+2026-10-05 09:52:00,820 [INFO] B {'ATOMIC': 149, 'MULTIPLE_EVENTS_IN_ONE_ROW': 5, 'MULTIPLE_TIME_LAYERS_IN_ONE_ROW': 8, 'AMBIGUOUS': 9, 'BOTH': 1}
+2026-10-05 09:52:00,820 [INFO] C {'SINGLE_ACTOR': 148, 'MULTIPLE_PARTICIPANTS_STORED_AS_ONE_ACTOR': 5, 'GROUP_ACTOR': 15, 'AMBIGUOUS': 3, 'PERSON_AND_INSTITUTION': 1}
+2026-10-05 09:52:00,820 [INFO] D unknown cells 62 / 96
+2026-10-05 09:52:00,820 [INFO] E {'DIRECTLY_SUPPORTED': 615, 'DERIVED_FROM_LINKED_STRUCTURE': 233, 'AMBIGUOUS': 62, 'IMPORTED_FROM_OTHER_ATTESTATION': 43, 'UNSUPPORTED': 81} (field rows 1034)
+2026-10-05 09:52:00,820 [INFO] E by field/class {('historical_place', 'DERIVED_FROM_LINKED_STRUCTURE'): 22, ('historical_place', 'AMBIGUOUS'): 20, ('occurrence_lunar_start', 'IMPORTED_FROM_OTHER_ATTESTATION'): 18, ('occurrence_lunar_end', 'DERIVED_FROM_LINKED_STRUCTURE'): 107, ('historical_place', 'IMPORTED_FROM_OTHER_ATTESTATION'): 14, ('claim_topic', 'UNSUPPORTED'): 1, ('conflict_group', 'UNSUPPORTED'): 1, ('action', 'AMBIGUOUS'): 1, ('target_or_content', 'AMBIGUOUS'): 9, ('actor', 'DERIVED_FROM_LINKED_STRUCTURE'): 13, ('actor', 'AMBIGUOUS'): 3, ('occurrence_lunar_start', 'AMBIGUOUS'): 9, ('occurrence_lunar_end', 'AMBIGUOUS'): 10, ('historical_place', 'UNSUPPORTED'): 61, ('occurrence_lunar_start', 'DERIVED_FROM_LINKED_STRUCTURE'): 83, ('target_or_content', 'UNSUPPORTED'): 2, ('claim_topic', 'IMPORTED_FROM_OTHER_ATTESTATION'): 1, ('conflict_group', 'IMPORTED_FROM_OTHER_ATTESTATION'): 1, ('claim_topic', 'DERIVED_FROM_LINKED_STRUCTURE'): 4, ('target_or_content', 'IMPORTED_FROM_OTHER_ATTESTATION'): 2, ('occurrence_lunar_end', 'UNSUPPORTED'): 14, ('actor', 'UNSUPPORTED'): 2, ('target_or_content', 'DERIVED_FROM_LINKED_STRUCTURE'): 4, ('occurrence_lunar_end', 'IMPORTED_FROM_OTHER_ATTESTATION'): 6, ('claim_topic', 'AMBIGUOUS'): 5, ('conflict_group', 'AMBIGUOUS'): 5, ('actor', 'IMPORTED_FROM_OTHER_ATTESTATION'): 1}
+2026-10-05 09:52:00,820 [INFO] F {'SAFE_SUMMARY': 22, 'SAME_MEANING': 30, 'MORE_SPECIFIC_THAN_SOURCE': 36, 'AMBIGUOUS': 1, 'NEW_INFORMATION_ADDED': 2}
+2026-10-05 09:52:00,820 [INFO] F MORE_SPECIFIC by severity {'LOW_REVIEW': 22, 'MEDIUM_REVIEW': 14}
+2026-10-05 09:52:00,820 [INFO] master severity {'MEDIUM_REVIEW': 114, 'LOW_REVIEW': 158, 'HIGH_REVIEW': 30, 'INFO': 1} (rows 303)

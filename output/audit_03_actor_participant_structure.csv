@@ -1,0 +1,173 @@
+event_id,actor,action,target_or_content,event_family_id,classification,actor_kind,components,role_or_structure_issue,participant_table_needed,severity
+AT0001,구순,거주,청주 덕평,EF_STATE_RESIDENCE,SINGLE_ACTOR,PERSON,구순,,NO,INFO
+AT0002,김명신,거주/신분,구순 집 이웃의 반족,EF_STATE_RESIDENCE,SINGLE_ACTOR,PERSON,김명신,,NO,INFO
+AT0003,이형원,장계,구순 집에 도난이 있었다는 내용,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,이형원,,NO,INFO
+AT0004,이형원,장계,구순이 김명신을 도적 괴수라고 말했다는 내용,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,이형원,,NO,INFO
+AT0005,구순,지목했다고 보고됨,김명신을 도적 괴수로 지목,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,구순,,NO,INFO
+AT0006,충청병영,체포했다고 보고됨,김명신,EF_ACT_APPREHEND,SINGLE_ACTOR,INSTITUTION,충청병영,,NO,INFO
+AT0007,김명신,구금 상태라고 보고됨,달포 이상,EF_STATE_CUSTODY,SINGLE_ACTOR,PERSON,김명신,,NO,INFO
+AT0008,충청병영,조사했다고 보고됨,김명신,EF_ACT_RECORD_REPORT,SINGLE_ACTOR,INSTITUTION,충청병영,,NO,INFO
+AT0009,수사,물증 상태,확실한 증거를 찾지 못함,EF_STATE_EVIDENCE_RESULT,SINGLE_ACTOR,PROCESS,수사,행위자가 아닌 상태 주어(과정/장소).,NO,INFO
+AT0010,김명신,사망했다고 보고됨,,EF_ACT_RECORD_REPORT,SINGLE_ACTOR,PERSON,김명신,,NO,INFO
+AT0011,이형원,보고,다른 무고한 평민들도 악형을 받았다는 내용,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,이형원,,NO,INFO
+AT0012,이형원/각 진영 영장,회동 조사 실시했다고 보고됨,관련자,EF_ACT_INQUIRE_SEARCH,MULTIPLE_PARTICIPANTS_STORED_AS_ONE_ACTOR,PERSON+GROUP,이형원 | 각 진영 영장,지시자(이형원)와 수행자(영장들)의 역할이 다른데 한 actor로 저장. '/' 구분자.,YES,MEDIUM_REVIEW
+AT0013,회동 조사 응답자들,공초,구순과 김명신 사이에 원한이 있었다는 주장,EF_SPEECH_CLAIM_REPORT,GROUP_ACTOR,GROUP,회동 조사 응답자들,,NO,INFO
+AT0014,회동 조사 응답자들,공초,구순이 도난 상황을 꾸몄다는 주장,EF_SPEECH_CLAIM_REPORT,GROUP_ACTOR,GROUP,회동 조사 응답자들,,NO,INFO
+AT0015,회동 조사 응답자들,공초,구순이 김명신을 도적 괴수로 몰았다는 주장,EF_SPEECH_CLAIM_REPORT,GROUP_ACTOR,GROUP,회동 조사 응답자들,,NO,INFO
+AT0016,회동 조사 응답자들,공초,전후 체포자들이 구순 집에서 미워하던 사람들이었다는 주장,EF_SPEECH_CLAIM_REPORT,GROUP_ACTOR,GROUP,회동 조사 응답자들,ATT0016은 '진술이 실려 있다'로 진술자를 밝히지 않음. 응답자들로 귀속한 근거는 같은 보고의 인접 행(AT0013~AT0015)뿐.,NO,LOW_REVIEW
+AT0017,이형원,평가,이문협이 토포 직책을 맡고도 수사를 비장에게 전적으로 맡겼다고 판단,EF_JUDGE_EVALUATE,SINGLE_ACTOR,PERSON,이형원,,NO,INFO
+AT0018,이형원,건의,이문협 파출,EF_ORDER_RECOMMEND,SINGLE_ACTOR,PERSON,이형원,,NO,INFO
+AT0019,이형원,평가,이광섭이 허황한 말을 믿고 무고한 사람을 잘못 잡았다고 판단,EF_JUDGE_EVALUATE,SINGLE_ACTOR,PERSON,이형원,,NO,INFO
+AT0020,비변사,복계,이광섭 파직 요청,EF_ORDER_RECOMMEND,SINGLE_ACTOR,INSTITUTION,비변사,,NO,INFO
+AT0021,비변사,복계,이광섭 나문 요청,EF_ORDER_RECOMMEND,SINGLE_ACTOR,INSTITUTION,비변사,,NO,INFO
+AT0022,비변사,복계,이광섭 엄한 감죄 요청,EF_ORDER_RECOMMEND,SINGLE_ACTOR,INSTITUTION,비변사,,NO,INFO
+AT0023,정조,윤허,이광섭 파직 요청,EF_ORDER_APPROVE,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0024,정조,윤허,이광섭 나문 요청,EF_ORDER_APPROVE,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0025,정조,윤허,이광섭 엄한 감죄 요청,EF_ORDER_APPROVE,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0026,정조,판단,도난 자체가 없었다는 방향을 당시 장계·조사에 따라 받아들임,EF_JUDGE_EVALUATE,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0027,정조,명령,구순을 의금부로 잡아오게 함,EF_ORDER_OTHER,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0028,정조,명령,구순 수금,EF_ORDER_PUNISH,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0029,정조,명령,구순 엄한 조사,EF_ORDER_INVESTIGATE,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0030,이조원,입시,비변사 당상들과 함께,EF_ACT_AUDIENCE,SINGLE_ACTOR,PERSON,이조원,,NO,INFO
+AT0031,이조원,보고,구순 사건,EF_ACT_RECORD_REPORT,SINGLE_ACTOR,PERSON,이조원,,NO,INFO
+AT0032,구순 집,입지라고 보고됨,앞에 큰길이 있고 마을이 큼,EF_STATE_LOCAL_CONTEXT,SINGLE_ACTOR,PLACE,구순 집,행위자가 아닌 상태 주어(과정/장소).,NO,INFO
+AT0033,이조원,판단·보고,화적 침입 자체가 이치에 맞지 않는다는 주장,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,이조원,,NO,INFO
+AT0034,김명신,거주,구순과 이웃,EF_STATE_RESIDENCE,SINGLE_ACTOR,PERSON,김명신,,NO,INFO
+AT0035,이조원,보고,김명신이 구순의 거상 중 행실을 비판했다는 내용,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,이조원,,NO,INFO
+AT0036,이조원,보고,피우하러 왔을 때 구순이 김명신의 형 접촉을 허락하지 않았다는 내용,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,이조원,,NO,INFO
+AT0037,이조원,주장,구순이 앙심을 품어 김명신을 모함하려 했다는 주장,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,이조원,,NO,INFO
+AT0038,이조원,주장,구순이 도난 상황을 꾸몄다는 주장,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,이조원,,NO,INFO
+AT0039,이조원,주장,구순이 지세랑 호칭을 만들어 퍼뜨렸다는 주장,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,이조원,,NO,INFO
+AT0040,이조원,주장,작은 궤짝의 돈을 도둑맞았다고 꾸몄다는 주장,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,이조원,,NO,INFO
+AT0041,이조원,주장,노비의 상처를 도적의 창상으로 꾸몄다는 주장,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,이조원,,NO,INFO
+AT0042,이조원,보고,김명신이 병영 옥에서 원통하게 죽었다는 판단,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,이조원,,NO,INFO
+AT0043,이조원,보고,김명신 사망 뒤 아내도 사망,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,이조원,,NO,INFO
+AT0044,이조원,보고,병사가 처음부터 자세히 조사하지 않고 보조자에게 맡겼다는 주장,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,이조원,,NO,INFO
+AT0045,이조원,주장,병영 보조자가 구순의 가객이었다는 주장,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,이조원,,NO,INFO
+AT0046,비변사 당상들,건의,구순 엄문,EF_ORDER_RECOMMEND,GROUP_ACTOR,GROUP,비변사 당상들,attestation speaker='정민시 등'.,NO,INFO
+AT0047,비변사 당상들,건의,이조원 파직,EF_ORDER_RECOMMEND,GROUP_ACTOR,GROUP,비변사 당상들,attestation speaker='정민시 등'.,NO,INFO
+AT0048,정조,비판,이조원이 직접 출도·안핵하지 않고 전언을 보고한 점,EF_JUDGE_EVALUATE,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0049,정조,명령,이조원 파직,EF_ORDER_PUNISH,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0050,정조,명령,구순을 의금부에 엄히 가둠,EF_ORDER_OTHER,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0051,정조,명령,당일 개좌,EF_ORDER_INVESTIGATE,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0052,정조,명령,구순 반복 신문,EF_ORDER_INVESTIGATE,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0053,정조,질문,홍대협에게 구순 사건을 들었는지 물음,EF_ACT_INTERROGATE,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0054,홍대협,답변,귀로에 사건 개요를 조금 들었다고 함,EF_SPEECH_RESPONSE,SINGLE_ACTOR,PERSON,홍대협,,NO,INFO
+AT0055,홍대협,답변,전년 호서 화적들이 지세랑 호칭을 쓴 적이 있다고 들었다고 함,EF_SPEECH_RESPONSE,SINGLE_ACTOR,PERSON,홍대협,,NO,INFO
+AT0056,홍대협,의견,지세랑 호칭이 이번에 처음 만들어진 말은 아닌 듯하다고 말함,EF_JUDGE_EVALUATE,SINGLE_ACTOR,PERSON,홍대협,,NO,INFO
+AT0057,정조,명령,홍대협 현지 하행,EF_ORDER_OTHER,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0058,정조,명령,홍대협 자세한 조사,EF_ORDER_INVESTIGATE,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0059,정조,명령,홍대협 복귀,EF_ORDER_OTHER,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0060,정조,차하,홍대협을 충청도 공주 안핵어사로 임명,EF_ORDER_APPOINT,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0061,홍대협,도착,공주목,EF_ACT_MOVE,SINGLE_ACTOR,PERSON,홍대협,,NO,INFO
+AT0062,홍대협,신문,응당 신문할 사람들,EF_ACT_INTERROGATE,SINGLE_ACTOR,PERSON,홍대협,,NO,INFO
+AT0063,명업,신분 진술,구순 집 계집종의 남편,EF_STATE_IDENTITY,SINGLE_ACTOR,PERSON,명업,,NO,INFO
+AT0064,명업,거주 상태 진술,구순 집 바깥 사랑에 들어 살았음,EF_STATE_RESIDENCE,SINGLE_ACTOR,PERSON,명업,,NO,INFO
+AT0065,나복,찾아와 부름,명업,EF_ACT_CALL_SUMMON,SINGLE_ACTOR,PERSON,나복,,NO,INFO
+AT0066,나복,말했다고 전해짐,도적이 들었다는 내용,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,나복,,NO,INFO
+AT0067,명업,들어감,구순 집 안,EF_ACT_MOVE,SINGLE_ACTOR,PERSON,명업,,NO,INFO
+AT0068,나복,말했다고 전해짐,도적 30여 명·횃불·지세대감·금품 절취,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,나복,,NO,INFO
+AT0069,구순·김명신,관계 상태,친숙하여 날마다 상종,EF_STATE_RELATIONSHIP,MULTIPLE_PARTICIPANTS_STORED_AS_ONE_ACTOR,PERSON+PERSON,구순 | 김명신,대칭 관계 상태(상호 친숙)를 한 actor 문자열로 저장.,YES,LOW_REVIEW
+AT0070,김명신,편지를 보냄,구순,EF_ACT_DOCUMENT_TRANSFER,SINGLE_ACTOR,PERSON,김명신,,NO,INFO
+AT0071,김명신,편지로 힐책했다고 전해짐,박거사 관련 일,EF_SPEECH_REBUKE,SINGLE_ACTOR,PERSON,김명신,,NO,INFO
+AT0072,구순·김명신,왕래 상태,왕래 단절,EF_STATE_RELATIONSHIP,MULTIPLE_PARTICIPANTS_STORED_AS_ONE_ACTOR,PERSON+PERSON,구순 | 김명신,대칭 관계 상태(왕래 단절)를 한 actor 문자열로 저장.,YES,LOW_REVIEW
+AT0073,구순,소장 제출,도난 사건,EF_ACT_COMPLAINT,SINGLE_ACTOR,PERSON,구순,,NO,INFO
+AT0074,미상 관서,체포령 발령,관련 대상,EF_ORDER_ARREST,AMBIGUOUS,PLACEHOLDER,미상 관서,ATT0074는 수동형('체포령이 내려졌다'). 발령 주체 미상.,NO,LOW_REVIEW
+AT0075,장교·나졸,도착,구순 집,EF_ACT_MOVE,GROUP_ACTOR,GROUP,장교 | 나졸,역할이 다른 두 집단(이름 없음).,NO,INFO
+AT0076,구순,불러들임,장교 한 명,EF_ACT_CALL_SUMMON,SINGLE_ACTOR,PERSON,구순,,NO,INFO
+AT0077,구순·장교,조용히 대화,내용 미상,EF_ACT_PRIVATE_CONTACT,MULTIPLE_PARTICIPANTS_STORED_AS_ONE_ACTOR,PERSON+ROLE,"구순 | 장교(1명, 이름 없음)",쌍방 대화를 한 actor로 저장. 장교의 신원은 CSV에 없음.,YES,LOW_REVIEW
+AT0078,명업,과거 진술 경위 설명,병영 뜰 공초에서 처음에는 사실대로 말했다고 함,EF_SPEECH_TESTIMONY_META,SINGLE_ACTOR,PERSON,명업,,NO,INFO
+AT0079,명업,진술 경위 설명,위협을 두려워했다는 내용,EF_SPEECH_TESTIMONY_META,SINGLE_ACTOR,PERSON,명업,,NO,INFO
+AT0080,명업,과거 진술 변경 설명,도난이 없었다는 취지로 바꿈,EF_SPEECH_TESTIMONY_META,SINGLE_ACTOR,PERSON,명업,,NO,INFO
+AT0081,충청병영,호출,이진욱을 비장청으로 부름,EF_ACT_CALL_SUMMON,SINGLE_ACTOR,INSTITUTION,충청병영,,NO,INFO
+AT0082,한재욱,방안으로 불러들임,이진욱,EF_ACT_CALL_SUMMON,SINGLE_ACTOR,PERSON,한재욱,,NO,INFO
+AT0083,한재욱,출동 지시,이진욱·조계완 등에게 덕평으로 가도록 함,EF_ORDER_DISPATCH,SINGLE_ACTOR,PERSON,한재욱,,NO,INFO
+AT0084,한재욱,체포 지시,변지돌,EF_ORDER_ARREST,SINGLE_ACTOR,PERSON,한재욱,,NO,INFO
+AT0085,한재욱,체포 지시,정원돌,EF_ORDER_ARREST,SINGLE_ACTOR,PERSON,한재욱,,NO,INFO
+AT0086,한재욱 측,철편 준비,철편 4개,EF_ACT_OPERATION_PREP,AMBIGUOUS,UNSUPPORTED_GROUP,한재욱 측,ATT0086은 수동형('철편 네 개가 만들어졌다')으로 행위자가 없음. '한재욱 측'은 CSV 근거 없이 행위를 한재욱 쪽에 귀속시킴.,NO,HIGH_REVIEW
+AT0087,한재욱 측,철편 제공,철편 4개,EF_ACT_OPERATION_PREP,AMBIGUOUS,UNSUPPORTED_GROUP,한재욱 측,ATT0087은 수동형('제공됐다'). 행위자 귀속 근거 없음.,NO,HIGH_REVIEW
+AT0088,한재욱,주의를 줬다고 전해짐,변지돌이 힘이 세니 조심하라는 내용,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,한재욱,,NO,INFO
+AT0089,이진욱·조계완 등,새벽까지 기다림,출발 시점,EF_ACT_WAIT,GROUP_ACTOR,GROUP(named members + 등),이진욱 | 조계완 | 등,"이름 있는 구성원+미상 구성원. 같은 집단이 AT0092~AT0094에서는 '병영 장교 일행', AT0101~AT0102에서는 '장교 일행'으로 다르게 표기됨.",YES,LOW_REVIEW
+AT0090,이진욱·조계완 등,출발,덕평 방면,EF_ACT_MOVE,GROUP_ACTOR,GROUP(named members + 등),이진욱 | 조계완 | 등,AT0089와 같음. 집단 표기 불일치.,YES,LOW_REVIEW
+AT0091,변지돌,체포 상태,이미 공주진에서 붙잡힘,EF_STATE_CUSTODY,SINGLE_ACTOR,PERSON,변지돌,,NO,INFO
+AT0092,병영 장교 일행,체포,자미덕,EF_ACT_APPREHEND,GROUP_ACTOR,GROUP,병영 장교 일행,ATT0092 주어는 화자 이진욱(암묵). AT0089/AT0090의 '이진욱·조계완 등'과 같은 집단인지 표기상 불명.,NO,LOW_REVIEW
+AT0093,병영 장교 일행,이동,자미덕을 데리고 구순 집으로 감,EF_ACT_MOVE,GROUP_ACTOR,GROUP,병영 장교 일행,AT0092와 같음.,NO,LOW_REVIEW
+AT0094,병영 장교 일행,질문,구순에게 도난 상황을 물음,EF_ACT_INTERROGATE,GROUP_ACTOR,GROUP,병영 장교 일행,AT0092와 같음.,NO,LOW_REVIEW
+AT0095,구순,응답했다고 전해짐,잃은 물건들을 열거,EF_SPEECH_RESPONSE,SINGLE_ACTOR,PERSON,구순,,NO,INFO
+AT0096,구순,응답했다고 전해짐,도적들이 지세대사라고 자칭했다는 내용,EF_SPEECH_RESPONSE,SINGLE_ACTOR,PERSON,구순,,NO,INFO
+AT0097,병사 이광섭,체포 지시,풍각 김생원(김명신),EF_ORDER_ARREST,SINGLE_ACTOR,PERSON,병사 이광섭,ATT0097/0098은 '병사'만 언급. 이름 '이광섭'은 source_records 제목(SRC001 '충청도 병마 절도사 이광섭')으로만 연결됨.,NO,INFO
+AT0098,병사 이광섭,체포 지시,흥덕 김생원(김갑득),EF_ORDER_ARREST,SINGLE_ACTOR,PERSON,병사 이광섭,ATT0097/0098은 '병사'만 언급. 이름 '이광섭'은 source_records 제목(SRC001 '충청도 병마 절도사 이광섭')으로만 연결됨.,NO,INFO
+AT0099,풍각 김생원,인물 식별,김명신,EF_STATE_IDENTITY,SINGLE_ACTOR,PERSON_BY_TITLE,풍각 김생원,,NO,INFO
+AT0100,흥덕 김생원,인물 식별,김갑득,EF_STATE_IDENTITY,SINGLE_ACTOR,PERSON_BY_TITLE,흥덕 김생원,,NO,INFO
+AT0101,장교 일행,잡아옴,김명신,EF_ACT_APPREHEND,GROUP_ACTOR,GROUP,장교 일행,,NO,INFO
+AT0102,장교 일행,잡아옴,김갑득,EF_ACT_APPREHEND,GROUP_ACTOR,GROUP,장교 일행,,NO,INFO
+AT0103,조계완,들름,김명신 체포 길에 구순 집에 들어감,EF_ACT_MOVE,SINGLE_ACTOR,PERSON,조계완,,NO,INFO
+AT0104,구순,질문했다고 전해짐,왜 다시 왔는지 질문,EF_SPEECH_QUESTION,SINGLE_ACTOR,PERSON,구순,,NO,INFO
+AT0105,조계완,답변,풍각 상주를 잡으러 왔다고 말함,EF_SPEECH_RESPONSE,SINGLE_ACTOR,PERSON,조계완,,NO,INFO
+AT0106,구순,말했다고 전해짐,이제야 도적을 다스리는 일이 바른 길을 얻었다는 취지,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,구순,,NO,INFO
+AT0107,구순,서찰을 건넸다고 전해짐,조계완,EF_ACT_DOCUMENT_TRANSFER,SINGLE_ACTOR,PERSON,구순,,NO,INFO
+AT0108,구순,요청했다고 전해짐,서찰을 병사에게 전달해 달라는 요청,EF_SPEECH_REQUEST,SINGLE_ACTOR,PERSON,구순,,NO,INFO
+AT0109,재돌,부재 상태,아산에 나가 있었음,EF_STATE_CUSTODY,SINGLE_ACTOR,PERSON,재돌,,NO,INFO
+AT0110,병영 장교,체포,자미덕,EF_ACT_APPREHEND,SINGLE_ACTOR,ROLE,병영 장교,인원수 불명. 같은 체포 후보(REL0077)인 AT0092는 '병영 장교 일행'.,NO,INFO
+AT0111,병영 장교,이송,자미덕을 병영으로 데려감,EF_ACT_MOVE,SINGLE_ACTOR,ROLE,병영 장교,인원수 불명. 같은 체포 후보(REL0077)인 AT0092는 '병영 장교 일행'.,NO,INFO
+AT0112,병영,신문,자미덕을 도적 혐의로 한 차례 신문,EF_ACT_INTERROGATE,SINGLE_ACTOR,INSTITUTION,병영,,NO,INFO
+AT0113,자미덕,구류,비장청 다모방,EF_STATE_OTHER,SINGLE_ACTOR,PERSON,자미덕,,NO,INFO
+AT0114,한재욱,매일 불러들였다고 주장됨,자미덕,EF_ACT_OTHER,SINGLE_ACTOR,PERSON,한재욱,,NO,INFO
+AT0115,한재욱,말했다고 주장됨,재돌이 이미 체포되었다는 내용,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,한재욱,,NO,INFO
+AT0116,한재욱,회유했다고 주장됨,여러 사람을 큰 도적이라 말하면 부부를 석방하겠다는 조건,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,한재욱,,NO,INFO
+AT0117,한재욱,떡·밥을 주었다고 주장됨,자미덕,EF_ACT_PROVIDE_FOOD,SINGLE_ACTOR,PERSON,한재욱,,NO,INFO
+AT0118,자미덕·이집거,대질,,EF_ACT_CONFRONTATION,MULTIPLE_PARTICIPANTS_STORED_AS_ONE_ACTOR,PERSON+PERSON,자미덕 | 이집거,대질은 복수 참여자 사건. ATT0118 '자미덕은 이집거와 대질했다'(공동격 '와')로 방향성 없음. actor 문자열 그룹화 시 자미덕 행 집계에서 빠지고 이집거는 이 복합값으로만 존재. target_or_content는 비어 있음.,YES,MEDIUM_REVIEW
+AT0119,자미덕,과거 진술 경위 설명,한재욱 지휘에 따라 거짓말을 꾸몄다고 주장,EF_SPEECH_TESTIMONY_META,SINGLE_ACTOR,PERSON,자미덕,,NO,INFO
+AT0120,구순,정소했다고 전해짐,도난 사건,EF_ACT_COMPLAINT,SINGLE_ACTOR,PERSON,구순,,NO,INFO
+AT0121,한재욱/병영,파견,유제희를 도적 진상 탐문에 보냄,EF_ORDER_DISPATCH,PERSON_AND_INSTITUTION,PERSON+INSTITUTION,한재욱 | 병영,ATT0121에서 '병영'은 유제희의 소속(병영 아전)으로 나올 뿐 행위 주체로 나오지 않음. '/병영'이 추가된 형태.,YES,LOW_REVIEW
+AT0122,유제희,이름을 기록,변지돌·변재돌·정원돌·김명신·김성손·김흥득·김흥길,EF_ACT_RECORD_REPORT,SINGLE_ACTOR,PERSON,유제희,,NO,INFO
+AT0123,유제희,병영으로 돌아옴,기록한 이름 목록,EF_ACT_MOVE,SINGLE_ACTOR,PERSON,유제희,,NO,INFO
+AT0124,유제희,보고했다고 전해짐,스스로 염탐해 이름들을 알아냈다는 내용,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,유제희,,NO,INFO
+AT0125,한재욱,방으로 불러들임,자미덕,EF_ACT_CALL_SUMMON,SINGLE_ACTOR,PERSON,한재욱,,NO,INFO
+AT0126,한재욱,남은 밥을 줌,자미덕,EF_ACT_PROVIDE_FOOD,SINGLE_ACTOR,PERSON,한재욱,,NO,INFO
+AT0127,유제희,전달했다고 전해짐,석단 공초에서 김명신이 도적 괴수라고 했다는 내용,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,유제희,,NO,INFO
+AT0128,유제희,재확인 요청했다고 전해짐,자미덕에게 다시 확인,EF_SPEECH_REQUEST,SINGLE_ACTOR,PERSON,유제희,,NO,INFO
+AT0129,한재욱,재질문,자미덕,EF_ACT_INTERROGATE,SINGLE_ACTOR,PERSON,한재욱,,NO,INFO
+AT0130,자미덕,답변했다고 전해짐,모른다고 답함,EF_SPEECH_RESPONSE,SINGLE_ACTOR,PERSON,자미덕,,NO,INFO
+AT0131,한재욱,부인,자미덕을 은밀히 사주한 적 없음,EF_SPEECH_DENIAL,SINGLE_ACTOR,PERSON,한재욱,,NO,INFO
+AT0132,한재욱,부인,구순과 평생 모르는 사이라고 함,EF_SPEECH_DENIAL,SINGLE_ACTOR,PERSON,한재욱,,NO,INFO
+AT0133,유제희,현지 탐문,덕평 일대,EF_ACT_INQUIRE_SEARCH,SINGLE_ACTOR,PERSON,유제희,,NO,INFO
+AT0134,구순,말했다고 전해짐,풍각 김상제도 매우 수상하다는 내용,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,구순,,NO,INFO
+AT0135,유제희,기록,김명신을 원돌 등의 이름과 함께 기록,EF_ACT_RECORD_REPORT,SINGLE_ACTOR,PERSON,유제희,,NO,INFO
+AT0136,유제희,상신,기록한 이름 목록,EF_ACT_RECORD_REPORT,SINGLE_ACTOR,PERSON,유제희,,NO,INFO
+AT0137,홍대협,광범위 탐문,구순 사건,EF_ACT_INQUIRE_SEARCH,SINGLE_ACTOR,PERSON,홍대협,,NO,INFO
+AT0138,탐문 대상자들,전언,애당초 도적을 맞지 않았다는 말,EF_SPEECH_CLAIM_REPORT,GROUP_ACTOR,GROUP,탐문 대상자들,,NO,INFO
+AT0139,홍대협,판단,약간의 실제 도난은 있었다,EF_JUDGE_EVALUATE,SINGLE_ACTOR,PERSON,홍대협,,NO,INFO
+AT0140,홍대협,판단,실제 도난 존재,EF_JUDGE_EVALUATE,SINGLE_ACTOR,PERSON,홍대협,,NO,INFO
+AT0141,홍대협,판단,도난 규모는 보통 좀도둑 수준,EF_JUDGE_EVALUATE,SINGLE_ACTOR,PERSON,홍대협,,NO,INFO
+AT0142,홍대협,반복 조사,지세 호칭의 기원,EF_ACT_INQUIRE_SEARCH,SINGLE_ACTOR,PERSON,홍대협,,NO,INFO
+AT0143,지세 호칭 조사,결과,단서를 얻지 못함,EF_STATE_EVIDENCE_RESULT,SINGLE_ACTOR,PROCESS,지세 호칭 조사,행위자가 아닌 상태 주어(과정/장소).,NO,INFO
+AT0144,홍대협,별도 채탐,지세 호칭 관련 정보,EF_ACT_INQUIRE_SEARCH,SINGLE_ACTOR,PERSON,홍대협,,NO,INFO
+AT0145,별도 채탐,결과,말들이 서로 달랐음,EF_STATE_EVIDENCE_RESULT,SINGLE_ACTOR,PROCESS,별도 채탐,행위자가 아닌 상태 주어(과정/장소).,NO,INFO
+AT0146,홍대협,평가,이광섭이 장물 없이 큰 도적으로 판단,EF_JUDGE_EVALUATE,SINGLE_ACTOR,PERSON,홍대협,,NO,INFO
+AT0147,홍대협,평가,이문협이 장물보다 사람 체포를 앞세웠음,EF_JUDGE_EVALUATE,SINGLE_ACTOR,PERSON,홍대협,,NO,INFO
+AT0148,홍대협,보고,김명신 사망은 질병 때문이었다는 판단,EF_SPEECH_CLAIM_REPORT,SINGLE_ACTOR,PERSON,홍대협,,NO,INFO
+AT0149,정조,쟁점 설정,도난 여부·김명신 사망원인·지세 호칭 날조 여부를 세 의안으로 분리,EF_JUDGE_ISSUE_FRAME,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0150,정조,최종 판단,도난은 실제로 있었음,EF_JUDGE_FINAL,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0151,정조,최종 판단,김명신은 전염병으로 사망,EF_JUDGE_FINAL,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0152,정조,최종 판단,김명신의 아내는 전염병으로 사망,EF_JUDGE_FINAL,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0153,정조,최종 판단,김명신이 곤장 한 대도 맞지 않았고 평범한 신문도 받지 않았다고 판단,EF_JUDGE_FINAL,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0154,정조,최종 판단,구순 때문에 직접 죽었다고 단정하기는 어렵다고 판단,EF_JUDGE_FINAL,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0155,정조,최종 판단,지세 호칭은 이전부터 좀도둑들이 쓰던 말이라고 판단,EF_JUDGE_FINAL,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0156,정조,최종 판단,구순이 지세 호칭을 직접 날조한 죄는 인정하지 않음,EF_JUDGE_FINAL,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0157,정조,평가,구순이 사적 감정을 품었다고 판단,EF_JUDGE_EVALUATE,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0158,정조,평가,구순이 병영 탐문자에게 김명신 이름을 적어 주었다고 판단,EF_JUDGE_EVALUATE,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0159,정조,평가,그 결과 김명신이 횡액을 입었다고 판단,EF_JUDGE_EVALUATE,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0160,정조,처분,구순을 감하여 절도 정배,EF_ORDER_PUNISH,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0161,정조,처분,구순을 신지도에 유배,EF_ORDER_PUNISH,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0162,정조,평가,이광섭과 구순의 세혐이 막 해소되었다고 판단,EF_JUDGE_EVALUATE,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0163,정조,평가,이광섭이 구순 편을 들었다고 판단,EF_JUDGE_EVALUATE,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0164,정조,평가,이광섭이 아전들을 풀어놓았다고 판단,EF_JUDGE_EVALUATE,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0165,정조,평가,이광섭이 거짓을 살피지 않았다고 판단,EF_JUDGE_EVALUATE,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0166,정조,평가,이광섭이 비장에게 일을 맡겼다고 판단,EF_JUDGE_EVALUATE,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0167,정조,처분,이광섭을 먼 곳에 무기한 정배,EF_ORDER_PUNISH,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0168,정조,처분,이광섭을 영동현에 유배,EF_ORDER_PUNISH,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0169,정조,처분,한재욱에게 엄한 형장 3차례,EF_ORDER_PUNISH,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0170,정조,처분,한재욱을 먼 섬에 종으로 보냄,EF_ORDER_PUNISH,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0171,정조,평가,이형원의 장계와 홍대협의 안핵이 크게 달랐다고 판단,EF_JUDGE_EVALUATE,SINGLE_ACTOR,PERSON,정조,,NO,INFO
+AT0172,정조,처분,충청 감사 이형원 파직,EF_ORDER_PUNISH,SINGLE_ACTOR,PERSON,정조,,NO,INFO
