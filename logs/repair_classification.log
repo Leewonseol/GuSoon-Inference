@@ -1,0 +1,27 @@
+2026-10-05 10:14:53,488 [INFO] sha256 before gusun_events_v1.csv 96b4441c71c6aa7407c7031899c5efb18ad4125a95526493e214d7f92f1ad0d2
+2026-10-05 10:14:53,488 [INFO] sha256 before gusun_attestations_v1.csv cd57d526e15ed0c110078173d3ab9662759a84bdc836330c507e4d67e5034dfb
+2026-10-05 10:14:53,488 [INFO] sha256 before gusun_event_relations_v1.csv e585e6c48d14831777f05d86394e03743a1df163ff770d8b78c6750efd821e5b
+2026-10-05 10:14:53,488 [INFO] sha256 before gusun_event_families_v1.csv 8b3c5566858d9669607dd6e4d316c94ce0769b29b6d8b06dd3ebd3e5688ab9c1
+2026-10-05 10:14:53,488 [INFO] sha256 before gusun_source_records_v1.csv e2acb1ab37d85753722374f064fcef2d9cdd0c1033e5f897b3d413e6fcc545f9
+2026-10-05 10:14:53,497 [INFO] family net effect definite: EF_ACT_DEATH 0→1, EF_ACT_INQUIRE_SEARCH 5→6, EF_ACT_RECORD_REPORT 6→4
+2026-10-05 10:14:53,497 [INFO] family net effect incl. approved splits: EF_ACT_DEATH 0→2, EF_ACT_INQUIRE_SEARCH 5→6, EF_ACT_OTHER 1→2, EF_ACT_RECORD_REPORT 6→4, EF_JUDGE_FINAL 7→9, EF_ORDER_INVESTIGATE 4→5, EF_SPEECH_CLAIM_REPORT 31→37, EF_STATE_OTHER 1→2
+2026-10-05 10:14:53,506 [INFO] wrote output/repair_classification.csv (303 rows)
+2026-10-05 10:14:53,507 [INFO] wrote output/source_recheck_queue.csv (64 rows)
+2026-10-05 10:14:53,508 [INFO] wrote output/schema_change_proposals.csv (9 rows)
+2026-10-05 10:14:53,509 [INFO] sha256 after  gusun_events_v1.csv 96b4441c71c6aa7407c7031899c5efb18ad4125a95526493e214d7f92f1ad0d2 UNCHANGED
+2026-10-05 10:14:53,509 [INFO] sha256 after  gusun_attestations_v1.csv cd57d526e15ed0c110078173d3ab9662759a84bdc836330c507e4d67e5034dfb UNCHANGED
+2026-10-05 10:14:53,509 [INFO] sha256 after  gusun_event_relations_v1.csv e585e6c48d14831777f05d86394e03743a1df163ff770d8b78c6750efd821e5b UNCHANGED
+2026-10-05 10:14:53,509 [INFO] sha256 after  gusun_event_families_v1.csv 8b3c5566858d9669607dd6e4d316c94ce0769b29b6d8b06dd3ebd3e5688ab9c1 UNCHANGED
+2026-10-05 10:14:53,509 [INFO] sha256 after  gusun_source_records_v1.csv e2acb1ab37d85753722374f064fcef2d9cdd0c1033e5f897b3d413e6fcc545f9 UNCHANGED
+2026-10-05 10:14:53,509 [INFO] rows 303 (audit_master_summary 1:1)
+2026-10-05 10:14:53,509 [INFO] primary class {'INTERNAL_FIX': 76, 'SCHEMA_CHANGE_REQUIRED': 38, 'SOURCE_RECHECK_REQUIRED': 189}
+2026-10-05 10:14:53,509 [INFO] secondary class {'(none)': 99, 'SCHEMA_CHANGE_REQUIRED': 186, 'INTERNAL_FIX': 12, 'SOURCE_RECHECK_REQUIRED': 6}
+2026-10-05 10:14:53,509 [INFO] primary x section {('A', 'INTERNAL_FIX'): 27, ('A', 'SCHEMA_CHANGE_REQUIRED'): 4, ('B', 'INTERNAL_FIX'): 12, ('B', 'SCHEMA_CHANGE_REQUIRED'): 8, ('B', 'SOURCE_RECHECK_REQUIRED'): 3, ('C', 'SCHEMA_CHANGE_REQUIRED'): 10, ('C', 'SOURCE_RECHECK_REQUIRED'): 6, ('C', 'INTERNAL_FIX'): 4, ('D', 'SCHEMA_CHANGE_REQUIRED'): 1, ('D', 'SOURCE_RECHECK_REQUIRED'): 3, ('E', 'SOURCE_RECHECK_REQUIRED'): 157, ('E', 'INTERNAL_FIX'): 14, ('E', 'SCHEMA_CHANGE_REQUIRED'): 15, ('F', 'SOURCE_RECHECK_REQUIRED'): 20, ('F', 'INTERNAL_FIX'): 19}
+2026-10-05 10:14:53,509 [INFO] primary or secondary SOURCE rows 195
+2026-10-05 10:14:53,509 [INFO] queue rows 64 by priority {'HIGH': 10, 'MEDIUM': 24, 'LOW': 30}
+2026-10-05 10:14:53,509 [INFO] schema refs {'SC-05': 157, 'SC-02': 8, 'SC-03': 4, 'SC-01': 16, 'SC-07': 23, 'SC-04': 20, 'SC-06': 5, 'SC-09': 8, 'SC-08': 10}
+2026-10-05 10:14:53,510 [INFO] requires_user_approval {'YES': 302, 'NO': 1}
+2026-10-05 10:14:53,510 [INFO] DEFAULT_USED B-003 AT0063 (지침 목록 밖 → 같은 행 Audit A 판단 준용)
+2026-10-05 10:14:53,510 [INFO] DEFAULT_USED B-004 AT0064 (지침 목록 밖 → 같은 행 Audit A 판단 준용)
+2026-10-05 10:14:53,510 [INFO] DEFAULT_USED E-146 AT0133.target_or_content (IMPORTED_FROM_OTHER_ATTESTATION → SOURCE MEDIUM, 기본 규칙)
+2026-10-05 10:14:53,510 [INFO] note: E-066 AT0074.actor not in the Audit E rubric list; resolved consistently with C-005 (INTERNAL keep-as-is placeholder)
