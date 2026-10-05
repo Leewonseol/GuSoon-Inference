@@ -1,0 +1,277 @@
+#!/usr/bin/env python3
+"""Stage 2: targeted repair review (report only, no data changes).
+
+Writes output/03_targeted_repair_review.csv from review findings that were
+derived only from rows/relations inside the 5 raw CSVs. No source URL access,
+no external knowledge, no historical interpretation. Raw CSVs are not modified.
+
+support_level = how far the proposition in `question` is supported inside the CSVs:
+  DIRECTLY_SUPPORTED     explicit in a proposition_ko or an explicit relation
+  RELATIONALLY_INFERRED  readable only by combining rows/relations (never auto-promoted)
+  NOT_SUPPORTED          cannot be constructed from the CSVs
+"""
+
+import csv
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+OUT = ROOT / "output" / "03_targeted_repair_review.csv"
+
+COLUMNS = [
+    "issue_id", "related_event_ids", "question", "current_structure", "csv_evidence",
+    "support_level", "proposed_change", "reason", "risk", "requires_user_approval",
+]
+
+ROWS = [
+    # ---------------- TASK 1: 김명신 사망 ----------------
+    {
+        "issue_id": "TR-01",
+        "related_event_ids": "AT0010",
+        "question": "기존 event_family 체계에 사망(death) family가 실제로 존재하는가?",
+        "current_structure": "AT0010.event_family_id=EF_ACT_RECORD_REPORT (template 'A records/submits/reports information X')",
+        "csv_evidence": "event_families: EF_ACT_DEATH | semantic_class=ACTION | structural_template='X dies' | description_ko=사망 | member_count=0. events 중 EF_ACT_DEATH 사용 행 0건.",
+        "support_level": "DIRECTLY_SUPPORTED",
+        "proposed_change": "새 family ID 생성 불필요. 기존 EF_ACT_DEATH를 사용.",
+        "reason": "적합한 death family가 이미 정의되어 있고 사용되지 않은 상태(member_count=0).",
+        "risk": "없음(신규 ID 생성 없음).",
+        "requires_user_approval": "NO",
+    },
+    {
+        "issue_id": "TR-02",
+        "related_event_ids": "AT0010",
+        "question": "AT0010을 '김명신이 사망했다'는 underlying event로 분리할 수 있는가?",
+        "current_structure": "actor=김명신 | action=사망했다고 보고됨 | event_family_id=EF_ACT_RECORD_REPORT | semantic_class=ACTION | target_or_content=NULL | epistemic_scope=OFFICIAL_REPORT_ATTESTED. 보고 행위(이형원)가 event의 action/family에 섞여 있음.",
+        "csv_evidence": "ATT0010: source_record_id=SRC001, speaker_or_reporting_actor=이형원, attestation_mode=OFFICIAL_REPORT, embedded_claim_status=CLAIM_WITHIN_OFFICIAL_REPORT, proposition_ko='이형원 장계는 김명신이 구금·조사 뒤 죽었다고 보고했다.' → 보고자·보고방식은 이미 attestation에 완전히 기록되어 있음.",
+        "support_level": "DIRECTLY_SUPPORTED",
+        "proposed_change": "AT0010: event_family_id EF_ACT_RECORD_REPORT→EF_ACT_DEATH; action '사망했다고 보고됨'→'사망'; actor=김명신 유지; semantic_class=ACTION 유지(EF_ACT_DEATH.semantic_class=ACTION과 일치); target_or_content=NULL 유지(사망은 target 불요, 오류 아님); ATT0010은 변경 없이 보고 사실을 보존.",
+        "reason": "events는 underlying event, attestations는 '누가 보고했는가'를 표현한다는 원칙. 보고 정보가 ATT0010에 이미 있으므로 event 쪽에서 제거해도 정보 손실 없음.",
+        "risk": "(1) EF_ACT_RECORD_REPORT member_count 6→5, EF_ACT_DEATH 0→1 갱신 필요(TR-06). (2) 같은 '…보고됨' 패턴이 AT0006·AT0007·AT0008 등 27행에 있어 AT0010만 고치면 불일치 발생(TR-07).",
+        "requires_user_approval": "YES",
+    },
+    {
+        "issue_id": "TR-03",
+        "related_event_ids": "AT0010",
+        "question": "AT0010/ATT0010은 사망 '원인'에 대한 주장을 포함하는가?",
+        "current_structure": "AT0010.claim_topic=DEATH_CAUSE, conflict_group=DEATH_CAUSE; ATT0010.claim_topic=DEATH_CAUSE, conflict_group=DEATH_CAUSE.",
+        "csv_evidence": "ATT0010 proposition_ko에는 원인 표현이 없고 시간 순서('구금·조사 뒤')만 있음. 원인 주장은 별도 행: AT0042(이조원 '원통하게 죽었다'), AT0148(홍대협 '질병 때문'), AT0151(정조 '전염병'), AT0154(정조 '구순 때문에 직접 발생했다고 단정 어려움').",
+        "support_level": "NOT_SUPPORTED",
+        "proposed_change": "AT0010·ATT0010의 conflict_group DEATH_CAUSE 해제, claim_topic을 원인이 아닌 '발생' 주제로 변경. 기존 어휘에 '사망 발생' 코드가 없으므로(DEATH_SEQUENCE는 AT0043 '사망 뒤 아내도 사망'에 사용) 새 코드(예: DEATH_OCCURRENCE) 도입 여부는 사용자 결정. 원인 주장 행(AT0042/0148/0151/0154)은 그대로 DEATH_CAUSE 유지.",
+        "reason": "사망 '발생'은 CSV 내 어떤 행에서도 다투어지지 않고, 충돌은 '원인'에만 있음. 발생 event를 원인 충돌 그룹에 두면 '사망 여부 자체가 쟁점'으로 오독될 수 있음.",
+        "risk": "'구금·조사 뒤'라는 순서를 인과로 읽고 싶은 하류 분석이 있을 경우 연결이 끊긴 것처럼 보일 수 있음 → TR-04의 relation으로 연결 유지. 새 claim_topic 코드 추가는 어휘 변경.",
+        "requires_user_approval": "YES",
+    },
+    {
+        "issue_id": "TR-04",
+        "related_event_ids": "AT0010;AT0042;AT0148;AT0151;AT0154",
+        "question": "사망 발생 event와 원인 주장·판단 event가 분리된 채로 올바르게 연결되어 있는가?",
+        "current_structure": "REL0083 AT0010→AT0042, REL0084 AT0042→AT0148, REL0085 AT0148→AT0151: 모두 COREFERENCE_OR_ACCOUNT_LINK / SAME_UNDERLYING_EVENT_DIFFERENT_INTERPRETATION / G_KIM_DEATH / DO_NOT_MERGE. AT0148·AT0151·AT0154는 AT0010과 직접 relation 없음(체인으로만 연결). AT0154는 relation 없음.",
+        "csv_evidence": "REL0083 basis='이형원과 이조원이 같은 김명신 사망 사건을 다룸.'; REL0085 basis='홍대협과 정조가 같은 사망 사건의 직접 사인을 질병/전염병으로 판단.'; ATT0154 '김명신 부처의 죽음을 구순 때문에 직접 발생한 것으로 단정하기 어렵다'.",
+        "support_level": "DIRECTLY_SUPPORTED",
+        "proposed_change": "REL0083~REL0085는 삭제·병합하지 않고 보존. TR-02 적용 시 AT0010은 '해석'이 아닌 underlying event가 되므로, 원인 주장 행(AT0042, AT0148, AT0151, AT0154)→AT0010을 '원인에 관한 주장/판단' 성격의 relation으로 직접 연결하는 것을 검토(새 relation_type 필요, 예: CAUSE_CLAIM_ABOUT). AT0154는 '김명신 부처'를 대상으로 하므로 AT0010과 아내 사망 행(AT0043/AT0152 계열) 모두에 걸침을 note로 표시.",
+        "reason": "원인 명제는 사망 발생 명제와 같은 proposition으로 합치지 않는다는 원칙. 현재 원인 주장들은 이미 별도 event로 분리되어 있으나, 발생 event와의 관계 유형이 '같은 사건의 다른 해석'으로 되어 있어 발생/원인 구분이 relation 수준에서 드러나지 않음.",
+        "risk": "새 relation_type 어휘 도입. REL0083의 의미가 TR-02 이후 부정확해지지만, 삭제하면 기존 coreference 기록이 사라지므로 보존 후 note 추가 권장.",
+        "requires_user_approval": "YES",
+    },
+    {
+        "issue_id": "TR-05",
+        "related_event_ids": "AT0010;AT0007;AT0008",
+        "question": "'김명신은 구금·조사 뒤 사망했다'는 시간 순서가 relation으로 표현되어 있는가?",
+        "current_structure": "AT0007(구금 상태), AT0008(조사)과 AT0010 사이 TEMPORAL_PROCEDURAL relation 없음. 세 행 모두 SRC001(이형원) 단일 보고.",
+        "csv_evidence": "ATT0010 '구금·조사 뒤 죽었다'; ATT0007 '달포 이상 구금'; ATT0008 '달포 이상 조사'.",
+        "support_level": "DIRECTLY_SUPPORTED",
+        "proposed_change": "후보 relation(추가 여부는 사용자 결정): AT0008→AT0010 BEFORE, AT0007→AT0010 BEFORE(또는 구금 상태가 사망 시점까지 지속되었을 수 있으므로 상태→사건 관계 유형 별도 검토). basis에 'SRC001 보고 내용 기준, 인과 아님' 명시.",
+        "reason": "순서 정보가 ATT0010 proposition에 직접 있으나 relation 그래프에는 없음.",
+        "risk": "'뒤'를 인과로 오독할 위험 → basis에 시간 순서만임을 명시해야 함. 구금 '상태'를 BEFORE로 두면 '구금 종료 후 사망'으로 읽힐 수 있음.",
+        "requires_user_approval": "YES",
+    },
+    {
+        "issue_id": "TR-06",
+        "related_event_ids": "AT0010",
+        "question": "TR-02 적용 시 event_families.member_count가 실제 소속 수와 일치하는가?",
+        "current_structure": "현재 42개 family 모두 member_count = 실제 events 소속 수(불일치 0).",
+        "csv_evidence": "EF_ACT_RECORD_REPORT member_count=6 (실제 6), EF_ACT_DEATH member_count=0 (실제 0).",
+        "support_level": "DIRECTLY_SUPPORTED",
+        "proposed_change": "TR-02 적용 시 같은 버전에서 EF_ACT_RECORD_REPORT 6→5, EF_ACT_DEATH 0→1로 갱신.",
+        "reason": "member_count는 파생값이므로 event 재분류와 동시에 갱신하지 않으면 무결성 불일치가 생김.",
+        "risk": "갱신 누락 시 family 통계가 틀어짐.",
+        "requires_user_approval": "YES",
+    },
+    {
+        "issue_id": "TR-07",
+        "related_event_ids": "AT0005;AT0006;AT0007;AT0008;AT0010;AT0012;AT0032;AT0066;AT0068;AT0071;AT0088;AT0095;AT0096;AT0104;AT0106;AT0107;AT0108;AT0114;AT0115;AT0116;AT0117;AT0120;AT0124;AT0127;AT0128;AT0130;AT0134",
+        "question": "AT0010처럼 action에 '보고됨/주장됨/전해짐'이 섞인 행은 AT0010 하나뿐인가?",
+        "current_structure": "events.action에 '보고됨/주장됨/전해짐'이 포함된 행 27개. 예: AT0006 '체포했다고 보고됨', AT0008 '조사했다고 보고됨'(family도 EF_ACT_RECORD_REPORT), AT0116 '회유했다고 주장됨'.",
+        "csv_evidence": "events.action 문자열 패턴 조회 결과 27건.",
+        "support_level": "DIRECTLY_SUPPORTED",
+        "proposed_change": "이번 단계에서는 변경하지 않음. AT0010만 고칠지, 같은 원칙을 27행 전체에 적용할지 범위 결정 필요. 단 AT0114~AT0117처럼 내용 자체가 다투어지는(CLAIM_CONTESTED) 행에서는 '주장됨'이 events 테이블에서 유일하게 '미확정'을 드러내는 표지이므로 일괄 제거하지 말 것.",
+        "reason": "AT0010만 단독 수정하면 같은 보고(SRC001) 안의 AT0006~AT0008과 표현 방식이 달라짐.",
+        "risk": "일괄 제거 시 contested 행이 events 테이블에서 확정 사실처럼 읽힐 수 있음(별도 status 컬럼 없음).",
+        "requires_user_approval": "YES",
+    },
+    {
+        "issue_id": "TR-08",
+        "related_event_ids": "AT0010;AT0042",
+        "question": "AT0010.historical_place='충청병영 옥'은 AT0010의 attestation(ATT0010)으로 지지되는가?",
+        "current_structure": "AT0010.historical_place=충청병영 옥.",
+        "csv_evidence": "ATT0010 proposition_ko에는 장소가 없음. '병영 옥에서'는 ATT0042(이조원, SRC002)에만 있음.",
+        "support_level": "RELATIONALLY_INFERRED",
+        "proposed_change": "자동 변경하지 않음. 장소가 SRC001 원문에 있는지(이번 단계에서는 원문/URL 확인 불가) 또는 AT0042에서 옮겨온 것인지 사용자 확인 필요. 확인 전까지 review candidate로만 표시.",
+        "reason": "AT0010의 장소 값이 자신의 attestation이 아닌 다른 출처 행(REL0083으로 연결된 AT0042)과만 일치함.",
+        "risk": "다른 출처의 정보가 SRC001 단일 attestation event로 섞여 들어갔을 가능성(출처 귀속 오류).",
+        "requires_user_approval": "YES",
+    },
+    # ---------------- TASK 2: 자미덕–이집거–한재욱 ----------------
+    {
+        "issue_id": "TR-09",
+        "related_event_ids": "AT0116",
+        "question": "P1: 자미덕은 '한재욱이 특정 인물들을 큰 도적이라고 말하면 자신과 남편을 석방하겠다고 했다'고 진술했는가?",
+        "current_structure": "AT0116 actor=한재욱 | action=회유했다고 주장됨 | family=EF_SPEECH_CLAIM_REPORT | target_or_content='여러 사람을 큰 도적이라 말하면 부부를 석방하겠다는 조건' | conflict_group=COACHING. 연결 relation: REL0080(→AT0131)뿐.",
+        "csv_evidence": "ATT0116: speaker=자미덕, TESTIMONY, SRC004, CLAIM_CONTESTED, '자미덕은 한재욱이 특정 인물들을 큰 도적이라고 말하면 자신과 남편을 석방하겠다고 회유했다고 진술했다.' '특정 인물들'의 이름은 events/attestations/relations 어디에도 없음.",
+        "support_level": "DIRECTLY_SUPPORTED",
+        "proposed_change": "구조 변경 없음. 선택: target_or_content '여러 사람'과 proposition '특정 인물들'의 표현 차이 정렬 검토.",
+        "reason": "명제가 ATT0116에 그대로 기록되어 있음. event는 한재욱의 '주장된 행위', 주장자는 attestation(자미덕)으로 분리되어 원칙에 맞음.",
+        "risk": "'특정 인물들'이 누구인지 CSV에 없으므로 이 행에서 대상자를 채우면 안 됨.",
+        "requires_user_approval": "NO",
+    },
+    {
+        "issue_id": "TR-10",
+        "related_event_ids": "AT0118",
+        "question": "P2: 자미덕과 이집거 사이에 대질이 있었는가?",
+        "current_structure": "AT0118 actor=자미덕·이집거 | action=대질 | family=EF_ACT_CONFRONTATION | target_or_content=NULL | place=병영 | time=UNDATED_DURING_DETENTION | conflict_group 없음. relation: REL0032(AT0118→AT0119 DURING)뿐.",
+        "csv_evidence": "ATT0118: speaker=자미덕, TESTIMONY, SRC004, embedded_claim_status=NOT_APPLICABLE, '자미덕은 이집거와 대질했다고 진술했다.' 이집거가 등장하는 행은 AT0118(actor)과 ATT0118·ATT0119(proposition)뿐. 한재욱 측 진술에는 대질 언급 없음.",
+        "support_level": "DIRECTLY_SUPPORTED",
+        "proposed_change": "내용 변경 없음. 단일 화자(자미덕) 진술로만 뒷받침됨을 유지(교차 attestation 추가 금지).",
+        "reason": "명제가 ATT0118에 직접 있음. CSV 안에서 대질 자체를 다투는 행은 없음.",
+        "risk": "단일 출처·단일 화자 진술이라는 점이 actor 문자열 구조(TR-15) 때문에 가려지지 않도록 주의.",
+        "requires_user_approval": "NO",
+    },
+    {
+        "issue_id": "TR-11",
+        "related_event_ids": "AT0119;AT0118",
+        "question": "P3: 자미덕은 '이집거와 대질할 때 한재욱의 지휘에 따라 거짓으로 말했다'고 진술했는가? 그리고 AT0119 한 행이 하나의 event만 표현하는가?",
+        "current_structure": "AT0119 actor=자미덕 | action=과거 진술 경위 설명 | family=EF_SPEECH_TESTIMONY_META('A explains prior testimony/change') | target='한재욱 지휘에 따라 거짓말을 꾸몄다고 주장' | place=병영 | time=UNDATED_DURING_DETENTION. REL0032: AT0118→AT0119 DURING.",
+        "csv_evidence": "ATT0119: speaker=자미덕, SRC004, report 1793-06-13, CLAIM_CONTESTED, '자미덕은 이집거와 대질할 때 한재욱의 지휘에 따라 거짓으로 말했다고 진술했다.' REL0032 basis='대질 때 거짓 지목을 했다는 자미덕 설명'.",
+        "support_level": "DIRECTLY_SUPPORTED",
+        "proposed_change": "명제 자체는 유지. 구조 불일치 2건 보고: (1) action/family는 '나중의 경위 설명 발화'를, place/time/REL0032 DURING은 '대질 중의 거짓 진술'을 가리켜 한 행에 두 사건이 섞임 → (a) AT0119를 설명 발화로 두고 '대질 중 한재욱 지휘에 따른 거짓 진술(주장됨)'을 별도 alleged event로 분리하거나, (b) AT0119를 alleged event로 재정의(AT0116과 같은 모델) 중 사용자 선택. (2) REL0032 basis의 '거짓 지목'은 ATT0119의 '거짓으로 말했다'보다 강한 표현 → basis 문구를 proposition에 맞추는 것 검토.",
+        "reason": "P1(AT0116)은 '주장된 행위'로, P3(AT0119)는 '주장 발화'로 모델링되어 같은 COACHING 주장 묶음 안에서 모델이 다름. REL0032 basis가 proposition에 없는 '지목'을 도입함.",
+        "risk": "분리하지 않으면 TEMPORAL 그래프에서 1793-06-13의 설명 발화가 대질 '중'에 일어난 것처럼 읽힘. basis 문구 '지목'이 Q1 판단에 과도한 근거로 쓰일 수 있음(TR-13).",
+        "requires_user_approval": "YES",
+    },
+    {
+        "issue_id": "TR-12",
+        "related_event_ids": "AT0131",
+        "question": "P4: 한재욱은 '자미덕을 은밀히 사주한 적이 없다'고 진술했는가?",
+        "current_structure": "AT0131 actor=한재욱 | action=부인 | family=EF_SPEECH_DENIAL | target='자미덕을 은밀히 사주한 적 없음' | conflict_group=COACHING. relation: REL0080(AT0116→), REL0081(AT0119→).",
+        "csv_evidence": "ATT0131: speaker=한재욱, TESTIMONY, SRC004, CONTESTED_DENIAL, '한재욱은 자미덕을 은밀히 사주한 일이 없다고 진술했다.' 부인의 범위는 '은밀한 사주' 일반이며 석방 조건(AT0116)이나 대질 지휘(AT0119)를 각각 명시적으로 언급하지는 않음.",
+        "support_level": "DIRECTLY_SUPPORTED",
+        "proposed_change": "변경 없음.",
+        "reason": "명제가 ATT0131에 직접 있음. 하나의 일반 부인이 두 개의 구체 주장에 각각 연결된 구조는 원문 범위를 넘지 않음.",
+        "risk": "부인의 범위(일반)와 주장의 범위(구체)가 다르다는 점을 하류 분석에서 '항목별 부인'으로 확대하지 말 것.",
+        "requires_user_approval": "NO",
+    },
+    # ---------------- TASK 3: Q1 / Q2 ----------------
+    {
+        "issue_id": "TR-13",
+        "related_event_ids": "AT0118;AT0119",
+        "question": "Q1: '이집거는 자미덕이 지목한 대상이었다'",
+        "current_structure": "이 명제를 담은 event/attestation 없음. 이집거는 AT0118 actor 문자열과 ATT0118·ATT0119 proposition에만 등장.",
+        "csv_evidence": "ATT0118 '자미덕은 이집거와 대질했다'; ATT0119 '이집거와 대질할 때 한재욱의 지휘에 따라 거짓으로 말했다'; REL0032(AT0118→AT0119 DURING) basis '대질 때 거짓 지목을 했다는 자미덕 설명'. 어떤 proposition에도 '자미덕이 이집거를 지목했다'는 문장은 없음. '지목'이라는 단어는 REL0032의 basis(주석)에만 있고, 그 basis도 지목 대상을 이집거로 명시하지 않음.",
+        "support_level": "RELATIONALLY_INFERRED",
+        "proposed_change": "F-only atom으로 승격하지 않음. review candidate RC-Q1로만 기록: '대질 상대(이집거) + 대질 중 거짓 진술 + REL0032 basis의 \"지목\"'을 결합하면 그렇게 읽힐 수 있으나, 거짓 진술의 내용과 대상은 CSV에 없음.",
+        "reason": "명시적 proposition이나 명시적 relation에 직접 들어 있지 않음. 추론의 핵심 근거가 attestation이 아닌 relation 주석(REL0032 basis)의 한 단어이며, TR-11에서 그 단어 자체가 proposition보다 강한 표현으로 지적됨. 지지 강도는 약함.",
+        "risk": "승격 시 자미덕의 '거짓 진술' 내용을 CSV에 없는 내용(이집거 지목)으로 채우게 됨. REL0032 basis 문구가 수정되면 이 추론 근거는 더 약해짐.",
+        "requires_user_approval": "YES",
+    },
+    {
+        "issue_id": "TR-14",
+        "related_event_ids": "AT0116;AT0118;AT0119;AT0131",
+        "question": "Q2: '이집거는 자미덕이 \"큰 도적\"이라고 지목한 특정 인물들 중 한 명이었다'",
+        "current_structure": "AT0116의 '특정 인물들/여러 사람'은 이름이 없음. AT0116과 AT0118/AT0119 사이 직접 relation 없음.",
+        "csv_evidence": "'큰 도적'은 AT0116(및 무관한 AT0146)에만 등장. AT0116↔AT0118/AT0119를 잇는 relation 0건. 유일한 경로는 AT0116–REL0080–AT0131–REL0081–AT0119–REL0032–AT0118로, 이는 같은 부인(AT0131)에 대한 충돌 연결과 주제 그룹(COACHING/G_COACHING)일 뿐 대상자 동일성 관계가 아님. 이름 목록 AT0122(변지돌·변재돌·정원돌·김명신·김성손·김흥득·김흥길)에도 이집거 없음.",
+        "support_level": "NOT_SUPPORTED",
+        "proposed_change": "어떤 행·relation도 추가하지 않음.",
+        "reason": "'특정 인물들'의 구성원을 정하는 행이 CSV에 없고, AT0116을 대질 행과 연결하는 relation도 없음. 같은 conflict_group에 속한다는 것은 대상자 동일성의 근거가 아님.",
+        "risk": "Q1(약한 추론)과 P1을 결합해 Q2를 만들면 두 단계 추론을 사실로 고정하게 됨.",
+        "requires_user_approval": "NO",
+    },
+    # ---------------- TASK 4: AT0118 actor ----------------
+    {
+        "issue_id": "TR-15",
+        "related_event_ids": "AT0118",
+        "question": "AT0118.actor='자미덕·이집거'(복수 인물 단일 문자열)가 이후 actor 분석을 방해하는가? 안 A와 안 B 중 현재 스키마에 적합한 것은?",
+        "current_structure": "actor='자미덕·이집거', target_or_content=NULL, family=EF_ACT_CONFRONTATION(template 'A confronts B'). 같은 복합 actor 방식이 AT0069·AT0072(구순·김명신), AT0075(장교·나졸), AT0077(구순·장교), AT0089·AT0090(이진욱·조계완 등)에도 있고, '/' 구분자(AT0012 '이형원/각 진영 영장', AT0121 '한재욱/병영')도 별도로 쓰임.",
+        "csv_evidence": "ATT0118 '자미덕은 이집거와 대질했다' — 공동격 '와'로 방향(행위자/대상) 정보가 없음. 대질을 주관한 주체도 proposition에 없음.",
+        "support_level": "DIRECTLY_SUPPORTED",
+        "proposed_change": "안 B 권고: actor는 현재대로 보존하고, 향후 별도 participant 정규화(예: event_participants[event_id, person, role, role_basis])에서 분리. 그 전까지 actor 분석 시 '·'를 참여자 구분자로, '/'는 의미가 달라 보이므로 별도 규칙으로 처리하도록 분석 규칙에 명시. 안 A는 채택하지 않음.",
+        "reason": "방해 여부: 있음 — actor 문자열 그룹화 시 '자미덕·이집거'가 독립 actor가 되어 자미덕 행 집계에서 빠지고, 이집거는 이 복합값으로만 존재함. 안 A(actor=자미덕, target=이집거)는 컬럼에는 들어맞고 family template('A confronts B')과도 형식상 맞지만, proposition에 없는 방향성(자미덕=행위자, 이집거=대상)을 만들어내고 9개 복합 actor 행 중 1개만 다른 방식으로 바꾸게 됨. 안 B는 원문 대칭성과 기존 데이터 관례를 보존하며 스키마 변경을 이후 단계로 미룰 수 있음.",
+        "risk": "안 B는 participant 정규화 전까지 actor 분석에 분리 규칙이 필요함. 안 A는 이후 participant 구조 도입 시 다시 되돌려야 하고, 방향성 오류가 하류 분석(누가 누구를 대질했는가)에 전파됨.",
+        "requires_user_approval": "YES",
+    },
+    {
+        "issue_id": "TR-16",
+        "related_event_ids": "AT0010;AT0118",
+        "question": "무결성 검증 WARNING 2건(AT0010·AT0118 target_or_content NULL)은 실제 오류인가?",
+        "current_structure": "output/01_integrity_report.csv의 CORE_FIELD_NULL_OR_BLANK-001(AT0010), -002(AT0118), severity=WARNING.",
+        "csv_evidence": "AT0010: 사망(EF_ACT_DEATH 'X dies')은 target 불요. AT0118: 대질 상대는 actor 복합값에 이미 있음(안 B 기준 target 불요).",
+        "support_level": "DIRECTLY_SUPPORTED",
+        "proposed_change": "두 WARNING을 '예상된 공백(expected blank)'으로 판정. 다음 검증 버전에서 target 불요 family(EF_ACT_DEATH 등) 또는 승인된 예외 목록은 WARNING 대신 INFO로 기록하도록 검증 규칙 조정 검토.",
+        "reason": "target_or_content 공백만으로 오류로 판단하지 않는다는 원칙.",
+        "risk": "예외 규칙이 너무 넓으면 실제 누락을 놓칠 수 있음 → family 단위·승인 목록 단위로 한정.",
+        "requires_user_approval": "YES",
+    },
+    # ---------------- TASK 5: 사주 여부 충돌 보존 ----------------
+    {
+        "issue_id": "TR-17",
+        "related_event_ids": "AT0116;AT0119;AT0131",
+        "question": "AT0116↔AT0131, AT0119↔AT0131에 CONFLICTING_ACCOUNTS_OF_SAME_ALLEGED_EVENT relation이 존재하며, 세 입장이 구별되어 보존되어 있는가?",
+        "current_structure": "REL0080 AT0116→AT0131, REL0081 AT0119→AT0131: 둘 다 COREFERENCE_OR_ACCOUNT_LINK / CONFLICTING_ACCOUNTS_OF_SAME_ALLEGED_EVENT / HIGH / G_COACHING / merge_policy='DO_NOT_MERGE; preserve each attestation separately'.",
+        "csv_evidence": "자미덕 주장① AT0116(석방 조건 회유, CLAIM_CONTESTED); 자미덕 주장② AT0119(대질 때 한재욱 지휘로 거짓말, CLAIM_CONTESTED); 한재욱 부인 AT0131(은밀한 사주 없음, CONTESTED_DENIAL). 세 행은 별도 event·별도 attestation으로 존재.",
+        "support_level": "DIRECTLY_SUPPORTED",
+        "proposed_change": "삭제·병합하지 않음. 현 구조 유지.",
+        "reason": "요구된 최소 구분(주장①, 주장②, 부인)이 이미 각각 독립 행으로 있고, 두 충돌 relation 모두 병합 금지로 표시되어 있음.",
+        "risk": "없음(변경 없음).",
+        "requires_user_approval": "NO",
+    },
+    {
+        "issue_id": "TR-18",
+        "related_event_ids": "AT0114;AT0115;AT0116;AT0117;AT0119;AT0125;AT0126;AT0131;AT0169;AT0170",
+        "question": "한재욱이 실제로 자미덕을 사주했는가가 CSV 안에서 판정되어 있는가?",
+        "current_structure": "COACHING conflict_group 행: AT0114·AT0115·AT0116·AT0117·AT0119(자미덕 주장, CLAIM_CONTESTED), AT0125·AT0126(한재욱의 부분 인정: 방으로 불러들임·남은 밥 줌), AT0131(부인). 사주 여부를 판정하는 JUDGMENT 행 없음. AT0169·AT0170(정조의 한재욱 처분)은 어떤 relation으로도 COACHING 행과 연결되지 않음.",
+        "csv_evidence": "COACHING 그룹에 semantic_class=JUDGMENT 행 0건. REL0078(AT0114↔AT0125 OVERLAPPING_SERIES_CANDIDATE), REL0079(AT0117↔AT0126 PARTIAL_SAME_EVENT_CANDIDATE)는 부르기·음식 제공의 부분 일치일 뿐 사주 인정이 아님. AT0169/AT0170 관련 relation 0건, 처분 사유 명시 없음.",
+        "support_level": "NOT_SUPPORTED",
+        "proposed_change": "사주 여부는 UNKNOWN/CONTESTED로 유지. 사주를 확정하는 event를 추가하지 않음. 한재욱 처분(AT0169/AT0170)을 사주 근거로 연결하지 않음. 상태를 명시 필드로 둘지(예: 쟁점 상태 테이블)는 스키마 변경이므로 이후 단계에서 사용자 결정.",
+        "reason": "CSV에는 주장과 부인, 부분 인정만 있고 이를 판정한 행이나 처분과의 연결 relation이 없음. 현재 '미확정' 상태는 embedded_claim_status(CLAIM_CONTESTED/CONTESTED_DENIAL)와 conflict_group=COACHING으로 암묵적으로 보존되어 있음.",
+        "risk": "부분 인정(AT0125/AT0126)이나 처분(AT0169/AT0170)을 사주 인정으로 확대 해석할 위험.",
+        "requires_user_approval": "NO",
+    },
+    {
+        "issue_id": "TR-19",
+        "related_event_ids": "AT0116;AT0119;AT0131",
+        "question": "REL0080과 REL0081의 relation_type 'SAME_ALLEGED_EVENT'가 AT0116과 AT0119를 같은 사건으로 묶는 것으로 오독될 수 있는가?",
+        "current_structure": "AT0116(비장청 방, REPEATED_AFTER_ARREST)과 AT0119(병영, 대질 중)는 서로 다른 시점·장소의 주장인데, 둘 다 같은 AT0131과 'SAME_ALLEGED_EVENT' 유형으로 연결됨. AT0116↔AT0119 직접 relation은 없음.",
+        "csv_evidence": "REL0080·REL0081 relation_type 동일, candidate_group 동일(G_COACHING).",
+        "support_level": "DIRECTLY_SUPPORTED",
+        "proposed_change": "이번 단계에서는 변경하지 않음. 하류 분석 규칙으로 'AT0131을 경유한 AT0116=AT0119 전이적 동일시 금지'를 명시. 유형명을 '같은 쟁점(사주)에 대한 충돌 진술'로 바꿀지는 사용자 결정.",
+        "reason": "여기서 'same alleged event'는 '같은 사주 의혹'을 뜻하며, 두 주장이 같은 발생 건이라는 근거는 CSV에 없음.",
+        "risk": "그래프 기반 병합·클러스터링 시 두 주장이 하나로 합쳐질 수 있음.",
+        "requires_user_approval": "YES",
+    },
+]
+
+
+def main():
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    allowed = {"DIRECTLY_SUPPORTED", "RELATIONALLY_INFERRED", "NOT_SUPPORTED"}
+    for r in ROWS:
+        assert r["support_level"] in allowed, r["issue_id"]
+        assert r["requires_user_approval"] in {"YES", "NO"}, r["issue_id"]
+        assert set(r) == set(COLUMNS), r["issue_id"]
+    with OUT.open("w", encoding="utf-8", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=COLUMNS)
+        w.writeheader()
+        w.writerows(ROWS)
+    print(f"wrote {OUT.relative_to(ROOT)} ({len(ROWS)} rows)")
+
+
+if __name__ == "__main__":
+    main()
