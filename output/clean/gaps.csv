@@ -1,0 +1,14 @@
+gap_id,title,gap_type,between,observed_anchor_facts,why_gap
+G01,소장 접수 → 체포령 → 2/28 병영 출동의 연결,PROCEDURAL / INFORMATION_FLOW,EP03|EP04,"CF006, CF007–CF010, CF026",체포령(CF006)의 발령 기관과 2/28 병영 비장청 출동(CF007–010) 사이를 잇는 절차가 confirmed set에 없다. observed DAG에는 시간 edge(OE003)만 있다.
+G02,2/28 출동 지시의 상위 명령 출처,ORDER_CHAIN,EP04|EP30,"CF008–CF010, CF044, CF025, CF026",이진욱 진술에서는 한재욱이 지시했다. 정조 판단에서는 이광섭이 철퇴를 만들게 했다. 한재욱 위에서 누가 명령했는지는 기록되지 않았다.
+G03,유제희 탐문의 시점·파견자·기록 수신자,INFORMATION_FLOW / TEMPORAL,EP08|EP04|EP09,"CF020, CF009, CF021","CF020에는 날짜·파견자·수신자가 없다. 그래서 2/28 체포 대상 선정, 3/4 김생원 체포 지시와의 선후를 정할 수 없다."
+G04,구순의 발언·성명 → 3/4 병사 체포 지시까지의 정보 경로,INFORMATION_FLOW (핵심),EP08|EP07|EP10|EP09,"CF020, CF016, CF021, CF043",정조는 '성명 제공 → 횡액'의 책임 사슬을 판단했다(CF043). 그러나 observed DAG에서 EP08(구순 발언 기록)과 EP09(병사 지시) 사이에는 event 수준 edge가 없다. 사용자 지정 branch B의 '→ 병영 수사선상' 단계가 여기서 끊긴다.
+G05,3/4 구순 서찰의 전달과 내용,INFORMATION_FLOW,EP10|EP30,"CF024, CF044",서찰을 건넨 사실(CF024)과 '이광섭이 구순 편을 들었다'는 판단(CF044) 사이에 전달·내용이 기록되지 않았다.
+G06,3/4 체포 ~ 사망(5/12 보고 이전) 사이 구금 경과,TEMPORAL / PROCEDURAL,EP11|EP13|EP21|EP27,"CF023, CF027, CF029, CF040, CF041","체포일(3/4)과 사망 보고(5/12) 사이 약 두 달 동안 발병 시점, 처우, 사망 시점·장소가 기록되지 않았다. 5/12 '구금·조사'와 6/13 '평범한 신문도 없음'이 긴장 관계다."
+G07,5월 '도난 없음 방향' 판단의 형성 경로,REVIEW / JUDGMENT_FORMATION,EP13|EP15|EP17|EP24,"CF027, CF030, CF032, CF038",5/12·5/27 판단이 왜 '도난 없음' 쪽으로 기울었는지(6/13에 번복됨) 근거 경로가 confirmed set에 없다. 이조원은 전문(傳聞) 의존(CF033)이 관측되어 있으나 이형원 장계 쪽 경로는 비어 있다.
+G08,5/27 이조원 비판 → 5/28 홍대협 차하의 동기,PROCEDURAL,EP18|EP20,"CF033, CF035",하루 차이의 두 royal action 사이에 동기 연결 문장이 없다(OE045는 시간 edge뿐).
+G09,처분문 '한가'의 처분 근거와 동일성,IDENTITY / RESPONSIBILITY,EP35|EP07|EP12|EP04,"CF048, CF016, CF017, CF018, CF008","한가 처분(CF048)에 연결된 책임 판단 node가 없다. 한가=한재욱=한 비장은 미확정이다(ID02, ID03)."
+G10,이형원 6/13 파직 → 6/16 유임,DISPOSITION,EP36|EP37,"CF049, CF050",파직과 3일 뒤 유임의 사유가 모두 기록되지 않았다.
+G11,변지돌의 공주진 선행 체포 경위,PROCEDURAL,EP04|EP05,"CF009, CF011",2/28 체포 지시 대상(변지돌)이 2/29에는 이미 공주진에 잡혀가 있었다. 누가 왜 잡았는지 비어 있다.
+G12,김명신 아내의 사망 경로,TEMPORAL / BIOLOGICAL,EP27,CF040,정조는 '부처'가 전염병으로 죽었다고 판단했으나 아내의 사망은 다른 어떤 observed node에도 나오지 않는다.
+G13,구순 의금부 구금·신문 명령의 실행,ORDER_TO_ACTION,EP16|EP19|EP29,"CF031, CF034, CF043",5/12·5/27 두 차례 명령(order)은 관측되지만 실행·신문 결과(action)는 confirmed set에 없다.

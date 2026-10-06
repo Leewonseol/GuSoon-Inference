@@ -116,8 +116,8 @@ def write_audit2(path, findings, nodes, edges, links):
               "## 4. Edge 전체 목록", "",
               "| edge | src → dst | type | basis | status | claim | cond | 근거 |", "|---|---|---|---|---|---|---|---|"]
     for e in edges:
-        lines.append(f"| {e['edge_id']} | {e['src']} → {e['dst']} | {e['edge_type']} | {e['basis']} | {e['status']} | "
-                     f"{'Y' if e['claim_level'] else ''} | {e['condition']} | {e['supporting']} |")
+        lines.append(f"| {e['edge_id']} | {e['src']} → {e['dst']} | {e['edge_type']} | {e['basis'].replace('|', ' + ')} | {e['status']} | "
+                     f"{'Y' if e['claim_level'] else ''} | {e['condition'].replace('|', ', ')} | {e['supporting'].replace('|', ', ')} |")
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
@@ -137,7 +137,7 @@ def write_mermaid(path, nodes, edges):
         lines.append("  end")
     for e in edges:
         arrow = style.get(e["edge_type"], "-->")
-        lab = e["edge_type"] + (" ?" + e["condition"] if e["condition"] else "")
+        lab = e["edge_type"] + (" ?" + e["condition"].replace("|", ",") if e["condition"] else "")
         if arrow == "x--x":
             lines.append(f"  {e['src']} x--x|{lab}| {e['dst']}")
         else:
@@ -163,7 +163,8 @@ def write_gaps(path, gaps, cands, nodes):
              "등급: HIGH / MEDIUM / LOW / INCOMPATIBLE. 확률이 아니다. overall은 다음 규칙으로 기계적으로 정한다. "
              "(1) 평가 차원 중 최소값, (2) contradiction_risk가 HIGH면 LOW 상한, MEDIUM이면 MEDIUM 상한, "
              "(3) 추가 가정 3개 이상이면 MEDIUM 상한, 5개 이상이면 LOW 상한, (4) HIGH는 source_consistency=HIGH일 때만, "
-             "(5) 제도 compatibility만 근거인 후보는 LOW 상한.", "",
+             "(5) 제도 compatibility 또는 환경 context만 근거인 후보는 LOW 상한, "
+             "(6) 미확정 동일성(IDxx)에 기대는 후보는 MEDIUM 상한(동일성을 확정하지 않기 위해).", "",
              "`audit_attestation`은 05(AUDIT_ONLY)에 그런 진술·주장이 **기록되어 있다**는 표시일 뿐이다. 후보를 OBSERVED로 올리지 않는다.", "",
              "## Gap 요약", "", "| gap | 유형 | 끊긴 구간 | 후보 수 | 최고 등급 |", "|---|---|---|---|---|"]
     order = {"HIGH": 3, "MEDIUM": 2, "LOW": 1, "INCOMPATIBLE": 0}
@@ -185,7 +186,7 @@ def write_gaps(path, gaps, cands, nodes):
                          f"{c['contradiction_risk']} | {c['n_assumptions']} | **{c['overall']}** | {c['prune_decision']} |")
         for c in by[g["gap_id"]]:
             lines += ["", f"### {c['candidate_id']} [LATENT · {c['form']}] {c['label']}", "", c["description"], ""]
-            if c["latent_nodes"]:
+            if c["latent_nodes"] or c["latent_edges"]:
                 lines.append("latent 요소:")
                 for ln in c["latent_nodes"]:
                     lines.append(f"- `{ln['id']}` {ln['text']}")
@@ -194,6 +195,7 @@ def write_gaps(path, gaps, cands, nodes):
             lines += ["", f"- 추가 가정: " + ("; ".join(c["extra_assumptions"]) if c["extra_assumptions"] else "없음"),
                       f"- 지지 fact: {c['supports'] or '-'} · 긴장/충돌 fact: {c['conflicts'] or '-'}",
                       f"- audit_attestation (05, AUDIT_ONLY): {c['audit_attestation'] or '-'}",
+                      f"- 미확정 동일성 조건: {c['identity_conditions'] or '없음'}",
                       f"- 주 근거 유형: {c['support_basis']}",
                       f"- 메모: {c['notes']}"]
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -204,7 +206,7 @@ def write_worlds(path, worlds, cands, gaps, nodes):
     gap_t = {g["gap_id"]: g["title"] for g in gaps}
     lines = ["# STAGE 5 — Narrative Worlds", "",
              "동결된 observed backbone 위에 검증된 latent 후보를 **제한적으로** 얹은 설명 경로다. 하나의 정답 세계를 고르려는 것이 아니다. "
-             "모든 world는 같은 observed backbone(node 41 · edge 동결 해시 동일)을 공유하고, latent bridge만 다르다.", "",
+             f"모든 world는 같은 observed backbone(node {len(nodes)}개 · 동결 해시 동일)을 공유하고, latent bridge만 다르다.", "",
              "구성 방식: 전수 조합이 아니다. gap별 후보(최대 5개) 가운데 설명 축(정보 경로, 강요 진술, 사적 경로, 지휘 분산, 최소 가정)이 "
              "서로 다르도록 직접 고른 뒤, 같은 gap에 후보 2개 이상 금지, INCOMPATIBLE 사용 금지, world 사이 최소 2개 gap에서 차이를 검사했다. "
              "SMC·MCMC·posterior sampling은 쓰지 않았다.", "",
@@ -230,6 +232,11 @@ def write_worlds(path, worlds, cands, gaps, nodes):
                  [f"- contradicted_evidence: {w['contradicted_evidence']}"]
         if w.get("narrative"):
             lines += ["", "서술 (`[L]` = LATENT bridge, 나머지는 observed backbone):", "", w["narrative"]]
+    from stage5_worlds import ADJUSTMENTS, CONFLICT_PAIRS
+    lines += ["", "## 상충 후보 쌍 (서로 다른 gap이지만 한 world에 함께 쓰지 않음)", "", "| 후보 A | 후보 B | 이유 |", "|---|---|---|"]
+    lines += [f"| {a} | {b} | {why} |" for a, b, why in CONFLICT_PAIRS]
+    lines += ["", "## 처음 지정한 구성 대비 조정", "", "| world | 조정·확인 |", "|---|---|"]
+    lines += [f"| {w} | {t} |" for w, t in ADJUSTMENTS]
     lines += ["", "## world 사이 차이 (gap별 선택)", "", "| gap | " + " | ".join(w["world_id"] for w in worlds) + " |",
               "|---|" + "---|" * len(worlds)]
     for g in gaps:
@@ -269,9 +276,9 @@ def write_audit3(path, findings, nodes, edges, gaps, cands, worlds, frozen):
     lines += ["", "## 4. 수정 이력", "", _revlog(AUDIT3_REVISIONS), "",
               "## 5. 전체 요소 분류표", "", "| id | 종류 | 분류 | 출처 |", "|---|---|---|---|"]
     for n in nodes:
-        lines.append(f"| {n['node_id']} | node | OBSERVED | {n['member_fact_ids'] or n.get('env_id')} |")
+        lines.append(f"| {n['node_id']} | node | OBSERVED | {n['member_fact_ids'].replace('|', ', ') or n.get('env_id')} |")
     for e in edges:
-        lines.append(f"| {e['edge_id']} | edge | {e['status']} | {e['supporting']} |")
+        lines.append(f"| {e['edge_id']} | edge | {e['status']} | {e['supporting'].replace('|', ', ')} |")
     for c in cands:
         for ln in c["latent_nodes"]:
             lines.append(f"| {ln['id']} | node | LATENT | {c['candidate_id']} |")
@@ -288,7 +295,7 @@ def write_latent_csv(out, gaps, cands, worlds):
             w.writerow([g["gap_id"], g["title"], g["gap_type"], "|".join(g["between"]), g["observed_anchor_facts"], g["why_gap"]])
     cols = ["candidate_id", "gap_id", "status", "form", "label", "description", "source_consistency", "temporal_fit",
             "institutional_fit", "role_fit", "information_flow_fit", "environmental_fit", "contradiction_risk",
-            "n_assumptions", "extra_assumptions", "overall", "prune_decision", "supports", "conflicts",
+            "n_assumptions", "extra_assumptions", "identity_conditions", "overall", "prune_decision", "supports", "conflicts",
             "audit_attestation", "support_basis", "notes"]
     with open(out / "latent_candidates.csv", "w", encoding="utf-8", newline="") as f:
         w = csv.writer(f)
@@ -308,9 +315,10 @@ def write_latent_csv(out, gaps, cands, worlds):
         w = csv.writer(f)
         w.writerow(["world_id", "name", "status", "latent_bridges", "unresolved_gaps", "institutional_fit",
                     "environmental_fit", "n_assumptions", "min_grade", "main_assumptions", "main_weaknesses",
-                    "contradicted_evidence", "story_implication"])
+                    "contradicted_evidence", "story_implication", "identity_conditions", "narrative"])
         for x in worlds:
             w.writerow([x["world_id"], x["name"], "REJECTED" if x.get("rejected") else "RETAINED",
                         "|".join(x["latent_bridges"]), "|".join(x["unresolved_gaps"]), x["institutional_fit"],
                         x["environmental_fit"], x["n_assumptions"], x["min_grade"], " / ".join(x["main_assumptions"]),
-                        " / ".join(x["main_weaknesses"]), x["contradicted_evidence"], x["story_implication"]])
+                        " / ".join(x["main_weaknesses"]), x["contradicted_evidence"], x["story_implication"],
+                        x.get("identity_conditions", ""), x.get("narrative", "")])

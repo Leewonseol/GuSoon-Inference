@@ -126,15 +126,15 @@ def audit1(episodes, cf, props, sources):
         # 2. over-merge
         srcs = {r["source_record_id"] for r, _ in rows}
         if len(srcs) > 1:
-            out.append(F("over_merge", "ERROR", eid, f"서로 다른 source record 병합: {srcs}"))
+            out.append(F("over_merge", "ERROR", eid, f"서로 다른 source record 병합: {sorted(srcs)}"))
         fams = {clause_family(r, c) for r, c in rows}
         if len(fams) > 1 and fams not in ALLOWED_FAMILY_MIX:
-            out.append(F("over_merge", "ERROR", eid, f"인식 계열 혼합: {fams}"))
+            out.append(F("over_merge", "ERROR", eid, f"인식 계열 혼합: {sorted(fams)}"))
         elif len(fams) > 1:
-            out.append(F("over_merge", "INFO", eid, f"허용된 혼합 {fams} — 근거: {ep['grouping_rationale']}"))
+            out.append(F("over_merge", "INFO", eid, f"허용된 혼합 {sorted(fams)} — 근거: {ep['grouping_rationale']}"))
         tfs = {testifier(member_text(r, c)) for r, c in rows if FAMILY[r["confirmation_level"]] == "TESTIMONY"}
         if len(tfs) > 1:
-            out.append(F("over_merge", "ERROR", eid, f"서로 다른 진술자 병합: {tfs}"))
+            out.append(F("over_merge", "ERROR", eid, f"서로 다른 진술자 병합: {sorted(map(str, tfs))}"))
         cats = {r["fact_category"] for r, _ in rows}
         if "ARREST_ORDER" in cats and "APPREHENSION" in cats:
             out.append(F("order_execution_conflation", "ERROR", eid, "지시와 체포 실행을 한 episode로 병합"))
@@ -328,7 +328,7 @@ def audit2(nodes, edges, episodes, feature_links, env_rows, edge_types, bases):
         conds = set(filter(None, e["condition"].split("|")))
         if need and need not in conds:
             out.append(F("identity_forcing", "ERROR", eid, f"{need} 미확정 동일성에 기대는데 condition 누락"))
-        for c in conds:
+        for c in sorted(conds):
             if c not in iden:
                 out.append(F("identity_forcing", "ERROR", eid, f"알 수 없는 identity {c}"))
             elif iden[c]["status"] == "UNRESOLVED":
@@ -400,10 +400,33 @@ def audit2(nodes, edges, episodes, feature_links, env_rows, edge_types, bases):
 # AUDIT 3 — Observed / Derived / Latent separation
 # ============================================================================
 
+# 후보·world 서술에 두 표면형이 함께 나오면 해당 identity 조건(IDxx)이 명시되어야 한다.
+IDENTITY_TEXT_RULES = [
+    ("ID01", re.compile(r"병사(?!\s*\(病)"), re.compile(r"이광섭")),
+    ("ID02", re.compile(r"한 비장"), re.compile(r"한재욱")),
+    ("ID03", re.compile(r"한가"), re.compile(r"한재욱")),
+    ("ID04", re.compile(r"하급 보조자"), re.compile(r"한재욱")),
+    ("ID05", re.compile(r"김상제"), re.compile(r"김명신|풍각 김생원")),
+    ("ID06", re.compile(r"염탐 담당자"), re.compile(r"유제희")),
+    ("ID07", re.compile(r"철편"), re.compile(r"철퇴")),
+    ("ID11", re.compile(r"(?<!정)원돌"), re.compile(r"정원돌")),
+]
+FORBIDDEN_IDENTITIES = {"ID01", "ID02", "ID03", "ID04"}
+
+
+def _identity_needs(text):
+    return {iid for iid, a, b in IDENTITY_TEXT_RULES if a.search(text) and b.search(text)}
+
+
 def audit3(nodes, edges, frozen_hash, current_hash, gaps, candidates, props, worlds=None):
+    from stage2_graph import EDGE_TYPES
     out = []
     nid = {n["node_id"] for n in nodes}
+    layer = {n["node_id"]: n["layer"] for n in nodes}
     prop_ids = {p["prop_id"] for p in props}
+    for i in IDENTITY_REGISTER:
+        if i["identity_id"] in FORBIDDEN_IDENTITIES | {"ID05", "ID06", "ID07", "ID08", "ID11"} and i["status"] != "UNRESOLVED":
+            out.append(F("identity_forcing", "ERROR", i["identity_id"], f"미확정이어야 할 동일성의 status={i['status']}"))
     if frozen_hash != current_hash:
         out.append(F("freeze_violation", "ERROR", "observed_dag", "동결 이후 observed DAG가 변경됨"))
     else:
@@ -439,8 +462,14 @@ def audit3(nodes, edges, frozen_hash, current_hash, gaps, candidates, props, wor
                              f"관측 node 사이 직접 latent edge {le['src']}->{le['dst']} — LATENT 표지 확인"))
             if le.get("status") != "LATENT":
                 out.append(F("latent_as_observed", "ERROR", cid, "latent edge status가 LATENT가 아님"))
-            if le.get("edge_type") == "CAUSES" and le["src"].startswith("ENV"):
-                out.append(F("environmental_leakage", "ERROR", cid, "환경 → CAUSES"))
+            if le.get("edge_type") == "CAUSES":
+                out.append(F("causal_inflation", "ERROR", cid, f"CAUSES edge {le['src']}->{le['dst']}"))
+            elif le.get("edge_type") not in EDGE_TYPES:
+                out.append(F("unsupported_edge", "ERROR", cid, f"허용되지 않은 edge type {le.get('edge_type')}"))
+            if le["src"] in layer and layer[le["src"]] == "ENVIRONMENT" and le.get("edge_type") != "CONTEXT_SUPPORTS":
+                out.append(F("environmental_leakage", "ERROR", cid, "환경 node에서 CONTEXT_SUPPORTS 아닌 latent edge"))
+            if le.get("edge_type") == "RESPONSIBILITY_LINK" and le["dst"] in layer and layer[le["dst"]] != "ROYAL_JUDGMENT":
+                out.append(F("causal_inflation", "ERROR", cid, f"latent RESPONSIBILITY_LINK가 판단 아닌 observed node {le['dst']}로"))
         for p in c.get("audit_attestation", "").split("|"):
             if p and p not in prop_ids:
                 out.append(F("provenance", "ERROR", cid, f"audit prop {p} 없음"))
@@ -453,12 +482,26 @@ def audit3(nodes, edges, frozen_hash, current_hash, gaps, candidates, props, wor
         env_only = c.get("support_basis") == "ENVIRONMENTAL_CONTEXT"
         if env_only and any(ln.get("individual_level") for ln in c["latent_nodes"]):
             out.append(F("environmental_leakage", "ERROR", cid, "환경만으로 개인 수준 사건 생성"))
+        if env_only and c["overall"] in {"HIGH", "MEDIUM"}:
+            out.append(F("environmental_leakage", "ERROR", cid, "환경 context만으로 MEDIUM 이상"))
         inst_only = c.get("support_basis") == "INSTITUTIONAL_COMPATIBILITY"
         if inst_only and c["overall"] in {"HIGH", "MEDIUM"}:
             out.append(F("institutional_overreach", "ERROR", cid, "제도 compatibility만으로 MEDIUM 이상"))
+        if (env_only or inst_only) and c["overall"] == "LOW":
+            out.append(F("support_basis_cap", "INFO", cid, f"{c['support_basis']}만 근거 → LOW 상한 적용"))
+        conds = set(filter(None, c.get("identity_conditions", "").split("|")))
+        if conds and c["overall"] == "HIGH":
+            out.append(F("identity_forcing", "ERROR", cid, f"미확정 동일성 {sorted(conds)}에 기대는데 HIGH"))
+        text = " ".join([c["label"], c["description"]] + [ln["text"] for ln in c["latent_nodes"]])
+        for iid in sorted(_identity_needs(text) - conds):
+            out.append(F("identity_forcing", "ERROR", cid, f"서술이 {iid} 동일성에 기대는데 가정·조건에 없음"))
+        if c.get("audit_attestation") and not c.get("supports"):
+            out.append(F("audit_only_support", "INFO", cid, "confirmed 지지 없이 05 흔적만 있음 — LATENT 유지"))
     for g, cs in by_gap.items():
         if not 1 <= len(cs) <= 5:
             out.append(F("candidate_budget", "ERROR", g, f"후보 {len(cs)}개 (허용 1~5)"))
+    for g in gap_ids - set(by_gap):
+        out.append(F("candidate_budget", "ERROR", g, "후보 없음"))
     if worlds:
         cand = {c["candidate_id"]: c for c in candidates}
         for w in worlds:
@@ -470,4 +513,32 @@ def audit3(nodes, edges, frozen_hash, current_hash, gaps, candidates, props, wor
             gs = [cand[b]["gap_id"] for b in w["latent_bridges"] if b in cand]
             if len(gs) != len(set(gs)):
                 out.append(F("world_integrity", "ERROR", w["world_id"], "한 gap에 후보 2개 이상"))
+            if not w.get("rejected"):
+                for b in w["latent_bridges"]:
+                    if b in cand and cand[b]["contradiction_risk"] == "HIGH":
+                        out.append(F("world_integrity", "ERROR", w["world_id"], f"retained world가 대조용 후보 {b} 사용"))
+            from stage5_worlds import CONFLICT_PAIRS
+            for a, b, why in CONFLICT_PAIRS:
+                if a in w["latent_bridges"] and b in w["latent_bridges"]:
+                    out.append(F("world_integrity", "ERROR", w["world_id"], f"상충 후보 {a}+{b}"))
+            if w["latent_bridges"] and "[L]" not in w.get("narrative", ""):
+                out.append(F("latent_as_observed", "ERROR", w["world_id"], "서술에 [L] 표지 없음"))
+            n_l = w.get("narrative", "").count("[L]")
+            if n_l < len(w["latent_bridges"]):
+                out.append(F("latent_as_observed", "WARN", w["world_id"], f"[L] 표지 {n_l}개 < bridge {len(w['latent_bridges'])}개"))
+            for fld in ("narrative", "story_implication"):
+                txt = w.get(fld, "")
+                for iid in sorted(_identity_needs(txt)):
+                    if iid not in txt:
+                        out.append(F("identity_forcing", "ERROR", w["world_id"], f"{fld}가 {iid} 동일성을 표시 없이 사용"))
+        for i, a in enumerate(worlds):
+            for b in worlds[i + 1:]:
+                pa = {cand[x]["gap_id"]: x for x in a["latent_bridges"] if x in cand}
+                pb = {cand[x]["gap_id"]: x for x in b["latent_bridges"] if x in cand}
+                diff = sum(pa.get(g) != pb.get(g) for g in gap_ids)
+                if diff < 2:
+                    out.append(F("world_integrity", "ERROR", f"{a['world_id']}/{b['world_id']}", f"차이 gap {diff}개 < 2"))
+        out.append(F("world_integrity", "INFO", "worlds",
+                     f"world {len(worlds)}개 (retained {sum(not w.get('rejected') for w in worlds)}, "
+                     f"rejected {sum(bool(w.get('rejected')) for w in worlds)}) — 쌍별 gap 차이 ≥2 확인"))
     return out

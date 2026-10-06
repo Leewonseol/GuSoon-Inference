@@ -376,11 +376,11 @@ IDENTITY_REGISTER = [
     dict(identity_id="ID09", surface_a="CF030 '당시 장계'", surface_b="이형원 5/12 장계(CF027)",
          status="ACCEPTED_BY_PROVENANCE", context="같은 기사 SRC3_001(제목: 이형원 장계 및 정조 처분).",
          referenced_facts="CF030|CF027"),
+    dict(identity_id="ID10", surface_a="풍각 김생원 / 흥덕 김생원", surface_b="김명신 / 김갑득",
+         status="DOCUMENTED", context="CF022 DOCUMENTED_SOURCE_IDENTIFICATION.", referenced_facts="CF022"),
     dict(identity_id="ID11", surface_a="'원돌' (CF020 '원돌 등의 이름')", surface_b="정원돌 (CF009·CF016)",
          status="UNRESOLVED", context="이름 일부가 겹치지만 confirmed 문장은 같은 사람이라고 하지 않는다.",
          referenced_facts="CF020|CF009|CF016"),
-    dict(identity_id="ID10", surface_a="풍각 김생원 / 흥덕 김생원", surface_b="김명신 / 김갑득",
-         status="DOCUMENTED", context="CF022 DOCUMENTED_SOURCE_IDENTIFICATION.", referenced_facts="CF022"),
 ]
 
 # 인식 수준 floor 계산용 순위(낮을수록 약함). 서로 다른 종류의 기록을 우열로 매기려는 것이 아니다.

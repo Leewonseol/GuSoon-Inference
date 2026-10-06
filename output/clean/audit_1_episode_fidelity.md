@@ -30,7 +30,7 @@ _없음_
 ### INFO
 - `clause_split` **CF040** — 2개 절로 분할 — 합치면 원문 전체를 덮음
 - `clause_split` **CF045** — 2개 절로 분할 — 합치면 원문 전체를 덮음
-- `over_merge` **EP09** — 허용된 혼합 {'TESTIMONY', 'IDENT'} — 근거: 지시 행위와 지시 대상의 사료 식별은 같은 문장 단위로 묶는다. 실행(EP11)은 분리.
+- `over_merge` **EP09** — 허용된 혼합 ['IDENT', 'TESTIMONY'] — 근거: 지시 행위와 지시 대상의 사료 식별은 같은 문장 단위로 묶는다. 실행(EP11)은 분리.
 - `clause_prop_alignment` **EP26** — CF040 절 → V3P0101
 - `clause_prop_alignment` **EP27** — CF040 절 → V3P0105
 - `clause_prop_alignment` **EP31** — CF045 절 → V3P0136
@@ -85,10 +85,40 @@ _없음_
 
 | 대상 | 검사 | 판정 | 근거 |
 |---|---|---|---|
+| CF001–CF050 → EP01–EP37 | omission / unsupported_episode | PASS | CF 50개가 모두 1개 이상 episode에 속하고, episode 37개가 모두 CF로 역추적된다. unsupported episode 0. CF가 참조하지 않는 05 prop 83개는 §5에 목록만 두고 node로 쓰지 않았다. |
+| EP08 (CF020) | semantic_strengthening | PASS | summary가 '풍각 김상제도 극히 수상하다고 말했고'를 그대로 둔다. '범인 지목'·'고발'로 바꾸지 않았고 caution에 '범인 지목이 아님'을 적었다. |
+| EP07 (CF017) | semantic_strengthening | PASS | '한 비장의 지휘에 따라 거짓으로 꾸며 말했다'를 유지했다. 무엇을 거짓으로 말했는지(누구를 지목했는지)는 원문에 없으므로 '거짓 지목'으로 쓰지 않았다. |
+| EP12 (CF018) | semantic_weakening (부인 범위 확대) | PASS | '은밀히 사주한 일은 없다'를 유지했다. '어떤 사주도 없었다'로 넓히지 않았고, '남은 밥을 준 사실은 인정'도 함께 남겨 인정과 부인의 경계를 지켰다. |
+| EP04 '조계완 등' · EP07 '김흥득 등' · EP08 '원돌 등' | closed_set | PASS | 세 '등'이 summary에 그대로 남는다. 05 set_status(V3P0080 OPEN_SET_EXPLICIT_MEMBERS, V3P0096 OPEN_SET)와 일치한다. EP07 caution은 김명신이 명시 명단에 없지만 열린 목록이라 배제도 확정하지 않는다고 적었다. |
+| EP13 '무고한 평민들' · EP21 '여러 죄수' | closed_set | PASS | 05 V3P0007·V3P0040은 OPEN_SET이다. summary는 복수 표현을 유지하고 caution에 김명신 포함 여부를 확정하지 않는다고 적었다. '김명신이 형벌을 받았다'는 문장은 어디에도 만들지 않았다. |
+| EP09·EP11 (공초의 '병사') | identity_forcing (ID01, 금지) | PASS | summary는 '병사'만 쓰고 이광섭으로 치환하지 않았다. 이광섭은 원문에 이름이 있는 EP14(CF025)·EP30(CF044)·EP34(CF047)에만 나온다. |
+| EP07 '한 비장' | identity_forcing (ID02, 금지) | PASS | 자미덕 진술의 '한 비장'을 한재욱으로 바꾸지 않았다. 한재욱 공초(EP12)와의 충돌 edge OE007은 condition=ID02일 때만 성립한다. |
+| EP35 '한가' | identity_forcing (ID03, 금지) | PASS | 처분문 표면형 '병영 비장으로 표기된 한가'를 유지했다(CF048 notes). 처분 근거 행위는 confirmed set에 없어 G09 gap으로 넘겼다. |
+| '병영의 하급 보조자' | identity_forcing (ID04, 금지) | PASS | 이 표현은 05(이조원 V3P0026·V3P0027·V3P0124)에만 있다. confirmed set에 없으므로 episode·edge 어디에도 쓰지 않았다. |
+| EP08 '풍각 김상제' · EP29 '병영의 염탐 담당자' | identity_forcing (ID05·ID06) | PASS | EP08은 '풍각 김상제'를 김명신으로, EP29는 '염탐 담당자'를 유제희로 바꾸지 않았다. 05 V3P0095의 object 필드(김명신)는 audit용 주석이라 summary에 반영하지 않았다. 두 node를 잇는 OE071은 condition=ID05·ID06이다. |
+| EP04 '철편 네 개' · EP30 '철퇴 네 개' | identity_forcing (ID07) | PASS | 물건 이름과 행위자(이진욱: 한재욱이 만들어 줌 / 정조: 이광섭이 만들게 함)를 각 원문대로 두었다. 대응 edge OE080은 condition=ID07이다. |
+| EP08 '원돌 등' ↔ EP04·EP07 '정원돌' | identity_forcing (ID11) | PASS (수정 후) | Stage 4 준비 중 찾은 미등록 동일성이다. summary는 원문 그대로였지만 동일성 대장에 없었다. ID11(UNRESOLVED)을 추가하고 EP08 caution과 identity 검사 규칙에 넣은 뒤 Audit 1을 다시 돌렸다. |
+| EP02 (CF004·CF005) | epistemic_collapse (중첩 진술) | PASS | layer=NESTED_TESTIMONY, epistemic_floor=RECORDED_NESTED_TESTIMONY. '명업은 나복이 … 말했다고 진술했다'로 이중 귀속을 유지했다. 30여 명·횃불·지세대감은 CF005 notes대로 caution에서 객관적 사실이 아니라고 적었다. |
+| EP09 (CF021 + CF022) | over_merge / epistemic_collapse | PASS | 진술(이진욱)과 사료 식별(CF022)을 한 episode로 묶었지만 floor는 더 약한 RECORDED_TESTIMONY다. 지시(EP09)와 실행(EP11)은 분리했다. 허용 혼합 {TESTIMONY, IDENT}로 INFO 처리했다. |
+| CF040 → EP26·EP27, CF045 → EP31·EP32 | over_merge (절 분할) | PASS | 판단 주체가 다른 홍대협(official)과 정조(royal)의 경계에서만 나눴다. 두 절은 원문 substring이고 합치면 원문 전체를 덮는다. 05 대조: CF040 절 → V3P0101(홍대협)·V3P0105(정조), CF045 절 → V3P0136(홍대협)·V3P0146(정조). |
+| EP27 (CF040 정조 절 + CF041) | over_merge | PASS | 같은 주체(정조)·같은 날·같은 기사(SRC3_006)·같은 사인/처우 쟁점이다. 판단 대상이 '부처'(아내 포함)로 넓어진 점을 summary와 caution에 남겼다. |
+| EP27 (CF041) ↔ EP13 (CF027) | semantic 긴장 보존 | PASS | 5/12 장계의 '구금·조사'와 6/13 정조의 '평범한 신문도 받지 않았다'를 어느 쪽으로도 맞추지 않았다. CF041 notes대로 royal judgment 자체로 보존하고, 긴장은 OE062(CONTRADICTS_AT_CLAIM_LEVEL, PARTIAL_TENSION)로 남겼다. CF028의 열린 집합은 충돌 근거로 쓰지 않았다. |
+| EP29 (CF043) · EP28 (CF042) | semantic_strengthening | PASS | '책임을 연결해 판단했다'를 유지했고 '구순 때문에 죽었다'(직접 인과)로 바꾸지 않았다. 정조의 직접 인과 유보('십분 확실하다고 할 수 없다')는 EP28로 따로 두었다. |
+| EP32 (CF045 정조 절) | semantic_strengthening | PASS | '스스로 만들어냈다는 죄는 인정하지 않았다'를 '구순은 지세와 무관'으로 강화하지 않았다. |
+| EP15 (CF030) · EP24 (CF038) · EP13 (CF027) | semantic_weakening | PASS | '도난 자체가 없었다는 방향을 받아들였다'의 '방향', '약간의 실제 도난'·'보통 좀도둑 수준', '달포 이상'·'확실한 장물'을 모두 유지했다. |
+| EP01·EP04·EP05·EP06 | semantic_weakening (어휘 보존율 WARN 0.71–0.79) | PASS (수동) | 원문과 한 행씩 대조했다. 빠진 토큰은 행마다 반복되는 진술 어미('진술했다', '-다고')와 '자신'을 진술자 이름(이진욱·자미덕)으로 바꾼 부분뿐이다. 여러 행을 '…의 진술에 따르면'으로 한 번만 귀속했기 때문이다. 행위·대상·한정어는 모두 남아 있어 왜곡이 없다. |
+| EP01 (CF001–CF003) · EP04 (CF007–CF010) | temporal_conflation | PASS | EP01은 친숙·왕래(2월 초순 이전) → 힐책(2월 초순) → 단절(그 이후)의 순서를 summary 어순으로 보존한다. EP04는 28일 밤의 호출·지시와 28일 밤~29일 새벽의 철편 제작을 한 출동 준비 단계로 묶고 시간 범위(228–229)를 남겼다. |
+| EP12 · EP23 | temporal_conflation (진술 시점 vs 내용 시점) | PASS | 공초 진술 행위는 안핵 기간(5/28–6/13)으로, 진술 내용 속 사건 시점은 각 episode의 occurrence_text로 따로 기록했다(preflight §4). |
+| AUDIT 1 1차 실행 ERROR 2건 (EP15·EP32) | epistemic_collapse 오탐 | 오탐 확인 | EP15 '받아들였다', EP32 '인정하지 않았다'는 원문 그대로의 royal judgment 동사다. 검사기의 기록 행위 어휘에 없어 ERROR가 났다. 내용은 고치지 않고 검사기 정규식에 '받아들'·'인정'을 추가했다. |
 
 ## 4. 수정 이력 (Audit → 수정 → 재검사)
 
-_수정 이력 없음_
+| 회차 | 발견 | 조치 |
+|---|---|---|
+| 1차 실행 | ERROR 2건: EP15 '받아들였다', EP32 '인정하지 않았다'가 epistemic_collapse로 잡힘. 검사기의 기록 행위 어휘에 빠져 있던 오탐 | episode 내용은 그대로 두고 검사기 정규식에 '받아들'·'인정'을 추가 |
+| 2차 실행 | ERROR 0, WARN 4 (EP01·EP04·EP05·EP06 원문 어휘 보존율 0.71–0.79) | 원문 대조 수동 검토: 빠진 토큰은 진술 어미와 '자신'→진술자 이름뿐이라 왜곡 없음 → PASS (§3) |
+| Stage 4 준비 중 | 미등록 동일성 발견: CF020 '원돌 등' ↔ CF009·CF016 '정원돌' | IDENTITY_REGISTER에 ID11(UNRESOLVED) 추가, EP08 caution 보강, identity 검사 규칙에 (원돌, 정원돌, ID11) 추가 |
+| 3차 실행 (ID11 반영) | ERROR 0, WARN 4 (같은 4건). 이후 모든 전체 실행에서 같은 결과 | 수동 판정 유지 → PASS |
 
 ## 5. confirmed set 밖의 사료 내용 (05에만 있음 — DAG node로 쓰지 않음)
 
