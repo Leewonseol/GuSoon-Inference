@@ -1,0 +1,23 @@
+historical_fact_id,fact_type,subject,predicate,object,domain,referent_scope,derivation_basis,manual_review_required
+H_GUSUN_THEFT_OCCURRED,EVENT_OCCURRENCE,구순 집,도난이 실제로 발생함,,"{TRUE, FALSE}",구순이 정소한 구순 집 도난(구순 사건의 도난; 1793-02-22 밤으로 진술됨),THEFT_REALITY: 5/12·5/27·6/13 판단과 구순·나복 서술이 같은 사건의 도난 여부를 다룸,NO
+H_GUSUN_LARGE_ARMED_BAND_INTRUDED,EVENT_ATTRIBUTE,구순 집,큰 무리의 화적(도적떼)이 들었음,,"{TRUE, FALSE}",같은 도난 사건의 침입자 규모·성격,"나복 '30여 명'(EC0067), 홍대협 '큰 화적 사건이 아님'(EC0132), 이조원 '화적 설명 의심'(EC0024)",YES
+H_KIM_MYEONGSIN_DIED,EVENT_OCCURRENCE,김명신,사망함,,"{TRUE, FALSE}",구순 사건의 김명신 사망(한 사람은 한 번 죽음),이형원·이조원·윤노동이 각각 사망을 기록(EC0007·EC0036·EC0053),NO
+H_KIM_DETAINED_BY_BYEONGYEONG,EVENT_OCCURRENCE,김명신,병영에 구금됨,,"{TRUE, FALSE}",구순 사건으로 인한 김명신 구금,이형원 '달포 이상 구금'(EC0004); 사망 시점 귀속(EC0008·EC0055)의 전제,NO
+H_KIM_DEATH_AFTER_DETENTION,TEMPORAL_ATTRIBUTE,김명신 사망,구금 이후에 일어남,,"{TRUE, FALSE}",김명신 사망과 구금의 선후,"이형원 '구금·조사 뒤'(EC0008), 윤노동 '체포·구금 뒤'(EC0055)",NO
+H_KIM_DEATH_IN_BYEONGYEONG_PRISON,PLACE_ATTRIBUTE,김명신 사망,병영 옥에서 일어남,병영 옥,"{TRUE, FALSE}",김명신 사망 장소,이조원(EC0037),NO
+H_KIM_DEATH_CAUSE_DISEASE,CAUSE_ATTRIBUTE,김명신 사망,직접 사인이 병(질병),,"{TRUE, FALSE}",김명신 직접 사인,"윤노동 '병'(EC0054), 홍대협 '질병'(EC0138) — 병/질병을 같은 술어로 봄(검토 필요)",YES
+H_KIM_DEATH_CAUSE_EPIDEMIC,CAUSE_ATTRIBUTE,김명신 사망,직접 사인이 전염병,,"{TRUE, FALSE}",김명신 직접 사인,정조(EC0144),NO
+H_KIM_DEATH_RESPONSIBILITY_WRONGFUL_CHARGE,RESPONSIBILITY_ATTRIBUTE,김명신 사망,구순이 구성한 죄안에 책임이 있음,,"{TRUE, FALSE}",김명신 사망의 책임 원인,이조원(EC0038)을 책임 귀속으로 읽을 때,YES
+H_KIM_DEATH_DIRECT_CAUSE_CHARGE_NOT_DISEASE,CAUSE_ATTRIBUTE,김명신 사망,직접 사인이 질병(전염병 포함)이 아니라 죄안에 따른 처우 자체,,"{TRUE, FALSE}",김명신 직접 사인,이조원(EC0038)을 직접 사인 주장으로 읽을 때,YES
+H_KIM_WIFE_DIED,EVENT_OCCURRENCE,김명신의 아내,사망함,,"{TRUE, FALSE}",김명신 아내의 사망,이조원(EC0039),NO
+H_KIM_WIFE_DEATH_CAUSE_EPIDEMIC,CAUSE_ATTRIBUTE,김명신 아내 사망,직접 사인이 전염병,,"{TRUE, FALSE}",김명신 아내 직접 사인,정조(EC0145); 이조원 '따라 죽음'(EC0040)의 해석에 따라 반대 claim,YES
+H_KIM_WIFE_DIED_AFTER_KIM,TEMPORAL_ATTRIBUTE,김명신 아내 사망,김명신 사망 이후에 일어남,,"{TRUE, FALSE}",두 사망의 선후,이조원(EC0040),YES
+H_JISE_TERM_PRIOR_USE,STATE,지세 호칭(지세랑 포함),이번 사건 이전에도 도적들이 쓰던 말임,,"{TRUE, FALSE}",지세 호칭의 기원,"홍대협(EC0047), 정조(EC0148)",NO
+H_JISE_TERM_COINED_BY_GUSUN,EVENT_OCCURRENCE,구순,지세 호칭을 새로 지어냄,,"{TRUE, FALSE}",지세 호칭의 기원,"이조원(EC0031), 정조(EC0149) — 각 claim의 의미 해석에 따라 연결",YES
+H_HANBIJANG_DIRECTED_JAMIDEOK_FALSE_STATEMENT,EVENT_OCCURRENCE,한 비장,대질 때 자미덕의 거짓 발언을 지휘함,자미덕,"{TRUE, FALSE}",자미덕–이집거 대질,자미덕(EC0114),NO
+H_HANBIJANG_CONDITIONAL_RELEASE_OFFER,EVENT_OCCURRENCE,한 비장,특정인들을 큰 도적이라 말하면 자미덕과 남편을 석방하겠다는 조건문을 말함,자미덕,"{TRUE, FALSE}",한 비장의 회유 발화(UG_P0081),자미덕(EC0109 조건 + EC0110 약속),NO
+H_HAN_JAEUK_INSTIGATED_JAMIDEOK,EVENT_OCCURRENCE,한재욱,자미덕을 사주함,자미덕,"{TRUE, FALSE}",자미덕 공초에 대한 사주,한재욱 부인(EC0126); 한 비장·변가의 처 동일성이 참이면 다른 claim과 연결,YES
+H_HAN_JAEUK_COAXED_BYEONGA_CHEO,EVENT_OCCURRENCE,한재욱,변가의 처를 꾀어 공초를 내게 함,변가의 처,"{TRUE, FALSE}",윤노동이 말한 회유,"윤노동(EC0058, EC0060)",NO
+H_JAMIDEOK_FALSE_STATEMENT_AT_CONFRONTATION,EVENT_OCCURRENCE,자미덕,이집거와 대질할 때 거짓으로 꾸며 말함,,"{TRUE, FALSE}",자미덕–이집거 대질 중 발언,자미덕(EC0113),NO
+H_JAMIDEOK_IJIPGEO_CONFRONTATION,EVENT_OCCURRENCE,자미덕·이집거,서로 대질함,,"{TRUE, FALSE}",자미덕–이집거 대질,자미덕(EC0112),NO
+H_HAN_JAEUK_ACQUAINTED_WITH_GUSUN,STATE,한재욱,구순과 아는 사이였음,구순,"{TRUE, FALSE}",한재욱–구순 관계,한재욱 부인(EC0127); 하급 보조자=한재욱이면 이조원의 '가객' 주장(EC0043)과 연결,YES
