@@ -1,7 +1,0 @@
-question_id,question,answer,membership_value,evidence_ids,evidence_text,caveat
-Q1,김흥득은 유제희 명단에 있었는가?,PARTIAL: event 필드에만 있음,DIRECT (EVENT_FIELD_ONLY),AT0122;AT0135,"AT0122.target_or_content '변지돌·변재돌·정원돌·김명신·김성손·김흥득·김흥길'에 있음. 그러나 ATT0122 명제는 '한재욱은 유제희가 여러 사람의 이름을 적었다고 진술했다'로 이름이 없고, 유제희 본인 진술 ATT0135는 '김명신을 원돌 등'만 언급. '김흥득'은 어떤 attestation 명제에도 나오지 않음.",명단 이름의 출처가 attestation으로 추적되지 않음(Audit E: AT0122 target UNSUPPORTED).
-Q2,김흥득이 실제로 체포되거나 구금됐다는 직접 근거가 있는가?,NO,UNKNOWN,,김흥득은 AT0122 target 외 어떤 event/attestation/relation에도 나오지 않음.,명단에 있으니 체포됐을 것이라는 추론 금지.
-Q3,자미덕 진술의 '특정 인물들'이 누구인지 현재 CSV에 이름이 남아 있는가?,NO,UNKNOWN,AT0116,"ATT0116 '…특정 인물들을 큰 도적이라고 말하면…', AT0116 target '여러 사람을 큰 도적이라 말하면…'. 이름 없음. AT0116에 연결된 relation은 REL0080(→AT0131 부인)뿐.",target('여러 사람')과 명제('특정 인물들')의 표현도 서로 다름.
-Q4,이집거가 그 '특정 인물들' 중 하나라고 직접 적힌 근거가 있는가?,NO,UNKNOWN,AT0116;AT0118;AT0119;AT0131;REL0032;REL0080;REL0081,"AT0116과 AT0118/AT0119 사이 직접 relation 없음. 유일한 경로는 AT0116–REL0080–AT0131–REL0081–AT0119–REL0032–AT0118로, 같은 부인에 대한 충돌 연결일 뿐 대상자 동일성 relation이 아님.",REL0032 basis의 '거짓 지목'은 원문보다 강한 표현(Audit F NEW_INFORMATION_ADDED)이라 근거로 쓰면 안 됨.
-Q5,이집거는 유제희 명단에 포함되어 있는가?,NO (명시적으로 포함되지 않음),UNKNOWN (열린 명단),AT0122;AT0135,"AT0122 7명 명단에도, ATT0135 '김명신을 원돌 등'에도 이집거 없음.","명단 attestation이 '여러 사람', '등'으로 열린 표현이라 포함되지 않았다고 단정할 수도 없음."
-Q6,이집거가 어떤 경로로 수사 대상이 되었는지 현재 CSV가 설명하고 있는가?,NO,UNKNOWN,AT0118;AT0119,이집거는 ATT0118·ATT0119에서 자미덕의 대질 상대로만 등장. 체포 명령·체포·구금·신문·명단·지목 행이 하나도 없음.,'수사 대상이었다'는 전제 자체도 CSV에서 확인되지 않음.

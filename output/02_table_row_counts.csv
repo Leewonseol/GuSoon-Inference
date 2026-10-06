@@ -1,6 +1,0 @@
-table_name,source_file,sha256,csv_physical_lines,csv_header_columns,csv_data_rows,csv_ragged_rows,duckdb_rows,duckdb_columns,row_count_match
-events,data/raw/gusun_events_v1.csv,96b4441c71c6aa7407c7031899c5efb18ad4125a95526493e214d7f92f1ad0d2,173,18,172,0,172,18,TRUE
-event_relations,data/raw/gusun_event_relations_v1.csv,e585e6c48d14831777f05d86394e03743a1df163ff770d8b78c6750efd821e5b,92,10,91,0,91,10,TRUE
-attestations,data/raw/gusun_attestations_v1.csv,cd57d526e15ed0c110078173d3ab9662759a84bdc836330c507e4d67e5034dfb,173,13,172,0,172,13,TRUE
-event_families,data/raw/gusun_event_families_v1.csv,8b3c5566858d9669607dd6e4d316c94ce0769b29b6d8b06dd3ebd3e5688ab9c1,43,7,42,0,42,7,TRUE
-source_records,data/raw/gusun_source_records_v1.csv,e2acb1ab37d85753722374f064fcef2d9cdd0c1033e5f897b3d413e6fcc545f9,5,9,4,0,4,9,TRUE
