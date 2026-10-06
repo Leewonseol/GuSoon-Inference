@@ -1,0 +1,21 @@
+surface_form,candidate_entity,source_prop_ids,resolution_status,basis,confidence,manual_review_required
+풍각 김생원,김명신,P0066|P0067|P0070,DIRECTLY_IDENTIFIED_IN_SOURCE,"P0067(SRC2_006): '풍각 김생원, 김명신으로 식별됨'. 식별 문장이 이진욱 진술인지 기사 서술인지는 CSV에서 불명.",HIGH,YES
+흥덕 김생원,김갑득,P0066|P0068,DIRECTLY_IDENTIFIED_IN_SOURCE,"P0068(SRC2_006): '흥덕 김생원, 김갑득으로 식별됨'. 식별 주체는 P0067과 같은 문제.",HIGH,YES
+풍각 김상제,김명신,P0096,STRONGLY_SUPPORTED,"같은 기록(SRC2_006)에서 '풍각'+김씨가 P0067의 풍각 김생원=김명신과 맞고, 상제(상중인 사람) 표현이 P0072 '풍각의 상주'와 부합. source가 김상제=김명신을 직접 말하지는 않음. raw object_or_content만 '김명신'으로 해소.",MEDIUM,YES
+풍각의 상주,김명신,P0072,STRONGLY_SUPPORTED,같은 진술자(조계완)의 P0070 '풍각 김생원을 잡으러 가는 길'과 같은 장면이며 P0067에서 풍각 김생원=김명신. 직접 동일시는 없음.,MEDIUM,YES
+원돌,정원돌,P0097,STRONGLY_SUPPORTED,"'원돌'이 정원돌의 이름 부분과 같고, 같은 유제희 명단을 다룬 P0087에 정원돌이 명시. 직접 동일시는 없음. raw named_entities만 '정원돌'로 해소.",MEDIUM,YES
+한가(병영 비장 한가),한재욱,P0113,STRONGLY_SUPPORTED,같은 기록(SRC2_006) 처분문. 한재욱은 병영 측에서 유제희를 내보내고(P0086) 자미덕을 방에 불러 밥을 준 것을 인정(P0089)했고 성씨가 일치. source가 한가=한재욱을 직접 말하지 않음. raw named_entities만 '한재욱'으로 해소.,MEDIUM,YES
+한 비장,한재욱,P0079|P0080|P0081|P0082|P0084,CANDIDATE,자미덕이 말한 한 비장의 행위(방으로 불러들임·떡과 밥)가 한재욱의 부분 인정(P0089)과 겹침. 그러나 '한 비장'이 성씨 한(韓)인지 '어떤 비장'인지 CSV만으로 불확정.,MEDIUM,YES
+한 비장,한가(P0113의 병영 비장 한가),P0079|P0080|P0081|P0082|P0084|P0113,CANDIDATE,둘 다 '비장'이며 '한'이 붙음. P0113 notes가 연결을 언급하나 처분문 표현은 '한가'.,MEDIUM,YES
+재돌,변재돌,P0062|P0075|P0080,STRONGLY_SUPPORTED,P0062: 재돌=변지돌의 아우(형제이므로 성씨 변 추정). P0087 명단에 변지돌·변재돌이 나란히 기재. 직접 동일시 없음(person_membership도 별도 검토로 둠).,MEDIUM,YES
+남편(자미덕과 남편),재돌,P0081,DIRECTLY_IDENTIFIED_IN_SOURCE,"P0080 '자미덕의 남편 재돌', P0062 '재돌의 처 자미덕'(같은 기록 SRC2_006).",HIGH,NO
+변가의 처,자미덕,P0043,CANDIDATE,"지지: 자미덕은 변지돌의 아우 재돌의 처(P0062)라 '변가의 처'에 해당할 수 있고, 한재욱 관련 회유 주장(P0081 등)과 주제가 겹침. 반대: 다른 기록(SRC2_005 윤노동 별단)이며, P0081 명시 목록에 김명신이 없고 P0092는 '모른다' 응답. 변지돌의 처 등 다른 '변가의 처' 가능성 배제 불가.",LOW,YES
+병영의 하급 보조자,한재욱,P0027|P0028,UNRESOLVED,동일시할 직접·간접 근거 없음(P0028 notes도 동일시하지 않음).,NONE,YES
+병영의 하급 보조자,유제희,P0027|P0028,UNRESOLVED,유제희가 병영 아전(P0086)이라는 점 외에 근거 없음.,NONE,YES
+아전(아전의 거짓 보고),유제희,P0101,CANDIDATE,유제희가 병영 아전으로 명단을 적어 올림(P0086·P0087·P0097). 다른 아전 배제 불가.,MEDIUM,YES
+병영 비장(병영 비장 지휘),한가(P0113의 병영 비장 한가),P0103,CANDIDATE,같은 기록(SRC2_006)에서 처분 대상이 '병영 비장 한가'. 이 row의 비장은 이름이 없음.,LOW,YES
+병영 비장(수사를 병영 비장에게 맡김),한가(P0113의 병영 비장 한가),P0012,UNRESOLVED,다른 기록(SRC2_001 이형원 장계)이며 비장 이름 없음. 연결 근거 없음.,NONE,YES
+병사,이광섭,P0069|P0074,STRONGLY_SUPPORTED,같은 기록(SRC2_006)의 P0066에 '병사 이광섭'이라는 동격 표현이 있음. 이 두 row 자체는 '병사'만 씀.,HIGH,NO
+병사,이광섭,P0027,STRONGLY_SUPPORTED,다른 기록(SRC2_002 이조원)이지만 같은 사건에서 병사로 불린 인물은 P0066의 '병사 이광섭'; P0013도 이광섭의 체포 판단을 다룸.,MEDIUM,YES
+장교 일행,이진욱 등 장교,P0063,STRONGLY_SUPPORTED,같은 진술자(이진욱)가 P0062에서 '이진욱 등 장교'가 자미덕을 잡았다고 한 뒤 이어서 '장교 일행'이 자미덕을 데리고 감. 집단 동일성은 직접 진술되지 않음.,MEDIUM,YES
+장교 일행,이진욱 등 장교,P0069,CANDIDATE,같은 진술자(이진욱)지만 다른 날짜(3월 4일)의 체포. 구성원이 같다는 근거 없음.,LOW,YES

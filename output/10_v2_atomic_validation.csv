@@ -1,0 +1,21 @@
+check_id,description,severity,detail
+A,모든 atomic의 parent_prop_id가 P0001~P0117 중 하나,PASS,
+B,117개 raw proposition 모두 최소 1개 atomic에 연결,PASS,raw=117 orphan=
+C,split YES 33건이 각각 2개 이상의 atomic을 가짐,PASS,yes=33 under=
+D,OPTIONAL/REVIEW row가 분리·변경되지 않음,PASS,optional_review=22 changed=
+E,부모에 없는 인물·날짜·장소가 추가되지 않음,PASS,
+F,P0081 open set·조건/약속 분리·shared_utterance_group 보존,PASS,group=UG_P0081 components=2
+G,P0084에서 거짓 지목 등 새 내용이 생성되지 않음,PASS,
+H,P0043에서 '변가의 처 = 자미덕'이 확정되지 않음,PASS,rows=3 er_status=CANDIDATE
+I1,1:1 copy의 subject/predicate가 부모와 동일,PASS,
+I2,1:1 copy object_or_content 변경은 surface form 복원(OBJECT_SURFACE)뿐,PASS,변경=P0066|P0096
+I3,claim_level·attestation_depth·embedded_speaker 정합,PASS,
+I4,claim_topic·conflict_group·set_status가 기존 vocabulary 안의 값,PASS,
+I5,분리된 부모의 자식들이 하나의 shared_utterance_group을 공유,PASS,
+I6,DIRECT 판정은 근거 row에 surface form과 후보가 함께 기재된 경우만,PASS,
+I7,식별 결과가 atomic object에 선반영되지 않음(P0066·P0096),PASS,
+I8,OBJECT_LEVEL_CLAIM row 미생성(역사적 사실 승격 없음),PASS,count=0
+I9,entity resolution 수동 검토 필요 행,INFO,18/20
+J1,derived table 행 수가 CSV와 일치,PASS,"{'atomic_propositions': 171, 'entity_resolution_candidates': 20, 'open_set_normalized': 15}"
+J2,DuckDB raw table 4개 내용 불변,PASS,
+J3,raw CSV SHA-256 불변,PASS,
