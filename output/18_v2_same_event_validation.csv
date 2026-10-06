@@ -1,0 +1,16 @@
+check_id,description,severity,detail
+S01,존재하지 않는 candidate 참조 0,PASS,
+S02,self-pair 0,PASS,
+S03,동일 pair 중복 0,PASS,pairs=1010
+S04,"polarity 손실 0 (SAME_OCCURRENCE는 AFFIRMED끼리만, DOUBTED를 모순 근거로 쓰지 않음)",PASS,
+S05,entity candidate를 자동 확정한 사례 0,PASS,
+S06,occurrence와 attribution을 같은 event로 오분류 0,PASS,
+S07,shared utterance component를 same occurrence로 오분류 0,PASS,
+S08,OPEN_SET 때문에 비구성원 추론 0 (open-set 근거 pair에서 CONTRADICTORY 없음),PASS,
+S09,relation 값이 정의된 집합 안,PASS,
+S10,raw conflict_group candidate가 모두 17 요약에 포함,PASS,
+S11,REVIEW_REQUIRED projection 3건은 candidate 없이 pending으로만 기록,PASS,
+S12,생성되지 않은 pair에 대한 override,PASS,
+S13,raw·기존 derived table 불변,PASS,
+S14,raw CSV SHA-256 불변,PASS,
+S15,projection-stage review pending,INFO,AP0002|AP0047|AP0126 — 이번 분석 제외
