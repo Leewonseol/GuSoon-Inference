@@ -1,12 +1,12 @@
 """Audit 1 / 2 / 3 — 원본 pack과 다시 비교하는 자동 검사.
 
 각 검사는 findings(dict: check, severity, target, message)를 낸다.
-severity: ERROR(통과 불가) | WARN(검토 필요, 수동 판정 기록) | INFO(보고만)
+severity: ERROR(통과 불가) | WARN(검토 필요 — disposition 없이는 통과 불가) | UNRESOLVED(사료 자체 모호성, 허용) | INFO(보고만)
 """
 import re
 from collections import defaultdict
 
-from stage1_episodes import EPISTEMIC_RANK, IDENTITY_REGISTER
+from stage1_episodes import EPISODES, EPISTEMIC_RANK, IDENTITY_REGISTER
 
 PERSON_NAMES = ["구순", "김명신", "명업", "나복", "이진욱", "한재욱", "조계완", "변지돌", "정원돌", "자미덕",
                 "재돌", "이집거", "김갑득", "김성손", "김흥득", "유제희", "김상제", "이광섭", "이문협", "이형원",
@@ -42,6 +42,38 @@ JUDGMENT_LAYERS = {"ROYAL_JUDGMENT", "ROYAL_JUDGMENT_AND_ORDER", "OFFICIAL_EVALU
                    "OFFICIAL_REPORT", "INSPECTOR_REPORT"}
 
 ETC_RE = re.compile(r"(?<=\S) 등(?=[\s을의에이과은는]|$)")
+
+# [regression] 원문 문장마다 붙은 인식 표지. summary에서 개수가 줄면 epistemic marker 삭제로 본다.
+EPISTEMIC_MARKERS = {
+    "진술": re.compile(r"진술했"), "보고": re.compile(r"보고했"), "평가": re.compile(r"평가했"),
+    "판단": re.compile(r"판단했"), "명": re.compile(r"명했|명하고"), "받아들": re.compile(r"받아들였"),
+    "윤허": re.compile(r"윤허했"), "청": re.compile(r"청했"), "식별": re.compile(r"식별된"),
+    "인정": re.compile(r"인정했|인정하지"), "차하": re.compile(r"차하했"), "복명": re.compile(r"복명하"),
+    "확정못함": re.compile(r"확정하지 못했"),
+}
+# [regression] 책임 판단 → 직접 사인 단정
+RESP_TO_CAUSE = [re.compile(p) for p in (
+    r"구순(?:이|의|으로)?[^.。]{0,25}(?:때문에|탓에|으로 인해|로 인해)[^.。]{0,12}(?:죽었|사망했)",
+    r"구순이[^.。]{0,25}(?:죽게 했|죽였|사망하게)",
+    r"(?:사인|사망 원인)[은는이]?[^.。]{0,15}구순")]
+# [regression] 환경 context → 개인 사실 단정
+ENV_TO_INDIVIDUAL = [re.compile(p) for p in (
+    r"(?:호서 전염병|전염병 창궐|E00\d|환경)[^.。]{0,30}(?:때문에|으로 인해|로 인해|원인)[^.。]{0,30}(?:김명신|아내|부처)",
+    r"(?:김명신|아내|부처)[^.。]{0,30}(?:호서 전염병|E00\d|환경)[^.。]{0,10}(?:때문에|으로 인해|로 인해)")]
+
+
+def text_regressions(text, source_text=""):
+    """책임→직접 인과, 환경→개인 사실 단정. 원문(source_text)에 같은 표현이 있으면 제외."""
+    hits = []
+    for rx in RESP_TO_CAUSE:
+        m = rx.search(text)
+        if m and m.group(0) not in source_text:
+            hits.append(("responsibility_to_causation", m.group(0)))
+    for rx in ENV_TO_INDIVIDUAL:
+        m = rx.search(text)
+        if m and m.group(0) not in source_text:
+            hits.append(("environment_to_individual_fact", m.group(0)))
+    return hits
 
 
 def F(check, severity, target, message):
@@ -186,6 +218,37 @@ def audit1(episodes, cf, props, sources):
             if nm in summ and nm not in joined:
                 out.append(F("identity_forcing", "ERROR", eid, f"원문에 없는 인물 '{nm}' 삽입"))
 
+        # [regression] epistemic marker 삭제: 표지별 개수 보존
+        for nm, rx in EPISTEMIC_MARKERS.items():
+            a, b = len(rx.findall(joined)), len(rx.findall(summ))
+            if b < a:
+                out.append(F("epistemic_marker_deletion", "ERROR", eid, f"'{nm}' 표지 원문 {a}회 → summary {b}회"))
+        # [regression] testimony → objective fact: 진술 문장마다 진술 귀속이 남아야 한다
+        n_testi = sum(1 for r, c in rows if FAMILY[r["confirmation_level"]] == "TESTIMONY")
+        if n_testi and len(re.findall(r"진술했", summ)) < n_testi:
+            out.append(F("testimony_to_fact", "ERROR", eid, f"진술 member {n_testi}개인데 summary의 '진술했' {len(re.findall(r'진술했', summ))}회"))
+        # [regression] actor substitution: 각 member의 진술·기록 주체가 summary에 남고, '자신'은 진술자 이외 인물로 바뀌지 않는다
+        for r, c in rows:
+            t = testifier(member_text(r, c))
+            if t and t not in ("해당",) and t not in summ:
+                out.append(F("actor_substitution", "ERROR", eid, f"{r['fact_id']} 주체 '{t}'가 summary에 없음"))
+            if "자신" in member_text(r, c) and "자신" not in summ:
+                out.append(F("actor_substitution", "ERROR", eid, f"{r['fact_id']}의 '자신'이 summary에서 치환됨 — 지시 대상 보존 필요"))
+        lead_src = testifier(member_text(rows[0][0], rows[0][1])) if rows else None
+        lead_sum = testifier(summ)
+        if lead_src and lead_sum != lead_src:
+            out.append(F("actor_substitution", "ERROR", eid, f"summary 첫 주어 '{lead_sum}' ≠ 원문 주체 '{lead_src}'"))
+        # [regression] occurrence date ↔ record date 혼동
+        recs = {parse_md(r["record_lunar_date"]) for r, _ in rows} - {None}
+        chron = " ".join(r["chronology"] + " " + r["occurrence_lunar_text"] for r, _ in rows)
+        for rd in recs:
+            rd_txt = f"1793-{rd // 100:02d}-{rd % 100:02d}"
+            if ep["t_min"] == rd and rd_txt not in chron and "공초" not in chron:
+                out.append(F("occurrence_record_confusion", "ERROR", eid, f"기록일 {rd_txt}을 발생 시점으로 사용"))
+        # [regression] 책임 → 직접 인과 / 환경 → 개인 사실
+        for chk, frag in text_regressions(summ + " " + ep.get("caution", ""), joined):
+            out.append(F(chk, "ERROR", eid, f"'{frag}'"))
+
         # 8. closed-set
         n_src = len(ETC_RE.findall(joined))
         n_sum = len(ETC_RE.findall(summ))
@@ -207,6 +270,16 @@ def audit1(episodes, cf, props, sources):
                     out.append(F("clause_prop_alignment", "ERROR", eid, f"{r['fact_id']} 절 주체 {actor}와 맞는 prop 없음"))
                 else:
                     out.append(F("clause_prop_alignment", "INFO", eid, f"{r['fact_id']} 절 → {','.join(match)}"))
+
+    # 사료 모호성으로 남긴 동일성 — UNRESOLVED (데이터에 condition·caution으로 보존)
+    for i in IDENTITY_REGISTER:
+        if i["status"] != "UNRESOLVED":
+            continue
+        refs = set(filter(None, i["referenced_facts"].split("|")))
+        eps = sorted({e["episode_id"] for e in episodes for f, _ in e["members"] if f in refs})
+        out.append(F("unresolved_identity", "UNRESOLVED", i["identity_id"],
+                     f"{i['surface_a']} ↔ {i['surface_b']} · 관련 episode {', '.join(eps) or '없음(DAG 미사용)'} · "
+                     f"unresolved_reason: {i['unresolved_reason']}"))
 
     # confirmed set 밖 사료 내용 (DAG 미반영)
     used = {p for r in cf for p in r["source_prop_ids"].split("|")}
@@ -332,7 +405,19 @@ def audit2(nodes, edges, episodes, feature_links, env_rows, edge_types, bases):
             if c not in iden:
                 out.append(F("identity_forcing", "ERROR", eid, f"알 수 없는 identity {c}"))
             elif iden[c]["status"] == "UNRESOLVED":
-                out.append(F("identity_forcing", "INFO", eid, f"조건부 edge — {c} 미확정 상태 유지"))
+                out.append(F("conditional_edge", "UNRESOLVED", eid,
+                             f"{c} 미확정 — edge는 condition으로만 성립 · unresolved_reason: {iden[c]['unresolved_reason']}"))
+        # [regression] 근거 문구가 두 표면형을 함께 쓰면 해당 identity가 condition이나 문구에 있어야 한다
+        etext = e["rationale"] + " " + e["caution"]
+        for iid in sorted(_identity_needs(etext) - conds):
+            if iid not in etext:
+                out.append(F("identity_forcing", "ERROR", eid, f"근거 문구가 {iid} 동일성에 기대는데 condition 없음"))
+        if "PARTIAL" in e["caution"]:
+            out.append(F("partial_tension", "UNRESOLVED", eid,
+                         "부분 충돌 — 원문 표현의 범위가 같은지 사료로 확정할 수 없어 충돌 강도를 PARTIAL로 보존 · unresolved_reason: "
+                         + e["caution"]))
+        for chk, frag in text_regressions(etext):
+            out.append(F(chk, "ERROR", eid, f"'{frag}'"))
 
         for srcset, dstset, msg in FORBIDDEN_DIRECT:
             if e["src"] in srcset and e["dst"] in dstset:
@@ -414,6 +499,15 @@ IDENTITY_TEXT_RULES = [
 FORBIDDEN_IDENTITIES = {"ID01", "ID02", "ID03", "ID04"}
 
 
+# [regression] 열린 목록 닫힘: CF016·CF020·05 OPEN_SET 명단의 인물을 3명 이상 나열하면서 '등'을 빼면 안 된다
+OPEN_LIST_NAMES = "정원돌|이집거|김갑득|김성손|김흥득|변지돌|변재돌|김흥길|원돌"
+OPEN_LIST_RE = re.compile(rf"((?:{OPEN_LIST_NAMES})(?:·(?:{OPEN_LIST_NAMES})){{2,}})(?!·)(?!\s*[\x27\x22\u2018\u2019\u201c\u201d]?등)")
+
+
+def open_set_closures(text):
+    return [m.group(1) for m in OPEN_LIST_RE.finditer(text)]
+
+
 def _identity_needs(text):
     return {iid for iid, a, b in IDENTITY_TEXT_RULES if a.search(text) and b.search(text)}
 
@@ -458,8 +552,9 @@ def audit3(nodes, edges, frozen_hash, current_hash, gaps, candidates, props, wor
             if le["src"] not in nid | lids or le["dst"] not in nid | lids:
                 out.append(F("dangling_latent_edge", "ERROR", cid, f"{le['src']}->{le['dst']}"))
             if le["src"] in nid and le["dst"] in nid:
-                out.append(F("latent_as_observed", "WARN", cid,
-                             f"관측 node 사이 직접 latent edge {le['src']}->{le['dst']} — LATENT 표지 확인"))
+                # [regression] OBSERVED/LATENT 혼동: 관측 node끼리 직접 잇는 latent edge는 관측 관계처럼 읽힌다
+                out.append(F("latent_as_observed", "ERROR", cid,
+                             f"관측 node 사이 직접 latent edge {le['src']}->{le['dst']} — latent node를 사이에 둘 것"))
             if le.get("status") != "LATENT":
                 out.append(F("latent_as_observed", "ERROR", cid, "latent edge status가 LATENT가 아님"))
             if le.get("edge_type") == "CAUSES":
@@ -495,6 +590,10 @@ def audit3(nodes, edges, frozen_hash, current_hash, gaps, candidates, props, wor
         text = " ".join([c["label"], c["description"]] + [ln["text"] for ln in c["latent_nodes"]])
         for iid in sorted(_identity_needs(text) - conds):
             out.append(F("identity_forcing", "ERROR", cid, f"서술이 {iid} 동일성에 기대는데 가정·조건에 없음"))
+        for chk, frag in text_regressions(text):
+            out.append(F(chk, "ERROR", cid, f"'{frag}'"))
+        for frag in open_set_closures(text):
+            out.append(F("open_set_closure", "ERROR", cid, f"열린 목록이 '등' 없이 나열됨: '{frag}'"))
         if c.get("audit_attestation") and not c.get("supports"):
             out.append(F("audit_only_support", "INFO", cid, "confirmed 지지 없이 05 흔적만 있음 — LATENT 유지"))
     for g, cs in by_gap.items():
@@ -528,6 +627,10 @@ def audit3(nodes, edges, frozen_hash, current_hash, gaps, candidates, props, wor
                 out.append(F("latent_as_observed", "WARN", w["world_id"], f"[L] 표지 {n_l}개 < bridge {len(w['latent_bridges'])}개"))
             for fld in ("narrative", "story_implication"):
                 txt = w.get(fld, "")
+                for chk, frag in text_regressions(txt):
+                    out.append(F(chk, "ERROR", w["world_id"], f"{fld}: '{frag}'"))
+                for frag in open_set_closures(txt):
+                    out.append(F("open_set_closure", "ERROR", w["world_id"], f"{fld}: '{frag}'"))
                 for iid in sorted(_identity_needs(txt)):
                     if iid not in txt:
                         out.append(F("identity_forcing", "ERROR", w["world_id"], f"{fld}가 {iid} 동일성을 표시 없이 사용"))
@@ -538,6 +641,14 @@ def audit3(nodes, edges, frozen_hash, current_hash, gaps, candidates, props, wor
                 diff = sum(pa.get(g) != pb.get(g) for g in gap_ids)
                 if diff < 2:
                     out.append(F("world_integrity", "ERROR", f"{a['world_id']}/{b['world_id']}", f"차이 gap {diff}개 < 2"))
+        retained = [w for w in worlds if not w.get("rejected")]
+        for g in sorted(gap_ids):
+            if retained and all(g in w["unresolved_gaps"] for w in retained):
+                gi = next(x for x in gaps if x["gap_id"] == g)
+                cs = ", ".join(f"{c['candidate_id']}={c['overall']}" for c in by_gap[g])
+                out.append(F("unresolved_gap", "UNRESOLVED", g,
+                             f"어느 retained world도 이 gap을 메우지 않음 (후보 {cs}) · unresolved_reason: {gi['why_gap']} "
+                             f"관측 근거({gi['observed_anchor_facts']})에 사유를 적은 문장이 없어 어느 후보도 world backbone에 넣지 않음"))
         out.append(F("world_integrity", "INFO", "worlds",
                      f"world {len(worlds)}개 (retained {sum(not w.get('rejected') for w in worlds)}, "
                      f"rejected {sum(bool(w.get('rejected')) for w in worlds)}) — 쌍별 gap 차이 ≥2 확인"))

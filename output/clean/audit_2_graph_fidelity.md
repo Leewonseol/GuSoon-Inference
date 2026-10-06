@@ -2,7 +2,7 @@
 
 핵심 질문: **원본 사실들을 연결하는 과정에서 원본보다 더 많은 관계를 주장했는가?**
 
-- 판정: **PASS** (ERROR 0)
+- 판정: **PASS** (ERROR 0 · WARN 0 · UNRESOLVED 8 · INFO 1)
 - node 41개 (episode 37, 환경 context 4) · edge 68개 · feature link 57개
 - edge status: {'DERIVED': 64, 'OBSERVED': 4}
 - edge type: {'TEMPORAL_BEFORE': 7, 'ORDER_TO_ACTION': 3, 'PROCEDURAL_NEXT': 14, 'CONTRADICTS_AT_CLAIM_LEVEL': 5, 'INFORMATION_FLOW': 12, 'REVIEW_OF': 9, 'REVISES': 2, 'CONTEXT_SUPPORTS': 9, 'RESPONSIBILITY_LINK': 7}
@@ -11,10 +11,12 @@
 
 ## 1. 자동 검사 요약
 
-| check | ERROR | WARN | INFO |
-|---|---|---|---|
-| identity_forcing | 0 | 0 | 6 |
-| unsupported_edge | 0 | 0 | 1 |
+| check | ERROR | WARN | UNRESOLVED | INFO |
+|---|---|---|---|---|
+| conditional_edge | 0 | 0 | 6 | 0 |
+| partial_tension | 0 | 0 | 2 | 0 |
+| unsupported_edge | 0 | 0 | 0 | 1 |
+| **합계** | **0** | **0** | **8** | **1** |
 
 검사 항목: unsupported_edge(근거 fact가 endpoint 구성 fact인지), causal_inflation(CAUSES 금지, 책임은 판단 node로만, 구순→사망 직접 연결 금지), institutional_overreach, environmental_leakage, missing_relation(필수 관계 17개), judgment_flattening, temporal_inversion, order_execution_conflation, testimony_to_fact(claim_level), identity_forcing(조건부 edge), acyclicity, latent_leak.
 
@@ -25,13 +27,7 @@ _없음_
 _없음_
 
 ### INFO
-- `identity_forcing` **OE007** — 조건부 edge — ID02 미확정 상태 유지
-- `identity_forcing` **OE010** — 조건부 edge — ID08 미확정 상태 유지
 - `unsupported_edge` **OE060** — 절차 근거로 endpoint 밖 fact 인용: ['CF035']
-- `identity_forcing` **OE071** — 조건부 edge — ID05 미확정 상태 유지
-- `identity_forcing` **OE071** — 조건부 edge — ID06 미확정 상태 유지
-- `identity_forcing` **OE080** — 조건부 edge — ID07 미확정 상태 유지
-- `identity_forcing` **OE081** — 조건부 edge — ID01 미확정 상태 유지
 
 ## 2. 수동 관계 검토 (원본 CSV 대조)
 
@@ -60,12 +56,31 @@ _없음_
 | 전체 edge | temporal_inversion / acyclicity | PASS | CONTRADICTS 외의 edge는 모두 src.t_min ≤ dst.t_max이고 cycle이 없다. 날짜가 없는 EP08은 시간 edge 없이 INFORMATION_FLOW(OE027)·RESPONSIBILITY_LINK(OE071)에만 참여한다. |
 | 고립 node | missing_relation | PASS | 고립 node 0개. 처분 node(EP33–EP37)는 책임 판단·복명과 PROCEDURAL_NEXT로 이어진다. |
 
+## 2-1. WARN disposition
+
+모든 WARN은 FIXED / RECLASSIFIED_INFO / UNRESOLVED / ESCALATED_ERROR 중 하나로 처리했다. disposition이 없는 WARN이 남으면 build.py가 멈춘다. 전체 표는 `warn_dispositions.csv`에 있다.
+
+_이 audit에서는 처리 대상 WARN이 발생하지 않았다(모든 실행에서 WARN 0)._
+
+## 2-2. UNRESOLVED (사료 자체의 모호성 — 허용, 데이터에 보존)
+
+- `conditional_edge` **OE007** — ID02 미확정 — edge는 condition으로만 성립 · unresolved_reason: 자미덕은 성(한)과 직함(비장)만 말했다. 한재욱 공초(CF018)는 자미덕을 방으로 부른 사실을 인정하지만 자신이 '한 비장'이라고 하지는 않는다.
+- `partial_tension` **OE007** — 부분 충돌 — 원문 표현의 범위가 같은지 사료로 확정할 수 없어 충돌 강도를 PARTIAL로 보존 · unresolved_reason: 충돌은 '한 비장=한재욱'(미확정)일 때만 성립한다. 한재욱의 부인 범위는 '은밀한 사주'에 한정되므로 PARTIAL 충돌이다.
+- `conditional_edge` **OE010** — ID08 미확정 — edge는 condition으로만 성립 · unresolved_reason: 3/4 '장교 일행'의 구성원은 기록되지 않았다.
+- `partial_tension` **OE062** — 부분 충돌 — 원문 표현의 범위가 같은지 사료로 확정할 수 없어 충돌 강도를 PARTIAL로 보존 · unresolved_reason: PARTIAL_TENSION: '조사'가 곧 '신문'이라고 확정할 수 없다. CF028의 '무고한 평민들 모진 형벌'은 김명신 포함 여부가 열린 집합이므로 충돌 근거로 쓰지 않는다.
+- `conditional_edge` **OE071** — ID05 미확정 — edge는 condition으로만 성립 · unresolved_reason: '풍각 김상제'(상주 호칭)와 '풍각 김생원'(=김명신, CF022)은 다른 호칭이다. 둘을 같은 사람으로 적은 confirmed 문장이 없다.
+- `conditional_edge` **OE071** — ID06 미확정 — edge는 condition으로만 성립 · unresolved_reason: 정조 판단(CF043)은 직책 표현('병영의 염탐 담당자')만 쓰고 이름을 적지 않았다.
+- `conditional_edge` **OE080** — ID07 미확정 — edge는 condition으로만 성립 · unresolved_reason: 개수(네 개)와 사건은 같지만 물건 이름(철편/철퇴)과 행위 층위(제작·지급/제작 지시)가 다르다.
+- `conditional_edge` **OE081** — ID01 미확정 — edge는 condition으로만 성립 · unresolved_reason: 공초 문장의 주어는 '병사'라는 직함뿐이다. 이광섭을 병사로 다루는 것은 5/12 기사(CF025)이고, 3/4 공초가 같은 사람을 가리킨다고 쓴 문장은 없다.
+
+
 ## 3. 수정 이력
 
 | 회차 | 발견 | 조치 |
 |---|---|---|
 | 이 세션 이전 전체 실행 (인계 기록) | ERROR 0으로 통과 | 수정 없음 |
 | 이 세션 재실행 (ID11 반영 뒤, 이후 모든 실행 동일) | ERROR 0, WARN 0, INFO 7 (조건부 edge INFO 6개, endpoint 밖 절차 근거 OE060 INFO 1개). ID11은 어느 edge condition에도 쓰이지 않음 | INFO를 하나씩 수동 검토(§2) — 수정 없음. 동결 해시 86a529da3baf… 유지 |
+| WARN 0 작업 | WARN은 원래 0. 조건부 identity edge 6개를 INFO로 두던 것이 사료 모호성 성격이라 UNRESOLVED로 재분류했다. PARTIAL 충돌 edge 2개(OE007·OE062)도 UNRESOLVED로 표시했다. 근거 문구의 동일성 표면형 쌍 검사와 책임→직접 인과·환경→개인 사실 문구 검사를 추가 | edge 데이터는 변경 없음. 최종 ERROR 0, WARN 0, UNRESOLVED 8, INFO 1(OE060 절차 근거) |
 
 ## 4. Edge 전체 목록
 

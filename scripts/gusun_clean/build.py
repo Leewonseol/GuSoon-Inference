@@ -18,6 +18,8 @@ sys.path.insert(0, str(HERE))
 
 import audits  # noqa: E402
 import report  # noqa: E402
+import regression  # noqa: E402
+from manual_review import WARN_DISPOSITIONS  # noqa: E402
 from stage1_episodes import EPISODES, EPISTEMIC_RANK, IDENTITY_REGISTER  # noqa: E402
 from stage2_graph import BASES, EDGE_TYPES, EDGES, ENV_FIT_LINKS, ENV_NODES, FEATURE_LINKS  # noqa: E402
 
@@ -40,14 +42,29 @@ def write_csv(path, rows, cols):
             w.writerow({c: ("" if r.get(c) is None else r.get(c)) for c in cols})
 
 
+def apply_dispositions(stage, findings):
+    """WARN은 manual_review.WARN_DISPOSITIONS의 명시적 처리 없이는 통과하지 못한다.
+    RECLASSIFIED_INFO → INFO, UNRESOLVED → UNRESOLVED, ESCALATED_ERROR → ERROR. FIXED는 이력이며 현재 WARN을 지우지 않는다."""
+    table = {(d["audit_stage"], d["warning_type"], d["affected_item"]): d for d in WARN_DISPOSITIONS}
+    sev = {"RECLASSIFIED_INFO": "INFO", "UNRESOLVED": "UNRESOLVED", "ESCALATED_ERROR": "ERROR"}
+    for f in findings:
+        if f["severity"] != "WARN":
+            continue
+        d = table.get((stage, f["check"], f["target"]))
+        if d and d["disposition"] in sev:
+            f["severity"] = sev[d["disposition"]]
+            f["message"] += f" [disposition {d['warning_id']}: {d['disposition']}]"
+    return findings
+
+
 def gate(name, findings):
     c = Counter(f["severity"] for f in findings)
-    print(f"[{name}] ERROR={c['ERROR']} WARN={c['WARN']} INFO={c['INFO']}")
-    if c["ERROR"]:
+    print(f"[{name}] ERROR={c['ERROR']} WARN={c['WARN']} INFO={c['INFO']} UNRESOLVED={c['UNRESOLVED']}")
+    if c["ERROR"] or c["WARN"]:
         for f in findings:
-            if f["severity"] == "ERROR":
-                print("   ERROR", f["check"], f["target"], f["message"])
-        print(f"[{name}] 실패 — 다음 stage로 진행하지 않음")
+            if f["severity"] in ("ERROR", "WARN"):
+                print("  ", f["severity"], f["check"], f["target"], f["message"])
+        print(f"[{name}] 실패 — ERROR·WARN이 0이 아니므로 다음 stage로 진행하지 않음")
         sys.exit(1)
 
 
@@ -96,6 +113,18 @@ def stage2(ep_rows, env):
     return nodes, edges, links
 
 
+PREVIOUS_FREEZE = dict(sha256="86a529da3baff8f3", structure_sha256="7b4d97185d70baa95a2efdb55492b854a0d39dcf26411b70a1bf830f0b79a1b3")  # WARN 처리 이전(커밋 712d536) 동결 해시 앞자리
+
+
+def structure_hash(nodes, edges):
+    """문구(summary)를 뺀 구조 해시: node 구성·층·시간, edge 전체. 문구 수정과 구조 변경을 구분하기 위함."""
+    keys_n = ["node_id", "node_status", "layer", "member_fact_ids", "t_min", "t_max"]
+    keys_e = ["edge_id", "src", "dst", "edge_type", "basis", "status", "supporting", "condition", "claim_level"]
+    payload = json.dumps([[{k: n.get(k) for k in keys_n} for n in nodes],
+                          [{k: e.get(k) for k in keys_e} for e in edges]], ensure_ascii=False, sort_keys=True)
+    return hashlib.sha256(payload.encode()).hexdigest()
+
+
 def graph_hash(nodes, edges):
     keys_n = ["node_id", "node_status", "layer", "summary", "member_fact_ids", "t_min", "t_max"]
     keys_e = ["edge_id", "src", "dst", "edge_type", "basis", "status", "supporting", "condition", "claim_level"]
@@ -127,13 +156,16 @@ def main():
 
     # STAGE 1 + AUDIT 1
     ep_rows = stage1(cf)
+    regression.run_or_exit()
     a1, outside = audits.audit1(EPISODES, cf, props, src)
+    apply_dispositions("AUDIT1", a1)
     report.write_audit1(OUT / "audit_1_episode_fidelity.md", a1, outside, ep_rows, cf)
     gate("AUDIT 1", a1)
 
     # STAGE 2 + AUDIT 2
     nodes, edges, links = stage2(ep_rows, env)
     a2 = audits.audit2(nodes, edges, EPISODES, links, env, EDGE_TYPES, BASES)
+    apply_dispositions("AUDIT2", a2)
     report.write_audit2(OUT / "audit_2_graph_fidelity.md", a2, nodes, edges, links)
     gate("AUDIT 2", a2)
 
@@ -142,9 +174,14 @@ def main():
     write_csv(OUT / "observed_edges.csv", edges, EDGE_COLS)
     write_csv(OUT / "node_feature_links.csv", links, LINK_COLS)
     write_csv(OUT / "identity_register.csv", IDENTITY_REGISTER,
-              ["identity_id", "surface_a", "surface_b", "status", "context", "referenced_facts"])
+              ["identity_id", "surface_a", "surface_b", "status", "unresolved_reason", "context", "referenced_facts"])
     frozen = graph_hash(nodes, edges)
-    freeze = dict(name="Validated Observed Partial DAG", sha256=frozen, n_nodes=len(nodes), n_edges=len(edges),
+    freeze = dict(name="Validated Observed Partial DAG", sha256=frozen, structure_sha256=structure_hash(nodes, edges),
+                  previous_sha256_prefix=PREVIOUS_FREEZE["sha256"],
+                  previous_structure_sha256=PREVIOUS_FREEZE["structure_sha256"],
+                  structure_unchanged=structure_hash(nodes, edges) == PREVIOUS_FREEZE["structure_sha256"],
+                  change_note="WARN 처리(A1-W1–W4, A1-E1)로 EP01·EP04·EP05·EP06·EP07 summary 문구만 바뀜. node·edge 구조는 그대로",
+                  n_nodes=len(nodes), n_edges=len(edges),
                   n_episode_nodes=len(ep_rows), n_env_nodes=len(ENV_NODES),
                   edge_status=dict(Counter(e["status"] for e in edges)),
                   edge_types=dict(Counter(e["edge_type"] for e in edges)), latent_count=0)
@@ -156,17 +193,22 @@ def main():
     import stage4_latent
     gaps, cands = stage4_latent.build(nodes, edges)
     a3 = audits.audit3(nodes, edges, frozen, graph_hash(nodes, edges), gaps, cands, props)
+    apply_dispositions("AUDIT3", a3)
     gate("AUDIT 3 (latent)", a3)
 
     # STAGE 5 + AUDIT 3 재검사(world 포함)
     import stage5_worlds
     worlds = stage5_worlds.build(nodes, edges, gaps, cands)
     a3w = audits.audit3(nodes, edges, frozen, graph_hash(nodes, edges), gaps, cands, props, worlds)
+    apply_dispositions("AUDIT3", a3w)
     report.write_audit3(OUT / "audit_3_observed_latent_separation.md", a3w, nodes, edges, gaps, cands, worlds, frozen)
     gate("AUDIT 3 (worlds)", a3w)
     report.write_gaps(OUT / "gap_candidates.md", gaps, cands, nodes)
     report.write_worlds(OUT / "narrative_worlds.md", worlds, cands, gaps, nodes)
     report.write_latent_csv(OUT, gaps, cands, worlds)
+    report.write_validation_summary(OUT / "validation_summary.md",
+                                    {"Audit 1": a1, "Audit 2": a2, "Audit 3": a3w}, freeze, worlds)
+    write_csv(OUT / "warn_dispositions.csv", WARN_DISPOSITIONS, report.DISPOSITION_COLS)
 
     # canonical DB
     import duckdb
@@ -182,7 +224,8 @@ def main():
     for name, f in [("episode_nodes", "episode_nodes.csv"), ("observed_edges", "observed_edges.csv"),
                     ("node_feature_links", "node_feature_links.csv"), ("identity_register", "identity_register.csv"),
                     ("gaps", "gaps.csv"), ("latent_candidates", "latent_candidates.csv"),
-                    ("latent_elements", "latent_elements.csv"), ("narrative_worlds", "narrative_worlds.csv")]:
+                    ("latent_elements", "latent_elements.csv"), ("narrative_worlds", "narrative_worlds.csv"),
+                    ("warn_dispositions", "warn_dispositions.csv")]:
         con.execute(f"CREATE TABLE {name} AS SELECT * FROM read_csv_auto(?, header=true, all_varchar=true)",
                     [str(OUT / f)])
     con.execute("CREATE TABLE episode_members (episode_id VARCHAR, fact_id VARCHAR, clause VARCHAR)")

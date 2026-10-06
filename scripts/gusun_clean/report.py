@@ -2,16 +2,51 @@
 import csv
 from collections import Counter, defaultdict
 
-from manual_review import AUDIT1_MANUAL, AUDIT1_REVISIONS, AUDIT2_MANUAL, AUDIT2_REVISIONS, AUDIT3_MANUAL, AUDIT3_REVISIONS
+from manual_review import (AUDIT1_MANUAL, AUDIT1_REVISIONS, AUDIT2_MANUAL, AUDIT2_REVISIONS, AUDIT3_MANUAL,
+                           AUDIT3_REVISIONS, WARN_DISPOSITIONS)
+
+DISPOSITION_COLS = ["warning_id", "audit_stage", "affected_item", "warning_type", "original_text", "generated_text", "risk",
+                    "disposition", "justification", "fixed_text", "final_status", "final_classification", "unresolved_reason"]
+SEVS = ["ERROR", "WARN", "UNRESOLVED", "INFO"]
+
+
+def _cell(x):
+    return str(x).replace("|", "/").replace("\n", " ")
+
+
+def _disposition_table(stage):
+    ds = [d for d in WARN_DISPOSITIONS if d["audit_stage"] == stage]
+    lines = ["모든 WARN은 FIXED / RECLASSIFIED_INFO / UNRESOLVED / ESCALATED_ERROR 중 하나로 처리했다. disposition이 없는 WARN이 남으면 "
+             "build.py가 멈춘다. 전체 표는 `warn_dispositions.csv`에 있다.", ""]
+    if not ds:
+        return "\n".join(lines + ["_이 audit에서는 처리 대상 WARN이 발생하지 않았다(모든 실행에서 WARN 0)._"])
+    cols = ["warning_id", "audit_stage", "affected_item", "warning_type", "original_text", "generated_text", "risk",
+            "disposition", "justification", "final_status"]
+    lines += ["| " + " | ".join(cols) + " |", "|" + "---|" * len(cols)]
+    for d in ds:
+        lines.append("| " + " | ".join(_cell(d[c]) for c in cols) + " |")
+    lines += ["", "수정 후 문구 / 최종 분류:", ""]
+    for d in ds:
+        lines.append(f"- **{d['warning_id']}** → {_cell(d['fixed_text'])} · 최종 분류: {d['final_classification']}")
+    return "\n".join(lines)
+
+
+def _unresolved_list(findings):
+    fs = [f for f in findings if f["severity"] == "UNRESOLVED"]
+    if not fs:
+        return "_없음_"
+    return "\n".join(f"- `{f['check']}` **{f['target']}** — {_cell(f['message'])}" for f in fs)
 
 
 def _counts_table(findings):
     c = defaultdict(Counter)
     for f in findings:
         c[f["check"]][f["severity"]] += 1
-    lines = ["| check | ERROR | WARN | INFO |", "|---|---|---|---|"]
+    lines = ["| check | ERROR | WARN | UNRESOLVED | INFO |", "|---|---|---|---|---|"]
     for k in sorted(c):
-        lines.append(f"| {k} | {c[k]['ERROR']} | {c[k]['WARN']} | {c[k]['INFO']} |")
+        lines.append(f"| {k} | {c[k]['ERROR']} | {c[k]['WARN']} | {c[k]['UNRESOLVED']} | {c[k]['INFO']} |")
+    t = Counter(f["severity"] for f in findings)
+    lines.append(f"| **합계** | **{t['ERROR']}** | **{t['WARN']}** | **{t['UNRESOLVED']}** | **{t['INFO']}** |")
     return "\n".join(lines)
 
 
@@ -23,8 +58,10 @@ def _findings_list(findings, sev):
 
 
 def _verdict(findings):
-    n = sum(f["severity"] == "ERROR" for f in findings)
-    return "**PASS** (ERROR 0)" if n == 0 else f"**FAIL** (ERROR {n})"
+    c = Counter(f["severity"] for f in findings)
+    if c["ERROR"] == 0 and c["WARN"] == 0:
+        return f"**PASS** (ERROR 0 · WARN 0 · UNRESOLVED {c['UNRESOLVED']} · INFO {c['INFO']})"
+    return f"**FAIL** (ERROR {c['ERROR']} · WARN {c['WARN']})"
 
 
 def _revlog(revs):
@@ -71,6 +108,8 @@ def write_audit1(path, findings, outside, ep_rows, cf):
               "| 대상 | 검사 | 판정 | 근거 |", "|---|---|---|---|"]
     for row in AUDIT1_MANUAL:
         lines.append("| " + " | ".join(row) + " |")
+    lines += ["", "## 3-1. WARN disposition", "", _disposition_table("AUDIT1"), "",
+              "## 3-2. UNRESOLVED (사료 자체의 모호성 — 허용, 데이터에 보존)", "", _unresolved_list(findings), ""]
     lines += ["", "## 4. 수정 이력 (Audit → 수정 → 재검사)", "", _revlog(AUDIT1_REVISIONS), "",
               "## 5. confirmed set 밖의 사료 내용 (05에만 있음 — DAG node로 쓰지 않음)", "",
               f"CF가 참조하지 않는 05 prop {len(outside)}개. Stage 4에서는 latent 후보의 `audit_attestation`으로만 인용하고, "
@@ -112,6 +151,8 @@ def write_audit2(path, findings, nodes, edges, links):
     ]
     for row in AUDIT2_MANUAL:
         lines.append("| " + " | ".join(row) + " |")
+    lines += ["", "## 2-1. WARN disposition", "", _disposition_table("AUDIT2"), "",
+              "## 2-2. UNRESOLVED (사료 자체의 모호성 — 허용, 데이터에 보존)", "", _unresolved_list(findings), ""]
     lines += ["", "## 3. 수정 이력", "", _revlog(AUDIT2_REVISIONS), "",
               "## 4. Edge 전체 목록", "",
               "| edge | src → dst | type | basis | status | claim | cond | 근거 |", "|---|---|---|---|---|---|---|---|"]
@@ -273,6 +314,8 @@ def write_audit3(path, findings, nodes, edges, gaps, cands, worlds, frozen):
              "## 3. 수동 검토", "", "| 대상 | 검사 | 판정 | 근거 |", "|---|---|---|---|"]
     for row in AUDIT3_MANUAL:
         lines.append("| " + " | ".join(row) + " |")
+    lines += ["", "## 3-1. WARN disposition", "", _disposition_table("AUDIT3"), "",
+              "## 3-2. UNRESOLVED (사료 자체의 모호성 — 허용, 데이터에 보존)", "", _unresolved_list(findings), ""]
     lines += ["", "## 4. 수정 이력", "", _revlog(AUDIT3_REVISIONS), "",
               "## 5. 전체 요소 분류표", "", "| id | 종류 | 분류 | 출처 |", "|---|---|---|---|"]
     for n in nodes:
@@ -322,3 +365,43 @@ def write_latent_csv(out, gaps, cands, worlds):
                         x["environmental_fit"], x["n_assumptions"], x["min_grade"], " / ".join(x["main_assumptions"]),
                         " / ".join(x["main_weaknesses"]), x["contradicted_evidence"], x["story_implication"],
                         x.get("identity_conditions", ""), x.get("narrative", "")])
+
+
+def write_validation_summary(path, audits_by_name, freeze, worlds):
+    import regression
+    lines = ["# Validation Summary", "",
+             "통과 조건: 각 Audit의 ERROR = 0, WARN = 0. INFO와 UNRESOLVED는 허용하되, UNRESOLVED는 사료 자체의 불확실성 때문에 남은 것이어야 한다.", "",
+             "```"]
+    ok = True
+    for name, fs in audits_by_name.items():
+        c = Counter(f["severity"] for f in fs)
+        ok &= c["ERROR"] == 0 and c["WARN"] == 0
+        lines += [f"{name}:", f"ERROR = {c['ERROR']}", f"WARN = {c['WARN']}", f"INFO = {c['INFO']}",
+                  f"UNRESOLVED = {c['UNRESOLVED']}", ""]
+    lines += ["```", "", f"판정: **{'PASS' if ok else 'FAIL'}**", "",
+              "## WARN disposition 집계", "", "| disposition | 건수 | 항목 |", "|---|---|---|"]
+    by = defaultdict(list)
+    for d in WARN_DISPOSITIONS:
+        by[d["disposition"]].append(d["warning_id"])
+    for k in ["FIXED", "RECLASSIFIED_INFO", "UNRESOLVED", "ESCALATED_ERROR"]:
+        lines.append(f"| {k} | {len(by[k])} | {', '.join(by[k]) or '-'} |")
+    lines += ["", "## UNRESOLVED 목록", ""]
+    for name, fs in audits_by_name.items():
+        lines += [f"### {name}", "", _unresolved_list(fs), ""]
+    res = regression.run()
+    lines += ["## Regression validation rules", "",
+              f"build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR로 잡히는지 확인한다({sum(r['caught'] for r in res)}/{len(res)} 탐지).", "",
+              "| rule | 케이스 | 탐지 |", "|---|---|---|"]
+    for r in res:
+        lines.append(f"| {r['rule']} | {_cell(r['case'])} | {'OK' if r['caught'] else 'MISSED'} |")
+    lines += ["", "## 동결 그래프", "",
+              f"- 현재 sha256: `{freeze['sha256']}`",
+              f"- 이전 sha256(앞자리): `{freeze['previous_sha256_prefix']}…`",
+              f"- 구조 sha256(문구 제외): `{freeze['structure_sha256']}` — 이전과 "
+              f"{'동일' if freeze['structure_unchanged'] else '다름'}",
+              f"- 변경 내용: {freeze['change_note']}",
+              "", "## Narrative worlds", "", "| world | 상태 | bridge | 최저 등급 | 미해결 gap |", "|---|---|---|---|---|"]
+    for w in worlds:
+        lines.append(f"| {w['world_id']} | {'REJECTED' if w.get('rejected') else 'RETAINED'} | {' '.join(w['latent_bridges'])} | "
+                     f"{w['min_grade']} | {', '.join(w['unresolved_gaps']) or '-'} |")
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")

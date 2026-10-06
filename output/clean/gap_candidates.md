@@ -507,19 +507,21 @@ latent 요소:
 | G08a | 직접 안핵 부재 비판 → 독립 안핵 결정 | HIGH | HIGH | HIGH | HIGH | HIGH | N/A | LOW | 1 | **HIGH** | KEPT |
 | G08b | 지세 호칭 의문 해소가 주목적 | MEDIUM | HIGH | HIGH | HIGH | HIGH | N/A | LOW | 1 | **MEDIUM** | KEPT |
 
-### G08a [LATENT · SINGLE] 직접 안핵 부재 비판 → 독립 안핵 결정
+### G08a [LATENT · MINI_DAG] 직접 안핵 부재 비판 → 독립 안핵 결정
 
-정조는 이조원이 직접 안핵하지 않은 점을 문제 삼은 다음 날 독립 안핵어사를 보내 사실을 직접 확인하게 했다.
+정조는 이조원이 직접 안핵하지 않은 점을 문제 삼았고(관측, CF033), 그 판단이 다음 날 독립 안핵어사 차하(관측, CF035)의 동기가 되었다는 연결만 LATENT다.
 
 latent 요소:
-- `EP18` —PROCEDURAL_NEXT→ `EP20` (LATENT)
+- `LN_G08a_1` [LATENT] 정조가 이조원 서계의 직접 안핵 부재를 근거로 현지 직접 안핵이 필요하다고 판단
+- `EP18` —INFORMATION_FLOW→ `LN_G08a_1` (LATENT)
+- `LN_G08a_1` —PROCEDURAL_NEXT→ `EP20` (LATENT)
 
 - 추가 가정: 5/27 비판이 5/28 차하의 동기
 - 지지 fact: CF033(직접 안핵하지 않은 점 문제 삼음), CF035(자세히 조사해 오라) · 긴장/충돌 fact: -
 - audit_attestation (05, AUDIT_ONLY): V3P0028
 - 미확정 동일성 조건: 없음
 - 주 근거 유형: SOURCE_DIRECT
-- 메모: latent node 없이 observed node 사이에 LATENT edge 하나만 둔다. observed DAG의 OE045(TEMPORAL_BEFORE)는 그대로이며 이 edge는 latent_elements.csv에만 있다.
+- 메모: 동기 연결은 원본(CF033·CF035·SRC3_004)에 문장으로 없으므로 LATENT다. 관측 node끼리 직접 잇지 않고 latent 판단 node를 사이에 둔다(Audit 3 WARN A3-W1 처리). observed DAG의 OE045(TEMPORAL_BEFORE, DERIVED)는 그대로다.
 
 ### G08b [LATENT · SINGLE] 지세 호칭 의문 해소가 주목적
 

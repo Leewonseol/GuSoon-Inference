@@ -2,9 +2,9 @@
 
 핵심 질문: **추론한 것을 사료에서 확인된 사실처럼 표시했는가?**
 
-- 판정: **PASS** (ERROR 0)
+- 판정: **PASS** (ERROR 0 · WARN 0 · UNRESOLVED 1 · INFO 8)
 - LATENT → OBSERVED 둔갑: **0건**
-- 동결 해시: `86a529da3baff8f326831620bc9a55c2e351452b03dd5f67e852768a33dc4bfe` (Stage 4·5 뒤에도 observed DAG 변경 없음)
+- 동결 해시: `c50402af878ffb4d202f7c8c28c5d829ecabcc5ad0e1f5d2d78665aaef7df7c8` (Stage 4·5 뒤에도 observed DAG 변경 없음)
 
 ## 1. 분류 집계
 
@@ -12,28 +12,29 @@
 |---|---|---|---|
 | OBSERVED | 41 (episode·환경 행) | 4 | episode_nodes.csv / observed_edges.csv |
 | DERIVED | 0 (node는 만들지 않음) | 64 | observed_edges.csv (status=DERIVED) |
-| LATENT | 46 | 71 | latent_candidates.csv / latent_elements.csv / gap_candidates.md |
+| LATENT | 47 | 72 | latent_candidates.csv / latent_elements.csv / gap_candidates.md |
 
 DERIVED는 원본에 한 문장으로 쓰여 있지는 않지만 원본 정보에서 안전하게 도출되는 구조적 관계만 가리킨다(명시 날짜의 시간 순서, 같은 기사 안의 절차 순서, 판단 문구와 episode의 대응). 모든 episode node는 OBSERVED이며 원본 CF에서만 만들었다.
 
 ## 2. 자동 검사 요약
 
-| check | ERROR | WARN | INFO |
-|---|---|---|---|
-| audit_only_support | 0 | 0 | 3 |
-| freeze_violation | 0 | 0 | 1 |
-| latent_as_observed | 0 | 1 | 0 |
-| support_basis_cap | 0 | 0 | 3 |
-| world_integrity | 0 | 0 | 1 |
+| check | ERROR | WARN | UNRESOLVED | INFO |
+|---|---|---|---|---|
+| audit_only_support | 0 | 0 | 0 | 3 |
+| freeze_violation | 0 | 0 | 0 | 1 |
+| support_basis_cap | 0 | 0 | 0 | 3 |
+| unresolved_gap | 0 | 0 | 1 | 0 |
+| world_integrity | 0 | 0 | 0 | 1 |
+| **합계** | **0** | **0** | **1** | **8** |
 
 ### ERROR
 _없음_
 
 ### WARN
-- `latent_as_observed` **G08a** — 관측 node 사이 직접 latent edge EP18->EP20 — LATENT 표지 확인
+_없음_
 
 ### INFO
-- `freeze_violation` **observed_dag** — 동결 해시 일치 86a529da3baf
+- `freeze_violation` **observed_dag** — 동결 해시 일치 c50402af878f
 - `support_basis_cap` **G01c** — INSTITUTIONAL_COMPATIBILITY만 근거 → LOW 상한 적용
 - `audit_only_support` **G04d** — confirmed 지지 없이 05 흔적만 있음 — LATENT 유지
 - `audit_only_support` **G07d** — confirmed 지지 없이 05 흔적만 있음 — LATENT 유지
@@ -48,7 +49,7 @@ _없음_
 |---|---|---|---|
 | 후보 38개 · latent node 46 · latent edge 71 | latent_as_observed | PASS | 모든 후보는 status=LATENT다. latent node id는 LN_ 접두어를 쓰고 서술은 [LATENT]로 시작한다(C() helper). observed 표(episode_nodes.csv·observed_edges.csv)에는 LATENT가 하나도 없다. |
 | audit_attestation이 있는 후보 19개 | audit-only 승격 금지 | PASS | 05 prop을 인용한 후보도 모두 LATENT다. G04d(석단 공초)·G07d·G12b는 confirmed 지지 없이 05 흔적만 있어 INFO로 표시했고 LOW에 머문다. 05 prop은 node로도 edge로도 쓰지 않았다. |
-| G08a (EP18 → EP20) | observed node 사이 latent edge (WARN) | PASS (수동) | latent node 없이 EP18·EP20 사이에 LATENT PROCEDURAL_NEXT 하나를 둔 후보다. 이 edge는 latent_elements.csv에만 있고, observed_edges.csv의 OE045(TEMPORAL_BEFORE, DERIVED)는 그대로다. gap_candidates.md·latent_elements.csv 모두 LATENT로 표시한다. |
+| G08a (A3-W1) | OBSERVED/DERIVED/LATENT 분류 | FIXED → LATENT | 원본 대조: CF033(이조원 비판·파직)과 CF035(홍대협 차하)는 각각 OBSERVED다. 둘 사이 동기를 적은 문장은 01·05·04 어디에도 없다(SRC3_004의 V3P0033은 정조가 사건을 물었다는 내용뿐). 명시 시간순서는 이미 OE045(DERIVED)가 담고 있으므로 동기 연결은 DERIVED가 아니라 LATENT다. 관측 node끼리 직접 잇던 latent edge를 latent 판단 node LN_G08a_1을 사이에 둔 mini-DAG로 바꿨다. 등급(HIGH)과 world 구성은 변하지 않았다. |
 | G09b (원안 EP04 → EP35 RESPONSIBILITY_LINK) | causal_inflation | PASS (수정 후) | 원안은 observed 처분 node(royal order)로 RESPONSIBILITY_LINK를 바로 걸었다. 책임 귀속은 판단 수준이어야 하므로 latent 근거 node LN_G09b_2를 사이에 두고 처분에는 PROCEDURAL_NEXT로 잇게 고쳤다. |
 | G10b (환경만) · G01c·G10c (제도만) | support_basis 상한 | PASS | 근거가 환경 context 하나 또는 제도 compatibility 하나뿐인 후보는 grade 규칙 (5)로 LOW 상한이다. G10b의 latent node는 판단 사유 가설(individual_level=False)이고, 환경에서 개인 사건을 만들지 않았다. |
 | G06a·G06b·G12a (개인 발병·사망) | environmental_leakage | PASS | 개인 수준 latent node의 근거는 CF029(윤노동: '병들어 죽었다')와 CF040(정조: '부처가 전염병')이다. E001·E003은 environmental_fit 평가에만 썼고 ENV node에서 나가는 latent edge는 없다. |
@@ -64,6 +65,23 @@ _없음_
 | latent edge 71개 | causal_inflation | PASS | CAUSES 0개. latent edge type은 모두 Stage 2의 허용 목록 안에 있다. |
 | 동결 해시 | freeze_violation | PASS | Stage 3 해시 86a529da3baf…가 Stage 4 뒤와 Stage 5 뒤에 다시 계산한 값과 같다. observed DAG(41 node · 68 edge)는 바뀌지 않았다. |
 
+## 3-1. WARN disposition
+
+모든 WARN은 FIXED / RECLASSIFIED_INFO / UNRESOLVED / ESCALATED_ERROR 중 하나로 처리했다. disposition이 없는 WARN이 남으면 build.py가 멈춘다. 전체 표는 `warn_dispositions.csv`에 있다.
+
+| warning_id | audit_stage | affected_item | warning_type | original_text | generated_text | risk | disposition | justification | final_status |
+|---|---|---|---|---|---|---|---|---|---|
+| A3-W1 | AUDIT3 | G08a | latent_as_observed | CF033 정조는 이조원이 중대 사실을 직접 안핵하지 않고 전해 들은 말을 서계에 붙인 점을 문제 삼았고 이조원을 파직하도록 명했다. / CF035 정조는 홍대협에게 사건을 자세히 조사해 오라고 명하고 그를 충청도 공주 안핵어사로 차하했다. (둘 사이 동기 문장 없음; SRC3_004·V3P0033도 없음) | latent node 없이 관측 node EP18 → EP20을 LATENT PROCEDURAL_NEXT로 직접 연결 | 관측 node 둘을 잇는 edge는 표·그림에서 관측 관계처럼 읽힐 수 있음(LATENT → OBSERVED/DERIVED 승격 위험) | FIXED | 원본 대조 결과 두 행위는 각각 OBSERVED이고, 둘 사이 동기 연결은 어느 CSV에도 없다 → 분류 LATENT. DERIVED의 근거(명시 시간순서 등)는 이미 OE045(TEMPORAL_BEFORE)가 담고 있다. latent 판단 node LN_G08a_1을 사이에 둔 mini-DAG(EP18 → LN_G08a_1 → EP20)로 바꾸고, 관측 node끼리 직접 잇는 latent edge는 이제 ERROR로 막는다. 재실행 결과 WARN 사라짐. | RESOLVED |
+
+수정 후 문구 / 최종 분류:
+
+- **A3-W1** → EP18 —INFORMATION_FLOW→ LN_G08a_1 [LATENT] 정조가 이조원 서계의 직접 안핵 부재를 근거로 현지 직접 안핵이 필요하다고 판단 —PROCEDURAL_NEXT→ EP20 · 최종 분류: LATENT
+
+## 3-2. UNRESOLVED (사료 자체의 모호성 — 허용, 데이터에 보존)
+
+- `unresolved_gap` **G10** — 어느 retained world도 이 gap을 메우지 않음 (후보 G10a=MEDIUM, G10b=LOW, G10c=LOW) · unresolved_reason: 파직과 3일 뒤 유임의 사유가 모두 기록되지 않았다. 관측 근거(CF049, CF050)에 사유를 적은 문장이 없어 어느 후보도 world backbone에 넣지 않음
+
+
 ## 4. 수정 이력
 
 | 회차 | 발견 | 조치 |
@@ -74,6 +92,9 @@ _없음_
 | 2차 실행 | ERROR 0, WARN 1 (G08a 관측 node 사이 latent edge) | 수동 검토 PASS (§3) |
 | Stage 5 작성 중 | W4 서술에 '병사'와 '이광섭'이 ID01 표시 없이 함께 나옴(실행 전 자체 검토) | W4 서술에 ID01 조건 문장 추가 |
 | 3차 실행 (world 포함 재검사) | ERROR 0, WARN 1 (같은 G08a) | PASS. 이후 서술 문구 두 곳(자미덕 진술 인용, 홍대협의 '평가' 동사)을 원문에 맞게 다듬고 재실행 — 결과 동일 |
+| WARN 0 작업 — 4차 | A3-W1(G08a) 원본 재대조: 동기 연결은 원본에 없음 → LATENT. 관측 node 사이 직접 latent edge는 관측 관계로 읽힐 위험 | FIXED: LN_G08a_1을 둔 mini-DAG로 변경, 같은 형태를 WARN에서 ERROR로 승격 → WARN 0 |
+| WARN 0 작업 — 5차 | 새 open_set_closure 검사가 G04b를 ERROR로 잡음. 원문 확인 결과 G04b는 '등'을 따옴표로 감싸 열린 목록을 표시하고 있어 검사기 오탐 | 후보 내용은 그대로 두고 정규식이 따옴표 붙은 '등'과 목록 중간 절단을 처리하도록 수정 → ERROR 0 |
+| WARN 0 작업 — 6차 | UNRESOLVED 문구 검토: G10 사유가 '모든 후보가 사료 지지 없음'으로 적혀 G10a(MEDIUM)와 어긋남 | 후보 등급과 gap 근거에서 문구를 생성하도록 수정. 최종 ERROR 0, WARN 0, UNRESOLVED 1(G10), INFO 8 |
 
 ## 5. 전체 요소 분류표
 
@@ -267,7 +288,9 @@ _없음_
 | LN_G07d_1 | node | LATENT | G07d |
 | G07d.e1 | edge | LATENT | LN_G07d_1→EP15 |
 | G07d.e2 | edge | LATENT | LN_G07d_1→EP25 |
-| G08a.e1 | edge | LATENT | EP18→EP20 |
+| LN_G08a_1 | node | LATENT | G08a |
+| G08a.e1 | edge | LATENT | EP18→LN_G08a_1 |
+| G08a.e2 | edge | LATENT | LN_G08a_1→EP20 |
 | LN_G08b_1 | node | LATENT | G08b |
 | G08b.e1 | edge | LATENT | LN_G08b_1→EP20 |
 | LN_G09a_1 | node | LATENT | G09a |

@@ -2,19 +2,20 @@
 
 핵심 질문: **문장들을 episode로 묶으면서 원래 내용이 바뀌었는가?**
 
-- 판정: **PASS** (ERROR 0)
+- 판정: **PASS** (ERROR 0 · WARN 0 · UNRESOLVED 9 · INFO 8)
 - confirmed fact 50개 중 episode로 추적 가능: 50개
 - episode 37개 — 모두 confirmed fact로 역추적됨 (unsupported episode = 0)
 
 ## 1. 자동 검사 요약
 
-| check | ERROR | WARN | INFO |
-|---|---|---|---|
-| clause_prop_alignment | 0 | 0 | 4 |
-| clause_split | 0 | 0 | 2 |
-| outside_confirmed_set | 0 | 0 | 1 |
-| over_merge | 0 | 0 | 1 |
-| semantic_weakening | 0 | 4 | 0 |
+| check | ERROR | WARN | UNRESOLVED | INFO |
+|---|---|---|---|---|
+| clause_prop_alignment | 0 | 0 | 0 | 4 |
+| clause_split | 0 | 0 | 0 | 2 |
+| outside_confirmed_set | 0 | 0 | 0 | 1 |
+| over_merge | 0 | 0 | 0 | 1 |
+| unresolved_identity | 0 | 0 | 9 | 0 |
+| **합계** | **0** | **0** | **9** | **8** |
 
 검사 항목: omission, unsupported_episode, clause_fidelity, over_merge, order_execution_conflation, semantic_strengthening, semantic_weakening(한정 표현 보존 + 원문 어휘 보존율), epistemic_collapse, testimony_to_fact, temporal_conflation, identity_forcing, closed_set, clause_prop_alignment(05 대조), provenance(04·05 대조).
 
@@ -22,10 +23,7 @@
 _없음_
 
 ### WARN (수동 판정은 §3)
-- `semantic_weakening` **EP01** — 원문 어휘 보존율 0.78 < 0.80 — 수동 검토
-- `semantic_weakening` **EP04** — 원문 어휘 보존율 0.71 < 0.80 — 수동 검토
-- `semantic_weakening` **EP05** — 원문 어휘 보존율 0.79 < 0.80 — 수동 검토
-- `semantic_weakening` **EP06** — 원문 어휘 보존율 0.76 < 0.80 — 수동 검토
+_없음_
 
 ### INFO
 - `clause_split` **CF040** — 2개 절로 분할 — 합치면 원문 전체를 덮음
@@ -106,10 +104,45 @@ _없음_
 | EP29 (CF043) · EP28 (CF042) | semantic_strengthening | PASS | '책임을 연결해 판단했다'를 유지했고 '구순 때문에 죽었다'(직접 인과)로 바꾸지 않았다. 정조의 직접 인과 유보('십분 확실하다고 할 수 없다')는 EP28로 따로 두었다. |
 | EP32 (CF045 정조 절) | semantic_strengthening | PASS | '스스로 만들어냈다는 죄는 인정하지 않았다'를 '구순은 지세와 무관'으로 강화하지 않았다. |
 | EP15 (CF030) · EP24 (CF038) · EP13 (CF027) | semantic_weakening | PASS | '도난 자체가 없었다는 방향을 받아들였다'의 '방향', '약간의 실제 도난'·'보통 좀도둑 수준', '달포 이상'·'확실한 장물'을 모두 유지했다. |
-| EP01·EP04·EP05·EP06 | semantic_weakening (어휘 보존율 WARN 0.71–0.79) | PASS (수동) | 원문과 한 행씩 대조했다. 빠진 토큰은 행마다 반복되는 진술 어미('진술했다', '-다고')와 '자신'을 진술자 이름(이진욱·자미덕)으로 바꾼 부분뿐이다. 여러 행을 '…의 진술에 따르면'으로 한 번만 귀속했기 때문이다. 행위·대상·한정어는 모두 남아 있어 왜곡이 없다. |
+| EP01·EP04·EP05·EP06 (A1-W1–W4) | semantic_weakening / epistemic marker | FIXED | 이전 판정은 'PASS(수동)'였으나 재검토에서 표현 차이로 넘기지 않았다. 여러 진술을 '…의 진술에 따르면' 하나로 귀속하면 뒤쪽 절이 사실 서술처럼 읽힐 수 있다. 그래서 원문 문장마다 '진술했다'를 복원하고 EP04의 '자신'을 원문대로 되돌렸다. 진술자·대상·시간·동일성은 수정 전후 모두 원문과 같다. 재실행 결과 WARN 0. |
+| EP07 (A1-E1) | testimony_to_fact (새 regression 규칙) | FIXED | 보존율로는 WARN이 아니었으나 새 규칙 epistemic_marker_deletion·testimony_to_fact가 같은 유형을 ERROR로 잡았다. 두 진술 각각에 '진술했다'를 복원했다. |
+| EP01–EP12 (진술 episode 전체) | actor_substitution / testimony_to_fact (새 규칙) | PASS | summary 첫 주어가 원문 첫 문장의 진술자와 같고, '진술했' 개수가 진술 member 수 이상이며, 원문의 '자신'이 그대로 남는 것을 자동 검사로 확인했다. |
 | EP01 (CF001–CF003) · EP04 (CF007–CF010) | temporal_conflation | PASS | EP01은 친숙·왕래(2월 초순 이전) → 힐책(2월 초순) → 단절(그 이후)의 순서를 summary 어순으로 보존한다. EP04는 28일 밤의 호출·지시와 28일 밤~29일 새벽의 철편 제작을 한 출동 준비 단계로 묶고 시간 범위(228–229)를 남겼다. |
 | EP12 · EP23 | temporal_conflation (진술 시점 vs 내용 시점) | PASS | 공초 진술 행위는 안핵 기간(5/28–6/13)으로, 진술 내용 속 사건 시점은 각 episode의 occurrence_text로 따로 기록했다(preflight §4). |
 | AUDIT 1 1차 실행 ERROR 2건 (EP15·EP32) | epistemic_collapse 오탐 | 오탐 확인 | EP15 '받아들였다', EP32 '인정하지 않았다'는 원문 그대로의 royal judgment 동사다. 검사기의 기록 행위 어휘에 없어 ERROR가 났다. 내용은 고치지 않고 검사기 정규식에 '받아들'·'인정'을 추가했다. |
+
+## 3-1. WARN disposition
+
+모든 WARN은 FIXED / RECLASSIFIED_INFO / UNRESOLVED / ESCALATED_ERROR 중 하나로 처리했다. disposition이 없는 WARN이 남으면 build.py가 멈춘다. 전체 표는 `warn_dispositions.csv`에 있다.
+
+| warning_id | audit_stage | affected_item | warning_type | original_text | generated_text | risk | disposition | justification | final_status |
+|---|---|---|---|---|---|---|---|---|---|
+| A1-W1 | AUDIT1 | EP01 | semantic_weakening | CF001 명업은 김명신이 본래 구순과 친숙하여 날마다 왕래했다고 진술했다. / CF002 명업은 김명신이 박거사 일로 구순에게 편지를 보내 힐책했다고 진술했다. / CF003 명업은 그 뒤 구순과 김명신의 왕래가 끊겼다고 진술했다. | 명업의 진술에 따르면, 김명신은 본래 구순과 친숙하여 날마다 왕래했으나, 박거사 일로 구순에게 편지를 보내 힐책했고, 그 뒤 구순과 김명신의 왕래가 끊겼다. | 원문 어휘 보존율 0.78. 세 진술의 '진술했다' 표지가 하나의 '따르면'으로 합쳐져 뒤쪽 절(힐책·단절)이 사실 서술처럼 읽힐 수 있음 | FIXED | 원문 대조 결과 진술자(명업)·대상(김명신·구순)·내부 순서는 그대로였다. 그러나 뒤쪽 절의 귀속이 약해지므로 표현 차이로 넘기지 않고 세 진술 각각에 '진술했다'를 복원했다. 재실행 결과 WARN 사라짐(보존율 1.00). | RESOLVED |
+| A1-W2 | AUDIT1 | EP04 | semantic_weakening | CF007 이진욱은 2월 28일 밤 병영에서 자신을 비장청으로 불렀다고 진술했다. / CF008 이진욱은 한재욱이 자신과 조계완 등에게 덕평으로 가도록 지시했다고 진술했다. / CF009 이진욱은 한재욱이 변지돌과 정원돌을 잡아오라고 지시했다고 진술했다. / CF010 이진욱은 한재욱이 철편 네 개를 만들어 주었다고 진술했다. | 이진욱의 진술에 따르면, 2월 28일 밤 병영에서 이진욱을 비장청으로 불렀고, 한재욱이 이진욱과 조계완 등에게 덕평으로 가도록 지시하고 변지돌과 정원돌을 잡아오라고 지시했으며, 한재욱이 철편 네 개를 만들어 주었다. | 보존율 0.71. (1) 네 진술의 '진술했다' 표지 삭제. (2) '자신'이 '이진욱'으로 치환됨. 치환이 주체를 바꾸었는지 확인 필요 | FIXED | '자신'의 지시 대상은 원문에서도 진술자 이진욱이라 주체는 바뀌지 않았다. 그래도 대명사 치환은 actor 정규화이므로 자동 INFO로 넘기지 않고, '자신'을 원문대로 되돌리고 네 진술 각각에 '진술했다'를 복원했다. 재실행 결과 WARN 사라짐. | RESOLVED |
+| A1-W3 | AUDIT1 | EP05 | semantic_weakening | CF011 이진욱은 변지돌이 이미 공주진에서 잡혀간 상태였다고 진술했다. / CF012 이진욱은 장교 일행이 재돌의 처 자미덕을 붙잡았다고 진술했다. | 이진욱의 진술에 따르면, 2월 29일 변지돌은 이미 공주진에서 잡혀간 상태였고, 장교 일행이 재돌의 처 자미덕을 붙잡았다. | 보존율 0.79. 두 진술의 '진술했다' 표지가 합쳐져 체포 사실이 객관 사실처럼 읽힐 수 있음 | FIXED | 진술자·대상·날짜(2/29, chronology 열)는 유지되었다. 표지 복원으로 처리했다. 재실행 결과 WARN 사라짐. | RESOLVED |
+| A1-W4 | AUDIT1 | EP06 | semantic_weakening | CF013 자미덕은 병영 장교에게 붙잡혀 병영으로 끌려갔다고 진술했다. / CF014 자미덕은 병영에서 도적 혐의로 한 차례 신문을 받았다고 진술했다. / CF015 자미덕은 신문 뒤 비장청 다모방에 구류되었다고 진술했다. | 자미덕의 진술에 따르면, 자미덕은 병영 장교에게 붙잡혀 병영으로 끌려갔고, 병영에서 도적 혐의로 한 차례 신문을 받았으며, 신문 뒤 비장청 다모방에 구류되었다. | 보존율 0.76. 세 진술 표지 삭제로 신문·구류가 관측 사실처럼 읽힐 수 있음 | FIXED | 진술자·대상·'한 차례'는 유지되었다. 표지 복원으로 처리했다. 재실행 결과 WARN 사라짐. | RESOLVED |
+| A1-E1 | AUDIT1 | EP07 | testimony_to_fact | CF016 자미덕은 한 비장이 … 등을 큰 도적이라고 말하면 자신과 남편을 다음 날 석방하겠다고 말했다고 진술했다. / CF017 자미덕은 이집거와 대질했으며, 그때 한 비장의 지휘에 따라 거짓으로 꾸며 말했다고 진술했다. | 자미덕의 진술에 따르면, 한 비장이 … 석방하겠다고 말했고, 자미덕은 이집거와 대질했으며, 그때 한 비장의 지휘에 따라 거짓으로 꾸며 말했다. | 이전 실행에서는 보존율 0.80 이상이라 WARN이 아니었다. 이번에 추가한 regression 규칙(epistemic_marker_deletion·testimony_to_fact)이 같은 결함 유형을 찾아냄. 대질·거짓 진술이 객관 사실처럼 읽힐 위험 | ESCALATED_ERROR | A1-W1–W4와 같은 결함 유형이므로 ERROR로 올리고 다음 stage 진행 전에 고쳤다. 두 진술 각각에 '진술했다'를 복원했다. '한 비장'·'등'·'거짓으로 꾸며'는 그대로 두었다. 재실행 ERROR 0. | RESOLVED |
+
+수정 후 문구 / 최종 분류:
+
+- **A1-W1** → 명업은 김명신이 본래 구순과 친숙하여 날마다 왕래했다고 진술했고, 김명신이 박거사 일로 구순에게 편지를 보내 힐책했다고 진술했으며, 그 뒤 구순과 김명신의 왕래가 끊겼다고 진술했다. · 최종 분류: OBSERVED (RECORDED_TESTIMONY 유지)
+- **A1-W2** → 이진욱은 2월 28일 밤 병영에서 자신을 비장청으로 불렀다고 진술했고, 한재욱이 자신과 조계완 등에게 덕평으로 가도록 지시했다고 진술했으며, 한재욱이 변지돌과 정원돌을 잡아오라고 지시했다고 진술했고, 한재욱이 철편 네 개를 만들어 주었다고 진술했다. · 최종 분류: OBSERVED (RECORDED_TESTIMONY 유지)
+- **A1-W3** → 이진욱은 2월 29일 변지돌이 이미 공주진에서 잡혀간 상태였다고 진술했고, 장교 일행이 재돌의 처 자미덕을 붙잡았다고 진술했다. · 최종 분류: OBSERVED (RECORDED_TESTIMONY 유지)
+- **A1-W4** → 자미덕은 병영 장교에게 붙잡혀 병영으로 끌려갔다고 진술했고, 병영에서 도적 혐의로 한 차례 신문을 받았다고 진술했으며, 신문 뒤 비장청 다모방에 구류되었다고 진술했다. · 최종 분류: OBSERVED (RECORDED_TESTIMONY 유지)
+- **A1-E1** → 자미덕은 한 비장이 … 석방하겠다고 말했다고 진술했고, 자미덕은 이집거와 대질했으며, 그때 한 비장의 지휘에 따라 거짓으로 꾸며 말했다고 진술했다. · 최종 분류: OBSERVED (RECORDED_TESTIMONY 유지)
+
+## 3-2. UNRESOLVED (사료 자체의 모호성 — 허용, 데이터에 보존)
+
+- `unresolved_identity` **ID01** — 공초의 '병사' (CF021·CF023·CF024) ↔ 이광섭 · 관련 episode EP09, EP10, EP11, EP14, EP30, EP34 · unresolved_reason: 공초 문장의 주어는 '병사'라는 직함뿐이다. 이광섭을 병사로 다루는 것은 5/12 기사(CF025)이고, 3/4 공초가 같은 사람을 가리킨다고 쓴 문장은 없다.
+- `unresolved_identity` **ID02** — '한 비장' (CF016·CF017) ↔ 한재욱 · 관련 episode EP07, EP12 · unresolved_reason: 자미덕은 성(한)과 직함(비장)만 말했다. 한재욱 공초(CF018)는 자미덕을 방으로 부른 사실을 인정하지만 자신이 '한 비장'이라고 하지는 않는다.
+- `unresolved_identity` **ID03** — 처분문의 '한가' (CF048) ↔ 한재욱 · 관련 episode EP04, EP12, EP35 · unresolved_reason: 처분문(CF048)은 '한가'라는 성 표기만 쓴다. 이름과 직함을 함께 적은 처분 문장이 없다.
+- `unresolved_identity` **ID04** — '병영의 하급 보조자' (audit-only V3P0026·V3P0027·V3P0124) ↔ 한재욱 · 관련 episode 없음(DAG 미사용) · unresolved_reason: '하급 보조자'는 이조원 보고(05, audit-only)에만 나오며 confirmed set에는 없다.
+- `unresolved_identity` **ID05** — '풍각 김상제' (CF020) ↔ 김명신 · 관련 episode EP08, EP09 · unresolved_reason: '풍각 김상제'(상주 호칭)와 '풍각 김생원'(=김명신, CF022)은 다른 호칭이다. 둘을 같은 사람으로 적은 confirmed 문장이 없다.
+- `unresolved_identity` **ID06** — '병영의 염탐 담당자' (CF043) ↔ 유제희 · 관련 episode EP08, EP29 · unresolved_reason: 정조 판단(CF043)은 직책 표현('병영의 염탐 담당자')만 쓰고 이름을 적지 않았다.
+- `unresolved_identity` **ID07** — '철편 네 개' (CF010, 이진욱: 한재욱이 만들어 줌) ↔ '철퇴 네 개' (CF044, 정조: 이광섭이 만들게 함) · 관련 episode EP04, EP30 · unresolved_reason: 개수(네 개)와 사건은 같지만 물건 이름(철편/철퇴)과 행위 층위(제작·지급/제작 지시)가 다르다.
+- `unresolved_identity` **ID08** — 3/4 '장교 일행' (CF023) ↔ 조계완 포함 여부 (CF024) · 관련 episode EP04, EP10, EP11 · unresolved_reason: 3/4 '장교 일행'의 구성원은 기록되지 않았다.
+- `unresolved_identity` **ID11** — '원돌' (CF020 '원돌 등의 이름') ↔ 정원돌 (CF009·CF016) · 관련 episode EP04, EP07, EP08 · unresolved_reason: '원돌'과 '정원돌'은 이름 일부만 겹친다. 같은 사람이라는 문장이 없다.
+
 
 ## 4. 수정 이력 (Audit → 수정 → 재검사)
 
@@ -119,6 +152,9 @@ _없음_
 | 2차 실행 | ERROR 0, WARN 4 (EP01·EP04·EP05·EP06 원문 어휘 보존율 0.71–0.79) | 원문 대조 수동 검토: 빠진 토큰은 진술 어미와 '자신'→진술자 이름뿐이라 왜곡 없음 → PASS (§3) |
 | Stage 4 준비 중 | 미등록 동일성 발견: CF020 '원돌 등' ↔ CF009·CF016 '정원돌' | IDENTITY_REGISTER에 ID11(UNRESOLVED) 추가, EP08 caution 보강, identity 검사 규칙에 (원돌, 정원돌, ID11) 추가 |
 | 3차 실행 (ID11 반영) | ERROR 0, WARN 4 (같은 4건). 이후 모든 전체 실행에서 같은 결과 | 수동 판정 유지 → PASS |
+| WARN 0 작업 — 4차 | WARN 4건을 다시 검토: 진술자·대상·시간은 유지되었으나 '진술했다' 표지가 합쳐져 testimony가 사실처럼 읽힐 위험 | 자동 INFO 강등 대신 FIXED: EP01·EP04·EP05·EP06 문장마다 '진술했다' 복원, EP04 '자신' 원문 복원 → ERROR 0, WARN 0 |
+| WARN 0 작업 — 5차 | 새 regression 규칙(epistemic_marker_deletion·testimony_to_fact·actor_substitution·occurrence_record_confusion·responsibility_to_causation·environment_to_individual_fact) 추가 후 ERROR 2건: EP07 '진술' 표지 2→0 | ESCALATED_ERROR로 처리하고 EP07 문장마다 '진술했다' 복원 → ERROR 0, WARN 0 |
+| WARN 0 작업 — 6차 | regression 케이스 15개 중 '진술자 바꿔치기' 1개를 검사기가 놓침(이름이 summary 어딘가에 있으면 통과하던 약점) | actor_substitution에 'summary 첫 주어 = 원문 첫 주어' 검사를 추가 → 15/15 탐지. 최종 ERROR 0, WARN 0, UNRESOLVED 9(동일성), INFO 8 |
 
 ## 5. confirmed set 밖의 사료 내용 (05에만 있음 — DAG node로 쓰지 않음)
 

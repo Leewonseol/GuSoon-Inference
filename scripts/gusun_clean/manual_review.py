@@ -59,9 +59,13 @@ AUDIT1_MANUAL = [
      "'스스로 만들어냈다는 죄는 인정하지 않았다'를 '구순은 지세와 무관'으로 강화하지 않았다."),
     ("EP15 (CF030) · EP24 (CF038) · EP13 (CF027)", "semantic_weakening", "PASS",
      "'도난 자체가 없었다는 방향을 받아들였다'의 '방향', '약간의 실제 도난'·'보통 좀도둑 수준', '달포 이상'·'확실한 장물'을 모두 유지했다."),
-    ("EP01·EP04·EP05·EP06", "semantic_weakening (어휘 보존율 WARN 0.71–0.79)", "PASS (수동)",
-     "원문과 한 행씩 대조했다. 빠진 토큰은 행마다 반복되는 진술 어미('진술했다', '-다고')와 '자신'을 진술자 이름(이진욱·자미덕)으로 바꾼 부분뿐이다. "
-     "여러 행을 '…의 진술에 따르면'으로 한 번만 귀속했기 때문이다. 행위·대상·한정어는 모두 남아 있어 왜곡이 없다."),
+    ("EP01·EP04·EP05·EP06 (A1-W1–W4)", "semantic_weakening / epistemic marker", "FIXED",
+     "이전 판정은 'PASS(수동)'였으나 재검토에서 표현 차이로 넘기지 않았다. 여러 진술을 '…의 진술에 따르면' 하나로 귀속하면 뒤쪽 절이 사실 서술처럼 읽힐 수 있다. "
+     "그래서 원문 문장마다 '진술했다'를 복원하고 EP04의 '자신'을 원문대로 되돌렸다. 진술자·대상·시간·동일성은 수정 전후 모두 원문과 같다. 재실행 결과 WARN 0."),
+    ("EP07 (A1-E1)", "testimony_to_fact (새 regression 규칙)", "FIXED",
+     "보존율로는 WARN이 아니었으나 새 규칙 epistemic_marker_deletion·testimony_to_fact가 같은 유형을 ERROR로 잡았다. 두 진술 각각에 '진술했다'를 복원했다."),
+    ("EP01–EP12 (진술 episode 전체)", "actor_substitution / testimony_to_fact (새 규칙)", "PASS",
+     "summary 첫 주어가 원문 첫 문장의 진술자와 같고, '진술했' 개수가 진술 member 수 이상이며, 원문의 '자신'이 그대로 남는 것을 자동 검사로 확인했다."),
     ("EP01 (CF001–CF003) · EP04 (CF007–CF010)", "temporal_conflation", "PASS",
      "EP01은 친숙·왕래(2월 초순 이전) → 힐책(2월 초순) → 단절(그 이후)의 순서를 summary 어순으로 보존한다. "
      "EP04는 28일 밤의 호출·지시와 28일 밤~29일 새벽의 철편 제작을 한 출동 준비 단계로 묶고 시간 범위(228–229)를 남겼다."),
@@ -81,6 +85,13 @@ AUDIT1_REVISIONS = [
      "IDENTITY_REGISTER에 ID11(UNRESOLVED) 추가, EP08 caution 보강, identity 검사 규칙에 (원돌, 정원돌, ID11) 추가"),
     ("3차 실행 (ID11 반영)", "ERROR 0, WARN 4 (같은 4건). 이후 모든 전체 실행에서 같은 결과",
      "수동 판정 유지 → PASS"),
+    ("WARN 0 작업 — 4차", "WARN 4건을 다시 검토: 진술자·대상·시간은 유지되었으나 '진술했다' 표지가 합쳐져 testimony가 사실처럼 읽힐 위험",
+     "자동 INFO 강등 대신 FIXED: EP01·EP04·EP05·EP06 문장마다 '진술했다' 복원, EP04 '자신' 원문 복원 → ERROR 0, WARN 0"),
+    ("WARN 0 작업 — 5차", "새 regression 규칙(epistemic_marker_deletion·testimony_to_fact·actor_substitution·occurrence_record_confusion·"
+     "responsibility_to_causation·environment_to_individual_fact) 추가 후 ERROR 2건: EP07 '진술' 표지 2→0",
+     "ESCALATED_ERROR로 처리하고 EP07 문장마다 '진술했다' 복원 → ERROR 0, WARN 0"),
+    ("WARN 0 작업 — 6차", "regression 케이스 15개 중 '진술자 바꿔치기' 1개를 검사기가 놓침(이름이 summary 어딘가에 있으면 통과하던 약점)",
+     "actor_substitution에 'summary 첫 주어 = 원문 첫 주어' 검사를 추가 → 15/15 탐지. 최종 ERROR 0, WARN 0, UNRESOLVED 9(동일성), INFO 8"),
 ]
 
 # ============================================================================ AUDIT 2
@@ -138,11 +149,17 @@ AUDIT2_MANUAL = [
      "고립 node 0개. 처분 node(EP33–EP37)는 책임 판단·복명과 PROCEDURAL_NEXT로 이어진다."),
 ]
 
-AUDIT2_REVISIONS = [
+AUDIT2_REVISIONS_PRE = [
     ("이 세션 이전 전체 실행 (인계 기록)", "ERROR 0으로 통과", "수정 없음"),
     ("이 세션 재실행 (ID11 반영 뒤, 이후 모든 실행 동일)",
      "ERROR 0, WARN 0, INFO 7 (조건부 edge INFO 6개, endpoint 밖 절차 근거 OE060 INFO 1개). ID11은 어느 edge condition에도 쓰이지 않음",
      "INFO를 하나씩 수동 검토(§2) — 수정 없음. 동결 해시 86a529da3baf… 유지"),
+]
+
+AUDIT2_REVISIONS = AUDIT2_REVISIONS_PRE + [
+    ("WARN 0 작업", "WARN은 원래 0. 조건부 identity edge 6개를 INFO로 두던 것이 사료 모호성 성격이라 UNRESOLVED로 재분류했다. "
+     "PARTIAL 충돌 edge 2개(OE007·OE062)도 UNRESOLVED로 표시했다. 근거 문구의 동일성 표면형 쌍 검사와 책임→직접 인과·환경→개인 사실 문구 검사를 추가",
+     "edge 데이터는 변경 없음. 최종 ERROR 0, WARN 0, UNRESOLVED 8, INFO 1(OE060 절차 근거)"),
 ]
 
 # ============================================================================ AUDIT 3
@@ -153,9 +170,10 @@ AUDIT3_MANUAL = [
     ("audit_attestation이 있는 후보 19개", "audit-only 승격 금지", "PASS",
      "05 prop을 인용한 후보도 모두 LATENT다. G04d(석단 공초)·G07d·G12b는 confirmed 지지 없이 05 흔적만 있어 INFO로 표시했고 LOW에 머문다. "
      "05 prop은 node로도 edge로도 쓰지 않았다."),
-    ("G08a (EP18 → EP20)", "observed node 사이 latent edge (WARN)", "PASS (수동)",
-     "latent node 없이 EP18·EP20 사이에 LATENT PROCEDURAL_NEXT 하나를 둔 후보다. 이 edge는 latent_elements.csv에만 있고, "
-     "observed_edges.csv의 OE045(TEMPORAL_BEFORE, DERIVED)는 그대로다. gap_candidates.md·latent_elements.csv 모두 LATENT로 표시한다."),
+    ("G08a (A3-W1)", "OBSERVED/DERIVED/LATENT 분류", "FIXED → LATENT",
+     "원본 대조: CF033(이조원 비판·파직)과 CF035(홍대협 차하)는 각각 OBSERVED다. 둘 사이 동기를 적은 문장은 01·05·04 어디에도 없다(SRC3_004의 V3P0033은 "
+     "정조가 사건을 물었다는 내용뿐). 명시 시간순서는 이미 OE045(DERIVED)가 담고 있으므로 동기 연결은 DERIVED가 아니라 LATENT다. "
+     "관측 node끼리 직접 잇던 latent edge를 latent 판단 node LN_G08a_1을 사이에 둔 mini-DAG로 바꿨다. 등급(HIGH)과 world 구성은 변하지 않았다."),
     ("G09b (원안 EP04 → EP35 RESPONSIBILITY_LINK)", "causal_inflation", "PASS (수정 후)",
      "원안은 observed 처분 node(royal order)로 RESPONSIBILITY_LINK를 바로 걸었다. 책임 귀속은 판단 수준이어야 하므로 latent 근거 node LN_G09b_2를 사이에 두고 "
      "처분에는 PROCEDURAL_NEXT로 잇게 고쳤다."),
@@ -210,4 +228,85 @@ AUDIT3_REVISIONS = [
     ("Stage 5 작성 중", "W4 서술에 '병사'와 '이광섭'이 ID01 표시 없이 함께 나옴(실행 전 자체 검토)", "W4 서술에 ID01 조건 문장 추가"),
     ("3차 실행 (world 포함 재검사)", "ERROR 0, WARN 1 (같은 G08a)",
      "PASS. 이후 서술 문구 두 곳(자미덕 진술 인용, 홍대협의 '평가' 동사)을 원문에 맞게 다듬고 재실행 — 결과 동일"),
+    ("WARN 0 작업 — 4차", "A3-W1(G08a) 원본 재대조: 동기 연결은 원본에 없음 → LATENT. 관측 node 사이 직접 latent edge는 관측 관계로 읽힐 위험",
+     "FIXED: LN_G08a_1을 둔 mini-DAG로 변경, 같은 형태를 WARN에서 ERROR로 승격 → WARN 0"),
+    ("WARN 0 작업 — 5차", "새 open_set_closure 검사가 G04b를 ERROR로 잡음. 원문 확인 결과 G04b는 \'등\'을 따옴표로 감싸 열린 목록을 표시하고 있어 검사기 오탐",
+     "후보 내용은 그대로 두고 정규식이 따옴표 붙은 '등'과 목록 중간 절단을 처리하도록 수정 → ERROR 0"),
+    ("WARN 0 작업 — 6차", "UNRESOLVED 문구 검토: G10 사유가 '모든 후보가 사료 지지 없음'으로 적혀 G10a(MEDIUM)와 어긋남",
+     "후보 등급과 gap 근거에서 문구를 생성하도록 수정. 최종 ERROR 0, WARN 0, UNRESOLVED 1(G10), INFO 8"),
+]
+
+
+# ============================================================================ WARN dispositions
+# 모든 WARN은 아래 네 상태 중 하나로 처리한다: FIXED / RECLASSIFIED_INFO / UNRESOLVED / ESCALATED_ERROR.
+# build.py는 disposition이 없는 WARN이 남으면 멈춘다. FIXED는 이력이며, 같은 WARN이 다시 나오면 다시 처리해야 한다.
+WARN_DISPOSITIONS = [
+    dict(warning_id="A1-W1", audit_stage="AUDIT1", affected_item="EP01", warning_type="semantic_weakening",
+         original_text="CF001 명업은 김명신이 본래 구순과 친숙하여 날마다 왕래했다고 진술했다. / CF002 명업은 김명신이 박거사 일로 구순에게 "
+                       "편지를 보내 힐책했다고 진술했다. / CF003 명업은 그 뒤 구순과 김명신의 왕래가 끊겼다고 진술했다.",
+         generated_text="명업의 진술에 따르면, 김명신은 본래 구순과 친숙하여 날마다 왕래했으나, 박거사 일로 구순에게 편지를 보내 힐책했고, "
+                        "그 뒤 구순과 김명신의 왕래가 끊겼다.",
+         risk="원문 어휘 보존율 0.78. 세 진술의 '진술했다' 표지가 하나의 '따르면'으로 합쳐져 뒤쪽 절(힐책·단절)이 사실 서술처럼 읽힐 수 있음",
+         disposition="FIXED",
+         justification="원문 대조 결과 진술자(명업)·대상(김명신·구순)·내부 순서는 그대로였다. 그러나 뒤쪽 절의 귀속이 약해지므로 표현 차이로 넘기지 않고 "
+                       "세 진술 각각에 '진술했다'를 복원했다. 재실행 결과 WARN 사라짐(보존율 1.00).",
+         fixed_text="명업은 김명신이 본래 구순과 친숙하여 날마다 왕래했다고 진술했고, 김명신이 박거사 일로 구순에게 편지를 보내 힐책했다고 진술했으며, "
+                    "그 뒤 구순과 김명신의 왕래가 끊겼다고 진술했다.",
+         final_status="RESOLVED", final_classification="OBSERVED (RECORDED_TESTIMONY 유지)", unresolved_reason=""),
+    dict(warning_id="A1-W2", audit_stage="AUDIT1", affected_item="EP04", warning_type="semantic_weakening",
+         original_text="CF007 이진욱은 2월 28일 밤 병영에서 자신을 비장청으로 불렀다고 진술했다. / CF008 이진욱은 한재욱이 자신과 조계완 등에게 "
+                       "덕평으로 가도록 지시했다고 진술했다. / CF009 이진욱은 한재욱이 변지돌과 정원돌을 잡아오라고 지시했다고 진술했다. / "
+                       "CF010 이진욱은 한재욱이 철편 네 개를 만들어 주었다고 진술했다.",
+         generated_text="이진욱의 진술에 따르면, 2월 28일 밤 병영에서 이진욱을 비장청으로 불렀고, 한재욱이 이진욱과 조계완 등에게 덕평으로 가도록 "
+                        "지시하고 변지돌과 정원돌을 잡아오라고 지시했으며, 한재욱이 철편 네 개를 만들어 주었다.",
+         risk="보존율 0.71. (1) 네 진술의 '진술했다' 표지 삭제. (2) '자신'이 '이진욱'으로 치환됨. 치환이 주체를 바꾸었는지 확인 필요",
+         disposition="FIXED",
+         justification="'자신'의 지시 대상은 원문에서도 진술자 이진욱이라 주체는 바뀌지 않았다. 그래도 대명사 치환은 actor 정규화이므로 자동 INFO로 넘기지 않고, "
+                       "'자신'을 원문대로 되돌리고 네 진술 각각에 '진술했다'를 복원했다. 재실행 결과 WARN 사라짐.",
+         fixed_text="이진욱은 2월 28일 밤 병영에서 자신을 비장청으로 불렀다고 진술했고, 한재욱이 자신과 조계완 등에게 덕평으로 가도록 지시했다고 "
+                    "진술했으며, 한재욱이 변지돌과 정원돌을 잡아오라고 지시했다고 진술했고, 한재욱이 철편 네 개를 만들어 주었다고 진술했다.",
+         final_status="RESOLVED", final_classification="OBSERVED (RECORDED_TESTIMONY 유지)", unresolved_reason=""),
+    dict(warning_id="A1-W3", audit_stage="AUDIT1", affected_item="EP05", warning_type="semantic_weakening",
+         original_text="CF011 이진욱은 변지돌이 이미 공주진에서 잡혀간 상태였다고 진술했다. / CF012 이진욱은 장교 일행이 재돌의 처 자미덕을 "
+                       "붙잡았다고 진술했다.",
+         generated_text="이진욱의 진술에 따르면, 2월 29일 변지돌은 이미 공주진에서 잡혀간 상태였고, 장교 일행이 재돌의 처 자미덕을 붙잡았다.",
+         risk="보존율 0.79. 두 진술의 '진술했다' 표지가 합쳐져 체포 사실이 객관 사실처럼 읽힐 수 있음",
+         disposition="FIXED",
+         justification="진술자·대상·날짜(2/29, chronology 열)는 유지되었다. 표지 복원으로 처리했다. 재실행 결과 WARN 사라짐.",
+         fixed_text="이진욱은 2월 29일 변지돌이 이미 공주진에서 잡혀간 상태였다고 진술했고, 장교 일행이 재돌의 처 자미덕을 붙잡았다고 진술했다.",
+         final_status="RESOLVED", final_classification="OBSERVED (RECORDED_TESTIMONY 유지)", unresolved_reason=""),
+    dict(warning_id="A1-W4", audit_stage="AUDIT1", affected_item="EP06", warning_type="semantic_weakening",
+         original_text="CF013 자미덕은 병영 장교에게 붙잡혀 병영으로 끌려갔다고 진술했다. / CF014 자미덕은 병영에서 도적 혐의로 한 차례 신문을 "
+                       "받았다고 진술했다. / CF015 자미덕은 신문 뒤 비장청 다모방에 구류되었다고 진술했다.",
+         generated_text="자미덕의 진술에 따르면, 자미덕은 병영 장교에게 붙잡혀 병영으로 끌려갔고, 병영에서 도적 혐의로 한 차례 신문을 받았으며, "
+                        "신문 뒤 비장청 다모방에 구류되었다.",
+         risk="보존율 0.76. 세 진술 표지 삭제로 신문·구류가 관측 사실처럼 읽힐 수 있음",
+         disposition="FIXED",
+         justification="진술자·대상·'한 차례'는 유지되었다. 표지 복원으로 처리했다. 재실행 결과 WARN 사라짐.",
+         fixed_text="자미덕은 병영 장교에게 붙잡혀 병영으로 끌려갔다고 진술했고, 병영에서 도적 혐의로 한 차례 신문을 받았다고 진술했으며, "
+                    "신문 뒤 비장청 다모방에 구류되었다고 진술했다.",
+         final_status="RESOLVED", final_classification="OBSERVED (RECORDED_TESTIMONY 유지)", unresolved_reason=""),
+    dict(warning_id="A1-E1", audit_stage="AUDIT1", affected_item="EP07", warning_type="testimony_to_fact",
+         original_text="CF016 자미덕은 한 비장이 … 등을 큰 도적이라고 말하면 자신과 남편을 다음 날 석방하겠다고 말했다고 진술했다. / "
+                       "CF017 자미덕은 이집거와 대질했으며, 그때 한 비장의 지휘에 따라 거짓으로 꾸며 말했다고 진술했다.",
+         generated_text="자미덕의 진술에 따르면, 한 비장이 … 석방하겠다고 말했고, 자미덕은 이집거와 대질했으며, 그때 한 비장의 지휘에 따라 거짓으로 꾸며 말했다.",
+         risk="이전 실행에서는 보존율 0.80 이상이라 WARN이 아니었다. 이번에 추가한 regression 규칙(epistemic_marker_deletion·testimony_to_fact)이 "
+              "같은 결함 유형을 찾아냄. 대질·거짓 진술이 객관 사실처럼 읽힐 위험",
+         disposition="ESCALATED_ERROR",
+         justification="A1-W1–W4와 같은 결함 유형이므로 ERROR로 올리고 다음 stage 진행 전에 고쳤다. 두 진술 각각에 '진술했다'를 복원했다. "
+                       "'한 비장'·'등'·'거짓으로 꾸며'는 그대로 두었다. 재실행 ERROR 0.",
+         fixed_text="자미덕은 한 비장이 … 석방하겠다고 말했다고 진술했고, 자미덕은 이집거와 대질했으며, 그때 한 비장의 지휘에 따라 거짓으로 꾸며 말했다고 진술했다.",
+         final_status="RESOLVED", final_classification="OBSERVED (RECORDED_TESTIMONY 유지)", unresolved_reason=""),
+    dict(warning_id="A3-W1", audit_stage="AUDIT3", affected_item="G08a", warning_type="latent_as_observed",
+         original_text="CF033 정조는 이조원이 중대 사실을 직접 안핵하지 않고 전해 들은 말을 서계에 붙인 점을 문제 삼았고 이조원을 파직하도록 명했다. / "
+                       "CF035 정조는 홍대협에게 사건을 자세히 조사해 오라고 명하고 그를 충청도 공주 안핵어사로 차하했다. (둘 사이 동기 문장 없음; SRC3_004·V3P0033도 없음)",
+         generated_text="latent node 없이 관측 node EP18 → EP20을 LATENT PROCEDURAL_NEXT로 직접 연결",
+         risk="관측 node 둘을 잇는 edge는 표·그림에서 관측 관계처럼 읽힐 수 있음(LATENT → OBSERVED/DERIVED 승격 위험)",
+         disposition="FIXED",
+         justification="원본 대조 결과 두 행위는 각각 OBSERVED이고, 둘 사이 동기 연결은 어느 CSV에도 없다 → 분류 LATENT. DERIVED의 근거(명시 시간순서 등)는 "
+                       "이미 OE045(TEMPORAL_BEFORE)가 담고 있다. latent 판단 node LN_G08a_1을 사이에 둔 mini-DAG(EP18 → LN_G08a_1 → EP20)로 바꾸고, "
+                       "관측 node끼리 직접 잇는 latent edge는 이제 ERROR로 막는다. 재실행 결과 WARN 사라짐.",
+         fixed_text="EP18 —INFORMATION_FLOW→ LN_G08a_1 [LATENT] 정조가 이조원 서계의 직접 안핵 부재를 근거로 현지 직접 안핵이 필요하다고 판단 "
+                    "—PROCEDURAL_NEXT→ EP20",
+         final_status="RESOLVED", final_classification="LATENT", unresolved_reason=""),
 ]

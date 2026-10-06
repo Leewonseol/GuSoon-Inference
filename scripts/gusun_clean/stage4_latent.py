@@ -305,14 +305,16 @@ CANDIDATES = [
       conflicts="CF038(약간의 실제 도난), CF039(정조 최종: 도난 실재)", attest="V3P0020|V3P0127",
       notes="5월 단계 판단과 같은 방향이다. 최종 official·royal finding과 정면으로 충돌하므로 대조용으로만 둔다."),
     # ------------------------------------------------------------------ G08
-    C("G08a", "G08", "SINGLE", "직접 안핵 부재 비판 → 독립 안핵 결정",
-      "정조는 이조원이 직접 안핵하지 않은 점을 문제 삼은 다음 날 독립 안핵어사를 보내 사실을 직접 확인하게 했다.",
-      [], [("EP18", "EP20", "PROCEDURAL_NEXT")],
+    C("G08a", "G08", "MINI_DAG", "직접 안핵 부재 비판 → 독립 안핵 결정",
+      "정조는 이조원이 직접 안핵하지 않은 점을 문제 삼았고(관측, CF033), 그 판단이 다음 날 독립 안핵어사 차하(관측, CF035)의 "
+      "동기가 되었다는 연결만 LATENT다.",
+      [("LN_G08a_1", "정조가 이조원 서계의 직접 안핵 부재를 근거로 현지 직접 안핵이 필요하다고 판단", False)],
+      [("EP18", "LN_G08a_1", "INFORMATION_FLOW"), ("LN_G08a_1", "EP20", "PROCEDURAL_NEXT")],
       "HIGH", "HIGH", "HIGH", "HIGH", "HIGH", "N/A", "LOW",
       ["5/27 비판이 5/28 차하의 동기"],
       supports="CF033(직접 안핵하지 않은 점 문제 삼음), CF035(자세히 조사해 오라)", attest="V3P0028",
-      notes="latent node 없이 observed node 사이에 LATENT edge 하나만 둔다. observed DAG의 OE045(TEMPORAL_BEFORE)는 그대로이며 "
-            "이 edge는 latent_elements.csv에만 있다."),
+      notes="동기 연결은 원본(CF033·CF035·SRC3_004)에 문장으로 없으므로 LATENT다. 관측 node끼리 직접 잇지 않고 latent 판단 node를 "
+            "사이에 둔다(Audit 3 WARN A3-W1 처리). observed DAG의 OE045(TEMPORAL_BEFORE, DERIVED)는 그대로다."),
     C("G08b", "G08", "SINGLE", "지세 호칭 의문 해소가 주목적",
       "정조가 홍대협을 보낸 주목적은 지세 호칭의 출처를 밝히는 것이었다.",
       [("LN_G08b_1", "정조의 지세 호칭 의문", False)],

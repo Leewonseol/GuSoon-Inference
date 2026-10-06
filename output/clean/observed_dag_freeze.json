@@ -1,6 +1,11 @@
 {
   "name": "Validated Observed Partial DAG",
-  "sha256": "86a529da3baff8f326831620bc9a55c2e351452b03dd5f67e852768a33dc4bfe",
+  "sha256": "c50402af878ffb4d202f7c8c28c5d829ecabcc5ad0e1f5d2d78665aaef7df7c8",
+  "structure_sha256": "7b4d97185d70baa95a2efdb55492b854a0d39dcf26411b70a1bf830f0b79a1b3",
+  "previous_sha256_prefix": "86a529da3baff8f3",
+  "previous_structure_sha256": "7b4d97185d70baa95a2efdb55492b854a0d39dcf26411b70a1bf830f0b79a1b3",
+  "structure_unchanged": true,
+  "change_note": "WARN 처리(A1-W1–W4, A1-E1)로 EP01·EP04·EP05·EP06·EP07 summary 문구만 바뀜. node·edge 구조는 그대로",
   "n_nodes": 41,
   "n_edges": 68,
   "n_episode_nodes": 37,
