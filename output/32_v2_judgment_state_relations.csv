@@ -1,3 +1,0 @@
-relation_id,from_judgment_state_id,to_judgment_state_id,relation_type,actor,topic,notes
-JR001,J_JEONGJO_17930512_THEFT,J_JEONGJO_17930613_THEFT,REVISED_BY,정조,구순 집 도난의 실재,5/12 이형원 조사 결과 수용(중간) → 6/13 홍대협 안핵 후 도난 실재 판단(최종). 판단 수정이며 historical contradiction이 아님. 앞선 기록은 삭제되거나 거짓 기록이 되지 않음.
-JR002,J_HONG_17930528_JISE,J_HONG_17930613_JISE,REVISED_BY,홍대협,지세 호칭의 기원,5/28 '예전에도 쓰인 말인 듯'(유보) → 6/13 '기원을 확정하지 못함'(판단 보류). 같은 사람의 판단 변화. REVIEW: 수정인지 정밀화인지.

@@ -1,8 +1,0 @@
-2026-10-06 00:48:36,319 INFO Open-set audit row P0117 not normalized as a person set ('등'이 인물이 아니라 관직 목록에 붙음. 인물 집합용 set_status 대상이 아니므로 현행 유지.)
-2026-10-06 00:48:36,403 INFO raw propositions: 117
-2026-10-06 00:48:36,403 INFO atomic propositions: 171
-2026-10-06 00:48:36,403 INFO split parents: 33, 1:1 parents: 84
-2026-10-06 00:48:36,403 INFO claim_level: {'OUTER_ATTESTATION': 142, 'EMBEDDED_ATTESTATION': 29}
-2026-10-06 00:48:36,403 INFO entity resolution candidates: 20 (unresolved 3)
-2026-10-06 00:48:36,404 INFO normalized open sets: 15
-2026-10-06 00:48:36,404 INFO validation: ERROR=0 WARNING=0
