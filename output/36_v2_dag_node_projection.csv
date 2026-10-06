@@ -1,0 +1,173 @@
+dag_node_candidate_id,source_candidate_ids,node_class,subject_surface,action_core,object_surface,historical_fact_id,activation_condition,same_occurrence_group_candidates,notes
+DN_EC0001,EC0001,ATTRIBUTE_ONLY,구순,거주지 속성,청주 덕평,,해당 없음(ATTRIBUTE_ONLY: node 아님),,구순의 인물 속성(거주). 부착: 구순.
+DN_EC0002,EC0002,SPEECH_OR_JUDGMENT_EVENT_NODE,구순,고발 발언(김명신=도적 괴수),김명신,,E_EC0002 = TRUE,,발언 행위만 node. '도적 괴수'라는 내용은 node 아님. [시간] 날짜 없음. 기록일 1793-05-12는 사건 날짜로 쓰지 않음.
+DN_EC0003,EC0003,MATERIAL_EVENT_NODE,충청병영,체포(김명신),김명신,,E_EC0003 = TRUE,EC0003|EC0097,충청병영의 체포. 날짜 주장 없음. [시간] 날짜 없음. 기록일 1793-05-12는 사건 날짜로 쓰지 않음.
+DN_EC0004,EC0004,MATERIAL_EVENT_NODE,충청병영,"구금(김명신, 병영)",김명신,H_KIM_DETAINED_BY_BYEONGYEONG,H_KIM_DETAINED_BY_BYEONGYEONG = TRUE,,occurrence는 H_KIM_DETAINED_BY_BYEONGYEONG가 참인 world에만. '달포 이상' 기간은 E_EC0004의 속성. [시간] 날짜 없음. 기록일 1793-05-12는 사건 날짜로 쓰지 않음.
+DN_EC0005,EC0005,INVESTIGATIVE_EVENT_NODE,충청병영,조사(김명신),김명신,,E_EC0005 = TRUE,,병영의 조사 행위. [시간] 날짜 없음. 기록일 1793-05-12는 사건 날짜로 쓰지 않음.
+DN_EC0006,EC0006,ATTRIBUTE_ONLY,수사,수사 결과 속성(확실한 장물 미발견),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,부정 서술: 일어난 occurrence가 아님. 부착: 병영 수사.
+DN_EC0007,EC0007,MATERIAL_EVENT_NODE,김명신,사망(김명신),,H_KIM_MYEONGSIN_DIED,H_KIM_MYEONGSIN_DIED = TRUE,EC0007|EC0036|EC0053,이형원 기록의 사망 referent. [시간] 날짜 없음. 기록일 1793-05-12는 사건 날짜로 쓰지 않음.
+DN_EC0008,EC0008,ATTRIBUTE_ONLY,김명신,시간 귀속(사망이 구금·조사 뒤),,H_KIM_DEATH_AFTER_DETENTION,해당 없음(ATTRIBUTE_ONLY: node 아님),,시간 속성. 독립 node가 아니라 구금·조사 → 사망 conditional edge의 조건(E_EC0008). [사실] 이 속성·내용이 다루는 사실 H_KIM_DEATH_AFTER_DETENTION(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0009,EC0009,MATERIAL_EVENT_NODE,평민들,형벌 가함(평민들),,,E_EC0009 = TRUE,EC0009|EC0056,'모진'은 평가 속성. [시간] 날짜 없음. 기록일 1793-05-12는 사건 날짜로 쓰지 않음.
+DN_EC0010,EC0010,ATTRIBUTE_ONLY,형벌을 받은 평민들,평가(형벌 받은 평민들이 무고),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,평가 상태. 부착: EC0009.
+DN_EC0011,EC0011,ATTRIBUTE_ONLY,구순과 김명신,관계 상태(구순·김명신 원한),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,관계·동기 속성.
+DN_EC0012,EC0012,REVIEW_REQUIRED,구순,도난 상황 꾸밈(주장된 행위),,H_GUSUN_THEFT_OCCURRED,검토 전 비활성(REVIEW_REQUIRED),EC0012|EC0030,"FABSCOPE_EC0012: 전체 조작이면 별도 행위, 과장이면 구순 정소의 속성 → node/attribute 결정 보류. [사실] 이 속성·내용이 다루는 사실 H_GUSUN_THEFT_OCCURRED(H_ 자체는 node도 활성 조건도 아님)."
+DN_EC0013,EC0013,ATTRIBUTE_ONLY,구순,평가(누명 = 허위 고발),김명신,,해당 없음(ATTRIBUTE_ONLY: node 아님),,고발 행위 자체는 DN_EC0002. '누명'(허위성)은 그 행위의 속성.
+DN_EC0014,EC0014,ATTRIBUTE_ONLY,구순,수단 속성(행랑 하인을 통함),행랑 하인,,해당 없음(ATTRIBUTE_ONLY: node 아님),,부착: 누명 씌우기(EC0013) 방식.
+DN_EC0015,EC0015,ATTRIBUTE_ONLY,구순,수단 속성(교졸을 통함),교졸,,해당 없음(ATTRIBUTE_ONLY: node 아님),,부착: 누명 씌우기(EC0013) 방식.
+DN_EC0016,EC0016,ATTRIBUTE_ONLY,전후 체포자들,집단 속성(체포자들 = 미워하던 사람들),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,명단·집단 membership 속성.
+DN_EC0017,EC0017,INVESTIGATIVE_EVENT_NODE,이문협,수사 위임(이문협 → 병영 비장),병영 비장,,E_EC0017 = TRUE,,'병영 비장'→한가 UNRESOLVED: 동일성은 W에서만. [시간] 날짜 없음. 기록일 1793-05-12는 사건 날짜로 쓰지 않음.
+DN_EC0018,EC0018,ATTRIBUTE_ONLY,이광섭이 믿은 말,평가(이광섭이 믿은 말이 허황),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,평가 상태.
+DN_EC0019,EC0019,MATERIAL_EVENT_NODE,이광섭,"체포(이광섭 지휘, 대상 미특정)",,,E_EC0019 = TRUE,,'무고한·잘못'은 평가 속성. 대상이 특정되지 않은 체포. [시간] 날짜 없음. 기록일 1793-05-12는 사건 날짜로 쓰지 않음.
+DN_EC0020,EC0020,SPEECH_OR_JUDGMENT_EVENT_NODE,비변사,계청(이광섭 파직·나문 요청),이광섭,,E_EC0020 = TRUE,,비변사의 조정 발언 행위. [시간] 조정 기사일 1793-05-12 = 이 조정 행위 자체의 기록일.
+DN_EC0021,EC0021,ORDER_EVENT_NODE,정조,윤허(이광섭 처분),이광섭,,E_EC0021 = TRUE,,명령 행위만. 집행 기록 없음 → 집행 node 없음. [시간] 조정 기사일 1793-05-12 = 이 조정 행위 자체의 기록일.
+DN_EC0022,EC0022,ATTRIBUTE_ONLY,도난 자체,판단 내용(도난 자체가 없었다는 방향),,H_GUSUN_THEFT_OCCURRED,해당 없음(ATTRIBUTE_ONLY: node 아님),,판단 내용. 부착: DN_J_JEONGJO_17930512_THEFT(판단 act). [사실] 이 속성·내용이 다루는 사실 H_GUSUN_THEFT_OCCURRED(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0023,EC0023,ORDER_EVENT_NODE,정조,명령(구순 의금부 수금·엄사),구순,,E_EC0023 = TRUE,,명령 행위만. 집행 기록 없음 → 집행 node 없음. [시간] 조정 기사일 1793-05-12 = 이 조정 행위 자체의 기록일.
+DN_EC0024,EC0024,ATTRIBUTE_ONLY,구순 집,판단 내용(화적 설명 의심),,H_GUSUN_LARGE_ARMED_BAND_INTRUDED,해당 없음(ATTRIBUTE_ONLY: node 아님),,DOUBTED. 부착: DN_J_IJOWON_17930527_THEFT. [사실] 이 속성·내용이 다루는 사실 H_GUSUN_LARGE_ARMED_BAND_INTRUDED(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0025,EC0025,ATTRIBUTE_ONLY,김명신,관계 상태(이웃),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,관계 속성.
+DN_EC0026,EC0026,SPEECH_OR_JUDGMENT_EVENT_NODE,김명신,비판 발언(김명신 → 구순 행실),,,E_EC0026 = TRUE,EC0026|EC0072,SAME 후보 EC0072(편지 힐책)와는 W에서만 collapse. [시간] 날짜 없음. 기록일 1793-05-27는 사건 날짜로 쓰지 않음.
+DN_EC0027,EC0027,ATTRIBUTE_ONLY,구순,심리 상태(앙심),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,동기 속성.
+DN_EC0028,EC0028,ATTRIBUTE_ONLY,구순,원인 귀속(앙심이 비판 때문),김명신,,해당 없음(ATTRIBUTE_ONLY: node 아님),,원인 속성.
+DN_EC0029,EC0029,ATTRIBUTE_ONLY,구순,의도 상태(모함하려 함),김명신,,해당 없음(ATTRIBUTE_ONLY: node 아님),,동기 속성.
+DN_EC0030,EC0030,REVIEW_REQUIRED,구순,도난 상황 꾸밈(주장된 행위),,H_GUSUN_THEFT_OCCURRED,검토 전 비활성(REVIEW_REQUIRED),EC0012|EC0030,FABSCOPE_EC0030: EC0012와 같은 이유로 node/attribute 결정 보류. [사실] 이 속성·내용이 다루는 사실 H_GUSUN_THEFT_OCCURRED(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0031,EC0031,MATERIAL_EVENT_NODE,구순,지세랑 호칭 창작(주장된 행위),,,E_EC0031 = TRUE,,SENSE_EC0031=COINED_TERM일 때만 H_JISE_TERM_COINED_BY_GUSUN과 연결되므로 활성 조건은 E_EC0031. [시간] 날짜 없음. 기록일 1793-05-27는 사건 날짜로 쓰지 않음.
+DN_EC0032,EC0032,SPEECH_OR_JUDGMENT_EVENT_NODE,구순,호칭 유포 발언,,,E_EC0032 = TRUE,,유포 행위. [시간] 날짜 없음. 기록일 1793-05-27는 사건 날짜로 쓰지 않음.
+DN_EC0033,EC0033,MATERIAL_EVENT_NODE,구순,궤짝 돈 도난 위장(주장된 행위),,,E_EC0033 = TRUE,,특정 위장 행위 주장. [시간] 날짜 없음. 기록일 1793-05-27는 사건 날짜로 쓰지 않음.
+DN_EC0034,EC0034,ATTRIBUTE_ONLY,하인의 흔적,상태(하인 흔적 = 부스럼),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,부착: EC0035 대상.
+DN_EC0035,EC0035,MATERIAL_EVENT_NODE,구순,흔적 위장(부스럼 → 창상),,,E_EC0035 = TRUE,,특정 위장 행위 주장. [시간] 날짜 없음. 기록일 1793-05-27는 사건 날짜로 쓰지 않음.
+DN_EC0036,EC0036,MATERIAL_EVENT_NODE,김명신,사망(김명신),,H_KIM_MYEONGSIN_DIED,H_KIM_MYEONGSIN_DIED = TRUE,EC0007|EC0036|EC0053,이조원 기록의 사망 referent. [시간] 날짜 없음. 기록일 1793-05-27는 사건 날짜로 쓰지 않음.
+DN_EC0037,EC0037,ATTRIBUTE_ONLY,김명신,장소 속성(사망 장소 병영 옥),,H_KIM_DEATH_IN_BYEONGYEONG_PRISON,해당 없음(ATTRIBUTE_ONLY: node 아님),,부착: 김명신 사망 node. H_KIM_DEATH_IN_BYEONGYEONG_PRISON. [사실] 이 속성·내용이 다루는 사실 H_KIM_DEATH_IN_BYEONGYEONG_PRISON(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0038,EC0038,ATTRIBUTE_ONLY,김명신,원인·책임 귀속(구순이 구성한 죄안 때문),,H_KIM_DEATH_RESPONSIBILITY_WRONGFUL_CHARGE,해당 없음(ATTRIBUTE_ONLY: node 아님),,사인/책임 속성. 부착: 김명신 사망 node. CAUSELEVEL_EC0038에 따라 다른 사실. [사실] 이 속성·내용이 다루는 사실 H_KIM_DEATH_RESPONSIBILITY_WRONGFUL_CHARGE(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0039,EC0039,MATERIAL_EVENT_NODE,김명신의 아내,사망(김명신의 아내),,H_KIM_WIFE_DIED,H_KIM_WIFE_DIED = TRUE,,occurrence는 H_KIM_WIFE_DIED가 참인 world에만. [시간] 날짜 없음. 기록일 1793-05-27는 사건 날짜로 쓰지 않음.
+DN_EC0040,EC0040,ATTRIBUTE_ONLY,김명신의 아내,시간 귀속(김명신이 죽은 뒤),,H_KIM_WIFE_DIED_AFTER_KIM,해당 없음(ATTRIBUTE_ONLY: node 아님),,시간 속성. 김명신 사망 → 아내 사망 conditional edge의 조건(E_EC0040). [사실] 이 속성·내용이 다루는 사실 H_KIM_WIFE_DIED_AFTER_KIM(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0041,EC0041,ATTRIBUTE_ONLY,병사,부정된 행위(병사가 자세히 조사함),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,부정 서술: occurrence 아님.
+DN_EC0042,EC0042,INVESTIGATIVE_EVENT_NODE,병사,수사 위임(병사 → 하급 보조자),하급 보조자,,E_EC0042 = TRUE,,하급 보조자 동일성은 미정(UNRESOLVED). [시간] 날짜 없음. 기록일 1793-05-27는 사건 날짜로 쓰지 않음.
+DN_EC0043,EC0043,ATTRIBUTE_ONLY,병영의 하급 보조자,관계 상태(하급 보조자가 구순의 가객),,H_HAN_JAEUK_ACQUAINTED_WITH_GUSUN,해당 없음(ATTRIBUTE_ONLY: node 아님),,관계 속성. [사실] 이 속성·내용이 다루는 사실 H_HAN_JAEUK_ACQUAINTED_WITH_GUSUN(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0044,EC0044,ORDER_EVENT_NODE,정조,명령(이조원 파직),이조원,,E_EC0044 = TRUE,,명령 행위만. 집행 기록 없음. [시간] 조정 기사일 1793-05-27 = 이 조정 행위 자체의 기록일.
+DN_EC0045,EC0045,ORDER_EVENT_NODE,정조,명령(구순 의금부 수금·반복 신문),구순,,E_EC0045 = TRUE,,명령 행위만. 집행 기록 없음. [시간] 조정 기사일 1793-05-27 = 이 조정 행위 자체의 기록일.
+DN_EC0046,EC0046,ATTRIBUTE_ONLY,구순 사건의 도난,판단 내용(도난이 없었다는 방향),,H_GUSUN_THEFT_OCCURRED,해당 없음(ATTRIBUTE_ONLY: node 아님),,부착: DN_J_IJOWON_17930527_THEFT. [사실] 이 속성·내용이 다루는 사실 H_GUSUN_THEFT_OCCURRED(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0047,EC0047,ATTRIBUTE_ONLY,예전 호중 화적,판단 내용(예전 호중 화적도 지세랑 사용),,H_JISE_TERM_PRIOR_USE,해당 없음(ATTRIBUTE_ONLY: node 아님),,습관적 사용(상태) 내용. 부착: DN_J_HONG_17930528_JISE. [사실] 이 속성·내용이 다루는 사실 H_JISE_TERM_PRIOR_USE(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0048,EC0048,ORDER_EVENT_NODE,정조,명령(홍대협에게 내려가 조사해 오라),홍대협,,E_EC0048 = TRUE,,안핵 명령. [시간] 조정 기사일 1793-05-28 = 이 조정 행위 자체의 기록일.
+DN_EC0049,EC0049,ORDER_EVENT_NODE,정조,명령(홍대협 공주 안핵어사 차하),홍대협,,E_EC0049 = TRUE,,안핵 임명. [시간] 조정 기사일 1793-05-28 = 이 조정 행위 자체의 기록일.
+DN_EC0050,EC0050,MATERIAL_EVENT_NODE,구순,도적을 만남(구순),,,E_EC0050 = TRUE,EC0050|EC0070,INTERP_EC0050_MEANS_ROBBED가 참일 때만 도난 사실과 연결 → 활성 조건은 E_EC0050. [시간] 날짜 없음. 기록일 1793-06-11는 사건 날짜로 쓰지 않음.
+DN_EC0051,EC0051,MATERIAL_EVENT_NODE,구순,호출(구순 → 영교),영교,,E_EC0051 = TRUE,,[시간] 날짜 없음. 기록일 1793-06-11는 사건 날짜로 쓰지 않음.
+DN_EC0052,EC0052,MATERIAL_EVENT_NODE,구순,명단 작성·교부(김명신 등),김명신 등,,E_EC0052 = TRUE,,명단 membership은 속성. [시간] 날짜 없음. 기록일 1793-06-11는 사건 날짜로 쓰지 않음.
+DN_EC0053,EC0053,MATERIAL_EVENT_NODE,김명신,사망(김명신),,H_KIM_MYEONGSIN_DIED,H_KIM_MYEONGSIN_DIED = TRUE,EC0007|EC0036|EC0053,윤노동 기록의 사망 referent. [시간] 날짜 없음. 기록일 1793-06-11는 사건 날짜로 쓰지 않음.
+DN_EC0054,EC0054,ATTRIBUTE_ONLY,김명신,사인 귀속(병),,H_KIM_DEATH_CAUSE_DISEASE,해당 없음(ATTRIBUTE_ONLY: node 아님),,사인 속성. 부착: 김명신 사망 node. [사실] 이 속성·내용이 다루는 사실 H_KIM_DEATH_CAUSE_DISEASE(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0055,EC0055,ATTRIBUTE_ONLY,김명신,시간 귀속(체포·구금 뒤),,H_KIM_DEATH_AFTER_DETENTION,해당 없음(ATTRIBUTE_ONLY: node 아님),,같은 기록(SRC2_005)에 체포·구금 candidate가 없어 referent 변수 없음 → EVIDENCE_ONLY edge만. [사실] 이 속성·내용이 다루는 사실 H_KIM_DEATH_AFTER_DETENTION(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0056,EC0056,MATERIAL_EVENT_NODE,여러 죄수,형벌 가함(여러 죄수),,,E_EC0056 = TRUE,EC0009|EC0056,'참혹한'은 평가 속성. [시간] 날짜 없음. 기록일 1793-06-11는 사건 날짜로 쓰지 않음.
+DN_EC0057,EC0057,ATTRIBUTE_ONLY,수사,부정된 결과(진정한 장물 없음),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,부정 서술: occurrence 아님.
+DN_EC0058,EC0058,MATERIAL_EVENT_NODE,한재욱,회유(한재욱 → 변가의 처),변가의 처,H_HAN_JAEUK_COAXED_BYEONGA_CHEO,H_HAN_JAEUK_COAXED_BYEONGA_CHEO = TRUE,,occurrence는 H_HAN_JAEUK_COAXED_BYEONGA_CHEO가 참인 world에만. 변가의 처=자미덕은 CANDIDATE. [시간] 날짜 없음. 기록일 1793-06-11는 사건 날짜로 쓰지 않음.
+DN_EC0059,EC0059,SPEECH_OR_JUDGMENT_EVENT_NODE,변가의 처,공초 진술(변가의 처),,,E_EC0059 = TRUE,,공초 발언 행위. 내용('김명신이 도적 괴수')은 node 아님. [시간] 날짜 없음. 기록일 1793-06-11는 사건 날짜로 쓰지 않음.
+DN_EC0060,EC0060,ATTRIBUTE_ONLY,한재욱,결과 귀속(꾀어 그 공초를 내게 함),변가의 처,H_HAN_JAEUK_COAXED_BYEONGA_CHEO,해당 없음(ATTRIBUTE_ONLY: node 아님),,회유 → 공초의 연결 claim. edge 조건(E_EC0060)으로만 쓰며 인과 edge로 만들지 않음. [사실] 이 속성·내용이 다루는 사실 H_HAN_JAEUK_COAXED_BYEONGA_CHEO(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0061,EC0061,SPEECH_OR_JUDGMENT_EVENT_NODE,비변사,계청(복명 전 처리 보류),,,E_EC0061 = TRUE,,비변사의 조정 발언 행위. [시간] 조정 기사일 1793-06-11 = 이 조정 행위 자체의 기록일.
+DN_EC0062,EC0062,ORDER_EVENT_NODE,정조,윤허(보류),,,E_EC0062 = TRUE,,명령 행위만. [시간] 조정 기사일 1793-06-11 = 이 조정 행위 자체의 기록일.
+DN_EC0063,EC0063,INVESTIGATIVE_EVENT_NODE,홍대협,"안핵 신문(홍대협, 공주목)",,,E_EC0063 = TRUE,,복명(6/13) 안의 서술. 6/13은 이 신문의 날짜가 아님. [시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0064,EC0064,ATTRIBUTE_ONLY,명업,인물 관계 상태(명업),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,인물 속성.
+DN_EC0065,EC0065,SPEECH_OR_JUDGMENT_EVENT_NODE,나복,알림 발언(나복 → 명업),명업,,E_EC0065 = TRUE,,주장 날짜는 INTERP_EC0065_DATE_IS_TELLING_TIME가 참일 때만 이 발화의 시점. [시간] 주장 날짜 1793-02-22 밤(CT_EC0065). E_EC0065가 참일 때만 실제 시점 T_EC0065의 범위. 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0066,EC0066,MATERIAL_EVENT_NODE,도적,침입(도적),,,E_EC0066 = TRUE,,도난과 독립(침입했으나 훔치지 않은 world 가능). [시간] 주장 날짜 1793-02-22 밤(CT_EC0066). E_EC0066가 참일 때만 실제 시점 T_EC0066의 범위. 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0067,EC0067,ATTRIBUTE_ONLY,들어온 도적,규모 속성(도적 30여 명),,H_GUSUN_LARGE_ARMED_BAND_INTRUDED,해당 없음(ATTRIBUTE_ONLY: node 아님),,부착: 침입 node. H_GUSUN_LARGE_ARMED_BAND_INTRUDED. [사실] 이 속성·내용이 다루는 사실 H_GUSUN_LARGE_ARMED_BAND_INTRUDED(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0068,EC0068,ATTRIBUTE_ONLY,도적,방식 속성(횃불을 들고),,H_GUSUN_LARGE_ARMED_BAND_INTRUDED,해당 없음(ATTRIBUTE_ONLY: node 아님),,부착: 침입 node. [사실] 이 속성·내용이 다루는 사실 H_GUSUN_LARGE_ARMED_BAND_INTRUDED(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0069,EC0069,SPEECH_OR_JUDGMENT_EVENT_NODE,도적,자칭 발언(도적: 지세대감),,,E_EC0069 = TRUE,,발언 행위. [시간] 주장 날짜 1793-02-22 밤(CT_EC0069). E_EC0069가 참일 때만 실제 시점 T_EC0069의 범위. 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0070,EC0070,MATERIAL_EVENT_NODE,도적,도난(돈·물품),,H_GUSUN_THEFT_OCCURRED,H_GUSUN_THEFT_OCCURRED = TRUE,EC0050|EC0070,THEFT_OCCURRENCE_NODE. 존재 여부는 H_GUSUN_THEFT_OCCURRED가 결정. '돈과 물품'·'2/22 밤'은 E_EC0070의 내용. [시간] 주장 날짜 1793-02-22 밤(CT_EC0070). E_EC0070가 참일 때만 실제 시점 T_EC0070의 범위. 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0071,EC0071,ATTRIBUTE_ONLY,김명신,관계 상태(친숙·왕래),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,관계 속성.
+DN_EC0072,EC0072,MATERIAL_EVENT_NODE,김명신,서찰 발송·힐책(김명신 → 구순),구순,,E_EC0072 = TRUE,EC0026|EC0072,서찰 전달 occurrence. [시간] 주장 날짜 1793-02 초순(CT_EC0072). E_EC0072가 참일 때만 실제 시점 T_EC0072의 범위. 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0073,EC0073,MATERIAL_EVENT_NODE,구순·김명신,왕래 단절(상태 개시),,,E_EC0073 = TRUE,,상태가 시작된 시점을 갖는 node('그 뒤'의 대상). 상태 구간 node로 둠. [시간] 주장 날짜 1793-02 초순 이후(CT_EC0073). E_EC0073가 참일 때만 실제 시점 T_EC0073의 범위. 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0074,EC0074,SPEECH_OR_JUDGMENT_EVENT_NODE,구순,정소(소장 제출),,,E_EC0074 = TRUE,,구순의 정소 행위. [시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0075,EC0075,ORDER_EVENT_NODE,체포령,체포령 발령,,,E_EC0075 = TRUE,,명령 행위만. 발령 주체 미상. [시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0076,EC0076,MATERIAL_EVENT_NODE,구순,사적 접촉(구순 ↔ 장교 1명),장교 1명,,E_EC0076 = TRUE,EC0076|EC0098,장교 1명=조계완은 ID_JANGGYO_1MYEONG__JOGYEWAN(근거 약함). [시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0077,EC0077,SPEECH_OR_JUDGMENT_EVENT_NODE,명업,"공초 진술(명업, 처음 사실대로)",,,E_EC0077 = TRUE,,[시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0078,EC0078,ATTRIBUTE_ONLY,명업,심리 상태(위협이 두려움),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,부착: 명업.
+DN_EC0079,EC0079,SPEECH_OR_JUDGMENT_EVENT_NODE,명업,진술 번복(명업),도적이 없었다는 취지,,E_EC0079 = TRUE,,번복 발언 행위. 내용('도적이 없었다')은 node 아님. [시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0080,EC0080,ATTRIBUTE_ONLY,명업,원인 귀속(위협이 두려워 번복),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,원인 속성.
+DN_EC0081,EC0081,MATERIAL_EVENT_NODE,병영,호출(병영 → 이진욱),이진욱,,E_EC0081 = TRUE,,[시간] 주장 날짜 1793-02-28 밤(CT_EC0081). E_EC0081가 참일 때만 실제 시점 T_EC0081의 범위. 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0082,EC0082,ORDER_EVENT_NODE,한재욱,지시(덕평으로 출동),이진욱·조계완 등,,E_EC0082 = TRUE,,명령 행위만. [시간] 주장 날짜 1793-02-28 밤(CT_EC0082). E_EC0082가 참일 때만 실제 시점 T_EC0082의 범위. 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0083,EC0083,ORDER_EVENT_NODE,한재욱,지시(변지돌·정원돌 체포),변지돌·정원돌,,E_EC0083 = TRUE,,명령 행위만. 실제로는 자미덕만 잡힘(EC0089) → 이 명령의 집행 node 없음. [시간] 주장 날짜 1793-02-28 밤(CT_EC0083). E_EC0083가 참일 때만 실제 시점 T_EC0083의 범위. 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0084,EC0084,MATERIAL_EVENT_NODE,한재욱,철편 제작·지급,철편 4개,,E_EC0084 = TRUE,,[시간] 주장 날짜 1793-02-28 밤~29 새벽(CT_EC0084). E_EC0084가 참일 때만 실제 시점 T_EC0084의 범위. 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0085,EC0085,ATTRIBUTE_ONLY,변지돌과 정원돌,인물 관계(처남매부),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,인물 속성.
+DN_EC0086,EC0086,ATTRIBUTE_ONLY,변지돌,인물 속성(힘이 셈),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,인물 속성.
+DN_EC0087,EC0087,SPEECH_OR_JUDGMENT_EVENT_NODE,한재욱,경고 발언(조심하라),,,E_EC0087 = TRUE,,[시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0088,EC0088,ATTRIBUTE_ONLY,변지돌,구금 상태(변지돌 이미 잡혀감),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,앞선 체포 사건은 candidate가 없으므로 node를 만들지 않음(latent event 금지).
+DN_EC0089,EC0089,MATERIAL_EVENT_NODE,이진욱 등 장교,체포(자미덕),자미덕,,E_EC0089 = TRUE,EC0089|EC0104,이진욱 진술의 체포 referent. [시간] 주장 날짜 1793-02-29(CT_EC0089). E_EC0089가 참일 때만 실제 시점 T_EC0089의 범위. 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0090,EC0090,ATTRIBUTE_ONLY,이진욱 등 장교,범위 속성(잡은 사람이 자미덕뿐),자미덕,,해당 없음(ATTRIBUTE_ONLY: node 아님),,membership 속성.
+DN_EC0091,EC0091,ATTRIBUTE_ONLY,자미덕,인물 관계(재돌의 처),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,인물 속성.
+DN_EC0092,EC0092,ATTRIBUTE_ONLY,재돌,인물 관계(변지돌의 아우),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,인물 속성.
+DN_EC0093,EC0093,INVESTIGATIVE_EVENT_NODE,장교 일행,"현장 탐문(구순 집, 도난 상황 질문)",구순,,E_EC0093 = TRUE,,[시간] 주장 날짜 1793-02-29(CT_EC0093). E_EC0093가 참일 때만 실제 시점 T_EC0093의 범위. 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0094,EC0094,SPEECH_OR_JUDGMENT_EVENT_NODE,구순,피해 진술 발언(잃은 물건 열거),,,E_EC0094 = TRUE,,발언 행위. [시간] 주장 날짜 1793-02-29(CT_EC0094). E_EC0094가 참일 때만 실제 시점 T_EC0094의 범위. 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0095,EC0095,SPEECH_OR_JUDGMENT_EVENT_NODE,구순,전언 발언(도적이 지세대사라 자칭),,,E_EC0095 = TRUE,,발언 행위. [시간] 주장 날짜 1793-02-29(CT_EC0095). E_EC0095가 참일 때만 실제 시점 T_EC0095의 범위. 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0096,EC0096,ORDER_EVENT_NODE,병사 이광섭,지시(풍각·흥덕 김생원 체포),풍각 김생원·흥덕 김생원,,E_EC0096 = TRUE,,"풍각 김생원=김명신, 흥덕 김생원=김갑득은 원문 직접 식별(DIRECTLY_IDENTIFIED)이라 그대로 사용. [시간] 주장 날짜 1793-03-04(CT_EC0096). E_EC0096가 참일 때만 실제 시점 T_EC0096의 범위. 기록일 1793-06-13는 사건 날짜가 아님."
+DN_EC0097,EC0097,MATERIAL_EVENT_NODE,장교 일행,체포(김명신·김갑득),김명신·김갑득,,E_EC0097 = TRUE,EC0003|EC0097,'병사 분부에 따라' → EC0096 명령의 실행 기록. [시간] 주장 날짜 1793-03-04(CT_EC0097). E_EC0097가 참일 때만 실제 시점 T_EC0097의 범위. 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0098,EC0098,MATERIAL_EVENT_NODE,조계완,방문(조계완 → 구순 집),,,E_EC0098 = TRUE,EC0076|EC0098,[시간] 주장 날짜 1793-03-04(CT_EC0098). E_EC0098가 참일 때만 실제 시점 T_EC0098의 범위. 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0099,EC0099,SPEECH_OR_JUDGMENT_EVENT_NODE,구순,질문 발언(구순: 왜 다시 왔나),조계완,,E_EC0099 = TRUE,,[시간] 주장 날짜 1793-03-04(CT_EC0099). E_EC0099가 참일 때만 실제 시점 T_EC0099의 범위. 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0100,EC0100,SPEECH_OR_JUDGMENT_EVENT_NODE,조계완,응답 발언(조계완: 풍각의 상주를 잡으러),,,E_EC0100 = TRUE,,[시간] 주장 날짜 1793-03-04(CT_EC0100). E_EC0100가 참일 때만 실제 시점 T_EC0100의 범위. 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0101,EC0101,SPEECH_OR_JUDGMENT_EVENT_NODE,구순,반응 발언(구순),,,E_EC0101 = TRUE,,[시간] 주장 날짜 1793-03-04(CT_EC0101). E_EC0101가 참일 때만 실제 시점 T_EC0101의 범위. 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0102,EC0102,MATERIAL_EVENT_NODE,구순,서찰 전달 요구·교부(구순 → 조계완),조계완,,E_EC0102 = TRUE,,서찰 전달 occurrence. [시간] 주장 날짜 1793-03-04(CT_EC0102). E_EC0102가 참일 때만 실제 시점 T_EC0102의 범위. 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0103,EC0103,MATERIAL_EVENT_NODE,재돌,체류 상태(재돌 아산),,,E_EC0103 = TRUE,,상태 구간 node('자미덕 체포 전'의 주체). [시간] 상대시간만('자미덕 체포 전'). 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0104,EC0104,MATERIAL_EVENT_NODE,병영 장교,체포·압송(자미덕),자미덕,,E_EC0104 = TRUE,EC0089|EC0104,자미덕 진술의 체포 referent. SAME 후보 EC0089와는 W에서만 collapse. [시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0105,EC0105,INVESTIGATIVE_EVENT_NODE,병영,신문(자미덕),자미덕,,E_EC0105 = TRUE,,[시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0106,EC0106,MATERIAL_EVENT_NODE,자미덕,"구류(자미덕, 다모방)",,,E_EC0106 = TRUE,,[시간] 상대시간만('신문 뒤'). 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0107,EC0107,MATERIAL_EVENT_NODE,한 비장,"호출 접촉(한 비장 → 자미덕, 매일)",자미덕,,E_EC0107 = TRUE,EC0107|EC0111|EC0119|EC0120,한 비장=한재욱은 CANDIDATE(ID_HANBIJANG__HANJAEUK). 행위자 통합은 W에서만. [시간] 상대시간만('그 후'). 기록일 1793-06-13는 사건 날짜가 아님.
+DN_EC0108,EC0108,SPEECH_OR_JUDGMENT_EVENT_NODE,한 비장,발언(남편 재돌 체포 고지),,,E_EC0108 = TRUE,,내용 속 '재돌 체포'는 node 아님. [시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0109,EC0109,SPEECH_OR_JUDGMENT_EVENT_NODE,한 비장,회유 발화(조건부 석방 제안),,H_HANBIJANG_CONDITIONAL_RELEASE_OFFER,H_HANBIJANG_CONDITIONAL_RELEASE_OFFER = TRUE,,UG_P0081 한 발화의 act node. occurrence는 H_HANBIJANG_CONDITIONAL_RELEASE_OFFER(조건·약속 둘 다 참)가 결정. [시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0110,EC0110,ATTRIBUTE_ONLY,한 비장,발화 구성요소(석방 약속 부분),,H_HANBIJANG_CONDITIONAL_RELEASE_OFFER,해당 없음(ATTRIBUTE_ONLY: node 아님),,같은 발화(UG_P0081)의 약속 부분. 부착: DN_EC0109. 약속된 '다음 날 석방'은 집행 기록이 없어 node 아님. [사실] 이 속성·내용이 다루는 사실 H_HANBIJANG_CONDITIONAL_RELEASE_OFFER(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0111,EC0111,MATERIAL_EVENT_NODE,한 비장,음식 제공(한 비장 → 자미덕),자미덕,,E_EC0111 = TRUE,EC0107|EC0111|EC0119|EC0120,[시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0112,EC0112,MATERIAL_EVENT_NODE,자미덕·이집거,대질(자미덕 ↔ 이집거),,H_JAMIDEOK_IJIPGEO_CONFRONTATION,H_JAMIDEOK_IJIPGEO_CONFRONTATION = TRUE,,occurrence는 H_JAMIDEOK_IJIPGEO_CONFRONTATION가 참인 world에만. [시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0113,EC0113,SPEECH_OR_JUDGMENT_EVENT_NODE,자미덕,"거짓 진술(대질 중, 자미덕)",,H_JAMIDEOK_FALSE_STATEMENT_AT_CONFRONTATION,H_JAMIDEOK_FALSE_STATEMENT_AT_CONFRONTATION = TRUE,,occurrence는 H_JAMIDEOK_FALSE_STATEMENT_AT_CONFRONTATION가 참인 world에만. [시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0114,EC0114,MATERIAL_EVENT_NODE,한 비장,지휘(한 비장 → 자미덕 거짓 발언),,H_HANBIJANG_DIRECTED_JAMIDEOK_FALSE_STATEMENT,H_HANBIJANG_DIRECTED_JAMIDEOK_FALSE_STATEMENT = TRUE,,occurrence는 H_HANBIJANG_DIRECTED_JAMIDEOK_FALSE_STATEMENT가 참인 world에만. [시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0115,EC0115,INVESTIGATIVE_EVENT_NODE,한재욱,파견(한재욱 → 유제희),유제희,,E_EC0115 = TRUE,,탐문 파견. [시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0116,EC0116,ATTRIBUTE_ONLY,한재욱,목적 귀속(도적 진상 탐지),유제희,,해당 없음(ATTRIBUTE_ONLY: node 아님),,목적 속성. 부착: DN_EC0115.
+DN_EC0117,EC0117,INVESTIGATIVE_EVENT_NODE,유제희,명단 작성·보고(유제희),,,E_EC0117 = TRUE,EC0117|EC0130,명단 membership은 속성. [시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0118,EC0118,INVESTIGATIVE_EVENT_NODE,유제희,염탐(유제희),,,E_EC0118 = TRUE,,[시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0119,EC0119,MATERIAL_EVENT_NODE,한재욱,호출 접촉(한재욱 → 자미덕),자미덕,,E_EC0119 = TRUE,EC0107|EC0111|EC0119|EC0120,[시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0120,EC0120,MATERIAL_EVENT_NODE,한재욱,음식 제공(한재욱 → 자미덕),자미덕,,E_EC0120 = TRUE,EC0107|EC0111|EC0119|EC0120,[시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0121,EC0121,SPEECH_OR_JUDGMENT_EVENT_NODE,유제희,전언 발언(유제희: 석단 공초 내용),,,E_EC0121 = TRUE,,[시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0122,EC0122,SPEECH_OR_JUDGMENT_EVENT_NODE,유제희,권고 발언(유제희: 자미덕에게 다시 물어보라),,,E_EC0122 = TRUE,,[시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0123,EC0123,INVESTIGATIVE_EVENT_NODE,한재욱,재질문(한재욱 → 자미덕),자미덕,,E_EC0123 = TRUE,,[시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0124,EC0124,ATTRIBUTE_ONLY,한재욱,원인 귀속(재질문이 유제희 말에 따름),자미덕,,해당 없음(ATTRIBUTE_ONLY: node 아님),,EC0122 → EC0123 procedural edge의 조건(E_EC0124)으로만 사용.
+DN_EC0125,EC0125,SPEECH_OR_JUDGMENT_EVENT_NODE,자미덕,응답 발언(자미덕: 모른다),,,E_EC0125 = TRUE,,[시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0126,EC0126,ATTRIBUTE_ONLY,한재욱,부인 내용(은밀한 사주 없음),,H_HAN_JAEUK_INSTIGATED_JAMIDEOK,해당 없음(ATTRIBUTE_ONLY: node 아님),,DENIED 내용. 부착: DN_J_HANJAEUK_17930613_COACHING. [사실] 이 속성·내용이 다루는 사실 H_HAN_JAEUK_INSTIGATED_JAMIDEOK(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0127,EC0127,ATTRIBUTE_ONLY,한재욱,부인 내용(구순과 모르는 사이),,H_HAN_JAEUK_ACQUAINTED_WITH_GUSUN,해당 없음(ATTRIBUTE_ONLY: node 아님),,DENIED 내용. 부착: DN_J_HANJAEUK_17930613_COACHING. [사실] 이 속성·내용이 다루는 사실 H_HAN_JAEUK_ACQUAINTED_WITH_GUSUN(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0128,EC0128,INVESTIGATIVE_EVENT_NODE,유제희,"탐문(유제희, 현지)",,,E_EC0128 = TRUE,,[시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0129,EC0129,SPEECH_OR_JUDGMENT_EVENT_NODE,구순,발언(구순: 풍각 김상제 수상),풍각 김상제,,E_EC0129 = TRUE,,[시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0130,EC0130,INVESTIGATIVE_EVENT_NODE,유제희,기록·보고(유제희),,,E_EC0130 = TRUE,EC0117|EC0130,[시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0131,EC0131,ATTRIBUTE_ONLY,약간의 도난,판단 내용(약간의 도난은 실제),,H_GUSUN_THEFT_OCCURRED,해당 없음(ATTRIBUTE_ONLY: node 아님),,부착: DN_J_HONG_17930613_THEFT. [사실] 이 속성·내용이 다루는 사실 H_GUSUN_THEFT_OCCURRED(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0132,EC0132,ATTRIBUTE_ONLY,도난,판단 내용(좀도둑 수준),,H_GUSUN_THEFT_OCCURRED,해당 없음(ATTRIBUTE_ONLY: node 아님),,규모 평가. 부착: DN_J_HONG_17930613_THEFT. [사실] 이 속성·내용이 다루는 사실 H_GUSUN_THEFT_OCCURRED(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0133,EC0133,ATTRIBUTE_ONLY,구순,평가(구순이 과장함),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,구순 정소의 방식 평가.
+DN_EC0134,EC0134,SPEECH_OR_JUDGMENT_EVENT_NODE,아전,보고 행위(아전),,,E_EC0134 = TRUE,,'거짓'은 그 보고의 속성. 아전=유제희는 CANDIDATE. [시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0135,EC0135,ATTRIBUTE_ONLY,이광섭,심리 상태(이광섭이 믿음),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,부착: 이광섭.
+DN_EC0136,EC0136,ATTRIBUTE_ONLY,이광섭,상황 속성(장물 없는 상태에서),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,부착: DN_EC0137 판단 행위.
+DN_EC0137,EC0137,SPEECH_OR_JUDGMENT_EVENT_NODE,이광섭,판단 행위(이광섭: 큰 도적으로 판단),,,E_EC0137 = TRUE,,판단 act만 node. '큰 도적'이라는 내용은 node 아님. [시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0138,EC0138,ATTRIBUTE_ONLY,김명신,사인 귀속(질병),,H_KIM_DEATH_CAUSE_DISEASE,해당 없음(ATTRIBUTE_ONLY: node 아님),,사인 속성. 부착: 김명신 사망 node. [사실] 이 속성·내용이 다루는 사실 H_KIM_DEATH_CAUSE_DISEASE(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0139,EC0139,ATTRIBUTE_ONLY,이문협,부정된 행위(장물부터 확보함),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,부정 서술: occurrence 아님.
+DN_EC0140,EC0140,MATERIAL_EVENT_NODE,이문협,"체포(평민, 장교·나졸 동원)",,,E_EC0140 = TRUE,,[시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0141,EC0141,INVESTIGATIVE_EVENT_NODE,병영 비장,수사 지휘(병영 비장),,,E_EC0141 = TRUE,,병영 비장=한가는 CANDIDATE. [시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0142,EC0142,INVESTIGATIVE_EVENT_NODE,이문협,죄안 구성(이문협),,,E_EC0142 = TRUE,,'얽음'은 평가 속성. [시간] 날짜 없음. 기록일 1793-06-13는 사건 날짜로 쓰지 않음.
+DN_EC0143,EC0143,ATTRIBUTE_ONLY,도난,판단 내용(도난이 실제로 있었음),,H_GUSUN_THEFT_OCCURRED,해당 없음(ATTRIBUTE_ONLY: node 아님),,부착: DN_J_JEONGJO_17930613_THEFT. [사실] 이 속성·내용이 다루는 사실 H_GUSUN_THEFT_OCCURRED(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0144,EC0144,ATTRIBUTE_ONLY,김명신,사인 귀속(전염병),,H_KIM_DEATH_CAUSE_EPIDEMIC,해당 없음(ATTRIBUTE_ONLY: node 아님),,사인 속성. 부착: 김명신 사망 node. [사실] 이 속성·내용이 다루는 사실 H_KIM_DEATH_CAUSE_EPIDEMIC(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0145,EC0145,ATTRIBUTE_ONLY,김명신 부처 중 처,"사인 귀속(아내, 전염병)",,H_KIM_WIFE_DEATH_CAUSE_EPIDEMIC,해당 없음(ATTRIBUTE_ONLY: node 아님),,사인 속성. 부착: 아내 사망 node. [사실] 이 속성·내용이 다루는 사실 H_KIM_WIFE_DEATH_CAUSE_EPIDEMIC(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0146,EC0146,ATTRIBUTE_ONLY,김명신,판단 내용(곤장 맞지 않음),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,부정 내용. 부착: DN_J_JEONGJO_17930613_KIM_DEATH.
+DN_EC0147,EC0147,ATTRIBUTE_ONLY,김명신,판단 내용(평범한 신문도 받지 않음),,,해당 없음(ATTRIBUTE_ONLY: node 아님),,부정 내용. 부착: DN_J_JEONGJO_17930613_KIM_DEATH.
+DN_EC0148,EC0148,ATTRIBUTE_ONLY,예전 무식한 좀도둑들,판단 내용(예전 좀도둑도 쓰던 말),,H_JISE_TERM_PRIOR_USE,해당 없음(ATTRIBUTE_ONLY: node 아님),,부착: DN_J_JEONGJO_17930613_JISE. [사실] 이 속성·내용이 다루는 사실 H_JISE_TERM_PRIOR_USE(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0149,EC0149,ATTRIBUTE_ONLY,구순,판단 내용(호칭 창작 죄 면함),,H_JISE_TERM_COINED_BY_GUSUN,해당 없음(ATTRIBUTE_ONLY: node 아님),,부착: DN_J_JEONGJO_17930613_JISE. [사실] 이 속성·내용이 다루는 사실 H_JISE_TERM_COINED_BY_GUSUN(H_ 자체는 node도 활성 조건도 아님).
+DN_EC0150,EC0150,ORDER_EVENT_NODE,정조,처분 명령(구순 감사 정배),구순,,E_EC0150 = TRUE,EC0150|EC0151,명령 행위만. 정배 집행 기록 없음 → 집행 node 없음. [시간] 조정 기사일 1793-06-13 = 이 조정 행위 자체의 기록일.
+DN_EC0151,EC0151,ORDER_EVENT_NODE,정조,처분 명령(구순 신지도 정배),구순,,E_EC0151 = TRUE,EC0150|EC0151,명령 행위만. 정배 집행 기록 없음 → 집행 node 없음. [시간] 조정 기사일 1793-06-13 = 이 조정 행위 자체의 기록일.
+DN_EC0152,EC0152,ORDER_EVENT_NODE,정조,처분 명령(이광섭 영동현 유배),이광섭,,E_EC0152 = TRUE,,명령 행위만. 집행 기록 없음. [시간] 조정 기사일 1793-06-13 = 이 조정 행위 자체의 기록일.
+DN_EC0153,EC0153,ORDER_EVENT_NODE,정조,처분 명령(한가 형장 후 노비),한가,,E_EC0153 = TRUE,,명령 내용 속 '형장 친 뒤'는 미래 집행 순서이므로 edge 근거가 아님. 집행 node 없음. [시간] 조정 기사일 1793-06-13 = 이 조정 행위 자체의 기록일.
+DN_EC0154,EC0154,ORDER_EVENT_NODE,정조,명령(이형원 파직),이형원,,E_EC0154 = TRUE,,명령 행위만. [시간] 조정 기사일 1793-06-13 = 이 조정 행위 자체의 기록일.
+DN_EC0155,EC0155,ORDER_EVENT_NODE,정조,처분(이형원 유임),이형원,,E_EC0155 = TRUE,,명령 행위만. [시간] 조정 기사일 1793-06-16 = 이 조정 행위 자체의 기록일.
+DN_J_HANJAEUK_17930613_COACHING,J_HANJAEUK_17930613_COACHING,SPEECH_OR_JUDGMENT_EVENT_NODE,한재욱,판단 행위(자미덕 사주 여부·구순과의 관계),,,J_HANJAEUK_17930613_COACHING = TRUE,,"판단 act node: 이 판단·진술 행위가 있었는지만 나타냄(판단 내용의 참·거짓과 무관, 내용은 node 아님). 이 판단이 다루는 candidate(각자 따로 분류·활성): EC0119(MATERIAL_EVENT_NODE)|EC0120(MATERIAL_EVENT_NODE)|EC0126(ATTRIBUTE_ONLY)|EC0127(ATTRIBUTE_ONLY). [시간] 날짜 anchor 없음: 공초는 안핵 중 받은 진술. 6/13은 복명에 수록된 기록일(공초 시점은 그 이전)."
+DN_J_HONG_17930528_JISE,J_HONG_17930528_JISE,SPEECH_OR_JUDGMENT_EVENT_NODE,홍대협,판단 행위(지세 호칭의 기원),,,J_HONG_17930528_JISE = TRUE,,"판단 act node: 이 판단·진술 행위가 있었는지만 나타냄(판단 내용의 참·거짓과 무관, 내용은 node 아님). 이 판단이 다루는 candidate(각자 따로 분류·활성): EC0047(ATTRIBUTE_ONLY). [시간] 조정 기사일 1793-05-28: 승정원일기 1793-05-28 조정 문답 기록(발언 행위 자체)."
+DN_J_HONG_17930613_JISE,J_HONG_17930613_JISE,SPEECH_OR_JUDGMENT_EVENT_NODE,홍대협,판단 행위(지세 호칭의 기원),,,J_HONG_17930613_JISE = TRUE,,"판단 act node: 이 판단·진술 행위가 있었는지만 나타냄(판단 내용의 참·거짓과 무관, 내용은 node 아님). 다루는 event candidate 없음. [시간] 조정 기사일 1793-06-13: 실록 1793-06-13 복명 기사 자체가 복명 행위 기록."
+DN_J_HONG_17930613_KIM_DEATH,J_HONG_17930613_KIM_DEATH,SPEECH_OR_JUDGMENT_EVENT_NODE,홍대협,판단 행위(김명신 사인),,,J_HONG_17930613_KIM_DEATH = TRUE,,"판단 act node: 이 판단·진술 행위가 있었는지만 나타냄(판단 내용의 참·거짓과 무관, 내용은 node 아님). 이 판단이 다루는 candidate(각자 따로 분류·활성): EC0138(ATTRIBUTE_ONLY). [시간] 조정 기사일 1793-06-13: 실록 1793-06-13 복명 기사 자체가 복명 행위 기록."
+DN_J_HONG_17930613_THEFT,J_HONG_17930613_THEFT,SPEECH_OR_JUDGMENT_EVENT_NODE,홍대협,판단 행위(구순 집 도난의 실재와 규모),,,J_HONG_17930613_THEFT = TRUE,,"판단 act node: 이 판단·진술 행위가 있었는지만 나타냄(판단 내용의 참·거짓과 무관, 내용은 node 아님). 이 판단이 다루는 candidate(각자 따로 분류·활성): EC0131(ATTRIBUTE_ONLY)|EC0132(ATTRIBUTE_ONLY). [시간] 조정 기사일 1793-06-13: 실록 1793-06-13 '안핵어사 홍대협 복명' 기사 자체가 복명 행위 기록."
+DN_J_IJOWON_17930527_JISE,J_IJOWON_17930527_JISE,SPEECH_OR_JUDGMENT_EVENT_NODE,이조원,판단 행위(지세 호칭의 기원),,,J_IJOWON_17930527_JISE = TRUE,,"판단 act node: 이 판단·진술 행위가 있었는지만 나타냄(판단 내용의 참·거짓과 무관, 내용은 node 아님). 이 판단이 다루는 candidate(각자 따로 분류·활성): EC0031(MATERIAL_EVENT_NODE)|EC0032(SPEECH_OR_JUDGMENT_EVENT_NODE). [시간] 조정 기사일 1793-05-27: 비변사등록 1793-05-27 기사가 이조원이 아뢴 행위 자체를 기록."
+DN_J_IJOWON_17930527_KIM_DEATH,J_IJOWON_17930527_KIM_DEATH,SPEECH_OR_JUDGMENT_EVENT_NODE,이조원,"판단 행위(김명신 사망·장소·책임, 아내 사망)",,,J_IJOWON_17930527_KIM_DEATH = TRUE,,"판단 act node: 이 판단·진술 행위가 있었는지만 나타냄(판단 내용의 참·거짓과 무관, 내용은 node 아님). 이 판단이 다루는 candidate(각자 따로 분류·활성): EC0036(MATERIAL_EVENT_NODE)|EC0037(ATTRIBUTE_ONLY)|EC0038(ATTRIBUTE_ONLY)|EC0039(MATERIAL_EVENT_NODE)|EC0040(ATTRIBUTE_ONLY). [시간] 조정 기사일 1793-05-27: 비변사등록 1793-05-27 기사가 이조원이 아뢴 행위 자체를 기록."
+DN_J_IJOWON_17930527_THEFT,J_IJOWON_17930527_THEFT,SPEECH_OR_JUDGMENT_EVENT_NODE,이조원,판단 행위(구순 집 도난의 실재),,,J_IJOWON_17930527_THEFT = TRUE,,"판단 act node: 이 판단·진술 행위가 있었는지만 나타냄(판단 내용의 참·거짓과 무관, 내용은 node 아님). 이 판단이 다루는 candidate(각자 따로 분류·활성): EC0024(ATTRIBUTE_ONLY)|EC0030(REVIEW_REQUIRED)|EC0046(ATTRIBUTE_ONLY). [시간] 조정 기사일 1793-05-27: 비변사등록·실록 1793-05-27 기사가 이조원이 조정에 아뢴 행위(복명) 자체를 기록."
+DN_J_JAMIDEOK_17930613_COACHING,J_JAMIDEOK_17930613_COACHING,SPEECH_OR_JUDGMENT_EVENT_NODE,자미덕,판단 행위(한 비장의 회유·지휘),,,J_JAMIDEOK_17930613_COACHING = TRUE,,"판단 act node: 이 판단·진술 행위가 있었는지만 나타냄(판단 내용의 참·거짓과 무관, 내용은 node 아님). 이 판단이 다루는 candidate(각자 따로 분류·활성): EC0107(MATERIAL_EVENT_NODE)|EC0108(SPEECH_OR_JUDGMENT_EVENT_NODE)|EC0109(SPEECH_OR_JUDGMENT_EVENT_NODE)|EC0110(ATTRIBUTE_ONLY)|EC0111(MATERIAL_EVENT_NODE)|EC0112(MATERIAL_EVENT_NODE)|EC0113(SPEECH_OR_JUDGMENT_EVENT_NODE)|EC0114(MATERIAL_EVENT_NODE). [시간] 날짜 anchor 없음: 공초는 안핵 중 받은 진술. 6/13은 복명에 수록된 기록일(공초 시점은 그 이전)."
+DN_J_JEONGJO_17930512_THEFT,J_JEONGJO_17930512_THEFT,SPEECH_OR_JUDGMENT_EVENT_NODE,정조,판단 행위(이형원 장계·조사 결과(도난 조작 방향) 수용),,,J_JEONGJO_17930512_THEFT = TRUE,,"판단 act node: 이 판단·진술 행위가 있었는지만 나타냄(판단 내용의 참·거짓과 무관, 내용은 node 아님). 이 판단이 다루는 candidate(각자 따로 분류·활성): EC0022(ATTRIBUTE_ONLY)|EC0023(ORDER_EVENT_NODE). [시간] 조정 기사일 1793-05-12: 실록 1793-05-12 기사 자체가 정조의 이 판단 행위 기록."
+DN_J_JEONGJO_17930613_JISE,J_JEONGJO_17930613_JISE,SPEECH_OR_JUDGMENT_EVENT_NODE,정조,판단 행위(지세 호칭의 기원),,,J_JEONGJO_17930613_JISE = TRUE,,"판단 act node: 이 판단·진술 행위가 있었는지만 나타냄(판단 내용의 참·거짓과 무관, 내용은 node 아님). 이 판단이 다루는 candidate(각자 따로 분류·활성): EC0148(ATTRIBUTE_ONLY)|EC0149(ATTRIBUTE_ONLY). [시간] 조정 기사일 1793-06-13: 실록 1793-06-13 기사 자체가 정조의 최종 심리 행위 기록."
+DN_J_JEONGJO_17930613_KIM_DEATH,J_JEONGJO_17930613_KIM_DEATH,SPEECH_OR_JUDGMENT_EVENT_NODE,정조,판단 행위(김명신 부처 사인),,,J_JEONGJO_17930613_KIM_DEATH = TRUE,,"판단 act node: 이 판단·진술 행위가 있었는지만 나타냄(판단 내용의 참·거짓과 무관, 내용은 node 아님). 이 판단이 다루는 candidate(각자 따로 분류·활성): EC0144(ATTRIBUTE_ONLY)|EC0145(ATTRIBUTE_ONLY). [시간] 조정 기사일 1793-06-13: 실록 1793-06-13 기사 자체가 정조의 최종 심리 행위 기록."
+DN_J_JEONGJO_17930613_THEFT,J_JEONGJO_17930613_THEFT,SPEECH_OR_JUDGMENT_EVENT_NODE,정조,판단 행위(구순 집 도난의 실재),,,J_JEONGJO_17930613_THEFT = TRUE,,"판단 act node: 이 판단·진술 행위가 있었는지만 나타냄(판단 내용의 참·거짓과 무관, 내용은 node 아님). 이 판단이 다루는 candidate(각자 따로 분류·활성): EC0143(ATTRIBUTE_ONLY). [시간] 조정 기사일 1793-06-13: 실록 1793-06-13 기사 자체가 정조의 최종 심리 행위 기록."
+DN_J_LEEHYEONGWON_17930512_KIM_DEATH,J_LEEHYEONGWON_17930512_KIM_DEATH,SPEECH_OR_JUDGMENT_EVENT_NODE,이형원,판단 행위(김명신 구금·사망),,,J_LEEHYEONGWON_17930512_KIM_DEATH = TRUE,,"판단 act node: 이 판단·진술 행위가 있었는지만 나타냄(판단 내용의 참·거짓과 무관, 내용은 node 아님). 이 판단이 다루는 candidate(각자 따로 분류·활성): EC0004(MATERIAL_EVENT_NODE)|EC0007(MATERIAL_EVENT_NODE)|EC0008(ATTRIBUTE_ONLY). [시간] 날짜 anchor 없음: 장계는 충청도에서 작성·발송된 문서. 1793-05-12는 접수·처분 기록일이라 날짜 anchor로 쓰지 않음."
+DN_J_LEEHYEONGWON_17930512_THEFT,J_LEEHYEONGWON_17930512_THEFT,SPEECH_OR_JUDGMENT_EVENT_NODE,이형원,판단 행위(구순 집 도난 조사 결과(장계)),,,J_LEEHYEONGWON_17930512_THEFT = TRUE,,"판단 act node: 이 판단·진술 행위가 있었는지만 나타냄(판단 내용의 참·거짓과 무관, 내용은 node 아님). 이 판단이 다루는 candidate(각자 따로 분류·활성): EC0012(REVIEW_REQUIRED)|EC0013(ATTRIBUTE_ONLY). [시간] 날짜 anchor 없음: 장계는 충청도에서 작성·발송된 문서. 1793-05-12는 실록이 장계 접수·처분을 기록한 날이며 장계 작성(판단) 시점은 그 이전일 수 있어 날짜 anchor로 쓰지 않음."
+DN_J_YUNNODONG_17930611_COACHING,J_YUNNODONG_17930611_COACHING,SPEECH_OR_JUDGMENT_EVENT_NODE,윤노동,판단 행위(한재욱의 회유),,,J_YUNNODONG_17930611_COACHING = TRUE,,"판단 act node: 이 판단·진술 행위가 있었는지만 나타냄(판단 내용의 참·거짓과 무관, 내용은 node 아님). 이 판단이 다루는 candidate(각자 따로 분류·활성): EC0058(MATERIAL_EVENT_NODE)|EC0059(SPEECH_OR_JUDGMENT_EVENT_NODE)|EC0060(ATTRIBUTE_ONLY). [시간] 날짜 anchor 없음: 별단은 문서. 1793-06-11은 비변사가 별단을 처리한 기록일."
+DN_J_YUNNODONG_17930611_KIM_DEATH,J_YUNNODONG_17930611_KIM_DEATH,SPEECH_OR_JUDGMENT_EVENT_NODE,윤노동,판단 행위(김명신 사망·사인·시점),,,J_YUNNODONG_17930611_KIM_DEATH = TRUE,,"판단 act node: 이 판단·진술 행위가 있었는지만 나타냄(판단 내용의 참·거짓과 무관, 내용은 node 아님). 이 판단이 다루는 candidate(각자 따로 분류·활성): EC0053(MATERIAL_EVENT_NODE)|EC0054(ATTRIBUTE_ONLY)|EC0055(ATTRIBUTE_ONLY). [시간] 날짜 anchor 없음: 별단은 문서. 1793-06-11은 비변사가 별단을 처리한 기록일이며 별단 작성·제출 시점은 그 이전일 수 있음."

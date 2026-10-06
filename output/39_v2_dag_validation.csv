@@ -1,0 +1,32 @@
+check_id,description,severity,detail
+V01,"ATTRIBUTE_ONLY가 DAG node가 된 사례 = 0 (구조 탐지 속성 candidate가 모두 ATTRIBUTE_ONLY, 활성 조건·edge·world graph 없음)",PASS,
+V02,사망 원인 claim이 독립 event node가 된 사례 = 0,PASS,cause claims=6
+V03,"judgment content를 judgment act와 혼동한 사례 = 0 (J act node는 J_=TRUE로만 활성, 내용 candidate는 ATTRIBUTE_ONLY)",PASS,
+V04,"record date를 historical occurrence date로 자동 사용한 사례 = 0 (기사일 anchor는 조정 행위 자체에만, 보고된 사건은 주장 날짜+claim 조건)",PASS,
+V05,"서술 순서만으로 temporal edge 생성 = 0 (모든 edge 근거가 허용 유형이고 문구는 원문에, 날짜는 실제로 선후)",PASS,
+V06,"ORDER만 있는데 EXECUTION node 생성 = 0 (모든 node가 실제 candidate/judgment state, 실행 edge는 실행 기록 candidate로만)",PASS,"ORDER 17개 중 실행 기록 연결 3개, 나머지는 명령 node만"
+V07,"미확정 identity를 전역 merge = 0 (node당 candidate 1개, surface form 보존, 동일성은 W에서만)",PASS,
+V08,SAME_OCCURRENCE_CANDIDATE를 전역 merge = 0 (18개 SAME 쌍의 두 referent가 template에서 모두 별도 row),PASS,SAME vars=18
+V09,conditional edge가 조건 없이 hard edge로 승격 = 0 (HARD는 절차 act node 사이·기사일/명시 절차/판단 수정만),PASS,논리층 상대시간 제약 7개 모두 conditional edge로 반영
+V10,"world materialization에서 same-occurrence 추이성 위반 가능 = 0 (union-find closure; SAME(A,B)∧SAME(B,C)면 A,C 한 node)",PASS,"TW03 classes=[['DN_EC0007', 'DN_EC0036', 'DN_EC0053']] TW04 logic=INVALID"
+V11,"world-specific graph가 cycle이면 INVALID 처리하는 규칙 존재 (toy A→B→C→A INVALID, self-loop 제거, 시간 할당 충돌 INVALID, 기대 VALID world는 VALID)",PASS,toy=INVALID loop=['X9'] TW10=INVALID all-true template cycles=0 
+V12,"edge 없음이 simultaneity로 해석된 사례 = 0 (동시 edge 유형 없음, collapse는 SAME으로만, 같은 날짜 쌍은 무순서·별도 node)",PASS,
+V13,"인과 edge(CAUSAL_CAUSES/MOTIVATES/ENABLES/RESPONSIBLE_FOR) = 0, edge 유형은 시간·절차 5종만",PASS,
+V14,참조 무결성: node source·edge endpoint·변수·H fact·judgment relation·논리 제약 parse가 모두 유효,PASS,
+V15,UNKNOWN interface·latent/missing event·Episode·sampling 없음 (node는 candidate/judgment state에서만),PASS,
+V16,projection REVIEW atomic prop(AP0002·AP0047·AP0126)에 node를 만들지 않음,PASS,AP0002|AP0047|AP0126
+V17,raw CSV SHA-256 일치(시작 시점),PASS,
+W01,"test world TW01_KIM_DEATH: 김명신 사망 skeleton: 사망 3 referent SAME, 구금 뒤 사망 claim 참",PASS,"VALID/VALID nodes=11 edges=13 collapsed=[['DN_EC0003', 'DN_EC0097'], ['DN_EC0007', 'DN_EC0036', 'DN_EC0053']] viol=[]"
+W02,test world TW02_KIM_DEATH_AFTER_FALSE: '구금 뒤 사망' claim이 거짓인 world: 구금·사망 선후 모름,PASS,"VALID/VALID nodes=11 edges=11 collapsed=[['DN_EC0003', 'DN_EC0097'], ['DN_EC0007', 'DN_EC0036', 'DN_EC0053']] viol=[]"
+W03,"test world TW03_SAME_TRANSITIVE: SAME(7,36)·SAME(36,53)만 지정: 추이적 closure로 셋이 한 node",PASS,"VALID/VALID nodes=1 edges=0 collapsed=[['DN_EC0007', 'DN_EC0036', 'DN_EC0053']] viol=[]"
+W04,"test world TW04_SAME_TRANSITIVITY_VIOLATED: SAME(7,36)·SAME(36,53) 참인데 SAME(7,53) 거짓: 논리 위반",PASS,"INVALID/VALID nodes=1 edges=0 collapsed=[['DN_EC0007', 'DN_EC0036', 'DN_EC0053']] viol=['RC0275']"
+W05,test world TW05_THEFT_TRUE: 도난 실재 world: 도난 occurrence + 이형원→정조→이조원→홍대협→정조 절차,PASS,"VALID/VALID nodes=18 edges=111 collapsed=[['DN_EC0150', 'DN_EC0151']] viol=[]"
+W06,"test world TW06_THEFT_FALSE: 도난 부재 world: 도난 node 없음, 판단·명령 act 절차는 그대로",PASS,"VALID/VALID nodes=15 edges=75 collapsed=[['DN_EC0150', 'DN_EC0151']] viol=[]"
+W07,"test world TW07_JAMIDEOK_ID_TRUE: 한 비장=한재욱 참: 접촉 node collapse 허용, 행위자 chain 통합",PASS,"VALID/VALID nodes=20 edges=12 collapsed=[['DN_EC0089', 'DN_EC0104'], ['DN_EC0107', 'DN_EC0119'], ['DN_EC0111', 'DN_EC0120']] viol=[]"
+W08,"test world TW08_JAMIDEOK_ID_FALSE: 한 비장≠한재욱: SAME 불가, 한 비장·한재욱 행위가 별개 node",PASS,"VALID/VALID nodes=22 edges=12 collapsed=[['DN_EC0089', 'DN_EC0104']] viol=[]"
+W09,"test world TW09_ID_FALSE_SAME_TRUE: 한 비장≠한재욱인데 SAME(107,119) 참: 논리 위반(RC0271)",PASS,"INVALID/VALID nodes=21 edges=12 collapsed=[['DN_EC0089', 'DN_EC0104'], ['DN_EC0107', 'DN_EC0119']] viol=['RC0271']"
+W10,test world TW10_TEMPORAL_ASSIGNMENT_CYCLE: TW01 + 시간 할당 사망(3/1) < 구금(3/10): 논리 VALID·시간 INVALID,PASS,"VALID/INVALID nodes=11 edges=13 collapsed=[['DN_EC0003', 'DN_EC0097'], ['DN_EC0007', 'DN_EC0036', 'DN_EC0053']] viol=[]"
+V18,새 DuckDB table 3개 행 수 = CSV 행 수,PASS,"{'dag_node_projection': 172, 'temporal_edge_candidates': 969, 'world_dag_materialization_rules': 191}"
+V19,기존 DuckDB table 23개 불변(시작·끝 digest),PASS,
+V20,기존 output 01~35 불변(35개),PASS,
+V21,raw CSV SHA-256 일치(끝 시점),PASS,
