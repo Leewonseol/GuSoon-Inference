@@ -1,0 +1,20 @@
+example_id,topic,world_description,assignment,world_status,violated_constraints,plain_explanation
+WX001,THEFT_REALITY,"이조원의 '화적 설명은 이치에 맞지 않는다'가 타당하고, 홍대협의 '약간의 도난은 있었다'도 참",E_EC0024=TRUE; E_EC0131=TRUE,ALLOWED,,큰 도적떼 이야기가 의심스럽다는 말과 조금 도둑맞았다는 말은 함께 맞을 수 있어요.
+WX002,THEFT_REALITY,정조(5/12)의 '도난이 없었다'와 정조(6/13)의 '도난이 있었다'가 둘 다 참,E_EC0022=TRUE; E_EC0143=TRUE,IMPOSSIBLE,LC0020,같은 도둑 사건이 '있었다'와 '없었다'가 동시에 맞을 수는 없어요. 이런 세계는 빠져요.
+WX003,THEFT_REALITY,정조(5/12)의 판단은 틀렸고(도난이 있었음) 6/13 판단은 맞음,E_EC0022=FALSE; E_EC0143=TRUE,ALLOWED,,두 말 중 하나가 틀렸다고 보면 문제없어요. 두 기록이 있었다는 사실 자체는 그대로예요.
+WX004,THEFT_REALITY,'도난 자체가 없었다'(EC0022)가 참이고 나복의 '도적이 들어왔다'(EC0066)도 참,E_EC0022=TRUE; E_EC0066=TRUE,ALLOWED,,"도둑이 들어왔지만 아무것도 훔치지 않았을 수도 있어서, 이것만으로는 세계를 지우지 않아요."
+WX005,THEFT_REALITY,'도난이 없었다'(EC0046)가 참이고 나복의 '도적이 돈과 물품을 훔쳤다'(EC0070)도 참,E_EC0046=TRUE; E_EC0070=TRUE,IMPOSSIBLE,LC0025,훔쳐 갔는데 도난이 없었다는 건 말이 안 되니까 이런 세계는 빠져요.
+WX006,DEATH_CAUSE,"직접 사인은 전염병(정조)이고, 이조원의 '죄안 때문'은 책임을 묻는 말(간접 원인)",E_EC0144=TRUE; E_EC0038=TRUE; CAUSELEVEL_EC0038=RESPONSIBILITY_ATTRIBUTION,ALLOWED,,"병 때문에 죽었지만, 억울하게 갇힌 탓이라는 말도 함께 맞을 수 있어요."
+WX007,DEATH_CAUSE,"이조원의 '죄안 때문'이 직접 사인이라는 뜻인데, 직접 사인이 전염병이라는 정조 판단도 참",E_EC0144=TRUE; E_EC0038=TRUE; CAUSELEVEL_EC0038=DIRECT_CAUSE,IMPOSSIBLE,LC0055,바로 죽게 만든 원인이 두 가지로 서로 다르다고 하면 함께 맞을 수 없어서 빠져요.
+WX008,DEATH_CAUSE,윤노동의 '병'과 정조의 '전염병'이 둘 다 참,E_EC0054=TRUE; E_EC0144=TRUE,ALLOWED,,전염병도 병의 한 종류일 수 있으니 둘 다 맞을 수 있어요.
+WX009,COACHING,"한 비장=한재욱이 참이고, '한 비장이 거짓 발언을 지휘했다'와 '한재욱은 사주하지 않았다'가 둘 다 참",ID_HANBIJANG__HANJAEUK=TRUE; E_EC0114=TRUE; E_EC0126=TRUE,IMPOSSIBLE,LC0070,같은 사람이라면 '시켰다'와 '안 시켰다'가 동시에 맞을 수 없어서 빠져요.
+WX010,COACHING,"한 비장≠한재욱이고, 두 claim이 둘 다 참",ID_HANBIJANG__HANJAEUK=FALSE; E_EC0114=TRUE; E_EC0126=TRUE,ALLOWED,,다른 사람이라면 한 비장은 시키고 한재욱은 안 시켰을 수 있어요.
+WX011,COACHING,자미덕의 진술 기록과 한재욱의 부인 기록이 둘 다 존재,ATT_EC0114=TRUE; ATT_EC0126=TRUE,ALLOWED,,서로 다른 말을 했다는 기록은 둘 다 있을 수 있어요. 지워지는 건 내용끼리 부딪칠 때뿐이에요.
+WX012,COACHING,한재욱이 실제로는 사주했음(부인 내용이 거짓),E_EC0126=FALSE,ALLOWED,,부인했다고 해서 정말 안 했다고 정해 두지 않아요.
+WX013,SAME_OCCURRENCE,"EC0007=EC0036, EC0036=EC0053을 고르고 EC0007≠EC0053",SAME_EC0007_EC0036=TRUE; SAME_EC0036_EC0053=TRUE; SAME_EC0007_EC0053=FALSE,IMPOSSIBLE,LC0073,가=나이고 나=다라면 가=다여야 해요. 아니라고 하면 빠져요.
+WX014,SAME_OCCURRENCE,세 김명신 사망 기록이 모두 같은 사망,SAME_EC0007_EC0036=TRUE; SAME_EC0036_EC0053=TRUE; SAME_EC0007_EC0053=TRUE,ALLOWED,,셋이 모두 같은 일을 말한다고 보는 건 괜찮아요.
+WX015,SAME_OCCURRENCE,EC0007=EC0036으로 골랐는데 한쪽 사망 claim만 참,SAME_EC0007_EC0036=TRUE; E_EC0007=TRUE; E_EC0036=FALSE,IMPOSSIBLE,LC0092,같은 죽음을 말한다면 한쪽만 맞고 다른 쪽은 틀릴 수 없어요.
+WX016,SAME_OCCURRENCE,"한 비장의 '방으로 불러들임'=한재욱의 '방으로 부름', 그리고 한재욱의 '방으로 부름'=한 비장의 '떡과 밥'",SAME_EC0107_EC0119=TRUE; SAME_EC0111_EC0119=TRUE,IMPOSSIBLE,LC0091,부른 일과 밥을 준 일은 다른 일이라 같은 일로 이을 수 없어서 빠져요.
+WX017,SAME_OCCURRENCE,한 비장의 '방으로 불러들임'=한재욱의 '방으로 부름'인데 한 비장≠한재욱,SAME_EC0107_EC0119=TRUE; ID_HANBIJANG__HANJAEUK=FALSE,IMPOSSIBLE,LC0063,같은 일이라고 하려면 부른 사람이 같은 사람이어야 해요.
+WX018,ORDER,정조가 구순 신지도 정배를 명했다는 것이 거짓,E_EC0151=FALSE,IMPOSSIBLE,LC0011,명령 기록 자체가 명령이라서 '명령이 없었다'는 세계는 빠져요. 실제로 섬에 도착했는지는 정하지 않아요.
+WX019,OPEN_SET,이집거가 유제희 명단(P0087)에도 있었던 세계,,ALLOWED,,"명단에 '등'이 붙어 있어서, 적히지 않은 사람이 빠졌다고 정하지 않아요."

@@ -1,0 +1,17 @@
+check_id,description,severity,detail
+W01,DENIED를 historical FALSE로 고정한 사례 0,PASS,
+W02,ROYAL_FINDING/OFFICIAL_FINDING을 historical TRUE로 고정한 사례 0,PASS,
+W03,값이 고정된 E 변수는 ORDERED/기록된 건의 행위뿐,PASS,fixed=15
+W04,DOUBTED를 FALSE로 변환하거나 제약에 사용한 사례 0,PASS,
+W05,open-set nonmembership를 생성한 사례 0,PASS,
+W06,conditional identity conflict를 unconditional로 만든 사례 0,PASS,
+W07,direct/indirect cause를 자동 contradiction으로 만든 사례 0,PASS,
+W08,"SAME occurrence symmetry 위반 0 (정규 이름 a<b, 역순 변수 없음)",PASS,
+W09,SAME occurrence transitivity 위반 가능 구조 0 (component 폐포 + 모든 삼각 규칙),PASS,
+W10,존재하지 않는 candidate/pair/variable 참조 0,PASS,
+W11,ORDER → EXECUTION 추론 0,PASS,
+W12,pair-stage contradiction 20건·conditional 36건이 모두 제약/비제약으로 처리됨,PASS,ct=20 cond=36 missing=[]
+W13,SAME_OCCURRENCE_CANDIDATE 11건 모두 SAME 가설 변수로 표현(등호 아님),PASS,
+W14,특별 테스트(THEFT/DEATH/COACHING/SAME/ORDER/OPEN_SET) 기대 결과 일치,PASS,19/19
+W15,raw·기존 derived table 불변,PASS,
+W16,raw CSV SHA-256 불변,PASS,
