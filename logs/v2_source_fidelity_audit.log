@@ -1,0 +1,230 @@
+2026-10-06 12:50:17,916 INFO raw_proposition_total = 117 
+2026-10-06 12:50:17,916 INFO traced_raw_proposition_count = 117 (atomic→projection→event→DAG 분류까지 끊김 없음)
+2026-10-06 12:50:17,916 INFO completely_untraced_count = 0 
+2026-10-06 12:50:17,916 INFO partially_preserved_count = 20 (MINOR 손실 또는 REVIEW 대기(의미 일부만 한 층에 남음))
+2026-10-06 12:50:17,916 INFO possible_omission_count = 0 
+2026-10-06 12:50:17,916 INFO verdict:PRESERVED = 72 
+2026-10-06 12:50:17,916 INFO verdict:PRESERVED_AS_ATTRIBUTE = 23 
+2026-10-06 12:50:17,916 INFO verdict:PRESERVED_AS_ATTESTATION_ONLY = 0 
+2026-10-06 12:50:17,916 INFO verdict:PRESERVED_AS_META_PROCEDURAL = 7 
+2026-10-06 12:50:17,917 INFO verdict:INTENTIONALLY_DEFERRED = 2 
+2026-10-06 12:50:17,917 INFO verdict:REVIEW_REQUIRED = 13 
+2026-10-06 12:50:17,917 INFO verdict:POSSIBLE_OMISSION = 0 
+2026-10-06 12:50:17,917 INFO semantic_strengthening_issues = 16 (CONFIRMED=10 REVIEW=6; by severity {'MINOR': 9, 'MAJOR': 7}; props=P0016,P0018,P0025,P0026,P0032,P0036,P0037,P0038,P0049,P0075,P0079,P0093,P0100,P0109)
+2026-10-06 12:50:17,917 INFO semantic_weakening_issues = 11 (CONFIRMED=11 REVIEW=0; by severity {'MINOR': 11}; props=P0008,P0009,P0010,P0011,P0036,P0039,P0049,P0060,P0088,P0090)
+2026-10-06 12:50:17,917 INFO polarity_distortion_issues = 0 (CONFIRMED=0 REVIEW=0; by severity {}; props=)
+2026-10-06 12:50:17,917 INFO actor_target_mismatch_issues = 3 (CONFIRMED=2 REVIEW=1; by severity {'CRITICAL': 2, 'MAJOR': 1}; props=P0007,P0041,P0069)
+2026-10-06 12:50:17,917 INFO temporal_distortion_issues = 5 (CONFIRMED=2 REVIEW=3; by severity {'MAJOR': 2, 'MINOR': 3}; props=P0036,P0037,P0038,P0075,P0079,P0100)
+2026-10-06 12:50:17,917 INFO open_set_distortion_issues = 0 (CONFIRMED=0 REVIEW=0; by severity {}; props=)
+2026-10-06 12:50:17,917 INFO epistemic_or_nested_issue_issues = 10 (CONFIRMED=10 REVIEW=0; by severity {'MINOR': 10}; props=P0008,P0009,P0010,P0011,P0018,P0032,P0039,P0049,P0060,P0088,P0109)
+2026-10-06 12:50:17,917 INFO scope_or_cause_issue_issues = 9 (CONFIRMED=6 REVIEW=3; by severity {'MAJOR': 5, 'MINOR': 4}; props=P0016,P0025,P0026,P0032,P0049,P0093)
+2026-10-06 12:50:17,917 INFO unsupported_derived_object_count = 0 (provenance가 전혀 없는 derived 객체)
+2026-10-06 12:50:17,918 INFO derived_object_with_flagged_content = 21 (provenance는 있으나 내용 일부가 원문 근거 밖(48 참조))
+2026-10-06 12:50:17,918 INFO latent_hypothesis_count = 0 
+2026-10-06 12:50:17,918 INFO review_required_propositions = 13 (final verdict 기준)
+2026-10-06 12:50:17,918 INFO issues_total = 30 (CONFIRMED=23 REVIEW=7; severity {'CRITICAL': 2, 'MINOR': 20, 'MAJOR': 8})
+2026-10-06 12:50:17,918 INFO detector_hits_explained_no_issue = 7 
+2026-10-06 12:50:17,918 INFO provenance_classes = 664 ({'SOURCE_DIRECT': 514, 'SOURCE_SPLIT': 87, 'INTERPRETATION_HYPOTHESIS': 52, 'DERIVED_BY_LOGIC': 11})
+2026-10-06 12:50:17,918 INFO validation_error = 0 
+2026-10-06 12:50:17,918 INFO validation_warning = 0 
+2026-10-06 12:50:17,918 INFO raw_sha256_preserved = YES 
+2026-10-06 12:50:17,918 INFO FI001 CRITICAL/CONFIRMED ACTOR DN_EC0009: P0007 '무고한 평민들이 모진 형벌을 받았다'(피동). EC0009는 '모진 형벌을 받음'으로 맞지만 DAG node(36)는 subject_surface=평민들, action='형벌 가함(평민들)'이라 형벌을 받은 쪽이 행위 주체 칸에 놓임(materialize의 actor=sub
+2026-10-06 12:50:17,918 INFO FI002 CRITICAL/CONFIRMED ACTOR DN_EC0056: P0041 '여러 죄수가 참혹한 형벌을 받았다'(피동). DAG node는 subject=여러 죄수, action='형벌 가함(여러 죄수)'. EC0056은 정상. DN_EC0009와 같은 유형.
+2026-10-06 12:50:17,918 INFO FI003 MAJOR/CONFIRMED SCOPE DN_J_JEONGJO_17930512_THEFT: J_JEONGJO_17930512_THEFT label과 같은 문제(DAG node action_core에 복사됨).
+2026-10-06 12:50:17,918 INFO FI004 MAJOR/CONFIRMED SCOPE J_JEONGJO_17930512_THEFT: P0016 원문은 '당시 장계·조사에 따라 도난 자체가 없었다는 방향을 받아들임'. judgment_states·DAG node·repaired_world_variables 설명(label)은 '이형원 장계·조사 결과(도난 조작 방향) 수용'으로, 응답자들(P0009)·이조원(P0021
+2026-10-06 12:50:17,918 INFO FI005 MAJOR/CONFIRMED SCOPE J_JEONGJO_17930512_THEFT: J_JEONGJO_17930512_THEFT label과 같은 문제(repaired_world_variables notes에 복사됨).
+2026-10-06 12:50:17,918 INFO FI006 MAJOR/CONFIRMED SCOPE EC0126<->H_HAN_JAEUK_INSTIGATED_JAMIDEOK: P0093 한재욱 '자미덕을 은밀히 사주한 일이 없다'. RC0235 E_EC0126 ↔ ¬H_HAN_JAEUK_INSTIGATED_JAMIDEOK인데 H의 술어는 '자미덕을 사주함'(은밀히 없음). 부인이 참이고(은밀한 사주는 없음) 공개적 사주는 있었던 world가 논리적으로 배제됨
+2026-10-06 12:50:17,919 INFO FI007 MAJOR/CONFIRMED TEMPORAL TE0005: P0075 '(자미덕 체포 전) 재돌은 아산에 나가 있었다'. TE0005는 체류 상태(EC0103) TEMPORAL_BEFORE 체포(EC0104)이고 v2_09의 선후 edge 의미는 'a가 끝난 뒤 b 시작'. 원문은 체포 무렵(전) 재돌이 아산에 있었다는 뜻이며 체류가 체포 전에
+2026-10-06 12:50:17,919 INFO FI008 MAJOR/CONFIRMED TEMPORAL TE0007: P0079 '그 후 매일 자미덕을 방안으로 불러들였다'. TE0007은 구류 상태(EC0106) TEMPORAL_BEFORE 호출(EC0107) = '구류가 끝난 뒤 호출 시작'. 원문 흐름(다모방 구류 중 매일 방으로 불러들임)은 호출이 구류 기간 안이라는 뜻 → 원문과 충돌할 수 있
+2026-10-06 12:50:17,919 INFO FI009 MAJOR/REVIEW TARGET TE0010: TE0010 지시(EC0096: '풍각 김생원·흥덕 김생원' 체포) → 체포(EC0097: '김명신·김갑득', '병사 분부에 따라'). 두 node를 잇는 근거는 '분부'의 referent가 EC0096이라는 것과 풍각 김생원=김명신·흥덕 김생원=김갑득 동일성인데, 활성 조건에는 ID_
+2026-10-06 12:50:17,919 INFO FI010 MAJOR/REVIEW SCOPE EC0067->H_GUSUN_LARGE_ARMED_BAND_INTRUDED: RC0212 E_EC0067 → H_GUSUN_LARGE_ARMED_BAND_INTRUDED. P0049(나복→명업)는 '도적 30여 명'만 말함. H의 술어는 '큰 무리의 화적(도적떼)이 들었음'으로 규모(30여 명)와 성격(화적: 이조원 P0018·홍대협 P0099의 표현)을 한 사
+2026-10-06 12:50:17,919 INFO FI011 MINOR/CONFIRMED PREDICATE P0036: '예전 호중 화적도 사용한 적이 있어 이번에 처음 생긴 말이 아닌 듯' — 근거→추론(이유 연결) 구조가 AP0055(근거)·AP0056(추론, ATTESTATION_ONLY)로 나뉘고 연결은 shared_utterance_group UG_P0036과 projection reason에만
+2026-10-06 12:50:17,919 INFO FI012 MINOR/CONFIRMED PREDICATE P0060: '변지돌이 힘이 세니 조심하라' — 이유 연결이 AP0095·AP0096 분리 후 UG_P0060에만 남음.
+2026-10-06 12:50:17,919 INFO FI013 MINOR/CONFIRMED PREDICATE P0090: '석단 공초에서 김명신이 도적 괴수라고 했으니 자미덕에게 다시 물어보라' — 이유 연결이 AP0133·AP0134 분리 후 UG_P0090에만 남음.
+2026-10-06 12:50:17,919 INFO FI014 MINOR/CONFIRMED EPISTEMIC EC0149: P0109 '구순이 지세 호칭을 스스로 만들어냈다는 죄는 면하게 됐다고 판단'. EC0149는 'ACTION NEGATED 지세 호칭을 스스로 만들어냄'(사실 부정처럼 읽힘). 법적 면죄인지 사실 부정인지는 SENSE_EC0149(FACTUAL_NEGATION/LEGAL_CLEARANC
+2026-10-06 12:50:17,919 INFO FI015 MINOR/CONFIRMED EPISTEMIC J_IJOWON_17930527_THEFT: J_IJOWON_17930527_THEFT stance=REJECTS/STRONG이 EC0024(DOUBTED: '이치에 맞지 않는다'), EC0046('도난이 없었다는 방향'), EC0030('꾸몄다고 주장')을 한 판단으로 묶음. 요약 강도가 의심·방향 표현보다 강함. claim 층
+2026-10-06 12:50:17,919 INFO FI016 MINOR/CONFIRMED NESTED AP0012: 이형원 > 회동 조사 응답자들 > (원한). AP0012 depth 2·embedded_speaker 보존. CONTENT projection이라 EC0011은 내용(원한) 자체이고 '응답자들이 그렇게 진술했다'(INNER)는 world 변수·DAG node가 없음. 세 층이 합쳐지지는
+2026-10-06 12:50:17,919 INFO FI017 MINOR/CONFIRMED NESTED AP0013: P0008과 같은 구조(AP0013 → EC0012).
+2026-10-06 12:50:17,919 INFO FI018 MINOR/CONFIRMED NESTED AP0016: P0008과 같은 구조(AP0014–AP0016 → EC0013–EC0015).
+2026-10-06 12:50:17,919 INFO FI019 MINOR/CONFIRMED NESTED AP0017: 이형원 > 진술 주체 미상 > (체포자들 = 미워하던 사람들). AP0017 → EC0016 내용만.
+2026-10-06 12:50:17,919 INFO FI020 MINOR/CONFIRMED NESTED AP0059: 윤노동 > 구순('도적을 만났다'). AP0059 → EC0050 '구순 도적을 만남'(내용, INTERP_EC0050). 구순이 그렇게 말한 발화 행위는 node·변수가 없음(같은 구조의 P0003은 SPEECH_EVENT EC0002로 보존됨).
+2026-10-06 12:50:17,920 INFO FI021 MINOR/CONFIRMED NESTED AP0079: 명업 > 나복 > (도적 30여 명·횃불·지세대감 자칭·돈과 물품). AP0075–AP0079 depth 2–3 보존, EC0066–EC0070은 내용. '명업의 진술 존재'(ATT 고정) ≠ '나복이 그렇게 말함'(변수 없음; 알림 행위 EC0065만 별도) ≠ '실제 30여 명'(E
+2026-10-06 12:50:17,920 INFO FI022 MINOR/CONFIRMED NESTED AP0095: 이진욱 > 한재욱('처남매부', '힘이 세다'). AP0094·AP0095 → EC0085·EC0086 내용만. 경고 발언(EC0087)은 별도 SPEECH.
+2026-10-06 12:50:17,920 INFO FI023 MINOR/CONFIRMED NESTED AP0130: 한재욱 > 유제희('직접 염탐해 알아냈다'). AP0130 → EC0118 '염탐' 행위(내용). 유제희의 그 말은 변수가 없음.
+2026-10-06 12:50:17,920 INFO FI024 MINOR/CONFIRMED SCOPE EC0022<->H_GUSUN_THEFT_OCCURRED: AP0024 '…도난 자체가 없었다는 방향을 받아들임' → EC0022 'STATE NEGATED 도난 자체 있었음', RC E_EC0022 ↔ ¬H. '방향'(중간 판단)이 EC 술어에서 빠짐. projection reason·claim_scope('방향·중간 판단')·J stance
+2026-10-06 12:50:17,920 INFO FI025 MINOR/CONFIRMED SCOPE EC0046<->H_GUSUN_THEFT_OCCURRED: AP0050 '도난이 없었다는 방향의 판단을 보고' → EC0046 'NEGATED 구순 사건의 도난 있었음', E ↔ ¬H. '방향'이 EC 술어에서 빠짐. projection reason·claim_scope에 보존.
+2026-10-06 12:50:17,920 INFO FI026 MINOR/REVIEW CAUSE EC0038->H_KIM_DEATH_DIRECT_CAUSE_CHARGE_NOT_DISEASE: CAUSELEVEL_EC0038=DIRECT_CAUSE 해석일 때 E_EC0038 ↔ H('직접 사인이 질병(전염병 포함)이 아니라 죄안에 따른 처우 자체'). P0025는 질병을 배제한다고 말하지 않음 — '직접 사인은 하나'라는 해석을 더해야 질병 배제가 나옴. 해석 가설 분기 안에
+2026-10-06 12:50:17,920 INFO FI027 MINOR/REVIEW CAUSE EC0040->H_KIM_WIFE_DEATH_CAUSE_EPIDEMIC: RC0229 SENSE_EC0040=CAUSAL_FOLLOWING_EXCLUDING_EPIDEMIC일 때 E_EC0040 → ¬H(아내 사인 전염병). P0026 '김명신이 죽은 뒤 따라 죽었다'는 전염병을 배제한다고 말하지 않음 — '따라'를 '전염병 아닌 원인으로 뒤따름'으로 읽는 
+2026-10-06 12:50:17,920 INFO FI028 MINOR/REVIEW TEMPORAL TE0045: JR002(홍대협 5/28 → 6/13 지세) REVISED_BY는 원문에 '수정' 표현이 없음(P0036 유보 추론, P0100 기원 미확정). 날짜 순서 자체는 기사일로 맞고, JR002 notes가 '수정인지 정밀화인지 REVIEW'로 표시.
+2026-10-06 12:50:17,920 INFO FI029 MINOR/REVIEW TEMPORAL TE0015: PROCEDURAL_TRIGGER_IF_EXPLICIT인데 근거 문구('내려가 자세히 조사해 오라', '안핵어사 홍대협 복명')에 '~에 따라' 같은 연결어가 없음. 선후(명령 5/28 → 안핵 신문)는 직함으로 지지되지만 edge 유형이 원문보다 강함. 37에서 manual_revie
+2026-10-06 12:50:17,920 INFO FI030 MINOR/REVIEW TEMPORAL TE0016: TE0015와 같음('안핵어사').
+2026-10-06 12:50:17,920 INFO === special case A_JAMIDEOK
+2026-10-06 12:50:17,920 INFO   P0075 [REVIEW_REQUIRED] 재돌 | 아산에 나가 있었다고 진술
+2026-10-06 12:50:17,920 INFO      AP0114 아산에 나가 있었다고 진술 → EC0103 AFFIRMED 아산에 나가 있었음 → MATERIAL_EVENT_NODE | 
+2026-10-06 12:50:17,920 INFO      ! MAJOR/CONFIRMED STATE_STRICT_EDGE:TE0005
+2026-10-06 12:50:17,921 INFO   P0076 [PRESERVED] 병영 장교 | 자미덕을 병영으로 붙잡아 갔다고 진술
+2026-10-06 12:50:17,921 INFO      AP0115 자미덕을 병영으로 붙잡아 갔다고 진술 → EC0104 AFFIRMED 자미덕을 병영으로 붙잡아 감 → MATERIAL_EVENT_NODE | 
+2026-10-06 12:50:17,921 INFO   P0077 [PRESERVED] 병영 | 자미덕을 도적이라고 하며 한 차례 신문했다고 진술
+2026-10-06 12:50:17,921 INFO      AP0116 자미덕을 도적이라고 하며 한 차례 신문했다고 진술 → EC0105 AFFIRMED 자미덕을 도적이라고 하며 한 차례 신문함 → INVESTIGATIVE_EVENT_NODE | 
+2026-10-06 12:50:17,921 INFO   P0078 [PRESERVED] 자미덕 | 신문 뒤 비장청 다모방에 구류되었다고 진술
+2026-10-06 12:50:17,921 INFO      AP0117 신문 뒤 비장청 다모방에 구류되었다고 진술 → EC0106 AFFIRMED 신문 뒤 비장청 다모방에 구류됨 → MATERIAL_EVENT_NODE | 
+2026-10-06 12:50:17,921 INFO   P0079 [REVIEW_REQUIRED] 한 비장 | 그 후 매일 자미덕을 방안으로 불러들였다고 진술
+2026-10-06 12:50:17,921 INFO      AP0118 그 후 매일 자미덕을 방안으로 불러들였다고 진술 → EC0107 AFFIRMED 그 후 매일 자미덕을 방안으로 불러들임 → MATERIAL_EVENT_NODE | H_HAN_JAEUK_INSTIGATED_JAMIDEOK:(논리 연결 없음; evidence only)
+2026-10-06 12:50:17,921 INFO      ! MAJOR/CONFIRMED STATE_STRICT_EDGE:TE0007
+2026-10-06 12:50:17,921 INFO   P0080 [PRESERVED] 한 비장 | 자미덕의 남편 재돌이 이미 체포되었다고 말했다고 진술
+2026-10-06 12:50:17,921 INFO      AP0119 자미덕의 남편 재돌이 이미 체포되었다고 말했다고 진술 → EC0108 AFFIRMED 자미덕의 남편 재돌이 이미 체포되었다고 말함 → SPEECH_OR_JUDGMENT_EVENT_NODE | H_HAN_JAEUK_INSTIGATED_JAMIDEOK:(논리 연결 없음; evidence only)
+2026-10-06 12:50:17,921 INFO   P0081 [PRESERVED] 한 비장 | 정원돌·이집거·김갑득·김성손·김흥득 등을 큰 도적들이라고 말하면 자미덕과 남편을 다음 날 석방하겠다고 말했다고 진술
+2026-10-06 12:50:17,921 INFO      AP0120 '정원돌·이집거·김갑득·김성손·김흥득 등을 큰 도적들이라고 말하면'이라는 조건을 말했다고  → EC0109 AFFIRMED '정원돌·이집거·김갑득·김성손·김흥득 등을 큰 도적들이라고 말하면'이라는 → SPEECH_OR_JUDGMENT_EVENT_NODE | H_HANBIJANG_CONDITIONAL_RELEASE_OFFER:H ↔ (E_EC0109 ∧ E_EC0110)
+2026-10-06 12:50:17,922 INFO      AP0121 그 조건을 충족하면 자미덕과 남편을 다음 날 석방하겠다고 말했다고 진술 → EC0110 AFFIRMED 그 조건을 충족하면 자미덕과 남편을 다음 날 석방하겠다고 말함 → ATTRIBUTE_ONLY | H_HANBIJANG_CONDITIONAL_RELEASE_OFFER:H ↔ (E_EC0109 ∧ E_EC0110)
+2026-10-06 12:50:17,922 INFO   P0082 [PRESERVED] 한 비장 | 자미덕에게 떡과 밥을 주었다고 진술
+2026-10-06 12:50:17,922 INFO      AP0122 자미덕에게 떡과 밥을 주었다고 진술 → EC0111 AFFIRMED 자미덕에게 떡과 밥을 줌 → MATERIAL_EVENT_NODE | H_HAN_JAEUK_INSTIGATED_JAMIDEOK:(논리 연결 없음; evidence only)
+2026-10-06 12:50:17,922 INFO   P0083 [PRESERVED] 자미덕·이집거 | 서로 대질했다고 진술
+2026-10-06 12:50:17,922 INFO      AP0123 서로 대질했다고 진술 → EC0112 AFFIRMED 서로 대질함 → MATERIAL_EVENT_NODE | H_JAMIDEOK_IJIPGEO_CONFRONTATION:E ↔ H
+2026-10-06 12:50:17,922 INFO   P0084 [PRESERVED] 자미덕 | 이집거와 대질할 때 한 비장의 지휘에 따라 거짓으로 꾸며 말했다고 진술
+2026-10-06 12:50:17,922 INFO      AP0124 이집거와 대질할 때 자신이 거짓으로 꾸며 말했다고 진술 → EC0113 AFFIRMED 이집거와 대질할 때 거짓으로 꾸며 말함 → SPEECH_OR_JUDGMENT_EVENT_NODE | H_JAMIDEOK_FALSE_STATEMENT_AT_CONFRONTATION:E ↔ H
+2026-10-06 12:50:17,922 INFO      AP0125 그 거짓 발언이 한 비장의 지휘에 따른 것이었다고 진술 → EC0114 AFFIRMED 자미덕의 그 거짓 발언을 지휘함 → MATERIAL_EVENT_NODE | H_HANBIJANG_DIRECTED_JAMIDEOK_FALSE_STATEMENT:E ↔ H
+2026-10-06 12:50:17,922 INFO === special case B_HANJAEUK
+2026-10-06 12:50:17,922 INFO   P0086 [PRESERVED] 한재욱 | 도적 진상을 탐지하려고 병영 아전 유제희를 내보냈다고 진술
+2026-10-06 12:50:17,922 INFO      AP0127 병영 아전 유제희를 내보냈다고 진술 → EC0115 AFFIRMED 병영 아전 유제희를 내보냄 → INVESTIGATIVE_EVENT_NODE | 
+2026-10-06 12:50:17,922 INFO      AP0128 유제희를 내보낸 목적이 도적 진상 탐지였다고 진술 → EC0116 AFFIRMED 유제희를 내보낸 목적이 도적 진상 탐지였음 → ATTRIBUTE_ONLY | 
+2026-10-06 12:50:17,922 INFO   P0087 [PRESERVED] 유제희 | 변지돌·변재돌·정원돌·김명신·김성손·김흥득·김흥길 등의 성명을 적어왔다고 진술됨
+2026-10-06 12:50:17,922 INFO      AP0129 변지돌·변재돌·정원돌·김명신·김성손·김흥득·김흥길 등의 성명을 적어왔다고 진술됨 → EC0117 AFFIRMED 변지돌·변재돌·정원돌·김명신·김성손·김흥득·김흥길 등의 성명을 적어 옴 → INVESTIGATIVE_EVENT_NODE | 
+2026-10-06 12:50:17,922 INFO   P0088 [PRESERVED] 유제희 | 그 이름들을 자신이 직접 염탐해 알아냈다고 말했다고 진술됨
+2026-10-06 12:50:17,923 INFO      AP0130 그 이름들을 자신이 직접 염탐해 알아냈다고 말했다고 진술됨 → EC0118 AFFIRMED 그 이름들을 직접 염탐해 알아냄 → INVESTIGATIVE_EVENT_NODE | 
+2026-10-06 12:50:17,923 INFO      ! MINOR/CONFIRMED NESTED_INNER:P0088
+2026-10-06 12:50:17,923 INFO   P0089 [PRESERVED] 한재욱 | 자미덕을 방안으로 불러 남은 밥을 주었다고 인정
+2026-10-06 12:50:17,923 INFO      AP0131 자미덕을 방안으로 불렀다고 인정 → EC0119 AFFIRMED 자미덕을 방안으로 부름 → MATERIAL_EVENT_NODE | H_HAN_JAEUK_INSTIGATED_JAMIDEOK:(논리 연결 없음; evidence only)
+2026-10-06 12:50:17,923 INFO      AP0132 자미덕에게 남은 밥을 주었다고 인정 → EC0120 AFFIRMED 자미덕에게 남은 밥을 줌 → MATERIAL_EVENT_NODE | H_HAN_JAEUK_INSTIGATED_JAMIDEOK:(논리 연결 없음; evidence only)
+2026-10-06 12:50:17,923 INFO   P0090 [PRESERVED] 유제희 | 석단 공초에서 김명신이 도적 괴수라고 했으니 자미덕에게 다시 물어보라고 말했다고 진술됨
+2026-10-06 12:50:17,923 INFO      AP0133 석단 공초에서 김명신이 도적 괴수라고 했다고 말했다고 진술됨 → EC0121 AFFIRMED 석단 공초에서 김명신이 도적 괴수라고 했다고 말함 → SPEECH_OR_JUDGMENT_EVENT_NODE | 
+2026-10-06 12:50:17,923 INFO      AP0134 자미덕에게 다시 물어보라고 말했다고 진술됨 → EC0122 AFFIRMED 자미덕에게 다시 물어보라고 말함 → SPEECH_OR_JUDGMENT_EVENT_NODE | 
+2026-10-06 12:50:17,923 INFO      ! MINOR/CONFIRMED CLAUSE:P0090:했으니
+2026-10-06 12:50:17,923 INFO   P0091 [PRESERVED] 한재욱 | 유제희 말에 따라 자미덕에게 다시 물었다고 진술
+2026-10-06 12:50:17,923 INFO      AP0135 자미덕에게 다시 물었다고 진술 → EC0123 AFFIRMED 자미덕에게 다시 물음 → INVESTIGATIVE_EVENT_NODE | 
+2026-10-06 12:50:17,923 INFO      AP0136 다시 물은 것이 유제희 말에 따른 것이었다고 진술 → EC0124 AFFIRMED 다시 물은 것이 유제희 말에 따른 것이었음 → ATTRIBUTE_ONLY | 
+2026-10-06 12:50:17,924 INFO   P0092 [PRESERVED] 자미덕 | 재질문에 모른다고 답했다고 진술됨
+2026-10-06 12:50:17,924 INFO      AP0137 재질문에 모른다고 답했다고 진술됨 → EC0125 AFFIRMED 재질문에 모른다고 답함 → SPEECH_OR_JUDGMENT_EVENT_NODE | 
+2026-10-06 12:50:17,924 INFO   P0093 [REVIEW_REQUIRED] 한재욱 | 자미덕을 은밀히 사주한 일이 없다고 진술
+2026-10-06 12:50:17,924 INFO      AP0138 자미덕을 은밀히 사주한 일이 없다고 진술 → EC0126 NEGATED 자미덕을 은밀히 사주함 → ATTRIBUTE_ONLY | H_HAN_JAEUK_INSTIGATED_JAMIDEOK:E ↔ ¬H
+2026-10-06 12:50:17,924 INFO      ! MAJOR/CONFIRMED SCOPE_IFF:EC0126
+2026-10-06 12:50:17,924 INFO   P0094 [PRESERVED_AS_ATTRIBUTE] 한재욱 | 구순과 평생 모르는 사이라고 진술
+2026-10-06 12:50:17,924 INFO      AP0139 구순과 평생 모르는 사이라고 진술 → EC0127 NEGATED 구순과 아는 사이임 → ATTRIBUTE_ONLY | H_HAN_JAEUK_ACQUAINTED_WITH_GUSUN:E ↔ ¬H
+2026-10-06 12:50:17,924 INFO   P0113 [PRESERVED] 정조 | 병영 비장 한가를 도백이 엄히 세 차례 형장 친 뒤 먼 섬의 종으로 보내도록 명함
+2026-10-06 12:50:17,924 INFO      AP0167 병영 비장 한가를 도백이 엄히 세 차례 형장 친 뒤 먼 섬의 종으로 보내도록 명함 → EC0153 AFFIRMED 병영 비장 한가를 도백이 엄히 세 차례 형장 친 뒤 먼 섬의 종으로 보내 → ORDER_EVENT_NODE | 
+2026-10-06 12:50:17,924 INFO === special case C_KIM_MYEONGSIN
+2026-10-06 12:50:17,924 INFO   P0004 [PRESERVED] 충청병영 | 김명신을 잡아 달포 이상 구금·조사했다고 보고됨
+2026-10-06 12:50:17,924 INFO      AP0004 김명신을 잡았다고 보고됨 → EC0003 AFFIRMED 김명신을 잡음 → MATERIAL_EVENT_NODE | 
+2026-10-06 12:50:17,924 INFO      AP0005 김명신을 달포 이상 구금했다고 보고됨 → EC0004 AFFIRMED 김명신을 달포 이상 구금함 → MATERIAL_EVENT_NODE | H_KIM_DETAINED_BY_BYEONGYEONG:E → H
+2026-10-06 12:50:17,924 INFO      AP0006 김명신을 조사했다고 보고됨 → EC0005 AFFIRMED 김명신을 조사함 → INVESTIGATIVE_EVENT_NODE | 
+2026-10-06 12:50:17,925 INFO   P0006 [PRESERVED] 김명신 | 구금·조사 뒤 사망했다고 보고됨
+2026-10-06 12:50:17,925 INFO      AP0008 사망했다고 보고됨 → EC0007 AFFIRMED 사망 → MATERIAL_EVENT_NODE | H_KIM_MYEONGSIN_DIED:E ↔ H
+2026-10-06 12:50:17,925 INFO      AP0009 사망이 구금·조사 뒤였다고 보고됨 → EC0008 AFFIRMED 사망이 구금·조사 뒤였음 → ATTRIBUTE_ONLY | H_KIM_DEATH_AFTER_DETENTION:E → H
+2026-10-06 12:50:17,925 INFO   P0025 [PRESERVED] 김명신 | 구순이 구성한 죄안으로 병영 옥에서 원통하게 죽었다고 주장
+2026-10-06 12:50:17,925 INFO      AP0038 죽었다고 주장 → EC0036 AFFIRMED 사망 → MATERIAL_EVENT_NODE | H_KIM_MYEONGSIN_DIED:E ↔ H
+2026-10-06 12:50:17,925 INFO      AP0039 죽은 곳이 병영 옥이었다고 주장 → EC0037 AFFIRMED 사망 장소가 병영 옥이었음 → ATTRIBUTE_ONLY | H_KIM_DEATH_IN_BYEONGYEONG_PRISON:E ↔ H
+2026-10-06 12:50:17,925 INFO      AP0040 구순이 구성한 죄안 때문에 죽었다고 주장 → EC0038 AFFIRMED 구순이 구성한 죄안 때문에 사망함 → ATTRIBUTE_ONLY | H_KIM_DEATH_RESPONSIBILITY_WRONGFUL_CHARGE:E ↔ H[CAUSELEVEL_EC0038 = RESPONSIBILITY_ATTRIBUTION]; H_KIM_DEATH_DIRECT_CAUSE_CHARGE_NOT_DISEASE:E ↔ H[CAUSELEVEL_EC0038 = DIRECT_CAUSE]
+2026-10-06 12:50:17,925 INFO      AP0041 원통하게 죽었다고 주장 → ATTESTATION_ONLY   → - | 
+2026-10-06 12:50:17,925 INFO      ! MINOR/REVIEW LEXICON:MAP:EC0038->H_KIM_DEATH_DIRECT_CAUSE_CHARGE_NOT_DISEASE
+2026-10-06 12:50:17,925 INFO   P0026 [PRESERVED] 김명신의 아내 | 김명신이 죽은 뒤 따라 죽었다고 보고
+2026-10-06 12:50:17,925 INFO      AP0042 죽었다고 보고 → EC0039 AFFIRMED 사망 → MATERIAL_EVENT_NODE | H_KIM_WIFE_DIED:E ↔ H
+2026-10-06 12:50:17,925 INFO      AP0043 김명신이 죽은 뒤 따라 죽었다고 보고 → EC0040 AFFIRMED 김명신이 죽은 뒤 따라 죽음 → ATTRIBUTE_ONLY | H_KIM_WIFE_DIED_AFTER_KIM:E ↔ H; H_KIM_WIFE_DEATH_CAUSE_EPIDEMIC:E → ¬H[SENSE_EC0040 = CAUSAL_FOLLOWING_EXCLUDING_EPIDEMIC]
+2026-10-06 12:50:17,925 INFO      ! MINOR/REVIEW LEXICON:MAP:EC0040->H_KIM_WIFE_DEATH_CAUSE_EPIDEMIC
+2026-10-06 12:50:17,926 INFO   P0040 [PRESERVED] 김명신 | 체포·구금 뒤 병들어 죽었다고 보고
+2026-10-06 12:50:17,926 INFO      AP0062 죽었다고 보고 → EC0053 AFFIRMED 사망 → MATERIAL_EVENT_NODE | H_KIM_MYEONGSIN_DIED:E ↔ H
+2026-10-06 12:50:17,926 INFO      AP0063 사망 원인이 병이었다고 보고(원문: 병들어 죽었다) → EC0054 AFFIRMED 사망 원인이 병이었음 → ATTRIBUTE_ONLY | H_KIM_DEATH_CAUSE_DISEASE:E ↔ H
+2026-10-06 12:50:17,926 INFO      AP0064 사망이 체포·구금 뒤였다고 보고 → EC0055 AFFIRMED 사망이 체포·구금 뒤였음 → ATTRIBUTE_ONLY | H_KIM_DEATH_AFTER_DETENTION:E → H
+2026-10-06 12:50:17,926 INFO   P0066 [PRESERVED] 병사 이광섭 | 3월 4일 풍각 김생원과 흥덕 김생원을 잡아오라고 지시했다고 진술
+2026-10-06 12:50:17,926 INFO      AP0105 3월 4일 풍각 김생원과 흥덕 김생원을 잡아오라고 지시했다고 진술 → EC0096 AFFIRMED 3월 4일 풍각 김생원과 흥덕 김생원을 잡아오라고 지시함 → ORDER_EVENT_NODE | 
+2026-10-06 12:50:17,926 INFO   P0067 [PRESERVED_AS_META_PROCEDURAL] 풍각 김생원 | 김명신으로 식별됨
+2026-10-06 12:50:17,926 INFO      AP0106 김명신으로 식별됨 → META_OR_PROCEDURAL   → - | 
+2026-10-06 12:50:17,926 INFO   P0069 [REVIEW_REQUIRED] 장교 일행 | 병사 분부에 따라 김명신과 김갑득을 잡아왔다고 진술
+2026-10-06 12:50:17,926 INFO      AP0108 병사 분부에 따라 김명신과 김갑득을 잡아왔다고 진술 → EC0097 AFFIRMED 병사 분부에 따라 김명신과 김갑득을 잡아옴 → MATERIAL_EVENT_NODE | 
+2026-10-06 12:50:17,926 INFO      ! MAJOR/REVIEW IDENTITY_IN_EDGE:TE0010
+2026-10-06 12:50:17,926 INFO   P0102 [PRESERVED_AS_ATTRIBUTE] 김명신 | 죽음은 질병 때문이었다고 평가
+2026-10-06 12:50:17,926 INFO      AP0151 죽음은 질병 때문이었다고 평가 → EC0138 AFFIRMED 죽음이 질병 때문이었음 → ATTRIBUTE_ONLY | H_KIM_DEATH_CAUSE_DISEASE:E ↔ H
+2026-10-06 12:50:17,926 INFO   P0106 [PRESERVED_AS_ATTRIBUTE] 정조 | 김명신 부처가 전염병에 걸려 죽은 것으로 판단
+2026-10-06 12:50:17,927 INFO      AP0158 김명신이 전염병에 걸려 죽은 것으로 판단 → EC0144 AFFIRMED 전염병에 걸려 죽음 → ATTRIBUTE_ONLY | H_KIM_DEATH_CAUSE_EPIDEMIC:E ↔ H
+2026-10-06 12:50:17,927 INFO      AP0159 김명신 부처 중 처가 전염병에 걸려 죽은 것으로 판단 → EC0145 AFFIRMED 전염병에 걸려 죽음 → ATTRIBUTE_ONLY | H_KIM_WIFE_DEATH_CAUSE_EPIDEMIC:E ↔ H
+2026-10-06 12:50:17,927 INFO   P0107 [PRESERVED_AS_ATTRIBUTE] 정조 | 김명신이 곤장을 맞지 않았고 평범한 신문도 받지 않았다고 판단
+2026-10-06 12:50:17,927 INFO      AP0160 김명신이 곤장을 맞지 않았다고 판단 → EC0146 NEGATED 곤장을 맞음 → ATTRIBUTE_ONLY | 
+2026-10-06 12:50:17,927 INFO      AP0161 김명신이 평범한 신문도 받지 않았다고 판단 → EC0147 NEGATED 평범한 신문을 받음 → ATTRIBUTE_ONLY | 
+2026-10-06 12:50:17,927 INFO === special case D_THEFT
+2026-10-06 12:50:17,927 INFO   P0002 [REVIEW_REQUIRED] 구순 | 도난 피해를 입었다고 보고됨
+2026-10-06 12:50:17,927 INFO      AP0002 도난 피해를 입었다고 보고됨 → REVIEW_REQUIRED   → - | 
+2026-10-06 12:50:17,927 INFO   P0009 [REVIEW_REQUIRED] 회동 조사 응답자들 | 구순이 도난 상황을 꾸몄다고 진술했다고 보고됨
+2026-10-06 12:50:17,927 INFO      AP0013 구순이 도난 상황을 꾸몄다고 진술했다고 보고됨 → EC0012 AFFIRMED 도난 상황을 꾸밈 → REVIEW_REQUIRED | H_GUSUN_THEFT_OCCURRED:E → ¬H[FABSCOPE_EC0012 = FULL_FABRICATION]
+2026-10-06 12:50:17,927 INFO      ! MINOR/CONFIRMED NESTED_INNER:P0009
+2026-10-06 12:50:17,927 INFO   P0016 [REVIEW_REQUIRED] 정조 | 당시 장계·조사에 따라 도난 자체가 없었다는 방향을 받아들임
+2026-10-06 12:50:17,927 INFO      AP0024 당시 장계·조사에 따라 도난 자체가 없었다는 방향을 받아들임 → EC0022 NEGATED 있었음 → ATTRIBUTE_ONLY | H_GUSUN_THEFT_OCCURRED:E ↔ ¬H
+2026-10-06 12:50:17,927 INFO      ! MAJOR/CONFIRMED LEXICON:DAG:DN_J_JEONGJO_17930512_THEFT
+2026-10-06 12:50:17,927 INFO      ! MAJOR/CONFIRMED LEXICON:J:J_JEONGJO_17930512_THEFT
+2026-10-06 12:50:17,928 INFO      ! MAJOR/CONFIRMED LEXICON:VAR:J_JEONGJO_17930512_THEFT
+2026-10-06 12:50:17,928 INFO      ! MINOR/CONFIRMED SCOPE_IFF:EC0022
+2026-10-06 12:50:17,928 INFO   P0018 [PRESERVED_AS_ATTRIBUTE] 이조원 | 구순 집에 화적이 들었다는 설명이 이치에 맞지 않는다고 판단
+2026-10-06 12:50:17,928 INFO      AP0026 구순 집에 화적이 들었다는 설명이 이치에 맞지 않는다고 판단 → EC0024 DOUBTED 화적이 들었음 → ATTRIBUTE_ONLY | H_GUSUN_LARGE_ARMED_BAND_INTRUDED:(논리 연결 없음; evidence only)
+2026-10-06 12:50:17,928 INFO      ! MINOR/CONFIRMED J_STRENGTH:J_IJOWON_17930527_THEFT
+2026-10-06 12:50:17,928 INFO   P0021 [REVIEW_REQUIRED] 구순 | 도난 상황을 꾸몄다고 주장
+2026-10-06 12:50:17,928 INFO      AP0032 도난 상황을 꾸몄다고 주장 → EC0030 AFFIRMED 도난 상황을 꾸밈 → REVIEW_REQUIRED | H_GUSUN_THEFT_OCCURRED:E → ¬H[FABSCOPE_EC0030 = FULL_FABRICATION]
+2026-10-06 12:50:17,928 INFO   P0032 [PRESERVED_AS_ATTRIBUTE] 이조원 | 구순 사건에 대해 도난이 없었다는 방향의 판단을 보고
+2026-10-06 12:50:17,928 INFO      AP0050 구순 사건에 대해 도난이 없었다는 방향의 판단을 보고 → EC0046 NEGATED 있었음 → ATTRIBUTE_ONLY | H_GUSUN_THEFT_OCCURRED:E ↔ ¬H
+2026-10-06 12:50:17,928 INFO      ! MINOR/CONFIRMED J_STRENGTH:J_IJOWON_17930527_THEFT
+2026-10-06 12:50:17,928 INFO      ! MINOR/CONFIRMED SCOPE_IFF:EC0046
+2026-10-06 12:50:17,928 INFO   P0048 [PRESERVED] 나복 | 2월 22일 밤 명업에게 도적이 들었다고 알렸다고 진술됨
+2026-10-06 12:50:17,928 INFO      AP0074 2월 22일 밤 명업에게 도적이 들었다고 알렸다고 진술됨 → EC0065 AFFIRMED 명업에게 도적이 들었다고 알림 → SPEECH_OR_JUDGMENT_EVENT_NODE | H_GUSUN_THEFT_OCCURRED:(논리 연결 없음; evidence only)
+2026-10-06 12:50:17,928 INFO   P0049 [REVIEW_REQUIRED] 나복 | 도적 30여 명이 횃불을 들고 들어와 지세대감이라 자칭하고 돈과 물품을 훔쳤다고 말했다고 진술됨
+2026-10-06 12:50:17,929 INFO      AP0075 도적이 들어왔다고 말했다고 진술됨 → EC0066 AFFIRMED 들어옴 → MATERIAL_EVENT_NODE | H_GUSUN_THEFT_OCCURRED:(논리 연결 없음; evidence only)
+2026-10-06 12:50:17,929 INFO      AP0076 들어온 도적이 30여 명이었다고 말했다고 진술됨 → EC0067 AFFIRMED 30여 명이었음 → ATTRIBUTE_ONLY | H_GUSUN_LARGE_ARMED_BAND_INTRUDED:E → H
+2026-10-06 12:50:17,929 INFO      AP0077 도적이 횃불을 들고 들어왔다고 말했다고 진술됨 → EC0068 AFFIRMED 횃불을 들고 들어옴 → ATTRIBUTE_ONLY | H_GUSUN_LARGE_ARMED_BAND_INTRUDED:(논리 연결 없음; evidence only)
+2026-10-06 12:50:17,929 INFO      AP0078 도적이 지세대감이라 자칭했다고 말했다고 진술됨 → EC0069 AFFIRMED 지세대감이라 자칭함 → SPEECH_OR_JUDGMENT_EVENT_NODE | 
+2026-10-06 12:50:17,929 INFO      AP0079 도적이 돈과 물품을 훔쳤다고 말했다고 진술됨 → EC0070 AFFIRMED 돈과 물품을 훔침 → MATERIAL_EVENT_NODE | H_GUSUN_THEFT_OCCURRED:E → H
+2026-10-06 12:50:17,929 INFO      ! MAJOR/REVIEW LEXICON:MAP:EC0067->H_GUSUN_LARGE_ARMED_BAND_INTRUDED
+2026-10-06 12:50:17,929 INFO      ! MINOR/CONFIRMED NESTED_INNER:P0049
+2026-10-06 12:50:17,929 INFO   P0098 [PRESERVED_AS_ATTRIBUTE] 홍대협 | 약간의 도난은 실제였다고 판단
+2026-10-06 12:50:17,929 INFO      AP0143 약간의 도난은 실제였다고 판단 → EC0131 AFFIRMED 실제였음 → ATTRIBUTE_ONLY | H_GUSUN_THEFT_OCCURRED:E → H
+2026-10-06 12:50:17,929 INFO   P0099 [PRESERVED_AS_ATTRIBUTE] 홍대협 | 도난은 큰 화적 사건이 아니라 보통 좀도둑 수준이었다고 평가
+2026-10-06 12:50:17,929 INFO      AP0144 도난은 큰 화적 사건이 아니라 보통 좀도둑 수준이었다고 평가 → EC0132 AFFIRMED 큰 화적 사건이 아니라 보통 좀도둑 수준이었음 → ATTRIBUTE_ONLY | H_GUSUN_THEFT_OCCURRED:E → H; H_GUSUN_LARGE_ARMED_BAND_INTRUDED:E → ¬H[SENSE_EC0132_EXCLUDES_LARGE_BAND]
+2026-10-06 12:50:17,930 INFO   P0105 [PRESERVED_AS_ATTRIBUTE] 정조 | 도난은 실제로 있었다고 판단
+2026-10-06 12:50:17,930 INFO      AP0157 도난은 실제로 있었다고 판단 → EC0143 AFFIRMED 실제로 있었음 → ATTRIBUTE_ONLY | H_GUSUN_THEFT_OCCURRED:E ↔ H
+2026-10-06 12:50:17,930 INFO === special case E_JISE
+2026-10-06 12:50:17,930 INFO   P0022 [PRESERVED] 구순 | 지세랑이라는 말을 만들어 퍼뜨렸다고 주장
+2026-10-06 12:50:17,930 INFO      AP0033 지세랑이라는 말을 만들었다고 주장 → EC0031 AFFIRMED 지세랑이라는 말을 만듦 → MATERIAL_EVENT_NODE | H_JISE_TERM_COINED_BY_GUSUN:E ↔ H[SENSE_EC0031 = COINED_TERM]
+2026-10-06 12:50:17,930 INFO      AP0034 지세랑이라는 말을 퍼뜨렸다고 주장 → EC0032 AFFIRMED 지세랑이라는 말을 퍼뜨림 → SPEECH_OR_JUDGMENT_EVENT_NODE | 
+2026-10-06 12:50:17,930 INFO   P0036 [PRESERVED_AS_ATTRIBUTE] 홍대협 | 지세랑 호칭은 예전 호중 화적도 사용한 적이 있어 이번에 처음 생긴 말이 아닌 듯하다고 말함
+2026-10-06 12:50:17,930 INFO      AP0055 지세랑 호칭은 예전 호중 화적도 사용한 적이 있다고 말함 → EC0047 AFFIRMED 지세랑 호칭을 사용한 적이 있음 → ATTRIBUTE_ONLY | H_JISE_TERM_PRIOR_USE:E → H
+2026-10-06 12:50:17,930 INFO      AP0056 지세랑 호칭이 이번에 처음 생긴 말이 아닌 듯하다고 말함 → ATTESTATION_ONLY   → - | 
+2026-10-06 12:50:17,930 INFO      ! MINOR/CONFIRMED CLAUSE:P0036:있어
+2026-10-06 12:50:17,930 INFO      ! MINOR/REVIEW REVISION_NOT_IN_RAW:TE0045
+2026-10-06 12:50:17,930 INFO   P0049 [REVIEW_REQUIRED] 나복 | 도적 30여 명이 횃불을 들고 들어와 지세대감이라 자칭하고 돈과 물품을 훔쳤다고 말했다고 진술됨
+2026-10-06 12:50:17,930 INFO      AP0075 도적이 들어왔다고 말했다고 진술됨 → EC0066 AFFIRMED 들어옴 → MATERIAL_EVENT_NODE | H_GUSUN_THEFT_OCCURRED:(논리 연결 없음; evidence only)
+2026-10-06 12:50:17,931 INFO      AP0076 들어온 도적이 30여 명이었다고 말했다고 진술됨 → EC0067 AFFIRMED 30여 명이었음 → ATTRIBUTE_ONLY | H_GUSUN_LARGE_ARMED_BAND_INTRUDED:E → H
+2026-10-06 12:50:17,931 INFO      AP0077 도적이 횃불을 들고 들어왔다고 말했다고 진술됨 → EC0068 AFFIRMED 횃불을 들고 들어옴 → ATTRIBUTE_ONLY | H_GUSUN_LARGE_ARMED_BAND_INTRUDED:(논리 연결 없음; evidence only)
+2026-10-06 12:50:17,931 INFO      AP0078 도적이 지세대감이라 자칭했다고 말했다고 진술됨 → EC0069 AFFIRMED 지세대감이라 자칭함 → SPEECH_OR_JUDGMENT_EVENT_NODE | 
+2026-10-06 12:50:17,931 INFO      AP0079 도적이 돈과 물품을 훔쳤다고 말했다고 진술됨 → EC0070 AFFIRMED 돈과 물품을 훔침 → MATERIAL_EVENT_NODE | H_GUSUN_THEFT_OCCURRED:E → H
+2026-10-06 12:50:17,931 INFO      ! MAJOR/REVIEW LEXICON:MAP:EC0067->H_GUSUN_LARGE_ARMED_BAND_INTRUDED
+2026-10-06 12:50:17,931 INFO      ! MINOR/CONFIRMED NESTED_INNER:P0049
+2026-10-06 12:50:17,931 INFO   P0065 [PRESERVED] 구순 | 도적이 스스로 지세대사라고 자칭했다고 말했다고 진술됨
+2026-10-06 12:50:17,931 INFO      AP0104 도적이 스스로 지세대사라고 자칭했다고 말했다고 진술됨 → EC0095 AFFIRMED 도적이 스스로 지세대사라고 자칭했다고 말함 → SPEECH_OR_JUDGMENT_EVENT_NODE | 
+2026-10-06 12:50:17,931 INFO   P0100 [PRESERVED_AS_META_PROCEDURAL] 지세 호칭 조사 | 여러 차례 조사와 별도 탐문에도 기원을 확정하지 못함
+2026-10-06 12:50:17,931 INFO      AP0145 여러 차례 조사와 별도 탐문에도 기원을 확정하지 못함 → META_OR_PROCEDURAL   → - | 
+2026-10-06 12:50:17,931 INFO      ! MINOR/REVIEW REVISION_NOT_IN_RAW:TE0045
+2026-10-06 12:50:17,931 INFO   P0108 [PRESERVED_AS_ATTRIBUTE] 정조 | 지세대감·지세대사·지세랑 호칭은 예전 무식한 좀도둑들도 쓰던 말이라고 판단
+2026-10-06 12:50:17,931 INFO      AP0162 지세대감·지세대사·지세랑 호칭은 예전 무식한 좀도둑들도 쓰던 말이라고 판단 → EC0148 AFFIRMED 지세대감·지세대사·지세랑 호칭을 씀 → ATTRIBUTE_ONLY | H_JISE_TERM_PRIOR_USE:E → H
+2026-10-06 12:50:17,932 INFO   P0109 [PRESERVED_AS_ATTRIBUTE] 정조 | 구순이 지세 호칭을 스스로 만들어냈다는 죄는 면하게 됐다고 판단
+2026-10-06 12:50:17,932 INFO      AP0163 구순이 지세 호칭을 스스로 만들어냈다는 죄는 면하게 됐다고 판단 → EC0149 NEGATED 지세 호칭을 스스로 만들어냄 → ATTRIBUTE_ONLY | H_JISE_TERM_COINED_BY_GUSUN:E ↔ ¬H[SENSE_EC0149 = FACTUAL_NEGATION]
+2026-10-06 12:50:17,932 INFO      ! MINOR/CONFIRMED EC_POLARITY_LABEL:EC0149
+2026-10-06 12:50:17,932 INFO validation: ERROR=0 WARNING=0
+2026-10-06 12:50:17,932 INFO F01 PASS files=4
+2026-10-06 12:50:17,932 INFO F02 PASS 
+2026-10-06 12:50:17,932 INFO F03 PASS 117
+2026-10-06 12:50:17,932 INFO F04 PASS {'PRESERVED': 72, 'PRESERVED_AS_ATTRIBUTE': 23, 'PRESERVED_AS_ATTESTATION_ONLY': 0, 'PRESERVED_AS_META_PROCEDURAL': 7, 'INTENTIONALLY_DEFERRED': 2, 'REVIEW_REQUIRED': 13, 'POSSIBLE_OMISSION': 0}
+2026-10-06 12:50:17,932 INFO F05 PASS 
+2026-10-06 12:50:17,932 INFO F06 PASS 
+2026-10-06 12:50:17,932 INFO F07 PASS []
+2026-10-06 12:50:17,932 INFO F08 PASS 0
+2026-10-06 12:50:17,932 INFO F09 PASS 0
+2026-10-06 12:50:17,932 INFO F10 PASS pairs=10
+2026-10-06 12:50:17,933 INFO F11 PASS date-only=905
+2026-10-06 12:50:17,933 INFO F12 PASS 
+2026-10-06 12:50:17,933 INFO F13 PASS 117/117
+2026-10-06 12:50:17,933 INFO F14 PASS outputs=44 tables=30
+2026-10-06 12:50:17,933 INFO F15 PASS 45_v2_raw_to_derived_traceability.csv, 46_v2_source_fidelity_audit.csv, 47_v2_derived_to_raw_provenance_audit.csv, 48_v2_fidelity_issues.csv, 49_v2_fidelity_validation.csv, 50_v2_fidelity_summary.csv

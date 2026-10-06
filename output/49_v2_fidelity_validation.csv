@@ -1,0 +1,16 @@
+check_id,description,severity,detail
+F01,data/raw SHA-256 시작·종료 일치,PASS,files=4
+F02,DuckDB raw table 4개 = data/raw CSV (immutable source layer 일치),PASS,
+F03,117개 raw proposition 모두 final verdict 하나,PASS,117
+F04,raw total = PRESERVED + ATTRIBUTE + ATTESTATION_ONLY + META + DEFERRED + REVIEW + OMISSION,PASS,"{'PRESERVED': 72, 'PRESERVED_AS_ATTRIBUTE': 23, 'PRESERVED_AS_ATTESTATION_ONLY': 0, 'PRESERVED_AS_META_PROCEDURAL': 7, 'INTENTIONALLY_DEFERRED': 2, 'REVIEW_REQUIRED': 13, 'POSSIBLE_OMISSION': 0}"
+F05,모든 자동 탐지 결과가 수동 판정(ADJUDICATION)을 가짐 — 미판정 = 새 왜곡,PASS,
+F06,판정표의 모든 항목이 실제 탐지 결과와 대응,PASS,
+F07,POSSIBLE_OMISSION = 0 (이유 없이 DROP된 raw proposition 없음),PASS,[]
+F08,backward provenance: UNSUPPORTED_ADDITION 객체 = 0,PASS,0
+F09,LATENT_HYPOTHESIS 객체 = 0 (이번 단계에는 없어야 함),PASS,0
+F10,"충돌 기록 양쪽 모두 원래 형태 보존(삭제·수정 없음, 기록 고정·내용 자유)",PASS,pairs=10
+F11,"date-only edge는 모두 TEMPORAL_BEFORE, 인과·trigger 유형 없음",PASS,date-only=905
+F12,"claim·판단·사실·동일성 변수 고정 없음(권위 anchoring 없음), 기록 존재만 고정",PASS,
+F13,모든 raw proposition 완전 추적(atomic→projection→event→DAG 분류),PASS,117/117
+F14,기존 output 01–44·DuckDB table 변경 없음(DB read-only),PASS,outputs=44 tables=30
+F15,출력 번호 충돌 없음(기존 파일 덮어쓰지 않음),PASS,"45_v2_raw_to_derived_traceability.csv, 46_v2_source_fidelity_audit.csv, 47_v2_derived_to_raw_provenance_audit.csv, 48_v2_fidelity_issues.csv, 49_v2_fidelity_validation.csv, 50_v2_fidelity_summary.csv"
