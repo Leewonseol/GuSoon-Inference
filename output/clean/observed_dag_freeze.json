@@ -1,0 +1,24 @@
+{
+  "name": "Validated Observed Partial DAG",
+  "sha256": "86a529da3baff8f326831620bc9a55c2e351452b03dd5f67e852768a33dc4bfe",
+  "n_nodes": 41,
+  "n_edges": 68,
+  "n_episode_nodes": 37,
+  "n_env_nodes": 4,
+  "edge_status": {
+    "DERIVED": 64,
+    "OBSERVED": 4
+  },
+  "edge_types": {
+    "TEMPORAL_BEFORE": 7,
+    "ORDER_TO_ACTION": 3,
+    "PROCEDURAL_NEXT": 14,
+    "CONTRADICTS_AT_CLAIM_LEVEL": 5,
+    "INFORMATION_FLOW": 12,
+    "REVIEW_OF": 9,
+    "REVISES": 2,
+    "CONTEXT_SUPPORTS": 9,
+    "RESPONSIBILITY_LINK": 7
+  },
+  "latent_count": 0
+}
