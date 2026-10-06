@@ -1,0 +1,9 @@
+﻿source_record_id,source_work,record_lunar_date,source_title,source_url,source_domain,source_tier,case_role,notes
+SRC3_001,조선왕조실록 정조실록,1793-05-12,전 부사 구순 사건에 대한 충청도 관찰사 이형원 장계 및 정조 처분,https://sillok.history.go.kr/id/kva_11705012_003,sillok.history.go.kr,S1_PRIMARY,이형원 회동조사 장계·정조 1차 판단·재조사 명령,기사 전체의 구순 사건 부분을 재대조. 5월 판단은 후일 6월 13일 안핵 결과와 구분.
+SRC3_002,비변사등록,1793-05-27,충청도 암행어사 이조원이 구순 사건을 아뢰고 엄핵을 청함,https://db.history.go.kr/common/compareViewer.do?levelId=bb_181r_001_05_0510&type=joseon,db.history.go.kr,S1_PRIMARY,이조원 복명·비변사/조정 논의,실록 동일보도보다 일부 배경이 더 구체적이어서 별도 attestation으로 보존.
+SRC3_003,조선왕조실록 정조실록,1793-05-27,호서 암행어사 이조원이 현지의 여러 폐단과 구순 사건을 알림,https://sillok.history.go.kr/id/kva_11705027_002,sillok.history.go.kr,S1_PRIMARY,이조원 복명 교차확인·정조의 어사 비판,동일 단계의 실록 attestation. 비변사등록과 병합하지 않음.
+SRC3_004,승정원일기,1793-05-28,정조가 홍대협에게 구순 사건을 묻고 공주 안핵어사로 차하함,https://sjw.history.go.kr/search/inspectionDayList.do?wday=17930528L0,sjw.history.go.kr,S1_PRIMARY,독립 안핵 임명·지세랑 선행 사용 가능성,정조-홍대협 직접 대화와 안핵어사 차하를 보존.
+SRC3_005,비변사등록,1793-06-11,충청도 암행어사 윤노동의 별단 중 구순 사건과 비변사의 보류,https://db.history.go.kr/common/compareViewer.do?levelId=bb_181r_001_06_0070&type=joseon,db.history.go.kr,S1_PRIMARY,윤노동 별단·안핵 복명 전 처분 보류,윤노동의 강한 모함/상해 평가와 비변사의 보류 결정을 분리.
+SRC3_006,조선왕조실록 정조실록,1793-06-13,호서 안핵어사 홍대협의 구순 사건 복명과 정조의 최종 심리,https://sillok.history.go.kr/id/kva_11706013_003,sillok.history.go.kr,S1_PRIMARY,증인 공초·홍대협 안핵 판단·정조 최종 판단과 처분,핵심 원자료. 인물관계→갈등→의심→수사선상→체포·구금→사망→재검증의 연결고리를 누락하지 않도록 재추출.
+SRC3_007,조선왕조실록 정조실록,1793-06-13,자기 담당 외 지역을 사찰한 호서 어사 윤노동을 파직함,https://sillok.history.go.kr/id/kva_11706013_001,sillok.history.go.kr,S1_PRIMARY,암행어사 조사범위·절차 통제,구순 사건 사실 자체보다 이조원·윤노동의 조사범위 일탈을 다루는 절차 관련 기사.
+SRC3_008,조선왕조실록 정조실록,1793-06-16,전 충청도 관찰사 이형원을 유임함,https://sillok.history.go.kr/id/kva_11706016_002,sillok.history.go.kr,S1_PRIMARY,6월 13일 파직 뒤 인사 후속조치,6월 13일 파직과 별개의 6월 16일 인사 조치.

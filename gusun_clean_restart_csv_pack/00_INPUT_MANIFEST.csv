@@ -1,0 +1,6 @@
+﻿file_name,role,allowed_as_dag_input,purpose,important_rule
+01_confirmed_facts.csv,PRIMARY_CASE_INPUT,YES,문장/사건묶음(meso) DAG 노드의 기본 입력,confirmed_statement를 원자 명제로 다시 쪼개지 말 것. 필요할 때만 같은 episode로 묶기.
+02_institutional_normative_features.csv,INSTITUTIONAL_CONSTRAINT,YES,1793년 당시 제도상 가능성·관할·역할 적합성 제약,행동 빈도 prior가 아님. 새로운 사건을 생성하지 말 것.
+03_environment_1793.csv,EXTERNAL_CONTEXT,YES,1793년 호서 전염병·구휼·옥수 치료 등 외생 환경,CONTEXT_SUPPORTS로만 사용. 김명신 개인 감염 같은 미관측 사실을 생성하지 말 것.
+04_source_records.csv,PROVENANCE,NO,출처 레코드 추적·링크,DAG 의미 생성에 직접 사용하지 않고 provenance 검증용.
+05_source_faithful_propositions_AUDIT_ONLY.csv,AUDIT_ONLY,NO,문장 노드가 사료 의미를 왜곡하지 않았는지 역추적,원자 proposition을 DAG node로 재사용하지 말 것.

@@ -1,0 +1,5 @@
+﻿env_id,lunar_date,region_scope,context_type,attested_context,feature_name,value,model_role,source_url,notes
+E001,1793-01-22,호서,전염병,호서 도신이 전염병 사망자 수를 치계했고 정조가 구료를 각별히 단속하라고 명함,epidemic_active,1,soft context prior,https://sillok.history.go.kr/id/kva_11701022_002,김명신 개인 감염을 증명하지 않음.
+E002,1793-01-22,호서,기근·구휼,같은 기사에서 굶주림 구휼이 한창이라고 명시,famine_relief_active,1,macro stress/context,https://sillok.history.go.kr/id/kva_11701022_002,영양·행정 부담 맥락. 직접 사인으로 쓰지 않음.
+E003,1793-04-10,호서·영남,전염병 지속,정조실록 일별 목록에 '호서 영남에 전염병이 창궐하므로 여제를 지내게 하다' 기사 확인,epidemic_persisting,1,soft temporal persistence,https://sillok.history.go.kr/search/inspectionDayList.do?did=kva_11704010&id=kva_117040,이번 단계에서는 기사 제목 수준 확인. 개별 감염 추론 금지.
+E004,1793-05-12,경외 옥,옥수 전염병 치료,형조 판서 이득신 건의에 따라 서울·지방 전염병 옥수에게 약을 주어 치료하도록 명함,prison_epidemic_treatment_policy,1,custody-health context,https://sillok.history.go.kr/id/kva_11705012_001,구순 사건 기사와 같은 날의 독립 기사.
