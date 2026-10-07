@@ -2,9 +2,9 @@
 
 핵심 질문: **추론한 것을 사료에서 확인된 사실처럼 표시했는가?**
 
-- 판정: **PASS** (ERROR 0 · WARN 0 · UNRESOLVED 1 · INFO 8)
+- 판정: **PASS** (ERROR 0 · WARN 0 · UNRESOLVED 1 · INFO 10)
 - LATENT → OBSERVED 둔갑: **0건**
-- 동결 해시: `c50402af878ffb4d202f7c8c28c5d829ecabcc5ad0e1f5d2d78665aaef7df7c8` (Stage 4·5 뒤에도 observed DAG 변경 없음)
+- 동결 해시: `005d4b7df0300681d936f3336c224df79c480b3fbac77bf9ba4db681bf1700db` (Stage 4·5 뒤에도 observed DAG 변경 없음)
 
 ## 1. 분류 집계
 
@@ -22,10 +22,11 @@ DERIVED는 원본에 한 문장으로 쓰여 있지는 않지만 원본 정보�
 |---|---|---|---|---|
 | audit_only_support | 0 | 0 | 0 | 3 |
 | freeze_violation | 0 | 0 | 0 | 1 |
+| resolved_identity_conflict | 0 | 0 | 0 | 2 |
 | support_basis_cap | 0 | 0 | 0 | 3 |
 | unresolved_gap | 0 | 0 | 1 | 0 |
 | world_integrity | 0 | 0 | 0 | 1 |
-| **합계** | **0** | **0** | **1** | **8** |
+| **합계** | **0** | **0** | **1** | **10** |
 
 ### ERROR
 _없음_
@@ -34,10 +35,12 @@ _없음_
 _없음_
 
 ### INFO
-- `freeze_violation` **observed_dag** — 동결 해시 일치 c50402af878f
+- `freeze_violation` **observed_dag** — 동결 해시 일치 005d4b7df030
 - `support_basis_cap` **G01c** — INSTITUTIONAL_COMPATIBILITY만 근거 → LOW 상한 적용
 - `audit_only_support` **G04d** — confirmed 지지 없이 05 흔적만 있음 — LATENT 유지
 - `audit_only_support` **G07d** — confirmed 지지 없이 05 흔적만 있음 — LATENT 유지
+- `resolved_identity_conflict` **G09b** — 사용자 확정 ['ID02']과 충돌 → INCOMPATIBLE·PRUNED
+- `resolved_identity_conflict` **G09c** — 사용자 확정 ['ID03']과 충돌 → INCOMPATIBLE·PRUNED
 - `support_basis_cap` **G10b** — ENVIRONMENTAL_CONTEXT만 근거 → LOW 상한 적용
 - `support_basis_cap` **G10c** — INSTITUTIONAL_COMPATIBILITY만 근거 → LOW 상한 적용
 - `audit_only_support` **G12b** — confirmed 지지 없이 05 흔적만 있음 — LATENT 유지
@@ -53,7 +56,8 @@ _없음_
 | G09b (원안 EP04 → EP35 RESPONSIBILITY_LINK) | causal_inflation | PASS (수정 후) | 원안은 observed 처분 node(royal order)로 RESPONSIBILITY_LINK를 바로 걸었다. 책임 귀속은 판단 수준이어야 하므로 latent 근거 node LN_G09b_2를 사이에 두고 처분에는 PROCEDURAL_NEXT로 잇게 고쳤다. |
 | G10b (환경만) · G01c·G10c (제도만) | support_basis 상한 | PASS | 근거가 환경 context 하나 또는 제도 compatibility 하나뿐인 후보는 grade 규칙 (5)로 LOW 상한이다. G10b의 latent node는 판단 사유 가설(individual_level=False)이고, 환경에서 개인 사건을 만들지 않았다. |
 | G06a·G06b·G12a (개인 발병·사망) | environmental_leakage | PASS | 개인 수준 latent node의 근거는 CF029(윤노동: '병들어 죽었다')와 CF040(정조: '부처가 전염병')이다. E001·E003은 environmental_fit 평가에만 썼고 ENV node에서 나가는 latent edge는 없다. |
-| 동일성에 기대는 후보 10개 | identity_forcing | PASS | 가정에 IDxx가 있으면 identity_conditions로 모으고 MEDIUM 상한을 적용했다(grade 규칙 6). 그래서 G02a(ID07)가 HIGH에서 MEDIUM으로 내려갔다. 금지 동일성 ID01–ID04는 identity_register.csv에서 모두 UNRESOLVED다(자동 검사). |
+| 동일성에 기대는 후보 10개 | identity_forcing | PASS | 가정에 IDxx가 있으면 identity_conditions로 모으고 MEDIUM 상한을 적용했다(grade 규칙 6). 그래서 G02a(ID07)가 HIGH에서 MEDIUM으로 내려갔다. ID01·ID02·ID03·ID11은 사용자 확정(resolved_by=USER, 근거 기록)이고 ID04–ID08은 UNRESOLVED다. 모델이 스스로 확정한 동일성은 없다(자동 검사). 확정된 ID는 MEDIUM 상한(규칙 6)에서 빠지지만 G03a·G05a·G09a는 source_consistency MEDIUM이라 등급이 그대로다. |
+| G09b·G09c | resolved_identity_conflict | PRUNED | G09b는 'ID02 불성립', G09c는 'ID03 불성립'을 전제한다. 사용자 확정과 충돌하므로 규칙 7로 INCOMPATIBLE·PRUNED 처리했다. 두 후보는 원래 어느 world에도 쓰이지 않았다. |
 | G02a·G03a·G09c 원안 서술 | identity_forcing | PASS (수정 후) | 원안 G02a는 '병사(이광섭)'로 ID01을 사실처럼 썼다. G03a는 '김상제' 언급 뒤 '김명신 체포'를 이어 ID05에 기댔고, G09c는 '한가 ≠ 한재욱'을 ID03 표시 없이 썼다. 서술을 조건형으로 고치고 가정에 IDxx를 넣었다. 보강한 검사를 원안에 다시 돌려 이 세 건이 ERROR로 잡히는 것을 확인했다. |
 | G04b·G07b·G07c 서술 | testimony_to_fact | PASS | '회유된 자미덕'처럼 진술 내용을 사실로 쓰던 원안 문구를 '자미덕은 …라고 진술했다'로 바꿨다. G07b의 '꾸몄다'와 G07c의 '위협'은 05 진술 내용으로만 귀속한다. |
 | G06c·G07d·G12b (대조 후보) | contradiction 표시 | PASS | 원안은 최종 판단과 부딪히는 latent 주장을 CONTEXT_SUPPORTS로 이었다. 충돌 대상(EP27·EP25)으로 CONTRADICTS_AT_CLAIM_LEVEL latent edge를 두도록 고쳤다. 세 후보 모두 contradiction_risk HIGH → LOW, KEPT_AS_CONTRAST이며 기각 world W6에만 쓴다. |
@@ -95,6 +99,7 @@ _없음_
 | WARN 0 작업 — 4차 | A3-W1(G08a) 원본 재대조: 동기 연결은 원본에 없음 → LATENT. 관측 node 사이 직접 latent edge는 관측 관계로 읽힐 위험 | FIXED: LN_G08a_1을 둔 mini-DAG로 변경, 같은 형태를 WARN에서 ERROR로 승격 → WARN 0 |
 | WARN 0 작업 — 5차 | 새 open_set_closure 검사가 G04b를 ERROR로 잡음. 원문 확인 결과 G04b는 '등'을 따옴표로 감싸 열린 목록을 표시하고 있어 검사기 오탐 | 후보 내용은 그대로 두고 정규식이 따옴표 붙은 '등'과 목록 중간 절단을 처리하도록 수정 → ERROR 0 |
 | WARN 0 작업 — 6차 | UNRESOLVED 문구 검토: G10 사유가 '모든 후보가 사료 지지 없음'으로 적혀 G10a(MEDIUM)와 어긋남 | 후보 등급과 gap 근거에서 문구를 생성하도록 수정. 최종 ERROR 0, WARN 0, UNRESOLVED 1(G10), INFO 8 |
+| 사용자 동일성 확정 반영 | G03a(ID11)·G04c·G05a(ID01)·G09a(ID02·ID03)의 확정 ID 가정, G09b·G09c의 확정 ID 부정 전제, world 서술의 조건문 | 확정 ID 가정을 빼고(G03a 4→3, G04c 3→2, G05a 3→2, G09a 3→1, 등급 변화 없음), G09b·G09c는 규칙 7로 INCOMPATIBLE·PRUNED(world 미사용). world 서술의 'IDxx가 성립한다면'을 '(IDxx, 사용자 확정)'으로 바꿈. world 구성·bridge·미해결 gap은 그대로. 재실행 ERROR 0, WARN 0, UNRESOLVED 1 |
 
 ## 5. 전체 요소 분류표
 

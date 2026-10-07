@@ -358,13 +358,13 @@ def write_latent_csv(out, gaps, cands, worlds):
         w = csv.writer(f)
         w.writerow(["world_id", "name", "status", "latent_bridges", "unresolved_gaps", "institutional_fit",
                     "environmental_fit", "n_assumptions", "min_grade", "main_assumptions", "main_weaknesses",
-                    "contradicted_evidence", "story_implication", "identity_conditions", "narrative"])
+                    "contradicted_evidence", "story_implication", "identity_conditions", "resolved_identities", "narrative"])
         for x in worlds:
             w.writerow([x["world_id"], x["name"], "REJECTED" if x.get("rejected") else "RETAINED",
                         "|".join(x["latent_bridges"]), "|".join(x["unresolved_gaps"]), x["institutional_fit"],
                         x["environmental_fit"], x["n_assumptions"], x["min_grade"], " / ".join(x["main_assumptions"]),
                         " / ".join(x["main_weaknesses"]), x["contradicted_evidence"], x["story_implication"],
-                        x.get("identity_conditions", ""), x.get("narrative", "")])
+                        x.get("identity_conditions", ""), x.get("resolved_identities", ""), x.get("narrative", "")])
 
 
 def write_validation_summary(path, audits_by_name, freeze, worlds):
@@ -385,6 +385,16 @@ def write_validation_summary(path, audits_by_name, freeze, worlds):
         by[d["disposition"]].append(d["warning_id"])
     for k in ["FIXED", "RECLASSIFIED_INFO", "UNRESOLVED", "ESCALATED_ERROR"]:
         lines.append(f"| {k} | {len(by[k])} | {', '.join(by[k]) or '-'} |")
+    idr = list(csv.DictReader(open(path.parent / "identity_register.csv", encoding="utf-8")))
+    cnt = Counter(r["status"] for r in idr)
+    lines += ["", "## 동일성 상태", "",
+              f"RESOLVED(사용자 확정) {cnt['RESOLVED']}개 · UNRESOLVED {cnt['UNRESOLVED']}개 "
+              f"(그중 사용자 판단 필요 {sum(r['status'] == 'UNRESOLVED' and r['manual_decision_required'] == 'YES' for r in idr)}개) · "
+              f"기타 {len(idr) - cnt['RESOLVED'] - cnt['UNRESOLVED']}개", "",
+              "| ID | 동일성 | status | 모델 사용처 | 사용자 판단 필요 |", "|---|---|---|---|---|"]
+    for r in idr:
+        lines.append(f"| {r['identity_id']} | {_cell(r['surface_a'])} ↔ {_cell(r['surface_b'])} | {r['status']} | "
+                     f"{_cell(r['model_relevance'])} | {r['manual_decision_required']} |")
     lines += ["", "## UNRESOLVED 목록", ""]
     for name, fs in audits_by_name.items():
         lines += [f"### {name}", "", _unresolved_list(fs), ""]
@@ -396,12 +406,14 @@ def write_validation_summary(path, audits_by_name, freeze, worlds):
         lines.append(f"| {r['rule']} | {_cell(r['case'])} | {'OK' if r['caught'] else 'MISSED'} |")
     lines += ["", "## 동결 그래프", "",
               f"- 현재 sha256: `{freeze['sha256']}`",
-              f"- 이전 sha256(앞자리): `{freeze['previous_sha256_prefix']}…`",
+              f"- 직전 sha256(앞자리): `{freeze['previous_sha256_prefix']}…`",
               f"- 구조 sha256(문구 제외): `{freeze['structure_sha256']}` — 이전과 "
               f"{'동일' if freeze['structure_unchanged'] else '다름'}",
+              f"- topology sha256(id·끝점·type): `{freeze['topology_sha256']}` — 이전과 {'동일' if freeze['topology_unchanged'] else '다름'}",
               f"- 변경 내용: {freeze['change_note']}",
-              "", "## Narrative worlds", "", "| world | 상태 | bridge | 최저 등급 | 미해결 gap |", "|---|---|---|---|---|"]
+              "", "## Narrative worlds", "", "| world | 상태 | bridge | 최저 등급 | 가정 수 | 미확정 동일성 의존 | 미해결 gap |", "|---|---|---|---|---|---|---|"]
     for w in worlds:
         lines.append(f"| {w['world_id']} | {'REJECTED' if w.get('rejected') else 'RETAINED'} | {' '.join(w['latent_bridges'])} | "
-                     f"{w['min_grade']} | {', '.join(w['unresolved_gaps']) or '-'} |")
+                     f"{w['min_grade']} | {w['n_assumptions']} | {w['identity_conditions'].replace('|', ', ') or '0'} | "
+                     f"{', '.join(w['unresolved_gaps']) or '-'} |")
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")

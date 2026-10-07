@@ -6,7 +6,7 @@ severity: ERROR(통과 불가) | WARN(검토 필요 — disposition 없이는 �
 import re
 from collections import defaultdict
 
-from stage1_episodes import EPISODES, EPISTEMIC_RANK, IDENTITY_REGISTER
+from stage1_episodes import EPISODES, EPISTEMIC_RANK, IDENTITY_REGISTER, RESOLVED_IDS, UNRESOLVED_IDS
 
 PERSON_NAMES = ["구순", "김명신", "명업", "나복", "이진욱", "한재욱", "조계완", "변지돌", "정원돌", "자미덕",
                 "재돌", "이집거", "김갑득", "김성손", "김흥득", "유제희", "김상제", "이광섭", "이문협", "이형원",
@@ -213,7 +213,10 @@ def audit1(episodes, cf, props, sources):
         # 7. identity forcing
         for a, b, iid in IDENTITY_RULES:
             if a in joined and b in summ and b not in joined:
-                out.append(F("identity_forcing", "ERROR", eid, f"'{a}'를 '{b}'로 치환({iid})"))
+                if iid in RESOLVED_IDS:  # 사용자 확정 동일성이어도 episode summary는 원문 표면형을 유지한다
+                    out.append(F("surface_form_substitution", "ERROR", eid, f"'{a}'를 '{b}'로 치환({iid} 확정이지만 원문 표면형 유지 필요)"))
+                else:
+                    out.append(F("identity_forcing", "ERROR", eid, f"'{a}'를 '{b}'로 치환({iid} 미확정)"))
         for nm in PERSON_NAMES:
             if nm in summ and nm not in joined:
                 out.append(F("identity_forcing", "ERROR", eid, f"원문에 없는 인물 '{nm}' 삽입"))
@@ -273,12 +276,20 @@ def audit1(episodes, cf, props, sources):
 
     # 사료 모호성으로 남긴 동일성 — UNRESOLVED (데이터에 condition·caution으로 보존)
     for i in IDENTITY_REGISTER:
+        if i["status"] == "RESOLVED":
+            if i.get("resolved_by") != "USER" or not i.get("resolution_basis"):
+                out.append(F("identity_resolution", "ERROR", i["identity_id"], "RESOLVED인데 사용자 확정 근거가 없음"))
+            else:
+                out.append(F("resolved_identity", "INFO", i["identity_id"],
+                             f"{i['surface_a']} = {i['surface_b']} · 사용자 확정 · episode summary는 원문 표면형 유지"))
+            continue
         if i["status"] != "UNRESOLVED":
             continue
         refs = set(filter(None, i["referenced_facts"].split("|")))
         eps = sorted({e["episode_id"] for e in episodes for f, _ in e["members"] if f in refs})
+        ref_note = " · 참고용(model_relevance=NONE, manual_decision_required=NO)" if i.get("model_relevance") == "NONE" else ""
         out.append(F("unresolved_identity", "UNRESOLVED", i["identity_id"],
-                     f"{i['surface_a']} ↔ {i['surface_b']} · 관련 episode {', '.join(eps) or '없음(DAG 미사용)'} · "
+                     f"{i['surface_a']} ↔ {i['surface_b']} · 관련 episode {', '.join(eps) or '없음(DAG 미사용)'}{ref_note} · "
                      f"unresolved_reason: {i['unresolved_reason']}"))
 
     # confirmed set 밖 사료 내용 (DAG 미반영)
@@ -399,8 +410,10 @@ def audit2(nodes, edges, episodes, feature_links, env_rows, edge_types, bases):
         key = (e["src"], e["dst"])
         need = IDENTITY_SENSITIVE.get(key) or IDENTITY_SENSITIVE.get((e["dst"], e["src"]))
         conds = set(filter(None, e["condition"].split("|")))
-        if need and need not in conds:
+        if need and need in UNRESOLVED_IDS and need not in conds:
             out.append(F("identity_forcing", "ERROR", eid, f"{need} 미확정 동일성에 기대는데 condition 누락"))
+        for c in sorted(conds & RESOLVED_IDS):
+            out.append(F("stale_identity_condition", "ERROR", eid, f"{c}는 사용자 확정(RESOLVED)인데 condition에 남아 있음"))
         for c in sorted(conds):
             if c not in iden:
                 out.append(F("identity_forcing", "ERROR", eid, f"알 수 없는 identity {c}"))
@@ -409,7 +422,7 @@ def audit2(nodes, edges, episodes, feature_links, env_rows, edge_types, bases):
                              f"{c} 미확정 — edge는 condition으로만 성립 · unresolved_reason: {iden[c]['unresolved_reason']}"))
         # [regression] 근거 문구가 두 표면형을 함께 쓰면 해당 identity가 condition이나 문구에 있어야 한다
         etext = e["rationale"] + " " + e["caution"]
-        for iid in sorted(_identity_needs(etext) - conds):
+        for iid in sorted(_identity_needs(etext) - conds - RESOLVED_IDS):
             if iid not in etext:
                 out.append(F("identity_forcing", "ERROR", eid, f"근거 문구가 {iid} 동일성에 기대는데 condition 없음"))
         if "PARTIAL" in e["caution"]:
@@ -519,8 +532,12 @@ def audit3(nodes, edges, frozen_hash, current_hash, gaps, candidates, props, wor
     layer = {n["node_id"]: n["layer"] for n in nodes}
     prop_ids = {p["prop_id"] for p in props}
     for i in IDENTITY_REGISTER:
-        if i["identity_id"] in FORBIDDEN_IDENTITIES | {"ID05", "ID06", "ID07", "ID08", "ID11"} and i["status"] != "UNRESOLVED":
-            out.append(F("identity_forcing", "ERROR", i["identity_id"], f"미확정이어야 할 동일성의 status={i['status']}"))
+        # 모델은 동일성을 스스로 확정하지 않는다. UNRESOLVED 또는 사용자 확정(RESOLVED + resolved_by=USER + 근거)만 허용
+        if i["identity_id"] in FORBIDDEN_IDENTITIES | {"ID05", "ID06", "ID07", "ID08", "ID11"}:
+            ok = i["status"] == "UNRESOLVED" or (i["status"] == "RESOLVED" and i.get("resolved_by") == "USER"
+                                                and i.get("resolution_basis"))
+            if not ok:
+                out.append(F("identity_forcing", "ERROR", i["identity_id"], f"사용자 확정 근거 없는 status={i['status']}"))
     if frozen_hash != current_hash:
         out.append(F("freeze_violation", "ERROR", "observed_dag", "동결 이후 observed DAG가 변경됨"))
     else:
@@ -585,10 +602,19 @@ def audit3(nodes, edges, frozen_hash, current_hash, gaps, candidates, props, wor
         if (env_only or inst_only) and c["overall"] == "LOW":
             out.append(F("support_basis_cap", "INFO", cid, f"{c['support_basis']}만 근거 → LOW 상한 적용"))
         conds = set(filter(None, c.get("identity_conditions", "").split("|")))
+        import stage4_latent
+        neg = stage4_latent.negates_resolved(c)
+        if neg and c["overall"] != "INCOMPATIBLE":
+            out.append(F("resolved_identity_conflict", "ERROR", cid, f"사용자 확정 {neg}을 불성립으로 전제하는데 INCOMPATIBLE이 아님"))
+        elif neg:
+            out.append(F("resolved_identity_conflict", "INFO", cid, f"사용자 확정 {neg}과 충돌 → INCOMPATIBLE·PRUNED"))
+        for r in sorted((conds & RESOLVED_IDS) - set(neg)):
+            out.append(F("stale_identity_condition", "ERROR", cid, f"{r}는 사용자 확정인데 추가 가정으로 남아 있음"))
+        conds = conds & UNRESOLVED_IDS
         if conds and c["overall"] == "HIGH":
             out.append(F("identity_forcing", "ERROR", cid, f"미확정 동일성 {sorted(conds)}에 기대는데 HIGH"))
         text = " ".join([c["label"], c["description"]] + [ln["text"] for ln in c["latent_nodes"]])
-        for iid in sorted(_identity_needs(text) - conds):
+        for iid in sorted(_identity_needs(text) - conds - RESOLVED_IDS):
             out.append(F("identity_forcing", "ERROR", cid, f"서술이 {iid} 동일성에 기대는데 가정·조건에 없음"))
         for chk, frag in text_regressions(text):
             out.append(F(chk, "ERROR", cid, f"'{frag}'"))
@@ -631,7 +657,7 @@ def audit3(nodes, edges, frozen_hash, current_hash, gaps, candidates, props, wor
                     out.append(F(chk, "ERROR", w["world_id"], f"{fld}: '{frag}'"))
                 for frag in open_set_closures(txt):
                     out.append(F("open_set_closure", "ERROR", w["world_id"], f"{fld}: '{frag}'"))
-                for iid in sorted(_identity_needs(txt)):
+                for iid in sorted(_identity_needs(txt) - RESOLVED_IDS):
                     if iid not in txt:
                         out.append(F("identity_forcing", "ERROR", w["world_id"], f"{fld}가 {iid} 동일성을 표시 없이 사용"))
         for i, a in enumerate(worlds):

@@ -84,7 +84,7 @@ EPISODES = [
                 "자신과 남편을 다음 날 석방하겠다고 말했다고 진술했고, 자미덕은 이집거와 대질했으며, "
                 "그때 한 비장의 지휘에 따라 거짓으로 꾸며 말했다고 진술했다.",
         caution="'등'이 있으므로 명시된 5명은 닫힌 목록이 아님. 김명신은 명시 명단에 없으나 열린 목록이라 배제도 확정하지 않음. "
-                "'거짓으로 꾸며 말했다'는 거짓 지목으로 강화하지 않음(거짓말의 구체 내용 미특정). '한 비장'=한재욱은 ID02로 미확정.",
+                "'거짓으로 꾸며 말했다'는 거짓 지목으로 강화하지 않음(거짓말의 구체 내용 미특정). '한 비장'=한재욱은 ID02로 사용자 확정(RESOLVED)이며, summary는 원문 표면형 '한 비장'을 유지한다. 동일성 확정은 사주 주장이 사실이라는 뜻이 아니다(EP12의 부인과 별개 진술로 유지).",
         occurrence_text="구류 중/그 후 → 대질 때", t_min=229, t_max=None,
         attesting_actor="자미덕", layer="TESTIMONY", branch="BARRACKS_OPERATION",
         grouping_rationale="동일 진술자·동일 행위자(한 비장)·동일 절차 단계(구류 중 회유→대질)."),
@@ -96,7 +96,7 @@ EPISODES = [
                 "자신이 그 말을 원돌 등의 이름과 함께 기록해 올렸다고 진술했다.",
         caution="'극히 수상하다'는 범인 지목이 아님. 기록한 사람은 유제희 자신(정조 CF043의 '구순이 성명을 적어 주었다'와 "
                 "claim-level 차이). 탐문 시점·파견자·기록 수신자는 미기록(gap). 풍각 김상제=김명신은 ID05, "
-                "유제희=병영의 염탐 담당자는 ID06로 미확정. '원돌 등'은 열린 목록이며 원돌=정원돌은 ID11로 미확정.",
+                "유제희=병영의 염탐 담당자는 ID06로 미확정. '원돌 등'은 열린 목록이며 원돌=정원돌은 ID11로 사용자 확정(RESOLVED, 표면형은 유지).",
         occurrence_text="현지 탐문(날짜 미기록)", t_min=None, t_max=None,
         attesting_actor="유제희", layer="TESTIMONY", branch="SUSPECT_INFORMATION",
         grouping_rationale="독립된 정보 수집 행위. 날짜가 없어 다른 episode와 병합하지 않음."),
@@ -106,7 +106,7 @@ EPISODES = [
         members=[("CF021", None), ("CF022", None)],
         summary="이진욱은 3월 4일 병사가 풍각 김생원과 흥덕 김생원을 잡아오라고 지시했다고 진술했다. "
                 "해당 기사에서 풍각 김생원은 김명신, 흥덕 김생원은 김갑득으로 식별된다.",
-        caution="공초 문장의 표면 주어는 '병사'. 병사=이광섭은 ID01로 미확정. 김생원 식별(CF022)은 사료의 직접 식별이므로 그대로 둔다.",
+        caution="공초 문장의 표면 주어는 '병사'. 병사=이광섭은 ID01로 사용자 확정(RESOLVED)이지만 summary는 원문 표면형을 유지한다. 지시 행위 자체는 이진욱 진술로만 확인된다. 김생원 식별(CF022)은 사료의 직접 식별이므로 그대로 둔다.",
         occurrence_text="1793-03-04", t_min=304, t_max=304,
         attesting_actor="이진욱 / 기사 식별", layer="TESTIMONY", branch="BARRACKS_OPERATION",
         grouping_rationale="지시 행위와 지시 대상의 사료 식별은 같은 문장 단위로 묶는다. 실행(EP11)은 분리."),
@@ -154,7 +154,7 @@ EPISODES = [
         summary="5월 12일 기사에서 이광섭은 사건의 병사 지휘 책임자로 심리되며, 이형원은 이광섭이 허황한 말을 믿고 "
                 "무고한 사람을 잘못 잡았다고 평가했고, 청주 영장 이문협이 수사를 병영 비장에게 전적으로 맡기고 방관했다고 평가했다.",
         caution="보고(EP13)와 인식 수준(OFFICIAL_EVALUATION)이 달라 분리. 이 행의 '병사 지휘 책임자'는 5/12 기사 차원의 식별이다. "
-                "3/4 공초의 '병사'를 이 행으로 치환하지 않는다(ID01).",
+                "3/4 공초의 '병사'=이광섭은 ID01로 사용자 확정(RESOLVED)이다. 이 행의 문구는 바꾸지 않는다.",
         occurrence_text="1793-05-12", t_min=512, t_max=512,
         attesting_actor="이형원", layer="OFFICIAL_EVALUATION", branch="COMMAND_RESPONSIBILITY",
         grouping_rationale="동일 평가자·동일 날짜·지휘 계통(병사·영장) 평가."),
@@ -329,7 +329,7 @@ EPISODES = [
         episode_id="EP35", title="병영 비장 한가 처분",
         members=[("CF048", None)],
         summary="정조는 병영 비장으로 표기된 한가를 도백이 엄히 세 차례 형장 친 뒤 먼 섬의 종으로 보내도록 명했다.",
-        caution="처분문 표면형은 '한가'. 한가=한재욱은 ID03으로 미확정. 처분 근거가 된 행위는 confirmed set에 없음(gap).",
+        caution="처분문 표면형은 '한가'. 한가=한재욱은 ID03으로 사용자 확정(RESOLVED)이며 summary는 표면형을 유지한다. 처분 근거가 된 행위는 confirmed set에 없음(gap G09).",
         occurrence_text="1793-06-13", t_min=613, t_max=613,
         attesting_actor="정조", layer="ROYAL_ORDER", branch="DISPOSITION",
         grouping_rationale="처분 대상별 분리."),
@@ -351,18 +351,20 @@ EPISODES = [
         grouping_rationale="날짜가 달라 분리."),
 ]
 
-# 확정하지 않는 동일성. episode/edge는 이것을 condition으로만 참조한다.
+# 동일성 대장. UNRESOLVED는 episode/edge에서 condition으로만 참조한다.
+# RESOLVED는 사용자가 수동 검토에서 확정한 것만 해당한다(resolved_by=USER). 모델이 스스로 확정하지 않는다.
+# episode summary는 확정 여부와 관계없이 원문 표면형을 유지한다.
 IDENTITY_REGISTER = [
     dict(identity_id="ID01", surface_a="공초의 '병사' (CF021·CF023·CF024)", surface_b="이광섭",
-         status="UNRESOLVED", context="CF025: 5/12 기사가 이광섭을 사건의 병사 지휘 책임자로 심리(기사 제목: 충청도 병마절도사). "
+         status="RESOLVED", resolved_by="USER", resolution_basis="사용자 확정: 병사는 병마절도사의 약칭이고, 이 사건에서 충청도 병마절도사로 이광섭이 특정되어 있다(CF025 기사 제목·심리 대상).", context="CF025: 5/12 기사가 이광섭을 사건의 병사 지휘 책임자로 심리(기사 제목: 충청도 병마절도사). "
          "강한 맥락이지만 공초 문장 자체는 '병사'만 씀.", referenced_facts="CF021|CF023|CF024|CF025|CF044|CF047"),
     dict(identity_id="ID02", surface_a="'한 비장' (CF016·CF017)", surface_b="한재욱",
-         status="UNRESOLVED", context="CF018: 한재욱이 자미덕을 방으로 불러 밥을 준 사실을 인정. 동일인 확정 문장은 없음.",
+         status="RESOLVED", resolved_by="USER", resolution_basis="사용자 확정: 자미덕 공초의 '한 비장'과 이어지는 한재욱의 공방(CF018: 자미덕을 방으로 불러 남은 밥을 준 사실 인정, 은밀한 사주 부인)이 같은 인물을 가리킨다. 사주 주장과 부인은 서로 다른 진술로 유지한다.", context="CF018: 한재욱이 자미덕을 방으로 불러 밥을 준 사실을 인정. 동일인 확정 문장은 없음.",
          referenced_facts="CF016|CF017|CF018"),
     dict(identity_id="ID03", surface_a="처분문의 '한가' (CF048)", surface_b="한재욱",
-         status="UNRESOLVED", context="CF048 notes: 처분문 표면형은 한가.", referenced_facts="CF048|CF008|CF018"),
+         status="RESOLVED", resolved_by="USER", resolution_basis="사용자 확정: 처분문(CF048)의 '병영 비장 한가'는 한재욱이다.", context="CF048 notes: 처분문 표면형은 한가.", referenced_facts="CF048|CF008|CF018"),
     dict(identity_id="ID04", surface_a="'병영의 하급 보조자' (audit-only V3P0026·V3P0027·V3P0124)", surface_b="한재욱",
-         status="UNRESOLVED", context="confirmed set 밖(이조원 주장). DAG에서는 사용하지 않음.", referenced_facts=""),
+         status="UNRESOLVED", model_relevance="NONE", manual_decision_required="NO", context="confirmed set 밖(이조원 주장). DAG에서는 사용하지 않음.", referenced_facts=""),
     dict(identity_id="ID05", surface_a="'풍각 김상제' (CF020)", surface_b="김명신",
          status="UNRESOLVED", context="CF022는 '풍각 김생원'=김명신을 직접 식별. 김상제(상주 호칭)와의 동일성은 confirmed 문장에 없음 "
          "(audit V3P0095 object 필드는 김명신).", referenced_facts="CF020|CF022"),
@@ -382,7 +384,7 @@ IDENTITY_REGISTER = [
     dict(identity_id="ID10", surface_a="풍각 김생원 / 흥덕 김생원", surface_b="김명신 / 김갑득",
          status="DOCUMENTED", context="CF022 DOCUMENTED_SOURCE_IDENTIFICATION.", referenced_facts="CF022"),
     dict(identity_id="ID11", surface_a="'원돌' (CF020 '원돌 등의 이름')", surface_b="정원돌 (CF009·CF016)",
-         status="UNRESOLVED", context="이름 일부가 겹치지만 confirmed 문장은 같은 사람이라고 하지 않는다.",
+         status="RESOLVED", resolved_by="USER", resolution_basis="사용자 확정: 유제희 기록의 '원돌'(CF020)은 정원돌(CF009·CF016)이다.", context="이름 일부가 겹치지만 confirmed 문장은 같은 사람이라고 하지 않는다.",
          referenced_facts="CF020|CF009|CF016"),
 ]
 
@@ -417,5 +419,12 @@ UNRESOLVED_REASONS = {
     "ID08": "3/4 '장교 일행'의 구성원은 기록되지 않았다.",
     "ID11": "'원돌'과 '정원돌'은 이름 일부만 겹친다. 같은 사람이라는 문장이 없다.",
 }
+UNRESOLVED_REASONS["ID04"] = ("audit-only 자료(05, 이조원 주장)에만 있고 인명이 직접 나오지 않는다. 현재 DAG·후보·world 어디에도 쓰이지 않아 "
+                              "결정해도 모델 결과가 바뀌지 않는다(참고용 미해결).")
 for _i in IDENTITY_REGISTER:
     _i["unresolved_reason"] = UNRESOLVED_REASONS.get(_i["identity_id"], "") if _i["status"] == "UNRESOLVED" else ""
+    _i.setdefault("resolved_by", "")
+    _i.setdefault("resolution_basis", "")
+
+RESOLVED_IDS = {i["identity_id"] for i in IDENTITY_REGISTER if i["status"] == "RESOLVED"}
+UNRESOLVED_IDS = {i["identity_id"] for i in IDENTITY_REGISTER if i["status"] == "UNRESOLVED"}

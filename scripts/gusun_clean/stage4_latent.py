@@ -9,6 +9,8 @@
 """
 import re
 
+from stage1_episodes import RESOLVED_IDS, UNRESOLVED_IDS
+
 SCORE = {"INCOMPATIBLE": 0, "LOW": 1, "MEDIUM": 2, "HIGH": 3}
 NAME = {v: k for k, v in SCORE.items()}
 
@@ -44,7 +46,7 @@ GAPS = [
          why_gap="하루 차이의 두 royal action 사이에 동기 연결 문장이 없다(OE045는 시간 edge뿐)."),
     dict(gap_id="G09", title="처분문 '한가'의 처분 근거와 동일성", gap_type="IDENTITY / RESPONSIBILITY",
          between=["EP35", "EP07", "EP12", "EP04"], observed_anchor_facts="CF048, CF016, CF017, CF018, CF008",
-         why_gap="한가 처분(CF048)에 연결된 책임 판단 node가 없다. 한가=한재욱=한 비장은 미확정이다(ID02, ID03)."),
+         why_gap="한가 처분(CF048)에 연결된 책임 판단 node가 없다. 한가=한재욱=한 비장은 사용자 확정(ID02·ID03 RESOLVED)이지만, 한가 처분의 근거 행위는 기록되지 않았다."),
     dict(gap_id="G10", title="이형원 6/13 파직 → 6/16 유임", gap_type="DISPOSITION",
          between=["EP36", "EP37"], observed_anchor_facts="CF049, CF050",
          why_gap="파직과 3일 뒤 유임의 사유가 모두 기록되지 않았다."),
@@ -61,6 +63,7 @@ GAPS = [
 
 
 ID_RE = re.compile(r"ID\d\d")
+NEG_RE = re.compile(r"(ID\d\d) 불성립")
 
 
 def C(cid, gap, form, label, description, nodes, edges, src, temp, inst, role, info, env, risk, assumptions,
@@ -147,12 +150,12 @@ CANDIDATES = [
       [("LN_G03a_1", "EP08", "ORDER_TO_ACTION"), ("EP08", "LN_G03a_2", "INFORMATION_FLOW"),
        ("LN_G03a_2", "EP04", "INFORMATION_FLOW")],
       "MEDIUM", "MEDIUM", "HIGH", "HIGH", "HIGH", "N/A", "LOW",
-      ["파견자 = 한재욱 (05 V3P0085에만 있음)", "탐문·기록 시점이 2/28 이전", "기록 수신자 = 한재욱",
-       "원돌 = 정원돌 (ID11)"],
+      ["파견자 = 한재욱 (05 V3P0085에만 있음)", "탐문·기록 시점이 2/28 이전", "기록 수신자 = 한재욱"],
       supports="CF020('원돌 등의 이름과 함께'), CF009(정원돌 체포 지시)", attest="V3P0085|V3P0086|V3P0087",
       notes="05 한재욱 공초(V3P0085–V3P0087, audit-only)는 자신이 유제희를 내보냈고 유제희가 변지돌·변재돌·정원돌·김명신 등의 성명을 "
             "적어 왔다고 진술한다. 이 후보는 그 진술을 사실로 올리지 않고 연결 가설로만 쓴다. 기록이 2/28 이전이라면 3/4 김생원 체포가 "
-            "왜 2/28 대상에 없었는지는 이 후보로 설명되지 않는다."),
+            "왜 2/28 대상에 없었는지는 이 후보로 설명되지 않는다. 원돌=정원돌은 ID11 사용자 확정(RESOLVED)이라 가정에서 뺐다(가정 4→3). "
+            "후보 자체는 여전히 LATENT이며 source_consistency(MEDIUM)는 그대로다."),
     C("G03b", "G03", "SINGLE", "탐문은 2/29~3/4 사이, 김상제 언급이 3/4 지시를 직접 촉발 (ID05 조건)",
       "유제희의 탐문과 기록은 2/29 이후 3/4 이전에 있었고, 기록 속 '풍각 김상제' 언급이 3/4 풍각 김생원 체포 지시를 직접 촉발했다.",
       [("LN_G03b_1", "유제희 기록이 2/29~3/4 사이에 병영에 보고", True)],
@@ -160,7 +163,7 @@ CANDIDATES = [
       "MEDIUM", "MEDIUM", "HIGH", "HIGH", "HIGH", "N/A", "MEDIUM",
       ["탐문 시점 2/29~3/4", "풍각 김상제 = 김명신 (ID05)", "기록이 병사 지시 판단에 쓰임"],
       supports="CF043, CF020",
-      conflicts="CF020('원돌 등'과 한 기록 — ID11이 성립하면 원돌은 이미 2/28 체포 대상이었으므로 기록이 2/28 이전이라는 쪽과 긴장)",
+      conflicts="CF020('원돌 등'과 한 기록 — ID11 확정: 원돌(=정원돌)은 이미 2/28 체포 대상이었으므로 기록이 2/28 이전이라는 쪽과 긴장)",
       attest="V3P0095"),
     C("G03c", "G03", "SINGLE", "유제희가 병사에게 직접 보고(비장 우회)",
       "유제희가 탐문 결과를 비장을 거치지 않고 병사에게 직접 올렸다.",
@@ -191,7 +194,7 @@ CANDIDATES = [
       ["대질 진술이 3/4 이전에 있었음", "그 진술이 병사에게 보고됨",
        "열린 목록 '등'에 풍각 김생원이 들어 있었음(05 V3P0042·V3P0128 윤노동 주장, audit-only)"],
       supports="CF016(김갑득이 명시 명단에 있고, 3/4 김명신과 함께 체포됨 — CF023)",
-      conflicts="CF018(한재욱: 은밀한 사주 부인 — claim-level, ID02 조건부)", attest="V3P0042|V3P0089|V3P0128",
+      conflicts="CF018(한재욱: 은밀한 사주 부인 — claim-level. ID02 확정으로 같은 인물에 대한 서로 다른 진술)", attest="V3P0042|V3P0089|V3P0128",
       notes="제도 평가: 진술 → 보고 → 지시라는 정보 경로 자체는 F008·F020과 양립하므로 institutional_fit은 MEDIUM이다. "
             "회유 행위의 합법성 LOW(F002)는 observed node EP07의 feature link에 이미 붙어 있다. 윤노동 별단(05)은 한재욱이 변가의 처를 꾀어 "
             "김명신이 도적 괴수라는 공초를 내게 했다고 주장하지만 audit-only이며, 이 후보는 그 주장을 사실로 올리지 않는다."),
@@ -200,8 +203,7 @@ CANDIDATES = [
       [("LN_G04c_1", "3/4 이전 구순이 병사에게 사적으로 김명신을 의심 대상으로 알림", True)],
       [("EP01", "LN_G04c_1", "CONTEXT_SUPPORTS"), ("LN_G04c_1", "EP09", "INFORMATION_FLOW")],
       "LOW", "MEDIUM", "LOW", "LOW", "LOW", "N/A", "MEDIUM",
-      ["3/4 이전의 미기록 서신·접촉 존재", "그 내용에 김명신 지목",
-       "병사 = 이광섭 (ID01) — CF044 '구순 편을 듦'을 근거로 쓸 때"],
+      ["3/4 이전의 미기록 서신·접촉 존재", "그 내용에 김명신 지목"],
       supports="CF024(3/4 서찰 — 사적 통로가 있었음을 보여 줌), CF044(구순 편을 듦)", attest="V3P0053|V3P0148",
       notes="CF024의 서찰은 '잡으러 가는 길'에 건넨 것이라 3/4 지시보다 뒤다. 그래서 이 후보는 그보다 앞선, 기록되지 않은 접촉을 따로 "
             "가정해야 한다. 05의 V3P0053(명업: 구순이 찾아온 장교 한 명과 안행랑에서 조용히 대화)과 V3P0148(정조: 이광섭이 구순과의 "
@@ -224,14 +226,14 @@ CANDIDATES = [
       conflicts="CF023(장교 일행은 '병사의 분부에 따라' 체포)", basis="NONE",
       notes="제도(F007·F008)와 관측(CF023) 모두와 충돌한다. pruning 예시(사용자 지정: 구순→장교 공식 체포명령 low)."),
     # ------------------------------------------------------------------ G05
-    C("G05a", "G05", "SINGLE", "서찰이 병사에게 전달, 체포 지지·추가 의혹 내용 (ID01 조건)",
-      "조계완이 서찰을 병사에게 전달했고, 서찰 내용은 김명신 체포를 지지하거나 의혹을 덧붙이는 것이었다. ID01이 성립한다면 이 서찰은 "
-      "정조가 말한 '이광섭이 구순 편을 들었다'(CF044)의 한 배경이 된다.",
+    C("G05a", "G05", "SINGLE", "서찰이 병사에게 전달, 체포 지지·추가 의혹 내용",
+      "조계완이 서찰을 병사에게 전달했고, 서찰 내용은 김명신 체포를 지지하거나 의혹을 덧붙이는 것이었다. 병사=이광섭(ID01, 사용자 확정)이므로 "
+      "이 서찰은 정조가 말한 '이광섭이 구순 편을 들었다'(CF044)의 한 배경이 된다. 전달과 내용은 가설이다.",
       [("LN_G05a_1", "조계완이 서찰을 병사에게 전달", True), ("LN_G05a_2", "서찰 내용 = 체포 지지·의혹 제기", True)],
       [("EP10", "LN_G05a_1", "INFORMATION_FLOW"), ("LN_G05a_1", "LN_G05a_2", "INFORMATION_FLOW"),
        ("LN_G05a_2", "EP30", "CONTEXT_SUPPORTS")],
       "MEDIUM", "HIGH", "MEDIUM", "MEDIUM", "MEDIUM", "N/A", "LOW",
-      ["서찰 전달됨", "서찰 내용이 사건 관련", "병사 = 이광섭 (ID01)"],
+      ["서찰 전달됨", "서찰 내용이 사건 관련"],
       supports="CF024('바른 길을 얻었다'는 반응), CF044(구순 편을 듦), CF025(허황한 말을 믿고)",
       notes="사적 서찰은 공식 보고 경로(장계·서계)가 아니다. 공식 명령으로서는 LOW(F020)지만, 이 후보는 '사적 정보 전달'만 가정하므로 "
             "institutional_fit을 MEDIUM으로 둔다(전달을 막는 제도도, 공식 경로라는 근거도 없음)."),
@@ -324,28 +326,31 @@ CANDIDATES = [
       supports="CF045(지세 기원 조사)", attest="V3P0033|V3P0035|V3P0103",
       notes="정조가 6/13에 세 의안(도난·사인·지세)을 나누었으므로(V3P0103) '주목적'이라고 하면 과장일 수 있다."),
     # ------------------------------------------------------------------ G09
-    C("G09a", "G09", "SINGLE", "[ID02·ID03 조건] 한가·한 비장이 한재욱이라면 처분 근거 = 회유·출동 운영",
-      "ID02(한 비장=한재욱)와 ID03(한가=한재욱)이 모두 성립한다고 가정하면, 처분문의 병영 비장 한가는 자미덕 진술 속 '한 비장'이자 "
-      "2/28 출동을 지시한 한재욱이다. 그 경우 처분 근거는 자미덕이 진술한 회유·대질 지휘와 출동 운영으로 볼 수 있다.",
-      [("LN_G09a_1", "한가 처분 근거 = 회유·대질 지휘·출동 운영 (ID02·ID03 조건)", True)],
+    C("G09a", "G09", "SINGLE", "한가(=한재욱) 처분 근거 = 자미덕이 진술한 회유·대질 지휘와 출동 운영",
+      "ID02(한 비장=한재욱)와 ID03(한가=한재욱)은 사용자 확정(RESOLVED)이다. 따라서 처분문의 병영 비장 한가, 자미덕 진술 속 '한 비장', "
+      "2/28 출동을 지시한 한재욱은 같은 사람이다. 처분 근거가 자미덕이 진술한 회유·대질 지휘와 출동 운영이라는 것만 가설이다. "
+      "회유는 자미덕의 진술이고 한재욱은 은밀한 사주를 부인했으므로(CF018), 사주를 사실로 확정하지 않는다.",
+      [("LN_G09a_1", "한가(=한재욱) 처분 근거 = 자미덕이 진술한 회유·대질 지휘와 출동 운영", True)],
       [("EP07", "LN_G09a_1", "RESPONSIBILITY_LINK"), ("EP04", "LN_G09a_1", "RESPONSIBILITY_LINK"),
        ("LN_G09a_1", "EP35", "PROCEDURAL_NEXT")],
       "MEDIUM", "HIGH", "HIGH", "HIGH", "HIGH", "N/A", "MEDIUM",
-      ["한 비장 = 한재욱 (ID02)", "한가 = 한재욱 (ID03)", "처분 근거 행위 = 회유·대질 지휘·출동 운영"],
+      ["처분 근거 행위 = 자미덕이 진술한 회유·대질 지휘와 출동 운영"],
       supports="CF048(병영 비장 한가), CF016·CF017(한 비장), CF018(한재욱이 자미덕을 방으로 부름)",
       conflicts="CF018(은밀한 사주 부인 — claim-level)", attest="V3P0042|V3P0112|V3P0128",
-      notes="금지 동일성 두 개(ID02·ID03)를 가정으로 쓴다. 동일성을 확정하지 않으며 MEDIUM 상한이다."),
-    C("G09b", "G09", "MINI_DAG", "[ID03 조건] 한가 = 한재욱, '한 비장'은 다른 사람",
-      "ID03(한가=한재욱)만 성립하고 자미덕을 회유했다는 '한 비장'은 별인이라고 가정한다. 그 경우 처분 근거는 출동·철편 운영이다.",
+      notes="ID02·ID03 사용자 확정으로 동일성 가정 2개를 뺐다(가정 3→1). source_consistency MEDIUM과 contradiction_risk MEDIUM 때문에 "
+            "등급은 MEDIUM 그대로다."),
+    C("G09b", "G09", "MINI_DAG", "한가 = 한재욱, '한 비장'은 다른 사람 (ID02 확정과 충돌)",
+      "한가=한재욱이고 자미덕을 회유했다는 '한 비장'은 별인이라고 가정한다. 그 경우 처분 근거는 출동·철편 운영이다. "
+      "이 전제(ID02 불성립)는 사용자가 확정한 ID02(한 비장=한재욱)와 충돌한다.",
       [("LN_G09b_1", "자미덕 진술 속 '한 비장'은 별도의 '한' 성 비장", True),
        ("LN_G09b_2", "한가 처분 근거 = 출동·철편 운영", True)],
       [("EP07", "LN_G09b_1", "CONTEXT_SUPPORTS"), ("EP04", "LN_G09b_2", "RESPONSIBILITY_LINK"),
        ("LN_G09b_2", "EP35", "PROCEDURAL_NEXT")],
       "LOW", "HIGH", "MEDIUM", "MEDIUM", "MEDIUM", "N/A", "MEDIUM",
-      ["한가 = 한재욱 (ID03)", "한 비장 ≠ 한재욱 (ID02 불성립, 별도 인물 존재)", "처분 근거 = 출동 운영만"],
+      ["한 비장 ≠ 한재욱 (ID02 불성립, 별도 인물 존재)", "처분 근거 = 출동 운영만"],
       conflicts="CF018(한재욱이 자미덕을 방으로 불렀다고 인정 — 한 비장과의 대응을 시사)"),
-    C("G09c", "G09", "SINGLE", "한가는 한재욱이 아닌 다른 '한' 성 비장",
-      "처분된 한가는 한재욱이 아닌, 기록되지 않은 다른 '한' 성 비장이다.",
+    C("G09c", "G09", "SINGLE", "한가는 한재욱이 아닌 다른 '한' 성 비장 (ID03 확정과 충돌)",
+      "처분된 한가는 한재욱이 아닌, 기록되지 않은 다른 '한' 성 비장이다. 이 전제(ID03 불성립)는 사용자가 확정한 ID03(한가=한재욱)과 충돌한다.",
       [("LN_G09c_1", "기록되지 않은 다른 '한' 성 비장", True)],
       [("LN_G09c_1", "EP35", "PROCEDURAL_NEXT")],
       "LOW", "HIGH", "MEDIUM", "LOW", "LOW", "N/A", "MEDIUM",
@@ -438,8 +443,11 @@ def grade(c):
 
     (1) 평가 차원(N/A 제외) 최소값  (2) contradiction_risk HIGH → LOW 상한, MEDIUM → MEDIUM 상한
     (3) 추가 가정 3개 이상 → MEDIUM 상한, 5개 이상 → LOW 상한  (4) HIGH는 source_consistency=HIGH일 때만
-    (5) 제도 compatibility 또는 환경 context만 근거 → LOW 상한  (6) 미확정 동일성(IDxx)에 기대면 → MEDIUM 상한
+    (5) 제도 compatibility 또는 환경 context만 근거 → LOW 상한  (6) 미확정(UNRESOLVED) 동일성에 기대면 → MEDIUM 상한
+    (7) 사용자 확정(RESOLVED) 동일성을 '불성립'으로 전제하면 → INCOMPATIBLE
     """
+    if negates_resolved(c):
+        return "INCOMPATIBLE"
     dims = [c["source_consistency"], c["temporal_fit"], c["institutional_fit"], c["role_fit"],
             c["information_flow_fit"], c["environmental_fit"]]
     vals = [SCORE[d] for d in dims if d != "N/A"]
@@ -458,12 +466,19 @@ def grade(c):
         s = min(s, 2)
     if c["support_basis"] in {"INSTITUTIONAL_COMPATIBILITY", "ENVIRONMENTAL_CONTEXT"}:
         s = min(s, 1)
-    if c["identity_conditions"]:
+    if set(c["identity_conditions"].split("|")) & UNRESOLVED_IDS:
         s = min(s, 2)
     return NAME[s]
 
 
+def negates_resolved(c):
+    """가정이 사용자 확정(RESOLVED) 동일성을 '불성립'으로 전제하면 그 ID 목록을 돌려준다."""
+    return sorted({i for a in c["extra_assumptions"] for i in NEG_RE.findall(a)} & RESOLVED_IDS)
+
+
 def prune(c):
+    if c["overall"] == "INCOMPATIBLE" and negates_resolved(c):
+        return f"PRUNED (사용자 확정 동일성 {'·'.join(negates_resolved(c))}과 충돌)"
     if c["overall"] == "INCOMPATIBLE":
         return "PRUNED (incompatible)"
     if c["contradiction_risk"] == "HIGH":

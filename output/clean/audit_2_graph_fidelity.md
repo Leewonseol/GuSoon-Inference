@@ -2,21 +2,21 @@
 
 핵심 질문: **원본 사실들을 연결하는 과정에서 원본보다 더 많은 관계를 주장했는가?**
 
-- 판정: **PASS** (ERROR 0 · WARN 0 · UNRESOLVED 8 · INFO 1)
+- 판정: **PASS** (ERROR 0 · WARN 0 · UNRESOLVED 6 · INFO 1)
 - node 41개 (episode 37, 환경 context 4) · edge 68개 · feature link 57개
 - edge status: {'DERIVED': 64, 'OBSERVED': 4}
 - edge type: {'TEMPORAL_BEFORE': 7, 'ORDER_TO_ACTION': 3, 'PROCEDURAL_NEXT': 14, 'CONTRADICTS_AT_CLAIM_LEVEL': 5, 'INFORMATION_FLOW': 12, 'REVIEW_OF': 9, 'REVISES': 2, 'CONTEXT_SUPPORTS': 9, 'RESPONSIBILITY_LINK': 7}
 - CAUSES edge: 0개
-- claim-level edge: 12개 · 조건부(identity) edge: 6개
+- claim-level edge: 12개 · 조건부(identity) edge: 4개
 
 ## 1. 자동 검사 요약
 
 | check | ERROR | WARN | UNRESOLVED | INFO |
 |---|---|---|---|---|
-| conditional_edge | 0 | 0 | 6 | 0 |
+| conditional_edge | 0 | 0 | 4 | 0 |
 | partial_tension | 0 | 0 | 2 | 0 |
 | unsupported_edge | 0 | 0 | 0 | 1 |
-| **합계** | **0** | **0** | **8** | **1** |
+| **합계** | **0** | **0** | **6** | **1** |
 
 검사 항목: unsupported_edge(근거 fact가 endpoint 구성 fact인지), causal_inflation(CAUSES 금지, 책임은 판단 node로만, 구순→사망 직접 연결 금지), institutional_overreach, environmental_leakage, missing_relation(필수 관계 17개), judgment_flattening, temporal_inversion, order_execution_conflation, testimony_to_fact(claim_level), identity_forcing(조건부 edge), acyclicity, latent_leak.
 
@@ -46,7 +46,7 @@ _없음_
 | EP16·EP19 (의금부 명) | order_execution_conflation | PASS | 명령만 관측된다. 실행 node를 만들지 않고 G13 gap으로 넘겼다. |
 | claim_level 표시 edge 12개 | testimony_to_fact | PASS | 진술 내용 속 순서를 잇는 edge 9개(OE001–OE006, OE008–OE010)와 진술이 끼는 충돌·검토 edge 3개(OE007·OE013·OE090)에 claim_level을 표시했다. 객관적 사건 순서로 확정한 것이 아니다. |
 | OE020–OE031 (진술 → EP23) | testimony_to_fact | PASS | '진술이 안핵 기록에 들어갔다'는 정보 흐름이며 진술 내용의 진위를 주장하지 않는다(caution 명시). |
-| 조건부 edge 6개 (OE007·OE010·OE040·OE071·OE080·OE081) | identity_forcing | PASS | 미확정 동일성에 기대는 edge는 condition 컬럼에 ID02·ID08·ID09·ID05·ID06·ID07·ID01을 적었다. ID09만 같은 기사 provenance로 ACCEPTED_BY_PROVENANCE이고 나머지는 UNRESOLVED다. |
+| 조건부 edge 4개 (OE010·OE040·OE071·OE080) | identity_forcing | PASS | 미확정 동일성에 기대는 edge는 condition 컬럼에 ID08·ID09·ID05·ID06·ID07을 적었다. ID09는 같은 기사 provenance로 ACCEPTED_BY_PROVENANCE다. OE007(ID02)·OE081(ID01)은 사용자 확정으로 condition을 지웠고, 확정 ID가 condition에 남으면 stale_identity_condition ERROR가 난다. |
 | OE080 (EP04 → EP30, 철편/철퇴) | identity_forcing (ID07) | PASS | RESPONSIBILITY_LINK는 condition=ID07일 때만 성립한다. 제작·지급(한재욱)과 제작 지시(이광섭)는 행위 층위가 달라 모순으로도 동일 행위로도 확정하지 않는다. |
 | OE071 (EP08 → EP29) | identity_forcing / claim-level 차이 | PASS | 정조의 '구순이 성명을 적어 주었다'와 유제희의 '구순이 말했고 자신이 기록했다'를 하나로 합치지 않았다. condition=ID05·ID06. |
 | OE082 (EP14 → EP30) | judgment_flattening (주체 혼동) | PASS | '비장에게 맡김'은 5/12에는 이문협, 6/13에는 이광섭에 대한 비판이다. 주체를 합치지 않고 REVIEW_OF로만 이었다. |
@@ -64,14 +64,12 @@ _이 audit에서는 처리 대상 WARN이 발생하지 않았다(모든 실행�
 
 ## 2-2. UNRESOLVED (사료 자체의 모호성 — 허용, 데이터에 보존)
 
-- `conditional_edge` **OE007** — ID02 미확정 — edge는 condition으로만 성립 · unresolved_reason: 자미덕은 성(한)과 직함(비장)만 말했다. 한재욱 공초(CF018)는 자미덕을 방으로 부른 사실을 인정하지만 자신이 '한 비장'이라고 하지는 않는다.
-- `partial_tension` **OE007** — 부분 충돌 — 원문 표현의 범위가 같은지 사료로 확정할 수 없어 충돌 강도를 PARTIAL로 보존 · unresolved_reason: 충돌은 '한 비장=한재욱'(미확정)일 때만 성립한다. 한재욱의 부인 범위는 '은밀한 사주'에 한정되므로 PARTIAL 충돌이다.
+- `partial_tension` **OE007** — 부분 충돌 — 원문 표현의 범위가 같은지 사료로 확정할 수 없어 충돌 강도를 PARTIAL로 보존 · unresolved_reason: '한 비장'=한재욱은 ID02 사용자 확정(RESOLVED)이라 같은 인물에 대한 두 진술이다. 사주 주장(자미덕)과 은밀한 사주 부인(한재욱)은 서로 다른 진술로 유지하며 어느 쪽도 객관적 사실로 확정하지 않는다. 한재욱의 부인 범위는 '은밀한 사주'에 한정되므로 PARTIAL 충돌이다.
 - `conditional_edge` **OE010** — ID08 미확정 — edge는 condition으로만 성립 · unresolved_reason: 3/4 '장교 일행'의 구성원은 기록되지 않았다.
 - `partial_tension` **OE062** — 부분 충돌 — 원문 표현의 범위가 같은지 사료로 확정할 수 없어 충돌 강도를 PARTIAL로 보존 · unresolved_reason: PARTIAL_TENSION: '조사'가 곧 '신문'이라고 확정할 수 없다. CF028의 '무고한 평민들 모진 형벌'은 김명신 포함 여부가 열린 집합이므로 충돌 근거로 쓰지 않는다.
 - `conditional_edge` **OE071** — ID05 미확정 — edge는 condition으로만 성립 · unresolved_reason: '풍각 김상제'(상주 호칭)와 '풍각 김생원'(=김명신, CF022)은 다른 호칭이다. 둘을 같은 사람으로 적은 confirmed 문장이 없다.
 - `conditional_edge` **OE071** — ID06 미확정 — edge는 condition으로만 성립 · unresolved_reason: 정조 판단(CF043)은 직책 표현('병영의 염탐 담당자')만 쓰고 이름을 적지 않았다.
 - `conditional_edge` **OE080** — ID07 미확정 — edge는 condition으로만 성립 · unresolved_reason: 개수(네 개)와 사건은 같지만 물건 이름(철편/철퇴)과 행위 층위(제작·지급/제작 지시)가 다르다.
-- `conditional_edge` **OE081** — ID01 미확정 — edge는 condition으로만 성립 · unresolved_reason: 공초 문장의 주어는 '병사'라는 직함뿐이다. 이광섭을 병사로 다루는 것은 5/12 기사(CF025)이고, 3/4 공초가 같은 사람을 가리킨다고 쓴 문장은 없다.
 
 
 ## 3. 수정 이력
@@ -81,6 +79,7 @@ _이 audit에서는 처리 대상 WARN이 발생하지 않았다(모든 실행�
 | 이 세션 이전 전체 실행 (인계 기록) | ERROR 0으로 통과 | 수정 없음 |
 | 이 세션 재실행 (ID11 반영 뒤, 이후 모든 실행 동일) | ERROR 0, WARN 0, INFO 7 (조건부 edge INFO 6개, endpoint 밖 절차 근거 OE060 INFO 1개). ID11은 어느 edge condition에도 쓰이지 않음 | INFO를 하나씩 수동 검토(§2) — 수정 없음. 동결 해시 86a529da3baf… 유지 |
 | WARN 0 작업 | WARN은 원래 0. 조건부 identity edge 6개를 INFO로 두던 것이 사료 모호성 성격이라 UNRESOLVED로 재분류했다. PARTIAL 충돌 edge 2개(OE007·OE062)도 UNRESOLVED로 표시했다. 근거 문구의 동일성 표면형 쌍 검사와 책임→직접 인과·환경→개인 사실 문구 검사를 추가 | edge 데이터는 변경 없음. 최종 ERROR 0, WARN 0, UNRESOLVED 8, INFO 1(OE060 절차 근거) |
+| 사용자 동일성 확정 반영 | OE007(ID02)·OE081(ID01)의 condition이 확정 ID를 가리킴 | condition 제거, caution을 '같은 인물에 대한 서로 다른 진술'·'행위는 진술로만 확인'으로 수정. 확정 ID가 condition에 남으면 ERROR(stale_identity_condition). 재실행 ERROR 0, WARN 0, UNRESOLVED 8→6, INFO 1 |
 
 ## 4. Edge 전체 목록
 
@@ -92,7 +91,7 @@ _이 audit에서는 처리 대상 WARN이 발생하지 않았다(모든 실행�
 | OE004 | EP04 → EP05 | ORDER_TO_ACTION | SOURCE_DIRECT + TEMPORAL | DERIVED | Y |  | CF008, CF011, CF012 |
 | OE005 | EP05 → EP06 | PROCEDURAL_NEXT | TEMPORAL | DERIVED | Y |  | CF012, CF013 |
 | OE006 | EP06 → EP07 | PROCEDURAL_NEXT | TEMPORAL | DERIVED | Y |  | CF015, CF016, CF017 |
-| OE007 | EP07 → EP12 | CONTRADICTS_AT_CLAIM_LEVEL | SOURCE_DIRECT | DERIVED | Y | ID02 | CF017, CF018 |
+| OE007 | EP07 → EP12 | CONTRADICTS_AT_CLAIM_LEVEL | SOURCE_DIRECT | DERIVED | Y |  | CF017, CF018 |
 | OE008 | EP09 → EP11 | ORDER_TO_ACTION | SOURCE_DIRECT | OBSERVED | Y |  | CF021, CF023 |
 | OE009 | EP09 → EP10 | PROCEDURAL_NEXT | SOURCE_DIRECT + TEMPORAL | DERIVED | Y |  | CF021, CF024 |
 | OE010 | EP10 → EP11 | TEMPORAL_BEFORE | SOURCE_DIRECT | DERIVED | Y | ID08 | CF024, CF023 |
@@ -136,7 +135,7 @@ _이 audit에서는 처리 대상 WARN이 발생하지 않았다(모든 실행�
 | OE073 | EP13 → EP29 | RESPONSIBILITY_LINK | SOURCE_DIRECT | DERIVED |  |  | CF043, CF027 |
 | OE074 | EP29 → EP33 | PROCEDURAL_NEXT | SOURCE_DIRECT | DERIVED |  |  | CF043, CF046 |
 | OE080 | EP04 → EP30 | RESPONSIBILITY_LINK | SOURCE_DIRECT | DERIVED |  | ID07 | CF010, CF044 |
-| OE081 | EP09 → EP30 | RESPONSIBILITY_LINK | SOURCE_DIRECT | DERIVED |  | ID01 | CF021, CF044 |
+| OE081 | EP09 → EP30 | RESPONSIBILITY_LINK | SOURCE_DIRECT | DERIVED |  |  | CF021, CF044 |
 | OE082 | EP14 → EP30 | REVIEW_OF | PROCEDURAL | DERIVED |  |  | CF025, CF026, CF044 |
 | OE083 | EP29 → EP30 | RESPONSIBILITY_LINK | SOURCE_DIRECT | DERIVED |  |  | CF043, CF044 |
 | OE084 | EP30 → EP34 | PROCEDURAL_NEXT | SOURCE_DIRECT | DERIVED |  |  | CF044, CF047 |

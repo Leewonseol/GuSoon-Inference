@@ -158,7 +158,7 @@ latent 요소:
 
 | 후보 | 요약 | src | temp | inst | role | info | env | 충돌위험 | 가정 | overall | 처리 |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| G03a | 한재욱이 유제희를 탐문에 보내고, 2/28 이전 기록이 한재욱에게 올라감 | MEDIUM | MEDIUM | HIGH | HIGH | HIGH | N/A | LOW | 4 | **MEDIUM** | KEPT |
+| G03a | 한재욱이 유제희를 탐문에 보내고, 2/28 이전 기록이 한재욱에게 올라감 | MEDIUM | MEDIUM | HIGH | HIGH | HIGH | N/A | LOW | 3 | **MEDIUM** | KEPT |
 | G03b | 탐문은 2/29~3/4 사이, 김상제 언급이 3/4 지시를 직접 촉발 (ID05 조건) | MEDIUM | MEDIUM | HIGH | HIGH | HIGH | N/A | MEDIUM | 3 | **MEDIUM** | KEPT |
 | G03c | 유제희가 병사에게 직접 보고(비장 우회) | LOW | MEDIUM | MEDIUM | MEDIUM | MEDIUM | N/A | MEDIUM | 3 | **LOW** | KEPT_LOW (사용 시 약점 명시) |
 
@@ -173,12 +173,12 @@ latent 요소:
 - `EP08` —INFORMATION_FLOW→ `LN_G03a_2` (LATENT)
 - `LN_G03a_2` —INFORMATION_FLOW→ `EP04` (LATENT)
 
-- 추가 가정: 파견자 = 한재욱 (05 V3P0085에만 있음); 탐문·기록 시점이 2/28 이전; 기록 수신자 = 한재욱; 원돌 = 정원돌 (ID11)
+- 추가 가정: 파견자 = 한재욱 (05 V3P0085에만 있음); 탐문·기록 시점이 2/28 이전; 기록 수신자 = 한재욱
 - 지지 fact: CF020('원돌 등의 이름과 함께'), CF009(정원돌 체포 지시) · 긴장/충돌 fact: -
 - audit_attestation (05, AUDIT_ONLY): V3P0085|V3P0086|V3P0087
-- 미확정 동일성 조건: ID11
+- 미확정 동일성 조건: 없음
 - 주 근거 유형: SOURCE_DIRECT
-- 메모: 05 한재욱 공초(V3P0085–V3P0087, audit-only)는 자신이 유제희를 내보냈고 유제희가 변지돌·변재돌·정원돌·김명신 등의 성명을 적어 왔다고 진술한다. 이 후보는 그 진술을 사실로 올리지 않고 연결 가설로만 쓴다. 기록이 2/28 이전이라면 3/4 김생원 체포가 왜 2/28 대상에 없었는지는 이 후보로 설명되지 않는다.
+- 메모: 05 한재욱 공초(V3P0085–V3P0087, audit-only)는 자신이 유제희를 내보냈고 유제희가 변지돌·변재돌·정원돌·김명신 등의 성명을 적어 왔다고 진술한다. 이 후보는 그 진술을 사실로 올리지 않고 연결 가설로만 쓴다. 기록이 2/28 이전이라면 3/4 김생원 체포가 왜 2/28 대상에 없었는지는 이 후보로 설명되지 않는다. 원돌=정원돌은 ID11 사용자 확정(RESOLVED)이라 가정에서 뺐다(가정 4→3). 후보 자체는 여전히 LATENT이며 source_consistency(MEDIUM)는 그대로다.
 
 ### G03b [LATENT · SINGLE] 탐문은 2/29~3/4 사이, 김상제 언급이 3/4 지시를 직접 촉발 (ID05 조건)
 
@@ -190,7 +190,7 @@ latent 요소:
 - `LN_G03b_1` —INFORMATION_FLOW→ `EP09` (LATENT)
 
 - 추가 가정: 탐문 시점 2/29~3/4; 풍각 김상제 = 김명신 (ID05); 기록이 병사 지시 판단에 쓰임
-- 지지 fact: CF043, CF020 · 긴장/충돌 fact: CF020('원돌 등'과 한 기록 — ID11이 성립하면 원돌은 이미 2/28 체포 대상이었으므로 기록이 2/28 이전이라는 쪽과 긴장)
+- 지지 fact: CF043, CF020 · 긴장/충돌 fact: CF020('원돌 등'과 한 기록 — ID11 확정: 원돌(=정원돌)은 이미 2/28 체포 대상이었으므로 기록이 2/28 이전이라는 쪽과 긴장)
 - audit_attestation (05, AUDIT_ONLY): V3P0095
 - 미확정 동일성 조건: ID05
 - 주 근거 유형: SOURCE_DIRECT
@@ -223,7 +223,7 @@ latent 요소:
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | G04a | 공식 정보 경로: 유제희 기록 → 비장 계통 → 병사 → 3/4 지시 (ID05 조건) | HIGH | MEDIUM | HIGH | HIGH | HIGH | N/A | LOW | 3 | **MEDIUM** | KEPT |
 | G04b | 자미덕 대질 진술 경로: 회유 주장 진술(열린 목록) → 병사 지시 | MEDIUM | MEDIUM | MEDIUM | MEDIUM | MEDIUM | N/A | MEDIUM | 3 | **MEDIUM** | KEPT |
-| G04c | 사적 경로: 3/4 이전 구순→병사 사적 접촉으로 김명신을 의심 대상으로 알림 | LOW | MEDIUM | LOW | LOW | LOW | N/A | MEDIUM | 3 | **LOW** | KEPT_LOW (사용 시 약점 명시) |
+| G04c | 사적 경로: 3/4 이전 구순→병사 사적 접촉으로 김명신을 의심 대상으로 알림 | LOW | MEDIUM | LOW | LOW | LOW | N/A | MEDIUM | 2 | **LOW** | KEPT_LOW (사용 시 약점 명시) |
 | G04d | 석단 공초 경로: 다른 피의자 공초가 김명신을 도적 괴수로 지목 | LOW | LOW | MEDIUM | MEDIUM | MEDIUM | N/A | MEDIUM | 3 | **LOW** | KEPT_LOW (사용 시 약점 명시) |
 | G04e | 구순이 장교에게 직접 공식 체포 명령 | INCOMPATIBLE | MEDIUM | INCOMPATIBLE | INCOMPATIBLE | LOW | N/A | HIGH | 1 | **INCOMPATIBLE** | PRUNED (incompatible) |
 
@@ -253,7 +253,7 @@ latent 요소:
 - `LN_G04b_1` —INFORMATION_FLOW→ `EP09` (LATENT)
 
 - 추가 가정: 대질 진술이 3/4 이전에 있었음; 그 진술이 병사에게 보고됨; 열린 목록 '등'에 풍각 김생원이 들어 있었음(05 V3P0042·V3P0128 윤노동 주장, audit-only)
-- 지지 fact: CF016(김갑득이 명시 명단에 있고, 3/4 김명신과 함께 체포됨 — CF023) · 긴장/충돌 fact: CF018(한재욱: 은밀한 사주 부인 — claim-level, ID02 조건부)
+- 지지 fact: CF016(김갑득이 명시 명단에 있고, 3/4 김명신과 함께 체포됨 — CF023) · 긴장/충돌 fact: CF018(한재욱: 은밀한 사주 부인 — claim-level. ID02 확정으로 같은 인물에 대한 서로 다른 진술)
 - audit_attestation (05, AUDIT_ONLY): V3P0042|V3P0089|V3P0128
 - 미확정 동일성 조건: 없음
 - 주 근거 유형: SOURCE_DIRECT
@@ -268,10 +268,10 @@ latent 요소:
 - `EP01` —CONTEXT_SUPPORTS→ `LN_G04c_1` (LATENT)
 - `LN_G04c_1` —INFORMATION_FLOW→ `EP09` (LATENT)
 
-- 추가 가정: 3/4 이전의 미기록 서신·접촉 존재; 그 내용에 김명신 지목; 병사 = 이광섭 (ID01) — CF044 '구순 편을 듦'을 근거로 쓸 때
+- 추가 가정: 3/4 이전의 미기록 서신·접촉 존재; 그 내용에 김명신 지목
 - 지지 fact: CF024(3/4 서찰 — 사적 통로가 있었음을 보여 줌), CF044(구순 편을 듦) · 긴장/충돌 fact: -
 - audit_attestation (05, AUDIT_ONLY): V3P0053|V3P0148
-- 미확정 동일성 조건: ID01
+- 미확정 동일성 조건: 없음
 - 주 근거 유형: SOURCE_DIRECT
 - 메모: CF024의 서찰은 '잡으러 가는 길'에 건넨 것이라 3/4 지시보다 뒤다. 그래서 이 후보는 그보다 앞선, 기록되지 않은 접촉을 따로 가정해야 한다. 05의 V3P0053(명업: 구순이 찾아온 장교 한 명과 안행랑에서 조용히 대화)과 V3P0148(정조: 이광섭이 구순과의 오래된 혐의를 씻은 뒤 구순 편을 듦)은 audit-only 흔적이다. 구순에게는 공식 지휘권이 없으므로 '명령'이 아니라 정보 제공으로만 표현했다(F007·F020 LOW).
 
@@ -314,12 +314,12 @@ latent 요소:
 
 | 후보 | 요약 | src | temp | inst | role | info | env | 충돌위험 | 가정 | overall | 처리 |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| G05a | 서찰이 병사에게 전달, 체포 지지·추가 의혹 내용 (ID01 조건) | MEDIUM | HIGH | MEDIUM | MEDIUM | MEDIUM | N/A | LOW | 3 | **MEDIUM** | KEPT |
+| G05a | 서찰이 병사에게 전달, 체포 지지·추가 의혹 내용 | MEDIUM | HIGH | MEDIUM | MEDIUM | MEDIUM | N/A | LOW | 2 | **MEDIUM** | KEPT |
 | G05b | 서찰은 전달되었으나 사건과 무관한 인사·사례 | LOW | HIGH | MEDIUM | MEDIUM | MEDIUM | N/A | LOW | 2 | **LOW** | KEPT_LOW (사용 시 약점 명시) |
 
-### G05a [LATENT · SINGLE] 서찰이 병사에게 전달, 체포 지지·추가 의혹 내용 (ID01 조건)
+### G05a [LATENT · SINGLE] 서찰이 병사에게 전달, 체포 지지·추가 의혹 내용
 
-조계완이 서찰을 병사에게 전달했고, 서찰 내용은 김명신 체포를 지지하거나 의혹을 덧붙이는 것이었다. ID01이 성립한다면 이 서찰은 정조가 말한 '이광섭이 구순 편을 들었다'(CF044)의 한 배경이 된다.
+조계완이 서찰을 병사에게 전달했고, 서찰 내용은 김명신 체포를 지지하거나 의혹을 덧붙이는 것이었다. 병사=이광섭(ID01, 사용자 확정)이므로 이 서찰은 정조가 말한 '이광섭이 구순 편을 들었다'(CF044)의 한 배경이 된다. 전달과 내용은 가설이다.
 
 latent 요소:
 - `LN_G05a_1` [LATENT] 조계완이 서찰을 병사에게 전달
@@ -328,10 +328,10 @@ latent 요소:
 - `LN_G05a_1` —INFORMATION_FLOW→ `LN_G05a_2` (LATENT)
 - `LN_G05a_2` —CONTEXT_SUPPORTS→ `EP30` (LATENT)
 
-- 추가 가정: 서찰 전달됨; 서찰 내용이 사건 관련; 병사 = 이광섭 (ID01)
+- 추가 가정: 서찰 전달됨; 서찰 내용이 사건 관련
 - 지지 fact: CF024('바른 길을 얻었다'는 반응), CF044(구순 편을 듦), CF025(허황한 말을 믿고) · 긴장/충돌 fact: -
 - audit_attestation (05, AUDIT_ONLY): -
-- 미확정 동일성 조건: ID01
+- 미확정 동일성 조건: 없음
 - 주 근거 유형: SOURCE_DIRECT
 - 메모: 사적 서찰은 공식 보고 경로(장계·서계)가 아니다. 공식 명령으로서는 LOW(F020)지만, 이 후보는 '사적 정보 전달'만 가정하므로 institutional_fit을 MEDIUM으로 둔다(전달을 막는 제도도, 공식 경로라는 근거도 없음).
 
@@ -543,34 +543,34 @@ latent 요소:
 - 유형: IDENTITY / RESPONSIBILITY
 - 끊긴 구간: EP35 병영 비장 한가 처분 / EP07 한 비장의 석방 조건 제시와 대질 시 거짓 진술 / EP12 한재욱의 안핵 공초 / EP04 2월 28일 밤 병영 출동 준비
 - 관측 근거: CF048, CF016, CF017, CF018, CF008
-- 왜 gap인가: 한가 처분(CF048)에 연결된 책임 판단 node가 없다. 한가=한재욱=한 비장은 미확정이다(ID02, ID03).
+- 왜 gap인가: 한가 처분(CF048)에 연결된 책임 판단 node가 없다. 한가=한재욱=한 비장은 사용자 확정(ID02·ID03 RESOLVED)이지만, 한가 처분의 근거 행위는 기록되지 않았다.
 
 | 후보 | 요약 | src | temp | inst | role | info | env | 충돌위험 | 가정 | overall | 처리 |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| G09a | [ID02·ID03 조건] 한가·한 비장이 한재욱이라면 처분 근거 = 회유·출동 운영 | MEDIUM | HIGH | HIGH | HIGH | HIGH | N/A | MEDIUM | 3 | **MEDIUM** | KEPT |
-| G09b | [ID03 조건] 한가 = 한재욱, '한 비장'은 다른 사람 | LOW | HIGH | MEDIUM | MEDIUM | MEDIUM | N/A | MEDIUM | 3 | **LOW** | KEPT_LOW (사용 시 약점 명시) |
-| G09c | 한가는 한재욱이 아닌 다른 '한' 성 비장 | LOW | HIGH | MEDIUM | LOW | LOW | N/A | MEDIUM | 3 | **LOW** | KEPT_LOW (사용 시 약점 명시) |
+| G09a | 한가(=한재욱) 처분 근거 = 자미덕이 진술한 회유·대질 지휘와 출동 운영 | MEDIUM | HIGH | HIGH | HIGH | HIGH | N/A | MEDIUM | 1 | **MEDIUM** | KEPT |
+| G09b | 한가 = 한재욱, '한 비장'은 다른 사람 (ID02 확정과 충돌) | LOW | HIGH | MEDIUM | MEDIUM | MEDIUM | N/A | MEDIUM | 2 | **INCOMPATIBLE** | PRUNED (사용자 확정 동일성 ID02과 충돌) |
+| G09c | 한가는 한재욱이 아닌 다른 '한' 성 비장 (ID03 확정과 충돌) | LOW | HIGH | MEDIUM | LOW | LOW | N/A | MEDIUM | 3 | **INCOMPATIBLE** | PRUNED (사용자 확정 동일성 ID03과 충돌) |
 
-### G09a [LATENT · SINGLE] [ID02·ID03 조건] 한가·한 비장이 한재욱이라면 처분 근거 = 회유·출동 운영
+### G09a [LATENT · SINGLE] 한가(=한재욱) 처분 근거 = 자미덕이 진술한 회유·대질 지휘와 출동 운영
 
-ID02(한 비장=한재욱)와 ID03(한가=한재욱)이 모두 성립한다고 가정하면, 처분문의 병영 비장 한가는 자미덕 진술 속 '한 비장'이자 2/28 출동을 지시한 한재욱이다. 그 경우 처분 근거는 자미덕이 진술한 회유·대질 지휘와 출동 운영으로 볼 수 있다.
+ID02(한 비장=한재욱)와 ID03(한가=한재욱)은 사용자 확정(RESOLVED)이다. 따라서 처분문의 병영 비장 한가, 자미덕 진술 속 '한 비장', 2/28 출동을 지시한 한재욱은 같은 사람이다. 처분 근거가 자미덕이 진술한 회유·대질 지휘와 출동 운영이라는 것만 가설이다. 회유는 자미덕의 진술이고 한재욱은 은밀한 사주를 부인했으므로(CF018), 사주를 사실로 확정하지 않는다.
 
 latent 요소:
-- `LN_G09a_1` [LATENT] 한가 처분 근거 = 회유·대질 지휘·출동 운영 (ID02·ID03 조건)
+- `LN_G09a_1` [LATENT] 한가(=한재욱) 처분 근거 = 자미덕이 진술한 회유·대질 지휘와 출동 운영
 - `EP07` —RESPONSIBILITY_LINK→ `LN_G09a_1` (LATENT)
 - `EP04` —RESPONSIBILITY_LINK→ `LN_G09a_1` (LATENT)
 - `LN_G09a_1` —PROCEDURAL_NEXT→ `EP35` (LATENT)
 
-- 추가 가정: 한 비장 = 한재욱 (ID02); 한가 = 한재욱 (ID03); 처분 근거 행위 = 회유·대질 지휘·출동 운영
+- 추가 가정: 처분 근거 행위 = 자미덕이 진술한 회유·대질 지휘와 출동 운영
 - 지지 fact: CF048(병영 비장 한가), CF016·CF017(한 비장), CF018(한재욱이 자미덕을 방으로 부름) · 긴장/충돌 fact: CF018(은밀한 사주 부인 — claim-level)
 - audit_attestation (05, AUDIT_ONLY): V3P0042|V3P0112|V3P0128
-- 미확정 동일성 조건: ID02|ID03
+- 미확정 동일성 조건: 없음
 - 주 근거 유형: SOURCE_DIRECT
-- 메모: 금지 동일성 두 개(ID02·ID03)를 가정으로 쓴다. 동일성을 확정하지 않으며 MEDIUM 상한이다.
+- 메모: ID02·ID03 사용자 확정으로 동일성 가정 2개를 뺐다(가정 3→1). source_consistency MEDIUM과 contradiction_risk MEDIUM 때문에 등급은 MEDIUM 그대로다.
 
-### G09b [LATENT · MINI_DAG] [ID03 조건] 한가 = 한재욱, '한 비장'은 다른 사람
+### G09b [LATENT · MINI_DAG] 한가 = 한재욱, '한 비장'은 다른 사람 (ID02 확정과 충돌)
 
-ID03(한가=한재욱)만 성립하고 자미덕을 회유했다는 '한 비장'은 별인이라고 가정한다. 그 경우 처분 근거는 출동·철편 운영이다.
+한가=한재욱이고 자미덕을 회유했다는 '한 비장'은 별인이라고 가정한다. 그 경우 처분 근거는 출동·철편 운영이다. 이 전제(ID02 불성립)는 사용자가 확정한 ID02(한 비장=한재욱)와 충돌한다.
 
 latent 요소:
 - `LN_G09b_1` [LATENT] 자미덕 진술 속 '한 비장'은 별도의 '한' 성 비장
@@ -579,16 +579,16 @@ latent 요소:
 - `EP04` —RESPONSIBILITY_LINK→ `LN_G09b_2` (LATENT)
 - `LN_G09b_2` —PROCEDURAL_NEXT→ `EP35` (LATENT)
 
-- 추가 가정: 한가 = 한재욱 (ID03); 한 비장 ≠ 한재욱 (ID02 불성립, 별도 인물 존재); 처분 근거 = 출동 운영만
+- 추가 가정: 한 비장 ≠ 한재욱 (ID02 불성립, 별도 인물 존재); 처분 근거 = 출동 운영만
 - 지지 fact: - · 긴장/충돌 fact: CF018(한재욱이 자미덕을 방으로 불렀다고 인정 — 한 비장과의 대응을 시사)
 - audit_attestation (05, AUDIT_ONLY): -
-- 미확정 동일성 조건: ID02|ID03
+- 미확정 동일성 조건: ID02
 - 주 근거 유형: SOURCE_DIRECT
 - 메모: 
 
-### G09c [LATENT · SINGLE] 한가는 한재욱이 아닌 다른 '한' 성 비장
+### G09c [LATENT · SINGLE] 한가는 한재욱이 아닌 다른 '한' 성 비장 (ID03 확정과 충돌)
 
-처분된 한가는 한재욱이 아닌, 기록되지 않은 다른 '한' 성 비장이다.
+처분된 한가는 한재욱이 아닌, 기록되지 않은 다른 '한' 성 비장이다. 이 전제(ID03 불성립)는 사용자가 확정한 ID03(한가=한재욱)과 충돌한다.
 
 latent 요소:
 - `LN_G09c_1` [LATENT] 기록되지 않은 다른 '한' 성 비장

@@ -88,8 +88,19 @@ def stage1(cf):
             attesting_actor=ep["attesting_actor"], occurrence_text=ep["occurrence_text"],
             t_min=ep["t_min"], t_max=ep["t_max"],
             record_lunar_date="|".join(dict.fromkeys(m[0]["record_lunar_date"] for m in ms)),
-            grouping_rationale=ep["grouping_rationale"]))
+            grouping_rationale=ep["grouping_rationale"],
+            identity_links=identity_links(ep)))
     return rows
+
+
+def identity_links(ep):
+    """episode 구성 fact가 동일성 대장의 referenced_facts에 있으면 그 ID와 상태를 적는다(summary는 원문 표면형 유지)."""
+    fids = {f for f, _ in ep["members"]}
+    out = []
+    for i in IDENTITY_REGISTER:
+        if i["status"] in ("RESOLVED", "UNRESOLVED") and fids & set(filter(None, i["referenced_facts"].split("|"))):
+            out.append(f"{i['identity_id']}:{i['status']}")
+    return "|".join(out)
 
 
 # --------------------------------------------------------------------------- STAGE 2
@@ -113,7 +124,16 @@ def stage2(ep_rows, env):
     return nodes, edges, links
 
 
-PREVIOUS_FREEZE = dict(sha256="86a529da3baff8f3", structure_sha256="7b4d97185d70baa95a2efdb55492b854a0d39dcf26411b70a1bf830f0b79a1b3")  # WARN 처리 이전(커밋 712d536) 동결 해시 앞자리
+# 직전 동결본(커밋 1f7710c: WARN 처리 후, 사용자 동일성 확정 전)
+PREVIOUS_FREEZE = dict(sha256="c50402af878ffb4d", structure_sha256="7b4d97185d70baa95a2efdb55492b854a0d39dcf26411b70a1bf830f0b79a1b3",
+                       topology_sha256="04c84b0e24af31f5605800ae30bc2750563a1aeb3e72390aa6d6643676b68e84")
+
+
+def topology_hash(nodes, edges):
+    """node id·층과 edge의 id·끝점·type만 본 해시. condition·문구 변화와 그래프 모양 변화를 구분하기 위함."""
+    payload = json.dumps([sorted((n["node_id"], n["layer"]) for n in nodes),
+                          sorted((e["edge_id"], e["src"], e["dst"], e["edge_type"]) for e in edges)], ensure_ascii=False)
+    return hashlib.sha256(payload.encode()).hexdigest()
 
 
 def structure_hash(nodes, edges):
@@ -136,11 +156,37 @@ def graph_hash(nodes, edges):
 NODE_COLS = ["node_id", "node_status", "layer", "branch", "title", "summary", "caution", "member_fact_ids",
              "member_clauses", "confirmation_levels", "epistemic_floor", "claim_status", "source_record_ids",
              "source_prop_ids", "attesting_actor", "occurrence_text", "t_min", "t_max", "record_lunar_date",
-             "grouping_rationale", "env_id"]
+             "grouping_rationale", "identity_links", "env_id"]
 EDGE_COLS = ["edge_id", "src", "dst", "edge_type", "basis", "status", "claim_level", "condition", "supporting",
              "rationale", "caution"]
 LINK_COLS = ["link_id", "target_kind", "target_id", "feature_layer", "feature_id", "dimension", "assessment",
              "creates_event", "rationale"]
+
+
+IDENTITY_COLS = ["identity_id", "surface_a", "surface_b", "status", "resolved_by", "resolution_basis", "unresolved_reason",
+                 "model_relevance", "manual_decision_required", "context", "referenced_facts"]
+
+
+def identity_relevance(edges, cands, worlds):
+    """각 동일성이 현재 모델 어디에 쓰이는지 계산한다(조건부 edge, 후보 가정, world)."""
+    rows = []
+    for i in IDENTITY_REGISTER:
+        iid = i["identity_id"]
+        use = [e["edge_id"] for e in edges if iid in e["condition"].split("|")]
+        use += [c["candidate_id"] for c in cands if iid in c["identity_conditions"].split("|")]
+        use += [w["world_id"] for w in worlds if iid in w["identity_conditions"].split("|")]
+        r = dict(i)
+        if i["status"] == "RESOLVED":
+            cs = [c["candidate_id"] for c in cands if iid in c["identity_conditions"].split("|")]
+            r["model_relevance"] = "조건부 사용 없음(RESOLVED)" + (f"; 확정과 충돌해 PRUNED된 후보: {', '.join(cs)}" if cs else "")
+        else:
+            r["model_relevance"] = i.get("model_relevance") or (", ".join(use) if use else "NONE")
+        if i["status"] == "UNRESOLVED":
+            r["manual_decision_required"] = i.get("manual_decision_required") or ("YES" if use else "NO")
+        else:
+            r["manual_decision_required"] = "NO"
+        rows.append(r)
+    return rows
 
 
 def main():
@@ -173,14 +219,17 @@ def main():
     write_csv(OUT / "episode_nodes.csv", nodes, NODE_COLS)
     write_csv(OUT / "observed_edges.csv", edges, EDGE_COLS)
     write_csv(OUT / "node_feature_links.csv", links, LINK_COLS)
-    write_csv(OUT / "identity_register.csv", IDENTITY_REGISTER,
-              ["identity_id", "surface_a", "surface_b", "status", "unresolved_reason", "context", "referenced_facts"])
+    write_csv(OUT / "identity_register.csv", IDENTITY_REGISTER, IDENTITY_COLS)
     frozen = graph_hash(nodes, edges)
     freeze = dict(name="Validated Observed Partial DAG", sha256=frozen, structure_sha256=structure_hash(nodes, edges),
                   previous_sha256_prefix=PREVIOUS_FREEZE["sha256"],
                   previous_structure_sha256=PREVIOUS_FREEZE["structure_sha256"],
                   structure_unchanged=structure_hash(nodes, edges) == PREVIOUS_FREEZE["structure_sha256"],
-                  change_note="WARN 처리(A1-W1–W4, A1-E1)로 EP01·EP04·EP05·EP06·EP07 summary 문구만 바뀜. node·edge 구조는 그대로",
+                  topology_sha256=topology_hash(nodes, edges),
+                  previous_topology_sha256=PREVIOUS_FREEZE["topology_sha256"],
+                  topology_unchanged=topology_hash(nodes, edges) == PREVIOUS_FREEZE["topology_sha256"],
+                  change_note="사용자 동일성 확정(ID01·ID02·ID03·ID11)으로 OE007(ID02)·OE081(ID01)의 condition을 제거하고 "
+                              "관련 caution 문구를 고침. node·edge 수, 끝점, edge type은 그대로",
                   n_nodes=len(nodes), n_edges=len(edges),
                   n_episode_nodes=len(ep_rows), n_env_nodes=len(ENV_NODES),
                   edge_status=dict(Counter(e["status"] for e in edges)),
@@ -206,6 +255,7 @@ def main():
     report.write_gaps(OUT / "gap_candidates.md", gaps, cands, nodes)
     report.write_worlds(OUT / "narrative_worlds.md", worlds, cands, gaps, nodes)
     report.write_latent_csv(OUT, gaps, cands, worlds)
+    write_csv(OUT / "identity_register.csv", identity_relevance(edges, cands, worlds), IDENTITY_COLS)
     report.write_validation_summary(OUT / "validation_summary.md",
                                     {"Audit 1": a1, "Audit 2": a2, "Audit 3": a3w}, freeze, worlds)
     write_csv(OUT / "warn_dispositions.csv", WARN_DISPOSITIONS, report.DISPOSITION_COLS)

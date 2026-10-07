@@ -5,7 +5,7 @@ OE003,EP02,EP04,TEMPORAL_BEFORE,TEMPORAL,DERIVED,True,,CF004|CF007,2/22 밤 → 
 OE004,EP04,EP05,ORDER_TO_ACTION,SOURCE_DIRECT|TEMPORAL,DERIVED,True,,CF008|CF011|CF012,같은 이진욱 진술 흐름에서 덕평 출동 지시(2/28) 뒤 2/29 장교 일행의 현장 체포 활동이 이어진다.,"실행이 확인되는 것은 출동 부분뿐이다. 변지돌·정원돌 체포 지시는 실행되지 않음(변지돌 기체포, 정원돌 미기록). 체포 대상이 자미덕으로 바뀐 경위는 기록되지 않았다."
 OE005,EP05,EP06,PROCEDURAL_NEXT,TEMPORAL,DERIVED,True,,CF012|CF013,CF013 chronology '자미덕 체포 뒤': 병영 압송·신문·구류.,두 진술(이진욱·자미덕)이 같은 체포 장면을 가리키는지는 확정하지 않는다.
 OE006,EP06,EP07,PROCEDURAL_NEXT,TEMPORAL,DERIVED,True,,CF015|CF016|CF017,"CF016 chronology '구류 중/그 후', CF017 '대질 때'.",
-OE007,EP07,EP12,CONTRADICTS_AT_CLAIM_LEVEL,SOURCE_DIRECT,DERIVED,True,ID02,CF017|CF018,자미덕: 한 비장의 지휘에 따라 거짓으로 꾸며 말함 ↔ 한재욱: 자미덕을 은밀히 사주한 일 없음.,충돌은 '한 비장=한재욱'(미확정)일 때만 성립한다. 한재욱의 부인 범위는 '은밀한 사주'에 한정되므로 PARTIAL 충돌이다.
+OE007,EP07,EP12,CONTRADICTS_AT_CLAIM_LEVEL,SOURCE_DIRECT,DERIVED,True,,CF017|CF018,자미덕: 한 비장의 지휘에 따라 거짓으로 꾸며 말함 ↔ 한재욱: 자미덕을 은밀히 사주한 일 없음.,'한 비장'=한재욱은 ID02 사용자 확정(RESOLVED)이라 같은 인물에 대한 두 진술이다. 사주 주장(자미덕)과 은밀한 사주 부인(한재욱)은 서로 다른 진술로 유지하며 어느 쪽도 객관적 사실로 확정하지 않는다. 한재욱의 부인 범위는 '은밀한 사주'에 한정되므로 PARTIAL 충돌이다.
 OE008,EP09,EP11,ORDER_TO_ACTION,SOURCE_DIRECT,OBSERVED,True,,CF021|CF023,CF023 '병사의 분부에 따라' — 지시와 실행의 연결이 원문에 있다.,
 OE009,EP09,EP10,PROCEDURAL_NEXT,SOURCE_DIRECT|TEMPORAL,DERIVED,True,,CF021|CF024,조계완은 '김명신을 잡으러 가는 길에' 구순 집에 들렀다. 체포 임무가 먼저 주어져 있었음을 전제로 한다.,조계완이 3/4 장교 일행의 일원인지는 ID08로 미확정.
 OE010,EP10,EP11,TEMPORAL_BEFORE,SOURCE_DIRECT,DERIVED,True,ID08,CF024|CF023,'잡으러 가는 길에' → 방문이 체포보다 앞선다.,
@@ -49,7 +49,7 @@ OE072,EP11,EP29,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,,CF043|CF023,정
 OE073,EP13,EP29,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,,CF043|CF027,정조 판단의 '원통하게 죽는 결과' ↔ 구금 뒤 사망 보고.,책임 귀속이며 직접 사인 주장이 아니다(EP28 참조).
 OE074,EP29,EP33,PROCEDURAL_NEXT,SOURCE_DIRECT,DERIVED,False,,CF043|CF046,같은 기사에서 책임 판단 뒤 정배 처분.,처분 사유 문장(V3P0147)은 confirmed set 밖이다.
 OE080,EP04,EP30,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,ID07,CF010|CF044,정조 비판 '철퇴 네 개를 만들게 했으며' ↔ 이진욱 진술 '한재욱이 철편 네 개를 만들어 주었다'.,행위 층위 차이(제작 지시 vs 제작·지급). 모순으로도 동일 행위로도 확정하지 않는다.
-OE081,EP09,EP30,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,ID01,CF021|CF044,3/4 '병사'의 체포 지시 ↔ 정조의 이광섭 지휘 책임 판단.,병사=이광섭이 성립할 때만 직접 대응한다.
+OE081,EP09,EP30,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,,CF021|CF044,3/4 '병사'의 체포 지시 ↔ 정조의 이광섭 지휘 책임 판단.,"병사=이광섭은 ID01 사용자 확정(RESOLVED)이라 직접 대응한다. 다만 3/4 지시 행위 자체는 이진욱 진술(CF021)로만 확인되며, 동일성 확정이 그 행위를 관측 사실로 올리지는 않는다."
 OE082,EP14,EP30,REVIEW_OF,PROCEDURAL,DERIVED,False,,CF025|CF026|CF044,5/12 이형원의 이광섭·이문협 평가 → 6/13 정조의 이광섭 책임 재평가.,"'비장에게 맡김'은 5/12에는 이문협, 6/13에는 이광섭에 대한 비판으로 나온다. 주체를 합치지 않는다."
 OE083,EP29,EP30,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,,CF043|CF044,CF044 '구순과 이광섭의 책임이 크게 다르지 않다' — 두 책임 판단의 비교.,
 OE084,EP30,EP34,PROCEDURAL_NEXT,SOURCE_DIRECT,DERIVED,False,,CF044|CF047,책임 판단 뒤 유배 처분.,

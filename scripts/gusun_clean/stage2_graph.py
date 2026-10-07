@@ -50,8 +50,9 @@ EDGES = [
       "CF016 chronology '구류 중/그 후', CF017 '대질 때'.", claim_level=True),
     E("OE007", "EP07", "EP12", "CONTRADICTS_AT_CLAIM_LEVEL", "SOURCE_DIRECT", "DERIVED", "CF017|CF018",
       "자미덕: 한 비장의 지휘에 따라 거짓으로 꾸며 말함 ↔ 한재욱: 자미덕을 은밀히 사주한 일 없음.",
-      claim_level=True, condition="ID02",
-      caution="충돌은 '한 비장=한재욱'(미확정)일 때만 성립한다. 한재욱의 부인 범위는 '은밀한 사주'에 한정되므로 PARTIAL 충돌이다."),
+      claim_level=True,
+      caution="'한 비장'=한재욱은 ID02 사용자 확정(RESOLVED)이라 같은 인물에 대한 두 진술이다. 사주 주장(자미덕)과 은밀한 사주 부인(한재욱)은 "
+              "서로 다른 진술로 유지하며 어느 쪽도 객관적 사실로 확정하지 않는다. 한재욱의 부인 범위는 '은밀한 사주'에 한정되므로 PARTIAL 충돌이다."),
     # ---------- 3월 4일 ----------
     E("OE008", "EP09", "EP11", "ORDER_TO_ACTION", "SOURCE_DIRECT", "OBSERVED", "CF021|CF023",
       "CF023 '병사의 분부에 따라' — 지시와 실행의 연결이 원문에 있다.", claim_level=True),
@@ -143,8 +144,9 @@ EDGES = [
       condition="ID07",
       caution="행위 층위 차이(제작 지시 vs 제작·지급). 모순으로도 동일 행위로도 확정하지 않는다."),
     E("OE081", "EP09", "EP30", "RESPONSIBILITY_LINK", "SOURCE_DIRECT", "DERIVED", "CF021|CF044",
-      "3/4 '병사'의 체포 지시 ↔ 정조의 이광섭 지휘 책임 판단.", condition="ID01",
-      caution="병사=이광섭이 성립할 때만 직접 대응한다."),
+      "3/4 '병사'의 체포 지시 ↔ 정조의 이광섭 지휘 책임 판단.",
+      caution="병사=이광섭은 ID01 사용자 확정(RESOLVED)이라 직접 대응한다. 다만 3/4 지시 행위 자체는 이진욱 진술(CF021)로만 확인되며, "
+              "동일성 확정이 그 행위를 관측 사실로 올리지는 않는다."),
     E("OE082", "EP14", "EP30", "REVIEW_OF", "PROCEDURAL", "DERIVED", "CF025|CF026|CF044",
       "5/12 이형원의 이광섭·이문협 평가 → 6/13 정조의 이광섭 책임 재평가.",
       caution="'비장에게 맡김'은 5/12에는 이문협, 6/13에는 이광섭에 대한 비판으로 나온다. 주체를 합치지 않는다."),

@@ -23,14 +23,18 @@ AUDIT1_MANUAL = [
     ("EP13 '무고한 평민들' · EP21 '여러 죄수'", "closed_set", "PASS",
      "05 V3P0007·V3P0040은 OPEN_SET이다. summary는 복수 표현을 유지하고 caution에 김명신 포함 여부를 확정하지 않는다고 적었다. "
      "'김명신이 형벌을 받았다'는 문장은 어디에도 만들지 않았다."),
-    ("EP09·EP11 (공초의 '병사')", "identity_forcing (ID01, 금지)", "PASS",
-     "summary는 '병사'만 쓰고 이광섭으로 치환하지 않았다. 이광섭은 원문에 이름이 있는 EP14(CF025)·EP30(CF044)·EP34(CF047)에만 나온다."),
-    ("EP07 '한 비장'", "identity_forcing (ID02, 금지)", "PASS",
-     "자미덕 진술의 '한 비장'을 한재욱으로 바꾸지 않았다. 한재욱 공초(EP12)와의 충돌 edge OE007은 condition=ID02일 때만 성립한다."),
-    ("EP35 '한가'", "identity_forcing (ID03, 금지)", "PASS",
-     "처분문 표면형 '병영 비장으로 표기된 한가'를 유지했다(CF048 notes). 처분 근거 행위는 confirmed set에 없어 G09 gap으로 넘겼다."),
-    ("'병영의 하급 보조자'", "identity_forcing (ID04, 금지)", "PASS",
-     "이 표현은 05(이조원 V3P0026·V3P0027·V3P0124)에만 있다. confirmed set에 없으므로 episode·edge 어디에도 쓰지 않았다."),
+    ("EP09·EP11 (공초의 '병사')", "surface form (ID01, 사용자 확정)", "PASS",
+     "ID01(병사=이광섭)은 사용자 확정(RESOLVED)이다. 그래도 summary는 원문 표면형 '병사'를 유지한다(surface_form_substitution 검사). "
+     "동일성 확정은 3/4 지시 행위를 관측 사실로 올리지 않는다(이진욱 진술 그대로)."),
+    ("EP07 '한 비장'", "surface form (ID02, 사용자 확정)", "PASS",
+     "ID02(한 비장=한재욱)는 사용자 확정이다. summary는 '한 비장'을 유지한다. OE007은 condition 없이 같은 인물에 대한 두 진술(사주 주장 ↔ 은밀한 사주 부인)의 "
+     "PARTIAL 충돌로 남고, 사주를 사실로 확정하지 않는다."),
+    ("EP35 '한가'", "surface form (ID03, 사용자 확정)", "PASS",
+     "ID03(한가=한재욱)은 사용자 확정이다. 처분문 표면형 '병영 비장으로 표기된 한가'를 유지했고(CF048 notes), 연결은 동일성 대장과 identity_links 컬럼에 둔다. "
+     "처분 근거 행위는 confirmed set에 없어 G09 gap으로 남는다."),
+    ("'병영의 하급 보조자'", "identity_forcing (ID04, 참고용 미해결)", "PASS",
+     "이 표현은 05(이조원 V3P0026·V3P0027·V3P0124)에만 있다. confirmed set에 없으므로 episode·edge 어디에도 쓰지 않았다. "
+     "UNRESOLVED로 두되 model_relevance=NONE, manual_decision_required=NO다."),
     ("EP08 '풍각 김상제' · EP29 '병영의 염탐 담당자'", "identity_forcing (ID05·ID06)", "PASS",
      "EP08은 '풍각 김상제'를 김명신으로, EP29는 '염탐 담당자'를 유제희로 바꾸지 않았다. 05 V3P0095의 object 필드(김명신)는 audit용 주석이라 "
      "summary에 반영하지 않았다. 두 node를 잇는 OE071은 condition=ID05·ID06이다."),
@@ -92,6 +96,9 @@ AUDIT1_REVISIONS = [
      "ESCALATED_ERROR로 처리하고 EP07 문장마다 '진술했다' 복원 → ERROR 0, WARN 0"),
     ("WARN 0 작업 — 6차", "regression 케이스 15개 중 '진술자 바꿔치기' 1개를 검사기가 놓침(이름이 summary 어딘가에 있으면 통과하던 약점)",
      "actor_substitution에 'summary 첫 주어 = 원문 첫 주어' 검사를 추가 → 15/15 탐지. 최종 ERROR 0, WARN 0, UNRESOLVED 9(동일성), INFO 8"),
+    ("사용자 동일성 확정 반영", "사용자가 ID01·ID02·ID03·ID11을 확정",
+     "동일성 대장 status=RESOLVED(resolved_by=USER, 근거 기록). summary는 원문 표면형 유지. 확정 ID 치환은 surface_form_substitution, "
+     "미확정 ID 치환은 identity_forcing으로 구분. 재실행 ERROR 0, WARN 0, UNRESOLVED 9→5(ID04 참고용 포함), INFO 8→12(resolved_identity 4)"),
 ]
 
 # ============================================================================ AUDIT 2
@@ -129,8 +136,9 @@ AUDIT2_MANUAL = [
      "객관적 사건 순서로 확정한 것이 아니다."),
     ("OE020–OE031 (진술 → EP23)", "testimony_to_fact", "PASS",
      "'진술이 안핵 기록에 들어갔다'는 정보 흐름이며 진술 내용의 진위를 주장하지 않는다(caution 명시)."),
-    ("조건부 edge 6개 (OE007·OE010·OE040·OE071·OE080·OE081)", "identity_forcing", "PASS",
-     "미확정 동일성에 기대는 edge는 condition 컬럼에 ID02·ID08·ID09·ID05·ID06·ID07·ID01을 적었다. ID09만 같은 기사 provenance로 ACCEPTED_BY_PROVENANCE이고 나머지는 UNRESOLVED다."),
+    ("조건부 edge 4개 (OE010·OE040·OE071·OE080)", "identity_forcing", "PASS",
+     "미확정 동일성에 기대는 edge는 condition 컬럼에 ID08·ID09·ID05·ID06·ID07을 적었다. ID09는 같은 기사 provenance로 ACCEPTED_BY_PROVENANCE다. "
+     "OE007(ID02)·OE081(ID01)은 사용자 확정으로 condition을 지웠고, 확정 ID가 condition에 남으면 stale_identity_condition ERROR가 난다."),
     ("OE080 (EP04 → EP30, 철편/철퇴)", "identity_forcing (ID07)", "PASS",
      "RESPONSIBILITY_LINK는 condition=ID07일 때만 성립한다. 제작·지급(한재욱)과 제작 지시(이광섭)는 행위 층위가 달라 모순으로도 동일 행위로도 확정하지 않는다."),
     ("OE071 (EP08 → EP29)", "identity_forcing / claim-level 차이", "PASS",
@@ -160,6 +168,9 @@ AUDIT2_REVISIONS = AUDIT2_REVISIONS_PRE + [
     ("WARN 0 작업", "WARN은 원래 0. 조건부 identity edge 6개를 INFO로 두던 것이 사료 모호성 성격이라 UNRESOLVED로 재분류했다. "
      "PARTIAL 충돌 edge 2개(OE007·OE062)도 UNRESOLVED로 표시했다. 근거 문구의 동일성 표면형 쌍 검사와 책임→직접 인과·환경→개인 사실 문구 검사를 추가",
      "edge 데이터는 변경 없음. 최종 ERROR 0, WARN 0, UNRESOLVED 8, INFO 1(OE060 절차 근거)"),
+    ("사용자 동일성 확정 반영", "OE007(ID02)·OE081(ID01)의 condition이 확정 ID를 가리킴",
+     "condition 제거, caution을 '같은 인물에 대한 서로 다른 진술'·'행위는 진술로만 확인'으로 수정. 확정 ID가 condition에 남으면 ERROR(stale_identity_condition). "
+     "재실행 ERROR 0, WARN 0, UNRESOLVED 8→6, INFO 1"),
 ]
 
 # ============================================================================ AUDIT 3
@@ -185,7 +196,10 @@ AUDIT3_MANUAL = [
      "ENV node에서 나가는 latent edge는 없다."),
     ("동일성에 기대는 후보 10개", "identity_forcing", "PASS",
      "가정에 IDxx가 있으면 identity_conditions로 모으고 MEDIUM 상한을 적용했다(grade 규칙 6). 그래서 G02a(ID07)가 HIGH에서 MEDIUM으로 내려갔다. "
-     "금지 동일성 ID01–ID04는 identity_register.csv에서 모두 UNRESOLVED다(자동 검사)."),
+     "ID01·ID02·ID03·ID11은 사용자 확정(resolved_by=USER, 근거 기록)이고 ID04–ID08은 UNRESOLVED다. 모델이 스스로 확정한 동일성은 없다(자동 검사). "
+     "확정된 ID는 MEDIUM 상한(규칙 6)에서 빠지지만 G03a·G05a·G09a는 source_consistency MEDIUM이라 등급이 그대로다."),
+    ("G09b·G09c", "resolved_identity_conflict", "PRUNED",
+     "G09b는 'ID02 불성립', G09c는 'ID03 불성립'을 전제한다. 사용자 확정과 충돌하므로 규칙 7로 INCOMPATIBLE·PRUNED 처리했다. 두 후보는 원래 어느 world에도 쓰이지 않았다."),
     ("G02a·G03a·G09c 원안 서술", "identity_forcing", "PASS (수정 후)",
      "원안 G02a는 '병사(이광섭)'로 ID01을 사실처럼 썼다. G03a는 '김상제' 언급 뒤 '김명신 체포'를 이어 ID05에 기댔고, G09c는 '한가 ≠ 한재욱'을 ID03 표시 없이 썼다. "
      "서술을 조건형으로 고치고 가정에 IDxx를 넣었다. 보강한 검사를 원안에 다시 돌려 이 세 건이 ERROR로 잡히는 것을 확인했다."),
@@ -234,6 +248,9 @@ AUDIT3_REVISIONS = [
      "후보 내용은 그대로 두고 정규식이 따옴표 붙은 '등'과 목록 중간 절단을 처리하도록 수정 → ERROR 0"),
     ("WARN 0 작업 — 6차", "UNRESOLVED 문구 검토: G10 사유가 '모든 후보가 사료 지지 없음'으로 적혀 G10a(MEDIUM)와 어긋남",
      "후보 등급과 gap 근거에서 문구를 생성하도록 수정. 최종 ERROR 0, WARN 0, UNRESOLVED 1(G10), INFO 8"),
+    ("사용자 동일성 확정 반영", "G03a(ID11)·G04c·G05a(ID01)·G09a(ID02·ID03)의 확정 ID 가정, G09b·G09c의 확정 ID 부정 전제, world 서술의 조건문",
+     "확정 ID 가정을 빼고(G03a 4→3, G04c 3→2, G05a 3→2, G09a 3→1, 등급 변화 없음), G09b·G09c는 규칙 7로 INCOMPATIBLE·PRUNED(world 미사용). "
+     "world 서술의 'IDxx가 성립한다면'을 '(IDxx, 사용자 확정)'으로 바꿈. world 구성·bridge·미해결 gap은 그대로. 재실행 ERROR 0, WARN 0, UNRESOLVED 1"),
 ]
 
 

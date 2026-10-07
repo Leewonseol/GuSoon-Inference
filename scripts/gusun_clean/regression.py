@@ -50,13 +50,18 @@ CASES = [
     ("semantic_weakening", "'은밀히' 삭제: 어떤 사주도 없었다",
      lambda: _episode_case("EP12", "한재욱은 자미덕을 방으로 불러 남은 밥을 준 사실은 인정했지만 자미덕을 사주한 일은 전혀 없다고 진술했고, "
                                    "구순과 평생 모르는 사이라고 진술했다.", "semantic_weakening")),
-    ("identity_forcing", "공초 '병사'를 이광섭으로 치환(EP09)",
+    ("surface_form_substitution", "확정 동일성(ID01)이라도 episode summary에서 '병사'를 이광섭으로 바꾸면 안 됨(EP09)",
      lambda: _episode_case("EP09", "이진욱은 3월 4일 이광섭이 풍각 김생원과 흥덕 김생원을 잡아오라고 지시했다고 진술했다. "
-                                   "해당 기사에서 풍각 김생원은 김명신, 흥덕 김생원은 김갑득으로 식별된다.", "identity_forcing")),
-    ("identity_forcing", "'한 비장'을 한재욱으로 치환(EP07)",
+                                   "해당 기사에서 풍각 김생원은 김명신, 흥덕 김생원은 김갑득으로 식별된다.", "surface_form_substitution")),
+    ("surface_form_substitution", "확정 동일성(ID02)이라도 episode summary에서 '한 비장'을 한재욱으로 바꾸면 안 됨(EP07)",
      lambda: _episode_case("EP07", "자미덕은 한재욱이 정원돌·이집거·김갑득·김성손·김흥득 등을 큰 도적이라고 말하면 자신과 남편을 다음 날 "
                                    "석방하겠다고 말했다고 진술했고, 자미덕은 이집거와 대질했으며, 그때 한 비장의 지휘에 따라 거짓으로 꾸며 "
-                                   "말했다고 진술했다.", "identity_forcing")),
+                                   "말했다고 진술했다.", "surface_form_substitution")),
+    ("identity_forcing", "미확정 동일성(ID05) 강제: '풍각 김상제'를 김명신으로 치환(EP08)",
+     lambda: _episode_case("EP08", "유제희는 현지 탐문 중 구순이 김명신도 극히 수상하다고 말했고, 자신이 그 말을 원돌 등의 이름과 함께 "
+                                   "기록해 올렸다고 진술했다.", "identity_forcing")),
+    ("stale_identity_condition", "사용자 확정 동일성(ID01)이 edge condition에 남아 있음(OE081)", lambda: _stale_edge_case()),
+    ("resolved_identity_conflict", "확정 동일성(ID02)을 불성립으로 전제한 후보(G09b)가 INCOMPATIBLE이 아님", lambda: _negation_case()),
     ("closed_set", "'등' 삭제(EP07)",
      lambda: _episode_case("EP07", "자미덕은 한 비장이 정원돌·이집거·김갑득·김성손·김흥득을 큰 도적이라고 말하면 자신과 남편을 다음 날 "
                                    "석방하겠다고 말했다고 진술했고, 자미덕은 이집거와 대질했으며, 그때 한 비장의 지휘에 따라 거짓으로 꾸며 "
@@ -106,6 +111,32 @@ def _latent_case():
     found = audits.audit3(nodes, [], "h", "h", gaps, cands, [])
     hit = {f["check"] for f in found if f["severity"] == "ERROR" and f["target"] == "G08a"}
     return "latent_as_observed" in hit, sorted(hit)
+
+
+def _stale_edge_case():
+    import build
+    cf = build.read_csv("01_confirmed_facts.csv")
+    env = build.read_csv("03_environment_1793.csv")
+    nodes, edges, links = build.stage2(build.stage1(cf), env)
+    for e in edges:
+        if e["edge_id"] == "OE081":
+            e["condition"] = "ID01"
+    found = audits.audit2(nodes, edges, EPISODES, links, env, build.EDGE_TYPES, build.BASES)
+    hit = {f["check"] for f in found if f["severity"] == "ERROR" and f["target"] == "OE081"}
+    return "stale_identity_condition" in hit, sorted(hit)
+
+
+def _negation_case():
+    import stage4_latent
+    gaps, cands = stage4_latent.build([], [])
+    cands = copy.deepcopy(cands)
+    for c in cands:
+        if c["candidate_id"] == "G09b":
+            c["overall"] = "LOW"
+    nodes = [dict(node_id=f"EP{i:02d}", node_status="OBSERVED", layer="X") for i in range(1, 38)]
+    found = audits.audit3(nodes, [], "h", "h", gaps, cands, [])
+    hit = {f["check"] for f in found if f["severity"] == "ERROR" and f["target"] == "G09b"}
+    return "resolved_identity_conflict" in hit, sorted(hit)
 
 
 def run():
