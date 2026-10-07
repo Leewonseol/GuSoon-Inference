@@ -1,0 +1,32 @@
+{
+  "name": "Validated Observed Partial DAG",
+  "sha256": "ccb7ec63763a715ae90c74dfff37d3ed7980fa705fd152f59de8bed2e31d4e0c",
+  "structure_sha256": "0b69134457880767285c3516e1e9c962bb9b778a5c6f4e85b248c6b16b01c80d",
+  "previous_sha256_prefix": "ccb7ec63763a715a",
+  "previous_structure_sha256": "0b69134457880767285c3516e1e9c962bb9b778a5c6f4e85b248c6b16b01c80d",
+  "structure_unchanged": true,
+  "topology_sha256": "04c84b0e24af31f5605800ae30bc2750563a1aeb3e72390aa6d6643676b68e84",
+  "previous_topology_sha256": "04c84b0e24af31f5605800ae30bc2750563a1aeb3e72390aa6d6643676b68e84",
+  "topology_unchanged": true,
+  "change_note": "narrative world 사용 방식 재정리(경쟁하는 설명으로 병렬 보존). observed graph는 손대지 않음 — node·edge·condition·끝점·type 모두 그대로",
+  "n_nodes": 41,
+  "n_edges": 68,
+  "n_episode_nodes": 37,
+  "n_env_nodes": 4,
+  "edge_status": {
+    "DERIVED": 64,
+    "OBSERVED": 4
+  },
+  "edge_types": {
+    "TEMPORAL_BEFORE": 7,
+    "ORDER_TO_ACTION": 3,
+    "PROCEDURAL_NEXT": 14,
+    "CONTRADICTS_AT_CLAIM_LEVEL": 5,
+    "INFORMATION_FLOW": 12,
+    "REVIEW_OF": 9,
+    "REVISES": 2,
+    "CONTEXT_SUPPORTS": 9,
+    "RESPONSIBILITY_LINK": 7
+  },
+  "latent_count": 0
+}

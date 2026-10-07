@@ -1,0 +1,58 @@
+link_id,target_kind,target_id,feature_layer,feature_id,dimension,assessment,creates_event,rationale
+FL001,NODE,EP03,INSTITUTIONAL,F010,jurisdictionally_possible,COMPATIBLE_WITH_CAVEAT,NO,도적 사건에 진영장·수령 겸임 토포사가 개입할 수 있다. 소장 접수 기관은 미기록이다.
+FL002,NODE,EP03,INSTITUTIONAL,F005,procedure_available,COMPATIBLE_WITH_CAVEAT,NO,군현 수령 경로도 제도상 가능하다. 실제 경로는 미확정.
+FL003,NODE,EP04,INSTITUTIONAL,F007,role_compatible,COMPATIBLE,NO,병마절도사 지휘 아래 병영 장교 출동은 제도상 가능하다.
+FL004,NODE,EP04,INSTITUTIONAL,F008,procedure_available,COMPATIBLE,NO,병영 내부 명령·집행 경로가 존재한다.
+FL005,NODE,EP04,INSTITUTIONAL,F009,role_compatible,COMPATIBLE_WITH_CAVEAT,NO,비장청 호출과 비장의 실무 지휘는 막료 관행과 부합한다. 한재욱의 직함은 이 episode에 명시되어 있지 않다.
+FL006,NODE,EP04,INSTITUTIONAL,F002,legal_available,UNDETERMINED,NO,"흠휼전칙은 형구 규격을 정하지만, pack에는 철편의 지위를 판정할 정보가 없다. 정조는 철퇴를 과도하다고 비판했다(CF044)."
+FL007,NODE,EP05,INSTITUTIONAL,F010,jurisdictionally_possible,COMPATIBLE_WITH_CAVEAT,NO,공주진의 변지돌 체포는 진·토포 경로와 양립한다. 경위는 미기록이다.
+FL008,NODE,EP06,INSTITUTIONAL,F004,legal_available,UNDETERMINED,NO,구금 도구 기준은 있으나 자미덕의 구류 방식(다모방) 판정 자료가 없다.
+FL009,NODE,EP06,INSTITUTIONAL,F009,role_compatible,COMPATIBLE_WITH_CAVEAT,NO,비장청 공간 사용은 막료 실무와 부합한다.
+FL010,NODE,EP07,INSTITUTIONAL,F002,legal_available,LOW,NO,석방을 조건으로 특정 진술을 요구하는 것을 허용하는 제도 피쳐는 pack에 없다. 주장된 행위의 합법성은 낮다.
+FL011,NODE,EP07,INSTITUTIONAL,F009,role_compatible,COMPATIBLE,NO,비장이 구류자를 다루는 실무 위치에 있을 수 있다.
+FL012,NODE,EP08,INSTITUTIONAL,F008,role_compatible,COMPATIBLE_WITH_CAVEAT,NO,병영 소속 인원의 탐문은 병영 체계와 양립한다. 유제희의 직함은 confirmed set에 없다.
+FL013,NODE,EP08,INSTITUTIONAL,F020,information_flow_compatible,COMPATIBLE_WITH_CAVEAT,NO,'기록해 올렸다'는 상향 문서 보고 구조와 부합한다. 수신자는 미기록이다.
+FL014,NODE,EP09,INSTITUTIONAL,F007,role_compatible,COMPATIBLE,NO,병사(兵使)가 장교에게 체포를 지시하는 것은 도 단위 군사지휘와 양립한다.
+FL015,NODE,EP09,INSTITUTIONAL,F010,jurisdictionally_possible,COMPATIBLE_WITH_CAVEAT,NO,도적 사건 체포 관할과 양립한다. 양반(생원) 체포의 특별 요건은 pack에 없다.
+FL016,NODE,EP10,INSTITUTIONAL,F020,information_flow_compatible,LOW,NO,"구순(전 부사)→병사 서찰은 공식 보고 경로(장계·서계)가 아니다. 공식 지휘 명령으로서는 LOW이고, 사적 정보 전달로서만 가능하다."
+FL017,NODE,EP10,INSTITUTIONAL,F007,role_compatible,LOW,NO,구순에게 병영 장교를 지휘할 공식 권한은 확인되지 않는다.
+FL018,NODE,EP11,INSTITUTIONAL,F008,procedure_available,COMPATIBLE,NO,병사 분부에 따른 장교 일행의 체포 집행 경로가 존재한다.
+FL019,NODE,EP12,INSTITUTIONAL,F014,review_available,COMPATIBLE,NO,안핵어사 공초는 독립 재조사 경로다.
+FL020,NODE,EP13,INSTITUTIONAL,F006,information_flow_compatible,COMPATIBLE,NO,관찰사 장계는 중앙 직계 보고 경로다.
+FL021,NODE,EP13,INSTITUTIONAL,F020,information_flow_compatible,COMPATIBLE,NO,장계 문서 보고 구조.
+FL022,NODE,EP14,INSTITUTIONAL,F006,review_available,COMPATIBLE,NO,관찰사의 하급 기관 감독·평가 경로.
+FL023,NODE,EP15,INSTITUTIONAL,F018,legal_available,COMPATIBLE,NO,국왕의 사건별 판단·명령.
+FL024,NODE,EP16,INSTITUTIONAL,F012,procedure_available,COMPATIBLE,NO,의금부의 왕명 기반 구금·신문.
+FL025,NODE,EP17,INSTITUTIONAL,F013,review_available,COMPATIBLE,NO,암행어사의 지방 탐문 보고.
+FL026,NODE,EP18,INSTITUTIONAL,F013,review_available,COMPATIBLE_WITH_CAVEAT,NO,어사 보고에 대한 국왕의 검토·징계. 사목 범위는 사건별 확인이 필요하다(F013 notes).
+FL027,NODE,EP19,INSTITUTIONAL,F012,procedure_available,COMPATIBLE,NO,의금부 반복 신문.
+FL028,NODE,EP20,INSTITUTIONAL,F014,review_available,COMPATIBLE,NO,안핵어사 차하는 정조대 실제 운용 사례가 있다.
+FL029,NODE,EP21,INSTITUTIONAL,F013,review_available,COMPATIBLE,NO,암행어사 별단.
+FL030,NODE,EP22,INSTITUTIONAL,F017,review_available,COMPATIBLE,NO,비변사의 처분 보류 심의.
+FL031,NODE,EP23,INSTITUTIONAL,F014,review_available,COMPATIBLE,NO,안핵 복명.
+FL032,NODE,EP23,INSTITUTIONAL,F020,information_flow_compatible,COMPATIBLE,NO,복명·서계 구조.
+FL033,NODE,EP26,INSTITUTIONAL,F015,procedure_available,COMPATIBLE_WITH_CAVEAT,NO,사인 판단에는 초검·복검 구조가 있다. 실제 검험 시행 여부는 confirmed set에 없다.
+FL034,NODE,EP26,INSTITUTIONAL,F016,procedure_available,COMPATIBLE_WITH_CAVEAT,NO,1792 증수무원록 지침이 같은 시기에 존재한다. 적용 여부는 미기록이다.
+FL035,NODE,EP27,INSTITUTIONAL,F002,legal_available,COMPATIBLE,NO,곤장·신문 여부 판단은 흠휼전칙의 형구 사용 제한과 같은 차원의 쟁점이다.
+FL036,NODE,EP27,INSTITUTIONAL,F003,legal_available,COMPATIBLE_WITH_CAVEAT,NO,군문 중곤 제한(사형죄 한정). 김명신에 대한 형구 사용은 정조가 부정했다.
+FL037,NODE,EP29,INSTITUTIONAL,F018,legal_available,COMPATIBLE,NO,국왕의 책임 판단.
+FL038,NODE,EP30,INSTITUTIONAL,F007,role_compatible,COMPATIBLE,NO,병마절도사 지휘 책임 귀속은 지휘체계와 부합한다.
+FL039,NODE,EP30,INSTITUTIONAL,F009,role_compatible,COMPATIBLE,NO,비장에게 일을 맡긴 것에 대한 비판은 막료 체계를 전제한다.
+FL040,NODE,EP33,INSTITUTIONAL,F001,legal_available,COMPATIBLE,NO,정배는 법전상 형벌 체계 안에 있다.
+FL041,NODE,EP34,INSTITUTIONAL,F001,legal_available,COMPATIBLE,NO,유배.
+FL042,NODE,EP35,INSTITUTIONAL,F006,jurisdictionally_possible,COMPATIBLE,NO,도백(관찰사)이 형장을 집행하도록 한 명은 관찰사 관할과 부합한다.
+FL043,NODE,EP35,INSTITUTIONAL,F002,legal_available,COMPATIBLE_WITH_CAVEAT,NO,형장 세 차례는 형정 규범 안에서 판단할 사항이다. 규격 정보는 pack에 없다.
+FL044,NODE,EP36,INSTITUTIONAL,F018,legal_available,COMPATIBLE,NO,국왕의 파직 명.
+FL045,NODE,EP37,INSTITUTIONAL,F018,legal_available,COMPATIBLE,NO,국왕의 인사 명.
+FL046,EDGE,OE008,INSTITUTIONAL,F007,role_compatible,COMPATIBLE,NO,병사→장교 체포 명령→실행 경로는 제도상 compatible하다(사용자 예시).
+FL047,EDGE,OE046,INSTITUTIONAL,F014,procedure_available,COMPATIBLE,NO,안핵어사 차하 → 현지 신문 → 복명.
+FL048,EDGE,OE047,INSTITUTIONAL,F017,review_available,COMPATIBLE,NO,비변사 보류.
+FL049,EDGE,OE040,INSTITUTIONAL,F006,information_flow_compatible,COMPATIBLE,NO,장계 → 국왕 판단.
+FL050,NODE,EP26,ENVIRONMENT,E001,environmental_fit,COMPATIBLE,NO,질병 사망 평가와 호서 전염병 환경이 부합한다. 개인 감염의 증명은 아니다.
+FL051,NODE,EP26,ENVIRONMENT,E003,environmental_fit,COMPATIBLE,NO,구금 기간에 전염병이 지속되었다.
+FL052,NODE,EP27,ENVIRONMENT,E001,environmental_fit,COMPATIBLE,NO,전염병 사망 판단과 부합.
+FL053,NODE,EP27,ENVIRONMENT,E003,environmental_fit,COMPATIBLE,NO,전염병 사망 판단과 부합.
+FL054,NODE,EP27,ENVIRONMENT,E004,environmental_fit,COMPATIBLE_WITH_CAVEAT,NO,옥수 전염병이 정책 현안이었음. 날짜가 사망 이후라 context로만 쓴다.
+FL055,NODE,EP27,ENVIRONMENT,E002,environmental_fit,COMPATIBLE_WITH_CAVEAT,NO,기근은 거시 스트레스 맥락이다. 직접 사인이 아니다.
+FL056,NODE,EP21,ENVIRONMENT,E001,environmental_fit,COMPATIBLE,NO,병사(病死) 보고와 부합.
+FL057,NODE,EP21,ENVIRONMENT,E003,environmental_fit,COMPATIBLE,NO,병사(病死) 보고와 부합.

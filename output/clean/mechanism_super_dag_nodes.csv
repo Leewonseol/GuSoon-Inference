@@ -1,0 +1,123 @@
+node_id,sd_status,node_type,label,frozen_status,branch,mechanism,worlds,detail
+EP01,OBSERVED,OBSERVED_EVENT,구순–김명신 관계 변화,OBSERVED,,,ALL (공통),"명업은 김명신이 본래 구순과 친숙하여 날마다 왕래했다고 진술했고, 김명신이 박거사 일로 구순에게 편지를 보내 힐책했다고 진술했으며, 그 뒤 구순과 김명신의 왕래가 끊겼다고 진술했다."
+EP02,OBSERVED,OBSERVED_EVENT,2월 22일 밤 도적 침입 전언,OBSERVED,,,ALL (공통),"명업은 나복이 2월 22일 밤 도적이 들었다고 자신에게 알렸다고 진술했다. 명업은 나복이 도적 30여 명, 횃불, 지세대감 자칭, 돈과 물품 도난을 말했다고 진술했다."
+EP03,OBSERVED,OBSERVED_EVENT,구순의 소장과 체포령,OBSERVED,,,ALL (공통),명업은 구순이 소장을 올린 뒤 체포령이 내려졌다고 진술했다.
+EP04,OBSERVED,OBSERVED_EVENT,2월 28일 밤 병영 출동 준비,OBSERVED,,,ALL (공통),"이진욱은 2월 28일 밤 병영에서 자신을 비장청으로 불렀다고 진술했고, 한재욱이 자신과 조계완 등에게 덕평으로 가도록 지시했다고 진술했으며, 한재욱이 변지돌과 정원돌을 잡아오라고 지시했다고 진술했고, 한재욱이 철편 네 개를 만들어 주었다고 진술했다."
+EP05,OBSERVED,OBSERVED_EVENT,2월 29일 덕평 체포 활동,OBSERVED,,,ALL (공통),"이진욱은 2월 29일 변지돌이 이미 공주진에서 잡혀간 상태였다고 진술했고, 장교 일행이 재돌의 처 자미덕을 붙잡았다고 진술했다."
+EP06,OBSERVED,OBSERVED_EVENT,자미덕의 병영 압송·신문·구류,OBSERVED,,,ALL (공통),"자미덕은 병영 장교에게 붙잡혀 병영으로 끌려갔다고 진술했고, 병영에서 도적 혐의로 한 차례 신문을 받았다고 진술했으며, 신문 뒤 비장청 다모방에 구류되었다고 진술했다."
+EP07,OBSERVED,OBSERVED_EVENT,한 비장의 석방 조건 제시와 대질 시 거짓 진술,OBSERVED,,,ALL (공통),"자미덕은 한 비장이 정원돌·이집거·김갑득·김성손·김흥득 등을 큰 도적이라고 말하면 자신과 남편을 다음 날 석방하겠다고 말했다고 진술했고, 자미덕은 이집거와 대질했으며, 그때 한 비장의 지휘에 따라 거짓으로 꾸며 말했다고 진술했다."
+EP08,OBSERVED,OBSERVED_EVENT,유제희의 현지 탐문과 구순 발언 기록,OBSERVED,,,ALL (공통),"유제희는 현지 탐문 중 구순이 풍각 김상제도 극히 수상하다고 말했고, 자신이 그 말을 원돌 등의 이름과 함께 기록해 올렸다고 진술했다."
+EP09,OBSERVED,OBSERVED_EVENT,3월 4일 병사의 김생원 체포 지시,OBSERVED,,,ALL (공통),"이진욱은 3월 4일 병사가 풍각 김생원과 흥덕 김생원을 잡아오라고 지시했다고 진술했다. 해당 기사에서 풍각 김생원은 김명신, 흥덕 김생원은 김갑득으로 식별된다."
+EP10,OBSERVED,OBSERVED_EVENT,3월 4일 조계완의 구순 집 방문과 서찰,OBSERVED,,,ALL (공통),"조계완은 김명신을 잡으러 가는 길에 구순 집에 들렀고, 구순이 이제 도적 다스리는 일이 바른 길을 얻었다는 취지로 말한 뒤 병사에게 전할 서찰 한 장을 건넸다고 진술했다."
+EP11,OBSERVED,OBSERVED_EVENT,3월 4일 김명신·김갑득 체포,OBSERVED,,,ALL (공통),이진욱은 장교 일행이 병사의 분부에 따라 김명신과 김갑득을 잡아왔다고 진술했다.
+EP12,OBSERVED,OBSERVED_EVENT,한재욱의 안핵 공초,OBSERVED,,,ALL (공통),"한재욱은 자미덕을 방으로 불러 남은 밥을 준 사실은 인정했지만, 자미덕을 은밀히 사주한 일은 없다고 진술했고, 구순과 평생 모르는 사이라고 진술했다."
+EP13,OBSERVED,OBSERVED_EVENT,5월 12일 이형원 장계: 구금·무장물·사망·혹형 보고,OBSERVED,,,ALL (공통),"이형원의 5월 12일 장계는 충청병영이 김명신을 달포 이상 구금·조사했으나 확실한 장물을 찾지 못했고, 김명신이 그 뒤 사망했다고 보고했으며, 무고한 평민들이 모진 형벌을 받았다고 보고했다."
+EP14,OBSERVED,OBSERVED_EVENT,5월 12일 이형원의 지휘 계통 평가,OBSERVED,,,ALL (공통),"5월 12일 기사에서 이광섭은 사건의 병사 지휘 책임자로 심리되며, 이형원은 이광섭이 허황한 말을 믿고 무고한 사람을 잘못 잡았다고 평가했고, 청주 영장 이문협이 수사를 병영 비장에게 전적으로 맡기고 방관했다고 평가했다."
+EP15,OBSERVED,OBSERVED_EVENT,5월 12일 정조 1차 판단: 도난 부재 방향,OBSERVED,,,ALL (공통),정조는 당시 장계와 조사에 따라 도난 자체가 없었다는 방향을 받아들였다.
+EP16,OBSERVED,OBSERVED_EVENT,5월 12일 정조 명: 구순 의금부 구금·엄사,OBSERVED,,,ALL (공통),정조는 구순을 의금부에 잡아 가두고 엄히 조사하도록 명했다.
+EP17,OBSERVED,OBSERVED_EVENT,5월 27일 암행어사 이조원 보고: 도난 부재 방향,OBSERVED,,,ALL (공통),이조원은 구순 사건을 도난이 없었다는 방향으로 보고했다.
+EP18,OBSERVED,OBSERVED_EVENT,5월 27일 정조의 이조원 비판·파직,OBSERVED,,,ALL (공통),"정조는 이조원이 중대 사실을 직접 안핵하지 않고 전해 들은 말을 서계에 붙인 점을 문제 삼았고, 이조원을 파직하도록 명했다."
+EP19,OBSERVED,OBSERVED_EVENT,5월 27일 정조 명: 구순 의금부 엄수·반복 신문,OBSERVED,,,ALL (공통),정조는 구순을 의금부에 엄히 가두고 반복 신문하도록 명했다.
+EP20,OBSERVED,OBSERVED_EVENT,5월 28일 홍대협 공주 안핵어사 차하,OBSERVED,,,ALL (공통),정조는 홍대협에게 사건을 자세히 조사해 오라고 명하고 그를 충청도 공주 안핵어사로 차하했다.
+EP21,OBSERVED,OBSERVED_EVENT,6월 11일 윤노동 별단,OBSERVED,,,ALL (공통),"윤노동의 6월 11일 별단은 김명신이 보수·구금 중 병들어 죽었고, 여러 죄수가 참혹한 형벌을 받았으며, 진정한 장물을 얻지 못했다고 보고했다."
+EP22,OBSERVED,OBSERVED_EVENT,6월 11일 비변사 처리 보류 청·윤허,OBSERVED,,,ALL (공통),"비변사는 홍대협의 안핵 복명 전까지 윤노동 별단에 따른 처리를 보류할 것을 청했고, 정조는 이를 윤허했다."
+EP23,OBSERVED,OBSERVED_EVENT,6월 13일 홍대협 공주목 신문·복명,OBSERVED,,,ALL (공통),홍대협은 공주목에서 관련자들을 차례로 신문한 뒤 호서 안핵어사로 복명하여 편전에서 정조에게 보고했다.
+EP24,OBSERVED,OBSERVED_EVENT,"홍대협 도난 판단: 약간의 실제 도난, 좀도둑 수준",OBSERVED,,,ALL (공통),홍대협은 약간의 실제 도난은 있었지만 큰 화적 사건이 아니라 보통 좀도둑 수준이었다고 판단했다.
+EP25,OBSERVED,OBSERVED_EVENT,정조 최종 도난 판단: 실재,OBSERVED,,,ALL (공통),정조는 최종적으로 도난은 실제로 있었다고 판단했다.
+EP26,OBSERVED,OBSERVED_EVENT,홍대협 사인 평가: 질병,OBSERVED,A_BIOLOGICAL,,ALL (공통),홍대협은 김명신의 죽음을 질병 때문이라고 평가했다.
+EP27,OBSERVED,OBSERVED_EVENT,"정조 사인·처우 판단: 부처 전염병 사망, 곤장·평문 없음",OBSERVED,A_BIOLOGICAL,,ALL (공통),"정조는 김명신 부처가 전염병에 걸려 죽은 것으로 판단했고, 김명신이 곤장을 맞지 않았고 평범한 신문도 받지 않았다고 판단했다."
+EP28,OBSERVED,OBSERVED_EVENT,정조: 구순→김명신 직접 사망 인과 불확실,OBSERVED,,,ALL (공통),정조는 김명신이 구순 때문에 직접 죽었다는 인과가 십분 확실하다고 할 수 없다고 판단했다.
+EP29,OBSERVED,OBSERVED_EVENT,정조: 구순 책임 연결 판단,OBSERVED,,,ALL (공통),"정조는 구순이 김명신에게 사적인 감정을 품고 갈등을 일으켰고, 병영의 염탐 담당자에게 김명신의 성명을 적어 주었으며, 그 과정이 김명신이 횡액을 입고 원통하게 죽는 결과로 이어졌다고 책임을 연결해 판단했다."
+EP30,OBSERVED,OBSERVED_EVENT,정조: 이광섭 책임 판단,OBSERVED,,,ALL (공통),"정조는 이광섭이 구순 편을 들고, 철퇴 네 개를 만들게 했으며, 아전들의 거짓을 제대로 살피지 않은 채 비장에게 일을 맡겼다고 비판하고, 김명신 사망 책임에서 구순과 이광섭의 책임이 크게 다르지 않다고 판단했다."
+EP31,OBSERVED,OBSERVED_EVENT,홍대협: 지세 호칭 기원 미확정,OBSERVED,,,ALL (공통),홍대협은 여러 차례 신문과 별도 탐문에도 지세 호칭의 기원을 확정하지 못했다.
+EP32,OBSERVED,OBSERVED_EVENT,정조: 구순 지세 호칭 날조 죄 불인정,OBSERVED,,,ALL (공통),정조는 구순이 지세 호칭을 스스로 만들어냈다는 죄는 인정하지 않았다.
+EP33,OBSERVED,OBSERVED_EVENT,구순 신지도 정배,OBSERVED,,,ALL (공통),정조는 구순을 신지도에 정배했다.
+EP34,OBSERVED,OBSERVED_EVENT,이광섭 영동현 유배,OBSERVED,,,ALL (공통),정조는 이광섭을 영동현에 유배했다.
+EP35,OBSERVED,OBSERVED_EVENT,병영 비장 한가 처분,OBSERVED,,,ALL (공통),정조는 병영 비장으로 표기된 한가를 도백이 엄히 세 차례 형장 친 뒤 먼 섬의 종으로 보내도록 명했다.
+EP36,OBSERVED,OBSERVED_EVENT,이형원 파직,OBSERVED,,,ALL (공통),정조는 충청도 관찰사 이형원을 파직하도록 명했다.
+EP37,OBSERVED,OBSERVED_EVENT,6월 16일 이형원 유임,OBSERVED,,,ALL (공통),정조는 6월 16일 전 충청도 관찰사 이형원을 유임했다.
+ENV01,CONTEXT,ENV_CONTEXT,1793-01-22 호서 전염병 사망자 치계·구료 단속,OBSERVED,,,ALL (공통),호서 도신이 전염병 사망자 수를 치계했고 정조가 구료를 각별히 단속하라고 명함
+ENV02,CONTEXT,ENV_CONTEXT,1793-01-22 호서 기근 구휼 한창,OBSERVED,,,ALL (공통),같은 기사에서 굶주림 구휼이 한창이라고 명시
+ENV03,CONTEXT,ENV_CONTEXT,1793-04-10 호서·영남 전염병 창궐(여제),OBSERVED,,,ALL (공통),정조실록 일별 목록에 '호서 영남에 전염병이 창궐하므로 여제를 지내게 하다' 기사 확인
+ENV04,CONTEXT,ENV_CONTEXT,1793-05-12 경외 전염병 옥수 치료 명,OBSERVED,,,ALL (공통),형조 판서 이득신 건의에 따라 서울·지방 전염병 옥수에게 약을 주어 치료하도록 명함
+CTX_F001,CONTEXT,INSTITUTIONAL_CONTEXT,F001 대전통편 현행,,,,ALL (제약조건),1793년 당시 통합 법전이 현행이었는가
+CTX_F002,CONTEXT,INSTITUTIONAL_CONTEXT,F002 흠휼전칙 현행,,,,ALL (제약조건),형구·구금·군문 곤형의 규격과 사용 제한이 현행이었는가
+CTX_F003,CONTEXT,INSTITUTIONAL_CONTEXT,F003 군문 중곤 사용 제한,,,,ALL (제약조건),병사·감사 등 군문 지휘자가 중곤을 사용할 수 있는 조건
+CTX_F004,CONTEXT,INSTITUTIONAL_CONTEXT,F004 구금 도구 기준,,,,ALL (제약조건),사형·유배·장죄 등 죄급별 가·뉴·쇄 사용 기준
+CTX_F005,CONTEXT,INSTITUTIONAL_CONTEXT,F005 수령의 군현 통치,,,,ALL (제약조건),군현 수령이 해당 고을 행정을 담당하는 기본 구조
+CTX_F006,CONTEXT,INSTITUTIONAL_CONTEXT,F006 관찰사의 수령 감독·직계,,,,ALL (제약조건),관찰사가 수령을 감독하고 중앙에 직접 보고할 수 있는 구조
+CTX_F007,CONTEXT,INSTITUTIONAL_CONTEXT,F007 병마절도사 도 단위 군사지휘,,,,ALL (제약조건),병마절도사가 도의 군사 지휘권을 가진 구조
+CTX_F008,CONTEXT,INSTITUTIONAL_CONTEXT,F008 병영 지휘체계,,,,ALL (제약조건),병영이 병마절도사 주둔 관서이며 하위 진·장교 체계가 존재
+CTX_F009,CONTEXT,INSTITUTIONAL_CONTEXT,F009 비장 막료 체계,,,,ALL (제약조건),감사·절도사 등이 비장을 막료로 둘 수 있는 관행
+CTX_F010,CONTEXT,INSTITUTIONAL_CONTEXT,F010 토포사 제도,,,,ALL (제약조건),도적 수색·체포를 위해 수령 또는 진영장이 토포사를 겸임할 수 있음
+CTX_F011,CONTEXT,INSTITUTIONAL_CONTEXT,F011 형조 심리·회계,,,,ALL (제약조건),형조가 중앙 형사행정과 사건 심리에 관여할 수 있는 구조
+CTX_F012,CONTEXT,INSTITUTIONAL_CONTEXT,F012 의금부 특별사법·재심,,,,ALL (제약조건),왕명에 따라 중요범죄 심문·재심을 수행할 수 있는 구조
+CTX_F013,CONTEXT,INSTITUTIONAL_CONTEXT,F013 암행어사,,,,ALL (제약조건),왕이 지방에 비밀 파견해 수령·민폐를 탐문할 수 있는 제도
+CTX_F014,CONTEXT,INSTITUTIONAL_CONTEXT,F014 안핵어사,,,,ALL (제약조건),특정 사건을 별도로 조사하는 왕명 특별 조사관의 운용
+CTX_F015,CONTEXT,INSTITUTIONAL_CONTEXT,F015 초검-복검-추가검,,,,ALL (제약조건),"살인·변사에서 초검 후 복검, 의심 시 삼검·사검까지 가능"
+CTX_F016,CONTEXT,INSTITUTIONAL_CONTEXT,F016 증수무원록 개정 지침,,,,ALL (제약조건),1792년 개정·간행된 법의학 지침의 존재
+CTX_F017,CONTEXT,INSTITUTIONAL_CONTEXT,F017 비변사 심의,,,,ALL (제약조건),비변사가 국정·군사·지방 사안을 중앙에서 심의할 수 있음
+CTX_F018,CONTEXT,INSTITUTIONAL_CONTEXT,F018 수교의 법적 성격,,,,ALL (제약조건),국왕이 특정 사안에 법적 성격의 명령을 내릴 수 있음
+CTX_F019,CONTEXT,INSTITUTIONAL_CONTEXT,F019 격쟁·상언 등 상향 호소,,,,ALL (제약조건),하급 판단에 불복해 상위 권력에 호소하는 경로의 존재
+CTX_F020,CONTEXT,INSTITUTIONAL_CONTEXT,F020 장계·서계·계문·회계,,,,ALL (제약조건),지방·특사·중앙 관청이 문서로 상향 보고·심리하는 구조
+M1,LATENT_MECHANISM,MECHANISM,M1_OFFICIAL_INFORMATION_ROUTE,,B_PROCEDURAL,M1,config별,구순 쪽 소장·정보가 진영·병영 비장·병사로 이어지는 공식 보고·지휘 경로를 따라 이동하는 구조
+M2,LATENT_MECHANISM,MECHANISM,M2_TESTIMONY_AMPLIFICATION,,B_PROCEDURAL,M2,config별,자미덕 등의 진술·대질·번복이 수사 범위나 판단 자료를 키우거나 바꾸는 구조
+M3,LATENT_MECHANISM,MECHANISM,M3_PRIVATE_INFLUENCE_CHANNEL,,B_PROCEDURAL,M3,config별,구순과 병영 지휘관 사이의 비공식·사적 통로(서신·접촉)를 통해 정보나 영향이 전달되는 구조
+M4,LATENT_MECHANISM,MECHANISM,M4_DISTRIBUTED_INSTITUTIONAL_ACTION,,B_PROCEDURAL,M4,config별,하나의 중앙 지휘가 아니라 비장·아전·진(鎭) 등 여러 기관·실무자의 판단이 따로 쌓이는 구조
+M5,LATENT_MECHANISM,MECHANISM,M5_REVIEW_AND_CORRECTION,,REVIEW,M5,config별,초기 판단을 암행어사·안핵어사·비변사·국왕 심리가 따로 다시 검토하고 고치는 구조
+M6,LATENT_MECHANISM,MECHANISM,M6_INITIAL_JUDGMENT_BASIS,,REVIEW,M6,config별,5월 단계의 '도난 없음 방향' 판단이 어떤 자료·추론에서 형성되었는지에 관한 구조
+MB,LATENT_MECHANISM,MECHANISM,MB_CUSTODY_BIOLOGICAL_COURSE,,A_BIOLOGICAL,MB,config별,체포 뒤 구금 중 발병·사망 경과에 관한 구조(사망 branch A: 생물학적 사인)
+V_COMPLAINT_TO_BARRACKS,LATENT_MECHANISM,STRUCTURAL_VARIABLE,V_COMPLAINT_TO_BARRACKS,,B_PROCEDURAL,,config별,V_COMPLAINT_TO_BARRACKS = M1_OFFICIAL_INFORMATION_ROUTE
+V_COMMAND_SOURCE,LATENT_MECHANISM,STRUCTURAL_VARIABLE,V_COMMAND_SOURCE,,B_PROCEDURAL,,config별,V_COMMAND_SOURCE = M1_OFFICIAL_INFORMATION_ROUTE(G02a: 병사 지시) XOR M4_DISTRIBUTED_INSTITUTIONAL_ACTION(G02b: 비장 자체 판단)
+V_INFO_TO_COMMANDER,LATENT_MECHANISM,STRUCTURAL_VARIABLE,V_INFO_TO_COMMANDER,,B_PROCEDURAL,,config별,V_INFO_TO_COMMANDER = M1 OR M2 OR M3 OR M4  (각각 G04a·G03a·G03b / G04b·G04d / G04c / G03c)
+V_ARREST_PATH,LATENT_MECHANISM,STRUCTURAL_VARIABLE,V_ARREST_PATH,,B_PROCEDURAL,,config별,V_ARREST_PATH = V_INFO_TO_COMMANDER AND INSTITUTIONALLY_COMPATIBLE(F007·F008: 병사 → 장교 명령)
+V_INVESTIGATION_SCOPE,LATENT_MECHANISM,STRUCTURAL_VARIABLE,V_INVESTIGATION_SCOPE,,B_PROCEDURAL,,config별,V_INVESTIGATION_SCOPE = M2_TESTIMONY_AMPLIFICATION OR M4_DISTRIBUTED_INSTITUTIONAL_ACTION
+V_INITIAL_JUDGMENT_BASIS,LATENT_MECHANISM,STRUCTURAL_VARIABLE,V_INITIAL_JUDGMENT_BASIS,,B_PROCEDURAL,,config별,V_INITIAL_JUDGMENT_BASIS = M6_INITIAL_JUDGMENT_BASIS OR M2_TESTIMONY_AMPLIFICATION(보조: G07b·G07c)
+V_REVIEW_CORRECTION,LATENT_MECHANISM,STRUCTURAL_VARIABLE,V_REVIEW_CORRECTION,,REVIEW,,config별,V_REVIEW_CORRECTION = M5_REVIEW_AND_CORRECTION  (관측 backbone: EP15 →REVISES→ EP25 등. world마다 달라지지 않음)
+V_RESPONSIBILITY,LATENT_MECHANISM,STRUCTURAL_VARIABLE,V_RESPONSIBILITY,,B_PROCEDURAL,,config별,"V_RESPONSIBILITY = V_REVIEW_CORRECTION AND V_ARREST_PATH  (책임 판단은 절차 branch B에만 의존, 사인과 무관)"
+V_SANCTION,LATENT_MECHANISM,STRUCTURAL_VARIABLE,V_SANCTION,,REVIEW,,config별,V_SANCTION = V_RESPONSIBILITY  (처분은 관측 사실. G10 사유는 OPEN_UNRESOLVED)
+V_CUSTODY_COURSE,LATENT_MECHANISM,STRUCTURAL_VARIABLE,V_CUSTODY_COURSE,,A_BIOLOGICAL,,config별,V_CUSTODY_COURSE = MB_CUSTODY_BIOLOGICAL_COURSE  (환경 E001–E004는 호환성 context. 개인 감염 확정 아님)
+G01a,LATENT_MECHANISM,CANDIDATE_BRIDGE,청주 진영 정소 → 진영이 병영 비장 쪽에 수사를 넘김 → 2/28 출동,,B_PROCEDURAL,M1,"W1, W2, W4, W5","[LATENT] 소장이 청주 진영에 접수되었고, 진영이 수사를 병영 비장 쪽에 넘겼으며, 그것이 2/28 이전이었다 · evidence MEDIUM · final MEDIUM"
+G01b,LATENT_MECHANISM,CANDIDATE_BRIDGE,소장이 병영에 직접 접수,,B_PROCEDURAL,M1,W3,[LATENT] 소장이 병영에 직접 접수되었고 병영이 체포령을 냈다 · evidence NONE · final LOW
+G01c,LATENT_MECHANISM,CANDIDATE_BRIDGE,청주목 수령 → 관찰사 → 병영 이첩,,B_PROCEDURAL,M1,(world 미사용),[LATENT] 소장이 청주목 수령에게 접수되어 관찰사를 거쳐 병영으로 이첩되었다 · evidence NONE · final LOW
+G02a,LATENT_MECHANISM,CANDIDATE_BRIDGE,이광섭이 출동·철퇴 제작을 지시하고 한재욱이 실무 전달 (ID07 조건),,B_PROCEDURAL,M1,"W1, W3",[LATENT] 이광섭이 2/28 출동과 철퇴(=철편) 네 개 제작을 지시했고 한재욱이 그것을 전달·집행했다 · evidence MEDIUM · final MEDIUM
+G02b,LATENT_MECHANISM,CANDIDATE_BRIDGE,"한재욱이 상위 명령 없이 출동 지시, 병영 지휘관은 사후 승인·묵인",,B_PROCEDURAL,M4,"W2, W4",[LATENT] 한재욱이 상위 명령 없이 자기 판단으로 출동을 지시했고 병영 지휘관이 사후 승인·묵인했다 · evidence LOW · final LOW
+G02c,LATENT_MECHANISM,CANDIDATE_BRIDGE,청주 영장 이문협이 직접 출동 지휘,,B_PROCEDURAL,M4,(world 미사용),[LATENT] 청주 영장 이문협이 2/28 출동을 직접 지휘했다 · evidence NONE · final LOW · 분석 제외(INCOMPATIBLE 또는 대조용)
+G03a,LATENT_MECHANISM,CANDIDATE_BRIDGE,"한재욱이 유제희를 탐문에 보내고, 2/28 이전 기록이 한재욱에게 올라감",,B_PROCEDURAL,M1,"W1, W2","[LATENT] 한재욱이 유제희를 탐문에 보냈고, 유제희 기록이 2/28 이전 한재욱에게 올라가 2/28 체포 대상 선정에 쓰였다 · evidence MEDIUM · final MEDIUM"
+G03b,LATENT_MECHANISM,CANDIDATE_BRIDGE,"탐문은 2/29~3/4 사이, 김상제(=김명신) 언급이 3/4 지시를 직접 촉발",,B_PROCEDURAL,M1,(world 미사용),[LATENT] 유제희 탐문이 2/29~3/4 사이였고 김상제 언급이 3/4 지시를 직접 촉발했다 · evidence LOW · final LOW
+G03c,LATENT_MECHANISM,CANDIDATE_BRIDGE,유제희가 병사에게 직접 보고(비장 우회),,B_PROCEDURAL,M4,W4,[LATENT] 유제희가 비장을 건너뛰고 병사에게 직접 보고했다 · evidence NONE · final LOW
+G04a,LATENT_MECHANISM,CANDIDATE_BRIDGE,공식 정보 경로: 유제희 기록 → 비장 계통 → 병사 → 3/4 지시,,B_PROCEDURAL,M1,W1,[LATENT] 유제희 기록이 비장 계통을 거쳐 3/4 이전 병사에게 보고되어 체포 지시의 근거가 되었다 · evidence MEDIUM · final MEDIUM
+G04b,LATENT_MECHANISM,CANDIDATE_BRIDGE,자미덕 대질 진술 경로: 회유 주장 진술(열린 목록) → 병사 지시,,B_PROCEDURAL,M2,W2,[LATENT] 자미덕의 대질 진술이 3/4 이전 병사에게 보고되어 김생원 체포 지시의 근거가 되었다 · evidence LOW · final LOW
+G04c,LATENT_MECHANISM,CANDIDATE_BRIDGE,사적 경로: 3/4 이전 구순→병사 사적 접촉으로 김명신을 의심 대상으로 알림,,B_PROCEDURAL,M3,W3,[LATENT] 3/4 이전 구순이 병사에게 사적으로 김명신을 의심 대상으로 알렸다 · evidence LOW · final LOW
+G04d,LATENT_MECHANISM,CANDIDATE_BRIDGE,석단 공초 경로: 다른 피의자 공초가 김명신을 도적 괴수로 지목,,B_PROCEDURAL,M2,(world 미사용),[LATENT] 석단 공초가 3/4 이전 병사에게 보고되어 김명신 체포 지시로 이어졌다 · evidence LOW · final LOW
+G04e,LATENT_MECHANISM,CANDIDATE_BRIDGE,구순이 장교에게 직접 공식 체포 명령,,B_PROCEDURAL,M3,(world 미사용),[LATENT] 구순이 장교에게 직접 공식 체포 명령을 내렸다 · evidence NONE · final INCOMPATIBLE · 분석 제외(INCOMPATIBLE 또는 대조용)
+G05a,LATENT_MECHANISM,CANDIDATE_BRIDGE,"서찰이 병사에게 전달, 체포 지지·추가 의혹 내용",,B_PROCEDURAL,M3,"W1, W3","[LATENT] 조계완이 서찰을 병사에게 전달했고, 서찰 내용은 체포 지지·의혹 제기였다 · evidence LOW · final LOW"
+G05b,LATENT_MECHANISM,CANDIDATE_BRIDGE,서찰은 전달되었으나 사건과 무관한 인사·사례,,B_PROCEDURAL,M3,(world 미사용),[LATENT] 서찰은 전달되었으나 사건과 무관한 인사·사례였다 · evidence NONE · final LOW · 분석 제외(INCOMPATIBLE 또는 대조용)
+G06a,LATENT_MECHANISM,CANDIDATE_BRIDGE,구금 중 발병 → 보수·구금 상태에서 사망 (처우는 CF041 판단을 따름),,A_BIOLOGICAL,MB,"W1, W3, W4, W5",[LATENT] 김명신의 발병이 3/4 체포 이후 구금 중에 시작되었고 5/12 보고 이전에 죽었다 · evidence MEDIUM · final MEDIUM
+G06b,LATENT_MECHANISM,CANDIDATE_BRIDGE,형장 없는 조사 압박 + 발병 → 사망,,A_BIOLOGICAL,MB,W2,[LATENT] 형장 없는 반복 조사 압박이 있었고 이어 발병해 죽었다 · evidence LOW · final LOW
+G06c,LATENT_MECHANISM,CANDIDATE_BRIDGE,형장(곤장) → 쇠약 → 사망,,A_BIOLOGICAL,MB,W6,[LATENT] 김명신이 구금 중 형장을 받아 쇠약해진 뒤 죽었다 · evidence LOW · final LOW · 분석 제외(INCOMPATIBLE 또는 대조용)
+G07a,LATENT_MECHANISM,CANDIDATE_BRIDGE,장물 미발견을 근거로 '도난 없음'을 추론,,REVIEW,M6,"W1, W3, W5",[LATENT] 5월 단계의 '도난 없음' 판단은 장물 미발견을 근거로 한 추론이었다 · evidence LOW · final LOW
+G07b,LATENT_MECHANISM,CANDIDATE_BRIDGE,회동 조사 응답자들의 '구순이 꾸몄다' 진술 채택,,B_PROCEDURAL,M2,W4,[LATENT] 이형원 회동 조사의 응답자 진술('구순이 꾸몄다')이 장계와 5/12 판단에 반영되었다 · evidence MEDIUM · final MEDIUM
+G07c,LATENT_MECHANISM,CANDIDATE_BRIDGE,구순 집 사람들의 진술 번복이 5월 자료에 들어감,,B_PROCEDURAL,M2,W2,[LATENT] 명업 등의 번복 진술이 5월 판단 자료에 들어갔다 · evidence LOW · final LOW
+G07d,LATENT_MECHANISM,CANDIDATE_BRIDGE,도난은 실제로 없었고 구순이 꾸몄다 (이조원·윤노동 주장),,REVIEW,M6,W6,[LATENT] 도난은 실제로 없었고 구순이 꾸몄다 · evidence LOW · final LOW · 분석 제외(INCOMPATIBLE 또는 대조용)
+G08a,LATENT_MECHANISM,CANDIDATE_BRIDGE,직접 안핵 부재 비판 → 독립 안핵 결정,,REVIEW,M5,"W1, W2, W3, W5",[LATENT] 5/27 이조원의 직접 안핵 부재에 대한 정조의 비판이 5/28 홍대협 차하의 동기였다 · evidence LOW · final LOW
+G08b,LATENT_MECHANISM,CANDIDATE_BRIDGE,지세 호칭 의문 해소가 주목적,,REVIEW,M5,W4,[LATENT] 홍대협 차하의 주목적은 지세 호칭의 출처를 밝히는 것이었다 · evidence LOW · final LOW
+G09a,LATENT_MECHANISM,CANDIDATE_BRIDGE,한가(=한재욱) 처분 근거 = 자미덕이 진술한 회유·대질 지휘와 출동 운영,,REVIEW,M5,"W1, W2",[LATENT] 한가(=한재욱) 처분의 근거는 자미덕이 진술한 회유·대질 지휘와 출동 운영이었다 · evidence LOW · final LOW
+G09b,LATENT_MECHANISM,CANDIDATE_BRIDGE,"한가 = 한재욱, '한 비장'은 다른 사람 (ID02 확정과 충돌)",,REVIEW,M5,(world 미사용),[LATENT] 자미덕 진술의 '한 비장'은 한재욱과 다른 사람이고 한가 처분 근거는 출동 운영뿐이다 · evidence NONE · final INCOMPATIBLE · 분석 제외(INCOMPATIBLE 또는 대조용)
+G09c,LATENT_MECHANISM,CANDIDATE_BRIDGE,한가는 한재욱이 아닌 다른 '한' 성 비장 (ID03 확정과 충돌),,REVIEW,M5,(world 미사용),[LATENT] 한가는 한재욱이 아닌 다른 '한' 성 비장이다 · evidence NONE · final INCOMPATIBLE · 분석 제외(INCOMPATIBLE 또는 대조용)
+G10a,LATENT_MECHANISM,CANDIDATE_BRIDGE,파직 사유 = 장계와 안핵 결과의 차이,,REVIEW,M5,(world 미사용),[LATENT] 이형원 파직 사유는 5/12 장계가 6/13 안핵 결과와 도난 여부에서 크게 달랐던 데 있다 · evidence MEDIUM · final MEDIUM
+G10b,LATENT_MECHANISM,CANDIDATE_BRIDGE,유임 사유 = 구휼·전염병 행정 연속성,,REVIEW,M5,(world 미사용),[LATENT] 유임 사유는 구휼·전염병 행정의 연속성이었다 · evidence NONE · final LOW
+G10c,LATENT_MECHANISM,CANDIDATE_BRIDGE,파직 → 유임은 처분의 형식적 경감,,REVIEW,M5,(world 미사용),[LATENT] 파직 → 유임은 처분의 형식적 경감이었다 · evidence NONE · final LOW
+G11a,LATENT_MECHANISM,CANDIDATE_BRIDGE,공주진이 같은 도난 사건으로 먼저 체포,,B_PROCEDURAL,M4,"W1, W4",[LATENT] 공주진이 같은 도난 사건 혐의로 변지돌을 2/29 이전에 먼저 체포했다 · evidence LOW · final LOW
+G11b,LATENT_MECHANISM,CANDIDATE_BRIDGE,병영이 2/28 이전 공주진에 체포 의뢰,,B_PROCEDURAL,M1,(world 미사용),[LATENT] 병영이 2/28 이전 공주진에 변지돌 체포를 의뢰했다 · evidence NONE · final LOW
+G11c,LATENT_MECHANISM,CANDIDATE_BRIDGE,변지돌은 별건으로 공주진에 구금 중,,B_PROCEDURAL,M4,(world 미사용),[LATENT] 변지돌은 별건으로 공주진에 구금되어 있었다 · evidence NONE · final LOW · 분석 제외(INCOMPATIBLE 또는 대조용)
+G12a,LATENT_MECHANISM,CANDIDATE_BRIDGE,아내도 전염병으로 사망(시점 미상),,A_BIOLOGICAL,MB,"W1, W2, W3",[LATENT] 김명신의 아내도 전염병으로 죽었다(사건 수준) · evidence LOW · final LOW
+G12b,LATENT_MECHANISM,CANDIDATE_BRIDGE,아내는 남편 사망 뒤 비통 속에 '따라 죽음'(전염병 아님),,A_BIOLOGICAL,MB,W6,[LATENT] 아내는 전염병이 아니라 비통 속에 따라 죽었다 · evidence LOW · final LOW · 분석 제외(INCOMPATIBLE 또는 대조용)
+G13a,LATENT_MECHANISM,CANDIDATE_BRIDGE,"의금부 구금·신문 실행, 지세 문제는 6/13까지 결론 없음",,REVIEW,M5,"W1, W4","[LATENT] 의금부 구금·신문이 실제로 실행되었고, 지세 문제는 6/13까지 결론이 나지 않았다 · evidence LOW · final LOW"
+G13b,LATENT_MECHANISM,CANDIDATE_BRIDGE,의금부 신문은 6/13 이전에 실질적으로 진행되지 않음,,REVIEW,M5,(world 미사용),[LATENT] 의금부 신문은 6/13 이전에 실질적으로 진행되지 않았다 · evidence NONE · final LOW · 분석 제외(INCOMPATIBLE 또는 대조용)
+U_ID06,UNRESOLVED,UNRESOLVED_ITEM,ID06 병영의 염탐 담당자 = 유제희?,,,,ALL (확정하지 않음),OE071(condition ID06)
+U_ID07,UNRESOLVED,UNRESOLVED_ITEM,ID07 철편 네 개 = 철퇴 네 개?,,,,ALL (확정하지 않음),OE080(condition ID07)
+U_ID08,UNRESOLVED,UNRESOLVED_ITEM,ID08 3/4 장교 일행에 조계완 포함?,,,,ALL (확정하지 않음),OE010(condition ID08)
+U_OE007,UNRESOLVED,UNRESOLVED_ITEM,OE007 자미덕 '지휘' 주장 ↔ 한재욱 '은밀한 사주' 부인 (PARTIAL_CONFLICT),,,,ALL (확정하지 않음),OE007
+U_OE062,UNRESOLVED,UNRESOLVED_ITEM,OE062 5월 '조사' = 정조 '평범한 신문'? (UNRESOLVED_SCOPE),,,,ALL (확정하지 않음),OE062
+U_G10,UNRESOLVED,UNRESOLVED_ITEM,G10 이형원 파직 → 유임 이유 (OPEN_UNRESOLVED),,,,ALL (확정하지 않음),EP36→EP37

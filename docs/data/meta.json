@@ -1,0 +1,261 @@
+{
+ "config_display": {
+  "OFF": {
+   "css": "cfg-off",
+   "label": "OFF",
+   "note": "그 메커니즘을 부정하는 후보만 있음"
+  },
+  "ON": {
+   "css": "cfg-on",
+   "label": "ON",
+   "note": "그 메커니즘의 핵심 gap을 core 후보로 채움"
+  },
+  "PARTIAL": {
+   "css": "cfg-partial",
+   "label": "PARTIAL",
+   "note": "보조 후보만 쓰거나 같은 world에 부정 후보가 함께 있음"
+  },
+  "UNSPECIFIED": {
+   "css": "cfg-unspecified",
+   "label": "UNSPECIFIED",
+   "note": "관련 후보가 없어 작동 여부를 말하지 않음. OFF가 아니다(UNSPECIFIED ≠ OFF)"
+  }
+ },
+ "counts": {
+  "candidates": 38,
+  "edge_status": {
+   "CONTEXT": 38,
+   "DERIVED": 64,
+   "LATENT_MECHANISM": 90,
+   "OBSERVED": 4,
+   "UNRESOLVED": 9
+  },
+  "edge_type": {
+   "ANCHORED_TO": 1,
+   "CONDITIONS": 9,
+   "CONSTRAINS": 34,
+   "CONTEXT_COMPATIBLE": 4,
+   "CONTEXT_SUPPORTS": 9,
+   "CONTRADICTS_AT_CLAIM_LEVEL": 5,
+   "CONTRIBUTES_TO": 24,
+   "EXPLAINS_OBSERVED": 5,
+   "EXPLAINS_TRANSITION_TO": 14,
+   "INFORMATION_FLOW": 12,
+   "INSTANTIATED_BY": 38,
+   "INSTANTIATED_BY_SECONDARY": 2,
+   "ORDER_TO_ACTION": 3,
+   "PROCEDURAL_NEXT": 14,
+   "RESPONSIBILITY_LINK": 7,
+   "REVIEW_OF": 9,
+   "REVISES": 2,
+   "RULE_INPUT": 6,
+   "TEMPORAL_BEFORE": 7
+  },
+  "edges": 205,
+  "interaction_pairs": 21,
+  "interventions": 13,
+  "node_status": {
+   "CONTEXT": 24,
+   "LATENT_MECHANISM": 55,
+   "OBSERVED": 37,
+   "UNRESOLVED": 6
+  },
+  "node_type": {
+   "CANDIDATE_BRIDGE": 38,
+   "ENV_CONTEXT": 4,
+   "INSTITUTIONAL_CONTEXT": 20,
+   "MECHANISM": 7,
+   "OBSERVED_EVENT": 37,
+   "STRUCTURAL_VARIABLE": 10,
+   "UNRESOLVED_ITEM": 6
+  },
+  "nodes": 122,
+  "worlds": 6
+ },
+ "description": "확정된 사건은 고정하고, 사료가 알려주지 않는 중간 과정은 LATENT 메커니즘으로 비교한다.",
+ "edge_styles": {
+  "ANCHORED_TO": {
+   "arrow": "square",
+   "color": "#4a3aa7",
+   "group": "Super-DAG 분석",
+   "ko": "M5가 관측 backbone에 고정",
+   "line": "dotted"
+  },
+  "CONDITIONS": {
+   "arrow": "diamond",
+   "color": "#d55181",
+   "group": "Super-DAG 분석",
+   "ko": "미해결 항목이 후보의 성립 조건",
+   "line": "dashed"
+  },
+  "CONSTRAINS": {
+   "arrow": "square",
+   "color": "#008300",
+   "group": "Super-DAG 분석",
+   "ko": "제도 context가 메커니즘을 제약",
+   "line": "dotted"
+  },
+  "CONTEXT_COMPATIBLE": {
+   "arrow": "circle-triangle",
+   "color": "#008300",
+   "group": "Super-DAG 분석",
+   "ko": "환경 호환성(개인 감염 아님)",
+   "line": "dotted"
+  },
+  "CONTEXT_SUPPORTS": {
+   "arrow": "circle",
+   "color": "#008300",
+   "group": "관측 (frozen)",
+   "ko": "context가 판단을 뒷받침",
+   "line": "dotted"
+  },
+  "CONTRADICTS_AT_CLAIM_LEVEL": {
+   "arrow": "tee",
+   "color": "#e34948",
+   "group": "관측 (frozen)",
+   "ko": "주장 수준 상충",
+   "line": "dashed"
+  },
+  "CONTRIBUTES_TO": {
+   "arrow": "triangle",
+   "color": "#eb6834",
+   "group": "Super-DAG 분석",
+   "ko": "후보 → 구조 변수(규칙 입력)",
+   "line": "solid"
+  },
+  "EXPLAINS_OBSERVED": {
+   "arrow": "triangle",
+   "color": "#eb6834",
+   "group": "Super-DAG 분석",
+   "ko": "관측 재검토 사건을 설명(사건은 그대로)",
+   "line": "dotted"
+  },
+  "EXPLAINS_TRANSITION_TO": {
+   "arrow": "triangle",
+   "color": "#eb6834",
+   "group": "Super-DAG 분석",
+   "ko": "구조 변수가 관측 전이를 설명",
+   "line": "dashed"
+  },
+  "INFORMATION_FLOW": {
+   "arrow": "triangle",
+   "color": "#1baf7a",
+   "group": "관측 (frozen)",
+   "ko": "정보 흐름(기록 근거)",
+   "line": "dashed"
+  },
+  "INSTANTIATED_BY": {
+   "arrow": "triangle",
+   "color": "#4a3aa7",
+   "group": "Super-DAG 분석",
+   "ko": "메커니즘 → 후보(core/보조)",
+   "line": "solid"
+  },
+  "INSTANTIATED_BY_SECONDARY": {
+   "arrow": "triangle",
+   "color": "#4a3aa7",
+   "group": "Super-DAG 분석",
+   "ko": "메커니즘 → 후보(보조 메커니즘)",
+   "line": "dashed"
+  },
+  "ORDER_TO_ACTION": {
+   "arrow": "triangle-tee",
+   "color": "#0b0b0b",
+   "group": "관측 (frozen)",
+   "ko": "명령 → 실행",
+   "line": "solid"
+  },
+  "PROCEDURAL_NEXT": {
+   "arrow": "triangle",
+   "color": "#256abf",
+   "group": "관측 (frozen)",
+   "ko": "절차상 다음 단계",
+   "line": "solid"
+  },
+  "RESPONSIBILITY_LINK": {
+   "arrow": "diamond",
+   "color": "#c98500",
+   "group": "관측 (frozen)",
+   "ko": "책임 귀속(판단 node로만)",
+   "line": "dashed"
+  },
+  "REVIEW_OF": {
+   "arrow": "vee",
+   "color": "#4a3aa7",
+   "group": "관측 (frozen)",
+   "ko": "검토·심리",
+   "line": "solid"
+  },
+  "REVISES": {
+   "arrow": "triangle-backcurve",
+   "color": "#e34948",
+   "group": "관측 (frozen)",
+   "ko": "판단 수정",
+   "line": "solid"
+  },
+  "RULE_INPUT": {
+   "arrow": "vee",
+   "color": "#4a3aa7",
+   "group": "Super-DAG 분석",
+   "ko": "구조 변수 → 구조 변수",
+   "line": "dashed"
+  },
+  "TEMPORAL_BEFORE": {
+   "arrow": "triangle",
+   "color": "#898781",
+   "group": "관측 (frozen)",
+   "ko": "시간 선후",
+   "line": "solid"
+  }
+ },
+ "frozen_hash": "ccb7ec63763a715ae90c74dfff37d3ed7980fa705fd152f59de8bed2e31d4e0c",
+ "frozen_hash_prefix": "ccb7ec63763a715a",
+ "generated_by": "scripts/gusun_clean/build_visualization.py",
+ "generated_from": {
+  "gusun_clean_restart_csv_pack/01_confirmed_facts.csv": "868bb0b5ec3ca371b9767c362e2f7bfd15ff62d9a0f7c393587845584d218a5f",
+  "gusun_clean_restart_csv_pack/02_institutional_normative_features.csv": "d205145d5654c2d7dc6be9f3f3dbabf47b73757e505f970a7f2a942e991dadb7",
+  "gusun_clean_restart_csv_pack/03_environment_1793.csv": "b989ada695297a311f6d8815d31688afe0b035f6c5ae7a612247e9937e4ec5d4",
+  "gusun_clean_restart_csv_pack/04_source_records.csv": "f75a000299e1c7ea7fcea0a0b570a865b31e45a8a2e24820f19e69747e01089a",
+  "output/clean/episode_nodes.csv": "ac81effa3ab94f0fea849e3387f0b42df4fb86e43ba7c916120f711fabcadde3",
+  "output/clean/gaps.csv": "746ece84c2ac80b0a0767cd1ce3eea0a68e6be19a8c774c25632ff5cf3ba19ca",
+  "output/clean/latent_candidates.csv": "169ca9dc7c63dbb7a833e91ee0149c8f9d678f3f0a27bc79c383b6923e1427ff",
+  "output/clean/mechanism_definitions.csv": "5f67be713b4aaca7122de9de4fd735d97b97dd20b78e8dc513f2bb6bd4238d51",
+  "output/clean/mechanism_interaction_matrix.csv": "3d172c98c7693dd88fdbc2e078cdcdd5abea9b638c6d3b52d28ffc5c890c429d",
+  "output/clean/mechanism_interventions.csv": "be3fdc1ae907a81db97ff7068f22bcc59549701bf169f768b4c72dce821428e3",
+  "output/clean/mechanism_super_dag_edges.csv": "ccd5e144cc42f06d74af2269622036b89c8ad8082b8a0492aa187367607c98b0",
+  "output/clean/mechanism_super_dag_nodes.csv": "c219f115b1aa0c44c1a86070460739d4393802be1c7bc7e11b5729b0210fbfba",
+  "output/clean/narrative_worlds.csv": "7b1e50fe6e284aeff1290a84f373b3618550fb80380d09ae1eaa616060afcdbc",
+  "output/clean/observed_dag_freeze.json": "06aaed4147675a65689811285fd1518b4a0231ed52d45f2a78edc9a1a7b4a9a8",
+  "output/clean/observed_edges.csv": "6007babfa2e1638ebf61196dc9a55c51fe497fc1ad737af487aff3995dc881dc",
+  "output/clean/qualitative_structural_rules.csv": "ca7d7ec15e0283a268fe7360ed1c14867cdb0237ba11435d447e37d1b6f6e05d",
+  "output/clean/world_mechanism_configurations.csv": "2f66ef0e2cff1065fbb7db76c0d3161bc1c6cb9936ef68894943b1c14b04fb0d"
+ },
+ "layout_rule": "x: 날짜가 있는 관측 node는 정렬 기준일(t_max, 없으면 t_min) 순서의 column에 놓는다. 같은 날짜 안에서는 frozen edge 깊이 순서. y: 관측 node는 branch lane, 날짜 없는 node는 분석 lane. 날짜 없는 node의 x는 연결된 node 근처일 뿐 날짜를 뜻하지 않는다.",
+ "mechanism_display": {
+  "M1": "공식 정보 경로",
+  "M2": "진술 증폭",
+  "M3": "사적 통로",
+  "M4": "분산 실무",
+  "M5": "재검토·교정",
+  "M6": "5월 초기 판단 근거",
+  "MB": "구금·생물학적 경과"
+ },
+ "mechanism_names": {
+  "M1": "M1_OFFICIAL_INFORMATION_ROUTE",
+  "M2": "M2_TESTIMONY_AMPLIFICATION",
+  "M3": "M3_PRIVATE_INFLUENCE_CHANNEL",
+  "M4": "M4_DISTRIBUTED_INSTITUTIONAL_ACTION",
+  "M5": "M5_REVIEW_AND_CORRECTION",
+  "M6": "M6_INITIAL_JUDGMENT_BASIS",
+  "MB": "MB_CUSTODY_BIOLOGICAL_COURSE"
+ },
+ "role_note": "Mermaid(output/clean/mechanism_super_dag.mmd)는 정적 문서 요약이고, 이 화면은 탐색용이다. 두 산출물은 같은 canonical CSV에서 나온다.",
+ "status_groups": {
+  "CONTEXT": "CONTEXT",
+  "DERIVED": "DERIVED",
+  "LATENT_MECHANISM": "LATENT",
+  "OBSERVED": "OBSERVED",
+  "UNRESOLVED": "UNRESOLVED"
+ },
+ "title": "구순–김명신 사건 Mechanism Super-DAG"
+}
