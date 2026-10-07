@@ -1,7 +1,7 @@
 """구순–김명신 사건 clean 재구성 파이프라인.
 
 STAGE 1 → AUDIT 1 → STAGE 2 → AUDIT 2 → STAGE 3(동결) → STAGE 4 → AUDIT 3 → STAGE 5 → AUDIT 3(world 포함)
-→ STAGE 6(mechanism Super-DAG, 질적 SCM) → AUDIT 4
+→ STAGE 6(mechanism Super-DAG, 질적 SCM) → AUDIT 4 → STAGE 7(interactive temporal DAG 데이터, docs/data) → AUDIT 5
 각 audit에 ERROR가 하나라도 있으면 다음 stage로 넘어가지 않고 종료한다(exit 1).
 
 실행: python3 scripts/gusun_clean/build.py   (저장소 루트에서)
@@ -28,6 +28,7 @@ ROOT = HERE.parents[1]
 PACK = ROOT / "gusun_clean_restart_csv_pack"
 OUT = ROOT / "output" / "clean"
 DB = ROOT / "database" / "gusun_clean.duckdb"
+DOCS = ROOT / "docs"
 
 
 def read_csv(name):
@@ -278,8 +279,17 @@ def main():
     report_mech.write_audit4(OUT / "audit_4_mechanism_super_dag.md", a4, sd, reg)
     gate("AUDIT 4 (mechanism super-DAG)", a4)
     write_csv(OUT / "identity_register.csv", identity_relevance(edges, cands, worlds), IDENTITY_COLS)
+
+    # STAGE 7 — Interactive Temporal DAG 데이터(docs/data) + AUDIT 5
+    import build_visualization
+    canon, ui = build_visualization.build(DOCS, OUT, PACK, a4)
+    a5 = audits.audit5(ui, canon, frozen, (DOCS / "js" / "app.js").read_text(encoding="utf-8"))
+    apply_dispositions("AUDIT5", a5)
+    report_mech.write_audit5(OUT / "audit_5_interactive_visualization.md", a5, ui, reg)
+    gate("AUDIT 5 (interactive visualization)", a5)
+    print(f"[STAGE 7] docs/data 작성 node={ui['meta']['counts']['nodes']} edges={ui['meta']['counts']['edges']}")
     report.write_validation_summary(OUT / "validation_summary.md",
-                                    {"Audit 1": a1, "Audit 2": a2, "Audit 3": a3w, "Audit 4": a4}, freeze, worlds, cands)
+                                    {"Audit 1": a1, "Audit 2": a2, "Audit 3": a3w, "Audit 4": a4, "Audit 5": a5}, freeze, worlds, cands)
     write_csv(OUT / "warn_dispositions.csv", WARN_DISPOSITIONS, report.DISPOSITION_COLS)
 
     # canonical DB
@@ -302,7 +312,9 @@ def main():
                     ("mechanism_super_dag_edges", "mechanism_super_dag_edges.csv"),
                     ("mechanism_definitions", "mechanism_definitions.csv"),
                     ("world_mechanism_configurations", "world_mechanism_configurations.csv"),
-                    ("mechanism_interaction_matrix", "mechanism_interaction_matrix.csv")]:
+                    ("mechanism_interaction_matrix", "mechanism_interaction_matrix.csv"),
+                    ("mechanism_interventions", "mechanism_interventions.csv"),
+                    ("qualitative_structural_rules", "qualitative_structural_rules.csv")]:
         con.execute(f"CREATE TABLE {name} AS SELECT * FROM read_csv_auto(?, header=true, all_varchar=true)",
                     [str(OUT / f)])
     con.execute("CREATE TABLE episode_members (episode_id VARCHAR, fact_id VARCHAR, clause VARCHAR)")
@@ -314,7 +326,7 @@ def main():
     con.execute("CREATE TABLE audit_findings (audit VARCHAR, check_name VARCHAR, severity VARCHAR, target VARCHAR, message VARCHAR)")
     con.executemany("INSERT INTO audit_findings VALUES (?,?,?,?,?)",
                     [(a, f["check"], f["severity"], f["target"], f["message"])
-                     for a, fs in [("AUDIT1", a1), ("AUDIT2", a2), ("AUDIT3", a3w), ("AUDIT4", a4)] for f in fs])
+                     for a, fs in [("AUDIT1", a1), ("AUDIT2", a2), ("AUDIT3", a3w), ("AUDIT4", a4), ("AUDIT5", a5)] for f in fs])
     con.close()
     print(f"[DB] {DB.relative_to(ROOT)} 작성 완료")
 

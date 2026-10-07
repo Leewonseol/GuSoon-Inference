@@ -126,6 +126,35 @@ A4_CASES = [
 ]
 CASES = CASES + A4_CASES
 
+# Audit 5: interactive visualization 데이터(docs/data). 화면 데이터 사본 하나만 바꿔 넣는다.
+A5_CASES = [
+    ("ui_node_not_canonical", "화면 데이터에 canonical에 없는 관측 사건 node(EP_NEW)를 추가",
+     lambda: _ui_case(_ui_new_node, "ui_node_not_canonical")),
+    ("ui_edge_not_canonical", "화면 데이터에 canonical에 없는 edge(CTX_F007 → EP09)를 추가",
+     lambda: _ui_case(_ui_new_edge, "ui_edge_not_canonical")),
+    ("status_changed", "LATENT 후보 G04a를 화면에서 OBSERVED로 표시",
+     lambda: _ui_case(_ui_status, "status_changed")),
+    ("w6_not_rejected", "W6을 화면에서 경쟁 설명(COMPETING_EXPLANATION)으로 표시하고 REJECTED 배너를 뺌",
+     lambda: _ui_case(_ui_w6, "w6_not_rejected")),
+    ("outcome_dropped", "W3 선택 시 공통 결말 EP33(구순 신지도 정배)을 숨김 대상으로 둠",
+     lambda: _ui_case(_ui_outcome, "outcome_dropped")),
+    ("unspecified_as_off", "W5의 M3(UNSPECIFIED)를 화면에서 OFF로 표시",
+     lambda: _ui_case(_ui_unspec, "unspecified_as_off")),
+    ("context_as_event", "환경 context ENV03을 4/10 날짜 구간에 사건처럼 배치",
+     lambda: _ui_case(_ui_context_event, "context_as_event")),
+    ("environment_to_individual", "환경 ENV03 → 김명신 구금 경과 후보 G06a edge를 화면에 추가",
+     lambda: _ui_case(_ui_env_personal, "environment_to_individual")),
+    ("responsibility_to_biological", "책임 V_RESPONSIBILITY → 사인 판단 EP27 직접 edge를 화면에 추가",
+     lambda: _ui_case(_ui_resp_bio, "responsibility_to_biological")),
+    ("temporal_order", "3/4 체포 지시(EP09)와 6/13 최종 도난 판단(EP25)의 x 위치를 맞바꿈",
+     lambda: _ui_case(_ui_temporal, "temporal_order")),
+    ("candidate_grade_changed", "화면에서 후보 G01a의 final grade를 MEDIUM → HIGH로 표시",
+     lambda: _ui_case(_ui_grade, "candidate_grade_changed")),
+    ("intervention_changed", "화면에서 do(M1=OFF)·V_COMPLAINT_TO_BARRACKS 결과를 PATH_BREAKS → PATH_REMAINS로 표시",
+     lambda: _ui_case(_ui_iv, "intervention_changed")),
+]
+CASES = CASES + A5_CASES
+
 
 def _occ_case():
     eps = copy.deepcopy(EPISODES)
@@ -325,11 +354,107 @@ def _mut_outcome(sd, worlds):
     n["worlds"] = "W1"
 
 
+_UI_INPUTS = {}
+
+
+def _ui_inputs():
+    """화면 데이터를 canonical 산출물(output/clean, 원본 pack)에서 메모리로 만든다(docs/data 파일은 건드리지 않음)."""
+    if not _UI_INPUTS:
+        import build_visualization as bv
+        canon = bv.load_canonical()
+        _UI_INPUTS.update(canon=canon, ui=bv.make_ui(canon, []))
+    return _UI_INPUTS
+
+
+def _ui_case(mutate, expect):
+    x = _ui_inputs()
+    frozen = x["canon"]["freeze"]["sha256"]
+    clean = audits.audit5(x["ui"], x["canon"], frozen)
+    if any(f["severity"] == "ERROR" for f in clean):
+        return False, ["clean baseline already has ERROR"]
+    ui = copy.deepcopy(x["ui"])
+    mutate(ui)
+    hit = {f["check"] for f in audits.audit5(ui, x["canon"], frozen) if f["severity"] == "ERROR"}
+    return expect in hit, sorted(hit)
+
+
+def _ui_node(ui, nid):
+    return next(n for n in ui["super_dag"]["nodes"] if n["id"] == nid)
+
+
+def _ui_add_edge(ui, src, dst, etype, status, group):
+    ui["super_dag"]["edges"].append(dict(id="SD_REG", status_group=group, canonical=dict(
+        edge_id="SD_REG", src=src, dst=dst, edge_type=etype, sd_status=status, origin="SUPER_DAG", note="")))
+
+
+def _ui_new_node(ui):
+    n = copy.deepcopy(_ui_node(ui, "EP09"))
+    n["id"] = n["canonical"]["node_id"] = "EP_NEW"
+    n["canonical"]["label"] = "4월 암행어사 공주 재조사"
+    ui["super_dag"]["nodes"].append(n)
+
+
+def _ui_new_edge(ui):
+    _ui_add_edge(ui, "CTX_F007", "EP09", "CONSTRAINS", "CONTEXT", "CONTEXT")
+
+
+def _ui_status(ui):
+    n = _ui_node(ui, "G04a")
+    n["canonical"]["sd_status"], n["status_group"] = "OBSERVED", "OBSERVED"
+
+
+def _ui_w6(ui):
+    w = ui["worlds"]
+    w["configurations"]["W6"]["role_type"] = "COMPETING_EXPLANATION"
+    w["selections"]["W6"].update(rejected=False, banner="")
+    w["rejected"] = []
+
+
+def _ui_outcome(ui):
+    s = ui["worlds"]["selections"]["W3"]
+    s["always_visible"] = [x for x in s["always_visible"] if x != "EP33"]
+    s["hideable"] = s["hideable"] + ["EP33"]
+
+
+def _ui_unspec(ui):
+    ui["worlds"]["configurations"]["W5"]["M3"] = "OFF"
+    ui["worlds"]["selections"]["W5"]["mechanism_state"]["M3"] = "OFF"
+
+
+def _ui_context_event(ui):
+    n = _ui_node(ui, "ENV03")
+    n["layout"].update(dated=True, date_key=410, band="MAY")
+
+
+def _ui_env_personal(ui):
+    _ui_add_edge(ui, "ENV03", "G06a", "CONTEXT_COMPATIBLE", "CONTEXT", "CONTEXT")
+
+
+def _ui_resp_bio(ui):
+    _ui_add_edge(ui, "V_RESPONSIBILITY", "EP27", "EXPLAINS_TRANSITION_TO", "LATENT_MECHANISM", "LATENT")
+
+
+def _ui_temporal(ui):
+    a, b = _ui_node(ui, "EP09"), _ui_node(ui, "EP25")
+    a["layout"]["x"], b["layout"]["x"] = b["layout"]["x"], a["layout"]["x"]
+
+
+def _ui_grade(ui):
+    ui["candidates"]["rows"]["G01a"]["overall"] = "HIGH"
+
+
+def _ui_iv(ui):
+    r = next(r for r in ui["interventions"]["rows"]
+             if r["canonical"]["mechanism"] == "M1" and r["canonical"]["variable"] == "V_COMPLAINT_TO_BARRACKS")
+    r["canonical"]["result"] = "PATH_REMAINS"
+
+
 def run():
     results = []
     for rule, desc, fn in CASES:
         ok, detail = fn()
-        audit = "AUDIT4" if any(desc == c[1] for c in A4_CASES) else "AUDIT1-3"
+        audit = ("AUDIT4" if any(desc == c[1] for c in A4_CASES) else
+                 "AUDIT5" if any(desc == c[1] for c in A5_CASES) else "AUDIT1-3")
         results.append(dict(rule=rule, case=desc, caught=ok, detail=detail, audit=audit))
     return results
 

@@ -1,0 +1,558 @@
+{
+ "excluded_worlds": [
+  "W6"
+ ],
+ "note": "공존 판정은 mechanism_interaction_matrix.csv 값을 그대로 보여 준다. 새 판정을 만들지 않는다. W6(REJECTED)은 canonical 분석에서처럼 제외된다.",
+ "pairs": [
+  {
+   "a": "M1",
+   "audit4": [
+    {
+     "check": "interaction_direction",
+     "message": "함께 쓰이는 world(W2)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음",
+     "severity": "UNRESOLVED"
+    }
+   ],
+   "b": "M2",
+   "canonical": {
+    "coexistence": "PARTIALLY_COMPATIBLE",
+    "cooccur_worlds": "W2",
+    "mechanism A": "M1",
+    "mechanism B": "M2",
+    "mechanism_a": "M1_OFFICIAL_INFORMATION_ROUTE",
+    "mechanism_b": "M2_TESTIMONY_AMPLIFICATION",
+    "relation": "SUBSTITUTE|COMPLEMENT",
+    "같이 있을 때 설명되는 것": "공식 보고 경로로 들어온 정보에 대질 진술이 더해져 3/4 지시의 근거가 되는 경우(어느 world도 두 입력을 함께 쓰지 않음)",
+    "이유": "일부 후보 쌍이 충돌하지만(G03b×G04b), 다른 후보로는 W2에서 함께 쓰인다. 같은 전이(G04)를 서로 다른 방식으로 설명하는 후보가 있다.",
+    "충돌하는 candidate/edge": "G03b×G04b"
+   },
+   "key": "M1×M2"
+  },
+  {
+   "a": "M1",
+   "audit4": [
+    {
+     "check": "interaction_direction",
+     "message": "함께 쓰이는 world(W1, W3)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음",
+     "severity": "UNRESOLVED"
+    }
+   ],
+   "b": "M3",
+   "canonical": {
+    "coexistence": "COMPATIBLE",
+    "cooccur_worlds": "W1, W3",
+    "mechanism A": "M1",
+    "mechanism B": "M3",
+    "mechanism_a": "M1_OFFICIAL_INFORMATION_ROUTE",
+    "mechanism_b": "M3_PRIVATE_INFLUENCE_CHANNEL",
+    "relation": "SUBSTITUTE|COMPLEMENT",
+    "같이 있을 때 설명되는 것": "공식 지휘·이관(G01·G02) 위에 사적 통로가 겹쳐 병사의 판단에 영향을 주는 경우(W3)",
+    "이유": "충돌하는 후보·edge가 없고, W1, W3에서 함께 쓰인다. 같은 전이(G04)를 서로 다른 방식으로 설명하는 후보가 있다.",
+    "충돌하는 candidate/edge": ""
+   },
+   "key": "M1×M3"
+  },
+  {
+   "a": "M1",
+   "audit4": [
+    {
+     "check": "interaction_direction",
+     "message": "함께 쓰이는 world(W1, W2, W4)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음",
+     "severity": "UNRESOLVED"
+    }
+   ],
+   "b": "M4",
+   "canonical": {
+    "coexistence": "PARTIALLY_COMPATIBLE",
+    "cooccur_worlds": "W1, W2, W4",
+    "mechanism A": "M1",
+    "mechanism B": "M4",
+    "mechanism_a": "M1_OFFICIAL_INFORMATION_ROUTE",
+    "mechanism_b": "M4_DISTRIBUTED_INSTITUTIONAL_ACTION",
+    "relation": "EXCLUSIVE_ALTERNATIVE|COMPLEMENT",
+    "같이 있을 때 설명되는 것": "소장 이관은 공식 경로로, 출동 지시는 비장의 자체 판단으로 이루어지는 경우(W2·W4). 병사 지시(G02a)와 비장 자체 판단(G02b)은 함께 쓸 수 없다",
+    "이유": "일부 후보 쌍이 충돌하지만(G03c×G04a; G02b(→M1 부정)), 다른 후보로는 W1, W2, W4에서 함께 쓰인다. 같은 전이(G02, G03, G11)를 서로 다른 방식으로 설명하는 후보가 있다.",
+    "충돌하는 candidate/edge": "G03c×G04a; G02b(→M1 부정)"
+   },
+   "key": "M1×M4"
+  },
+  {
+   "a": "M1",
+   "audit4": [],
+   "b": "M5",
+   "canonical": {
+    "coexistence": "COMPATIBLE",
+    "cooccur_worlds": "W1, W2, W3, W4, W5",
+    "mechanism A": "M1",
+    "mechanism B": "M5",
+    "mechanism_a": "M1_OFFICIAL_INFORMATION_ROUTE",
+    "mechanism_b": "M5_REVIEW_AND_CORRECTION",
+    "relation": "INDEPENDENT",
+    "같이 있을 때 설명되는 것": "초기 판단의 형성과 그 독립 재검토·수정이 한 흐름으로 설명된다",
+    "이유": "M5는 관측 재검토 backbone에 고정되어 있어 다른 메커니즘과 함께 존재한다. 다른 메커니즘은 재검토 이전의 경로를 설명한다.",
+    "충돌하는 candidate/edge": ""
+   },
+   "key": "M1×M5"
+  },
+  {
+   "a": "M1",
+   "audit4": [
+    {
+     "check": "interaction_direction",
+     "message": "함께 쓰이는 world(W1, W3, W5)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음",
+     "severity": "UNRESOLVED"
+    }
+   ],
+   "b": "M6",
+   "canonical": {
+    "coexistence": "COMPATIBLE",
+    "cooccur_worlds": "W1, W3, W5",
+    "mechanism A": "M1",
+    "mechanism B": "M6",
+    "mechanism_a": "M1_OFFICIAL_INFORMATION_ROUTE",
+    "mechanism_b": "M6_INITIAL_JUDGMENT_BASIS",
+    "relation": "COMPLEMENT",
+    "같이 있을 때 설명되는 것": "공식 경로로 진행된 수사의 결과(장물 부재)가 5월 판단의 근거가 되는 경우(W1·W3·W5)",
+    "이유": "충돌하는 후보·edge가 없고, W1, W3, W5에서 함께 쓰인다.",
+    "충돌하는 candidate/edge": ""
+   },
+   "key": "M1×M6"
+  },
+  {
+   "a": "M1",
+   "audit4": [],
+   "b": "MB",
+   "canonical": {
+    "coexistence": "COMPATIBLE",
+    "cooccur_worlds": "W1, W2, W3, W4, W5",
+    "mechanism A": "M1",
+    "mechanism B": "MB",
+    "mechanism_a": "M1_OFFICIAL_INFORMATION_ROUTE",
+    "mechanism_b": "MB_CUSTODY_BIOLOGICAL_COURSE",
+    "relation": "INDEPENDENT",
+    "같이 있을 때 설명되는 것": "책임 경로와 사인 경로가 따로 설명된다(서로를 설명하지 않음)",
+    "이유": "MB는 사망 branch A(생물학적 경과)다. 절차·책임 메커니즘과 연결되지 않으므로 함께 있어도 충돌하지 않는다.",
+    "충돌하는 candidate/edge": ""
+   },
+   "key": "M1×MB"
+  },
+  {
+   "a": "M2",
+   "audit4": [
+    {
+     "check": "coexistence_undetermined",
+     "message": "COMPATIBLE — 충돌 근거는 없지만 어느 경쟁 world도 둘을 함께 쓰지 않아, 함께 작동했는지는 사료로 결정되지 않음",
+     "severity": "UNRESOLVED"
+    }
+   ],
+   "b": "M3",
+   "canonical": {
+    "coexistence": "COMPATIBLE",
+    "cooccur_worlds": "",
+    "mechanism A": "M2",
+    "mechanism B": "M3",
+    "mechanism_a": "M2_TESTIMONY_AMPLIFICATION",
+    "mechanism_b": "M3_PRIVATE_INFLUENCE_CHANNEL",
+    "relation": "SUBSTITUTE",
+    "같이 있을 때 설명되는 것": "진술 증폭과 사적 통로가 각각 3/4 지시의 입력이 되는 경우(어느 world도 함께 쓰지 않음)",
+    "이유": "충돌하는 후보 쌍·부정 관계·제도 제약이 없다. 다만 어느 world도 둘을 함께 쓰지 않아, 함께 작동했는지는 사료로 결정되지 않는다(UNRESOLVED). 같은 전이(G04)를 서로 다른 방식으로 설명하는 후보가 있다.",
+    "충돌하는 candidate/edge": ""
+   },
+   "key": "M2×M3"
+  },
+  {
+   "a": "M2",
+   "audit4": [
+    {
+     "check": "interaction_direction",
+     "message": "함께 쓰이는 world(W2, W4)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음",
+     "severity": "UNRESOLVED"
+    }
+   ],
+   "b": "M4",
+   "canonical": {
+    "coexistence": "COMPATIBLE",
+    "cooccur_worlds": "W2, W4",
+    "mechanism A": "M2",
+    "mechanism B": "M4",
+    "mechanism_a": "M2_TESTIMONY_AMPLIFICATION",
+    "mechanism_b": "M4_DISTRIBUTED_INSTITUTIONAL_ACTION",
+    "relation": "COMPLEMENT",
+    "같이 있을 때 설명되는 것": "분산된 실무 안에서 대질 진술이 수사 범위를 넓히는 경우(W2·W4)",
+    "이유": "충돌하는 후보·edge가 없고, W2, W4에서 함께 쓰인다.",
+    "충돌하는 candidate/edge": ""
+   },
+   "key": "M2×M4"
+  },
+  {
+   "a": "M2",
+   "audit4": [],
+   "b": "M5",
+   "canonical": {
+    "coexistence": "COMPATIBLE",
+    "cooccur_worlds": "W2, W4",
+    "mechanism A": "M2",
+    "mechanism B": "M5",
+    "mechanism_a": "M2_TESTIMONY_AMPLIFICATION",
+    "mechanism_b": "M5_REVIEW_AND_CORRECTION",
+    "relation": "INDEPENDENT",
+    "같이 있을 때 설명되는 것": "초기 판단의 형성과 그 독립 재검토·수정이 한 흐름으로 설명된다",
+    "이유": "M5는 관측 재검토 backbone에 고정되어 있어 다른 메커니즘과 함께 존재한다. 다른 메커니즘은 재검토 이전의 경로를 설명한다.",
+    "충돌하는 candidate/edge": ""
+   },
+   "key": "M2×M5"
+  },
+  {
+   "a": "M2",
+   "audit4": [
+    {
+     "check": "interaction_direction",
+     "message": "함께 쓰이는 world(W2)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음",
+     "severity": "UNRESOLVED"
+    }
+   ],
+   "b": "M6",
+   "canonical": {
+    "coexistence": "COMPATIBLE",
+    "cooccur_worlds": "W2",
+    "mechanism A": "M2",
+    "mechanism B": "M6",
+    "mechanism_a": "M2_TESTIMONY_AMPLIFICATION",
+    "mechanism_b": "M6_INITIAL_JUDGMENT_BASIS",
+    "relation": "SUBSTITUTE|COMPLEMENT",
+    "같이 있을 때 설명되는 것": "5월 판단의 근거가 장물 부재 추론과 진술 자료(회동 응답·번복)로 함께 형성되는 경우",
+    "이유": "충돌하는 후보·edge가 없고, W2에서 함께 쓰인다. 같은 전이(G07)를 서로 다른 방식으로 설명하는 후보가 있다.",
+    "충돌하는 candidate/edge": ""
+   },
+   "key": "M2×M6"
+  },
+  {
+   "a": "M2",
+   "audit4": [],
+   "b": "MB",
+   "canonical": {
+    "coexistence": "COMPATIBLE",
+    "cooccur_worlds": "W2, W4",
+    "mechanism A": "M2",
+    "mechanism B": "MB",
+    "mechanism_a": "M2_TESTIMONY_AMPLIFICATION",
+    "mechanism_b": "MB_CUSTODY_BIOLOGICAL_COURSE",
+    "relation": "INDEPENDENT",
+    "같이 있을 때 설명되는 것": "책임 경로와 사인 경로가 따로 설명된다(서로를 설명하지 않음)",
+    "이유": "MB는 사망 branch A(생물학적 경과)다. 절차·책임 메커니즘과 연결되지 않으므로 함께 있어도 충돌하지 않는다.",
+    "충돌하는 candidate/edge": ""
+   },
+   "key": "M2×MB"
+  },
+  {
+   "a": "M3",
+   "audit4": [
+    {
+     "check": "coexistence_undetermined",
+     "message": "COMPATIBLE — 충돌 근거는 없지만 어느 경쟁 world도 둘을 함께 쓰지 않아, 함께 작동했는지는 사료로 결정되지 않음",
+     "severity": "UNRESOLVED"
+    }
+   ],
+   "b": "M4",
+   "canonical": {
+    "coexistence": "COMPATIBLE",
+    "cooccur_worlds": "",
+    "mechanism A": "M3",
+    "mechanism B": "M4",
+    "mechanism_a": "M3_PRIVATE_INFLUENCE_CHANNEL",
+    "mechanism_b": "M4_DISTRIBUTED_INSTITUTIONAL_ACTION",
+    "relation": "NO_SHARED_TRANSITION",
+    "같이 있을 때 설명되는 것": "분산된 실무와 사적 통로가 동시에 있는 경우(어느 world도 함께 쓰지 않음)",
+    "이유": "충돌하는 후보 쌍·부정 관계·제도 제약이 없다. 다만 어느 world도 둘을 함께 쓰지 않아, 함께 작동했는지는 사료로 결정되지 않는다(UNRESOLVED).",
+    "충돌하는 candidate/edge": ""
+   },
+   "key": "M3×M4"
+  },
+  {
+   "a": "M3",
+   "audit4": [],
+   "b": "M5",
+   "canonical": {
+    "coexistence": "COMPATIBLE",
+    "cooccur_worlds": "W1, W3",
+    "mechanism A": "M3",
+    "mechanism B": "M5",
+    "mechanism_a": "M3_PRIVATE_INFLUENCE_CHANNEL",
+    "mechanism_b": "M5_REVIEW_AND_CORRECTION",
+    "relation": "INDEPENDENT",
+    "같이 있을 때 설명되는 것": "초기 판단의 형성과 그 독립 재검토·수정이 한 흐름으로 설명된다",
+    "이유": "M5는 관측 재검토 backbone에 고정되어 있어 다른 메커니즘과 함께 존재한다. 다른 메커니즘은 재검토 이전의 경로를 설명한다.",
+    "충돌하는 candidate/edge": ""
+   },
+   "key": "M3×M5"
+  },
+  {
+   "a": "M3",
+   "audit4": [
+    {
+     "check": "interaction_direction",
+     "message": "함께 쓰이는 world(W1, W3)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음",
+     "severity": "UNRESOLVED"
+    }
+   ],
+   "b": "M6",
+   "canonical": {
+    "coexistence": "COMPATIBLE",
+    "cooccur_worlds": "W1, W3",
+    "mechanism A": "M3",
+    "mechanism B": "M6",
+    "mechanism_a": "M3_PRIVATE_INFLUENCE_CHANNEL",
+    "mechanism_b": "M6_INITIAL_JUDGMENT_BASIS",
+    "relation": "COMPLEMENT",
+    "같이 있을 때 설명되는 것": "사적 통로와 5월 판단 근거 형성은 서로 다른 단계를 설명한다(W3)",
+    "이유": "충돌하는 후보·edge가 없고, W1, W3에서 함께 쓰인다.",
+    "충돌하는 candidate/edge": ""
+   },
+   "key": "M3×M6"
+  },
+  {
+   "a": "M3",
+   "audit4": [],
+   "b": "MB",
+   "canonical": {
+    "coexistence": "COMPATIBLE",
+    "cooccur_worlds": "W1, W3",
+    "mechanism A": "M3",
+    "mechanism B": "MB",
+    "mechanism_a": "M3_PRIVATE_INFLUENCE_CHANNEL",
+    "mechanism_b": "MB_CUSTODY_BIOLOGICAL_COURSE",
+    "relation": "INDEPENDENT",
+    "같이 있을 때 설명되는 것": "책임 경로와 사인 경로가 따로 설명된다(서로를 설명하지 않음)",
+    "이유": "MB는 사망 branch A(생물학적 경과)다. 절차·책임 메커니즘과 연결되지 않으므로 함께 있어도 충돌하지 않는다.",
+    "충돌하는 candidate/edge": ""
+   },
+   "key": "M3×MB"
+  },
+  {
+   "a": "M4",
+   "audit4": [],
+   "b": "M5",
+   "canonical": {
+    "coexistence": "COMPATIBLE",
+    "cooccur_worlds": "W1, W2, W4",
+    "mechanism A": "M4",
+    "mechanism B": "M5",
+    "mechanism_a": "M4_DISTRIBUTED_INSTITUTIONAL_ACTION",
+    "mechanism_b": "M5_REVIEW_AND_CORRECTION",
+    "relation": "INDEPENDENT",
+    "같이 있을 때 설명되는 것": "초기 판단의 형성과 그 독립 재검토·수정이 한 흐름으로 설명된다",
+    "이유": "M5는 관측 재검토 backbone에 고정되어 있어 다른 메커니즘과 함께 존재한다. 다른 메커니즘은 재검토 이전의 경로를 설명한다.",
+    "충돌하는 candidate/edge": ""
+   },
+   "key": "M4×M5"
+  },
+  {
+   "a": "M4",
+   "audit4": [
+    {
+     "check": "interaction_direction",
+     "message": "함께 쓰이는 world(W1, W2, W4)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음",
+     "severity": "UNRESOLVED"
+    }
+   ],
+   "b": "M6",
+   "canonical": {
+    "coexistence": "COMPATIBLE",
+    "cooccur_worlds": "W1, W2, W4",
+    "mechanism A": "M4",
+    "mechanism B": "M6",
+    "mechanism_a": "M4_DISTRIBUTED_INSTITUTIONAL_ACTION",
+    "mechanism_b": "M6_INITIAL_JUDGMENT_BASIS",
+    "relation": "COMPLEMENT",
+    "같이 있을 때 설명되는 것": "분산 실무와 5월 판단 근거 형성은 서로 다른 단계를 설명한다(W4)",
+    "이유": "충돌하는 후보·edge가 없고, W1, W2, W4에서 함께 쓰인다.",
+    "충돌하는 candidate/edge": ""
+   },
+   "key": "M4×M6"
+  },
+  {
+   "a": "M4",
+   "audit4": [],
+   "b": "MB",
+   "canonical": {
+    "coexistence": "COMPATIBLE",
+    "cooccur_worlds": "W1, W2, W4",
+    "mechanism A": "M4",
+    "mechanism B": "MB",
+    "mechanism_a": "M4_DISTRIBUTED_INSTITUTIONAL_ACTION",
+    "mechanism_b": "MB_CUSTODY_BIOLOGICAL_COURSE",
+    "relation": "INDEPENDENT",
+    "같이 있을 때 설명되는 것": "책임 경로와 사인 경로가 따로 설명된다(서로를 설명하지 않음)",
+    "이유": "MB는 사망 branch A(생물학적 경과)다. 절차·책임 메커니즘과 연결되지 않으므로 함께 있어도 충돌하지 않는다.",
+    "충돌하는 candidate/edge": ""
+   },
+   "key": "M4×MB"
+  },
+  {
+   "a": "M5",
+   "audit4": [],
+   "b": "M6",
+   "canonical": {
+    "coexistence": "COMPATIBLE",
+    "cooccur_worlds": "W1, W2, W3, W4, W5",
+    "mechanism A": "M5",
+    "mechanism B": "M6",
+    "mechanism_a": "M5_REVIEW_AND_CORRECTION",
+    "mechanism_b": "M6_INITIAL_JUDGMENT_BASIS",
+    "relation": "INDEPENDENT",
+    "같이 있을 때 설명되는 것": "초기 판단의 형성과 그 독립 재검토·수정이 한 흐름으로 설명된다",
+    "이유": "M5는 관측 재검토 backbone에 고정되어 있어 다른 메커니즘과 함께 존재한다. 다른 메커니즘은 재검토 이전의 경로를 설명한다.",
+    "충돌하는 candidate/edge": ""
+   },
+   "key": "M5×M6"
+  },
+  {
+   "a": "M5",
+   "audit4": [],
+   "b": "MB",
+   "canonical": {
+    "coexistence": "COMPATIBLE",
+    "cooccur_worlds": "W1, W2, W3, W4, W5",
+    "mechanism A": "M5",
+    "mechanism B": "MB",
+    "mechanism_a": "M5_REVIEW_AND_CORRECTION",
+    "mechanism_b": "MB_CUSTODY_BIOLOGICAL_COURSE",
+    "relation": "INDEPENDENT",
+    "같이 있을 때 설명되는 것": "초기 판단의 형성과 그 독립 재검토·수정이 한 흐름으로 설명된다",
+    "이유": "M5는 관측 재검토 backbone에 고정되어 있어 다른 메커니즘과 함께 존재한다. 다른 메커니즘은 재검토 이전의 경로를 설명한다.",
+    "충돌하는 candidate/edge": ""
+   },
+   "key": "M5×MB"
+  },
+  {
+   "a": "M6",
+   "audit4": [],
+   "b": "MB",
+   "canonical": {
+    "coexistence": "COMPATIBLE",
+    "cooccur_worlds": "W1, W2, W3, W4, W5",
+    "mechanism A": "M6",
+    "mechanism B": "MB",
+    "mechanism_a": "M6_INITIAL_JUDGMENT_BASIS",
+    "mechanism_b": "MB_CUSTODY_BIOLOGICAL_COURSE",
+    "relation": "INDEPENDENT",
+    "같이 있을 때 설명되는 것": "책임 경로와 사인 경로가 따로 설명된다(서로를 설명하지 않음)",
+    "이유": "MB는 사망 branch A(생물학적 경과)다. 절차·책임 메커니즘과 연결되지 않으므로 함께 있어도 충돌하지 않는다.",
+    "충돌하는 candidate/edge": ""
+   },
+   "key": "M6×MB"
+  }
+ ],
+ "rules": [
+  {
+   "constraint": "F005·F006·F010(접수·이첩 경로의 제도 가능성)",
+   "desc": "소장·체포령(EP03)이 2/28 병영 출동(EP04)으로 이어지는 경로",
+   "gap": "G01",
+   "input_candidates": "G01a|G01b|G01c",
+   "inputs": "M1",
+   "op": "OR",
+   "rule": "V_COMPLAINT_TO_BARRACKS = M1_OFFICIAL_INFORMATION_ROUTE",
+   "target": "EP04",
+   "var": "V_COMPLAINT_TO_BARRACKS"
+  },
+  {
+   "constraint": "F007·F008·F009(병사 → 비장·장교 지휘의 제도 가능성)",
+   "desc": "2/28 출동 지시의 상위 출처",
+   "gap": "G02",
+   "input_candidates": "G02a|G02b",
+   "inputs": "M1|M4",
+   "op": "XOR",
+   "rule": "V_COMMAND_SOURCE = M1_OFFICIAL_INFORMATION_ROUTE(G02a: 병사 지시) XOR M4_DISTRIBUTED_INSTITUTIONAL_ACTION(G02b: 비장 자체 판단)",
+   "target": "EP04",
+   "var": "V_COMMAND_SOURCE"
+  },
+  {
+   "constraint": "F007·F020(구순은 명령 불가, 정보 제공만) · F008(보고 경로)",
+   "desc": "구순 쪽 정보·진술이 3/4 병사의 체포 지시(EP09)에 닿는 경로",
+   "gap": "G03|G04",
+   "input_candidates": "G03a|G03b|G03c|G04a|G04b|G04c|G04d",
+   "inputs": "M1|M2|M3|M4",
+   "op": "OR",
+   "rule": "V_INFO_TO_COMMANDER = M1 OR M2 OR M3 OR M4  (각각 G04a·G03a·G03b / G04b·G04d / G04c / G03c)",
+   "target": "EP09",
+   "var": "V_INFO_TO_COMMANDER"
+  },
+  {
+   "constraint": "F007·F008",
+   "desc": "체포 지시(EP09, OBSERVED) → 체포 실행(EP11, OBSERVED)",
+   "gap": "",
+   "input_candidates": "",
+   "inputs": "V_INFO_TO_COMMANDER|INSTITUTIONALLY_COMPATIBLE",
+   "op": "AND",
+   "rule": "V_ARREST_PATH = V_INFO_TO_COMMANDER AND INSTITUTIONALLY_COMPATIBLE(F007·F008: 병사 → 장교 명령)",
+   "target": "EP11",
+   "var": "V_ARREST_PATH"
+  },
+  {
+   "constraint": "F010(도적 수색 관할) · F002(진술 획득 방식의 규범)",
+   "desc": "수사 범위가 여러 혐의자로 넓어지는 구조(김갑득 동시 체포, 공주진 선행 체포 등)",
+   "gap": "G04|G11",
+   "input_candidates": "G04b|G04d|G11a",
+   "inputs": "M2|M4",
+   "op": "OR",
+   "rule": "V_INVESTIGATION_SCOPE = M2_TESTIMONY_AMPLIFICATION OR M4_DISTRIBUTED_INSTITUTIONAL_ACTION",
+   "target": "EP11",
+   "var": "V_INVESTIGATION_SCOPE"
+  },
+  {
+   "constraint": "F006·F020(장계 → 국왕 판단)",
+   "desc": "5/12 '도난 없음 방향' 판단(EP15, OBSERVED)의 근거 형성",
+   "gap": "G07",
+   "input_candidates": "G07a|G07b|G07c",
+   "inputs": "M6|M2",
+   "op": "OR",
+   "rule": "V_INITIAL_JUDGMENT_BASIS = M6_INITIAL_JUDGMENT_BASIS OR M2_TESTIMONY_AMPLIFICATION(보조: G07b·G07c)",
+   "target": "EP15",
+   "var": "V_INITIAL_JUDGMENT_BASIS"
+  },
+  {
+   "constraint": "F012·F013·F014·F017·F018",
+   "desc": "5/12 판단 → 5/27 → 5/28 → 6/11 → 6/13 → 처분으로 이어진 독립 재검토·판단 수정(OBSERVED backbone)",
+   "gap": "G08|G13",
+   "input_candidates": "G08a|G08b|G13a",
+   "inputs": "M5",
+   "op": "ANCHORED",
+   "rule": "V_REVIEW_CORRECTION = M5_REVIEW_AND_CORRECTION  (관측 backbone: EP15 →REVISES→ EP25 등. world마다 달라지지 않음)",
+   "target": "EP25",
+   "var": "V_REVIEW_CORRECTION"
+  },
+  {
+   "constraint": "F018",
+   "desc": "정조의 책임 귀속(EP29·EP30, OBSERVED)",
+   "gap": "G09",
+   "input_candidates": "",
+   "inputs": "V_REVIEW_CORRECTION|V_ARREST_PATH",
+   "op": "AND",
+   "rule": "V_RESPONSIBILITY = V_REVIEW_CORRECTION AND V_ARREST_PATH  (책임 판단은 절차 branch B에만 의존, 사인과 무관)",
+   "target": "EP29|EP30",
+   "var": "V_RESPONSIBILITY"
+  },
+  {
+   "constraint": "F001·F006·F018",
+   "desc": "처분(OBSERVED, 모든 world 공통)",
+   "gap": "G10",
+   "input_candidates": "",
+   "inputs": "V_RESPONSIBILITY",
+   "op": "ANCHORED",
+   "rule": "V_SANCTION = V_RESPONSIBILITY  (처분은 관측 사실. G10 사유는 OPEN_UNRESOLVED)",
+   "target": "EP33|EP34|EP35|EP36|EP37",
+   "var": "V_SANCTION"
+  },
+  {
+   "constraint": "F002·F003·F004·F015·F016 / E001–E004(context)",
+   "desc": "구금 중 발병·사망 경과(사망 branch A). 책임 branch와 연결하지 않음",
+   "gap": "G06|G12",
+   "input_candidates": "G06a|G06b|G12a",
+   "inputs": "MB",
+   "op": "OR",
+   "rule": "V_CUSTODY_COURSE = MB_CUSTODY_BIOLOGICAL_COURSE  (환경 E001–E004는 호환성 context. 개인 감염 확정 아님)",
+   "target": "EP13",
+   "var": "V_CUSTODY_COURSE"
+  }
+ ]
+}

@@ -296,6 +296,33 @@ AUDIT4_REVISIONS = [
      "PASS. 동결 해시 ccb7ec63763a 그대로"),
 ]
 
+AUDIT5_REVISIONS = [
+    ("Stage 7 설계", "force-directed 배치는 실행마다 위치가 달라지고 시간 순서를 보장하지 못함. 화면 쪽에서 world별 숨김 규칙을 코드로만 두면 "
+     "공통 결말이 사라져도 검사할 수 없음",
+     "x·y를 Python(build_visualization.py)에서 결정적으로 계산하는 preset 배치로 고정하고(node 이동 불가), world 선택별 "
+     "always_visible·dim·hideable 목록을 worlds.json에 데이터로 내보냄. Audit 5가 그 목록과 날짜 순서를 직접 검사"),
+    ("배치 규칙 검토(실행 전)", "EP08(유제희 현지 탐문)은 t_min·t_max가 비어 있음. 2월·3월 사이 등 날짜 구간 안에 두면 날짜를 지어내는 셈",
+     "'날짜 미기록' 구간(시간 축 밖, 빗금)에 따로 둠. Audit 5는 날짜 없는 관측 node가 날짜 구간에 들어가면 temporal_order ERROR"),
+    ("배치 규칙 검토(실행 전)", "환경 context ENV01–ENV04는 기록일(1/22·4/10·5/12)이 있어 날짜 축에 놓기 쉬움 — 사건처럼 보일 위험",
+     "환경 context는 날짜 구간이 아닌 '환경 context' lane에 두고 date_key·band를 비움. 상세 패널에만 'context 기록일'로 표시. "
+     "Audit 5 context_as_event 검사로 고정"),
+    ("canonical 보강", "개입 결과·구조 규칙이 md(mechanism_interventions.md·qualitative_structural_rules.md)에만 있어 화면이 md를 파싱해야 했음",
+     "report_mech가 같은 sd·STRUCT_VARS 값으로 mechanism_interventions.csv·qualitative_structural_rules.csv를 추가로 씀(판단 변경 없음, "
+     "기존 파일은 바이트 동일)"),
+    ("regression 추가", "요청된 Audit 5 regression 12건(새 node, 새 edge, 상태 변경, W6 재활성, 공통 결말 숨김, UNSPECIFIED→OFF, context의 사건화, "
+     "환경→개인 감염, 책임→생물학 사인, 시간 순서 역전, 후보 등급 변경, 개입 결과 변경)",
+     "깨끗한 화면 데이터에서 ERROR 0을 먼저 확인한 뒤 사본만 바꿔 넣음. 12건 모두 기대한 check가 ERROR로 잡힘"),
+    ("1차 실행·화면 확인", "ERROR 0, WARN 0. 헤드리스 브라우저 스크린샷에서 축소 화면의 구조 변수 ID 라벨이 서로 겹침",
+     "축소 시 라벨 줄바꿈(text-overflow-wrap)과 글자 크기를 node 종류별로 조정, column 간격 조정. 데이터·판단 변경 없음"),
+    ("UI 테스트 1차", "20항목 중 3항목 FAIL. world 패널의 OFF 검사가 설명 문구('UNSPECIFIED ≠ OFF')까지 셌고, cytoscape visible()이 렌더 전 값을 "
+     "캐시해 필터 직후의 숨김을 읽지 못함(화면 자체는 정상)",
+     "테스트가 표시 값(chip)과 계산된 display style을 읽도록 고침. 화면 코드·데이터 변경 없음. 재실행 20/20 PASS"),
+    ("화면 확인 2차", "개입 패널의 6열 표가 오른쪽 패널 폭을 넘어 잘리고, 공존 패널의 두 번째 선택 상자가 잘림",
+     "개입 결과를 구조 변수별 카드(관측 대상·사라지는 후보·남는 후보·영향 world·설명)로 바꾸고 선택 상자 폭을 유연하게 함. 값은 canonical 그대로"),
+    ("최종 실행", "Audit 5 ERROR 0, WARN 0, UNRESOLVED 0, INFO 4. regression 48/48 탐지, UI 테스트 20/20 PASS",
+     "PASS. 동결 해시 ccb7ec63763a 그대로, 기존 canonical CSV·md는 바이트 동일(새 파일 3개와 validation_summary.md만 추가·변경)"),
+]
+
 # ============================================================================ WARN dispositions
 # 모든 WARN은 아래 네 상태 중 하나로 처리한다: FIXED / RECLASSIFIED_INFO / UNRESOLVED / ESCALATED_ERROR.
 # build.py는 disposition이 없는 WARN이 남으면 멈춘다. FIXED는 이력이며, 같은 WARN이 다시 나오면 다시 처리해야 한다.

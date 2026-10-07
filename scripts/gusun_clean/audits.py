@@ -915,3 +915,268 @@ def audit4(sd, nodes, edges, frozen_hash, graph_hash_fn, worlds, candidates):
                  + " · edge " + ", ".join(f"{k} {v}" for k, v in sorted(Counter(e["sd_status"] for e in sd["edges"]).items()))))
     out.append(F("frozen_graph_changed", "INFO", "observed_dag", f"동결 해시 일치 {frozen_hash[:12]}"))
     return out
+
+
+# ============================================================================
+# AUDIT 5 — Interactive visualization (docs/data/*.json ↔ canonical)
+# ============================================================================
+UI_TEMPORAL_EDGE_TYPES = {"TEMPORAL_BEFORE", "PROCEDURAL_NEXT", "ORDER_TO_ACTION", "REVIEW_OF", "REVISES",
+                          "INFORMATION_FLOW", "RESPONSIBILITY_LINK"}
+UI_STATUS_GROUPS = {"OBSERVED": "OBSERVED", "DERIVED": "DERIVED", "LATENT_MECHANISM": "LATENT",
+                    "CONTEXT": "CONTEXT", "UNRESOLVED": "UNRESOLVED"}
+UI_BACKBONE_GUARD = "AUDIT5:BACKBONE_GUARD"
+
+
+def audit5(ui, canon, frozen_hash, app_js=None):
+    """화면 데이터가 canonical 값을 그대로 옮겼는지, 화면 규칙이 관측·LATENT·context 경계를 지키는지 본다.
+    ui: docs/data/*.json을 읽은 dict(+ '_bundle': bundle.js 문자열). canon: build_visualization.load_canonical() 결과."""
+    import json as _json
+    from stage5_worlds import COMMON_OUTCOME_NODES, WORLD_ROLES
+    from stage6_mechanisms import BRANCH_A, BRANCH_B
+    out = []
+    sd = ui["super_dag"]
+    cn = {r["node_id"]: r for r in canon["sd_nodes"]}
+    ce = {r["edge_id"]: r for r in canon["sd_edges"]}
+    un = {n["id"]: n for n in sd["nodes"]}
+    ue = {e["id"]: e for e in sd["edges"]}
+    eps = {r["node_id"]: r for r in canon["episodes"]}
+    oes = {r["edge_id"]: r for r in canon["observed_edges"]}
+    # 0. 해시·출처·개수
+    if not (ui["meta"].get("frozen_hash") == canon["freeze"]["sha256"] == frozen_hash):
+        out.append(F("frozen_graph_changed", "ERROR", "meta", f"화면 데이터의 동결 해시 {ui['meta'].get('frozen_hash', '')[:16]} ≠ {frozen_hash[:16]}"))
+    if ui["meta"].get("generated_from") != canon["_hashes"]:
+        out.append(F("stale_ui_data", "ERROR", "meta", "화면 데이터가 현재 canonical 파일(sha256)에서 만들어지지 않음"))
+    if len(sd["nodes"]) != len(cn) or ui["meta"]["counts"]["nodes"] != len(cn) or sd.get("node_count") != len(cn):
+        out.append(F("count_mismatch", "ERROR", "nodes", f"화면 node {len(sd['nodes'])} ≠ canonical {len(cn)}"))
+    if len(sd["edges"]) != len(ce) or ui["meta"]["counts"]["edges"] != len(ce) or sd.get("edge_count") != len(ce):
+        out.append(F("count_mismatch", "ERROR", "edges", f"화면 edge {len(sd['edges'])} ≠ canonical {len(ce)}"))
+    if "_bundle" in ui:
+        b = ui["_bundle"]
+        try:
+            payload = _json.loads(b[b.index("window.GUSUN_DATA = ") + len("window.GUSUN_DATA = "):].rstrip().rstrip(";"))
+            if payload != {k: ui[k] for k in payload} or set(payload) != {k for k in ui if not k.startswith("_")}:
+                out.append(F("bundle_mismatch", "ERROR", "bundle.js", "bundle.js 내용이 data/*.json과 다름"))
+        except (ValueError, KeyError) as ex:
+            out.append(F("bundle_mismatch", "ERROR", "bundle.js", f"bundle.js를 읽을 수 없음: {ex}"))
+    # 1. node
+    for nid, n in un.items():
+        if nid not in cn:
+            out.append(F("ui_node_not_canonical", "ERROR", nid, "canonical Super-DAG에 없는 node가 화면 데이터에 있음"))
+        elif n["canonical"] != cn[nid]:
+            out.append(F("ui_node_altered", "ERROR", nid, "화면 node의 canonical 필드가 CSV와 다름"))
+        if nid in eps and n.get("observed") != eps[nid] and n["canonical"].get("node_type") == "OBSERVED_EVENT":
+            out.append(F("ui_node_altered", "ERROR", nid, "관측 node의 episode 필드가 episode_nodes.csv와 다름"))
+    for nid in cn:
+        if nid not in un:
+            out.append(F("ui_node_missing", "ERROR", nid, "canonical node가 화면 데이터에 없음"))
+    for vid, v in ui["views"]["views"].items():
+        for x in v["nodes"] + v.get("emphasis", []):
+            if x not in cn:
+                out.append(F("ui_node_not_canonical", "ERROR", f"view:{vid}", f"view가 canonical에 없는 node {x}를 씀"))
+    # 2. edge
+    for eid, e in ue.items():
+        if eid not in ce:
+            out.append(F("ui_edge_not_canonical", "ERROR", eid, f"canonical에 없는 edge {e['canonical'].get('src')}→{e['canonical'].get('dst')} "
+                                                                f"({e['canonical'].get('edge_type')})"))
+        elif e["canonical"] != ce[eid]:
+            out.append(F("ui_edge_altered", "ERROR", eid, "화면 edge의 canonical 필드가 CSV와 다름"))
+        if e["canonical"].get("origin") == "FROZEN" and e.get("frozen") != oes.get(eid):
+            out.append(F("ui_edge_altered", "ERROR", eid, "frozen edge 필드가 observed_edges.csv와 다름"))
+        if e["canonical"].get("edge_type") == "CAUSES":
+            out.append(F("ui_edge_not_canonical", "ERROR", eid, "CAUSES edge"))
+    for eid in ce:
+        if eid not in ue:
+            out.append(F("ui_edge_missing", "ERROR", eid, "canonical edge가 화면 데이터에 없음"))
+    # 3. 상태
+    if ui["meta"].get("status_groups") != UI_STATUS_GROUPS:
+        out.append(F("status_changed", "ERROR", "meta.status_groups", "표시 상태 그룹이 canonical status와 1:1이 아님"))
+    for nid, n in un.items():
+        c = cn.get(nid)
+        if c and (n["canonical"]["sd_status"] != c["sd_status"] or n["status_group"] != UI_STATUS_GROUPS.get(c["sd_status"])):
+            out.append(F("status_changed", "ERROR", nid, f"{c['sd_status']} → 화면 {n['canonical']['sd_status']}/{n['status_group']}"))
+    for eid, e in ue.items():
+        c = ce.get(eid)
+        if c and (e["canonical"]["sd_status"] != c["sd_status"] or e["status_group"] != UI_STATUS_GROUPS.get(c["sd_status"])):
+            out.append(F("status_changed", "ERROR", eid, f"{c['sd_status']} → 화면 {e['canonical']['sd_status']}/{e['status_group']}"))
+    # 4. W6 REJECTED
+    w = ui["worlds"]
+    cfg = {r["world_id"]: r for r in canon["configs"]}
+    rejected = sorted({k for k, v in WORLD_ROLES.items() if v["role_type"] == "REJECTED"} | {k for k, r in cfg.items() if r["role_type"] == "REJECTED"})
+    if "W6" not in rejected:
+        out.append(F("w6_not_rejected", "ERROR", "W6", "canonical에서 W6이 REJECTED가 아님"))
+    for wid in rejected:
+        s = w["selections"].get(wid, {})
+        if (w["configurations"].get(wid, {}).get("role_type") != "REJECTED" or not s.get("rejected") or not s.get("banner")
+                or wid not in w.get("rejected", []) or wid not in ui["interactions"].get("excluded_worlds", [])):
+            out.append(F("w6_not_rejected", "ERROR", wid, "REJECTED world가 화면에서 REJECTED로 표시되지 않음(배너·제외 목록·role_type)"))
+        for p in ui["interactions"]["pairs"]:
+            if wid in [x.strip() for x in p["canonical"]["cooccur_worlds"].split(",")]:
+                out.append(F("w6_not_rejected", "ERROR", wid, f"REJECTED world가 공존 분석 {p['key']}에 들어감"))
+        for r in ui["interventions"]["rows"]:
+            if wid in [x.strip() for x in r["canonical"]["affected_worlds"].split(",")]:
+                out.append(F("w6_not_rejected", "ERROR", wid, "REJECTED world가 개입 분석에 들어감"))
+    for wid, s in w["selections"].items():
+        if wid != "ALL" and wid not in rejected and s.get("rejected"):
+            out.append(F("w6_not_rejected", "ERROR", wid, "경쟁 설명 world가 REJECTED로 표시됨"))
+    # 5. 공통 결말·관측 backbone이 어떤 world 선택에서도 사라지지 않는가
+    outcome = sorted({x for ids in COMMON_OUTCOME_NODES.values() for x in ids})
+    observed = sorted(k for k, r in cn.items() if r["sd_status"] == "OBSERVED")
+    if sorted(w.get("backbone", [])) != observed:
+        out.append(F("outcome_dropped", "ERROR", "worlds.backbone", "화면 backbone이 canonical OBSERVED node 집합과 다름"))
+    if {k: list(v) for k, v in COMMON_OUTCOME_NODES.items()} != w.get("common_outcome_nodes"):
+        out.append(F("outcome_dropped", "ERROR", "worlds.common_outcome_nodes", "공통 결말 목록이 stage5 COMMON_OUTCOME_NODES와 다름"))
+    for x in outcome:
+        if x not in un or not un[x].get("common_outcome"):
+            out.append(F("outcome_dropped", "ERROR", x, "공통 결말 node가 화면 데이터에 없거나 표시되지 않음"))
+    for wid in ["ALL"] + list(cfg):
+        s = w["selections"].get(wid)
+        if s is None:
+            out.append(F("outcome_dropped", "ERROR", wid, "world 선택 규칙이 없음"))
+            continue
+        vis, hid, dim = set(s["always_visible"]), set(s["hideable"]), set(s["dim"])
+        for x in observed:
+            if x not in vis or x in hid or x in dim:
+                out.append(F("outcome_dropped", "ERROR", f"{wid}:{x}",
+                             ("공통 결말" if x in outcome else "관측 node") + "이 world 선택에서 숨김·흐림 대상이 됨"))
+    if app_js is not None:
+        i = app_js.find(UI_BACKBONE_GUARD)
+        if i < 0 or "hide = false" not in app_js[i:i + 300]:
+            out.append(F("outcome_dropped", "ERROR", "app.js", "backbone 보호 규칙(어떤 선택에서도 OBSERVED node를 숨기지 않음)이 화면 코드에 없음"))
+    # 6. UNSPECIFIED ≠ OFF
+    from stage6_mechanisms import ORDER
+    disp = w.get("config_display", {})
+    for v in ("ON", "PARTIAL", "UNSPECIFIED", "OFF"):
+        if disp.get(v, {}).get("label") != v:
+            out.append(F("unspecified_as_off", "ERROR", f"config_display.{v}", f"표시 이름이 값과 다름: {disp.get(v, {}).get('label')}"))
+    if disp.get("UNSPECIFIED", {}).get("css") == disp.get("OFF", {}).get("css"):
+        out.append(F("unspecified_as_off", "ERROR", "config_display", "UNSPECIFIED와 OFF가 같은 모양으로 표시됨"))
+    n_off = 0
+    for wid, r in cfg.items():
+        for m in ORDER:
+            n_off += r[m] == "OFF"
+            uv = w["configurations"].get(wid, {}).get(m)
+            sv = w["selections"].get(wid, {}).get("mechanism_state", {}).get(m)
+            if uv != r[m] or sv != r[m]:
+                out.append(F("unspecified_as_off", "ERROR", f"{wid}.{m}", f"canonical {r[m]} → 화면 {uv}/{sv}"))
+        if w["configurations"].get(wid) != r:
+            out.append(F("unspecified_as_off", "ERROR", wid, "world configuration 행이 CSV와 다름"))
+    if w.get("off_count") != n_off:
+        out.append(F("unspecified_as_off", "ERROR", "worlds.off_count", f"OFF 개수 {w.get('off_count')} ≠ canonical {n_off}"))
+    # 7. context를 사건처럼 표시
+    lanes = {l["id"]: l for l in sd["lanes"]}
+    for nid, n in un.items():
+        c = cn.get(nid, n["canonical"])
+        if c["sd_status"] != "CONTEXT" and n["canonical"].get("sd_status") != "CONTEXT":
+            continue
+        lay = n["layout"]
+        bad = []
+        if n["canonical"].get("node_type") not in ("INSTITUTIONAL_CONTEXT", "ENV_CONTEXT"):
+            bad.append(f"node_type {n['canonical'].get('node_type')}")
+        if n["status_group"] != "CONTEXT":
+            bad.append(f"status_group {n['status_group']}")
+        if lay.get("dated") or lay.get("date_key") is not None or lay.get("band") is not None:
+            bad.append("날짜 축(시간 구간)에 놓임")
+        if lanes.get(lay.get("lane"), {}).get("kind") != "context":
+            bad.append(f"context lane이 아님({lay.get('lane')})")
+        if nid in w.get("backbone", []) or n.get("common_outcome"):
+            bad.append("관측 backbone으로 표시됨")
+        if bad:
+            out.append(F("context_as_event", "ERROR", nid, "context를 역사적 사건처럼 표시: " + "; ".join(bad)))
+    # 8·9. 환경 → 개인 감염, 책임 → 생물학 사인
+    ntype = {k: v["canonical"].get("node_type") for k, v in un.items()}
+    nbranch = {k: v["canonical"].get("branch") for k, v in un.items()}
+    for eid, e in ue.items():
+        c = e["canonical"]
+        s, d, t = c.get("src"), c.get("dst"), c.get("edge_type")
+        if ntype.get(s) == "ENV_CONTEXT":
+            if ntype.get(d) == "CANDIDATE_BRIDGE" or t not in ("CONTEXT_SUPPORTS", "CONTEXT_COMPATIBLE") or \
+                    (ntype.get(d) == "OBSERVED_EVENT" and t != "CONTEXT_SUPPORTS") or (ntype.get(d) == "MECHANISM" and d != "MB"):
+                out.append(F("environment_to_individual", "ERROR", eid, f"환경 context {s}가 개인 수준 사건·후보 {d}에 {t}로 연결"))
+        sb = s in BRANCH_B or (ntype.get(s) == "CANDIDATE_BRIDGE" and nbranch.get(s) == "B_PROCEDURAL")
+        da = d in BRANCH_A or (ntype.get(d) == "CANDIDATE_BRIDGE" and nbranch.get(d) == "A_BIOLOGICAL")
+        sa = s in BRANCH_A or (ntype.get(s) == "CANDIDATE_BRIDGE" and nbranch.get(s) == "A_BIOLOGICAL")
+        db = d in BRANCH_B or (ntype.get(d) == "CANDIDATE_BRIDGE" and nbranch.get(d) == "B_PROCEDURAL")
+        if (sb and da) or (sa and db):
+            out.append(F("responsibility_to_biological", "ERROR", eid, f"책임 branch와 생물학 사인 branch를 직접 연결 {s}→{d}"))
+    death = ui["views"]["views"].get("death", {})
+    ga, gb = set(death.get("groups", {}).get("A", [])), set(death.get("groups", {}).get("B", []))
+    cross = sorted(eid for eid, e in ue.items() if (e["canonical"]["src"] in ga and e["canonical"]["dst"] in gb)
+                   or (e["canonical"]["src"] in gb and e["canonical"]["dst"] in ga))
+    if not ga or not gb or cross or death.get("cross_edges"):
+        out.append(F("responsibility_to_biological", "ERROR", "view:death",
+                     f"질병·사망 view의 A/B branch 분리 실패(직접 edge {cross or death.get('cross_edges')})"))
+    # 10. 시간 순서
+    bands = {b["id"]: b for b in sd["bands"]}
+    dated = []
+    for nid, n in un.items():
+        if n["canonical"].get("node_type") != "OBSERVED_EVENT":
+            continue
+        ep = eps.get(nid, {})
+        want = int(ep.get("t_max") or ep.get("t_min") or 0) or None
+        lay = n["layout"]
+        if lay.get("date_key") != want or bool(lay.get("dated")) != (want is not None):
+            out.append(F("temporal_order", "ERROR", nid, f"정렬 기준일 {lay.get('date_key')} ≠ episode t_max/t_min {want}"))
+        b = bands.get(lay.get("band"))
+        if b is None or not (b["x0"] <= lay["x"] <= b["x1"]) or bool(b["dated"]) != (want is not None):
+            out.append(F("temporal_order", "ERROR", nid, f"시간 구간 {lay.get('band')} 밖에 놓임(x={lay['x']})"))
+        if want is not None:
+            dated.append((want, lay["x"], nid))
+    dated.sort()
+    for i in range(len(dated)):
+        for j in range(i + 1, len(dated)):
+            (ka, xa, a), (kb, xb, bnid) = dated[i], dated[j]
+            if ka < kb and xa >= xb:
+                out.append(F("temporal_order", "ERROR", f"{a}/{bnid}", f"{a}({ka})가 {bnid}({kb})보다 이른데 오른쪽(또는 같은 열)에 놓임"))
+    order_ids = [b["id"] for b in sd["bands"]]
+    for p, q in zip(order_ids, order_ids[1:]):
+        if bands[p]["x1"] > bands[q]["x0"]:
+            out.append(F("temporal_order", "ERROR", f"{p}/{q}", "시간 구간이 왼쪽 → 오른쪽 순서가 아님"))
+    xs = {nid: n["layout"]["x"] for nid, n in un.items()}
+    dk = {nid: n["layout"].get("date_key") for nid, n in un.items()}
+    for eid, e in ue.items():
+        c = e["canonical"]
+        if c.get("origin") == "FROZEN" and c.get("edge_type") in UI_TEMPORAL_EDGE_TYPES and dk.get(c["src"]) and dk.get(c["dst"]):
+            if xs[c["src"]] >= xs[c["dst"]]:
+                out.append(F("temporal_order", "ERROR", eid, f"{c['edge_type']} {c['src']}→{c['dst']}가 화면에서 뒤로(또는 같은 열로) 감"))
+    # 11. 후보 등급
+    crow = {r["candidate_id"]: r for r in canon["candidates"]}
+    for cid, r in crow.items():
+        u = ui["candidates"]["rows"].get(cid)
+        if u is None:
+            out.append(F("candidate_grade_changed", "ERROR", cid, "후보가 화면 데이터에 없음"))
+            continue
+        diff = [k for k in r if u.get(k) != r[k]]
+        if diff or set(u) != set(r):
+            out.append(F("candidate_grade_changed", "ERROR", cid, f"후보 값이 canonical과 다름: {', '.join(diff) or '필드 구성'}"))
+    for cid in ui["candidates"]["rows"]:
+        if cid not in crow:
+            out.append(F("candidate_grade_changed", "ERROR", cid, "canonical에 없는 후보"))
+    # 12. 개입 결과
+    rows = ui["interventions"]["rows"]
+    if len(rows) != len(canon["interventions"]):
+        out.append(F("intervention_changed", "ERROR", "interventions", f"개입 행 수 {len(rows)} ≠ canonical {len(canon['interventions'])}"))
+    for i, (u, r) in enumerate(zip(rows, canon["interventions"])):
+        if u["canonical"] != r:
+            out.append(F("intervention_changed", "ERROR", f"do({r['mechanism']}=OFF)/{r['variable']}",
+                         f"개입 결과가 canonical과 다름: {r['result']} → 화면 {u['canonical'].get('result')}"))
+        for x in u.get("path_nodes", []):
+            if x not in cn:
+                out.append(F("intervention_changed", "ERROR", f"do({r['mechanism']}=OFF)", f"강조 경로에 canonical에 없는 node {x}"))
+    # (추가) 공존 판정
+    prow = canon["interactions"]
+    if len(ui["interactions"]["pairs"]) != len(prow) or any(u["canonical"] != r for u, r in zip(ui["interactions"]["pairs"], prow)):
+        out.append(F("interaction_changed", "ERROR", "interactions", "공존 판정이 mechanism_interaction_matrix.csv와 다름"))
+    if [dict(r) for r in canon["rules"]] != ui["interactions"].get("rules"):
+        out.append(F("interaction_changed", "ERROR", "rules", "구조 규칙이 qualitative_structural_rules.csv와 다름"))
+    # INFO
+    und = sorted(nid for nid, n in un.items() if n["canonical"].get("node_type") == "OBSERVED_EVENT" and not n["layout"].get("dated"))
+    out.append(F("ui_summary", "INFO", "docs/data",
+                 f"node {len(un)} · edge {len(ue)} · 후보 {len(ui['candidates']['rows'])} · world 선택 {len(w['selections'])} · "
+                 f"view {len(ui['views']['views'])} · 개입 행 {len(rows)} · 공존 쌍 {len(ui['interactions']['pairs'])} (canonical과 같음)"))
+    out.append(F("temporal_order", "INFO", "layout",
+                 f"날짜 있는 관측 node {len(dated)}개가 기준일 순서대로 왼쪽 → 오른쪽에 놓임. 날짜 미기록 node {', '.join(und) or '없음'}는 "
+                 "시간 축 밖 '날짜 미기록' 구간에 두었다(위치가 날짜를 뜻하지 않음)."))
+    out.append(F("responsibility_to_biological", "INFO", "view:death",
+                 f"A branch {len(ga)}개 · B branch {len(gb)}개 node 사이 직접 edge 0개"))
+    out.append(F("frozen_graph_changed", "INFO", "observed_dag", f"동결 해시 일치 {frozen_hash[:12]}"))
+    return out

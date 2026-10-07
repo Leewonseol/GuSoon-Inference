@@ -27,6 +27,12 @@ WARN = 0
 INFO = 2
 UNRESOLVED = 20
 
+Audit 5:
+ERROR = 0
+WARN = 0
+INFO = 4
+UNRESOLVED = 0
+
 ```
 
 판정: **PASS**
@@ -109,9 +115,13 @@ RESOLVED(사용자 확정) 5개 · UNRESOLVED 4개 (그중 사용자 판단 필�
 - `unresolved_item` **U_OE062** — OE062 5월 '조사' = 정조 '평범한 신문'? (UNRESOLVED_SCOPE)
 - `unresolved_item` **U_G10** — G10 이형원 파직 → 유임 이유 (OPEN_UNRESOLVED)
 
+### Audit 5
+
+_없음_
+
 ## Regression validation rules
 
-build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR로 잡히는지 확인한다(36/36 탐지).
+build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR로 잡히는지 확인한다(48/48 탐지).
 
 | rule | 케이스 | 탐지 |
 |---|---|---|
@@ -151,6 +161,18 @@ build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR�
 | unspecified_as_off | W5의 M3(관련 후보 없음, UNSPECIFIED)를 OFF로 표기 | OK |
 | world_latent_promoted | W1 전용 후보 G04a를 모든 world 공통 사실로 표시 | OK |
 | outcome_world_dependency | 확정 처분(EP33 구순 정배)을 W1에만 속한 결과로 표시 | OK |
+| ui_node_not_canonical | 화면 데이터에 canonical에 없는 관측 사건 node(EP_NEW)를 추가 | OK |
+| ui_edge_not_canonical | 화면 데이터에 canonical에 없는 edge(CTX_F007 → EP09)를 추가 | OK |
+| status_changed | LATENT 후보 G04a를 화면에서 OBSERVED로 표시 | OK |
+| w6_not_rejected | W6을 화면에서 경쟁 설명(COMPETING_EXPLANATION)으로 표시하고 REJECTED 배너를 뺌 | OK |
+| outcome_dropped | W3 선택 시 공통 결말 EP33(구순 신지도 정배)을 숨김 대상으로 둠 | OK |
+| unspecified_as_off | W5의 M3(UNSPECIFIED)를 화면에서 OFF로 표시 | OK |
+| context_as_event | 환경 context ENV03을 4/10 날짜 구간에 사건처럼 배치 | OK |
+| environment_to_individual | 환경 ENV03 → 김명신 구금 경과 후보 G06a edge를 화면에 추가 | OK |
+| responsibility_to_biological | 책임 V_RESPONSIBILITY → 사인 판단 EP27 직접 edge를 화면에 추가 | OK |
+| temporal_order | 3/4 체포 지시(EP09)와 6/13 최종 도난 판단(EP25)의 x 위치를 맞바꿈 | OK |
+| candidate_grade_changed | 화면에서 후보 G01a의 final grade를 MEDIUM → HIGH로 표시 | OK |
+| intervention_changed | 화면에서 do(M1=OFF)·V_COMPLAINT_TO_BARRACKS 결과를 PATH_BREAKS → PATH_REMAINS로 표시 | OK |
 
 ## 동결 그래프
 

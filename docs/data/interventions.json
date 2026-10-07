@@ -1,0 +1,301 @@
+{
+ "mechanisms": [
+  "M1",
+  "M2",
+  "M3",
+  "M4",
+  "M5",
+  "M6",
+  "MB"
+ ],
+ "note": "현재 설명 모델에서 해당 mechanism을 제거했을 때 설명 경로가 어떻게 변하는가. 역사적 사실을 지우지 않는다 — OBSERVED node는 개입 중에도 그대로 남는다.",
+ "rows": [
+  {
+   "canonical": {
+    "affected_worlds": "W1, W2, W3, W4, W5",
+    "mechanism": "M1",
+    "note": "이 전이를 채우는 후보가 M1뿐이다(G01a, G01b, G01c). 관측 사건(EP04) 자체는 그대로지만, 그 앞의 설명 경로는 비게 된다(W5처럼 UNSPECIFIED).",
+    "remaining": "",
+    "removed": "G01a|G01b|G01c",
+    "result": "PATH_BREAKS",
+    "target": "EP04",
+    "variable": "V_COMPLAINT_TO_BARRACKS"
+   },
+   "index": 0,
+   "path_nodes": [
+    "EP04",
+    "G01a",
+    "G01b",
+    "G01c",
+    "M1",
+    "V_COMPLAINT_TO_BARRACKS"
+   ]
+  },
+  {
+   "canonical": {
+    "affected_worlds": "W1, W2, W3, W4, W5",
+    "mechanism": "M1",
+    "note": "다른 메커니즘 후보(G02b)로 경로는 남지만, 남은 bridge 근거가 더 약하다 (제거 MEDIUM → 남은 최고 LOW). (XOR: G02a와 G02b는 서로 배타적이라 남은 쪽이 단독으로 설명한다.)",
+    "remaining": "G02b",
+    "removed": "G02a",
+    "result": "PATH_WEAKENS",
+    "target": "EP04",
+    "variable": "V_COMMAND_SOURCE"
+   },
+   "index": 1,
+   "path_nodes": [
+    "EP04",
+    "G02a",
+    "G02b",
+    "M1",
+    "V_COMMAND_SOURCE"
+   ]
+  },
+  {
+   "canonical": {
+    "affected_worlds": "W1, W2, W3, W4, W5",
+    "mechanism": "M1",
+    "note": "다른 메커니즘 후보(G03c, G04b, G04c, G04d)로 경로는 남지만, 남은 bridge 근거가 더 약하다 (제거 MEDIUM → 남은 최고 LOW).",
+    "remaining": "G03c|G04b|G04c|G04d",
+    "removed": "G03a|G03b|G04a",
+    "result": "PATH_WEAKENS",
+    "target": "EP09",
+    "variable": "V_INFO_TO_COMMANDER"
+   },
+   "index": 2,
+   "path_nodes": [
+    "EP09",
+    "G03a",
+    "G03b",
+    "G03c",
+    "G04a",
+    "G04b",
+    "G04c",
+    "G04d",
+    "M1",
+    "V_INFO_TO_COMMANDER"
+   ]
+  },
+  {
+   "canonical": {
+    "affected_worlds": "W2, W4",
+    "mechanism": "M2",
+    "note": "다른 메커니즘 후보(G03a, G03b, G03c, G04a, G04c)가 같은 전이를 채울 수 있고, bridge 근거도 같거나 더 강하다.",
+    "remaining": "G03a|G03b|G03c|G04a|G04c",
+    "removed": "G04b|G04d",
+    "result": "PATH_REMAINS",
+    "target": "EP09",
+    "variable": "V_INFO_TO_COMMANDER"
+   },
+   "index": 3,
+   "path_nodes": [
+    "EP09",
+    "G03a",
+    "G03b",
+    "G03c",
+    "G04a",
+    "G04b",
+    "G04c",
+    "G04d",
+    "M2",
+    "V_INFO_TO_COMMANDER"
+   ]
+  },
+  {
+   "canonical": {
+    "affected_worlds": "W2, W4",
+    "mechanism": "M2",
+    "note": "다른 메커니즘 후보(G11a)가 같은 전이를 채울 수 있고, bridge 근거도 같거나 더 강하다.",
+    "remaining": "G11a",
+    "removed": "G04b|G04d",
+    "result": "PATH_REMAINS",
+    "target": "EP11",
+    "variable": "V_INVESTIGATION_SCOPE"
+   },
+   "index": 4,
+   "path_nodes": [
+    "EP11",
+    "G04b",
+    "G04d",
+    "G11a",
+    "M2",
+    "V_INVESTIGATION_SCOPE"
+   ]
+  },
+  {
+   "canonical": {
+    "affected_worlds": "W2, W4",
+    "mechanism": "M2",
+    "note": "다른 메커니즘 후보(G07a)로 경로는 남지만, 남은 bridge 근거가 더 약하다 (제거 MEDIUM → 남은 최고 LOW).",
+    "remaining": "G07a",
+    "removed": "G07b|G07c",
+    "result": "PATH_WEAKENS",
+    "target": "EP15",
+    "variable": "V_INITIAL_JUDGMENT_BASIS"
+   },
+   "index": 5,
+   "path_nodes": [
+    "EP15",
+    "G07a",
+    "G07b",
+    "G07c",
+    "M2",
+    "V_INITIAL_JUDGMENT_BASIS"
+   ]
+  },
+  {
+   "canonical": {
+    "affected_worlds": "W1, W3",
+    "mechanism": "M3",
+    "note": "다른 메커니즘 후보(G03a, G03b, G03c, G04a, G04b, G04d)가 같은 전이를 채울 수 있고, bridge 근거도 같거나 더 강하다.",
+    "remaining": "G03a|G03b|G03c|G04a|G04b|G04d",
+    "removed": "G04c",
+    "result": "PATH_REMAINS",
+    "target": "EP09",
+    "variable": "V_INFO_TO_COMMANDER"
+   },
+   "index": 6,
+   "path_nodes": [
+    "EP09",
+    "G03a",
+    "G03b",
+    "G03c",
+    "G04a",
+    "G04b",
+    "G04c",
+    "G04d",
+    "M3",
+    "V_INFO_TO_COMMANDER"
+   ]
+  },
+  {
+   "canonical": {
+    "affected_worlds": "W1, W2, W4",
+    "mechanism": "M4",
+    "note": "다른 메커니즘 후보(G02a)가 같은 전이를 채울 수 있고, bridge 근거도 같거나 더 강하다. (XOR: G02a와 G02b는 서로 배타적이라 남은 쪽이 단독으로 설명한다.)",
+    "remaining": "G02a",
+    "removed": "G02b",
+    "result": "PATH_REMAINS",
+    "target": "EP04",
+    "variable": "V_COMMAND_SOURCE"
+   },
+   "index": 7,
+   "path_nodes": [
+    "EP04",
+    "G02a",
+    "G02b",
+    "M4",
+    "V_COMMAND_SOURCE"
+   ]
+  },
+  {
+   "canonical": {
+    "affected_worlds": "W1, W2, W4",
+    "mechanism": "M4",
+    "note": "다른 메커니즘 후보(G03a, G03b, G04a, G04b, G04c, G04d)가 같은 전이를 채울 수 있고, bridge 근거도 같거나 더 강하다.",
+    "remaining": "G03a|G03b|G04a|G04b|G04c|G04d",
+    "removed": "G03c",
+    "result": "PATH_REMAINS",
+    "target": "EP09",
+    "variable": "V_INFO_TO_COMMANDER"
+   },
+   "index": 8,
+   "path_nodes": [
+    "EP09",
+    "G03a",
+    "G03b",
+    "G03c",
+    "G04a",
+    "G04b",
+    "G04c",
+    "G04d",
+    "M4",
+    "V_INFO_TO_COMMANDER"
+   ]
+  },
+  {
+   "canonical": {
+    "affected_worlds": "W1, W2, W4",
+    "mechanism": "M4",
+    "note": "다른 메커니즘 후보(G04b, G04d)가 같은 전이를 채울 수 있고, bridge 근거도 같거나 더 강하다.",
+    "remaining": "G04b|G04d",
+    "removed": "G11a",
+    "result": "PATH_REMAINS",
+    "target": "EP11",
+    "variable": "V_INVESTIGATION_SCOPE"
+   },
+   "index": 9,
+   "path_nodes": [
+    "EP11",
+    "G04b",
+    "G04d",
+    "G11a",
+    "M4",
+    "V_INVESTIGATION_SCOPE"
+   ]
+  },
+  {
+   "canonical": {
+    "affected_worlds": "-",
+    "mechanism": "M5",
+    "note": "재검토 경로는 관측 backbone(EP15 →REVISES→ EP25, EP23 → 판단·처분)이다. M5를 끄면 관측된 판단 수정·처분 경로를 설명할 수 없다. 관측 사실과 양립하지 않으므로 M5는 사실상 OFF로 둘 수 없다.",
+    "remaining": "",
+    "removed": "G08a|G08b|G13a",
+    "result": "PATH_BREAKS",
+    "target": "EP25",
+    "variable": "V_REVIEW_CORRECTION"
+   },
+   "index": 10,
+   "path_nodes": [
+    "EP25",
+    "G08a",
+    "G08b",
+    "G13a",
+    "M5",
+    "V_REVIEW_CORRECTION"
+   ]
+  },
+  {
+   "canonical": {
+    "affected_worlds": "W1, W2, W3, W4, W5",
+    "mechanism": "M6",
+    "note": "다른 메커니즘 후보(G07b, G07c)가 같은 전이를 채울 수 있고, bridge 근거도 같거나 더 강하다.",
+    "remaining": "G07b|G07c",
+    "removed": "G07a",
+    "result": "PATH_REMAINS",
+    "target": "EP15",
+    "variable": "V_INITIAL_JUDGMENT_BASIS"
+   },
+   "index": 11,
+   "path_nodes": [
+    "EP15",
+    "G07a",
+    "G07b",
+    "G07c",
+    "M6",
+    "V_INITIAL_JUDGMENT_BASIS"
+   ]
+  },
+  {
+   "canonical": {
+    "affected_worlds": "W1, W2, W3, W4, W5",
+    "mechanism": "MB",
+    "note": "이 전이를 채우는 후보가 MB뿐이다(G06a, G06b, G12a). 관측 사건(EP13) 자체는 그대로지만, 그 앞의 설명 경로는 비게 된다(W5처럼 UNSPECIFIED).",
+    "remaining": "",
+    "removed": "G06a|G06b|G12a",
+    "result": "PATH_BREAKS",
+    "target": "EP13",
+    "variable": "V_CUSTODY_COURSE"
+   },
+   "index": 12,
+   "path_nodes": [
+    "EP13",
+    "G06a",
+    "G06b",
+    "G12a",
+    "MB",
+    "V_CUSTODY_COURSE"
+   ]
+  }
+ ]
+}

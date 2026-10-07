@@ -76,9 +76,26 @@ def write_all(out, sd, cands, nodes, worlds, inst_rows):
         "mechanism_a", "mechanism_b"], INTERACTION_HEADERS)
     write_rules(out / "qualitative_structural_rules.md", sd, cands)
     write_interventions(out / "mechanism_interventions.md", sd)
+    # 같은 판단을 기계가 읽을 수 있게 CSV로도 낸다(값은 md와 같은 sd·STRUCT_VARS에서 읽음. 판단 변경 없음)
+    _w(out / "mechanism_interventions.csv", sd["interventions"],
+       ["mechanism", "variable", "target", "result", "removed", "remaining", "affected_worlds", "note"])
+    _w(out / "qualitative_structural_rules.csv", structural_rule_rows(cands),
+       ["var", "gap", "target", "op", "inputs", "rule", "desc", "constraint", "input_candidates"])
     write_overview(out / "mechanism_super_dag.md", sd, defs, worlds, cands, inst_rows)
     (out / "mechanism_super_dag.mmd").write_text(mermaid_full(sd) + "\n", encoding="utf-8")
     return defs, crow
+
+
+def structural_rule_rows(cands):
+    """STRUCT_VARS를 그대로 행으로 옮긴다. input_candidates는 write_rules의 '입력 후보' 열과 같은 계산."""
+    rows = []
+    for v in STRUCT_VARS:
+        gaps = set(v["gap"].split("|")) if v["gap"] else set()
+        ins = [c["candidate_id"] for c in cands if usable(c) and c["gap_id"] in gaps
+               and (CAND_MAP[c["candidate_id"]][0] in v["inputs"] or CAND_MAP[c["candidate_id"]][1] in v["inputs"])]
+        rows.append(dict(var=v["var"], gap=v["gap"], target=v["target"], op=v["op"], inputs="|".join(v["inputs"]),
+                         rule=v["rule"], desc=v["desc"], constraint=v["constraint"], input_candidates="|".join(ins)))
+    return rows
 
 
 def write_rules(path, sd, cands):
@@ -318,4 +335,41 @@ def write_audit4(path, findings, sd, regression_results=()):
     for r in regs:
         L.append(f"| `{r['rule']}` | {r['case']} | {'탐지' if r['caught'] else '**놓침**'} | {', '.join(r['detail'])} |")
     L += ["", "## 수정 이력", "", _revlog(AUDIT4_REVISIONS)]
+    path.write_text("\n".join(L) + "\n", encoding="utf-8")
+
+
+def write_audit5(path, findings, ui, regression_results=()):
+    from manual_review import AUDIT5_REVISIONS
+    from report import _revlog
+    m = ui["meta"]
+    L = ["# AUDIT 5 — Interactive Visualization (Temporal DAG)", "",
+         "핵심 질문: **탐색용 화면 데이터(docs/data)가 canonical 산출물을 바꾸거나, context·LATENT를 사건처럼 보이게 하거나, 시간 순서·world 결말을 깨뜨렸는가?**", "",
+         f"- 판정: {_verdict(findings)}",
+         f"- 화면 데이터: node {m['counts']['nodes']} · edge {m['counts']['edges']} (canonical `mechanism_super_dag_nodes.csv`·`mechanism_super_dag_edges.csv`와 같음)",
+         f"- 동결 해시: `{m['frozen_hash']}`",
+         "- 생성: `scripts/gusun_clean/build_visualization.py` → `docs/data/*.json` + `docs/data/bundle.js`(같은 내용, file:// 용)", "",
+         "## 자동 검사 요약", "", _counts_table(findings), "",
+         "ERROR 검사: ui_node_not_canonical·ui_node_missing·ui_node_altered(1), ui_edge_not_canonical·ui_edge_missing·ui_edge_altered(2), "
+         "status_changed(3), w6_not_rejected(4), outcome_dropped(5), unspecified_as_off(6), context_as_event(7), environment_to_individual(8), "
+         "responsibility_to_biological(9), temporal_order(10), candidate_grade_changed(11), intervention_changed(12), "
+         "그리고 count_mismatch·frozen_graph_changed·stale_ui_data·bundle_mismatch·interaction_changed.", "",
+         "### ERROR", _findings_list(findings, "ERROR"), "", "### WARN", _findings_list(findings, "WARN"), "",
+         "### UNRESOLVED", _findings_list(findings, "UNRESOLVED"), "", "### INFO", _findings_list(findings, "INFO"), "",
+         "## 화면 규칙(검사 대상)", "",
+         "- 배치: 물리 시뮬레이션 없는 preset 좌표. 날짜 있는 관측 node는 정렬 기준일(t_max, 없으면 t_min) 순서로 왼쪽 → 오른쪽, "
+         "같은 날짜 안에서는 frozen edge 깊이 순서. 시간 구간: 2월 → 3월 → 5월 → 6월 → 최종 판단·처분(6/13 이후 정조 판단·명령).",
+         "- 날짜 없는 node(메커니즘·구조 변수·후보·context·UNRESOLVED)는 별도 lane. x는 연결된 node 근처일 뿐 날짜가 아니다.",
+         "- world 선택(ALL·W1–W5·W6)은 worlds.json의 always_visible·dim·hideable·highlight 목록대로만 동작한다. 관측 node는 모든 선택에서 always_visible이고 "
+         "app.js의 backbone 보호 규칙(`AUDIT5:BACKBONE_GUARD`)이 어떤 필터·view·개입에서도 숨기지 않는다.",
+         "- W6은 REJECTED 배너와 함께 표시되고 공존·개입 패널의 world 목록에 들어가지 않는다(canonical과 같음).",
+         "- 상태 필터와 메커니즘 필터는 화면 보이기/숨기기일 뿐 분석상 ON/OFF가 아니다. 개입 do(M=OFF)는 저장된 결과만 보여 준다.", "",
+         "## Regression (Audit 5)", "",
+         "깨끗한 화면 데이터에서 ERROR 0을 확인한 뒤, 사본 하나만 바꿔 검사기에 넣었다. 기대한 check가 ERROR로 나와야 통과다.", "",
+         "| rule | 넣은 결함 | 결과 | 나온 ERROR |", "|---|---|---|---|"]
+    for r in [r for r in regression_results if r.get("audit") == "AUDIT5"]:
+        L.append(f"| `{r['rule']}` | {r['case']} | {'탐지' if r['caught'] else '**놓침**'} | {', '.join(r['detail'])} |")
+    L += ["", "## 생성 근거 파일 (sha256)", "", "| 파일 | sha256 |", "|---|---|"]
+    for k, v in sorted(m["generated_from"].items()):
+        L.append(f"| `{k}` | `{v[:16]}…` |")
+    L += ["", "## 수정 이력", "", _revlog(AUDIT5_REVISIONS)]
     path.write_text("\n".join(L) + "\n", encoding="utf-8")
