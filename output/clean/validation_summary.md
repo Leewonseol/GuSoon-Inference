@@ -21,6 +21,12 @@ WARN = 0
 INFO = 11
 UNRESOLVED = 1
 
+Audit 4:
+ERROR = 0
+WARN = 0
+INFO = 2
+UNRESOLVED = 20
+
 ```
 
 판정: **PASS**
@@ -80,9 +86,32 @@ RESOLVED(사용자 확정) 5개 · UNRESOLVED 4개 (그중 사용자 판단 필�
 
 - `unresolved_gap` **G10** — OPEN_UNRESOLVED — 어느 경쟁 설명 world도 이 gap을 메우지 않음 (후보 G10a=MEDIUM, G10b=LOW, G10c=LOW) · review_decision: 사용자 검토: latent bridge를 채택하지 않음. 이유를 억지로 채우지 않고 gap을 열어 둔다(world에서도 비움). · unresolved_reason: 파직과 3일 뒤 유임의 사유가 모두 기록되지 않았다. 관측 근거(CF049, CF050)에 사유를 적은 문장이 없음
 
+### Audit 4
+
+- `interaction_direction` **M1×M2** — 함께 쓰이는 world(W2)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음
+- `interaction_direction` **M1×M3** — 함께 쓰이는 world(W1, W3)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음
+- `interaction_direction` **M1×M4** — 함께 쓰이는 world(W1, W2, W4)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음
+- `interaction_direction` **M1×M6** — 함께 쓰이는 world(W1, W3, W5)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음
+- `coexistence_undetermined` **M2×M3** — COMPATIBLE — 충돌 근거는 없지만 어느 경쟁 world도 둘을 함께 쓰지 않아, 함께 작동했는지는 사료로 결정되지 않음
+- `interaction_direction` **M2×M4** — 함께 쓰이는 world(W2, W4)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음
+- `interaction_direction` **M2×M6** — 함께 쓰이는 world(W2)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음
+- `coexistence_undetermined` **M3×M4** — COMPATIBLE — 충돌 근거는 없지만 어느 경쟁 world도 둘을 함께 쓰지 않아, 함께 작동했는지는 사료로 결정되지 않음
+- `interaction_direction` **M3×M6** — 함께 쓰이는 world(W1, W3)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음
+- `interaction_direction` **M4×M6** — 함께 쓰이는 world(W1, W2, W4)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음
+- `multiple_explanations` **V_COMMAND_SOURCE** — XOR: M1, M4가 같은 관측 전이(EP04)를 설명할 수 있음. 어느 쪽이 실제로 작동했는지는 사료로 결정되지 않음
+- `multiple_explanations` **V_INFO_TO_COMMANDER** — OR: M1, M2, M3, M4가 같은 관측 전이(EP09)를 설명할 수 있음. 어느 쪽이 실제로 작동했는지는 사료로 결정되지 않음
+- `multiple_explanations` **V_INVESTIGATION_SCOPE** — OR: M2, M4가 같은 관측 전이(EP11)를 설명할 수 있음. 어느 쪽이 실제로 작동했는지는 사료로 결정되지 않음
+- `multiple_explanations` **V_INITIAL_JUDGMENT_BASIS** — OR: M2, M6가 같은 관측 전이(EP15)를 설명할 수 있음. 어느 쪽이 실제로 작동했는지는 사료로 결정되지 않음
+- `unresolved_item` **U_ID06** — ID06 병영의 염탐 담당자 = 유제희?
+- `unresolved_item` **U_ID07** — ID07 철편 네 개 = 철퇴 네 개?
+- `unresolved_item` **U_ID08** — ID08 3/4 장교 일행에 조계완 포함?
+- `unresolved_item` **U_OE007** — OE007 자미덕 '지휘' 주장 ↔ 한재욱 '은밀한 사주' 부인 (PARTIAL_CONFLICT)
+- `unresolved_item` **U_OE062** — OE062 5월 '조사' = 정조 '평범한 신문'? (UNRESOLVED_SCOPE)
+- `unresolved_item` **U_G10** — G10 이형원 파직 → 유임 이유 (OPEN_UNRESOLVED)
+
 ## Regression validation rules
 
-build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR로 잡히는지 확인한다(26/26 탐지).
+build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR로 잡히는지 확인한다(36/36 탐지).
 
 | rule | 케이스 | 탐지 |
 |---|---|---|
@@ -112,6 +141,16 @@ build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR�
 | latent_as_observed | A3-W1 원안 G08a: 관측 node 사이 직접 latent edge | OK |
 | open_set_closure | world 서술에서 열린 명단의 '등' 삭제 | OK |
 | environment_to_individual_fact | 후보·world 서술: 환경 → 개인 감염 단정 | OK |
+| context_to_fact | context(F013 암행어사 제도)에서 새 관측 사건 node를 만듦 | OK |
+| environment_to_personal_fact | 환경(ENV03 전염병)을 김명신 구금 경과 후보(G06a)에 직접 연결 | OK |
+| institution_to_event | 제도 가능성(F007 병사 지휘권)이 3/4 체포 지시(EP09)를 직접 만듦 | OK |
+| world_merge | 상충 후보 G03b를 W2(G04b 사용)에 섞음 | OK |
+| w6_reactivation | REJECTED W6을 경쟁 설명으로 되살리고 공존 분석에 넣음 | OK |
+| responsibility_to_biological | 책임 구조 변수(V_RESPONSIBILITY) → 사인 판단(EP27) 직접 edge | OK |
+| off_mechanism_alive | W1에서 M1=OFF로 바꿨는데 M1 후보(G01a·G02a·G03a·G04a)가 그대로 살아 있음 | OK |
+| unspecified_as_off | W5의 M3(관련 후보 없음, UNSPECIFIED)를 OFF로 표기 | OK |
+| world_latent_promoted | W1 전용 후보 G04a를 모든 world 공통 사실로 표시 | OK |
+| outcome_world_dependency | 확정 처분(EP33 구순 정배)을 W1에만 속한 결과로 표시 | OK |
 
 ## 동결 그래프
 

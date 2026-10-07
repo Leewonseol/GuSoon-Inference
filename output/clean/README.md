@@ -11,8 +11,8 @@ pip install duckdb                      # 한 번만
 python3 scripts/gusun_clean/build.py    # 저장소 루트에서 실행
 ```
 
-실행 순서는 STAGE 1 episode → AUDIT 1 → STAGE 2 graph → AUDIT 2 → STAGE 3 동결(sha256) → STAGE 4 gap·latent 후보 → AUDIT 3 → STAGE 5 world → AUDIT 3 재검사(world 포함) → md/CSV 작성 → DuckDB 작성이다.
-Audit 1 전에 regression 케이스 26개(`regression.py`)를 검사기에 넣어 모두 잡히는지 먼저 확인한다. audit에 ERROR 또는 disposition 없는 WARN이 있으면 그 자리에서 exit 1로 멈춘다. 같은 입력이면 출력이 바이트 단위로 같다.
+실행 순서는 STAGE 1 episode → AUDIT 1 → STAGE 2 graph → AUDIT 2 → STAGE 3 동결(sha256) → STAGE 4 gap·latent 후보 → AUDIT 3 → STAGE 5 world → AUDIT 3 재검사(world 포함) → STAGE 6 mechanism Super-DAG(질적 SCM) → AUDIT 4 → md/CSV 작성 → DuckDB 작성이다.
+Audit 1 전에 regression 케이스 36개(`regression.py`, Audit 4용 10개 포함)를 검사기에 넣어 모두 잡히는지 먼저 확인한다. audit에 ERROR 또는 disposition 없는 WARN이 있으면 그 자리에서 exit 1로 멈춘다. 같은 입력이면 출력이 바이트 단위로 같다.
 
 | 스크립트 | 역할 |
 |---|---|
@@ -20,11 +20,13 @@ Audit 1 전에 regression 케이스 26개(`regression.py`)를 검사기에 넣�
 | `stage1_episodes.py` | episode 37개(EP01–EP37)와 동일성 대장(ID01–ID11) |
 | `stage2_graph.py` | 환경 context node 4개, edge 68개, 제도·환경 feature link |
 | `stage4_latent.py` | gap 13개, latent 후보 38개, 기계적 등급 `grade()`·`prune()` |
-| `stage5_worlds.py` | world 6개(retained 5, rejected 1), 상충 후보 쌍, 무결성 assert |
-| `audits.py` | Audit 1·2·3 자동 검사 |
-| `regression.py` | 과거 결함 26개를 검사기가 다시 잡는지 확인하는 regression 케이스 |
+| `stage4_reaudit.py` | LATENT 후보 38개의 bridge 근거 재감사 값 |
+| `stage5_worlds.py` | world 6개(경쟁 설명 5, rejected 1), 상충 후보 쌍, 무결성 assert |
+| `stage6_mechanisms.py` | 메커니즘 7개, 후보 → 메커니즘 매핑, 질적 구조 변수, world configuration·공존·개입 규칙 |
+| `audits.py` | Audit 1·2·3·4 자동 검사 |
+| `regression.py` | 과거 결함·금지 규칙 36개를 검사기가 다시 잡는지 확인하는 regression 케이스 |
 | `manual_review.py` | 원본 CSV 대조 수동 검토표와 실제 수정 이력 |
-| `report.py` | md·CSV·mermaid 작성 |
+| `report.py` · `report_mech.py` | md·CSV·mermaid 작성(Stage 1–5 · Stage 6) |
 
 ## 파일 지도
 
@@ -46,6 +48,14 @@ Audit 1 전에 regression 케이스 26개(`regression.py`)를 검사기에 넣�
 | `manual_review_table.md` | 사람이 판단할 항목만 모은 검토표 |
 | `narrative_world_story_matrix.md` | 공통 OBSERVED 사실·결말과 world별 LATENT 가설을 한 장에서 구분한 표 |
 | `latent_candidate_reaudit.md` | LATENT 후보 38개의 bridge 근거 재감사(before/after) |
+| `mechanism_super_dag.md` · `mechanism_super_dag.mmd` | 메커니즘 Super-DAG 개요(정의·제도 제약·configuration·공존·branch 분리)와 세 패널 Mermaid |
+| `mechanism_super_dag_nodes.csv` · `mechanism_super_dag_edges.csv` | Super-DAG node·edge(OBSERVED / DERIVED / LATENT_MECHANISM / CONTEXT / UNRESOLVED). frozen node·edge는 그대로 복사 |
+| `mechanism_definitions.csv` | 메커니즘 정의표 |
+| `world_mechanism_configurations.csv` | world별 메커니즘 값(ON / OFF / PARTIAL / UNSPECIFIED)과 판정 근거 |
+| `mechanism_interaction_matrix.csv` | 메커니즘 쌍 공존 분석(COMPATIBLE / PARTIALLY_COMPATIBLE / INCOMPATIBLE / UNKNOWN) |
+| `qualitative_structural_rules.md` | OR / AND / XOR / ANCHORED 질적 구조 규칙 |
+| `mechanism_interventions.md` | do(M=OFF) 질적 개입 결과(PATH_REMAINS / WEAKENS / BREAKS / UNKNOWN) |
+| `audit_4_mechanism_super_dag.md` | Super-DAG audit, Audit 4 regression 10건 |
 | `warn_dispositions.csv` | WARN별 disposition (FIXED / RECLASSIFIED_INFO / UNRESOLVED / ESCALATED_ERROR) |
 | `../../database/gusun_clean.duckdb` | 원본 6표(`raw_*`)와 위 산출물 표, `episode_members`, `dag_freeze`, `audit_findings` |
 
@@ -55,7 +65,8 @@ Audit 1 전에 regression 케이스 26개(`regression.py`)를 검사기에 넣�
 |---|---|---|---|---|---|
 | AUDIT 1 episode fidelity | PASS | 0 | 0 | 4 (미확정 동일성, ID04 참고용 포함) | 13 |
 | AUDIT 2 graph fidelity | PASS | 0 | 0 | 5 (조건부 edge 3, 부분 충돌 2) | 1 |
-| AUDIT 3 observed/latent 분리 | PASS | 0 | 0 | 1 (G10) | 10 |
+| AUDIT 3 observed/latent 분리 | PASS | 0 | 0 | 1 (G10) | 11 |
+| AUDIT 4 mechanism Super-DAG | PASS | 0 | 0 | 20 (방향 미결 8, 공존 미결 2, 복수 설명 4, 기존 미해결 6) | 2 |
 
 - 통과 조건은 ERROR 0, WARN 0이다. 이전 실행의 WARN 5건(A1-W1–W4, A3-W1)은 모두 FIXED로 처리했다. 새 regression 규칙이 찾아낸 EP07 1건(A1-E1)은 ESCALATED_ERROR로 올린 뒤 고쳤다. 처리 내역은 `warn_dispositions.csv`와 각 audit 문서의 WARN disposition 절에 있다.
 - 사용자 수동 검토로 ID01(병사=이광섭)·ID02(한 비장=한재욱)·ID03(한가=한재욱)·ID05(풍각 김상제=김명신)·ID11(원돌=정원돌)을 확정했다(`identity_register.csv`의 status=RESOLVED, resolved_by=USER). episode summary는 원문 표면형을 그대로 두고, 확정된 ID는 edge condition과 후보 가정에서 뺐다. 확정과 충돌하는 후보 G09b·G09c는 PRUNED 처리했다(어느 world에도 쓰이지 않던 후보). 사람이 판단할 항목은 `manual_review_table.md`에 있다. 사용자 검토에서 ID06·ID07·ID08·OE007·OE062·G10은 추가 사료 없이 확정하지 않기로 했다. 이 항목들은 오류가 아니라 보존된 불확실성이며 `identity_register.csv`(review_decision), `observed_edges.csv`(uncertainty_status), `gaps.csv`(gap_status)에 기록되어 있다.
@@ -66,27 +77,29 @@ Audit 1 전에 regression 케이스 26개(`regression.py`)를 검사기에 넣�
 - LATENT 재감사: 후보가 새로 추가한 bridge 내용 자체의 사료 근거만 source support로 다시 평가했다(양끝 관측 사실의 확실성·시간 인접·제도 가능성은 제외). HIGH 후보는 4개에서 0개가 되었다. final 등급은 근거 등급(evidence)과 개연성(plausibility) 중 낮은 쪽이다. 상세: `latent_candidate_reaudit.md`.
 - 동결 해시: `86a529da3baf…` → `c50402af878f…`(WARN 처리로 EP01·EP04–EP07 문구 수정) → `005d4b7df030…`(동일성 확정으로 OE007·OE081 condition 제거) → `ccb7ec63763a…`(ID05 확정으로 OE071 condition에서 ID05 제거). node·edge id·끝점·type을 본 topology 해시는 그대로이고, Stage 4·5 뒤에도 observed DAG는 변하지 않는다. LATENT가 OBSERVED로 둔갑한 경우는 0건이다.
 
+- Mechanism Super-DAG(Stage 6): 기존 후보를 묶어 메커니즘 7개(M1–M6, MB)를 만들고, 각 world를 메커니즘 configuration으로 다시 읽었다. configuration은 world의 실제 bridge에서 규칙으로 계산했다. 관측 node·edge·후보 내용·등급은 바꾸지 않았고 확률·SEM 계수는 쓰지 않았다. 동결 해시 그대로.
+
 자세한 수동 검토표와 수정 이력은 각 audit 문서 §3·§4에 있다.
 
 ## 결과 한눈에
 
-- gap 13개, 후보 38개(HIGH 4 · MEDIUM 17 · LOW 16 · INCOMPATIBLE 1, gap당 2–5개)
-- gap별 최고 등급은 HIGH 4개(G01·G06·G07·G08), MEDIUM 9개(G02–G05·G09–G13)다.
+- gap 13개, 후보 38개(재감사 후 final: MEDIUM 7 · LOW 28 · INCOMPATIBLE 3, HIGH 0)
+- gap별 최고 등급은 MEDIUM 7개(G01–G04·G06·G07·G10), LOW 6개(G05·G08·G09·G11–G13)다.
 
-| world | 이름 | bridge | 최저 등급 | 상태 |
-|---|---|---|---|---|
-| W1 | 공식 정보 경로 (정조 최종 판단과 정합) | 12 | MEDIUM | RETAINED |
-| W2 | 대질 진술 증폭 경로 | 9 | MEDIUM | RETAINED |
-| W3 | 사적 후원 경로 (약함) | 8 | LOW | RETAINED |
-| W4 | 분산 지휘 | 8 | LOW | RETAINED |
-| W5 | 최소 가정 (HIGH 후보만) | 4 | HIGH | RETAINED |
-| W6 | 모함·장형 사망 (이조원·윤노동 쪽 주장) | 3 | LOW | REJECTED (대조용) |
+| world | 역할 | bridge | 메커니즘 configuration (M1 M2 M3 M4 M5 M6 MB) |
+|---|---|---|---|
+| W1 | 공식 정보 경로 | 12 | ON · UNSPECIFIED · PARTIAL · PARTIAL · ON · ON · ON |
+| W2 | 대질 진술 증폭 경로 | 9 | PARTIAL · ON · UNSPECIFIED · ON · ON · PARTIAL · ON |
+| W3 | 사적 후원 경로 | 8 | PARTIAL · UNSPECIFIED · ON · UNSPECIFIED · ON · ON · ON |
+| W4 | 분산 지휘 | 8 | PARTIAL · PARTIAL · UNSPECIFIED · ON · ON · PARTIAL · ON |
+| W5 | 최소 가정 | 4 | PARTIAL · UNSPECIFIED · UNSPECIFIED · UNSPECIFIED · ON · ON · ON |
+| W6 | 모함·장형 사망 — REJECTED(대조군) | 3 | 공존·개입 분석에서 제외 |
 
 ## 핵심 설계 규칙
 
 1. **episode는 confirmed sentence에서만** 만든다. 문장을 원자 명제로 다시 쪼개지 않는다. 예외는 판단 주체(홍대협↔정조) 경계에서 나눈 CF040·CF045 두 건이며, 각 절은 원문 substring이다.
 2. **진술은 진술로** 둔다. 진술 episode의 summary에는 진술 귀속이 있고, 진술 내용 속 순서를 잇는 edge는 `claim_level`로 표시한다. 중첩 진술(CF005)은 NESTED_TESTIMONY로 둔다.
-3. **동일성을 확정하지 않는다.** 병사=이광섭(ID01), 한 비장=한재욱(ID02), 한가=한재욱(ID03), 하급 보조자=한재욱(ID04)을 포함한 미확정 동일성은 대장에만 두고, edge는 `condition`으로, 후보는 가정과 `identity_conditions`로만 참조한다. 동일성에 기대는 후보는 HIGH가 될 수 없다.
+3. **동일성을 강제하지 않는다.** 사용자가 확정한 ID01·ID02·ID03·ID05·ID11 밖의 미확정 동일성(ID06·ID07·ID08 등)은 대장에만 두고, edge는 `condition`으로, 후보는 가정과 `identity_conditions`로만 참조한다. 동일성에 기대는 후보는 HIGH가 될 수 없다.
 4. **CAUSES edge는 0개다.** 정조의 책임 귀속은 `RESPONSIBILITY_LINK`로 표현하고 royal judgment node로만 들어간다. 김명신 사망은 생물학적 branch A(홍대협 질병 평가 → 정조 전염병 판단, 환경 context)와 절차·책임 branch B(구순 쪽 사슬, 이광섭 쪽 사슬)로 나뉘며, 구순 → 사망 직접 edge는 없다.
 5. **판단 변화를 지우지 않는다.** 5월 '도난 없음 방향'과 6월 '도난 실재'를 모두 node로 두고 `REVIEW_OF`·`REVISES`·`CONTRADICTS_AT_CLAIM_LEVEL`로 잇는다.
 6. **제도 피쳐는 사건을 만들지 않는다.** 제도는 compatibility 평가이며 확률이 아니다. 제도 compatibility만 근거인 edge는 없고, 그런 후보는 LOW 상한이다.
@@ -94,3 +107,4 @@ Audit 1 전에 regression 케이스 26개(`regression.py`)를 검사기에 넣�
 8. **05(AUDIT_ONLY)는 DAG 입력이 아니다.** latent 후보의 `audit_attestation`으로만 인용하고, 인용해도 후보는 LATENT로 남는다.
 9. **observed DAG는 Stage 3에서 동결한다.** Stage 4·5는 동결본을 바꾸지 않고, LATENT 요소는 별도 표(`latent_*`)에만 있다.
 10. **world는 손으로 고른다.** 전수 조합 없이 설명 축이 다른 world 몇 개만 둔다. gap마다 후보는 최대 1개이고, 상충 쌍은 함께 쓰지 않으며, world 쌍마다 2개 이상 gap에서 다르다. 서술의 `[L]`이 LATENT 부분이다.
+11. **메커니즘은 분석 변수다.** World = configuration, Mechanism = 분석 변수, Observed fact = 고정, Context feature = 제약조건, Latent bridge = 가설, Outcome = confirmed backbone. 제도·환경 context는 메커니즘을 제약할 뿐 사건을 만들지 않고, M5(재검토·교정)는 관측 backbone에 고정되어 world마다 달라지지 않는다. 사망 branch A(MB)와 책임 branch B(M1–M4)를 잇는 edge는 없다.

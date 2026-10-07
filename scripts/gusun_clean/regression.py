@@ -101,6 +101,31 @@ CASES = [
      lambda: (bool(audits.text_regressions("호서 전염병 때문에 김명신이 옥중에서 감염되었다")), [])),
 ]
 
+# Audit 4: mechanism Super-DAG
+A4_CASES = [
+    ("context_to_fact", "context(F013 암행어사 제도)에서 새 관측 사건 node를 만듦",
+     lambda: _sd_case(_mut_new_fact, "context_to_fact")),
+    ("environment_to_personal_fact", "환경(ENV03 전염병)을 김명신 구금 경과 후보(G06a)에 직접 연결",
+     lambda: _sd_case(_mut_env_personal, "environment_to_personal_fact")),
+    ("institution_to_event", "제도 가능성(F007 병사 지휘권)이 3/4 체포 지시(EP09)를 직접 만듦",
+     lambda: _sd_case(_mut_inst_event, "institution_to_event")),
+    ("world_merge", "상충 후보 G03b를 W2(G04b 사용)에 섞음",
+     lambda: _sd_case(_mut_world_merge, "world_merge")),
+    ("w6_reactivation", "REJECTED W6을 경쟁 설명으로 되살리고 공존 분석에 넣음",
+     lambda: _sd_case(_mut_w6, "w6_reactivation")),
+    ("responsibility_to_biological", "책임 구조 변수(V_RESPONSIBILITY) → 사인 판단(EP27) 직접 edge",
+     lambda: _sd_case(_mut_resp_bio, "responsibility_to_biological")),
+    ("off_mechanism_alive", "W1에서 M1=OFF로 바꿨는데 M1 후보(G01a·G02a·G03a·G04a)가 그대로 살아 있음",
+     lambda: _sd_case(_mut_off_alive, "off_mechanism_alive")),
+    ("unspecified_as_off", "W5의 M3(관련 후보 없음, UNSPECIFIED)를 OFF로 표기",
+     lambda: _sd_case(_mut_unspec_off, "unspecified_as_off")),
+    ("world_latent_promoted", "W1 전용 후보 G04a를 모든 world 공통 사실로 표시",
+     lambda: _sd_case(_mut_promote, "world_latent_promoted")),
+    ("outcome_world_dependency", "확정 처분(EP33 구순 정배)을 W1에만 속한 결과로 표시",
+     lambda: _sd_case(_mut_outcome, "outcome_world_dependency")),
+]
+CASES = CASES + A4_CASES
+
 
 def _occ_case():
     eps = copy.deepcopy(EPISODES)
@@ -215,11 +240,97 @@ def _outcome_case():
     return "outcome_world_dependency" in hit, sorted(hit)
 
 
+_SD_INPUTS = {}
+
+
+def _sd_inputs():
+    if not _SD_INPUTS:
+        import build
+        import stage4_latent
+        import stage5_worlds
+        import stage6_mechanisms
+        cf = build.read_csv("01_confirmed_facts.csv")
+        env = build.read_csv("03_environment_1793.csv")
+        inst = build.read_csv("02_institutional_normative_features.csv")
+        nodes, edges, _ = build.stage2(build.stage1(cf), env)
+        gaps, cands = stage4_latent.build(nodes, edges)
+        worlds = stage5_worlds.build(nodes, edges, gaps, cands)
+        frozen = build.graph_hash(nodes, edges)
+        sd = stage6_mechanisms.build(nodes, edges, cands, worlds, inst, env, frozen)
+        _SD_INPUTS.update(nodes=nodes, edges=edges, cands=cands, worlds=worlds, frozen=frozen, sd=sd, hash=build.graph_hash)
+    return _SD_INPUTS
+
+
+def _sd_case(mutate, expect):
+    """깨끗한 Super-DAG에서 ERROR가 없음을 먼저 확인하고, 사본 하나만 바꿔 기대한 check가 ERROR로 나오는지 본다."""
+    x = _sd_inputs()
+    clean = audits.audit4(x["sd"], x["nodes"], x["edges"], x["frozen"], x["hash"], x["worlds"], x["cands"])
+    if any(f["severity"] == "ERROR" for f in clean):
+        return False, ["clean baseline already has ERROR"]
+    sd, worlds = copy.deepcopy(x["sd"]), copy.deepcopy(x["worlds"])
+    mutate(sd, worlds)
+    found = audits.audit4(sd, x["nodes"], x["edges"], x["frozen"], x["hash"], worlds, x["cands"])
+    hit = {f["check"] for f in found if f["severity"] == "ERROR"}
+    return expect in hit, sorted(hit)
+
+
+def _sd_edge(sd, src, dst, etype, status):
+    sd["edges"].append(dict(edge_id="SD_REG", src=src, dst=dst, edge_type=etype, sd_status=status, origin="SUPER_DAG", note=""))
+
+
+def _mut_new_fact(sd, worlds):
+    sd["nodes"].append(dict(node_id="EP_NEW", sd_status="OBSERVED", node_type="OBSERVED_EVENT",
+                            label="4월 암행어사 공주 재조사", frozen_status="", branch="", mechanism="", worlds="ALL (공통)", detail=""))
+    _sd_edge(sd, "CTX_F013", "EP_NEW", "CONSTRAINS", "CONTEXT")
+
+
+def _mut_env_personal(sd, worlds):
+    _sd_edge(sd, "ENV03", "G06a", "CONTEXT_COMPATIBLE", "CONTEXT")
+
+
+def _mut_inst_event(sd, worlds):
+    _sd_edge(sd, "CTX_F007", "EP09", "CONSTRAINS", "CONTEXT")
+
+
+def _mut_world_merge(sd, worlds):
+    w2 = next(w for w in worlds if w["world_id"] == "W2")
+    w2["latent_bridges"] = w2["latent_bridges"] + ["G03b"]
+
+
+def _mut_w6(sd, worlds):
+    w6 = next(w for w in worlds if w["world_id"] == "W6")
+    w6["role_type"] = "COMPETING_EXPLANATION"
+    sd["interactions"][0]["cooccur_worlds"] += ", W6"
+
+
+def _mut_resp_bio(sd, worlds):
+    _sd_edge(sd, "V_RESPONSIBILITY", "EP27", "EXPLAINS_TRANSITION_TO", "LATENT_MECHANISM")
+
+
+def _mut_off_alive(sd, worlds):
+    sd["configs"]["W1"]["M1"] = "OFF"
+
+
+def _mut_unspec_off(sd, worlds):
+    sd["configs"]["W5"]["M3"] = "OFF"
+
+
+def _mut_promote(sd, worlds):
+    n = next(n for n in sd["nodes"] if n["node_id"] == "G04a")
+    n["worlds"] = "ALL (공통)"
+
+
+def _mut_outcome(sd, worlds):
+    n = next(n for n in sd["nodes"] if n["node_id"] == "EP33")
+    n["worlds"] = "W1"
+
+
 def run():
     results = []
     for rule, desc, fn in CASES:
         ok, detail = fn()
-        results.append(dict(rule=rule, case=desc, caught=ok, detail=detail))
+        audit = "AUDIT4" if any(desc == c[1] for c in A4_CASES) else "AUDIT1-3"
+        results.append(dict(rule=rule, case=desc, caught=ok, detail=detail, audit=audit))
     return results
 
 

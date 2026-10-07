@@ -775,3 +775,143 @@ def audit3(nodes, edges, frozen_hash, current_hash, gaps, candidates, props, wor
                      f"world {len(worlds)}개 (경쟁 설명 {sum(not w.get('rejected') for w in worlds)}, "
                      f"rejected {sum(bool(w.get('rejected')) for w in worlds)}) — 쌍별 gap 차이 ≥2 확인"))
     return out
+
+
+# ============================================================================
+# AUDIT 4 — Mechanism Super-DAG
+# ============================================================================
+
+def audit4(sd, nodes, edges, frozen_hash, graph_hash_fn, worlds, candidates):
+    from stage6_mechanisms import BRANCH_A, BRANCH_B, CAND_MAP, MECHANISMS, ORDER, OBSERVED_ANCHORED, STRUCT_VARS, usable
+    from stage5_worlds import COMMON_OUTCOME_NODES
+    out = []
+    sdn = {n["node_id"]: n for n in sd["nodes"]}
+    cand = {c["candidate_id"]: c for c in candidates}
+    # 1. frozen observed graph 보존
+    if graph_hash_fn(nodes, edges) != frozen_hash:
+        out.append(F("frozen_graph_changed", "ERROR", "observed_dag", "frozen observed graph 해시가 바뀜"))
+    for n in nodes:
+        s = sdn.get(n["node_id"])
+        want = "CONTEXT" if n["layer"] == "ENVIRONMENT" else "OBSERVED"
+        if not s:
+            out.append(F("frozen_graph_changed", "ERROR", n["node_id"], "frozen node가 Super-DAG에 없음"))
+        elif s["sd_status"] != want or s["label"] != n["title"]:
+            out.append(F("observed_to_latent", "ERROR", n["node_id"], f"frozen node 상태·내용 변경: {s['sd_status']}"))
+    frozen_ids = {n["node_id"] for n in nodes}
+    for n in sd["nodes"]:
+        if n["node_id"] not in frozen_ids and (n["sd_status"] == "OBSERVED" or n["node_type"] == "OBSERVED_EVENT"):
+            out.append(F("context_to_fact", "ERROR", n["node_id"],
+                         "frozen graph에 없는 관측 사건 node가 Super-DAG에서 새로 생김(새 역사적 사실 생성)"))
+    fe = {(e["edge_id"], e["src"], e["dst"], e["edge_type"], e["status"]) for e in edges}
+    se = {(e["edge_id"], e["src"], e["dst"], e["edge_type"], e["sd_status"]) for e in sd["edges"] if e["origin"] == "FROZEN"}
+    if fe != se:
+        out.append(F("frozen_graph_changed", "ERROR", "edges", f"frozen edge 불일치 {len(fe ^ se)}건"))
+    # 2. LATENT → OBSERVED 둔갑
+    for n in sd["nodes"]:
+        if n["node_type"] in ("MECHANISM", "STRUCTURAL_VARIABLE", "CANDIDATE_BRIDGE") and n["sd_status"] != "LATENT_MECHANISM":
+            out.append(F("latent_to_observed", "ERROR", n["node_id"], f"{n['node_type']}인데 status={n['sd_status']}"))
+        if n["node_type"] == "CANDIDATE_BRIDGE" and "ALL" in n["worlds"]:
+            out.append(F("world_latent_promoted", "ERROR", n["node_id"], "world별 LATENT 후보가 모든 world 공통으로 표시됨"))
+    # 3–6. context·environment·institution leakage, 책임 → 생물학 사인
+    for e in sd["edges"]:
+        s, d = sdn.get(e["src"]), sdn.get(e["dst"])
+        if not s or not d:
+            out.append(F("dangling_edge", "ERROR", e["edge_id"], f"{e['src']}→{e['dst']}"))
+            continue
+        if e["edge_type"] == "CAUSES":
+            out.append(F("causal_inflation", "ERROR", e["edge_id"], "CAUSES edge"))
+        if s["node_type"] == "INSTITUTIONAL_CONTEXT" and d["node_type"] in ("OBSERVED_EVENT", "CANDIDATE_BRIDGE"):
+            out.append(F("institution_to_event", "ERROR", e["edge_id"], f"제도 피쳐 {e['src']}가 사건·후보 {e['dst']}를 직접 만듦"))
+        if s["node_type"] == "ENV_CONTEXT" and e["origin"] != "FROZEN":
+            if d["node_type"] in ("OBSERVED_EVENT", "CANDIDATE_BRIDGE"):
+                out.append(F("environment_to_personal_fact", "ERROR", e["edge_id"], f"환경 {e['src']}가 개인 사건·후보 {e['dst']}에 직접 연결"))
+            if d["node_type"] == "MECHANISM" and e["edge_type"] != "CONTEXT_COMPATIBLE":
+                out.append(F("environment_to_personal_fact", "ERROR", e["edge_id"], "환경 → 메커니즘은 CONTEXT_COMPATIBLE만 허용"))
+        if s["sd_status"] == "CONTEXT" and e["origin"] != "FROZEN" and e["edge_type"] not in ("CONSTRAINS", "CONTEXT_COMPATIBLE"):
+            out.append(F("context_to_fact", "ERROR", e["edge_id"], f"context edge type {e['edge_type']}"))
+        if e["origin"] != "FROZEN":
+            sb = e["src"] in BRANCH_B or (s["node_type"] == "CANDIDATE_BRIDGE" and s["branch"] == "B_PROCEDURAL")
+            da = e["dst"] in BRANCH_A or (d["node_type"] == "CANDIDATE_BRIDGE" and d["branch"] == "A_BIOLOGICAL")
+            sa = e["src"] in BRANCH_A or (s["node_type"] == "CANDIDATE_BRIDGE" and s["branch"] == "A_BIOLOGICAL")
+            db = e["dst"] in BRANCH_B or (d["node_type"] == "CANDIDATE_BRIDGE" and d["branch"] == "B_PROCEDURAL")
+            if (sb and da) or (sa and db):
+                out.append(F("responsibility_to_biological", "ERROR", e["edge_id"], f"책임 branch와 생물학 branch를 연결 {e['src']}→{e['dst']}"))
+    # 7–10. world configuration
+    from stage5_worlds import WORLD_ROLES
+    pair = {(x["a"], x["b"]): x for x in sd["interactions"]}
+    rejected = {k for k, v in WORLD_ROLES.items() if v["role_type"] == "REJECTED"}
+    for w in worlds:
+        wid = w["world_id"]
+        cfg = sd["configs"][wid]
+        if wid in rejected and w["role_type"] != "REJECTED":
+            out.append(F("w6_reactivation", "ERROR", wid, f"REJECTED로 정한 world가 {w['role_type']}로 되살아남"))
+            continue
+        if w["role_type"] == "REJECTED":
+            if any(wid in x["cooccur_worlds"].split(", ") for x in sd["interactions"]):
+                out.append(F("w6_reactivation", "ERROR", wid, "REJECTED world가 공존 분석에 들어감"))
+            if any(wid in i["affected_worlds"].split(", ") for i in sd["interventions"]):
+                out.append(F("w6_reactivation", "ERROR", wid, "REJECTED world가 개입 분석에 들어감"))
+            continue
+        if w["role_type"] != "COMPETING_EXPLANATION":
+            out.append(F("world_merge", "ERROR", wid, f"role_type {w['role_type']}"))
+        for m in ORDER:
+            v = cfg[m]
+            if v not in ("ON", "OFF", "PARTIAL", "UNSPECIFIED"):
+                out.append(F("config_value", "ERROR", wid, f"{m}={v}"))
+            prim = [b for b in w["latent_bridges"] if CAND_MAP[b][0] == m]
+            neg = [b for b in w["latent_bridges"] if CAND_MAP[b][3] == m]
+            if v == "OFF" and prim:
+                out.append(F("off_mechanism_alive", "ERROR", wid, f"{m}=OFF인데 {prim}가 살아 있음"))
+            if v == "OFF" and not neg:
+                out.append(F("unspecified_as_off", "ERROR", wid, f"{m}=OFF인데 부정 후보가 없음(UNSPECIFIED여야 함)"))
+            if v == "UNSPECIFIED" and (prim or neg) and m not in OBSERVED_ANCHORED:
+                out.append(F("config_value", "ERROR", wid, f"{m}=UNSPECIFIED인데 관련 후보 {prim + neg} 사용"))
+        for i, a in enumerate(ORDER):
+            for b in ORDER[i + 1:]:
+                p = pair[(a, b)]
+                if p["coexistence"] == "INCOMPATIBLE" and cfg[a] == "ON" and cfg[b] == "ON":
+                    out.append(F("incompatible_coexistence", "ERROR", wid, f"{a}·{b}가 INCOMPATIBLE인데 둘 다 ON"))
+        from stage5_worlds import CONFLICT_PAIRS
+        for x, y, _ in CONFLICT_PAIRS:
+            if x in w["latent_bridges"] and y in w["latent_bridges"]:
+                out.append(F("world_merge", "ERROR", wid, f"상충 후보 {x}+{y}가 한 world에 있음"))
+    bridges = {w["world_id"]: tuple(w["latent_bridges"]) for w in worlds}
+    if len(set(bridges.values())) != len(bridges):
+        out.append(F("world_merge", "ERROR", "worlds", "서로 다른 world의 bridge 구성이 같음(병합 의심)"))
+    # 11. 공통 결말
+    outcome = {x for ids in COMMON_OUTCOME_NODES.values() for x in ids}
+    for x in outcome:
+        n = sdn.get(x)
+        if not n or n["sd_status"] != "OBSERVED" or n["worlds"] != "ALL (공통)":
+            out.append(F("outcome_world_dependency", "ERROR", x, "공통 결말이 OBSERVED·모든 world 공통으로 표시되지 않음"))
+    for e in sd["edges"]:
+        if e["dst"] in outcome and sdn.get(e["src"], {}).get("node_type") == "CANDIDATE_BRIDGE" and e["edge_type"] == "ORDER_TO_ACTION":
+            out.append(F("outcome_world_dependency", "ERROR", e["edge_id"], "후보가 공통 결말을 명령 실행으로 만듦"))
+    # UNRESOLVED: 사료가 결정하지 않는 것
+    for x in sd["interactions"]:
+        if x["a"] in OBSERVED_ANCHORED or x["b"] in OBSERVED_ANCHORED or "MB" in (x["a"], x["b"]):
+            continue
+        if not x["cooccur_worlds"]:
+            out.append(F("coexistence_undetermined", "UNRESOLVED", f"{x['a']}×{x['b']}",
+                         f"{x['coexistence']} — 충돌 근거는 없지만 어느 경쟁 world도 둘을 함께 쓰지 않아, 함께 작동했는지는 사료로 결정되지 않음"))
+        elif "COMPLEMENT" in x["relation"]:
+            out.append(F("interaction_direction", "UNRESOLVED", f"{x['a']}×{x['b']}",
+                         f"함께 쓰이는 world({x['cooccur_worlds']})가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음"))
+    for v in STRUCT_VARS:
+        ins = [m for m in v["inputs"] if m in MECHANISMS]
+        if v["op"] in ("OR", "XOR") and len(ins) >= 2:
+            gaps = set(v["gap"].split("|"))
+            ms = sorted({CAND_MAP[c["candidate_id"]][0] for c in candidates if usable(c) and c["gap_id"] in gaps
+                         and CAND_MAP[c["candidate_id"]][0] in ins})
+            if len(ms) >= 2:
+                out.append(F("multiple_explanations", "UNRESOLVED", v["var"],
+                             f"{v['op']}: {', '.join(ms)}가 같은 관측 전이({v['target']})를 설명할 수 있음. 어느 쪽이 실제로 작동했는지는 사료로 결정되지 않음"))
+    for n in sd["nodes"]:
+        if n["sd_status"] == "UNRESOLVED":
+            out.append(F("unresolved_item", "UNRESOLVED", n["node_id"], n["label"]))
+    from collections import Counter
+    out.append(F("super_dag_summary", "INFO", "super_dag",
+                 "node " + ", ".join(f"{k} {v}" for k, v in sorted(Counter(n["sd_status"] for n in sd["nodes"]).items()))
+                 + " · edge " + ", ".join(f"{k} {v}" for k, v in sorted(Counter(e["sd_status"] for e in sd["edges"]).items()))))
+    out.append(F("frozen_graph_changed", "INFO", "observed_dag", f"동결 해시 일치 {frozen_hash[:12]}"))
+    return out

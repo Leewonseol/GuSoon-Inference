@@ -276,6 +276,26 @@ AUDIT3_REVISIONS = [
 ]
 
 
+AUDIT4_REVISIONS = [
+    ("Stage 6 설계", "메커니즘 M1–M5만으로는 G07 계열(5월 판단 근거)과 G06·G12 계열(구금·질병 경과)을 담을 곳이 없음",
+     "기존 후보를 묶기만 해서 M6_INITIAL_JUDGMENT_BASIS와 MB_CUSTODY_BIOLOGICAL_COURSE를 추가. 새 후보·사건·등급 변경 없음"),
+    ("configuration 규칙 검토(실행 전)", "부정 후보(G02b·G05b·G13b)만 있는 world를 OFF로, 후보가 없는 world도 OFF로 읽을 위험",
+     "OFF는 '부정 후보만 있음', UNSPECIFIED는 '관련 후보 없음'으로 분리. 내용상 '작동하지 않았다'는 주장만 하는 G05b·G11c·G13b는 "
+     "null variant로 두어 공존·개입 분석의 근거에서 뺌"),
+    ("공존 규칙 검토(실행 전)", "두 메커니즘이 한 world에서 모두 PARTIAL이기만 해도 '함께 쓰인다'로 셈",
+     "함께 쓰임은 적어도 한쪽이 ON일 때만 인정. 함께 쓰는 world가 없으면 COMPATIBLE이라도 UNRESOLVED(coexistence_undetermined)로 기록"),
+    ("1차 실행", "ERROR 0, WARN 0. 수동 검토에서 mechanism → investigation·review Mermaid의 관측 edge 일부를 손으로 쓴 것이 frozen edge와 다름을 발견"
+     "(EP15→EP18, EP23→EP25 등은 frozen graph에 없음. 실제는 EP17 REVIEW_OF EP18, EP24 REVIEW_OF EP25)",
+     "Mermaid 패널을 mechanism_super_dag_edges.csv에서 생성하도록 바꿈(관측 edge는 frozen type 그대로). 손으로 쓴 edge 0"),
+    ("검사기 보강", "frozen graph에 없는 관측 사건 node가 Super-DAG에 새로 생겨도 잡는 검사가 없었고, W6의 role_type을 바꾸면 되살아나도 모름",
+     "context_to_fact에 '새 관측 node 생성'을 추가, WORLD_ROLES에서 REJECTED로 정한 world가 다른 role로 바뀌면 w6_reactivation ERROR"),
+    ("regression 추가", "요청된 Audit 4 regression 10건(context→사실, 환경→개인 감염, 제도→사건, world 병합, W6 재활성, 책임→생물학 사인, "
+     "OFF인데 후보 생존, UNSPECIFIED를 OFF로, world 전용 LATENT 공통화, 결말의 world 종속)",
+     "깨끗한 Super-DAG에서 ERROR 0을 먼저 확인한 뒤 사본만 바꿔 넣음. 10건 모두 ERROR로 잡힘(전체 36/36)"),
+    ("2차 실행", "ERROR 0, WARN 0, UNRESOLVED 20(방향 미결 8, 공존 미결 2, 복수 설명 4, 기존 미해결 6), INFO 2",
+     "PASS. 동결 해시 ccb7ec63763a 그대로"),
+]
+
 # ============================================================================ WARN dispositions
 # 모든 WARN은 아래 네 상태 중 하나로 처리한다: FIXED / RECLASSIFIED_INFO / UNRESOLVED / ESCALATED_ERROR.
 # build.py는 disposition이 없는 WARN이 남으면 멈춘다. FIXED는 이력이며, 같은 WARN이 다시 나오면 다시 처리해야 한다.

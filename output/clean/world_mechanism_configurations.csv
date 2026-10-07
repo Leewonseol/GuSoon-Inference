@@ -1,0 +1,7 @@
+world_id,role_type,M1,M2,M3,M4,M5,M6,MB,M1_basis,M2_basis,M3_basis,M4_basis,M5_basis,M6_basis,MB_basis,latent_bridges
+W1,COMPETING_EXPLANATION,ON,UNSPECIFIED,PARTIAL,PARTIAL,ON,ON,ON,"core G01a, G02a, G03a, G04a",관련 후보 없음,보조 G05a,보조 G11a,"관측 재검토 backbone(EP15–EP37)에 고정; 내부 세부 G08a, G09a, G13a",core G07a,core G06a; 보조 G12a,G01a|G02a|G03a|G04a|G05a|G06a|G07a|G08a|G09a|G11a|G12a|G13a
+W2,COMPETING_EXPLANATION,PARTIAL,ON,UNSPECIFIED,ON,ON,PARTIAL,ON,"core G01a, G03a; 부정 G02b",core G04b; 보조 G07c,관련 후보 없음,core G02b,"관측 재검토 backbone(EP15–EP37)에 고정; 내부 세부 G08a, G09a",보조 G07c,core G06b; 보조 G12a,G01a|G02b|G03a|G04b|G06b|G07c|G08a|G09a|G12a
+W3,COMPETING_EXPLANATION,PARTIAL,UNSPECIFIED,ON,UNSPECIFIED,ON,ON,ON,"core G01b, G02a",관련 후보 없음,core G04c; 보조 G05a,관련 후보 없음,관측 재검토 backbone(EP15–EP37)에 고정; 내부 세부 G08a,core G07a,core G06a; 보조 G12a,G01b|G02a|G04c|G05a|G06a|G07a|G08a|G12a
+W4,COMPETING_EXPLANATION,PARTIAL,PARTIAL,UNSPECIFIED,ON,ON,PARTIAL,ON,core G01a; 부정 G02b,보조 G07b,관련 후보 없음,"core G02b, G03c; 보조 G11a","관측 재검토 backbone(EP15–EP37)에 고정; 내부 세부 G08b, G13a",보조 G07b,core G06a,G01a|G02b|G03c|G06a|G07b|G08b|G11a|G13a
+W5,COMPETING_EXPLANATION,PARTIAL,UNSPECIFIED,UNSPECIFIED,UNSPECIFIED,ON,ON,ON,core G01a,관련 후보 없음,관련 후보 없음,관련 후보 없음,관측 재검토 backbone(EP15–EP37)에 고정; 내부 세부 G08a,core G07a,core G06a,G01a|G06a|G07a|G08a
+W6,REJECTED,UNSPECIFIED,UNSPECIFIED,UNSPECIFIED,UNSPECIFIED,ON,ON,ON,관련 후보 없음,관련 후보 없음,관련 후보 없음,관련 후보 없음,관측 재검토 backbone(EP15–EP37)에 고정,core G07d,core G06c; 보조 G12b,G06c|G07d|G12b
