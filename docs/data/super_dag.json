@@ -1,64 +1,68 @@
 {
+ "anchor": {
+  "x": -356,
+  "y": 0
+ },
  "bands": [
   {
    "dated": false,
    "id": "UNDATED",
    "label": "날짜 미기록",
    "sub": "시간 축 밖 · 위치는 날짜를 뜻하지 않음",
-   "x0": -75,
-   "x1": 75,
-   "y0": 726,
-   "y1": 2220
+   "x0": -136,
+   "x1": 136,
+   "y0": 10,
+   "y1": 2247
   },
   {
    "dated": true,
    "id": "FEB",
    "label": "1793-02 (2월)",
    "sub": "관계 · 도난 · 병영 출동",
-   "x0": 143,
-   "x1": 1241,
-   "y0": 726,
-   "y1": 2220
+   "x0": 232,
+   "x1": 2232,
+   "y0": 10,
+   "y1": 2247
   },
   {
    "dated": true,
    "id": "MAR",
    "label": "1793-03 (3월)",
    "sub": "3/4 체포 지시 · 체포",
-   "x0": 1309,
-   "x1": 1775,
-   "y0": 726,
-   "y1": 2220
+   "x0": 2328,
+   "x1": 3176,
+   "y0": 10,
+   "y1": 2247
   },
   {
    "dated": true,
    "id": "MAY",
    "label": "1793-05 (5월)",
    "sub": "장계 · 1차 판단 · 재조사",
-   "x0": 1843,
-   "x1": 2783,
-   "y0": 726,
-   "y1": 2220
+   "x0": 3272,
+   "x1": 4984,
+   "y0": 10,
+   "y1": 2247
   },
   {
    "dated": true,
    "id": "JUN",
    "label": "1793-06 (6월)",
    "sub": "별단 · 안핵 신문·복명",
-   "x0": 2851,
-   "x1": 3633,
-   "y0": 726,
-   "y1": 2220
+   "x0": 5080,
+   "x1": 6504,
+   "y0": 10,
+   "y1": 2247
   },
   {
    "dated": true,
    "id": "FINAL",
    "label": "최종 판단·처분",
    "sub": "6/13 정조 판단 → 처분 → 6/16",
-   "x0": 3701,
-   "x1": 4325,
-   "y0": 726,
-   "y1": 2220
+   "x0": 6600,
+   "x1": 7736,
+   "y0": 10,
+   "y1": 2247
   }
  ],
  "edge_count": 205,
@@ -3749,166 +3753,314 @@
    "status_group": "UNRESOLVED"
   }
  ],
+ "extent": {
+  "label_x0": -356,
+  "x0": -166,
+  "x1": 7766,
+  "y0": 0,
+  "y1": 3843
+ },
  "lanes": [
-  {
-   "id": "L_CTX_INST",
-   "kind": "context",
-   "label": "제도 context (F001–F020)",
-   "sub": "제약조건 · 사건 아님",
-   "y0": 0,
-   "y1": 88
-  },
-  {
-   "id": "L_MECH",
-   "kind": "latent",
-   "label": "메커니즘 (분석 변수)",
-   "sub": "LATENT_MECHANISM · 역사적 사실 아님",
-   "y0": 88,
-   "y1": 176
-  },
-  {
-   "id": "L_UNRES",
-   "kind": "unresolved",
-   "label": "UNRESOLVED",
-   "sub": "확정하지 않은 동일성·범위·사유",
-   "y0": 176,
-   "y1": 264
-  },
-  {
-   "id": "L_CAND",
-   "kind": "latent",
-   "label": "LATENT 후보 bridge",
-   "sub": "gap별 가설 · 등급 그대로",
-   "y0": 264,
-   "y1": 608
-  },
-  {
-   "id": "L_SVAR",
-   "kind": "latent",
-   "label": "질적 구조 변수 V_*",
-   "sub": "OR · AND · XOR · ANCHORED 규칙",
-   "y0": 608,
-   "y1": 696
-  },
   {
    "id": "L_OBS_RELATION",
    "kind": "observed",
    "label": "관계",
+   "label_lines": [
+    "관계"
+   ],
    "sub": "RELATION",
-   "y0": 796,
-   "y1": 884
+   "sub_lines": [
+    "RELATION"
+   ],
+   "y0": 104,
+   "y1": 211
   },
   {
    "id": "L_OBS_THEFT",
    "kind": "observed",
    "label": "도난·소장",
+   "label_lines": [
+    "도난·소장"
+   ],
    "sub": "THEFT",
-   "y0": 884,
-   "y1": 972
+   "sub_lines": [
+    "THEFT"
+   ],
+   "y0": 211,
+   "y1": 344
   },
   {
    "id": "L_OBS_SUSPECT_INFORMATION",
    "kind": "observed",
    "label": "혐의 정보",
+   "label_lines": [
+    "혐의 정보"
+   ],
    "sub": "SUSPECT_INFORMATION",
-   "y0": 972,
-   "y1": 1060
+   "sub_lines": [
+    "SUSPECT_",
+    "INFORMATION"
+   ],
+   "y0": 344,
+   "y1": 477
   },
   {
    "id": "L_OBS_BARRACKS_OPERATION",
    "kind": "observed",
    "label": "병영 작전·체포",
+   "label_lines": [
+    "병영 작전·체포"
+   ],
    "sub": "BARRACKS_OPERATION",
-   "y0": 1060,
-   "y1": 1148
+   "sub_lines": [
+    "BARRACKS_",
+    "OPERATION"
+   ],
+   "y0": 477,
+   "y1": 610
   },
   {
    "id": "L_OBS_COMMAND_RESPONSIBILITY",
    "kind": "observed",
    "label": "지휘 책임",
+   "label_lines": [
+    "지휘 책임"
+   ],
    "sub": "COMMAND_RESPONSIBILITY",
-   "y0": 1148,
-   "y1": 1236
+   "sub_lines": [
+    "COMMAND_",
+    "RESPONSIBILIT",
+    "Y"
+   ],
+   "y0": 610,
+   "y1": 743
   },
   {
    "id": "L_OBS_RESPONSIBILITY",
    "kind": "observed",
    "label": "책임 판단",
+   "label_lines": [
+    "책임 판단"
+   ],
    "sub": "RESPONSIBILITY",
-   "y0": 1236,
-   "y1": 1324
+   "sub_lines": [
+    "RESPONSIBILIT",
+    "Y"
+   ],
+   "y0": 743,
+   "y1": 850
   },
   {
    "id": "L_OBS_DISPOSITION",
    "kind": "observed",
    "label": "처분",
+   "label_lines": [
+    "처분"
+   ],
    "sub": "DISPOSITION",
-   "y0": 1324,
-   "y1": 1604
+   "sub_lines": [
+    "DISPOSITION"
+   ],
+   "y0": 850,
+   "y1": 1266
   },
   {
    "id": "L_OBS_REINVESTIGATION",
    "kind": "observed",
    "label": "재조사 명령",
+   "label_lines": [
+    "재조사 명령"
+   ],
    "sub": "REINVESTIGATION",
-   "y0": 1604,
-   "y1": 1692
+   "sub_lines": [
+    "REINVESTIGATI",
+    "ON"
+   ],
+   "y0": 1266,
+   "y1": 1399
   },
   {
    "id": "L_OBS_REVIEW",
    "kind": "observed",
    "label": "재검토",
+   "label_lines": [
+    "재검토"
+   ],
    "sub": "REVIEW",
-   "y0": 1692,
-   "y1": 1780
+   "sub_lines": [
+    "REVIEW"
+   ],
+   "y0": 1399,
+   "y1": 1532
   },
   {
    "id": "L_OBS_THEFT_JUDGMENT",
    "kind": "observed",
    "label": "도난 판단",
+   "label_lines": [
+    "도난 판단"
+   ],
    "sub": "THEFT_JUDGMENT",
-   "y0": 1780,
-   "y1": 1868
+   "sub_lines": [
+    "THEFT_",
+    "JUDGMENT"
+   ],
+   "y0": 1532,
+   "y1": 1665
   },
   {
    "id": "L_OBS_JISE",
    "kind": "observed",
    "label": "지세 호칭",
+   "label_lines": [
+    "지세 호칭"
+   ],
    "sub": "JISE",
-   "y0": 1868,
-   "y1": 1956
+   "sub_lines": [
+    "JISE"
+   ],
+   "y0": 1665,
+   "y1": 1798
   },
   {
    "id": "L_OBS_CAUSATION_BOUNDARY",
    "kind": "observed",
    "label": "인과 경계",
+   "label_lines": [
+    "인과 경계"
+   ],
    "sub": "CAUSATION_BOUNDARY",
-   "y0": 1956,
-   "y1": 2044
+   "sub_lines": [
+    "CAUSATION_",
+    "BOUNDARY"
+   ],
+   "y0": 1798,
+   "y1": 1931
   },
   {
    "id": "L_OBS_DETENTION_DEATH",
    "kind": "observed",
    "label": "구금·사망 보고",
+   "label_lines": [
+    "구금·사망 보고"
+   ],
    "sub": "DETENTION_DEATH",
-   "y0": 2044,
-   "y1": 2132
+   "sub_lines": [
+    "DETENTION_",
+    "DEATH"
+   ],
+   "y0": 1931,
+   "y1": 2089
   },
   {
    "id": "L_OBS_BIOLOGICAL",
    "kind": "observed",
    "label": "사인 판단 (branch A)",
+   "label_lines": [
+    "사인 판단 (branch",
+    "A)"
+   ],
    "sub": "BIOLOGICAL",
-   "y0": 2132,
-   "y1": 2220
+   "sub_lines": [
+    "BIOLOGICAL"
+   ],
+   "y0": 2089,
+   "y1": 2247
+  },
+  {
+   "id": "L_SVAR",
+   "kind": "latent",
+   "label": "질적 구조 변수 V_*",
+   "label_lines": [
+    "질적 구조 변수 V_*"
+   ],
+   "sub": "OR · AND · XOR · ANCHORED 규칙",
+   "sub_lines": [
+    "OR · AND · XOR",
+    "· ANCHORED 규칙"
+   ],
+   "y0": 2367,
+   "y1": 2474
+  },
+  {
+   "id": "L_CAND",
+   "kind": "latent",
+   "label": "LATENT 후보 bridge",
+   "label_lines": [
+    "LATENT 후보",
+    "bridge"
+   ],
+   "sub": "gap별 가설 · 등급 그대로",
+   "sub_lines": [
+    "gap별 가설 · 등급",
+    "그대로"
+   ],
+   "y0": 2474,
+   "y1": 3249
+  },
+  {
+   "id": "L_UNRES",
+   "kind": "unresolved",
+   "label": "UNRESOLVED",
+   "label_lines": [
+    "UNRESOLVED"
+   ],
+   "sub": "확정하지 않은 동일성·범위·사유",
+   "sub_lines": [
+    "확정하지 않은",
+    "동일성·범위·사유"
+   ],
+   "y0": 3249,
+   "y1": 3411
+  },
+  {
+   "id": "L_MECH",
+   "kind": "latent",
+   "label": "메커니즘 (분석 변수)",
+   "label_lines": [
+    "메커니즘 (분석",
+    "변수)"
+   ],
+   "sub": "LATENT_MECHANISM · 역사적 사실 아님",
+   "sub_lines": [
+    "LATENT_",
+    "MECHANISM ·",
+    "역사적 사실 아님"
+   ],
+   "y0": 3411,
+   "y1": 3573
+  },
+  {
+   "id": "L_CTX_INST",
+   "kind": "context",
+   "label": "제도 context (F001–F020)",
+   "label_lines": [
+    "제도 context",
+    "(F001–F020)"
+   ],
+   "sub": "제약조건 · 사건 아님",
+   "sub_lines": [
+    "제약조건 · 사건",
+    "아님"
+   ],
+   "y0": 3573,
+   "y1": 3706
   },
   {
    "id": "L_CTX_ENV",
    "kind": "context",
    "label": "환경 context (E001–E004)",
+   "label_lines": [
+    "환경 context",
+    "(E001–E004)"
+   ],
    "sub": "호환성 context · 개인 감염 확정 아님",
-   "y0": 2253,
-   "y1": 2341
+   "sub_lines": [
+    "호환성 context ·",
+    "개인 감염 확정 아님"
+   ],
+   "y0": 3706,
+   "y1": 3843
   }
  ],
  "node_count": 122,
@@ -3927,6 +4079,20 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 75,
+    "label": "EP01\n구순–김명신 관계 변화",
+    "lines": [
+     "EP01",
+     "구순–김명신 관계 변화"
+    ],
+    "max_line_px": 171.5,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP01",
    "layout": {
     "band": "FEB",
@@ -3934,8 +4100,8 @@
     "date_key": 210,
     "dated": true,
     "lane": "L_OBS_RELATION",
-    "x": 218,
-    "y": 840
+    "x": 368,
+    "y": 158
    },
    "observed": {
     "attesting_actor": "명업",
@@ -3979,6 +4145,21 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "EP02\n2월 22일 밤 도적 침입\n전언",
+    "lines": [
+     "EP02",
+     "2월 22일 밤 도적 침입",
+     "전언"
+    ],
+    "max_line_px": 165.8,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP02",
    "layout": {
     "band": "FEB",
@@ -3986,8 +4167,8 @@
     "date_key": 222,
     "dated": true,
     "lane": "L_OBS_THEFT",
-    "x": 376,
-    "y": 928
+    "x": 656,
+    "y": 278
    },
    "observed": {
     "attesting_actor": "명업(나복 발언 전달)",
@@ -4031,6 +4212,20 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 75,
+    "label": "EP03\n구순의 소장과 체포령",
+    "lines": [
+     "EP03",
+     "구순의 소장과 체포령"
+    ],
+    "max_line_px": 155.5,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP03",
    "layout": {
     "band": "FEB",
@@ -4038,8 +4233,8 @@
     "date_key": 222,
     "dated": true,
     "lane": "L_OBS_THEFT",
-    "x": 534,
-    "y": 928
+    "x": 944,
+    "y": 278
    },
    "observed": {
     "attesting_actor": "명업",
@@ -4083,6 +4278,21 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "EP04\n2월 28일 밤 병영 출동\n준비",
+    "lines": [
+     "EP04",
+     "2월 28일 밤 병영 출동",
+     "준비"
+    ],
+    "max_line_px": 165.8,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP04",
    "layout": {
     "band": "FEB",
@@ -4090,8 +4300,8 @@
     "date_key": 229,
     "dated": true,
     "lane": "L_OBS_BARRACKS_OPERATION",
-    "x": 692,
-    "y": 1104
+    "x": 1232,
+    "y": 544
    },
    "observed": {
     "attesting_actor": "이진욱",
@@ -4146,6 +4356,20 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 75,
+    "label": "EP05\n2월 29일 덕평 체포 활동",
+    "lines": [
+     "EP05",
+     "2월 29일 덕평 체포 활동"
+    ],
+    "max_line_px": 181.8,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP05",
    "layout": {
     "band": "FEB",
@@ -4153,8 +4377,8 @@
     "date_key": 229,
     "dated": true,
     "lane": "L_OBS_BARRACKS_OPERATION",
-    "x": 850,
-    "y": 1104
+    "x": 1520,
+    "y": 544
    },
    "observed": {
     "attesting_actor": "이진욱",
@@ -4198,6 +4422,21 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "EP06\n자미덕의 병영\n압송·신문·구류",
+    "lines": [
+     "EP06",
+     "자미덕의 병영",
+     "압송·신문·구류"
+    ],
+    "max_line_px": 128.0,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP06",
    "layout": {
     "band": "FEB",
@@ -4205,8 +4444,8 @@
     "date_key": 229,
     "dated": true,
     "lane": "L_OBS_BARRACKS_OPERATION",
-    "x": 1008,
-    "y": 1104
+    "x": 1808,
+    "y": 544
    },
    "observed": {
     "attesting_actor": "자미덕",
@@ -4250,6 +4489,21 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "EP07\n한 비장의 석방 조건\n제시와 대질 시 거짓 진술",
+    "lines": [
+     "EP07",
+     "한 비장의 석방 조건",
+     "제시와 대질 시 거짓 진술"
+    ],
+    "max_line_px": 183.0,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP07",
    "layout": {
     "band": "FEB",
@@ -4257,8 +4511,8 @@
     "date_key": 229,
     "dated": true,
     "lane": "L_OBS_BARRACKS_OPERATION",
-    "x": 1166,
-    "y": 1104
+    "x": 2096,
+    "y": 544
    },
    "observed": {
     "attesting_actor": "자미덕",
@@ -4302,6 +4556,21 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "EP08\n유제희의 현지 탐문과 구순\n발언 기록",
+    "lines": [
+     "EP08",
+     "유제희의 현지 탐문과 구순",
+     "발언 기록"
+    ],
+    "max_line_px": 193.3,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP08",
    "layout": {
     "band": "UNDATED",
@@ -4310,7 +4579,7 @@
     "dated": false,
     "lane": "L_OBS_SUSPECT_INFORMATION",
     "x": 0,
-    "y": 1016
+    "y": 410
    },
    "observed": {
     "attesting_actor": "유제희",
@@ -4354,6 +4623,21 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "EP09\n3월 4일 병사의 김생원\n체포 지시",
+    "lines": [
+     "EP09",
+     "3월 4일 병사의 김생원",
+     "체포 지시"
+    ],
+    "max_line_px": 165.8,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP09",
    "layout": {
     "band": "MAR",
@@ -4361,8 +4645,8 @@
     "date_key": 304,
     "dated": true,
     "lane": "L_OBS_BARRACKS_OPERATION",
-    "x": 1384,
-    "y": 1104
+    "x": 2464,
+    "y": 544
    },
    "observed": {
     "attesting_actor": "이진욱 / 기사 식별",
@@ -4427,6 +4711,21 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "EP10\n3월 4일 조계완의 구순 집\n방문과 서찰",
+    "lines": [
+     "EP10",
+     "3월 4일 조계완의 구순 집",
+     "방문과 서찰"
+    ],
+    "max_line_px": 187.5,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP10",
    "layout": {
     "band": "MAR",
@@ -4434,8 +4733,8 @@
     "date_key": 304,
     "dated": true,
     "lane": "L_OBS_SUSPECT_INFORMATION",
-    "x": 1542,
-    "y": 1016
+    "x": 2752,
+    "y": 410
    },
    "observed": {
     "attesting_actor": "조계완",
@@ -4479,6 +4778,21 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "EP11\n3월 4일 김명신·김갑득\n체포",
+    "lines": [
+     "EP11",
+     "3월 4일 김명신·김갑득",
+     "체포"
+    ],
+    "max_line_px": 176.0,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP11",
    "layout": {
     "band": "MAR",
@@ -4486,8 +4800,8 @@
     "date_key": 304,
     "dated": true,
     "lane": "L_OBS_BARRACKS_OPERATION",
-    "x": 1700,
-    "y": 1104
+    "x": 3040,
+    "y": 544
    },
    "observed": {
     "attesting_actor": "이진욱",
@@ -4554,6 +4868,20 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 75,
+    "label": "EP12\n한재욱의 안핵 공초",
+    "lines": [
+     "EP12",
+     "한재욱의 안핵 공초"
+    ],
+    "max_line_px": 139.5,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP12",
    "layout": {
     "band": "JUN",
@@ -4561,8 +4889,8 @@
     "date_key": 613,
     "dated": true,
     "lane": "L_OBS_BARRACKS_OPERATION",
-    "x": 3242,
-    "y": 1104
+    "x": 5792,
+    "y": 544
    },
    "observed": {
     "attesting_actor": "한재욱",
@@ -4606,6 +4934,22 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 126,
+    "label": "EP13\n5월 12일 이형원 장계:\n구금·무장물·사망·혹형\n보고",
+    "lines": [
+     "EP13",
+     "5월 12일 이형원 장계:",
+     "구금·무장물·사망·혹형",
+     "보고"
+    ],
+    "max_line_px": 192.0,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP13",
    "layout": {
     "band": "MAY",
@@ -4613,8 +4957,8 @@
     "date_key": 512,
     "dated": true,
     "lane": "L_OBS_DETENTION_DEATH",
-    "x": 1918,
-    "y": 2088
+    "x": 3408,
+    "y": 2010
    },
    "observed": {
     "attesting_actor": "이형원(충청도 관찰사)",
@@ -4664,6 +5008,21 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "EP14\n5월 12일 이형원의 지휘\n계통 평가",
+    "lines": [
+     "EP14",
+     "5월 12일 이형원의 지휘",
+     "계통 평가"
+    ],
+    "max_line_px": 176.0,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP14",
    "layout": {
     "band": "MAY",
@@ -4671,8 +5030,8 @@
     "date_key": 512,
     "dated": true,
     "lane": "L_OBS_COMMAND_RESPONSIBILITY",
-    "x": 1918,
-    "y": 1192
+    "x": 3408,
+    "y": 676
    },
    "observed": {
     "attesting_actor": "이형원",
@@ -4716,6 +5075,21 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 101,
+    "label": "EP15\n5월 12일 정조 1차 판단:\n도난 부재 방향",
+    "lines": [
+     "EP15",
+     "5월 12일 정조 1차 판단:",
+     "도난 부재 방향"
+    ],
+    "max_line_px": 182.4,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP15",
    "layout": {
     "band": "MAY",
@@ -4723,8 +5097,8 @@
     "date_key": 512,
     "dated": true,
     "lane": "L_OBS_THEFT_JUDGMENT",
-    "x": 2076,
-    "y": 1824
+    "x": 3696,
+    "y": 1598
    },
    "observed": {
     "attesting_actor": "정조",
@@ -4779,6 +5153,21 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 101,
+    "label": "EP16\n5월 12일 정조 명: 구순\n의금부 구금·엄사",
+    "lines": [
+     "EP16",
+     "5월 12일 정조 명: 구순",
+     "의금부 구금·엄사"
+    ],
+    "max_line_px": 172.2,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP16",
    "layout": {
     "band": "MAY",
@@ -4786,8 +5175,8 @@
     "date_key": 512,
     "dated": true,
     "lane": "L_OBS_REINVESTIGATION",
-    "x": 2234,
-    "y": 1648
+    "x": 3984,
+    "y": 1332
    },
    "observed": {
     "attesting_actor": "정조",
@@ -4831,6 +5220,21 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 101,
+    "label": "EP17\n5월 27일 암행어사 이조원\n보고: 도난 부재 방향",
+    "lines": [
+     "EP17",
+     "5월 27일 암행어사 이조원",
+     "보고: 도난 부재 방향"
+    ],
+    "max_line_px": 192.0,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP17",
    "layout": {
     "band": "MAY",
@@ -4838,8 +5242,8 @@
     "date_key": 527,
     "dated": true,
     "lane": "L_OBS_THEFT_JUDGMENT",
-    "x": 2392,
-    "y": 1824
+    "x": 4272,
+    "y": 1598
    },
    "observed": {
     "attesting_actor": "이조원(암행어사)",
@@ -4883,6 +5287,21 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 101,
+    "label": "EP18\n5월 27일 정조의 이조원\n비판·파직",
+    "lines": [
+     "EP18",
+     "5월 27일 정조의 이조원",
+     "비판·파직"
+    ],
+    "max_line_px": 176.0,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP18",
    "layout": {
     "band": "MAY",
@@ -4890,8 +5309,8 @@
     "date_key": 527,
     "dated": true,
     "lane": "L_OBS_REVIEW",
-    "x": 2550,
-    "y": 1736
+    "x": 4560,
+    "y": 1466
    },
    "observed": {
     "attesting_actor": "정조",
@@ -4940,6 +5359,21 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 101,
+    "label": "EP19\n5월 27일 정조 명: 구순\n의금부 엄수·반복 신문",
+    "lines": [
+     "EP19",
+     "5월 27일 정조 명: 구순",
+     "의금부 엄수·반복 신문"
+    ],
+    "max_line_px": 172.2,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP19",
    "layout": {
     "band": "MAY",
@@ -4947,8 +5381,8 @@
     "date_key": 527,
     "dated": true,
     "lane": "L_OBS_REINVESTIGATION",
-    "x": 2550,
-    "y": 1648
+    "x": 4560,
+    "y": 1332
    },
    "observed": {
     "attesting_actor": "정조",
@@ -4992,6 +5426,21 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 101,
+    "label": "EP20\n5월 28일 홍대협 공주\n안핵어사 차하",
+    "lines": [
+     "EP20",
+     "5월 28일 홍대협 공주",
+     "안핵어사 차하"
+    ],
+    "max_line_px": 160.0,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP20",
    "layout": {
     "band": "MAY",
@@ -4999,8 +5448,8 @@
     "date_key": 528,
     "dated": true,
     "lane": "L_OBS_REVIEW",
-    "x": 2708,
-    "y": 1736
+    "x": 4848,
+    "y": 1466
    },
    "observed": {
     "attesting_actor": "정조",
@@ -5049,6 +5498,20 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 75,
+    "label": "EP21\n6월 11일 윤노동 별단",
+    "lines": [
+     "EP21",
+     "6월 11일 윤노동 별단"
+    ],
+    "max_line_px": 160.0,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP21",
    "layout": {
     "band": "JUN",
@@ -5056,8 +5519,8 @@
     "date_key": 611,
     "dated": true,
     "lane": "L_OBS_DETENTION_DEATH",
-    "x": 2926,
-    "y": 2088
+    "x": 5216,
+    "y": 2010
    },
    "observed": {
     "attesting_actor": "윤노동(암행어사)",
@@ -5101,6 +5564,21 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 101,
+    "label": "EP22\n6월 11일 비변사 처리\n보류 청·윤허",
+    "lines": [
+     "EP22",
+     "6월 11일 비변사 처리",
+     "보류 청·윤허"
+    ],
+    "max_line_px": 160.0,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP22",
    "layout": {
     "band": "JUN",
@@ -5108,8 +5586,8 @@
     "date_key": 611,
     "dated": true,
     "lane": "L_OBS_REVIEW",
-    "x": 3084,
-    "y": 1736
+    "x": 5504,
+    "y": 1466
    },
    "observed": {
     "attesting_actor": "비변사·정조",
@@ -5158,6 +5636,21 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 101,
+    "label": "EP23\n6월 13일 홍대협 공주목\n신문·복명",
+    "lines": [
+     "EP23",
+     "6월 13일 홍대협 공주목",
+     "신문·복명"
+    ],
+    "max_line_px": 176.0,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP23",
    "layout": {
     "band": "JUN",
@@ -5165,8 +5658,8 @@
     "date_key": 613,
     "dated": true,
     "lane": "L_OBS_REVIEW",
-    "x": 3400,
-    "y": 1736
+    "x": 6080,
+    "y": 1466
    },
    "observed": {
     "attesting_actor": "홍대협(안핵어사)",
@@ -5215,6 +5708,21 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 101,
+    "label": "EP24\n홍대협 도난 판단: 약간의\n실제 도난, 좀도둑 수준",
+    "lines": [
+     "EP24",
+     "홍대협 도난 판단: 약간의",
+     "실제 도난, 좀도둑 수준"
+    ],
+    "max_line_px": 183.7,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP24",
    "layout": {
     "band": "JUN",
@@ -5222,8 +5730,8 @@
     "date_key": 613,
     "dated": true,
     "lane": "L_OBS_THEFT_JUDGMENT",
-    "x": 3558,
-    "y": 1824
+    "x": 6368,
+    "y": 1598
    },
    "observed": {
     "attesting_actor": "홍대협",
@@ -5267,6 +5775,20 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 75,
+    "label": "EP25\n정조 최종 도난 판단: 실재",
+    "lines": [
+     "EP25",
+     "정조 최종 도난 판단: 실재"
+    ],
+    "max_line_px": 189.4,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP25",
    "layout": {
     "band": "FINAL",
@@ -5274,8 +5796,8 @@
     "date_key": 613,
     "dated": true,
     "lane": "L_OBS_THEFT_JUDGMENT",
-    "x": 3776,
-    "y": 1824
+    "x": 6736,
+    "y": 1598
    },
    "observed": {
     "attesting_actor": "정조",
@@ -5324,6 +5846,20 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 75,
+    "label": "EP26\n홍대협 사인 평가: 질병",
+    "lines": [
+     "EP26",
+     "홍대협 사인 평가: 질병"
+    ],
+    "max_line_px": 167.7,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP26",
    "layout": {
     "band": "JUN",
@@ -5331,8 +5867,8 @@
     "date_key": 613,
     "dated": true,
     "lane": "L_OBS_BIOLOGICAL",
-    "x": 3558,
-    "y": 2176
+    "x": 6368,
+    "y": 2168
    },
    "observed": {
     "attesting_actor": "홍대협",
@@ -5376,6 +5912,22 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 126,
+    "label": "EP27\n정조 사인·처우 판단:\n부처 전염병 사망,\n곤장·평문 없음",
+    "lines": [
+     "EP27",
+     "정조 사인·처우 판단:",
+     "부처 전염병 사망,",
+     "곤장·평문 없음"
+    ],
+    "max_line_px": 161.9,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP27",
    "layout": {
     "band": "FINAL",
@@ -5383,8 +5935,8 @@
     "date_key": 613,
     "dated": true,
     "lane": "L_OBS_BIOLOGICAL",
-    "x": 3776,
-    "y": 2176
+    "x": 6736,
+    "y": 2168
    },
    "observed": {
     "attesting_actor": "정조",
@@ -5411,7 +5963,7 @@
     "title": "정조 사인·처우 판단: 부처 전염병 사망, 곤장·평문 없음"
    },
    "related_mechanisms": {},
-   "short_label": "EP27 · 정조 사인·처우 판단: 부처 전염병 사망, 곤장·평문…",
+   "short_label": "EP27 · 정조 사인·처우 판단: 부처 전염병 사망, 곤장·평문 없음",
    "status_group": "OBSERVED"
   },
   {
@@ -5428,6 +5980,21 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 101,
+    "label": "EP28\n정조: 구순→김명신 직접\n사망 인과 불확실",
+    "lines": [
+     "EP28",
+     "정조: 구순→김명신 직접",
+     "사망 인과 불확실"
+    ],
+    "max_line_px": 177.9,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP28",
    "layout": {
     "band": "FINAL",
@@ -5435,8 +6002,8 @@
     "date_key": 613,
     "dated": true,
     "lane": "L_OBS_CAUSATION_BOUNDARY",
-    "x": 3934,
-    "y": 2000
+    "x": 7024,
+    "y": 1864
    },
    "observed": {
     "attesting_actor": "정조",
@@ -5480,6 +6047,20 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 75,
+    "label": "EP29\n정조: 구순 책임 연결 판단",
+    "lines": [
+     "EP29",
+     "정조: 구순 책임 연결 판단"
+    ],
+    "max_line_px": 189.4,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP29",
    "layout": {
     "band": "FINAL",
@@ -5487,8 +6068,8 @@
     "date_key": 613,
     "dated": true,
     "lane": "L_OBS_RESPONSIBILITY",
-    "x": 3776,
-    "y": 1280
+    "x": 6736,
+    "y": 796
    },
    "observed": {
     "attesting_actor": "정조",
@@ -5566,6 +6147,20 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 75,
+    "label": "EP30\n정조: 이광섭 책임 판단",
+    "lines": [
+     "EP30",
+     "정조: 이광섭 책임 판단"
+    ],
+    "max_line_px": 167.7,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP30",
    "layout": {
     "band": "FINAL",
@@ -5573,8 +6168,8 @@
     "date_key": 613,
     "dated": true,
     "lane": "L_OBS_COMMAND_RESPONSIBILITY",
-    "x": 3934,
-    "y": 1192
+    "x": 7024,
+    "y": 676
    },
    "observed": {
     "attesting_actor": "정조",
@@ -5652,6 +6247,21 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 101,
+    "label": "EP31\n홍대협: 지세 호칭 기원\n미확정",
+    "lines": [
+     "EP31",
+     "홍대협: 지세 호칭 기원",
+     "미확정"
+    ],
+    "max_line_px": 167.7,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP31",
    "layout": {
     "band": "JUN",
@@ -5659,8 +6269,8 @@
     "date_key": 613,
     "dated": true,
     "lane": "L_OBS_JISE",
-    "x": 3558,
-    "y": 1912
+    "x": 6368,
+    "y": 1732
    },
    "observed": {
     "attesting_actor": "홍대협",
@@ -5704,6 +6314,21 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 101,
+    "label": "EP32\n정조: 구순 지세 호칭 날조\n죄 불인정",
+    "lines": [
+     "EP32",
+     "정조: 구순 지세 호칭 날조",
+     "죄 불인정"
+    ],
+    "max_line_px": 189.4,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP32",
    "layout": {
     "band": "FINAL",
@@ -5711,8 +6336,8 @@
     "date_key": 613,
     "dated": true,
     "lane": "L_OBS_JISE",
-    "x": 3776,
-    "y": 1912
+    "x": 6736,
+    "y": 1732
    },
    "observed": {
     "attesting_actor": "정조",
@@ -5756,6 +6381,20 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 75,
+    "label": "EP33\n구순 신지도 정배",
+    "lines": [
+     "EP33",
+     "구순 신지도 정배"
+    ],
+    "max_line_px": 123.5,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP33",
    "layout": {
     "band": "FINAL",
@@ -5763,8 +6402,8 @@
     "date_key": 613,
     "dated": true,
     "lane": "L_OBS_DISPOSITION",
-    "x": 4092,
-    "y": 1368
+    "x": 7312,
+    "y": 904
    },
    "observed": {
     "attesting_actor": "정조",
@@ -5847,6 +6486,20 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 75,
+    "label": "EP34\n이광섭 영동현 유배",
+    "lines": [
+     "EP34",
+     "이광섭 영동현 유배"
+    ],
+    "max_line_px": 139.5,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP34",
    "layout": {
     "band": "FINAL",
@@ -5854,8 +6507,8 @@
     "date_key": 613,
     "dated": true,
     "lane": "L_OBS_DISPOSITION",
-    "x": 4092,
-    "y": 1432
+    "x": 7312,
+    "y": 1006
    },
    "observed": {
     "attesting_actor": "정조",
@@ -5938,6 +6591,20 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 75,
+    "label": "EP35\n병영 비장 한가 처분",
+    "lines": [
+     "EP35",
+     "병영 비장 한가 처분"
+    ],
+    "max_line_px": 145.3,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP35",
    "layout": {
     "band": "FINAL",
@@ -5945,8 +6612,8 @@
     "date_key": 613,
     "dated": true,
     "lane": "L_OBS_DISPOSITION",
-    "x": 4092,
-    "y": 1496
+    "x": 7312,
+    "y": 1110
    },
    "observed": {
     "attesting_actor": "정조",
@@ -6029,6 +6696,20 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 75,
+    "label": "EP36\n이형원 파직",
+    "lines": [
+     "EP36",
+     "이형원 파직"
+    ],
+    "max_line_px": 85.8,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP36",
    "layout": {
     "band": "FINAL",
@@ -6036,8 +6717,8 @@
     "date_key": 613,
     "dated": true,
     "lane": "L_OBS_DISPOSITION",
-    "x": 4092,
-    "y": 1560
+    "x": 7312,
+    "y": 1212
    },
    "observed": {
     "attesting_actor": "정조",
@@ -6120,6 +6801,20 @@
     "worlds": "ALL (공통)"
    },
    "common_outcome": true,
+   "display": {
+    "h": 75,
+    "label": "EP37\n6월 16일 이형원 유임",
+    "lines": [
+     "EP37",
+     "6월 16일 이형원 유임"
+    ],
+    "max_line_px": 160.0,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "EP37",
    "layout": {
     "band": "FINAL",
@@ -6127,8 +6822,8 @@
     "date_key": 616,
     "dated": true,
     "lane": "L_OBS_DISPOSITION",
-    "x": 4250,
-    "y": 1368
+    "x": 7600,
+    "y": 1058
    },
    "observed": {
     "attesting_actor": "정조",
@@ -6247,6 +6942,21 @@
     "t_min": "122",
     "title": "1793-01-22 호서 전염병 사망자 치계·구료 단속"
    },
+   "display": {
+    "h": 105,
+    "label": "ENV01\n1793-01-22 호서 전염병\n사망자 치계·구료 단속",
+    "lines": [
+     "ENV01",
+     "1793-01-22 호서 전염병",
+     "사망자 치계·구료 단속"
+    ],
+    "max_line_px": 194.6,
+    "pad_x": 24,
+    "pad_y": 14,
+    "reserved_lines": 0,
+    "text_w": 212,
+    "w": 260
+   },
    "id": "ENV01",
    "layout": {
     "band": null,
@@ -6254,15 +6964,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_ENV",
-    "x": 3256,
-    "y": 2297
+    "x": 5802,
+    "y": 3775
    },
    "related_mechanisms": {
     "MB": [
      "SD033"
     ]
    },
-   "short_label": "E001 · 호서 전염병 사망자 치계·구료 단속",
+   "short_label": "ENV01 · 1793-01-22 호서 전염병 사망자 치계·구료 단속",
    "status_group": "CONTEXT"
   },
   {
@@ -6315,6 +7025,21 @@
     "t_min": "122",
     "title": "1793-01-22 호서 기근 구휼 한창"
    },
+   "display": {
+    "h": 105,
+    "label": "ENV02\n1793-01-22 호서 기근\n구휼 한창",
+    "lines": [
+     "ENV02",
+     "1793-01-22 호서 기근",
+     "구휼 한창"
+    ],
+    "max_line_px": 178.6,
+    "pad_x": 24,
+    "pad_y": 14,
+    "reserved_lines": 0,
+    "text_w": 212,
+    "w": 260
+   },
    "id": "ENV02",
    "layout": {
     "band": null,
@@ -6322,15 +7047,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_ENV",
-    "x": 2876,
-    "y": 2297
+    "x": 5162,
+    "y": 3775
    },
    "related_mechanisms": {
     "MB": [
      "SD034"
     ]
    },
-   "short_label": "E002 · 호서 기근 구휼 한창",
+   "short_label": "ENV02 · 1793-01-22 호서 기근 구휼 한창",
    "status_group": "CONTEXT"
   },
   {
@@ -6383,6 +7108,21 @@
     "t_min": "410",
     "title": "1793-04-10 호서·영남 전염병 창궐(여제)"
    },
+   "display": {
+    "h": 105,
+    "label": "ENV03\n1793-04-10 호서·영남\n전염병 창궐(여제)",
+    "lines": [
+     "ENV03",
+     "1793-04-10 호서·영남",
+     "전염병 창궐(여제)"
+    ],
+    "max_line_px": 188.8,
+    "pad_x": 24,
+    "pad_y": 14,
+    "reserved_lines": 0,
+    "text_w": 212,
+    "w": 260
+   },
    "id": "ENV03",
    "layout": {
     "band": null,
@@ -6390,15 +7130,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_ENV",
-    "x": 3446,
-    "y": 2297
+    "x": 6122,
+    "y": 3775
    },
    "related_mechanisms": {
     "MB": [
      "SD035"
     ]
    },
-   "short_label": "E003 · 호서·영남 전염병 창궐(여제)",
+   "short_label": "ENV03 · 1793-04-10 호서·영남 전염병 창궐(여제)",
    "status_group": "CONTEXT"
   },
   {
@@ -6451,6 +7191,21 @@
     "t_min": "512",
     "title": "1793-05-12 경외 전염병 옥수 치료 명"
    },
+   "display": {
+    "h": 105,
+    "label": "ENV04\n1793-05-12 경외 전염병\n옥수 치료 명",
+    "lines": [
+     "ENV04",
+     "1793-05-12 경외 전염병",
+     "옥수 치료 명"
+    ],
+    "max_line_px": 194.6,
+    "pad_x": 24,
+    "pad_y": 14,
+    "reserved_lines": 0,
+    "text_w": 212,
+    "w": 260
+   },
    "id": "ENV04",
    "layout": {
     "band": null,
@@ -6458,15 +7213,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_ENV",
-    "x": 3066,
-    "y": 2297
+    "x": 5482,
+    "y": 3775
    },
    "related_mechanisms": {
     "MB": [
      "SD036"
     ]
    },
-   "short_label": "E004 · 경외 전염병 옥수 치료 명",
+   "short_label": "ENV04 · 1793-05-12 경외 전염병 옥수 치료 명",
    "status_group": "CONTEXT"
   },
   {
@@ -6500,6 +7255,20 @@
     "valid_from": "1786",
     "valid_to": "1793"
    },
+   "display": {
+    "h": 75,
+    "label": "CTX_F001\nF001 대전통편 현행",
+    "lines": [
+     "CTX_F001",
+     "F001 대전통편 현행"
+    ],
+    "max_line_px": 150.4,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "CTX_F001",
    "layout": {
     "band": null,
@@ -6507,11 +7276,11 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_INST",
-    "x": 3829,
-    "y": 44
+    "x": 6888,
+    "y": 3640
    },
    "related_mechanisms": {},
-   "short_label": "F001 대전통편 현행",
+   "short_label": "CTX_F001 · F001 대전통편 현행",
    "status_group": "CONTEXT"
   },
   {
@@ -6545,6 +7314,20 @@
     "valid_from": "1778",
     "valid_to": "1793"
    },
+   "display": {
+    "h": 75,
+    "label": "CTX_F002\nF002 흠휼전칙 현행",
+    "lines": [
+     "CTX_F002",
+     "F002 흠휼전칙 현행"
+    ],
+    "max_line_px": 150.4,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "CTX_F002",
    "layout": {
     "band": null,
@@ -6552,8 +7335,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_INST",
-    "x": 1861,
-    "y": 44
+    "x": 3323,
+    "y": 3640
    },
    "related_mechanisms": {
     "M2": [
@@ -6563,7 +7346,7 @@
      "SD028"
     ]
    },
-   "short_label": "F002 흠휼전칙 현행",
+   "short_label": "CTX_F002 · F002 흠휼전칙 현행",
    "status_group": "CONTEXT"
   },
   {
@@ -6597,6 +7380,20 @@
     "valid_from": "1778",
     "valid_to": "1793"
    },
+   "display": {
+    "h": 75,
+    "label": "CTX_F003\nF003 군문 중곤 사용 제한",
+    "lines": [
+     "CTX_F003",
+     "F003 군문 중곤 사용 제한"
+    ],
+    "max_line_px": 193.9,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "CTX_F003",
    "layout": {
     "band": null,
@@ -6604,15 +7401,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_INST",
-    "x": 2321,
-    "y": 44
+    "x": 4116,
+    "y": 3640
    },
    "related_mechanisms": {
     "MB": [
      "SD029"
     ]
    },
-   "short_label": "F003 군문 중곤 사용 제한",
+   "short_label": "CTX_F003 · F003 군문 중곤 사용 제한",
    "status_group": "CONTEXT"
   },
   {
@@ -6646,6 +7443,20 @@
     "valid_from": "1778",
     "valid_to": "1793"
    },
+   "display": {
+    "h": 75,
+    "label": "CTX_F004\nF004 구금 도구 기준",
+    "lines": [
+     "CTX_F004",
+     "F004 구금 도구 기준"
+    ],
+    "max_line_px": 156.2,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "CTX_F004",
    "layout": {
     "band": null,
@@ -6653,8 +7464,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_INST",
-    "x": 2011,
-    "y": 44
+    "x": 3607,
+    "y": 3640
    },
    "related_mechanisms": {
     "M2": [
@@ -6664,7 +7475,7 @@
      "SD030"
     ]
    },
-   "short_label": "F004 구금 도구 기준",
+   "short_label": "CTX_F004 · F004 구금 도구 기준",
    "status_group": "CONTEXT"
   },
   {
@@ -6698,6 +7509,20 @@
     "valid_from": "1776",
     "valid_to": "1793"
    },
+   "display": {
+    "h": 75,
+    "label": "CTX_F005\nF005 수령의 군현 통치",
+    "lines": [
+     "CTX_F005",
+     "F005 수령의 군현 통치"
+    ],
+    "max_line_px": 172.2,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "CTX_F005",
    "layout": {
     "band": null,
@@ -6705,15 +7530,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_INST",
-    "x": 625,
-    "y": 44
+    "x": 1080,
+    "y": 3640
    },
    "related_mechanisms": {
     "M1": [
      "SD001"
     ]
    },
-   "short_label": "F005 수령의 군현 통치",
+   "short_label": "CTX_F005 · F005 수령의 군현 통치",
    "status_group": "CONTEXT"
   },
   {
@@ -6747,6 +7572,21 @@
     "valid_from": "1776",
     "valid_to": "1793"
    },
+   "display": {
+    "h": 101,
+    "label": "CTX_F006\nF006 관찰사의 수령\n감독·직계",
+    "lines": [
+     "CTX_F006",
+     "F006 관찰사의 수령",
+     "감독·직계"
+    ],
+    "max_line_px": 150.4,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "CTX_F006",
    "layout": {
     "band": null,
@@ -6754,8 +7594,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_INST",
-    "x": 1561,
-    "y": 44
+    "x": 2755,
+    "y": 3640
    },
    "related_mechanisms": {
     "M1": [
@@ -6771,7 +7611,7 @@
      "SD026"
     ]
    },
-   "short_label": "F006 관찰사의 수령 감독·직계",
+   "short_label": "CTX_F006 · F006 관찰사의 수령 감독·직계",
    "status_group": "CONTEXT"
   },
   {
@@ -6805,6 +7645,21 @@
     "valid_from": "1776",
     "valid_to": "1793"
    },
+   "display": {
+    "h": 101,
+    "label": "CTX_F007\nF007 병마절도사 도 단위\n군사지휘",
+    "lines": [
+     "CTX_F007",
+     "F007 병마절도사 도 단위",
+     "군사지휘"
+    ],
+    "max_line_px": 188.2,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "CTX_F007",
    "layout": {
     "band": null,
@@ -6812,8 +7667,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_INST",
-    "x": 1252,
-    "y": 44
+    "x": 2234,
+    "y": 3640
    },
    "related_mechanisms": {
     "M1": [
@@ -6823,7 +7678,7 @@
      "SD012"
     ]
    },
-   "short_label": "F007 병마절도사 도 단위 군사지휘",
+   "short_label": "CTX_F007 · F007 병마절도사 도 단위 군사지휘",
    "status_group": "CONTEXT"
   },
   {
@@ -6857,6 +7712,20 @@
     "valid_from": "1776",
     "valid_to": "1793"
    },
+   "display": {
+    "h": 75,
+    "label": "CTX_F008\nF008 병영 지휘체계",
+    "lines": [
+     "CTX_F008",
+     "F008 병영 지휘체계"
+    ],
+    "max_line_px": 150.4,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "CTX_F008",
    "layout": {
     "band": null,
@@ -6864,8 +7733,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_INST",
-    "x": 1102,
-    "y": 44
+    "x": 1950,
+    "y": 3640
    },
    "related_mechanisms": {
     "M1": [
@@ -6875,7 +7744,7 @@
      "SD015"
     ]
    },
-   "short_label": "F008 병영 지휘체계",
+   "short_label": "CTX_F008 · F008 병영 지휘체계",
    "status_group": "CONTEXT"
   },
   {
@@ -6909,6 +7778,20 @@
     "valid_from": "1776",
     "valid_to": "1793"
    },
+   "display": {
+    "h": 75,
+    "label": "CTX_F009\nF009 비장 막료 체계",
+    "lines": [
+     "CTX_F009",
+     "F009 비장 막료 체계"
+    ],
+    "max_line_px": 156.2,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "CTX_F009",
    "layout": {
     "band": null,
@@ -6916,8 +7799,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_INST",
-    "x": 952,
-    "y": 44
+    "x": 1666,
+    "y": 3640
    },
    "related_mechanisms": {
     "M1": [
@@ -6930,7 +7813,7 @@
      "SD016"
     ]
    },
-   "short_label": "F009 비장 막료 체계",
+   "short_label": "CTX_F009 · F009 비장 막료 체계",
    "status_group": "CONTEXT"
   },
   {
@@ -6964,6 +7847,20 @@
     "valid_from": "1776",
     "valid_to": "1793"
    },
+   "display": {
+    "h": 75,
+    "label": "CTX_F010\nF010 토포사 제도",
+    "lines": [
+     "CTX_F010",
+     "F010 토포사 제도"
+    ],
+    "max_line_px": 134.4,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "CTX_F010",
    "layout": {
     "band": null,
@@ -6971,8 +7868,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_INST",
-    "x": 775,
-    "y": 44
+    "x": 1364,
+    "y": 3640
    },
    "related_mechanisms": {
     "M1": [
@@ -6982,7 +7879,7 @@
      "SD017"
     ]
    },
-   "short_label": "F010 토포사 제도",
+   "short_label": "CTX_F010 · F010 토포사 제도",
    "status_group": "CONTEXT"
   },
   {
@@ -7016,6 +7913,20 @@
     "valid_from": "1776",
     "valid_to": "1793"
    },
+   "display": {
+    "h": 75,
+    "label": "CTX_F011\nF011 형조 심리·회계",
+    "lines": [
+     "CTX_F011",
+     "F011 형조 심리·회계"
+    ],
+    "max_line_px": 166.4,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "CTX_F011",
    "layout": {
     "band": null,
@@ -7023,15 +7934,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_INST",
-    "x": 2929,
-    "y": 44
+    "x": 5184,
+    "y": 3640
    },
    "related_mechanisms": {
     "M5": [
      "SD019"
     ]
    },
-   "short_label": "F011 형조 심리·회계",
+   "short_label": "CTX_F011 · F011 형조 심리·회계",
    "status_group": "CONTEXT"
   },
   {
@@ -7065,6 +7976,21 @@
     "valid_from": "1776",
     "valid_to": "1793"
    },
+   "display": {
+    "h": 101,
+    "label": "CTX_F012\nF012 의금부\n특별사법·재심",
+    "lines": [
+     "CTX_F012",
+     "F012 의금부",
+     "특별사법·재심"
+    ],
+    "max_line_px": 112.0,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "CTX_F012",
    "layout": {
     "band": null,
@@ -7072,15 +7998,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_INST",
-    "x": 3079,
-    "y": 44
+    "x": 5468,
+    "y": 3640
    },
    "related_mechanisms": {
     "M5": [
      "SD020"
     ]
    },
-   "short_label": "F012 의금부 특별사법·재심",
+   "short_label": "CTX_F012 · F012 의금부 특별사법·재심",
    "status_group": "CONTEXT"
   },
   {
@@ -7114,6 +8040,20 @@
     "valid_from": "1776",
     "valid_to": "1793"
    },
+   "display": {
+    "h": 75,
+    "label": "CTX_F013\nF013 암행어사",
+    "lines": [
+     "CTX_F013",
+     "F013 암행어사"
+    ],
+    "max_line_px": 112.6,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "CTX_F013",
    "layout": {
     "band": null,
@@ -7121,15 +8061,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_INST",
-    "x": 3229,
-    "y": 44
+    "x": 5752,
+    "y": 3640
    },
    "related_mechanisms": {
     "M5": [
      "SD021"
     ]
    },
-   "short_label": "F013 암행어사",
+   "short_label": "CTX_F013 · F013 암행어사",
    "status_group": "CONTEXT"
   },
   {
@@ -7163,6 +8103,20 @@
     "valid_from": "1776",
     "valid_to": "1793"
    },
+   "display": {
+    "h": 75,
+    "label": "CTX_F014\nF014 안핵어사",
+    "lines": [
+     "CTX_F014",
+     "F014 안핵어사"
+    ],
+    "max_line_px": 112.6,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "CTX_F014",
    "layout": {
     "band": null,
@@ -7170,15 +8124,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_INST",
-    "x": 3379,
-    "y": 44
+    "x": 6036,
+    "y": 3640
    },
    "related_mechanisms": {
     "M5": [
      "SD022"
     ]
    },
-   "short_label": "F014 안핵어사",
+   "short_label": "CTX_F014 · F014 안핵어사",
    "status_group": "CONTEXT"
   },
   {
@@ -7212,6 +8166,20 @@
     "valid_from": "1776",
     "valid_to": "1793"
    },
+   "display": {
+    "h": 75,
+    "label": "CTX_F015\nF015 초검-복검-추가검",
+    "lines": [
+     "CTX_F015",
+     "F015 초검-복검-추가검"
+    ],
+    "max_line_px": 181.8,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "CTX_F015",
    "layout": {
     "band": null,
@@ -7219,15 +8187,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_INST",
-    "x": 2471,
-    "y": 44
+    "x": 4400,
+    "y": 3640
    },
    "related_mechanisms": {
     "MB": [
      "SD031"
     ]
    },
-   "short_label": "F015 초검-복검-추가검",
+   "short_label": "CTX_F015 · F015 초검-복검-추가검",
    "status_group": "CONTEXT"
   },
   {
@@ -7261,6 +8229,21 @@
     "valid_from": "1792",
     "valid_to": "1793"
    },
+   "display": {
+    "h": 101,
+    "label": "CTX_F016\nF016 증수무원록 개정\n지침",
+    "lines": [
+     "CTX_F016",
+     "F016 증수무원록 개정",
+     "지침"
+    ],
+    "max_line_px": 166.4,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "CTX_F016",
    "layout": {
     "band": null,
@@ -7268,15 +8251,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_INST",
-    "x": 2621,
-    "y": 44
+    "x": 4684,
+    "y": 3640
    },
    "related_mechanisms": {
     "MB": [
      "SD032"
     ]
    },
-   "short_label": "F016 증수무원록 개정 지침",
+   "short_label": "CTX_F016 · F016 증수무원록 개정 지침",
    "status_group": "CONTEXT"
   },
   {
@@ -7310,6 +8293,20 @@
     "valid_from": "1776",
     "valid_to": "1793"
    },
+   "display": {
+    "h": 75,
+    "label": "CTX_F017\nF017 비변사 심의",
+    "lines": [
+     "CTX_F017",
+     "F017 비변사 심의"
+    ],
+    "max_line_px": 134.4,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "CTX_F017",
    "layout": {
     "band": null,
@@ -7317,15 +8314,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_INST",
-    "x": 3529,
-    "y": 44
+    "x": 6320,
+    "y": 3640
    },
    "related_mechanisms": {
     "M5": [
      "SD023"
     ]
    },
-   "short_label": "F017 비변사 심의",
+   "short_label": "CTX_F017 · F017 비변사 심의",
    "status_group": "CONTEXT"
   },
   {
@@ -7359,6 +8356,20 @@
     "valid_from": "1776",
     "valid_to": "1793"
    },
+   "display": {
+    "h": 75,
+    "label": "CTX_F018\nF018 수교의 법적 성격",
+    "lines": [
+     "CTX_F018",
+     "F018 수교의 법적 성격"
+    ],
+    "max_line_px": 172.2,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "CTX_F018",
    "layout": {
     "band": null,
@@ -7366,15 +8377,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_INST",
-    "x": 3679,
-    "y": 44
+    "x": 6604,
+    "y": 3640
    },
    "related_mechanisms": {
     "M5": [
      "SD024"
     ]
    },
-   "short_label": "F018 수교의 법적 성격",
+   "short_label": "CTX_F018 · F018 수교의 법적 성격",
    "status_group": "CONTEXT"
   },
   {
@@ -7408,6 +8419,21 @@
     "valid_from": "1776",
     "valid_to": "1793"
    },
+   "display": {
+    "h": 101,
+    "label": "CTX_F019\nF019 격쟁·상언 등 상향\n호소",
+    "lines": [
+     "CTX_F019",
+     "F019 격쟁·상언 등 상향",
+     "호소"
+    ],
+    "max_line_px": 188.2,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "CTX_F019",
    "layout": {
     "band": null,
@@ -7415,11 +8441,11 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_INST",
-    "x": 3979,
-    "y": 44
+    "x": 7172,
+    "y": 3640
    },
    "related_mechanisms": {},
-   "short_label": "F019 격쟁·상언 등 상향 호소",
+   "short_label": "CTX_F019 · F019 격쟁·상언 등 상향 호소",
    "status_group": "CONTEXT"
   },
   {
@@ -7453,6 +8479,21 @@
     "valid_from": "1776",
     "valid_to": "1793"
    },
+   "display": {
+    "h": 101,
+    "label": "CTX_F020\nF020\n장계·서계·계문·회계",
+    "lines": [
+     "CTX_F020",
+     "F020",
+     "장계·서계·계문·회계"
+    ],
+    "max_line_px": 176.0,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "CTX_F020",
    "layout": {
     "band": null,
@@ -7460,8 +8501,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CTX_INST",
-    "x": 1711,
-    "y": 44
+    "x": 3039,
+    "y": 3640
    },
    "related_mechanisms": {
     "M1": [
@@ -7480,7 +8521,7 @@
      "SD027"
     ]
    },
-   "short_label": "F020 장계·서계·계문·회계",
+   "short_label": "CTX_F020 · F020 장계·서계·계문·회계",
    "status_group": "CONTEXT"
   },
   {
@@ -7497,6 +8538,20 @@
     "worlds": "config별"
    },
    "common_outcome": false,
+   "display": {
+    "h": 79,
+    "label": "M1\n공식 정보 경로",
+    "lines": [
+     "M1",
+     "공식 정보 경로"
+    ],
+    "max_line_px": 107.5,
+    "pad_x": 90,
+    "pad_y": 14,
+    "reserved_lines": 2,
+    "text_w": 180,
+    "w": 360
+   },
    "id": "M1",
    "layout": {
     "band": null,
@@ -7504,10 +8559,10 @@
     "date_key": null,
     "dated": false,
     "lane": "L_MECH",
-    "x": 797,
-    "y": 132
+    "x": 1412,
+    "y": 3492
    },
-   "short_label": "M1 공식 정보 경로",
+   "short_label": "M1 · 공식 정보 경로",
    "status_group": "LATENT"
   },
   {
@@ -7524,6 +8579,20 @@
     "worlds": "config별"
    },
    "common_outcome": false,
+   "display": {
+    "h": 79,
+    "label": "M2\n진술 증폭",
+    "lines": [
+     "M2",
+     "진술 증폭"
+    ],
+    "max_line_px": 69.8,
+    "pad_x": 90,
+    "pad_y": 14,
+    "reserved_lines": 2,
+    "text_w": 180,
+    "w": 360
+   },
    "id": "M2",
    "layout": {
     "band": null,
@@ -7531,10 +8600,10 @@
     "date_key": null,
     "dated": false,
     "lane": "L_MECH",
-    "x": 1549,
-    "y": 132
+    "x": 2750,
+    "y": 3492
    },
-   "short_label": "M2 진술 증폭",
+   "short_label": "M2 · 진술 증폭",
    "status_group": "LATENT"
   },
   {
@@ -7551,6 +8620,20 @@
     "worlds": "config별"
    },
    "common_outcome": false,
+   "display": {
+    "h": 79,
+    "label": "M3\n사적 통로",
+    "lines": [
+     "M3",
+     "사적 통로"
+    ],
+    "max_line_px": 69.8,
+    "pad_x": 90,
+    "pad_y": 14,
+    "reserved_lines": 2,
+    "text_w": 180,
+    "w": 360
+   },
    "id": "M3",
    "layout": {
     "band": null,
@@ -7558,10 +8641,10 @@
     "date_key": null,
     "dated": false,
     "lane": "L_MECH",
-    "x": 1779,
-    "y": 132
+    "x": 3170,
+    "y": 3492
    },
-   "short_label": "M3 사적 통로",
+   "short_label": "M3 · 사적 통로",
    "status_group": "LATENT"
   },
   {
@@ -7578,6 +8661,20 @@
     "worlds": "config별"
    },
    "common_outcome": false,
+   "display": {
+    "h": 79,
+    "label": "M4\n분산 실무",
+    "lines": [
+     "M4",
+     "분산 실무"
+    ],
+    "max_line_px": 69.8,
+    "pad_x": 90,
+    "pad_y": 14,
+    "reserved_lines": 2,
+    "text_w": 180,
+    "w": 360
+   },
    "id": "M4",
    "layout": {
     "band": null,
@@ -7585,10 +8682,10 @@
     "date_key": null,
     "dated": false,
     "lane": "L_MECH",
-    "x": 1027,
-    "y": 132
+    "x": 1832,
+    "y": 3492
    },
-   "short_label": "M4 분산 실무",
+   "short_label": "M4 · 분산 실무",
    "status_group": "LATENT"
   },
   {
@@ -7605,6 +8702,20 @@
     "worlds": "config별"
    },
    "common_outcome": false,
+   "display": {
+    "h": 79,
+    "label": "M5\n재검토·교정",
+    "lines": [
+     "M5",
+     "재검토·교정"
+    ],
+    "max_line_px": 96.0,
+    "pad_x": 90,
+    "pad_y": 14,
+    "reserved_lines": 2,
+    "text_w": 180,
+    "w": 360
+   },
    "id": "M5",
    "layout": {
     "band": null,
@@ -7612,10 +8723,10 @@
     "date_key": null,
     "dated": false,
     "lane": "L_MECH",
-    "x": 3101,
-    "y": 132
+    "x": 5516,
+    "y": 3492
    },
-   "short_label": "M5 재검토·교정",
+   "short_label": "M5 · 재검토·교정",
    "status_group": "LATENT"
   },
   {
@@ -7632,6 +8743,20 @@
     "worlds": "config별"
    },
    "common_outcome": false,
+   "display": {
+    "h": 79,
+    "label": "M6\n5월 초기 판단 근거",
+    "lines": [
+     "M6",
+     "5월 초기 판단 근거"
+    ],
+    "max_line_px": 139.5,
+    "pad_x": 90,
+    "pad_y": 14,
+    "reserved_lines": 2,
+    "text_w": 180,
+    "w": 360
+   },
    "id": "M6",
    "layout": {
     "band": null,
@@ -7639,10 +8764,10 @@
     "date_key": null,
     "dated": false,
     "lane": "L_MECH",
-    "x": 2009,
-    "y": 132
+    "x": 3590,
+    "y": 3492
    },
-   "short_label": "M6 5월 초기 판단 근거",
+   "short_label": "M6 · 5월 초기 판단 근거",
    "status_group": "LATENT"
   },
   {
@@ -7659,6 +8784,20 @@
     "worlds": "config별"
    },
    "common_outcome": false,
+   "display": {
+    "h": 79,
+    "label": "MB\n구금·생물학적 경과",
+    "lines": [
+     "MB",
+     "구금·생물학적 경과"
+    ],
+    "max_line_px": 149.8,
+    "pad_x": 90,
+    "pad_y": 14,
+    "reserved_lines": 2,
+    "text_w": 180,
+    "w": 360
+   },
    "id": "MB",
    "layout": {
     "band": null,
@@ -7666,10 +8805,10 @@
     "date_key": null,
     "dated": false,
     "lane": "L_MECH",
-    "x": 2493,
-    "y": 132
+    "x": 4448,
+    "y": 3492
    },
-   "short_label": "MB 구금·생물학적 경과",
+   "short_label": "MB · 구금·생물학적 경과",
    "status_group": "LATENT"
   },
   {
@@ -7686,6 +8825,20 @@
     "worlds": "config별"
    },
    "common_outcome": false,
+   "display": {
+    "h": 75,
+    "label": "V_COMPLAINT_TO_\nBARRACKS",
+    "lines": [
+     "V_COMPLAINT_TO_",
+     "BARRACKS"
+    ],
+    "max_line_px": 177.6,
+    "pad_x": 22,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 256,
+    "w": 300
+   },
    "id": "V_COMPLAINT_TO_BARRACKS",
    "layout": {
     "band": null,
@@ -7693,8 +8846,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_SVAR",
-    "x": 810,
-    "y": 652
+    "x": 1442,
+    "y": 2420
    },
    "related_mechanisms": {
     "M1": [
@@ -7719,6 +8872,19 @@
     "worlds": "config별"
    },
    "common_outcome": false,
+   "display": {
+    "h": 50,
+    "label": "V_COMMAND_SOURCE",
+    "lines": [
+     "V_COMMAND_SOURCE"
+    ],
+    "max_line_px": 191.4,
+    "pad_x": 22,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 256,
+    "w": 300
+   },
    "id": "V_COMMAND_SOURCE",
    "layout": {
     "band": null,
@@ -7726,8 +8892,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_SVAR",
-    "x": 614,
-    "y": 652
+    "x": 1082,
+    "y": 2420
    },
    "related_mechanisms": {
     "M1": [
@@ -7756,6 +8922,19 @@
     "worlds": "config별"
    },
    "common_outcome": false,
+   "display": {
+    "h": 50,
+    "label": "V_INFO_TO_COMMANDER",
+    "lines": [
+     "V_INFO_TO_COMMANDER"
+    ],
+    "max_line_px": 226.2,
+    "pad_x": 22,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 256,
+    "w": 300
+   },
    "id": "V_INFO_TO_COMMANDER",
    "layout": {
     "band": null,
@@ -7763,8 +8942,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_SVAR",
-    "x": 1306,
-    "y": 652
+    "x": 2314,
+    "y": 2420
    },
    "related_mechanisms": {
     "M1": [
@@ -7801,6 +8980,19 @@
     "worlds": "config별"
    },
    "common_outcome": false,
+   "display": {
+    "h": 50,
+    "label": "V_ARREST_PATH",
+    "lines": [
+     "V_ARREST_PATH"
+    ],
+    "max_line_px": 154.9,
+    "pad_x": 22,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 256,
+    "w": 300
+   },
    "id": "V_ARREST_PATH",
    "layout": {
     "band": null,
@@ -7808,8 +9000,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_SVAR",
-    "x": 1622,
-    "y": 652
+    "x": 2890,
+    "y": 2420
    },
    "related_mechanisms": {
     "M1": [
@@ -7850,6 +9042,19 @@
     "worlds": "config별"
    },
    "common_outcome": false,
+   "display": {
+    "h": 50,
+    "label": "V_INVESTIGATION_SCOPE",
+    "lines": [
+     "V_INVESTIGATION_SCOPE"
+    ],
+    "max_line_px": 252.2,
+    "pad_x": 22,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 256,
+    "w": 300
+   },
    "id": "V_INVESTIGATION_SCOPE",
    "layout": {
     "band": null,
@@ -7857,8 +9062,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_SVAR",
-    "x": 1818,
-    "y": 652
+    "x": 3250,
+    "y": 2420
    },
    "related_mechanisms": {
     "M2": [
@@ -7887,6 +9092,20 @@
     "worlds": "config별"
    },
    "common_outcome": false,
+   "display": {
+    "h": 75,
+    "label": "V_INITIAL_JUDGMENT_\nBASIS",
+    "lines": [
+     "V_INITIAL_JUDGMENT_",
+     "BASIS"
+    ],
+    "max_line_px": 226.2,
+    "pad_x": 22,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 256,
+    "w": 300
+   },
    "id": "V_INITIAL_JUDGMENT_BASIS",
    "layout": {
     "band": null,
@@ -7894,8 +9113,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_SVAR",
-    "x": 2210,
-    "y": 652
+    "x": 3970,
+    "y": 2420
    },
    "related_mechanisms": {
     "M2": [
@@ -7924,6 +9143,19 @@
     "worlds": "config별"
    },
    "common_outcome": false,
+   "display": {
+    "h": 50,
+    "label": "V_REVIEW_CORRECTION",
+    "lines": [
+     "V_REVIEW_CORRECTION"
+    ],
+    "max_line_px": 227.8,
+    "pad_x": 22,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 256,
+    "w": 300
+   },
    "id": "V_REVIEW_CORRECTION",
    "layout": {
     "band": null,
@@ -7931,8 +9163,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_SVAR",
-    "x": 3026,
-    "y": 652
+    "x": 5396,
+    "y": 2420
    },
    "related_mechanisms": {
     "M5": [
@@ -7956,6 +9188,19 @@
     "worlds": "config별"
    },
    "common_outcome": false,
+   "display": {
+    "h": 50,
+    "label": "V_RESPONSIBILITY",
+    "lines": [
+     "V_RESPONSIBILITY"
+    ],
+    "max_line_px": 193.0,
+    "pad_x": 22,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 256,
+    "w": 300
+   },
    "id": "V_RESPONSIBILITY",
    "layout": {
     "band": null,
@@ -7963,8 +9208,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_SVAR",
-    "x": 3777,
-    "y": 652
+    "x": 6730,
+    "y": 2420
    },
    "related_mechanisms": {
     "M1": [
@@ -8013,6 +9258,19 @@
     "worlds": "config별"
    },
    "common_outcome": false,
+   "display": {
+    "h": 50,
+    "label": "V_SANCTION",
+    "lines": [
+     "V_SANCTION"
+    ],
+    "max_line_px": 120.0,
+    "pad_x": 22,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 256,
+    "w": 300
+   },
    "id": "V_SANCTION",
    "layout": {
     "band": null,
@@ -8020,8 +9278,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_SVAR",
-    "x": 4046,
-    "y": 652
+    "x": 7220,
+    "y": 2420
    },
    "related_mechanisms": {
     "M1": [
@@ -8075,6 +9333,19 @@
     "worlds": "config별"
    },
    "common_outcome": false,
+   "display": {
+    "h": 50,
+    "label": "V_CUSTODY_COURSE",
+    "lines": [
+     "V_CUSTODY_COURSE"
+    ],
+    "max_line_px": 191.4,
+    "pad_x": 22,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 256,
+    "w": 300
+   },
    "id": "V_CUSTODY_COURSE",
    "layout": {
     "band": null,
@@ -8082,8 +9353,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_SVAR",
-    "x": 2014,
-    "y": 652
+    "x": 3610,
+    "y": 2420
    },
    "related_mechanisms": {
     "MB": [
@@ -8108,6 +9379,22 @@
     "worlds": "W1, W2, W4, W5"
    },
    "common_outcome": false,
+   "display": {
+    "h": 126,
+    "label": "G01a\n청주 진영 정소 → 진영이\n병영 비장 쪽에 수사를\n넘김 → 2/28 출동",
+    "lines": [
+     "G01a",
+     "청주 진영 정소 → 진영이",
+     "병영 비장 쪽에 수사를",
+     "넘김 → 2/28 출동"
+    ],
+    "max_line_px": 183.0,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G01a",
    "layout": {
     "band": null,
@@ -8115,15 +9402,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 566,
-    "y": 308
+    "x": 1012,
+    "y": 2553
    },
    "related_mechanisms": {
     "M1": [
      "SD039"
     ]
    },
-   "short_label": "G01a · 청주 진영 정소 → 진영이 병영 비장 쪽에…",
+   "short_label": "G01a · 청주 진영 정소 → 진영이 병영 비장 쪽에 수사를 넘김 → 2/28 출동",
    "status_group": "LATENT"
   },
   {
@@ -8140,6 +9427,20 @@
     "worlds": "W3"
    },
    "common_outcome": false,
+   "display": {
+    "h": 75,
+    "label": "G01b\n소장이 병영에 직접 접수",
+    "lines": [
+     "G01b",
+     "소장이 병영에 직접 접수"
+    ],
+    "max_line_px": 177.3,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G01b",
    "layout": {
     "band": null,
@@ -8147,8 +9448,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 566,
-    "y": 372
+    "x": 1012,
+    "y": 2682
    },
    "related_mechanisms": {
     "M1": [
@@ -8172,6 +9473,21 @@
     "worlds": "(world 미사용)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "G01c\n청주목 수령 → 관찰사 →\n병영 이첩",
+    "lines": [
+     "G01c",
+     "청주목 수령 → 관찰사 →",
+     "병영 이첩"
+    ],
+    "max_line_px": 183.0,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G01c",
    "layout": {
     "band": null,
@@ -8179,8 +9495,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 566,
-    "y": 436
+    "x": 1012,
+    "y": 2798
    },
    "related_mechanisms": {
     "M1": [
@@ -8204,6 +9520,22 @@
     "worlds": "W1, W3"
    },
    "common_outcome": false,
+   "display": {
+    "h": 126,
+    "label": "G02a\n이광섭이 출동·철퇴\n제작을 지시하고 한재욱이\n실무 전달 (ID07 조건)",
+    "lines": [
+     "G02a",
+     "이광섭이 출동·철퇴",
+     "제작을 지시하고 한재욱이",
+     "실무 전달 (ID07 조건)"
+    ],
+    "max_line_px": 187.5,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G02a",
    "layout": {
     "band": null,
@@ -8211,15 +9543,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 734,
-    "y": 308
+    "x": 1296,
+    "y": 2553
    },
    "related_mechanisms": {
     "M1": [
      "SD045"
     ]
    },
-   "short_label": "G02a · 이광섭이 출동·철퇴 제작을 지시하고 한재욱…",
+   "short_label": "G02a · 이광섭이 출동·철퇴 제작을 지시하고 한재욱이 실무 전달 (ID07 조건)",
    "status_group": "LATENT"
   },
   {
@@ -8236,6 +9568,22 @@
     "worlds": "W2, W4"
    },
    "common_outcome": false,
+   "display": {
+    "h": 126,
+    "label": "G02b\n한재욱이 상위 명령 없이\n출동 지시, 병영 지휘관은\n사후 승인·묵인",
+    "lines": [
+     "G02b",
+     "한재욱이 상위 명령 없이",
+     "출동 지시, 병영 지휘관은",
+     "사후 승인·묵인"
+    ],
+    "max_line_px": 183.7,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G02b",
    "layout": {
     "band": null,
@@ -8243,15 +9591,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 734,
-    "y": 372
+    "x": 1296,
+    "y": 2707
    },
    "related_mechanisms": {
     "M4": [
      "SD047"
     ]
    },
-   "short_label": "G02b · 한재욱이 상위 명령 없이 출동 지시, 병영…",
+   "short_label": "G02b · 한재욱이 상위 명령 없이 출동 지시, 병영 지휘관은 사후 승인·묵인",
    "status_group": "LATENT"
   },
   {
@@ -8268,6 +9616,21 @@
     "worlds": "(world 미사용)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "G02c\n청주 영장 이문협이 직접\n출동 지휘",
+    "lines": [
+     "G02c",
+     "청주 영장 이문협이 직접",
+     "출동 지휘"
+    ],
+    "max_line_px": 177.3,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G02c",
    "layout": {
     "band": null,
@@ -8275,8 +9638,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 734,
-    "y": 436
+    "x": 1296,
+    "y": 2848
    },
    "related_mechanisms": {
     "M4": [
@@ -8300,6 +9663,22 @@
     "worlds": "W1, W2"
    },
    "common_outcome": false,
+   "display": {
+    "h": 126,
+    "label": "G03a\n한재욱이 유제희를 탐문에\n보내고, 2/28 이전 기록이\n한재욱에게 올라감",
+    "lines": [
+     "G03a",
+     "한재욱이 유제희를 탐문에",
+     "보내고, 2/28 이전 기록이",
+     "한재욱에게 올라감"
+    ],
+    "max_line_px": 193.0,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G03a",
    "layout": {
     "band": null,
@@ -8307,15 +9686,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 1106,
-    "y": 308
+    "x": 1977,
+    "y": 2553
    },
    "related_mechanisms": {
     "M1": [
      "SD050"
     ]
    },
-   "short_label": "G03a · 한재욱이 유제희를 탐문에 보내고, 2/28…",
+   "short_label": "G03a · 한재욱이 유제희를 탐문에 보내고, 2/28 이전 기록이 한재욱에게 올라감",
    "status_group": "LATENT"
   },
   {
@@ -8332,6 +9711,22 @@
     "worlds": "(world 미사용)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 126,
+    "label": "G03b\n탐문은 2/29~3/4 사이,\n김상제(=김명신) 언급이\n3/4 지시를 직접 촉발",
+    "lines": [
+     "G03b",
+     "탐문은 2/29~3/4 사이,",
+     "김상제(=김명신) 언급이",
+     "3/4 지시를 직접 촉발"
+    ],
+    "max_line_px": 181.4,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G03b",
    "layout": {
     "band": null,
@@ -8339,15 +9734,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 1106,
-    "y": 372
+    "x": 1977,
+    "y": 2707
    },
    "related_mechanisms": {
     "M1": [
      "SD052"
     ]
    },
-   "short_label": "G03b · 탐문은 2/29~3/4 사이, 김상제(=김…",
+   "short_label": "G03b · 탐문은 2/29~3/4 사이, 김상제(=김명신) 언급이 3/4 지시를 직접 촉발",
    "status_group": "LATENT"
   },
   {
@@ -8364,6 +9759,21 @@
     "worlds": "W4"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "G03c\n유제희가 병사에게 직접\n보고(비장 우회)",
+    "lines": [
+     "G03c",
+     "유제희가 병사에게 직접",
+     "보고(비장 우회)"
+    ],
+    "max_line_px": 171.5,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G03c",
    "layout": {
     "band": null,
@@ -8371,8 +9781,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 1106,
-    "y": 436
+    "x": 1977,
+    "y": 2848
    },
    "related_mechanisms": {
     "M4": [
@@ -8396,6 +9806,22 @@
     "worlds": "W1"
    },
    "common_outcome": false,
+   "display": {
+    "h": 126,
+    "label": "G04a\n공식 정보 경로: 유제희\n기록 → 비장 계통 → 병사\n→ 3/4 지시",
+    "lines": [
+     "G04a",
+     "공식 정보 경로: 유제희",
+     "기록 → 비장 계통 → 병사",
+     "→ 3/4 지시"
+    ],
+    "max_line_px": 188.8,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G04a",
    "layout": {
     "band": null,
@@ -8403,15 +9829,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 1274,
-    "y": 308
+    "x": 2261,
+    "y": 2553
    },
    "related_mechanisms": {
     "M1": [
      "SD056"
     ]
    },
-   "short_label": "G04a · 공식 정보 경로: 유제희 기록 → 비장 계…",
+   "short_label": "G04a · 공식 정보 경로: 유제희 기록 → 비장 계통 → 병사 → 3/4 지시",
    "status_group": "LATENT"
   },
   {
@@ -8428,6 +9854,22 @@
     "worlds": "W2"
    },
    "common_outcome": false,
+   "display": {
+    "h": 126,
+    "label": "G04b\n자미덕 대질 진술 경로:\n회유 주장 진술(열린\n목록) → 병사 지시",
+    "lines": [
+     "G04b",
+     "자미덕 대질 진술 경로:",
+     "회유 주장 진술(열린",
+     "목록) → 병사 지시"
+    ],
+    "max_line_px": 167.7,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G04b",
    "layout": {
     "band": null,
@@ -8435,15 +9877,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 1274,
-    "y": 372
+    "x": 2261,
+    "y": 2707
    },
    "related_mechanisms": {
     "M2": [
      "SD058"
     ]
    },
-   "short_label": "G04b · 자미덕 대질 진술 경로: 회유 주장 진술(…",
+   "short_label": "G04b · 자미덕 대질 진술 경로: 회유 주장 진술(열린 목록) → 병사 지시",
    "status_group": "LATENT"
   },
   {
@@ -8460,6 +9902,23 @@
     "worlds": "W3"
    },
    "common_outcome": false,
+   "display": {
+    "h": 152,
+    "label": "G04c\n사적 경로: 3/4 이전\n구순→병사 사적 접촉으로\n김명신을 의심 대상으로\n알림",
+    "lines": [
+     "G04c",
+     "사적 경로: 3/4 이전",
+     "구순→병사 사적 접촉으로",
+     "김명신을 의심 대상으로",
+     "알림"
+    ],
+    "max_line_px": 187.5,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G04c",
    "layout": {
     "band": null,
@@ -8467,15 +9926,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 1274,
-    "y": 436
+    "x": 2261,
+    "y": 2874
    },
    "related_mechanisms": {
     "M3": [
      "SD061"
     ]
    },
-   "short_label": "G04c · 사적 경로: 3/4 이전 구순→병사 사적…",
+   "short_label": "G04c · 사적 경로: 3/4 이전 구순→병사 사적 접촉으로 김명신을 의심 대상으로 알림",
    "status_group": "LATENT"
   },
   {
@@ -8492,6 +9951,22 @@
     "worlds": "(world 미사용)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 126,
+    "label": "G04d\n석단 공초 경로: 다른\n피의자 공초가 김명신을\n도적 괴수로 지목",
+    "lines": [
+     "G04d",
+     "석단 공초 경로: 다른",
+     "피의자 공초가 김명신을",
+     "도적 괴수로 지목"
+    ],
+    "max_line_px": 171.5,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G04d",
    "layout": {
     "band": null,
@@ -8499,15 +9974,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 1274,
-    "y": 500
+    "x": 2261,
+    "y": 3041
    },
    "related_mechanisms": {
     "M2": [
      "SD063"
     ]
    },
-   "short_label": "G04d · 석단 공초 경로: 다른 피의자 공초가 김명…",
+   "short_label": "G04d · 석단 공초 경로: 다른 피의자 공초가 김명신을 도적 괴수로 지목",
    "status_group": "LATENT"
   },
   {
@@ -8524,6 +9999,21 @@
     "worlds": "(world 미사용)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "G04e\n구순이 장교에게 직접 공식\n체포 명령",
+    "lines": [
+     "G04e",
+     "구순이 장교에게 직접 공식",
+     "체포 명령"
+    ],
+    "max_line_px": 193.3,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G04e",
    "layout": {
     "band": null,
@@ -8531,8 +10021,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 1274,
-    "y": 564
+    "x": 2261,
+    "y": 3182
    },
    "related_mechanisms": {
     "M3": [
@@ -8556,6 +10046,21 @@
     "worlds": "W1, W3"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "G05a\n서찰이 병사에게 전달,\n체포 지지·추가 의혹 내용",
+    "lines": [
+     "G05a",
+     "서찰이 병사에게 전달,",
+     "체포 지지·추가 의혹 내용"
+    ],
+    "max_line_px": 193.3,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G05a",
    "layout": {
     "band": null,
@@ -8563,15 +10068,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 2292,
-    "y": 308
+    "x": 4100,
+    "y": 2540
    },
    "related_mechanisms": {
     "M3": [
      "SD067"
     ]
    },
-   "short_label": "G05a · 서찰이 병사에게 전달, 체포 지지·추가 의…",
+   "short_label": "G05a · 서찰이 병사에게 전달, 체포 지지·추가 의혹 내용",
    "status_group": "LATENT"
   },
   {
@@ -8588,6 +10093,21 @@
     "worlds": "(world 미사용)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "G05b\n서찰은 전달되었으나\n사건과 무관한 인사·사례",
+    "lines": [
+     "G05b",
+     "서찰은 전달되었으나",
+     "사건과 무관한 인사·사례"
+    ],
+    "max_line_px": 187.5,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G05b",
    "layout": {
     "band": null,
@@ -8595,8 +10115,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 2292,
-    "y": 372
+    "x": 4100,
+    "y": 2670
    },
    "related_mechanisms": {
     "M3": [
@@ -8620,6 +10140,23 @@
     "worlds": "W1, W3, W4, W5"
    },
    "common_outcome": false,
+   "display": {
+    "h": 152,
+    "label": "G06a\n구금 중 발병 →\n보수·구금 상태에서 사망\n(처우는 CF041 판단을\n따름)",
+    "lines": [
+     "G06a",
+     "구금 중 발병 →",
+     "보수·구금 상태에서 사망",
+     "(처우는 CF041 판단을",
+     "따름)"
+    ],
+    "max_line_px": 187.5,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G06a",
    "layout": {
     "band": null,
@@ -8627,15 +10164,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 1762,
-    "y": 308
+    "x": 3148,
+    "y": 2566
    },
    "related_mechanisms": {
     "MB": [
      "SD069"
     ]
    },
-   "short_label": "G06a · 구금 중 발병 → 보수·구금 상태에서 사망…",
+   "short_label": "G06a · 구금 중 발병 → 보수·구금 상태에서 사망 (처우는 CF041 판단을 따름)",
    "status_group": "LATENT"
   },
   {
@@ -8652,6 +10189,21 @@
     "worlds": "W2"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "G06b\n형장 없는 조사 압박 +\n발병 → 사망",
+    "lines": [
+     "G06b",
+     "형장 없는 조사 압박 +",
+     "발병 → 사망"
+    ],
+    "max_line_px": 161.6,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G06b",
    "layout": {
     "band": null,
@@ -8659,8 +10211,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 1762,
-    "y": 372
+    "x": 3148,
+    "y": 2720
    },
    "related_mechanisms": {
     "MB": [
@@ -8684,6 +10236,21 @@
     "worlds": "W6"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "G06c\n형장(곤장) → 쇠약 →\n사망",
+    "lines": [
+     "G06c",
+     "형장(곤장) → 쇠약 →",
+     "사망"
+    ],
+    "max_line_px": 166.4,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G06c",
    "layout": {
     "band": null,
@@ -8691,8 +10258,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 1762,
-    "y": 436
+    "x": 3148,
+    "y": 2850
    },
    "related_mechanisms": {
     "MB": [
@@ -8716,6 +10283,21 @@
     "worlds": "W1, W3, W5"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "G07a\n장물 미발견을 근거로\n'도난 없음'을 추론",
+    "lines": [
+     "G07a",
+     "장물 미발견을 근거로",
+     "'도난 없음'을 추론"
+    ],
+    "max_line_px": 155.5,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G07a",
    "layout": {
     "band": null,
@@ -8723,8 +10305,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 1934,
-    "y": 308
+    "x": 3447,
+    "y": 2540
    },
    "related_mechanisms": {
     "M6": [
@@ -8748,6 +10330,21 @@
     "worlds": "W4"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "G07b\n회동 조사 응답자들의\n'구순이 꾸몄다' 진술 채택",
+    "lines": [
+     "G07b",
+     "회동 조사 응답자들의",
+     "'구순이 꾸몄다' 진술 채택"
+    ],
+    "max_line_px": 190.1,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G07b",
    "layout": {
     "band": null,
@@ -8755,8 +10352,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 1934,
-    "y": 372
+    "x": 3447,
+    "y": 2670
    },
    "related_mechanisms": {
     "M2": [
@@ -8766,7 +10363,7 @@
      "SD077"
     ]
    },
-   "short_label": "G07b · 회동 조사 응답자들의 '구순이 꾸몄다' 진…",
+   "short_label": "G07b · 회동 조사 응답자들의 '구순이 꾸몄다' 진술 채택",
    "status_group": "LATENT"
   },
   {
@@ -8783,6 +10380,21 @@
     "worlds": "W2"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "G07c\n구순 집 사람들의 진술\n번복이 5월 자료에 들어감",
+    "lines": [
+     "G07c",
+     "구순 집 사람들의 진술",
+     "번복이 5월 자료에 들어감"
+    ],
+    "max_line_px": 187.5,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G07c",
    "layout": {
     "band": null,
@@ -8790,8 +10402,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 1934,
-    "y": 436
+    "x": 3447,
+    "y": 2798
    },
    "related_mechanisms": {
     "M2": [
@@ -8801,7 +10413,7 @@
      "SD080"
     ]
    },
-   "short_label": "G07c · 구순 집 사람들의 진술 번복이 5월 자료에…",
+   "short_label": "G07c · 구순 집 사람들의 진술 번복이 5월 자료에 들어감",
    "status_group": "LATENT"
   },
   {
@@ -8818,6 +10430,22 @@
     "worlds": "W6"
    },
    "common_outcome": false,
+   "display": {
+    "h": 126,
+    "label": "G07d\n도난은 실제로 없었고\n구순이 꾸몄다\n(이조원·윤노동 주장)",
+    "lines": [
+     "G07d",
+     "도난은 실제로 없었고",
+     "구순이 꾸몄다",
+     "(이조원·윤노동 주장)"
+    ],
+    "max_line_px": 170.9,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G07d",
    "layout": {
     "band": null,
@@ -8825,15 +10453,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 1934,
-    "y": 500
+    "x": 3447,
+    "y": 2940
    },
    "related_mechanisms": {
     "M6": [
      "SD082"
     ]
    },
-   "short_label": "G07d · 도난은 실제로 없었고 구순이 꾸몄다 (이조…",
+   "short_label": "G07d · 도난은 실제로 없었고 구순이 꾸몄다 (이조원·윤노동 주장)",
    "status_group": "LATENT"
   },
   {
@@ -8850,6 +10478,21 @@
     "worlds": "W1, W2, W3, W5"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "G08a\n직접 안핵 부재 비판 →\n독립 안핵 결정",
+    "lines": [
+     "G08a",
+     "직접 안핵 부재 비판 →",
+     "독립 안핵 결정"
+    ],
+    "max_line_px": 167.0,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G08a",
    "layout": {
     "band": null,
@@ -8857,8 +10500,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 2608,
-    "y": 308
+    "x": 4676,
+    "y": 2540
    },
    "related_mechanisms": {
     "M5": [
@@ -8882,6 +10525,21 @@
     "worlds": "W4"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "G08b\n지세 호칭 의문 해소가\n주목적",
+    "lines": [
+     "G08b",
+     "지세 호칭 의문 해소가",
+     "주목적"
+    ],
+    "max_line_px": 161.3,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G08b",
    "layout": {
     "band": null,
@@ -8889,8 +10547,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 2608,
-    "y": 372
+    "x": 4676,
+    "y": 2670
    },
    "related_mechanisms": {
     "M5": [
@@ -8914,6 +10572,23 @@
     "worlds": "W1, W2"
    },
    "common_outcome": false,
+   "display": {
+    "h": 152,
+    "label": "G09a\n한가(=한재욱) 처분 근거\n= 자미덕이 진술한\n회유·대질 지휘와 출동\n운영",
+    "lines": [
+     "G09a",
+     "한가(=한재욱) 처분 근거",
+     "= 자미덕이 진술한",
+     "회유·대질 지휘와 출동",
+     "운영"
+    ],
+    "max_line_px": 187.2,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G09a",
    "layout": {
     "band": null,
@@ -8921,15 +10596,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 2776,
-    "y": 308
+    "x": 4960,
+    "y": 2566
    },
    "related_mechanisms": {
     "M5": [
      "SD087"
     ]
    },
-   "short_label": "G09a · 한가(=한재욱) 처분 근거 = 자미덕이 진…",
+   "short_label": "G09a · 한가(=한재욱) 처분 근거 = 자미덕이 진술한 회유·대질 지휘와 출동 운영",
    "status_group": "LATENT"
   },
   {
@@ -8946,6 +10621,22 @@
     "worlds": "(world 미사용)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 126,
+    "label": "G09b\n한가 = 한재욱, '한\n비장'은 다른 사람 (ID02\n확정과 충돌)",
+    "lines": [
+     "G09b",
+     "한가 = 한재욱, '한",
+     "비장'은 다른 사람 (ID02",
+     "확정과 충돌)"
+    ],
+    "max_line_px": 191.0,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G09b",
    "layout": {
     "band": null,
@@ -8953,15 +10644,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 2776,
-    "y": 372
+    "x": 4960,
+    "y": 2733
    },
    "related_mechanisms": {
     "M5": [
      "SD088"
     ]
    },
-   "short_label": "G09b · 한가 = 한재욱, '한 비장'은 다른 사람…",
+   "short_label": "G09b · 한가 = 한재욱, '한 비장'은 다른 사람 (ID02 확정과 충돌)",
    "status_group": "LATENT"
   },
   {
@@ -8978,6 +10669,22 @@
     "worlds": "(world 미사용)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 126,
+    "label": "G09c\n한가는 한재욱이 아닌 다른\n'한' 성 비장 (ID03\n확정과 충돌)",
+    "lines": [
+     "G09c",
+     "한가는 한재욱이 아닌 다른",
+     "'한' 성 비장 (ID03",
+     "확정과 충돌)"
+    ],
+    "max_line_px": 193.3,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G09c",
    "layout": {
     "band": null,
@@ -8985,15 +10692,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 2776,
-    "y": 436
+    "x": 4960,
+    "y": 2887
    },
    "related_mechanisms": {
     "M5": [
      "SD089"
     ]
    },
-   "short_label": "G09c · 한가는 한재욱이 아닌 다른 '한' 성 비장…",
+   "short_label": "G09c · 한가는 한재욱이 아닌 다른 '한' 성 비장 (ID03 확정과 충돌)",
    "status_group": "LATENT"
   },
   {
@@ -9010,6 +10717,21 @@
     "worlds": "(world 미사용)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "G10a\n파직 사유 = 장계와 안핵\n결과의 차이",
+    "lines": [
+     "G10a",
+     "파직 사유 = 장계와 안핵",
+     "결과의 차이"
+    ],
+    "max_line_px": 177.6,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G10a",
    "layout": {
     "band": null,
@@ -9017,8 +10739,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 4045,
-    "y": 308
+    "x": 7236,
+    "y": 2540
    },
    "related_mechanisms": {
     "M5": [
@@ -9042,6 +10764,21 @@
     "worlds": "(world 미사용)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "G10b\n유임 사유 = 구휼·전염병\n행정 연속성",
+    "lines": [
+     "G10b",
+     "유임 사유 = 구휼·전염병",
+     "행정 연속성"
+    ],
+    "max_line_px": 187.8,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G10b",
    "layout": {
     "band": null,
@@ -9049,8 +10786,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 4045,
-    "y": 372
+    "x": 7236,
+    "y": 2670
    },
    "related_mechanisms": {
     "M5": [
@@ -9074,6 +10811,21 @@
     "worlds": "(world 미사용)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "G10c\n파직 → 유임은 처분의\n형식적 경감",
+    "lines": [
+     "G10c",
+     "파직 → 유임은 처분의",
+     "형식적 경감"
+    ],
+    "max_line_px": 161.3,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G10c",
    "layout": {
     "band": null,
@@ -9081,8 +10833,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 4045,
-    "y": 436
+    "x": 7236,
+    "y": 2798
    },
    "related_mechanisms": {
     "M5": [
@@ -9106,6 +10858,21 @@
     "worlds": "W1, W4"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "G11a\n공주진이 같은 도난\n사건으로 먼저 체포",
+    "lines": [
+     "G11a",
+     "공주진이 같은 도난",
+     "사건으로 먼저 체포"
+    ],
+    "max_line_px": 139.5,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G11a",
    "layout": {
     "band": null,
@@ -9113,8 +10880,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 902,
-    "y": 308
+    "x": 1580,
+    "y": 2540
    },
    "related_mechanisms": {
     "M4": [
@@ -9138,6 +10905,21 @@
     "worlds": "(world 미사용)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "G11b\n병영이 2/28 이전\n공주진에 체포 의뢰",
+    "lines": [
+     "G11b",
+     "병영이 2/28 이전",
+     "공주진에 체포 의뢰"
+    ],
+    "max_line_px": 139.5,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G11b",
    "layout": {
     "band": null,
@@ -9145,8 +10927,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 902,
-    "y": 372
+    "x": 1580,
+    "y": 2670
    },
    "related_mechanisms": {
     "M1": [
@@ -9170,6 +10952,21 @@
     "worlds": "(world 미사용)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "G11c\n변지돌은 별건으로\n공주진에 구금 중",
+    "lines": [
+     "G11c",
+     "변지돌은 별건으로",
+     "공주진에 구금 중"
+    ],
+    "max_line_px": 133.8,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G11c",
    "layout": {
     "band": null,
@@ -9177,8 +10974,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 902,
-    "y": 436
+    "x": 1580,
+    "y": 2798
    },
    "related_mechanisms": {
     "M4": [
@@ -9202,6 +10999,21 @@
     "worlds": "W1, W2, W3"
    },
    "common_outcome": false,
+   "display": {
+    "h": 101,
+    "label": "G12a\n아내도 전염병으로\n사망(시점 미상)",
+    "lines": [
+     "G12a",
+     "아내도 전염병으로",
+     "사망(시점 미상)"
+    ],
+    "max_line_px": 133.8,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G12a",
    "layout": {
     "band": null,
@@ -9209,8 +11021,8 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 3729,
-    "y": 308
+    "x": 6660,
+    "y": 2540
    },
    "related_mechanisms": {
     "MB": [
@@ -9234,6 +11046,22 @@
     "worlds": "W6"
    },
    "common_outcome": false,
+   "display": {
+    "h": 126,
+    "label": "G12b\n아내는 남편 사망 뒤 비통\n속에 '따라 죽음'(전염병\n아님)",
+    "lines": [
+     "G12b",
+     "아내는 남편 사망 뒤 비통",
+     "속에 '따라 죽음'(전염병",
+     "아님)"
+    ],
+    "max_line_px": 183.0,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G12b",
    "layout": {
     "band": null,
@@ -9241,15 +11069,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 3729,
-    "y": 372
+    "x": 6660,
+    "y": 2682
    },
    "related_mechanisms": {
     "MB": [
      "SD099"
     ]
    },
-   "short_label": "G12b · 아내는 남편 사망 뒤 비통 속에 '따라 죽…",
+   "short_label": "G12b · 아내는 남편 사망 뒤 비통 속에 '따라 죽음'(전염병 아님)",
    "status_group": "LATENT"
   },
   {
@@ -9266,6 +11094,22 @@
     "worlds": "W1, W4"
    },
    "common_outcome": false,
+   "display": {
+    "h": 126,
+    "label": "G13a\n의금부 구금·신문 실행,\n지세 문제는 6/13까지\n결론 없음",
+    "lines": [
+     "G13a",
+     "의금부 구금·신문 실행,",
+     "지세 문제는 6/13까지",
+     "결론 없음"
+    ],
+    "max_line_px": 177.9,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G13a",
    "layout": {
     "band": null,
@@ -9273,15 +11117,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 2944,
-    "y": 308
+    "x": 5244,
+    "y": 2553
    },
    "related_mechanisms": {
     "M5": [
      "SD100"
     ]
    },
-   "short_label": "G13a · 의금부 구금·신문 실행, 지세 문제는 6/…",
+   "short_label": "G13a · 의금부 구금·신문 실행, 지세 문제는 6/13까지 결론 없음",
    "status_group": "LATENT"
   },
   {
@@ -9298,6 +11142,22 @@
     "worlds": "(world 미사용)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 126,
+    "label": "G13b\n의금부 신문은 6/13\n이전에 실질적으로\n진행되지 않음",
+    "lines": [
+     "G13b",
+     "의금부 신문은 6/13",
+     "이전에 실질적으로",
+     "진행되지 않음"
+    ],
+    "max_line_px": 148.8,
+    "pad_x": 14,
+    "pad_y": 12,
+    "reserved_lines": 0,
+    "text_w": 196,
+    "w": 224
+   },
    "id": "G13b",
    "layout": {
     "band": null,
@@ -9305,15 +11165,15 @@
     "date_key": null,
     "dated": false,
     "lane": "L_CAND",
-    "x": 2944,
-    "y": 372
+    "x": 5244,
+    "y": 2707
    },
    "related_mechanisms": {
     "M5": [
      "SD102"
     ]
    },
-   "short_label": "G13b · 의금부 신문은 6/13 이전에 실질적으로…",
+   "short_label": "G13b · 의금부 신문은 6/13 이전에 실질적으로 진행되지 않음",
    "status_group": "LATENT"
   },
   {
@@ -9330,6 +11190,21 @@
     "worlds": "ALL (확정하지 않음)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 105,
+    "label": "U_ID06\nID06 병영의 염탐 담당자 =\n유제희?",
+    "lines": [
+     "U_ID06",
+     "ID06 병영의 염탐 담당자 =",
+     "유제희?"
+    ],
+    "max_line_px": 206.4,
+    "pad_x": 18,
+    "pad_y": 14,
+    "reserved_lines": 0,
+    "text_w": 264,
+    "w": 300
+   },
    "id": "U_ID06",
    "layout": {
     "band": null,
@@ -9337,11 +11212,11 @@
     "date_key": null,
     "dated": false,
     "lane": "L_UNRES",
-    "x": 1250,
-    "y": 220
+    "x": 2242,
+    "y": 3330
    },
    "related_mechanisms": {},
-   "short_label": "ID06 병영의 염탐 담당자 = 유제희?",
+   "short_label": "U_ID06 · ID06 병영의 염탐 담당자 = 유제희?",
    "status_group": "UNRESOLVED"
   },
   {
@@ -9358,6 +11233,20 @@
     "worlds": "ALL (확정하지 않음)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 79,
+    "label": "U_ID07\nID07 철편 네 개 = 철퇴 네 개?",
+    "lines": [
+     "U_ID07",
+     "ID07 철편 네 개 = 철퇴 네 개?"
+    ],
+    "max_line_px": 234.2,
+    "pad_x": 18,
+    "pad_y": 14,
+    "reserved_lines": 0,
+    "text_w": 264,
+    "w": 300
+   },
    "id": "U_ID07",
    "layout": {
     "band": null,
@@ -9365,11 +11254,11 @@
     "date_key": null,
     "dated": false,
     "lane": "L_UNRES",
-    "x": 710,
-    "y": 220
+    "x": 1277,
+    "y": 3330
    },
    "related_mechanisms": {},
-   "short_label": "ID07 철편 네 개 = 철퇴 네 개?",
+   "short_label": "U_ID07 · ID07 철편 네 개 = 철퇴 네 개?",
    "status_group": "UNRESOLVED"
   },
   {
@@ -9386,6 +11275,21 @@
     "worlds": "ALL (확정하지 않음)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 105,
+    "label": "U_ID08\nID08 3/4 장교 일행에 조계완\n포함?",
+    "lines": [
+     "U_ID08",
+     "ID08 3/4 장교 일행에 조계완",
+     "포함?"
+    ],
+    "max_line_px": 226.9,
+    "pad_x": 18,
+    "pad_y": 14,
+    "reserved_lines": 0,
+    "text_w": 264,
+    "w": 300
+   },
    "id": "U_ID08",
    "layout": {
     "band": null,
@@ -9393,11 +11297,11 @@
     "date_key": null,
     "dated": false,
     "lane": "L_UNRES",
-    "x": 1597,
-    "y": 220
+    "x": 2877,
+    "y": 3330
    },
    "related_mechanisms": {},
-   "short_label": "ID08 3/4 장교 일행에 조계완 포함?",
+   "short_label": "U_ID08 · ID08 3/4 장교 일행에 조계완 포함?",
    "status_group": "UNRESOLVED"
   },
   {
@@ -9414,6 +11318,22 @@
     "worlds": "ALL (확정하지 않음)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 130,
+    "label": "U_OE007\nOE007 자미덕 '지휘' 주장 ↔\n한재욱 '은밀한 사주' 부인\n(PARTIAL_CONFLICT)",
+    "lines": [
+     "U_OE007",
+     "OE007 자미덕 '지휘' 주장 ↔",
+     "한재욱 '은밀한 사주' 부인",
+     "(PARTIAL_CONFLICT)"
+    ],
+    "max_line_px": 218.9,
+    "pad_x": 18,
+    "pad_y": 14,
+    "reserved_lines": 0,
+    "text_w": 264,
+    "w": 300
+   },
    "id": "U_OE007",
    "layout": {
     "band": null,
@@ -9421,11 +11341,11 @@
     "date_key": null,
     "dated": false,
     "lane": "L_UNRES",
-    "x": 2057,
-    "y": 220
+    "x": 3597,
+    "y": 3330
    },
    "related_mechanisms": {},
-   "short_label": "OE007 자미덕 '지휘' 주장 ↔ 한재욱 '은밀한…",
+   "short_label": "U_OE007 · OE007 자미덕 '지휘' 주장 ↔ 한재욱 '은밀한 사주' 부인 (PARTIAL_CONFLICT)",
    "status_group": "UNRESOLVED"
   },
   {
@@ -9442,6 +11362,22 @@
     "worlds": "ALL (확정하지 않음)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 130,
+    "label": "U_OE062\nOE062 5월 '조사' = 정조 '평범한\n신문'?\n(UNRESOLVED_SCOPE)",
+    "lines": [
+     "U_OE062",
+     "OE062 5월 '조사' = 정조 '평범한",
+     "신문'?",
+     "(UNRESOLVED_SCOPE)"
+    ],
+    "max_line_px": 251.8,
+    "pad_x": 18,
+    "pad_y": 14,
+    "reserved_lines": 0,
+    "text_w": 264,
+    "w": 300
+   },
    "id": "U_OE062",
    "layout": {
     "band": null,
@@ -9449,11 +11385,11 @@
     "date_key": null,
     "dated": false,
     "lane": "L_UNRES",
-    "x": 1827,
-    "y": 220
+    "x": 3237,
+    "y": 3330
    },
    "related_mechanisms": {},
-   "short_label": "OE062 5월 '조사' = 정조 '평범한 신문'?…",
+   "short_label": "U_OE062 · OE062 5월 '조사' = 정조 '평범한 신문'? (UNRESOLVED_SCOPE)",
    "status_group": "UNRESOLVED"
   },
   {
@@ -9470,6 +11406,21 @@
     "worlds": "ALL (확정하지 않음)"
    },
    "common_outcome": false,
+   "display": {
+    "h": 105,
+    "label": "U_G10\nG10 이형원 파직 → 유임 이유\n(OPEN_UNRESOLVED)",
+    "lines": [
+     "U_G10",
+     "G10 이형원 파직 → 유임 이유",
+     "(OPEN_UNRESOLVED)"
+    ],
+    "max_line_px": 221.4,
+    "pad_x": 18,
+    "pad_y": 14,
+    "reserved_lines": 0,
+    "text_w": 264,
+    "w": 300
+   },
    "id": "U_G10",
    "layout": {
     "band": null,
@@ -9477,11 +11428,11 @@
     "date_key": null,
     "dated": false,
     "lane": "L_UNRES",
-    "x": 4021,
-    "y": 220
+    "x": 7217,
+    "y": 3330
    },
    "related_mechanisms": {},
-   "short_label": "G10 이형원 파직 → 유임 이유 (OPEN_UNRE…",
+   "short_label": "U_G10 · G10 이형원 파직 → 유임 이유 (OPEN_UNRESOLVED)",
    "status_group": "UNRESOLVED"
   }
  ],
@@ -9489,57 +11440,57 @@
   {
    "date_key": 210,
    "label": "2/10",
-   "x": 218
+   "x": 368
   },
   {
    "date_key": 222,
    "label": "2/22",
-   "x": 455
+   "x": 800
   },
   {
    "date_key": 229,
    "label": "2/29",
-   "x": 929
+   "x": 1664
   },
   {
    "date_key": 304,
    "label": "3/4",
-   "x": 1542
+   "x": 2752
   },
   {
    "date_key": 512,
    "label": "5/12",
-   "x": 2076
+   "x": 3696
   },
   {
    "date_key": 527,
    "label": "5/27",
-   "x": 2471
+   "x": 4416
   },
   {
    "date_key": 528,
    "label": "5/28",
-   "x": 2708
+   "x": 4848
   },
   {
    "date_key": 611,
    "label": "6/11",
-   "x": 3005
+   "x": 5360
   },
   {
    "date_key": 613,
    "label": "6/13",
-   "x": 3400
+   "x": 6080
   },
   {
    "date_key": 613,
    "label": "6/13",
-   "x": 3934
+   "x": 7024
   },
   {
    "date_key": 616,
    "label": "6/16",
-   "x": 4250
+   "x": 7600
   }
  ]
 }

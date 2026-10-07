@@ -30,7 +30,7 @@ UNRESOLVED = 20
 Audit 5:
 ERROR = 0
 WARN = 0
-INFO = 4
+INFO = 5
 UNRESOLVED = 0
 
 ```
@@ -121,7 +121,7 @@ _없음_
 
 ## Regression validation rules
 
-build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR로 잡히는지 확인한다(48/48 탐지).
+build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR로 잡히는지 확인한다(59/59 탐지).
 
 | rule | 케이스 | 탐지 |
 |---|---|---|
@@ -173,6 +173,17 @@ build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR�
 | temporal_order | 3/4 체포 지시(EP09)와 6/13 최종 도난 판단(EP25)의 x 위치를 맞바꿈 | OK |
 | candidate_grade_changed | 화면에서 후보 G01a의 final grade를 MEDIUM → HIGH로 표시 | OK |
 | intervention_changed | 화면에서 do(M1=OFF)·V_COMPLAINT_TO_BARRACKS 결과를 PATH_BREAKS → PATH_REMAINS로 표시 | OK |
+| view_not_subset | D 병영 지휘·체포 View에 canonical에 없는 edge(EP09 → EP33 직접 연결)를 추가 | OK |
+| view_not_subset | C 구순→김명신 View에 canonical에 없는 node(EP_NEW)와 그 좌표를 추가 | OK |
+| view_status_changed | E 자미덕 View 좌표 항목에 G04b의 status를 OBSERVED로 적어 넣음 | OK |
+| view_hidden_notice_missing | F 구금·사망 View의 '시각적 필터·삭제 아님' 안내를 빈 문자열로 바꿈 | OK |
+| label_clipped | EP13 node label을 '5월 12일 이형원 장계…'로 잘라 말줄임 표시 | OK |
+| font_too_small | 화면 CSS의 본문 글자 크기를 12px(9pt)로 줄임 | OK |
+| line_height_too_small | 화면 CSS의 기본 line-height를 1.3으로 줄임 | OK |
+| initial_label_unreadable | I 정조 최종 판단 View의 첫 화면 최소 배율을 0.5로 낮춤(글자 8px) | OK |
+| view_node_overlap | B 시간순 View에서 EP11 좌표를 EP09 위로 옮김 | OK |
+| temporal_order | H 홍대협 재조사 View에서 EP02(2/22)와 EP24(6/13)의 x를 맞바꿈 | OK |
+| responsibility_to_biological | F 구금·사망 View에서 책임 판단 EP29를 branch A(생물학적 사인) 묶음에도 넣음 | OK |
 
 ## 동결 그래프
 

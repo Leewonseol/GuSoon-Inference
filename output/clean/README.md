@@ -12,7 +12,7 @@ python3 scripts/gusun_clean/build.py    # 저장소 루트에서 실행
 ```
 
 실행 순서는 STAGE 1 episode → AUDIT 1 → STAGE 2 graph → AUDIT 2 → STAGE 3 동결(sha256) → STAGE 4 gap·latent 후보 → AUDIT 3 → STAGE 5 world → AUDIT 3 재검사(world 포함) → STAGE 6 mechanism Super-DAG(질적 SCM) → AUDIT 4 → STAGE 7 interactive temporal DAG 데이터(`docs/data`) → AUDIT 5 → md/CSV 작성 → DuckDB 작성이다.
-Audit 1 전에 regression 케이스 48개(`regression.py`, Audit 4용 10개·Audit 5용 12개 포함)를 검사기에 넣어 모두 잡히는지 먼저 확인한다. Audit 5 케이스는 `output/clean`의 canonical 산출물로 화면 데이터를 메모리에서 만든 뒤 사본만 바꿔 넣는다. audit에 ERROR 또는 disposition 없는 WARN이 있으면 그 자리에서 exit 1로 멈춘다. 같은 입력이면 출력이 바이트 단위로 같다.
+Audit 1 전에 regression 케이스 59개(`regression.py`, Audit 4용 10개·Audit 5용 23개 포함)를 검사기에 넣어 모두 잡히는지 먼저 확인한다. Audit 5 케이스는 `output/clean`의 canonical 산출물로 화면 데이터를 메모리에서 만든 뒤 사본만 바꿔 넣는다. audit에 ERROR 또는 disposition 없는 WARN이 있으면 그 자리에서 exit 1로 멈춘다. 같은 입력이면 출력이 바이트 단위로 같다.
 
 | 스크립트 | 역할 |
 |---|---|
@@ -24,9 +24,9 @@ Audit 1 전에 regression 케이스 48개(`regression.py`, Audit 4용 10개·Aud
 | `stage5_worlds.py` | world 6개(경쟁 설명 5, rejected 1), 상충 후보 쌍, 무결성 assert |
 | `stage6_mechanisms.py` | 메커니즘 7개, 후보 → 메커니즘 매핑, 질적 구조 변수, world configuration·공존·개입 규칙 |
 | `build_visualization.py` | canonical CSV → `docs/data/*.json`·`bundle.js`(interactive temporal DAG 데이터, 결정적 preset 좌표). 단독 실행 가능 |
-| `test_visualization.py` | `docs/`를 로컬 http 서버로 띄워 헤드리스 Chromium(Playwright)으로 화면을 검사하는 UI 테스트 20항목 |
+| `test_visualization.py` | `docs/`를 로컬 http 서버로 띄워 헤드리스 Chromium(Playwright)으로 화면을 검사하는 UI 테스트 27항목(글자 크기·line-height·label 잘림·첫 화면 배율 포함) |
 | `audits.py` | Audit 1·2·3·4·5 자동 검사 |
-| `regression.py` | 과거 결함·금지 규칙 48개를 검사기가 다시 잡는지 확인하는 regression 케이스 |
+| `regression.py` | 과거 결함·금지 규칙 59개를 검사기가 다시 잡는지 확인하는 regression 케이스 |
 | `manual_review.py` | 원본 CSV 대조 수동 검토표와 실제 수정 이력 |
 | `report.py` · `report_mech.py` | md·CSV·mermaid 작성(Stage 1–5 · Stage 6) |
 
@@ -59,7 +59,7 @@ Audit 1 전에 regression 케이스 48개(`regression.py`, Audit 4용 10개·Aud
 | `mechanism_interventions.md` · `mechanism_interventions.csv` | do(M=OFF) 질적 개입 결과(PATH_REMAINS / WEAKENS / BREAKS / UNKNOWN). CSV는 같은 값을 기계가 읽는 형태로 낸 것 |
 | `qualitative_structural_rules.csv` | `qualitative_structural_rules.md`의 구조 변수·연산(OR/AND/XOR/ANCHORED)·입력 후보를 CSV로 낸 것 |
 | `audit_4_mechanism_super_dag.md` | Super-DAG audit, Audit 4 regression 10건 |
-| `audit_5_interactive_visualization.md` | 화면 데이터(docs/data) audit, Audit 5 regression 12건 |
+| `audit_5_interactive_visualization.md` | 화면 데이터(docs/data)·관점별 View·가독성 audit, Audit 5 regression 23건 |
 | `../../docs/` | Interactive Temporal DAG(정적 웹 페이지). `index.html`·`css/app.css`·`js/app.js`·`data/*.json`·`data/bundle.js`·`vendor/cytoscape/`(Cytoscape.js 3.30.4, MIT, LICENSE 포함) |
 | `warn_dispositions.csv` | WARN별 disposition (FIXED / RECLASSIFIED_INFO / UNRESOLVED / ESCALATED_ERROR) |
 | `../../database/gusun_clean.duckdb` | 원본 6표(`raw_*`)와 위 산출물 표, `episode_members`, `dag_freeze`, `audit_findings` |
@@ -72,7 +72,7 @@ Audit 1 전에 regression 케이스 48개(`regression.py`, Audit 4용 10개·Aud
 | AUDIT 2 graph fidelity | PASS | 0 | 0 | 5 (조건부 edge 3, 부분 충돌 2) | 1 |
 | AUDIT 3 observed/latent 분리 | PASS | 0 | 0 | 1 (G10) | 11 |
 | AUDIT 4 mechanism Super-DAG | PASS | 0 | 0 | 20 (방향 미결 8, 공존 미결 2, 복수 설명 4, 기존 미해결 6) | 2 |
-| AUDIT 5 interactive visualization | PASS | 0 | 0 | 0 | 4 |
+| AUDIT 5 interactive visualization | PASS | 0 | 0 | 0 | 5 |
 
 - 통과 조건은 ERROR 0, WARN 0이다. 이전 실행의 WARN 5건(A1-W1–W4, A3-W1)은 모두 FIXED로 처리했다. 새 regression 규칙이 찾아낸 EP07 1건(A1-E1)은 ESCALATED_ERROR로 올린 뒤 고쳤다. 처리 내역은 `warn_dispositions.csv`와 각 audit 문서의 WARN disposition 절에 있다.
 - 사용자 수동 검토로 ID01(병사=이광섭)·ID02(한 비장=한재욱)·ID03(한가=한재욱)·ID05(풍각 김상제=김명신)·ID11(원돌=정원돌)을 확정했다(`identity_register.csv`의 status=RESOLVED, resolved_by=USER). episode summary는 원문 표면형을 그대로 두고, 확정된 ID는 edge condition과 후보 가정에서 뺐다. 확정과 충돌하는 후보 G09b·G09c는 PRUNED 처리했다(어느 world에도 쓰이지 않던 후보). 사람이 판단할 항목은 `manual_review_table.md`에 있다. 사용자 검토에서 ID06·ID07·ID08·OE007·OE062·G10은 추가 사료 없이 확정하지 않기로 했다. 이 항목들은 오류가 아니라 보존된 불확실성이며 `identity_register.csv`(review_decision), `observed_edges.csv`(uncertainty_status), `gaps.csv`(gap_status)에 기록되어 있다.
@@ -93,9 +93,12 @@ Audit 1 전에 regression 케이스 48개(`regression.py`, Audit 4용 10개·Aud
 화면은 이미 있는 데이터만 보여 준다. 새 node·edge·사실·판단을 만들지 않고, 상태·configuration·공존 판정·개입 결과·후보 등급은 CSV 값을 그대로 쓴다.
 
 - 배치: Cytoscape.js `preset` 좌표(물리 시뮬레이션 없음, node 이동 불가). 좌표는 `build_visualization.py`가 결정적으로 계산한다. 날짜 있는 관측 node는 정렬 기준일(t_max, 없으면 t_min) 순서로 왼쪽 → 오른쪽(2월 → 3월 → 5월 → 6월 → 최종 판단·처분), 같은 날짜 안에서는 frozen edge 깊이 순서다. 날짜가 없는 EP08은 시간 축 밖 '날짜 미기록' 구간에 둔다. 메커니즘·구조 변수·후보·context·UNRESOLVED는 별도 lane이고 x는 연결된 node 근처일 뿐 날짜가 아니다.
-- 보기: 1 Overview · 2 수사 확대(M1–M4) · 3 재검토·판단·처분(M5) · 4 질병·사망 branch(A 생물학적 경과 / B 절차·책임, 직접 edge 0).
+- 관점별 View 10개(`docs/data/views.json`): A 전체 Overview · B 시간순 사건 · C 구순→김명신 수사선상 · D 병영 지휘·체포 · E 자미덕·진술·대질 · F 김명신 구금·사망(A 생물학적 경과 / B 절차·책임, 직접 edge 0) · G 5월 재검토 · H 홍대협 재조사 · I 정조 최종 판단·처분 · J LATENT·World 비교.
+  View는 canonical node·edge의 부분집합과 표시 좌표만 담는다(새 node·edge·상태·해석 없음). 각 View의 선택 규칙(핵심 관측 node, 맥락 관측 node, gap별 후보, 그 후보의 메커니즘·UNRESOLVED)은 화면의 '선택 규칙 보기'와 `scope_rule`에 그대로 적혀 있다.
+  B–I는 범위 밖 node를 숨기고(시각적 필터, 분석상 ON/OFF 아님) 숨긴 OBSERVED 개수·ID를 늘 보여 준다. '전체 주변 맥락 표시'를 켜면 전체 node가 Overview 좌표로 다시 나타나고 범위 밖 node는 흐리게 표시된다. J는 범위 밖 OBSERVED를 흐리게만 한다.
+- 가독성: node label 16px(12pt)·line-height 1.6, UI 글자 15px(11.25pt) 이상·line-height 1.6. node는 'ID + canonical label 전체'를 줄바꿈해 담고(말줄임 없음) 높이가 줄 수에 맞춰 늘어난다. 모든 View의 첫 화면 배율은 0.95 이상(node 글자 15.2px)이고, 화면에 다 들어오지 않으면 시간상 앞쪽(핵심 node가 부족하면 핵심 node가 가장 많은 곳)부터 보여 준다. 휠 = 스크롤, Ctrl/⌘+휠 = 확대, '전체 지도' = 한 화면 축소(ID만 표시). lane·시간 구간 이름은 화면 밖으로 나가면 가장자리에 고정된다. 다른 node 밑을 지나는 edge는 결정적으로 고른 곡선으로 그린다.
 - 왼쪽: world 선택(ALL·W1–W5·W6 REJECTED), 표시 필터(Status·Mechanism — 분석상 ON/OFF가 아님), 검색, 초기화, 범례. 오른쪽: 상세 · World 구성 · 공존 · 개입 패널.
-- OBSERVED backbone(관측 node 37개, 공통 결말 23개 포함)은 어떤 world·view·필터·개입에서도 숨기지 않는다(Audit 5 `outcome_dropped`, UI 테스트 14·15).
+- OBSERVED backbone(관측 node 37개, 공통 결말 23개 포함)은 어떤 world·필터·개입에서도 숨기지 않는다. Overview·J·'전체 주변 맥락 표시'에서는 늘 전부 보이고, B–I에서는 View 범위의 관측 node가 늘 보이며 범위 밖은 안내와 함께 숨긴다(Audit 5 `outcome_dropped`·`view_hidden_notice_missing`, UI 테스트 13·14·15).
 
 로컬에서 보기:
 

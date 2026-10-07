@@ -18,7 +18,12 @@
 </header>
 
 <div class="app">
-  <aside class="sidebar" aria-label="선택과 필터">
+  <aside class="sidebar" id="sidebar" aria-label="선택과 필터">
+    <section class="block">
+      <h2>그래프 조작</h2>
+      <p class="hint">휠 = 위아래 스크롤 · Shift+휠 = 좌우 · Ctrl/⌘+휠 또는 핀치 = 확대/축소 · 끌어서 이동 · 그래프 왼쪽 아래 미니맵을 눌러 위치 이동 · ‘전체 지도’는 글자가 작아져 ID만 보입니다.</p>
+    </section>
+
     <section class="block">
       <h2>World 선택</h2>
       <div class="world-buttons" id="world-buttons" role="radiogroup" aria-label="world"></div>
@@ -36,7 +41,7 @@
 
     <section class="block">
       <h2>표시 필터 <span class="tag">보이기/숨기기만</span></h2>
-      <p class="hint">화면 표시만 바꾼다. 분석상 ON/OFF가 아니다(개입은 오른쪽 ‘개입’ 탭).</p>
+      <p class="hint">화면 표시만 바꾼다. 분석상 ON/OFF가 아니다(개입은 오른쪽 ‘개입’ 탭). 관점별 View(B–I)의 숨김도 같은 시각적 필터다.</p>
       <h3>Status</h3>
       <div id="status-filters" class="filters"></div>
       <h3>Mechanism</h3>
@@ -58,29 +63,39 @@
   </aside>
 
   <main class="stage" aria-label="그래프">
-    <nav class="tabs" id="view-tabs" role="tablist" aria-label="보기"></nav>
+    <div class="stage-bar">
+      <button type="button" class="btn" id="toggle-sidebar" aria-expanded="true" aria-controls="sidebar">필터 접기</button>
+      <span class="zoom-ctrl" role="group" aria-label="배율">
+        <button type="button" class="btn icon" id="zoom-in" aria-label="확대" title="확대">＋</button>
+        <button type="button" class="btn icon" id="zoom-out" aria-label="축소" title="축소">－</button>
+        <button type="button" class="btn" id="zoom-read" title="글자를 읽을 수 있는 배율(100%)로">읽기 배율</button>
+        <button type="button" class="btn" id="zoom-home" title="이 View의 첫 화면으로">처음 화면</button>
+        <button type="button" class="btn" id="zoom-fit" title="전체를 한 화면에(글자가 작아져 ID만 표시)">전체 지도</button>
+        <button type="button" class="btn" id="toggle-minimap" aria-pressed="true" title="미니맵 보이기/숨기기">미니맵</button>
+      </span>
+      <span class="zoom-info" id="zoom-info" aria-live="polite"></span>
+    </div>
+    <nav class="tabs" id="view-tabs" role="tablist" aria-label="관점별 View"></nav>
     <div class="view-desc" id="view-desc"></div>
+    <div class="banner banner-view" id="banner-view" role="status" hidden></div>
     <div class="banner banner-rejected" id="banner-world" role="status" hidden></div>
     <div class="banner banner-iv" id="banner-iv" role="status" hidden></div>
-    <div class="graph-wrap" id="graph-wrap">
+    <div class="graph-wrap" id="graph-wrap" tabindex="0" aria-label="그래프 영역. 화살표 키로 이동, +/-로 확대·축소">
       <svg id="overlay" aria-hidden="true"></svg>
       <div id="cy" aria-label="Mechanism Super-DAG 그래프"></div>
-      <div class="zoom-ctrl">
-        <button type="button" class="btn icon" id="zoom-in" aria-label="확대">＋</button>
-        <button type="button" class="btn icon" id="zoom-out" aria-label="축소">－</button>
-        <button type="button" class="btn icon" id="zoom-fit" aria-label="화면 맞춤">⤢</button>
-      </div>
+      <div id="band-pins" class="band-pins" aria-hidden="true" hidden></div>
+      <div id="lane-pins" class="lane-pins" aria-hidden="true" hidden></div>
+      <canvas id="minimap" aria-label="미니맵: 눌러서 그 위치로 이동" role="img"></canvas>
       <div class="tooltip" id="tooltip" hidden></div>
     </div>
-    <p class="foot-note" id="foot-note"></p>
   </main>
 
   <aside class="panel" aria-label="상세와 분석">
     <nav class="ptabs" role="tablist" aria-label="패널">
-      <button type="button" role="tab" data-ptab="detail" class="active">상세</button>
-      <button type="button" role="tab" data-ptab="world">World 구성</button>
-      <button type="button" role="tab" data-ptab="inter">공존</button>
-      <button type="button" role="tab" data-ptab="iv">개입</button>
+      <button type="button" role="tab" data-ptab="detail" class="active" aria-selected="true">상세</button>
+      <button type="button" role="tab" data-ptab="world" aria-selected="false">World 구성</button>
+      <button type="button" role="tab" data-ptab="inter" aria-selected="false">공존</button>
+      <button type="button" role="tab" data-ptab="iv" aria-selected="false">개입</button>
     </nav>
     <div class="pbody" id="p-detail" data-pane="detail"></div>
     <div class="pbody" id="p-world" data-pane="world" hidden></div>

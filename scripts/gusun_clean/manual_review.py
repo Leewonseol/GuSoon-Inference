@@ -321,6 +321,25 @@ AUDIT5_REVISIONS = [
      "개입 결과를 구조 변수별 카드(관측 대상·사라지는 후보·남는 후보·영향 world·설명)로 바꾸고 선택 상자 폭을 유연하게 함. 값은 canonical 그대로"),
     ("최종 실행", "Audit 5 ERROR 0, WARN 0, UNRESOLVED 0, INFO 4. regression 48/48 탐지, UI 테스트 20/20 PASS",
      "PASS. 동결 해시 ccb7ec63763a 그대로, 기존 canonical CSV·md는 바이트 동일(새 파일 3개와 validation_summary.md만 추가·변경)"),
+    ("가독성·분할 개선(설계)", "Overview가 첫 화면에서 약 0.2배로 축소되어 node ID만 보였고 node label 11px·UI 글자 11–13px·line-height 1.4–1.5였다. "
+     "View 4개는 범위 밖 OBSERVED를 흐리게만 남겨 화면이 복잡했다",
+     "View를 A 전체 Overview·B 시간순 사건·C 구순→김명신 수사선상·D 병영 지휘·체포·E 자미덕·진술·대질·F 김명신 구금·사망·G 5월 재검토·"
+     "H 홍대협 재조사·I 정조 최종 판단·처분·J LATENT·World 비교 10개로 다시 나눔. View는 canonical node·edge 부분집합과 표시 좌표만 담고(새 inference 없음) "
+     "subset View는 범위 밖 node를 숨기되 숨긴 OBSERVED 개수·ID와 '시각적 필터' 안내를 늘 보여 줌. node label 16px·UI 15px·line-height 1.6, "
+     "label 전체를 줄바꿈해 node 크기를 정하고, 첫 화면 배율 하한 0.95. 같은 규칙으로 View마다 결정적 좌표를 다시 계산"),
+    ("가독성·분할 개선(검사 추가)", "새 화면 규칙을 검사할 수단이 없었음",
+     "Audit 5에 view_not_subset·view_status_changed·view_hidden_notice_missing·label_clipped·font_too_small·line_height_too_small·"
+     "initial_label_unreadable·layout_nondeterministic·view_node_overlap과 View 좌표의 temporal_order·context_as_event·A/B 검사를 추가. "
+     "regression 11건 추가(59건), UI 테스트 27항목(computed font·line-height, 렌더된 label 잘림·node 겹침, 첫 화면 배율, 검색 이동, 스크롤·끌기·미니맵, 420px)"),
+    ("화면 확인(가독성 개선 1차)", "헤드리스 스크린샷: 1600px에서 그래프 영역이 머리글·배너에 밀려 520px 정도, 오른쪽 아래 확대 버튼과 미니맵이 node를 가림. "
+     "긴 같은 lane edge(OE007, 2/29 → 6/13)가 다른 edge(OE008)와 겹쳐 클릭이 엉뚱한 edge로 감",
+     "확대 버튼을 그래프 위 도구 막대로 옮기고 안내 문구를 한 줄로 줄임, 미니맵 끄기 버튼 추가. 직선이 다른 node 상자를 지나는 edge는 "
+     "정해진 순서의 곡률 후보 중 상자를 피하는 가장 작은 값으로 곡선 처리(좌표에서 결정적으로 계산)"),
+    ("화면 확인(가독성 개선 2차)", "H 홍대협 재조사 View는 맥락 node EP02(2/22) 때문에 첫 화면이 빈 2월 구간에서 시작. lane 이름 칸이 화면 밖으로 나가면 lane을 알 수 없음",
+     "첫 화면 기준점을 View 핵심 관측 node 앞으로 옮기고, 시간상 앞쪽 창에 핵심 node가 2개 미만일 때만 핵심 node가 가장 많이 들어오는 창을 고름. "
+     "lane 이름·시간 구간 이름이 화면 밖으로 나가면 그래프 가장자리에 고정 표시(HTML, 11pt 이상)"),
+    ("최종 실행(가독성 개선)", "Audit 1–5 ERROR 0·WARN 0, regression 59/59, UI 테스트 27/27",
+     "PASS. 동결 해시 ccb7ec63763a 그대로, canonical CSV·json·md(output/clean)는 audit_5·validation_summary 문서 말고 바이트 동일"),
 ]
 
 # ============================================================================ WARN dispositions

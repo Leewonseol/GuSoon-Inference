@@ -3,6 +3,7 @@
 각 검사는 findings(dict: check, severity, target, message)를 낸다.
 severity: ERROR(통과 불가) | WARN(검토 필요 — disposition 없이는 통과 불가) | UNRESOLVED(사료 자체 모호성, 허용) | INFO(보고만)
 """
+import json
 import re
 from collections import defaultdict
 
@@ -927,9 +928,226 @@ UI_STATUS_GROUPS = {"OBSERVED": "OBSERVED", "DERIVED": "DERIVED", "LATENT_MECHAN
 UI_BACKBONE_GUARD = "AUDIT5:BACKBONE_GUARD"
 
 
-def audit5(ui, canon, frozen_hash, app_js=None):
+UI_VIEW_NOTICE_MARK = "AUDIT5:VIEW_HIDDEN_NOTICE"
+UI_VIEW_SCOPE_MARK = "AUDIT5:VIEW_SCOPE"
+UI_READ_PX = 11 * 96 / 72 - 1e-6       # 11pt = 14.667px
+UI_MIN_LINE_HEIGHT = 1.6
+_REMAKE_CACHE = {}
+
+
+def _css_px(value, root_vars):
+    """CSS font-size 값 → px. var(--x)는 :root 값으로 푼다. 모르는 단위는 None."""
+    v = value.strip()
+    m = re.fullmatch(r"var\((--[\w-]+)\)", v)
+    if m:
+        v = root_vars.get(m.group(1), "").strip()
+    m = re.fullmatch(r"([\d.]+)(px|pt)", v)
+    if not m:
+        return None
+    return float(m.group(1)) * (96 / 72 if m.group(2) == "pt" else 1)
+
+
+def _css_lh(value, root_vars):
+    v = value.strip()
+    m = re.fullmatch(r"var\((--[\w-]+)\)", v)
+    if m:
+        v = root_vars.get(m.group(1), "").strip()
+    return float(v) if re.fullmatch(r"[\d.]+", v) else None
+
+
+def audit5_views(ui, canon, app_js=None, app_css=None):
+    """관점별 View가 canonical의 부분집합인지, 글자·줄 간격·첫 화면 배율이 가독성 기준을 지키는지, 좌표가 결정적인지 본다."""
+    import build_visualization as bv
+    from stage6_mechanisms import BRANCH_A, BRANCH_B
+    out = []
+    sd = ui["super_dag"]
+    cn = {r["node_id"]: r for r in canon["sd_nodes"]}
+    ce = {r["edge_id"]: r for r in canon["sd_edges"]}
+    observed = {k for k, r in cn.items() if r["node_type"] == "OBSERVED_EVENT"}
+    eps = {r["node_id"]: r for r in canon["episodes"]}
+    views = ui["views"]["views"]
+    typo = ui["meta"].get("typography", {})
+    boxes = {n["id"]: n.get("display", {}) for n in sd["nodes"]}
+    # 13-1·2. View = canonical node·edge 부분집합, 새 node·edge 없음
+    if set(ui["views"].get("order", [])) != set(views):
+        out.append(F("view_not_subset", "ERROR", "views.order", "View 순서 목록과 View 정의가 다름"))
+    for vid, v in views.items():
+        nodes = set(v.get("nodes", []))
+        bad_n = sorted(nodes - set(cn))
+        if bad_n:
+            out.append(F("view_not_subset", "ERROR", f"view:{vid}", f"canonical에 없는 node {bad_n[:5]}"))
+        bad_e = sorted(set(v.get("edges", [])) - set(ce))
+        if bad_e:
+            out.append(F("view_not_subset", "ERROR", f"view:{vid}", f"canonical에 없는 edge {bad_e[:5]}"))
+        want_e = sorted(k for k, e in ce.items() if e["src"] in nodes and e["dst"] in nodes)
+        if sorted(v.get("edges", [])) != want_e:
+            out.append(F("view_not_subset", "ERROR", f"view:{vid}", "View edge 목록이 'View node 사이의 canonical edge 전부'와 다름"))
+        if not set(v.get("core", [])) | set(v.get("context", [])) == nodes:
+            out.append(F("view_not_subset", "ERROR", f"view:{vid}", "core·context 합이 View node 목록과 다름"))
+        if v.get("policy") == "subset":
+            if sorted(v.get("hidden_observed", [])) != sorted(observed - nodes):
+                out.append(F("view_hidden_notice_missing", "ERROR", f"view:{vid}", "숨긴 OBSERVED 목록이 실제(관측 node − View node)와 다름"))
+            pos = v.get("layout", {}).get("positions", {})
+            if set(pos) != nodes:
+                out.append(F("view_not_subset", "ERROR", f"view:{vid}", "View 좌표가 View node 목록과 다름(없는 node 좌표 또는 좌표 없는 node)"))
+        elif v.get("policy") == "all" and nodes != set(cn):
+            out.append(F("view_not_subset", "ERROR", f"view:{vid}", "Overview가 canonical node 전부를 담지 않음"))
+        elif v.get("policy") not in ("all", "subset", "dim"):
+            out.append(F("view_not_subset", "ERROR", f"view:{vid}", f"알 수 없는 표시 정책 {v.get('policy')}"))
+    if not any(v.get("policy") == "all" for v in views.values()):
+        out.append(F("view_not_subset", "ERROR", "views", "전체 Overview View가 없음"))
+    # 13-3. View metadata에 상태·판정·해석 필드가 없음(표시 범위·좌표만)
+    allowed = getattr(bv, "VIEW_KEYS", set())
+    banned = re.compile(r"(status|grade|overall|config|coexist|result|worlds|interpret|important|turning|story)", re.I)
+    for vid, v in views.items():
+        extra = sorted(set(v) - allowed)
+        if extra:
+            out.append(F("view_status_changed", "ERROR", f"view:{vid}", f"View metadata에 허용되지 않은 필드 {extra}"))
+        for nid, p in v.get("layout", {}).get("positions", {}).items():
+            if set(p) != {"x", "y", "lane"}:
+                out.append(F("view_status_changed", "ERROR", f"view:{vid}:{nid}", f"View 좌표 항목에 좌표 외 필드 {sorted(set(p) - {'x', 'y', 'lane'})}"))
+                break
+        for k in v:
+            if banned.search(k):
+                out.append(F("view_status_changed", "ERROR", f"view:{vid}", f"View metadata 필드 '{k}'가 상태·판정·해석을 담을 수 있음"))
+    # 13-4. 숨긴 OBSERVED가 사라진 것으로 읽히지 않게 하는 표시
+    for vid, v in views.items():
+        if v.get("policy") != "subset":
+            continue
+        note = v.get("notice", "")
+        if not ("시각적 필터" in note and "삭제" in note and "ON/OFF" in note):
+            out.append(F("view_hidden_notice_missing", "ERROR", f"view:{vid}", "subset View에 '시각적 필터·삭제 아님·분석상 ON/OFF 아님' 안내가 없음"))
+    if app_js is not None:
+        i = app_js.find(UI_VIEW_NOTICE_MARK)
+        if i < 0 or "hidden_observed" not in app_js[i:i + 2500] or "show-context" not in app_js[i:i + 2500]:
+            out.append(F("view_hidden_notice_missing", "ERROR", "app.js", "숨긴 OBSERVED 개수·전체 맥락 표시 안내를 그리는 코드가 없음"))
+        j = app_js.find(UI_VIEW_SCOPE_MARK)
+        if j < 0 or "if (outside) hide = true" not in app_js[j:j + 300] or "isSubsetMode()" not in app_js:
+            out.append(F("view_hidden_notice_missing", "ERROR", "app.js", "View 범위 숨김이 subset View로 한정되지 않음"))
+    # 13-5. node label clipping(잘림·말줄임·글자 누락·크기 부족)
+    line_px = typo.get("line_px", 0)
+    for nid, d in boxes.items():
+        c = cn.get(nid)
+        if c is None or not d:
+            out.append(F("label_clipped", "ERROR", nid, "node 표시 정보(display)가 없음"))
+            continue
+        head, body = bv.node_text(c)
+        want = re.sub(r"\s+", "", head + body)
+        got = re.sub(r"\s+", "", "".join(d.get("lines", [])))
+        if got != want:
+            out.append(F("label_clipped", "ERROR", nid, f"node label이 canonical 글자를 모두 담지 않음('{''.join(d.get('lines', []))[:30]}')"))
+        if d.get("label") != "\n".join(d.get("lines", [])):
+            out.append(F("label_clipped", "ERROR", nid, "표시 label과 줄 목록이 다름"))
+        if ("…" in d.get("label", "") and "…" not in head + body) or ("..." in d.get("label", "") and "..." not in head + body):
+            out.append(F("label_clipped", "ERROR", nid, "node label에 말줄임(…)이 들어감"))
+        widest = max([bv.text_px(x, typo.get("node_font_px", bv.NODE_FONT)) for x in d.get("lines", [""])] or [0])
+        if widest > d.get("text_w", 0) + 0.01 or d.get("w", 0) - 2 * d.get("pad_x", 0) < d.get("text_w", 0) - 0.01:
+            out.append(F("label_clipped", "ERROR", nid, f"가장 긴 줄 {widest:.0f}px > 글자 영역 {d.get('text_w')}px"))
+        if d.get("h", 0) + 0.6 < len(d.get("lines", [])) * line_px + 2 * d.get("pad_y", 0):
+            out.append(F("label_clipped", "ERROR", nid, f"node 높이 {d.get('h')}px가 {len(d.get('lines', []))}줄을 담지 못함"))
+    # 13-6. node·edge label 글자 크기
+    for k in ("node_font_px", "edge_font_px", "far_id_font_px"):
+        if typo.get(k, 0) < UI_READ_PX:
+            out.append(F("font_too_small", "ERROR", f"typography.{k}", f"{typo.get(k)}px < 11pt(14.667px)"))
+    if app_js is not None:
+        for m in re.finditer(r"'font-size':\s*([\d.]+)", app_js):
+            if float(m.group(1)) < UI_READ_PX:
+                out.append(F("font_too_small", "ERROR", "app.js", f"그래프 글자 크기 {m.group(1)}px < 11pt"))
+        if "'font-size': TY.node_font_px" not in app_js:
+            out.append(F("font_too_small", "ERROR", "app.js", "node label 글자 크기가 typography.node_font_px를 쓰지 않음"))
+    # 13-7. UI 글자 크기
+    if app_css is not None:
+        root = dict(re.findall(r"(--[\w-]+):\s*([^;]+);", app_css.split("}")[0]))
+        for m in re.finditer(r"font-size:\s*([^;}\n]+)", app_css):
+            px = _css_px(m.group(1), root)
+            if px is None or px < UI_READ_PX:
+                out.append(F("font_too_small", "ERROR", "app.css", f"font-size {m.group(1).strip()} < 11pt 또는 확인할 수 없는 단위"))
+        if not re.search(r"body\s*\{[^}]*font-size:\s*var\(--fs\)", app_css) or (_css_px("var(--fs)", root) or 0) < UI_READ_PX:
+            out.append(F("font_too_small", "ERROR", "app.css", "body 기본 글자 크기가 11pt 이상으로 정해지지 않음"))
+        # 13-8. line-height
+        for m in re.finditer(r"line-height:\s*([^;}\n]+)", app_css):
+            lh = _css_lh(m.group(1), root)
+            if lh is None or lh < UI_MIN_LINE_HEIGHT:
+                out.append(F("line_height_too_small", "ERROR", "app.css", f"line-height {m.group(1).strip()} < 1.6 또는 단위 있는 값"))
+        if not re.search(r"body\s*\{[^}]*line-height:", app_css):
+            out.append(F("line_height_too_small", "ERROR", "app.css", "body line-height가 없음"))
+    if typo.get("line_height", 0) < UI_MIN_LINE_HEIGHT:
+        out.append(F("line_height_too_small", "ERROR", "typography.line_height", f"{typo.get('line_height')} < 1.6"))
+    if app_js is not None and "'line-height': TY.line_height" not in app_js:
+        out.append(F("line_height_too_small", "ERROR", "app.js", "node label line-height가 typography.line_height를 쓰지 않음"))
+    # 13-9. 첫 화면에서 label이 읽히는 배율
+    overlay_min = min([typo.get(k, 0) for k in ("lane_font_px", "lane_sub_font_px", "band_font_px", "band_sub_font_px", "tick_font_px")] or [0])
+    for vid, v in views.items():
+        z = v.get("initial", {}).get("min_zoom", 0)
+        if z * typo.get("node_font_px", 0) < UI_READ_PX:
+            out.append(F("initial_label_unreadable", "ERROR", f"view:{vid}",
+                         f"첫 화면 최소 배율 {z} × node 글자 {typo.get('node_font_px')}px = {z * typo.get('node_font_px', 0):.1f}px < 11pt"))
+        if z * overlay_min < UI_READ_PX:
+            out.append(F("initial_label_unreadable", "ERROR", f"view:{vid}", f"첫 화면에서 lane·시간 구간 글자 {z * overlay_min:.1f}px < 11pt"))
+    if typo.get("read_zoom", 0) * typo.get("node_font_px", 0) < UI_READ_PX:
+        out.append(F("initial_label_unreadable", "ERROR", "typography.read_zoom", "축소 지도 전환 배율에서 label이 11pt보다 작음"))
+    # 13-10. branch A ↔ B 직접 edge(관점별 View 포함)
+    for vid, v in views.items():
+        nodes = set(v.get("nodes", []))
+        for eid in v.get("edges", []):
+            e = ce.get(eid)
+            if e and ((e["src"] in BRANCH_A and e["dst"] in BRANCH_B) or (e["src"] in BRANCH_B and e["dst"] in BRANCH_A)):
+                out.append(F("responsibility_to_biological", "ERROR", f"view:{vid}", f"branch A/B 직접 edge {eid}"))
+        if v.get("groups"):
+            ga, gb = set(v["groups"].get("A", [])), set(v["groups"].get("B", []))
+            if not (ga | gb) <= nodes or ga & gb:
+                out.append(F("responsibility_to_biological", "ERROR", f"view:{vid}", "branch 묶음이 View node 밖에 있거나 서로 겹침"))
+    # 13-11. W6 REJECTED는 audit5 본문 4절에서 검사한다(View가 world 값을 바꾸지 않음은 13-3).
+    # 13-12. 좌표: 결정적·겹침 없음·View 안에서도 시간 순서
+    key = (id(canon), json.dumps(sorted((p["key"], f["check"], f["severity"], f["message"]) for p in ui["interactions"]["pairs"]
+                                        for f in p["audit4"]), ensure_ascii=False))
+    if key not in _REMAKE_CACHE:
+        findings = [dict(check=f["check"], severity=f["severity"], target=p["key"], message=f["message"])
+                    for p in ui["interactions"]["pairs"] for f in p["audit4"]]
+        r1, r2 = bv.make_ui(canon, findings), bv.make_ui(canon, findings)
+        _REMAKE_CACHE.clear()
+        _REMAKE_CACHE[key] = (r1, r2)
+    r1, r2 = _REMAKE_CACHE[key]
+
+    def coords(u):
+        return (json.dumps({n["id"]: n["layout"] for n in u["super_dag"]["nodes"]}, sort_keys=True),
+                json.dumps([u["super_dag"][k] for k in ("lanes", "bands", "ticks", "extent", "anchor")], sort_keys=True),
+                json.dumps({vid: v.get("layout") for vid, v in u["views"]["views"].items()}, sort_keys=True))
+    if coords(r1) != coords(r2):
+        out.append(F("layout_nondeterministic", "ERROR", "layout", "같은 입력으로 두 번 계산한 좌표가 다름"))
+    elif coords(ui) != coords(r1):
+        out.append(F("layout_nondeterministic", "ERROR", "layout", "화면 데이터의 좌표가 canonical 입력에서 다시 계산한 좌표와 다름"))
+    layouts = [("overview", {n["id"]: n["layout"] for n in sd["nodes"]})]
+    layouts += [(vid, v["layout"]["positions"]) for vid, v in views.items() if v.get("layout", {}).get("positions")]
+    for vid, pos in layouts:
+        ids = sorted(pos)
+        for i, a in enumerate(ids):
+            for b in ids[i + 1:]:
+                pa, pb, A, B = pos[a], pos[b], boxes.get(a, {}), boxes.get(b, {})
+                if abs(pa["x"] - pb["x"]) * 2 < A.get("w", 0) + B.get("w", 0) and abs(pa["y"] - pb["y"]) * 2 < A.get("h", 0) + B.get("h", 0):
+                    out.append(F("view_node_overlap", "ERROR", f"view:{vid}", f"{a}와 {b}의 node 상자가 겹침"))
+        dated = sorted((int(eps[k].get("t_max") or eps[k].get("t_min")), pos[k]["x"], k) for k in ids
+                       if k in observed and (eps[k].get("t_max") or eps[k].get("t_min")))
+        for i in range(len(dated)):
+            for j in range(i + 1, len(dated)):
+                if dated[i][0] < dated[j][0] and dated[i][1] >= dated[j][1]:
+                    out.append(F("temporal_order", "ERROR", f"view:{vid}", f"{dated[i][2]}가 {dated[j][2]}보다 이른데 오른쪽(또는 같은 열)에 놓임"))
+        if vid != "overview":
+            lanes = {l["id"]: l for l in views[vid]["layout"]["lanes"]}
+            for k in ids:
+                if cn.get(k, {}).get("sd_status") == "CONTEXT" and lanes.get(pos[k]["lane"], {}).get("kind") != "context":
+                    out.append(F("context_as_event", "ERROR", f"view:{vid}:{k}", "View 좌표에서 context가 context lane 밖(사건 lane)에 놓임"))
+    n_sub = sum(1 for v in views.values() if v.get("policy") == "subset")
+    out.append(F("view_summary", "INFO", "views",
+                 f"View {len(views)}개(subset {n_sub}) 모두 canonical node·edge 부분집합, 좌표 결정적·겹침 0. node 글자 {typo.get('node_font_px')}px·"
+                 f"line-height {typo.get('line_height')}·첫 화면 배율 ≥ {min(v['initial']['min_zoom'] for v in views.values())}"))
+    return out
+
+
+def audit5(ui, canon, frozen_hash, app_js=None, app_css=None):
     """화면 데이터가 canonical 값을 그대로 옮겼는지, 화면 규칙이 관측·LATENT·context 경계를 지키는지 본다.
-    ui: docs/data/*.json을 읽은 dict(+ '_bundle': bundle.js 문자열). canon: build_visualization.load_canonical() 결과."""
+    ui: docs/data/*.json을 읽은 dict(+ '_bundle': bundle.js 문자열). canon: build_visualization.load_canonical() 결과.
+    app_js·app_css: 화면 코드(주어지면 backbone·View 숨김 안내·글자 크기·line-height도 검사)."""
     import json as _json
     from stage5_worlds import COMMON_OUTCOME_NODES, WORLD_ROLES
     from stage6_mechanisms import BRANCH_A, BRANCH_B
@@ -1168,6 +1386,8 @@ def audit5(ui, canon, frozen_hash, app_js=None):
         out.append(F("interaction_changed", "ERROR", "interactions", "공존 판정이 mechanism_interaction_matrix.csv와 다름"))
     if [dict(r) for r in canon["rules"]] != ui["interactions"].get("rules"):
         out.append(F("interaction_changed", "ERROR", "rules", "구조 규칙이 qualitative_structural_rules.csv와 다름"))
+    # 13. 관점별 View·가독성(시각화 개선 검사)
+    out += audit5_views(ui, canon, app_js, app_css)
     # INFO
     und = sorted(nid for nid, n in un.items() if n["canonical"].get("node_type") == "OBSERVED_EVENT" and not n["layout"].get("dated"))
     out.append(F("ui_summary", "INFO", "docs/data",

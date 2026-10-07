@@ -283,7 +283,8 @@ def main():
     # STAGE 7 — Interactive Temporal DAG 데이터(docs/data) + AUDIT 5
     import build_visualization
     canon, ui = build_visualization.build(DOCS, OUT, PACK, a4)
-    a5 = audits.audit5(ui, canon, frozen, (DOCS / "js" / "app.js").read_text(encoding="utf-8"))
+    a5 = audits.audit5(ui, canon, frozen, (DOCS / "js" / "app.js").read_text(encoding="utf-8"),
+                       (DOCS / "css" / "app.css").read_text(encoding="utf-8"))
     apply_dispositions("AUDIT5", a5)
     report_mech.write_audit5(OUT / "audit_5_interactive_visualization.md", a5, ui, reg)
     gate("AUDIT 5 (interactive visualization)", a5)

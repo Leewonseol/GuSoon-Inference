@@ -353,6 +353,15 @@ def write_audit5(path, findings, ui, regression_results=()):
          "status_changed(3), w6_not_rejected(4), outcome_dropped(5), unspecified_as_off(6), context_as_event(7), environment_to_individual(8), "
          "responsibility_to_biological(9), temporal_order(10), candidate_grade_changed(11), intervention_changed(12), "
          "그리고 count_mismatch·frozen_graph_changed·stale_ui_data·bundle_mismatch·interaction_changed.", "",
+         "관점별 View·가독성 검사(13): view_not_subset(View node·edge가 canonical 부분집합이고 edge = View node 사이 canonical edge 전부, 새 node·edge 없음), "
+         "view_status_changed(View metadata에 상태·판정·해석 필드 없음, 좌표 항목은 x·y·lane만), "
+         "view_hidden_notice_missing(subset View의 숨긴 OBSERVED 목록 = 관측 node − View node, '시각적 필터·삭제 아님·분석상 ON/OFF 아님' 안내와 그 안내를 그리는 코드), "
+         "label_clipped(node label이 canonical 글자를 모두 담고 말줄임 없음, 가장 긴 줄 ≤ 글자 영역, 높이 ≥ 줄 수 × 줄 높이), "
+         "font_too_small(node·edge label과 CSS의 모든 font-size ≥ 11pt), line_height_too_small(CSS·node label line-height ≥ 1.6), "
+         "initial_label_unreadable(모든 View의 첫 화면 최소 배율 × node 글자 ≥ 11pt, lane·시간 구간 글자 포함), "
+         "responsibility_to_biological(View edge에도 branch A↔B 직접 edge 없음), "
+         "layout_nondeterministic(같은 입력으로 두 번 계산한 좌표가 같고 화면 데이터와도 같음), view_node_overlap(Overview·View 좌표에서 node 상자 겹침 0), "
+         "temporal_order·context_as_event(View 좌표에서도 날짜 순서·context lane 유지). W6 REJECTED는 4번 검사가 그대로 본다.", "",
          "### ERROR", _findings_list(findings, "ERROR"), "", "### WARN", _findings_list(findings, "WARN"), "",
          "### UNRESOLVED", _findings_list(findings, "UNRESOLVED"), "", "### INFO", _findings_list(findings, "INFO"), "",
          "## 화면 규칙(검사 대상)", "",
@@ -360,9 +369,15 @@ def write_audit5(path, findings, ui, regression_results=()):
          "같은 날짜 안에서는 frozen edge 깊이 순서. 시간 구간: 2월 → 3월 → 5월 → 6월 → 최종 판단·처분(6/13 이후 정조 판단·명령).",
          "- 날짜 없는 node(메커니즘·구조 변수·후보·context·UNRESOLVED)는 별도 lane. x는 연결된 node 근처일 뿐 날짜가 아니다.",
          "- world 선택(ALL·W1–W5·W6)은 worlds.json의 always_visible·dim·hideable·highlight 목록대로만 동작한다. 관측 node는 모든 선택에서 always_visible이고 "
-         "app.js의 backbone 보호 규칙(`AUDIT5:BACKBONE_GUARD`)이 어떤 필터·view·개입에서도 숨기지 않는다.",
+         "app.js의 backbone 보호 규칙(`AUDIT5:BACKBONE_GUARD`)이 어떤 필터·world 선택·개입에서도 숨기지 않는다(관점별 View B–I의 범위 숨김은 아래 규칙).",
          "- W6은 REJECTED 배너와 함께 표시되고 공존·개입 패널의 world 목록에 들어가지 않는다(canonical과 같음).",
-         "- 상태 필터와 메커니즘 필터는 화면 보이기/숨기기일 뿐 분석상 ON/OFF가 아니다. 개입 do(M=OFF)는 저장된 결과만 보여 준다.", "",
+         "- 상태 필터와 메커니즘 필터는 화면 보이기/숨기기일 뿐 분석상 ON/OFF가 아니다. 개입 do(M=OFF)는 저장된 결과만 보여 준다.",
+         "- 관점별 View(views.json): A 전체 Overview(전체), B–I 관점별 View(subset: View 밖 node 숨김, 숨긴 OBSERVED 개수·ID 안내, "
+         "'전체 주변 맥락 표시'로 Overview 좌표에 흐리게 다시 표시), J LATENT·World 비교(dim: 밖의 OBSERVED는 흐리게만). "
+         "View는 node·edge 부분집합과 표시 좌표만 담는다. 필터·world·개입은 여전히 OBSERVED를 숨기지 못한다(BACKBONE_GUARD). "
+         "subset View의 범위 숨김만 OBSERVED를 숨길 수 있고(`AUDIT5:VIEW_SCOPE`), 그때는 안내(`AUDIT5:VIEW_HIDDEN_NOTICE`)가 항상 보인다.",
+         "- 가독성: node label 16px(12pt)·line-height 1.6, UI 글자 15px(11.25pt) 이상·line-height 1.6. 모든 View의 첫 화면 배율 ≥ 0.95(node 글자 ≥ 15.2px). "
+         "그보다 작게 축소하면(전체 지도) node는 ID만 크게 표시한다. node 폭은 종류별 고정, 높이는 줄 수로 정하고, label은 자르지 않고 줄바꿈한다.", "",
          "## Regression (Audit 5)", "",
          "깨끗한 화면 데이터에서 ERROR 0을 확인한 뒤, 사본 하나만 바꿔 검사기에 넣었다. 기대한 check가 ERROR로 나와야 통과다.", "",
          "| rule | 넣은 결함 | 결과 | 나온 ERROR |", "|---|---|---|---|"]

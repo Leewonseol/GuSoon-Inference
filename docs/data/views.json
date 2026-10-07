@@ -1,15 +1,643 @@
 {
+ "note": "View는 canonical graph의 부분집합·강조일 뿐 새로운 분석 결과가 아니다. 상태·판정·World 구성은 바뀌지 않는다.",
+ "notice": "표시 범위만 줄인 화면입니다(시각적 필터). 숨긴 node는 삭제·부정된 것이 아니며 canonical graph에 그대로 있습니다. 분석상 ON/OFF가 아닙니다.",
  "order": [
   "overview",
-  "investigation",
-  "review",
-  "death"
+  "timeline",
+  "suspect",
+  "barracks",
+  "jamideok",
+  "death",
+  "may_review",
+  "hong_review",
+  "final",
+  "latent"
  ],
  "views": {
+  "barracks": {
+   "context": [
+    "EP03"
+   ],
+   "core": [
+    "CTX_F007",
+    "CTX_F008",
+    "CTX_F009",
+    "EP04",
+    "EP05",
+    "EP06",
+    "EP09",
+    "EP10",
+    "EP11",
+    "EP14",
+    "EP30",
+    "EP34",
+    "EP35",
+    "G01a",
+    "G01b",
+    "G01c",
+    "G02a",
+    "G02b",
+    "G02c",
+    "G11a",
+    "G11b",
+    "G11c",
+    "M1",
+    "M4",
+    "U_ID06",
+    "U_ID07",
+    "U_ID08",
+    "V_ARREST_PATH",
+    "V_COMMAND_SOURCE",
+    "V_COMPLAINT_TO_BARRACKS",
+    "V_INVESTIGATION_SCOPE"
+   ],
+   "default_pane": "detail",
+   "desc": "병사·병영 비장·장교 일행의 출동·체포 지시·체포 기록(EP04–EP06, EP09–EP11)과 지휘 책임 기록(EP14, EP30, EP34, EP35), gap G01·G02·G11의 후보, 미확정 동일성 ID06–ID08을 표시합니다.",
+   "edges": [
+    "OE004",
+    "OE005",
+    "OE008",
+    "OE009",
+    "OE010",
+    "OE080",
+    "OE081",
+    "OE082",
+    "OE084",
+    "SD003",
+    "SD004",
+    "SD005",
+    "SD015",
+    "SD016",
+    "SD037",
+    "SD038",
+    "SD039",
+    "SD040",
+    "SD041",
+    "SD042",
+    "SD043",
+    "SD044",
+    "SD045",
+    "SD046",
+    "SD047",
+    "SD048",
+    "SD049",
+    "SD093",
+    "SD094",
+    "SD095",
+    "SD096",
+    "SD109",
+    "SD110",
+    "SD112",
+    "SD113",
+    "SD127",
+    "SD130"
+   ],
+   "hidden_observed": [
+    "EP01",
+    "EP02",
+    "EP07",
+    "EP08",
+    "EP12",
+    "EP13",
+    "EP15",
+    "EP16",
+    "EP17",
+    "EP18",
+    "EP19",
+    "EP20",
+    "EP21",
+    "EP22",
+    "EP23",
+    "EP24",
+    "EP25",
+    "EP26",
+    "EP27",
+    "EP28",
+    "EP29",
+    "EP31",
+    "EP32",
+    "EP33",
+    "EP36",
+    "EP37"
+   ],
+   "id": "barracks",
+   "initial": {
+    "max_zoom": 1.25,
+    "min_zoom": 0.95,
+    "read_px": 14.667
+   },
+   "key": "D",
+   "label": "D 병영 지휘·체포",
+   "layout": {
+    "anchor": {
+     "x": -54,
+     "y": 0
+    },
+    "bands": [
+     {
+      "dated": true,
+      "id": "FEB",
+      "label": "1793-02 (2월)",
+      "sub": "관계 · 도난 · 병영 출동",
+      "x0": -136,
+      "x1": 1000,
+      "y0": 10,
+      "y1": 820
+     },
+     {
+      "dated": true,
+      "id": "MAR",
+      "label": "1793-03 (3월)",
+      "sub": "3/4 체포 지시 · 체포",
+      "x0": 1096,
+      "x1": 1944,
+      "y0": 10,
+      "y1": 820
+     },
+     {
+      "dated": true,
+      "id": "MAY",
+      "label": "1793-05 (5월)",
+      "sub": "장계 · 1차 판단 · 재조사",
+      "x0": 2040,
+      "x1": 2312,
+      "y0": 10,
+      "y1": 820
+     },
+     {
+      "dated": true,
+      "id": "FINAL",
+      "label": "최종 판단·처분",
+      "sub": "6/13 정조 판단 → 처분 → 6/16",
+      "x0": 2408,
+      "x1": 2968,
+      "y0": 10,
+      "y1": 820
+     }
+    ],
+    "extent": {
+     "label_x0": -356,
+     "x0": -166,
+     "x1": 2998,
+     "y0": 0,
+     "y1": 1920
+    },
+    "lanes": [
+     {
+      "id": "L_OBS_THEFT",
+      "kind": "observed",
+      "label": "도난·소장",
+      "label_lines": [
+       "도난·소장"
+      ],
+      "sub": "THEFT",
+      "sub_lines": [
+       "THEFT"
+      ],
+      "y0": 104,
+      "y1": 211
+     },
+     {
+      "id": "L_OBS_SUSPECT_INFORMATION",
+      "kind": "observed",
+      "label": "혐의 정보",
+      "label_lines": [
+       "혐의 정보"
+      ],
+      "sub": "SUSPECT_INFORMATION",
+      "sub_lines": [
+       "SUSPECT_",
+       "INFORMATION"
+      ],
+      "y0": 211,
+      "y1": 344
+     },
+     {
+      "id": "L_OBS_BARRACKS_OPERATION",
+      "kind": "observed",
+      "label": "병영 작전·체포",
+      "label_lines": [
+       "병영 작전·체포"
+      ],
+      "sub": "BARRACKS_OPERATION",
+      "sub_lines": [
+       "BARRACKS_",
+       "OPERATION"
+      ],
+      "y0": 344,
+      "y1": 477
+     },
+     {
+      "id": "L_OBS_COMMAND_RESPONSIBILITY",
+      "kind": "observed",
+      "label": "지휘 책임",
+      "label_lines": [
+       "지휘 책임"
+      ],
+      "sub": "COMMAND_RESPONSIBILITY",
+      "sub_lines": [
+       "COMMAND_",
+       "RESPONSIBILIT",
+       "Y"
+      ],
+      "y0": 477,
+      "y1": 610
+     },
+     {
+      "id": "L_OBS_DISPOSITION",
+      "kind": "observed",
+      "label": "처분",
+      "label_lines": [
+       "처분"
+      ],
+      "sub": "DISPOSITION",
+      "sub_lines": [
+       "DISPOSITION"
+      ],
+      "y0": 610,
+      "y1": 820
+     },
+     {
+      "id": "L_SVAR",
+      "kind": "latent",
+      "label": "질적 구조 변수 V_*",
+      "label_lines": [
+       "질적 구조 변수 V_*"
+      ],
+      "sub": "OR · AND · XOR · ANCHORED 규칙",
+      "sub_lines": [
+       "OR · AND · XOR",
+       "· ANCHORED 규칙"
+      ],
+      "y0": 940,
+      "y1": 1047
+     },
+     {
+      "id": "L_CAND",
+      "kind": "latent",
+      "label": "LATENT 후보 bridge",
+      "label_lines": [
+       "LATENT 후보",
+       "bridge"
+      ],
+      "sub": "gap별 가설 · 등급 그대로",
+      "sub_lines": [
+       "gap별 가설 · 등급",
+       "그대로"
+      ],
+      "y0": 1047,
+      "y1": 1488
+     },
+     {
+      "id": "L_UNRES",
+      "kind": "unresolved",
+      "label": "UNRESOLVED",
+      "label_lines": [
+       "UNRESOLVED"
+      ],
+      "sub": "확정하지 않은 동일성·범위·사유",
+      "sub_lines": [
+       "확정하지 않은",
+       "동일성·범위·사유"
+      ],
+      "y0": 1488,
+      "y1": 1625
+     },
+     {
+      "id": "L_MECH",
+      "kind": "latent",
+      "label": "메커니즘 (분석 변수)",
+      "label_lines": [
+       "메커니즘 (분석",
+       "변수)"
+      ],
+      "sub": "LATENT_MECHANISM · 역사적 사실 아님",
+      "sub_lines": [
+       "LATENT_",
+       "MECHANISM ·",
+       "역사적 사실 아님"
+      ],
+      "y0": 1625,
+      "y1": 1787
+     },
+     {
+      "id": "L_CTX_INST",
+      "kind": "context",
+      "label": "제도 context (F001–F020)",
+      "label_lines": [
+       "제도 context",
+       "(F001–F020)"
+      ],
+      "sub": "제약조건 · 사건 아님",
+      "sub_lines": [
+       "제약조건 · 사건",
+       "아님"
+      ],
+      "y0": 1787,
+      "y1": 1920
+     }
+    ],
+    "positions": {
+     "CTX_F007": {
+      "lane": "L_CTX_INST",
+      "x": 1001,
+      "y": 1854
+     },
+     "CTX_F008": {
+      "lane": "L_CTX_INST",
+      "x": 717,
+      "y": 1854
+     },
+     "CTX_F009": {
+      "lane": "L_CTX_INST",
+      "x": 291,
+      "y": 1854
+     },
+     "EP03": {
+      "lane": "L_OBS_THEFT",
+      "x": 0,
+      "y": 158
+     },
+     "EP04": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 288,
+      "y": 410
+     },
+     "EP05": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 576,
+      "y": 410
+     },
+     "EP06": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 864,
+      "y": 410
+     },
+     "EP09": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 1232,
+      "y": 410
+     },
+     "EP10": {
+      "lane": "L_OBS_SUSPECT_INFORMATION",
+      "x": 1520,
+      "y": 278
+     },
+     "EP11": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 1808,
+      "y": 410
+     },
+     "EP14": {
+      "lane": "L_OBS_COMMAND_RESPONSIBILITY",
+      "x": 2176,
+      "y": 544
+     },
+     "EP30": {
+      "lane": "L_OBS_COMMAND_RESPONSIBILITY",
+      "x": 2544,
+      "y": 544
+     },
+     "EP34": {
+      "lane": "L_OBS_DISPOSITION",
+      "x": 2832,
+      "y": 664
+     },
+     "EP35": {
+      "lane": "L_OBS_DISPOSITION",
+      "x": 2832,
+      "y": 766
+     },
+     "G01a": {
+      "lane": "L_CAND",
+      "x": 52,
+      "y": 1126
+     },
+     "G01b": {
+      "lane": "L_CAND",
+      "x": 52,
+      "y": 1254
+     },
+     "G01c": {
+      "lane": "L_CAND",
+      "x": 52,
+      "y": 1370
+     },
+     "G02a": {
+      "lane": "L_CAND",
+      "x": 336,
+      "y": 1126
+     },
+     "G02b": {
+      "lane": "L_CAND",
+      "x": 336,
+      "y": 1280
+     },
+     "G02c": {
+      "lane": "L_CAND",
+      "x": 336,
+      "y": 1422
+     },
+     "G11a": {
+      "lane": "L_CAND",
+      "x": 620,
+      "y": 1114
+     },
+     "G11b": {
+      "lane": "L_CAND",
+      "x": 620,
+      "y": 1242
+     },
+     "G11c": {
+      "lane": "L_CAND",
+      "x": 620,
+      "y": 1372
+     },
+     "M1": {
+      "lane": "L_MECH",
+      "x": 140,
+      "y": 1706
+     },
+     "M4": {
+      "lane": "L_MECH",
+      "x": 560,
+      "y": 1706
+     },
+     "U_ID06": {
+      "lane": "L_UNRES",
+      "x": 1445,
+      "y": 1556
+     },
+     "U_ID07": {
+      "lane": "L_UNRES",
+      "x": 265,
+      "y": 1556
+     },
+     "U_ID08": {
+      "lane": "L_UNRES",
+      "x": 1805,
+      "y": 1556
+     },
+     "V_ARREST_PATH": {
+      "lane": "L_SVAR",
+      "x": 1628,
+      "y": 994
+     },
+     "V_COMMAND_SOURCE": {
+      "lane": "L_SVAR",
+      "x": 108,
+      "y": 994
+     },
+     "V_COMPLAINT_TO_BARRACKS": {
+      "lane": "L_SVAR",
+      "x": 468,
+      "y": 994
+     },
+     "V_INVESTIGATION_SCOPE": {
+      "lane": "L_SVAR",
+      "x": 1988,
+      "y": 994
+     }
+    },
+    "ticks": [
+     {
+      "date_key": 222,
+      "label": "2/22",
+      "x": 0
+     },
+     {
+      "date_key": 229,
+      "label": "2/29",
+      "x": 576
+     },
+     {
+      "date_key": 304,
+      "label": "3/4",
+      "x": 1520
+     },
+     {
+      "date_key": 512,
+      "label": "5/12",
+      "x": 2176
+     },
+     {
+      "date_key": 613,
+      "label": "6/13",
+      "x": 2688
+     }
+    ]
+   },
+   "nodes": [
+    "CTX_F007",
+    "CTX_F008",
+    "CTX_F009",
+    "EP03",
+    "EP04",
+    "EP05",
+    "EP06",
+    "EP09",
+    "EP10",
+    "EP11",
+    "EP14",
+    "EP30",
+    "EP34",
+    "EP35",
+    "G01a",
+    "G01b",
+    "G01c",
+    "G02a",
+    "G02b",
+    "G02c",
+    "G11a",
+    "G11b",
+    "G11c",
+    "M1",
+    "M4",
+    "U_ID06",
+    "U_ID07",
+    "U_ID08",
+    "V_ARREST_PATH",
+    "V_COMMAND_SOURCE",
+    "V_COMPLAINT_TO_BARRACKS",
+    "V_INVESTIGATION_SCOPE"
+   ],
+   "notice": "표시 범위만 줄인 화면입니다(시각적 필터). 숨긴 node는 삭제·부정된 것이 아니며 canonical graph에 그대로 있습니다. 분석상 ON/OFF가 아닙니다.",
+   "policy": "subset",
+   "scope_rule": "핵심 관측: EP04, EP05, EP06, EP09, EP10, EP11, EP14, EP30, EP34, EP35 · 맥락 관측: EP03 · gap G01·G02·G11의 LATENT 후보 전부 · 명시 node: V_COMPLAINT_TO_BARRACKS, V_COMMAND_SOURCE, V_ARREST_PATH, V_INVESTIGATION_SCOPE, CTX_F007, CTX_F008, CTX_F009, U_ID06, U_ID07, U_ID08 · 포함 후보를 INSTANTIATED_BY로 잇는 메커니즘(M1, M4) · 포함 후보에 CONDITIONS를 걸거나 View 안 관측 edge를 가리키는 UNRESOLVED(U_ID07, U_ID08)",
+   "title": "병영 지휘·체포"
+  },
   "death": {
+   "context": [
+    "EP23"
+   ],
+   "core": [
+    "ENV01",
+    "ENV02",
+    "ENV03",
+    "ENV04",
+    "EP11",
+    "EP13",
+    "EP21",
+    "EP26",
+    "EP27",
+    "EP28",
+    "EP29",
+    "EP30",
+    "G06a",
+    "G06b",
+    "G06c",
+    "G12a",
+    "G12b",
+    "MB",
+    "U_OE062",
+    "V_ARREST_PATH",
+    "V_CUSTODY_COURSE",
+    "V_INVESTIGATION_SCOPE",
+    "V_RESPONSIBILITY"
+   ],
    "cross_edges": [],
-   "desc": "A(MB → V_CUSTODY_COURSE, 환경 context, 사인 판단)와 B(M1–M4 → 체포 경로 → 책임 판단)를 분리해 보여 준다. 두 branch를 직접 잇는 edge는 canonical data에 없다.",
-   "emphasis": [],
+   "default_pane": "detail",
+   "desc": "체포 뒤 구금·사망 관련 관측 기록, 전염병 환경 context, 사인 판단 branch A와 절차·책임 branch B를 위·아래로 나눠 표시합니다. 두 branch를 직접 잇는 canonical edge는 없습니다.",
+   "edges": [
+    "OE011",
+    "OE030",
+    "OE051",
+    "OE060",
+    "OE061",
+    "OE062",
+    "OE063",
+    "OE072",
+    "OE073",
+    "OE083",
+    "OE100",
+    "OE101",
+    "OE102",
+    "OE103",
+    "OE104",
+    "OE105",
+    "OE106",
+    "OE107",
+    "SD033",
+    "SD034",
+    "SD035",
+    "SD036",
+    "SD069",
+    "SD070",
+    "SD071",
+    "SD072",
+    "SD073",
+    "SD097",
+    "SD098",
+    "SD099",
+    "SD112",
+    "SD113",
+    "SD115",
+    "SD116",
+    "SD122",
+    "SD124",
+    "SD133",
+    "SD134"
+   ],
    "groups": {
     "A": [
      "ENV01",
@@ -29,31 +657,474 @@
     "B": [
      "EP29",
      "EP30",
-     "M1",
-     "M2",
-     "M3",
-     "M4",
      "V_ARREST_PATH",
-     "V_COMMAND_SOURCE",
-     "V_COMPLAINT_TO_BARRACKS",
-     "V_INFO_TO_COMMANDER",
      "V_INVESTIGATION_SCOPE",
      "V_RESPONSIBILITY"
     ],
     "anchor": [
+     "EP11",
      "EP13",
      "EP21",
      "EP23",
-     "EP28"
+     "EP28",
+     "U_OE062"
     ]
    },
+   "hidden_observed": [
+    "EP01",
+    "EP02",
+    "EP03",
+    "EP04",
+    "EP05",
+    "EP06",
+    "EP07",
+    "EP08",
+    "EP09",
+    "EP10",
+    "EP12",
+    "EP14",
+    "EP15",
+    "EP16",
+    "EP17",
+    "EP18",
+    "EP19",
+    "EP20",
+    "EP22",
+    "EP24",
+    "EP25",
+    "EP31",
+    "EP32",
+    "EP33",
+    "EP34",
+    "EP35",
+    "EP36",
+    "EP37"
+   ],
    "id": "death",
-   "label": "4 질병·사망 branch",
+   "initial": {
+    "max_zoom": 1.25,
+    "min_zoom": 0.95,
+    "read_px": 14.667
+   },
+   "key": "F",
+   "label": "F 김명신 구금·사망",
+   "layout": {
+    "anchor": {
+     "x": -342,
+     "y": 0
+    },
+    "bands": [
+     {
+      "dated": true,
+      "id": "MAR",
+      "label": "1793-03 (3월)",
+      "sub": "3/4 체포 지시 · 체포",
+      "x0": -136,
+      "x1": 136,
+      "y0": 212,
+      "y1": 1235
+     },
+     {
+      "dated": true,
+      "id": "MAY",
+      "label": "1793-05 (5월)",
+      "sub": "장계 · 1차 판단 · 재조사",
+      "x0": 232,
+      "x1": 504,
+      "y0": 212,
+      "y1": 1235
+     },
+     {
+      "dated": true,
+      "id": "JUN",
+      "label": "1793-06 (6월)",
+      "sub": "별단 · 안핵 신문·복명",
+      "x0": 600,
+      "x1": 1448,
+      "y0": 212,
+      "y1": 1235
+     },
+     {
+      "dated": true,
+      "id": "FINAL",
+      "label": "최종 판단·처분",
+      "sub": "6/13 정조 판단 → 처분 → 6/16",
+      "x0": 1544,
+      "x1": 2104,
+      "y0": 212,
+      "y1": 1235
+     }
+    ],
+    "extent": {
+     "label_x0": -548,
+     "x0": -358,
+     "x1": 2134,
+     "y0": 0,
+     "y1": 2340
+    },
+    "lanes": [
+     {
+      "id": "L_SVAR_UP",
+      "kind": "latent",
+      "label": "branch B · 절차·책임 구조 변수",
+      "label_lines": [
+       "branch B ·",
+       "절차·책임 구조",
+       "변수"
+      ],
+      "sub": "OR · AND · XOR · ANCHORED 규칙",
+      "sub_lines": [
+       "OR · AND · XOR",
+       "· ANCHORED 규칙"
+      ],
+      "y0": 0,
+      "y1": 82
+     },
+     {
+      "id": "L_OBS_BARRACKS_OPERATION",
+      "kind": "observed",
+      "label": "병영 작전·체포",
+      "label_lines": [
+       "병영 작전·체포"
+      ],
+      "sub": "BARRACKS_OPERATION",
+      "sub_lines": [
+       "BARRACKS_",
+       "OPERATION"
+      ],
+      "y0": 306,
+      "y1": 439
+     },
+     {
+      "id": "L_OBS_COMMAND_RESPONSIBILITY",
+      "kind": "observed",
+      "label": "지휘 책임",
+      "label_lines": [
+       "지휘 책임"
+      ],
+      "sub": "COMMAND_RESPONSIBILITY",
+      "sub_lines": [
+       "COMMAND_",
+       "RESPONSIBILIT",
+       "Y"
+      ],
+      "y0": 439,
+      "y1": 546
+     },
+     {
+      "id": "L_OBS_RESPONSIBILITY",
+      "kind": "observed",
+      "label": "책임 판단",
+      "label_lines": [
+       "책임 판단"
+      ],
+      "sub": "RESPONSIBILITY",
+      "sub_lines": [
+       "RESPONSIBILIT",
+       "Y"
+      ],
+      "y0": 546,
+      "y1": 653
+     },
+     {
+      "id": "L_OBS_REVIEW",
+      "kind": "observed",
+      "label": "재검토",
+      "label_lines": [
+       "재검토"
+      ],
+      "sub": "REVIEW",
+      "sub_lines": [
+       "REVIEW"
+      ],
+      "y0": 653,
+      "y1": 786
+     },
+     {
+      "id": "L_OBS_CAUSATION_BOUNDARY",
+      "kind": "observed",
+      "label": "인과 경계",
+      "label_lines": [
+       "인과 경계"
+      ],
+      "sub": "CAUSATION_BOUNDARY",
+      "sub_lines": [
+       "CAUSATION_",
+       "BOUNDARY"
+      ],
+      "y0": 786,
+      "y1": 919
+     },
+     {
+      "id": "L_OBS_DETENTION_DEATH",
+      "kind": "observed",
+      "label": "구금·사망 보고",
+      "label_lines": [
+       "구금·사망 보고"
+      ],
+      "sub": "DETENTION_DEATH",
+      "sub_lines": [
+       "DETENTION_",
+       "DEATH"
+      ],
+      "y0": 919,
+      "y1": 1077
+     },
+     {
+      "id": "L_OBS_BIOLOGICAL",
+      "kind": "observed",
+      "label": "사인 판단 (branch A)",
+      "label_lines": [
+       "사인 판단 (branch",
+       "A)"
+      ],
+      "sub": "BIOLOGICAL",
+      "sub_lines": [
+       "BIOLOGICAL"
+      ],
+      "y0": 1077,
+      "y1": 1235
+     },
+     {
+      "id": "L_SVAR",
+      "kind": "latent",
+      "label": "branch A · 생물학적 경과 구조 변수",
+      "label_lines": [
+       "branch A ·",
+       "생물학적 경과 구조",
+       "변수"
+      ],
+      "sub": "OR · AND · XOR · ANCHORED 규칙",
+      "sub_lines": [
+       "OR · AND · XOR",
+       "· ANCHORED 규칙"
+      ],
+      "y0": 1355,
+      "y1": 1437
+     },
+     {
+      "id": "L_CAND",
+      "kind": "latent",
+      "label": "branch A · LATENT 후보 bridge",
+      "label_lines": [
+       "branch A ·",
+       "LATENT 후보",
+       "bridge"
+      ],
+      "sub": "gap별 가설 · 등급 그대로",
+      "sub_lines": [
+       "gap별 가설 · 등급",
+       "그대로"
+      ],
+      "y0": 1437,
+      "y1": 1879
+     },
+     {
+      "id": "L_UNRES",
+      "kind": "unresolved",
+      "label": "branch A · UNRESOLVED",
+      "label_lines": [
+       "branch A ·",
+       "UNRESOLVED"
+      ],
+      "sub": "확정하지 않은 동일성·범위·사유",
+      "sub_lines": [
+       "확정하지 않은",
+       "동일성·범위·사유"
+      ],
+      "y0": 1879,
+      "y1": 2041
+     },
+     {
+      "id": "L_MECH",
+      "kind": "latent",
+      "label": "branch A · 메커니즘",
+      "label_lines": [
+       "branch A ·",
+       "메커니즘"
+      ],
+      "sub": "LATENT_MECHANISM · 역사적 사실 아님",
+      "sub_lines": [
+       "LATENT_",
+       "MECHANISM ·",
+       "역사적 사실 아님"
+      ],
+      "y0": 2041,
+      "y1": 2203
+     },
+     {
+      "id": "L_CTX_ENV",
+      "kind": "context",
+      "label": "환경 context (E001–E004)",
+      "label_lines": [
+       "환경 context",
+       "(E001–E004)"
+      ],
+      "sub": "호환성 context · 개인 감염 확정 아님",
+      "sub_lines": [
+       "호환성 context ·",
+       "개인 감염 확정 아님"
+      ],
+      "y0": 2203,
+      "y1": 2340
+     }
+    ],
+    "positions": {
+     "ENV01": {
+      "lane": "L_CTX_ENV",
+      "x": 699,
+      "y": 2272
+     },
+     "ENV02": {
+      "lane": "L_CTX_ENV",
+      "x": 1339,
+      "y": 2272
+     },
+     "ENV03": {
+      "lane": "L_CTX_ENV",
+      "x": 1019,
+      "y": 2272
+     },
+     "ENV04": {
+      "lane": "L_CTX_ENV",
+      "x": 1659,
+      "y": 2272
+     },
+     "EP11": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 0,
+      "y": 372
+     },
+     "EP13": {
+      "lane": "L_OBS_DETENTION_DEATH",
+      "x": 368,
+      "y": 998
+     },
+     "EP21": {
+      "lane": "L_OBS_DETENTION_DEATH",
+      "x": 736,
+      "y": 998
+     },
+     "EP23": {
+      "lane": "L_OBS_REVIEW",
+      "x": 1024,
+      "y": 720
+     },
+     "EP26": {
+      "lane": "L_OBS_BIOLOGICAL",
+      "x": 1312,
+      "y": 1156
+     },
+     "EP27": {
+      "lane": "L_OBS_BIOLOGICAL",
+      "x": 1680,
+      "y": 1156
+     },
+     "EP28": {
+      "lane": "L_OBS_CAUSATION_BOUNDARY",
+      "x": 1968,
+      "y": 852
+     },
+     "EP29": {
+      "lane": "L_OBS_RESPONSIBILITY",
+      "x": 1680,
+      "y": 600
+     },
+     "EP30": {
+      "lane": "L_OBS_COMMAND_RESPONSIBILITY",
+      "x": 1968,
+      "y": 492
+     },
+     "G06a": {
+      "lane": "L_CAND",
+      "x": 184,
+      "y": 1529
+     },
+     "G06b": {
+      "lane": "L_CAND",
+      "x": 184,
+      "y": 1684
+     },
+     "G06c": {
+      "lane": "L_CAND",
+      "x": 184,
+      "y": 1812
+     },
+     "G12a": {
+      "lane": "L_CAND",
+      "x": 1680,
+      "y": 1504
+     },
+     "G12b": {
+      "lane": "L_CAND",
+      "x": 1680,
+      "y": 1645
+     },
+     "MB": {
+      "lane": "L_MECH",
+      "x": 782,
+      "y": 2122
+     },
+     "U_OE062": {
+      "lane": "L_UNRES",
+      "x": 184,
+      "y": 1960
+     },
+     "V_ARREST_PATH": {
+      "lane": "L_SVAR_UP",
+      "x": -178,
+      "y": 41
+     },
+     "V_CUSTODY_COURSE": {
+      "lane": "L_SVAR",
+      "x": 542,
+      "y": 1396
+     },
+     "V_INVESTIGATION_SCOPE": {
+      "lane": "L_SVAR_UP",
+      "x": 182,
+      "y": 41
+     },
+     "V_RESPONSIBILITY": {
+      "lane": "L_SVAR_UP",
+      "x": 1646,
+      "y": 41
+     }
+    },
+    "ticks": [
+     {
+      "date_key": 304,
+      "label": "3/4",
+      "x": 0
+     },
+     {
+      "date_key": 512,
+      "label": "5/12",
+      "x": 368
+     },
+     {
+      "date_key": 611,
+      "label": "6/11",
+      "x": 736
+     },
+     {
+      "date_key": 613,
+      "label": "6/13",
+      "x": 1168
+     },
+     {
+      "date_key": 613,
+      "label": "6/13",
+      "x": 1824
+     }
+    ]
+   },
    "nodes": [
     "ENV01",
     "ENV02",
     "ENV03",
     "ENV04",
+    "EP11",
     "EP13",
     "EP21",
     "EP23",
@@ -67,46 +1138,1426 @@
     "G06c",
     "G12a",
     "G12b",
-    "M1",
-    "M2",
-    "M3",
-    "M4",
     "MB",
+    "U_OE062",
     "V_ARREST_PATH",
-    "V_COMMAND_SOURCE",
-    "V_COMPLAINT_TO_BARRACKS",
     "V_CUSTODY_COURSE",
-    "V_INFO_TO_COMMANDER",
     "V_INVESTIGATION_SCOPE",
     "V_RESPONSIBILITY"
    ],
-   "path": "A ∥ B (직접 연결 없음)",
-   "title": "질병·사망 branch: A 생물학적 경과 / B 절차·책임"
+   "notice": "표시 범위만 줄인 화면입니다(시각적 필터). 숨긴 node는 삭제·부정된 것이 아니며 canonical graph에 그대로 있습니다. 분석상 ON/OFF가 아닙니다.",
+   "policy": "subset",
+   "scope_rule": "핵심 관측: EP11, EP13, EP21, EP26, EP27, EP28, EP29, EP30 · 맥락 관측: EP23 · gap G06·G12의 LATENT 후보 전부 · 명시 node: MB, V_CUSTODY_COURSE, ENV01, ENV02, ENV03, ENV04, V_ARREST_PATH, V_INVESTIGATION_SCOPE, V_RESPONSIBILITY · 포함 후보를 INSTANTIATED_BY로 잇는 메커니즘(MB) · 포함 후보에 CONDITIONS를 걸거나 View 안 관측 edge를 가리키는 UNRESOLVED(U_OE062)",
+   "title": "김명신 구금·사망: A 생물학적 경과 / B 절차·책임"
   },
-  "investigation": {
-   "desc": "정보 → 의심 → 병영 → 체포 → 구금. M1–M4와 그 후보, 3/4 체포 지시(EP09)로 가는 구조 변수.",
-   "emphasis": [
-    "M1",
-    "M2",
-    "M3",
-    "M4"
+  "final": {
+   "context": [
+    "EP14",
+    "EP23",
+    "EP24",
+    "EP26",
+    "EP31"
    ],
-   "id": "investigation",
-   "label": "2 수사 확대",
-   "nodes": [
-    "CTX_F007",
-    "CTX_F008",
+   "core": [
+    "EP25",
+    "EP27",
+    "EP28",
+    "EP29",
+    "EP30",
+    "EP32",
+    "EP33",
+    "EP34",
+    "EP35",
+    "EP36",
+    "EP37",
+    "G09a",
+    "G09b",
+    "G09c",
+    "G10a",
+    "G10b",
+    "G10c",
+    "M5",
+    "U_G10",
+    "U_OE007",
+    "V_RESPONSIBILITY",
+    "V_SANCTION"
+   ],
+   "default_pane": "detail",
+   "desc": "6/13 정조의 판단(도난·사인·인과·책임·지세 호칭)과 처분, 6/16 이형원 유임, 직전 단계 기록과 gap G09·G10의 후보를 표시합니다.",
+   "edges": [
+    "OE050",
+    "OE051",
+    "OE052",
+    "OE055",
+    "OE061",
+    "OE063",
+    "OE074",
+    "OE082",
+    "OE083",
+    "OE084",
+    "OE091",
+    "OE095",
+    "OE096",
+    "OE097",
+    "OE098",
+    "SD087",
+    "SD088",
+    "SD089",
+    "SD090",
+    "SD091",
+    "SD092",
+    "SD115",
+    "SD116",
+    "SD117",
+    "SD118",
+    "SD119",
+    "SD120",
+    "SD121",
+    "SD126",
+    "SD132",
+    "SD135",
+    "SD136",
+    "SD137"
+   ],
+   "hidden_observed": [
     "EP01",
     "EP02",
     "EP03",
     "EP04",
     "EP05",
+    "EP06",
     "EP07",
     "EP08",
     "EP09",
     "EP10",
     "EP11",
+    "EP12",
     "EP13",
+    "EP15",
+    "EP16",
+    "EP17",
+    "EP18",
+    "EP19",
+    "EP20",
+    "EP21",
+    "EP22"
+   ],
+   "id": "final",
+   "initial": {
+    "max_zoom": 1.25,
+    "min_zoom": 0.95,
+    "read_px": 14.667
+   },
+   "key": "I",
+   "label": "I 정조 최종 판단·처분",
+   "layout": {
+    "anchor": {
+     "x": 682,
+     "y": 0
+    },
+    "bands": [
+     {
+      "dated": true,
+      "id": "MAY",
+      "label": "1793-05 (5월)",
+      "sub": "장계 · 1차 판단 · 재조사",
+      "x0": -136,
+      "x1": 136,
+      "y0": 10,
+      "y1": 1450
+     },
+     {
+      "dated": true,
+      "id": "JUN",
+      "label": "1793-06 (6월)",
+      "sub": "별단 · 안핵 신문·복명",
+      "x0": 232,
+      "x1": 792,
+      "y0": 10,
+      "y1": 1450
+     },
+     {
+      "dated": true,
+      "id": "FINAL",
+      "label": "최종 판단·처분",
+      "sub": "6/13 정조 판단 → 처분 → 6/16",
+      "x0": 888,
+      "x1": 2024,
+      "y0": 10,
+      "y1": 1450
+     }
+    ],
+    "extent": {
+     "label_x0": -356,
+     "x0": -166,
+     "x1": 2054,
+     "y0": 0,
+     "y1": 2468
+    },
+    "lanes": [
+     {
+      "id": "L_OBS_COMMAND_RESPONSIBILITY",
+      "kind": "observed",
+      "label": "지휘 책임",
+      "label_lines": [
+       "지휘 책임"
+      ],
+      "sub": "COMMAND_RESPONSIBILITY",
+      "sub_lines": [
+       "COMMAND_",
+       "RESPONSIBILIT",
+       "Y"
+      ],
+      "y0": 104,
+      "y1": 237
+     },
+     {
+      "id": "L_OBS_RESPONSIBILITY",
+      "kind": "observed",
+      "label": "책임 판단",
+      "label_lines": [
+       "책임 판단"
+      ],
+      "sub": "RESPONSIBILITY",
+      "sub_lines": [
+       "RESPONSIBILIT",
+       "Y"
+      ],
+      "y0": 237,
+      "y1": 344
+     },
+     {
+      "id": "L_OBS_DISPOSITION",
+      "kind": "observed",
+      "label": "처분",
+      "label_lines": [
+       "처분"
+      ],
+      "sub": "DISPOSITION",
+      "sub_lines": [
+       "DISPOSITION"
+      ],
+      "y0": 344,
+      "y1": 760
+     },
+     {
+      "id": "L_OBS_REVIEW",
+      "kind": "observed",
+      "label": "재검토",
+      "label_lines": [
+       "재검토"
+      ],
+      "sub": "REVIEW",
+      "sub_lines": [
+       "REVIEW"
+      ],
+      "y0": 760,
+      "y1": 893
+     },
+     {
+      "id": "L_OBS_THEFT_JUDGMENT",
+      "kind": "observed",
+      "label": "도난 판단",
+      "label_lines": [
+       "도난 판단"
+      ],
+      "sub": "THEFT_JUDGMENT",
+      "sub_lines": [
+       "THEFT_",
+       "JUDGMENT"
+      ],
+      "y0": 893,
+      "y1": 1026
+     },
+     {
+      "id": "L_OBS_JISE",
+      "kind": "observed",
+      "label": "지세 호칭",
+      "label_lines": [
+       "지세 호칭"
+      ],
+      "sub": "JISE",
+      "sub_lines": [
+       "JISE"
+      ],
+      "y0": 1026,
+      "y1": 1159
+     },
+     {
+      "id": "L_OBS_CAUSATION_BOUNDARY",
+      "kind": "observed",
+      "label": "인과 경계",
+      "label_lines": [
+       "인과 경계"
+      ],
+      "sub": "CAUSATION_BOUNDARY",
+      "sub_lines": [
+       "CAUSATION_",
+       "BOUNDARY"
+      ],
+      "y0": 1159,
+      "y1": 1292
+     },
+     {
+      "id": "L_OBS_BIOLOGICAL",
+      "kind": "observed",
+      "label": "사인 판단 (branch A)",
+      "label_lines": [
+       "사인 판단 (branch",
+       "A)"
+      ],
+      "sub": "BIOLOGICAL",
+      "sub_lines": [
+       "BIOLOGICAL"
+      ],
+      "y0": 1292,
+      "y1": 1450
+     },
+     {
+      "id": "L_SVAR",
+      "kind": "latent",
+      "label": "질적 구조 변수 V_*",
+      "label_lines": [
+       "질적 구조 변수 V_*"
+      ],
+      "sub": "OR · AND · XOR · ANCHORED 규칙",
+      "sub_lines": [
+       "OR · AND · XOR",
+       "· ANCHORED 규칙"
+      ],
+      "y0": 1570,
+      "y1": 1652
+     },
+     {
+      "id": "L_CAND",
+      "kind": "latent",
+      "label": "LATENT 후보 bridge",
+      "label_lines": [
+       "LATENT 후보",
+       "bridge"
+      ],
+      "sub": "gap별 가설 · 등급 그대로",
+      "sub_lines": [
+       "gap별 가설 · 등급",
+       "그대로"
+      ],
+      "y0": 1652,
+      "y1": 2144
+     },
+     {
+      "id": "L_UNRES",
+      "kind": "unresolved",
+      "label": "UNRESOLVED",
+      "label_lines": [
+       "UNRESOLVED"
+      ],
+      "sub": "확정하지 않은 동일성·범위·사유",
+      "sub_lines": [
+       "확정하지 않은",
+       "동일성·범위·사유"
+      ],
+      "y0": 2144,
+      "y1": 2306
+     },
+     {
+      "id": "L_MECH",
+      "kind": "latent",
+      "label": "메커니즘 (분석 변수)",
+      "label_lines": [
+       "메커니즘 (분석",
+       "변수)"
+      ],
+      "sub": "LATENT_MECHANISM · 역사적 사실 아님",
+      "sub_lines": [
+       "LATENT_",
+       "MECHANISM ·",
+       "역사적 사실 아님"
+      ],
+      "y0": 2306,
+      "y1": 2468
+     }
+    ],
+    "positions": {
+     "EP14": {
+      "lane": "L_OBS_COMMAND_RESPONSIBILITY",
+      "x": 0,
+      "y": 170
+     },
+     "EP23": {
+      "lane": "L_OBS_REVIEW",
+      "x": 368,
+      "y": 826
+     },
+     "EP24": {
+      "lane": "L_OBS_THEFT_JUDGMENT",
+      "x": 656,
+      "y": 960
+     },
+     "EP25": {
+      "lane": "L_OBS_THEFT_JUDGMENT",
+      "x": 1024,
+      "y": 960
+     },
+     "EP26": {
+      "lane": "L_OBS_BIOLOGICAL",
+      "x": 656,
+      "y": 1371
+     },
+     "EP27": {
+      "lane": "L_OBS_BIOLOGICAL",
+      "x": 1024,
+      "y": 1371
+     },
+     "EP28": {
+      "lane": "L_OBS_CAUSATION_BOUNDARY",
+      "x": 1312,
+      "y": 1226
+     },
+     "EP29": {
+      "lane": "L_OBS_RESPONSIBILITY",
+      "x": 1024,
+      "y": 290
+     },
+     "EP30": {
+      "lane": "L_OBS_COMMAND_RESPONSIBILITY",
+      "x": 1312,
+      "y": 170
+     },
+     "EP31": {
+      "lane": "L_OBS_JISE",
+      "x": 656,
+      "y": 1092
+     },
+     "EP32": {
+      "lane": "L_OBS_JISE",
+      "x": 1024,
+      "y": 1092
+     },
+     "EP33": {
+      "lane": "L_OBS_DISPOSITION",
+      "x": 1600,
+      "y": 398
+     },
+     "EP34": {
+      "lane": "L_OBS_DISPOSITION",
+      "x": 1600,
+      "y": 500
+     },
+     "EP35": {
+      "lane": "L_OBS_DISPOSITION",
+      "x": 1600,
+      "y": 604
+     },
+     "EP36": {
+      "lane": "L_OBS_DISPOSITION",
+      "x": 1600,
+      "y": 706
+     },
+     "EP37": {
+      "lane": "L_OBS_DISPOSITION",
+      "x": 1888,
+      "y": 552
+     },
+     "G09a": {
+      "lane": "L_CAND",
+      "x": 1458,
+      "y": 1744
+     },
+     "G09b": {
+      "lane": "L_CAND",
+      "x": 1458,
+      "y": 1911
+     },
+     "G09c": {
+      "lane": "L_CAND",
+      "x": 1458,
+      "y": 2065
+     },
+     "G10a": {
+      "lane": "L_CAND",
+      "x": 1742,
+      "y": 1718
+     },
+     "G10b": {
+      "lane": "L_CAND",
+      "x": 1742,
+      "y": 1848
+     },
+     "G10c": {
+      "lane": "L_CAND",
+      "x": 1742,
+      "y": 1976
+     },
+     "M5": {
+      "lane": "L_MECH",
+      "x": 1600,
+      "y": 2387
+     },
+     "U_G10": {
+      "lane": "L_UNRES",
+      "x": 1780,
+      "y": 2225
+     },
+     "U_OE007": {
+      "lane": "L_UNRES",
+      "x": 1420,
+      "y": 2225
+     },
+     "V_RESPONSIBILITY": {
+      "lane": "L_SVAR",
+      "x": 1168,
+      "y": 1611
+     },
+     "V_SANCTION": {
+      "lane": "L_SVAR",
+      "x": 1658,
+      "y": 1611
+     }
+    },
+    "ticks": [
+     {
+      "date_key": 512,
+      "label": "5/12",
+      "x": 0
+     },
+     {
+      "date_key": 613,
+      "label": "6/13",
+      "x": 512
+     },
+     {
+      "date_key": 613,
+      "label": "6/13",
+      "x": 1312
+     },
+     {
+      "date_key": 616,
+      "label": "6/16",
+      "x": 1888
+     }
+    ]
+   },
+   "nodes": [
+    "EP14",
+    "EP23",
+    "EP24",
+    "EP25",
+    "EP26",
+    "EP27",
+    "EP28",
+    "EP29",
+    "EP30",
+    "EP31",
+    "EP32",
+    "EP33",
+    "EP34",
+    "EP35",
+    "EP36",
+    "EP37",
+    "G09a",
+    "G09b",
+    "G09c",
+    "G10a",
+    "G10b",
+    "G10c",
+    "M5",
+    "U_G10",
+    "U_OE007",
+    "V_RESPONSIBILITY",
+    "V_SANCTION"
+   ],
+   "notice": "표시 범위만 줄인 화면입니다(시각적 필터). 숨긴 node는 삭제·부정된 것이 아니며 canonical graph에 그대로 있습니다. 분석상 ON/OFF가 아닙니다.",
+   "policy": "subset",
+   "scope_rule": "핵심 관측: EP25, EP27, EP28, EP29, EP30, EP32, EP33, EP34, EP35, EP36, EP37 · 맥락 관측: EP14, EP23, EP24, EP26, EP31 · gap G09·G10의 LATENT 후보 전부 · 명시 node: V_RESPONSIBILITY, V_SANCTION · 포함 후보를 INSTANTIATED_BY로 잇는 메커니즘(M5) · 포함 후보에 CONDITIONS를 걸거나 View 안 관측 edge를 가리키는 UNRESOLVED(U_G10, U_OE007)",
+   "title": "정조 최종 판단·처분"
+  },
+  "hong_review": {
+   "context": [
+    "EP02",
+    "EP13",
+    "EP15",
+    "EP17",
+    "EP18",
+    "EP25",
+    "EP27",
+    "EP32"
+   ],
+   "core": [
+    "EP12",
+    "EP20",
+    "EP21",
+    "EP22",
+    "EP23",
+    "EP24",
+    "EP26",
+    "EP31",
+    "M5",
+    "U_OE062",
+    "V_REVIEW_CORRECTION"
+   ],
+   "default_pane": "detail",
+   "desc": "5/28 안핵어사 차하 이후 홍대협의 신문·복명과 6/13 홍대협 판단, 그 판단과 이전·이후 판단을 잇는 REVIEW_OF·REVISES·CONTRADICTS_AT_CLAIM_LEVEL edge를 표시합니다.",
+   "edges": [
+    "OE013",
+    "OE021",
+    "OE031",
+    "OE040",
+    "OE043",
+    "OE045",
+    "OE046",
+    "OE047",
+    "OE048",
+    "OE050",
+    "OE051",
+    "OE052",
+    "OE053",
+    "OE054",
+    "OE055",
+    "OE056",
+    "OE060",
+    "OE061",
+    "OE062",
+    "OE090",
+    "OE091",
+    "SD103",
+    "SD104",
+    "SD105",
+    "SD106",
+    "SD107",
+    "SD108"
+   ],
+   "hidden_observed": [
+    "EP01",
+    "EP03",
+    "EP04",
+    "EP05",
+    "EP06",
+    "EP07",
+    "EP08",
+    "EP09",
+    "EP10",
+    "EP11",
+    "EP14",
+    "EP16",
+    "EP19",
+    "EP28",
+    "EP29",
+    "EP30",
+    "EP33",
+    "EP34",
+    "EP35",
+    "EP36",
+    "EP37"
+   ],
+   "id": "hong_review",
+   "initial": {
+    "max_zoom": 1.25,
+    "min_zoom": 0.95,
+    "read_px": 14.667
+   },
+   "key": "H",
+   "label": "H 홍대협 재조사",
+   "layout": {
+    "anchor": {
+     "x": 1178,
+     "y": 0
+    },
+    "bands": [
+     {
+      "dated": true,
+      "id": "FEB",
+      "label": "1793-02 (2월)",
+      "sub": "관계 · 도난 · 병영 출동",
+      "x0": -136,
+      "x1": 136,
+      "y0": 10,
+      "y1": 1059
+     },
+     {
+      "dated": true,
+      "id": "MAY",
+      "label": "1793-05 (5월)",
+      "sub": "장계 · 1차 판단 · 재조사",
+      "x0": 232,
+      "x1": 1656,
+      "y0": 10,
+      "y1": 1059
+     },
+     {
+      "dated": true,
+      "id": "JUN",
+      "label": "1793-06 (6월)",
+      "sub": "별단 · 안핵 신문·복명",
+      "x0": 1752,
+      "x1": 3176,
+      "y0": 10,
+      "y1": 1059
+     },
+     {
+      "dated": true,
+      "id": "FINAL",
+      "label": "최종 판단·처분",
+      "sub": "6/13 정조 판단 → 처분 → 6/16",
+      "x0": 3272,
+      "x1": 3544,
+      "y0": 10,
+      "y1": 1059
+     }
+    ],
+    "extent": {
+     "label_x0": -356,
+     "x0": -166,
+     "x1": 3574,
+     "y0": 0,
+     "y1": 1585
+    },
+    "lanes": [
+     {
+      "id": "L_OBS_THEFT",
+      "kind": "observed",
+      "label": "도난·소장",
+      "label_lines": [
+       "도난·소장"
+      ],
+      "sub": "THEFT",
+      "sub_lines": [
+       "THEFT"
+      ],
+      "y0": 104,
+      "y1": 237
+     },
+     {
+      "id": "L_OBS_BARRACKS_OPERATION",
+      "kind": "observed",
+      "label": "병영 작전·체포",
+      "label_lines": [
+       "병영 작전·체포"
+      ],
+      "sub": "BARRACKS_OPERATION",
+      "sub_lines": [
+       "BARRACKS_",
+       "OPERATION"
+      ],
+      "y0": 237,
+      "y1": 344
+     },
+     {
+      "id": "L_OBS_REVIEW",
+      "kind": "observed",
+      "label": "재검토",
+      "label_lines": [
+       "재검토"
+      ],
+      "sub": "REVIEW",
+      "sub_lines": [
+       "REVIEW"
+      ],
+      "y0": 344,
+      "y1": 477
+     },
+     {
+      "id": "L_OBS_THEFT_JUDGMENT",
+      "kind": "observed",
+      "label": "도난 판단",
+      "label_lines": [
+       "도난 판단"
+      ],
+      "sub": "THEFT_JUDGMENT",
+      "sub_lines": [
+       "THEFT_",
+       "JUDGMENT"
+      ],
+      "y0": 477,
+      "y1": 610
+     },
+     {
+      "id": "L_OBS_JISE",
+      "kind": "observed",
+      "label": "지세 호칭",
+      "label_lines": [
+       "지세 호칭"
+      ],
+      "sub": "JISE",
+      "sub_lines": [
+       "JISE"
+      ],
+      "y0": 610,
+      "y1": 743
+     },
+     {
+      "id": "L_OBS_DETENTION_DEATH",
+      "kind": "observed",
+      "label": "구금·사망 보고",
+      "label_lines": [
+       "구금·사망 보고"
+      ],
+      "sub": "DETENTION_DEATH",
+      "sub_lines": [
+       "DETENTION_",
+       "DEATH"
+      ],
+      "y0": 743,
+      "y1": 901
+     },
+     {
+      "id": "L_OBS_BIOLOGICAL",
+      "kind": "observed",
+      "label": "사인 판단 (branch A)",
+      "label_lines": [
+       "사인 판단 (branch",
+       "A)"
+      ],
+      "sub": "BIOLOGICAL",
+      "sub_lines": [
+       "BIOLOGICAL"
+      ],
+      "y0": 901,
+      "y1": 1059
+     },
+     {
+      "id": "L_SVAR",
+      "kind": "latent",
+      "label": "질적 구조 변수 V_*",
+      "label_lines": [
+       "질적 구조 변수 V_*"
+      ],
+      "sub": "OR · AND · XOR · ANCHORED 규칙",
+      "sub_lines": [
+       "OR · AND · XOR",
+       "· ANCHORED 규칙"
+      ],
+      "y0": 1179,
+      "y1": 1261
+     },
+     {
+      "id": "L_UNRES",
+      "kind": "unresolved",
+      "label": "UNRESOLVED",
+      "label_lines": [
+       "UNRESOLVED"
+      ],
+      "sub": "확정하지 않은 동일성·범위·사유",
+      "sub_lines": [
+       "확정하지 않은",
+       "동일성·범위·사유"
+      ],
+      "y0": 1261,
+      "y1": 1423
+     },
+     {
+      "id": "L_MECH",
+      "kind": "latent",
+      "label": "메커니즘 (분석 변수)",
+      "label_lines": [
+       "메커니즘 (분석",
+       "변수)"
+      ],
+      "sub": "LATENT_MECHANISM · 역사적 사실 아님",
+      "sub_lines": [
+       "LATENT_",
+       "MECHANISM ·",
+       "역사적 사실 아님"
+      ],
+      "y0": 1423,
+      "y1": 1585
+     }
+    ],
+    "positions": {
+     "EP02": {
+      "lane": "L_OBS_THEFT",
+      "x": 0,
+      "y": 170
+     },
+     "EP12": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 2464,
+      "y": 290
+     },
+     "EP13": {
+      "lane": "L_OBS_DETENTION_DEATH",
+      "x": 368,
+      "y": 822
+     },
+     "EP15": {
+      "lane": "L_OBS_THEFT_JUDGMENT",
+      "x": 656,
+      "y": 544
+     },
+     "EP17": {
+      "lane": "L_OBS_THEFT_JUDGMENT",
+      "x": 944,
+      "y": 544
+     },
+     "EP18": {
+      "lane": "L_OBS_REVIEW",
+      "x": 1232,
+      "y": 410
+     },
+     "EP20": {
+      "lane": "L_OBS_REVIEW",
+      "x": 1520,
+      "y": 410
+     },
+     "EP21": {
+      "lane": "L_OBS_DETENTION_DEATH",
+      "x": 1888,
+      "y": 822
+     },
+     "EP22": {
+      "lane": "L_OBS_REVIEW",
+      "x": 2176,
+      "y": 410
+     },
+     "EP23": {
+      "lane": "L_OBS_REVIEW",
+      "x": 2752,
+      "y": 410
+     },
+     "EP24": {
+      "lane": "L_OBS_THEFT_JUDGMENT",
+      "x": 3040,
+      "y": 544
+     },
+     "EP25": {
+      "lane": "L_OBS_THEFT_JUDGMENT",
+      "x": 3408,
+      "y": 544
+     },
+     "EP26": {
+      "lane": "L_OBS_BIOLOGICAL",
+      "x": 3040,
+      "y": 980
+     },
+     "EP27": {
+      "lane": "L_OBS_BIOLOGICAL",
+      "x": 3408,
+      "y": 980
+     },
+     "EP31": {
+      "lane": "L_OBS_JISE",
+      "x": 3040,
+      "y": 676
+     },
+     "EP32": {
+      "lane": "L_OBS_JISE",
+      "x": 3408,
+      "y": 676
+     },
+     "M5": {
+      "lane": "L_MECH",
+      "x": 2218,
+      "y": 1504
+     },
+     "U_OE062": {
+      "lane": "L_UNRES",
+      "x": 1888,
+      "y": 1342
+     },
+     "V_REVIEW_CORRECTION": {
+      "lane": "L_SVAR",
+      "x": 2218,
+      "y": 1220
+     }
+    },
+    "ticks": [
+     {
+      "date_key": 222,
+      "label": "2/22",
+      "x": 0
+     },
+     {
+      "date_key": 512,
+      "label": "5/12",
+      "x": 512
+     },
+     {
+      "date_key": 527,
+      "label": "5/27",
+      "x": 1088
+     },
+     {
+      "date_key": 528,
+      "label": "5/28",
+      "x": 1520
+     },
+     {
+      "date_key": 611,
+      "label": "6/11",
+      "x": 2032
+     },
+     {
+      "date_key": 613,
+      "label": "6/13",
+      "x": 2752
+     },
+     {
+      "date_key": 613,
+      "label": "6/13",
+      "x": 3408
+     }
+    ]
+   },
+   "nodes": [
+    "EP02",
+    "EP12",
+    "EP13",
+    "EP15",
+    "EP17",
+    "EP18",
+    "EP20",
+    "EP21",
+    "EP22",
+    "EP23",
+    "EP24",
+    "EP25",
+    "EP26",
+    "EP27",
+    "EP31",
+    "EP32",
+    "M5",
+    "U_OE062",
+    "V_REVIEW_CORRECTION"
+   ],
+   "notice": "표시 범위만 줄인 화면입니다(시각적 필터). 숨긴 node는 삭제·부정된 것이 아니며 canonical graph에 그대로 있습니다. 분석상 ON/OFF가 아닙니다.",
+   "policy": "subset",
+   "scope_rule": "핵심 관측: EP12, EP20, EP21, EP22, EP23, EP24, EP26, EP31 · 맥락 관측: EP02, EP13, EP15, EP17, EP18, EP25, EP27, EP32 · 명시 node: V_REVIEW_CORRECTION, M5 · 포함 후보에 CONDITIONS를 걸거나 View 안 관측 edge를 가리키는 UNRESOLVED(U_OE062)",
+   "title": "홍대협 재조사"
+  },
+  "jamideok": {
+   "context": [
+    "EP04",
+    "EP09",
+    "EP23",
+    "EP35"
+   ],
+   "core": [
+    "EP05",
+    "EP06",
+    "EP07",
+    "EP12",
+    "G04b",
+    "G04d",
+    "G09a",
+    "G09b",
+    "G09c",
+    "M2",
+    "M5",
+    "U_OE007",
+    "V_INFO_TO_COMMANDER",
+    "V_INVESTIGATION_SCOPE"
+   ],
+   "default_pane": "detail",
+   "desc": "자미덕 관련 진술·대질 기록(EP05–EP07), 한재욱 공초(EP12), 두 진술 사이 주장 수준 상충 edge(OE007)와 진술 관련 후보(G04b·G04d·G09)·UNRESOLVED를 표시합니다.",
+   "edges": [
+    "OE004",
+    "OE005",
+    "OE006",
+    "OE007",
+    "OE023",
+    "OE024",
+    "OE025",
+    "OE026",
+    "OE028",
+    "OE031",
+    "OE095",
+    "SD058",
+    "SD059",
+    "SD060",
+    "SD063",
+    "SD064",
+    "SD065",
+    "SD087",
+    "SD088",
+    "SD089",
+    "SD111",
+    "SD131",
+    "SD132"
+   ],
+   "hidden_observed": [
+    "EP01",
+    "EP02",
+    "EP03",
+    "EP08",
+    "EP10",
+    "EP11",
+    "EP13",
+    "EP14",
+    "EP15",
+    "EP16",
+    "EP17",
+    "EP18",
+    "EP19",
+    "EP20",
+    "EP21",
+    "EP22",
+    "EP24",
+    "EP25",
+    "EP26",
+    "EP27",
+    "EP28",
+    "EP29",
+    "EP30",
+    "EP31",
+    "EP32",
+    "EP33",
+    "EP34",
+    "EP36",
+    "EP37"
+   ],
+   "id": "jamideok",
+   "initial": {
+    "max_zoom": 1.25,
+    "min_zoom": 0.95,
+    "read_px": 14.667
+   },
+   "key": "E",
+   "label": "E 자미덕·진술·대질",
+   "layout": {
+    "anchor": {
+     "x": -54,
+     "y": 0
+    },
+    "bands": [
+     {
+      "dated": true,
+      "id": "FEB",
+      "label": "1793-02 (2월)",
+      "sub": "관계 · 도난 · 병영 출동",
+      "x0": -136,
+      "x1": 1000,
+      "y0": 10,
+      "y1": 477
+     },
+     {
+      "dated": true,
+      "id": "MAR",
+      "label": "1793-03 (3월)",
+      "sub": "3/4 체포 지시 · 체포",
+      "x0": 1096,
+      "x1": 1368,
+      "y0": 10,
+      "y1": 477
+     },
+     {
+      "dated": true,
+      "id": "JUN",
+      "label": "1793-06 (6월)",
+      "sub": "별단 · 안핵 신문·복명",
+      "x0": 1464,
+      "x1": 2024,
+      "y0": 10,
+      "y1": 477
+     },
+     {
+      "dated": true,
+      "id": "FINAL",
+      "label": "최종 판단·처분",
+      "sub": "6/13 정조 판단 → 처분 → 6/16",
+      "x0": 2120,
+      "x1": 2392,
+      "y0": 10,
+      "y1": 477
+     }
+    ],
+    "extent": {
+     "label_x0": -356,
+     "x0": -166,
+     "x1": 2422,
+     "y0": 0,
+     "y1": 1495
+    },
+    "lanes": [
+     {
+      "id": "L_OBS_BARRACKS_OPERATION",
+      "kind": "observed",
+      "label": "병영 작전·체포",
+      "label_lines": [
+       "병영 작전·체포"
+      ],
+      "sub": "BARRACKS_OPERATION",
+      "sub_lines": [
+       "BARRACKS_",
+       "OPERATION"
+      ],
+      "y0": 104,
+      "y1": 237
+     },
+     {
+      "id": "L_OBS_DISPOSITION",
+      "kind": "observed",
+      "label": "처분",
+      "label_lines": [
+       "처분"
+      ],
+      "sub": "DISPOSITION",
+      "sub_lines": [
+       "DISPOSITION"
+      ],
+      "y0": 237,
+      "y1": 344
+     },
+     {
+      "id": "L_OBS_REVIEW",
+      "kind": "observed",
+      "label": "재검토",
+      "label_lines": [
+       "재검토"
+      ],
+      "sub": "REVIEW",
+      "sub_lines": [
+       "REVIEW"
+      ],
+      "y0": 344,
+      "y1": 477
+     },
+     {
+      "id": "L_SVAR",
+      "kind": "latent",
+      "label": "질적 구조 변수 V_*",
+      "label_lines": [
+       "질적 구조 변수 V_*"
+      ],
+      "sub": "OR · AND · XOR · ANCHORED 규칙",
+      "sub_lines": [
+       "OR · AND · XOR",
+       "· ANCHORED 규칙"
+      ],
+      "y0": 597,
+      "y1": 679
+     },
+     {
+      "id": "L_CAND",
+      "kind": "latent",
+      "label": "LATENT 후보 bridge",
+      "label_lines": [
+       "LATENT 후보",
+       "bridge"
+      ],
+      "sub": "gap별 가설 · 등급 그대로",
+      "sub_lines": [
+       "gap별 가설 · 등급",
+       "그대로"
+      ],
+      "y0": 679,
+      "y1": 1171
+     },
+     {
+      "id": "L_UNRES",
+      "kind": "unresolved",
+      "label": "UNRESOLVED",
+      "label_lines": [
+       "UNRESOLVED"
+      ],
+      "sub": "확정하지 않은 동일성·범위·사유",
+      "sub_lines": [
+       "확정하지 않은",
+       "동일성·범위·사유"
+      ],
+      "y0": 1171,
+      "y1": 1333
+     },
+     {
+      "id": "L_MECH",
+      "kind": "latent",
+      "label": "메커니즘 (분석 변수)",
+      "label_lines": [
+       "메커니즘 (분석",
+       "변수)"
+      ],
+      "sub": "LATENT_MECHANISM · 역사적 사실 아님",
+      "sub_lines": [
+       "LATENT_",
+       "MECHANISM ·",
+       "역사적 사실 아님"
+      ],
+      "y0": 1333,
+      "y1": 1495
+     }
+    ],
+    "positions": {
+     "EP04": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 0,
+      "y": 170
+     },
+     "EP05": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 288,
+      "y": 170
+     },
+     "EP06": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 576,
+      "y": 170
+     },
+     "EP07": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 864,
+      "y": 170
+     },
+     "EP09": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 1232,
+      "y": 170
+     },
+     "EP12": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 1600,
+      "y": 170
+     },
+     "EP23": {
+      "lane": "L_OBS_REVIEW",
+      "x": 1888,
+      "y": 410
+     },
+     "EP35": {
+      "lane": "L_OBS_DISPOSITION",
+      "x": 2256,
+      "y": 290
+     },
+     "G04b": {
+      "lane": "L_CAND",
+      "x": 1089,
+      "y": 758
+     },
+     "G04d": {
+      "lane": "L_CAND",
+      "x": 1089,
+      "y": 912
+     },
+     "G09a": {
+      "lane": "L_CAND",
+      "x": 1373,
+      "y": 771
+     },
+     "G09b": {
+      "lane": "L_CAND",
+      "x": 1373,
+      "y": 938
+     },
+     "G09c": {
+      "lane": "L_CAND",
+      "x": 1373,
+      "y": 1092
+     },
+     "M2": {
+      "lane": "L_MECH",
+      "x": 1021,
+      "y": 1414
+     },
+     "M5": {
+      "lane": "L_MECH",
+      "x": 1441,
+      "y": 1414
+     },
+     "U_OE007": {
+      "lane": "L_UNRES",
+      "x": 1231,
+      "y": 1252
+     },
+     "V_INFO_TO_COMMANDER": {
+      "lane": "L_SVAR",
+      "x": 1340,
+      "y": 638
+     },
+     "V_INVESTIGATION_SCOPE": {
+      "lane": "L_SVAR",
+      "x": 980,
+      "y": 638
+     }
+    },
+    "ticks": [
+     {
+      "date_key": 229,
+      "label": "2/29",
+      "x": 432
+     },
+     {
+      "date_key": 304,
+      "label": "3/4",
+      "x": 1232
+     },
+     {
+      "date_key": 613,
+      "label": "6/13",
+      "x": 1744
+     },
+     {
+      "date_key": 613,
+      "label": "6/13",
+      "x": 2256
+     }
+    ]
+   },
+   "nodes": [
+    "EP04",
+    "EP05",
+    "EP06",
+    "EP07",
+    "EP09",
+    "EP12",
+    "EP23",
+    "EP35",
+    "G04b",
+    "G04d",
+    "G09a",
+    "G09b",
+    "G09c",
+    "M2",
+    "M5",
+    "U_OE007",
+    "V_INFO_TO_COMMANDER",
+    "V_INVESTIGATION_SCOPE"
+   ],
+   "notice": "표시 범위만 줄인 화면입니다(시각적 필터). 숨긴 node는 삭제·부정된 것이 아니며 canonical graph에 그대로 있습니다. 분석상 ON/OFF가 아닙니다.",
+   "policy": "subset",
+   "scope_rule": "핵심 관측: EP05, EP06, EP07, EP12 · 맥락 관측: EP04, EP09, EP23, EP35 · gap G09의 LATENT 후보 전부 · 명시 node: G04b, G04d, V_INFO_TO_COMMANDER, V_INVESTIGATION_SCOPE · 포함 후보를 INSTANTIATED_BY로 잇는 메커니즘(M2, M5) · 포함 후보에 CONDITIONS를 걸거나 View 안 관측 edge를 가리키는 UNRESOLVED(U_OE007)",
+   "title": "자미덕·진술·대질"
+  },
+  "latent": {
+   "context": [],
+   "core": [
+    "CTX_F001",
+    "CTX_F002",
+    "CTX_F003",
+    "CTX_F004",
+    "CTX_F005",
+    "CTX_F006",
+    "CTX_F007",
+    "CTX_F008",
+    "CTX_F009",
+    "CTX_F010",
+    "CTX_F011",
+    "CTX_F012",
+    "CTX_F013",
+    "CTX_F014",
+    "CTX_F015",
+    "CTX_F016",
+    "CTX_F017",
+    "CTX_F018",
+    "CTX_F019",
+    "CTX_F020",
+    "ENV01",
+    "ENV02",
+    "ENV03",
+    "ENV04",
+    "EP04",
+    "EP09",
+    "EP11",
+    "EP13",
+    "EP15",
+    "EP18",
+    "EP20",
+    "EP22",
+    "EP23",
+    "EP25",
+    "EP29",
+    "EP30",
+    "EP33",
+    "EP34",
+    "EP35",
+    "EP36",
+    "EP37",
     "G01a",
     "G01b",
     "G01c",
@@ -123,34 +2574,1078 @@
     "G04e",
     "G05a",
     "G05b",
+    "G06a",
+    "G06b",
+    "G06c",
+    "G07a",
     "G07b",
     "G07c",
+    "G07d",
+    "G08a",
+    "G08b",
+    "G09a",
+    "G09b",
+    "G09c",
+    "G10a",
+    "G10b",
+    "G10c",
     "G11a",
     "G11b",
     "G11c",
+    "G12a",
+    "G12b",
+    "G13a",
+    "G13b",
     "M1",
     "M2",
     "M3",
     "M4",
+    "M5",
+    "M6",
     "MB",
+    "U_G10",
     "U_ID06",
     "U_ID07",
+    "U_ID08",
     "U_OE007",
+    "U_OE062",
     "V_ARREST_PATH",
     "V_COMMAND_SOURCE",
     "V_COMPLAINT_TO_BARRACKS",
     "V_CUSTODY_COURSE",
     "V_INFO_TO_COMMANDER",
-    "V_INVESTIGATION_SCOPE"
+    "V_INITIAL_JUDGMENT_BASIS",
+    "V_INVESTIGATION_SCOPE",
+    "V_RESPONSIBILITY",
+    "V_REVIEW_CORRECTION",
+    "V_SANCTION"
    ],
-   "path": "정보 → 의심 → 병영 → 체포 → 구금",
-   "title": "수사 확대 (M1–M4 중심)"
+   "default_pane": "world",
+   "desc": "메커니즘·구조 변수·LATENT 후보·UNRESOLVED·context와 구조 변수가 설명 대상으로 가리키는 OBSERVED node를 표시합니다. 나머지 OBSERVED node는 흐리게 남습니다. World·공존·개입 비교는 오른쪽 패널에서 합니다.",
+   "edges": [
+    "OE008",
+    "OE011",
+    "OE023",
+    "OE028",
+    "OE030",
+    "OE040",
+    "OE045",
+    "OE046",
+    "OE048",
+    "OE056",
+    "OE072",
+    "OE073",
+    "OE074",
+    "OE080",
+    "OE081",
+    "OE083",
+    "OE084",
+    "OE095",
+    "OE096",
+    "OE097",
+    "OE098",
+    "SD001",
+    "SD002",
+    "SD003",
+    "SD004",
+    "SD005",
+    "SD006",
+    "SD007",
+    "SD008",
+    "SD009",
+    "SD010",
+    "SD011",
+    "SD012",
+    "SD013",
+    "SD014",
+    "SD015",
+    "SD016",
+    "SD017",
+    "SD018",
+    "SD019",
+    "SD020",
+    "SD021",
+    "SD022",
+    "SD023",
+    "SD024",
+    "SD025",
+    "SD026",
+    "SD027",
+    "SD028",
+    "SD029",
+    "SD030",
+    "SD031",
+    "SD032",
+    "SD033",
+    "SD034",
+    "SD035",
+    "SD036",
+    "SD037",
+    "SD038",
+    "SD039",
+    "SD040",
+    "SD041",
+    "SD042",
+    "SD043",
+    "SD044",
+    "SD045",
+    "SD046",
+    "SD047",
+    "SD048",
+    "SD049",
+    "SD050",
+    "SD051",
+    "SD052",
+    "SD053",
+    "SD054",
+    "SD055",
+    "SD056",
+    "SD057",
+    "SD058",
+    "SD059",
+    "SD060",
+    "SD061",
+    "SD062",
+    "SD063",
+    "SD064",
+    "SD065",
+    "SD066",
+    "SD067",
+    "SD068",
+    "SD069",
+    "SD070",
+    "SD071",
+    "SD072",
+    "SD073",
+    "SD074",
+    "SD075",
+    "SD076",
+    "SD077",
+    "SD078",
+    "SD079",
+    "SD080",
+    "SD081",
+    "SD082",
+    "SD083",
+    "SD084",
+    "SD085",
+    "SD086",
+    "SD087",
+    "SD088",
+    "SD089",
+    "SD090",
+    "SD091",
+    "SD092",
+    "SD093",
+    "SD094",
+    "SD095",
+    "SD096",
+    "SD097",
+    "SD098",
+    "SD099",
+    "SD100",
+    "SD101",
+    "SD102",
+    "SD103",
+    "SD104",
+    "SD105",
+    "SD106",
+    "SD107",
+    "SD108",
+    "SD109",
+    "SD110",
+    "SD111",
+    "SD112",
+    "SD113",
+    "SD114",
+    "SD115",
+    "SD116",
+    "SD117",
+    "SD118",
+    "SD119",
+    "SD120",
+    "SD121",
+    "SD122",
+    "SD123",
+    "SD124",
+    "SD125",
+    "SD126",
+    "SD127",
+    "SD128",
+    "SD129",
+    "SD130",
+    "SD131",
+    "SD132",
+    "SD133",
+    "SD134",
+    "SD135",
+    "SD136",
+    "SD137"
+   ],
+   "hidden_observed": [],
+   "id": "latent",
+   "initial": {
+    "max_zoom": 1.25,
+    "min_zoom": 0.95,
+    "read_px": 14.667
+   },
+   "key": "J",
+   "label": "J LATENT·World 비교",
+   "layout": {
+    "anchor": {
+     "x": 670,
+     "y": 2327
+    }
+   },
+   "nodes": [
+    "CTX_F001",
+    "CTX_F002",
+    "CTX_F003",
+    "CTX_F004",
+    "CTX_F005",
+    "CTX_F006",
+    "CTX_F007",
+    "CTX_F008",
+    "CTX_F009",
+    "CTX_F010",
+    "CTX_F011",
+    "CTX_F012",
+    "CTX_F013",
+    "CTX_F014",
+    "CTX_F015",
+    "CTX_F016",
+    "CTX_F017",
+    "CTX_F018",
+    "CTX_F019",
+    "CTX_F020",
+    "ENV01",
+    "ENV02",
+    "ENV03",
+    "ENV04",
+    "EP04",
+    "EP09",
+    "EP11",
+    "EP13",
+    "EP15",
+    "EP18",
+    "EP20",
+    "EP22",
+    "EP23",
+    "EP25",
+    "EP29",
+    "EP30",
+    "EP33",
+    "EP34",
+    "EP35",
+    "EP36",
+    "EP37",
+    "G01a",
+    "G01b",
+    "G01c",
+    "G02a",
+    "G02b",
+    "G02c",
+    "G03a",
+    "G03b",
+    "G03c",
+    "G04a",
+    "G04b",
+    "G04c",
+    "G04d",
+    "G04e",
+    "G05a",
+    "G05b",
+    "G06a",
+    "G06b",
+    "G06c",
+    "G07a",
+    "G07b",
+    "G07c",
+    "G07d",
+    "G08a",
+    "G08b",
+    "G09a",
+    "G09b",
+    "G09c",
+    "G10a",
+    "G10b",
+    "G10c",
+    "G11a",
+    "G11b",
+    "G11c",
+    "G12a",
+    "G12b",
+    "G13a",
+    "G13b",
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M6",
+    "MB",
+    "U_G10",
+    "U_ID06",
+    "U_ID07",
+    "U_ID08",
+    "U_OE007",
+    "U_OE062",
+    "V_ARREST_PATH",
+    "V_COMMAND_SOURCE",
+    "V_COMPLAINT_TO_BARRACKS",
+    "V_CUSTODY_COURSE",
+    "V_INFO_TO_COMMANDER",
+    "V_INITIAL_JUDGMENT_BASIS",
+    "V_INVESTIGATION_SCOPE",
+    "V_RESPONSIBILITY",
+    "V_REVIEW_CORRECTION",
+    "V_SANCTION"
+   ],
+   "notice": "표시 범위만 줄인 화면입니다(시각적 필터). 숨긴 node는 삭제·부정된 것이 아니며 canonical graph에 그대로 있습니다. 분석상 ON/OFF가 아닙니다.",
+   "policy": "dim",
+   "scope_rule": "OBSERVED가 아닌 node 전부 + Super-DAG 분석 edge가 가리키는 OBSERVED node",
+   "title": "LATENT·World 비교"
+  },
+  "may_review": {
+   "context": [],
+   "core": [
+    "EP13",
+    "EP14",
+    "EP15",
+    "EP16",
+    "EP17",
+    "EP18",
+    "EP19",
+    "EP20",
+    "G07a",
+    "G07b",
+    "G07c",
+    "G07d",
+    "G08a",
+    "G08b",
+    "G13a",
+    "G13b",
+    "M2",
+    "M5",
+    "M6",
+    "V_INITIAL_JUDGMENT_BASIS",
+    "V_REVIEW_CORRECTION"
+   ],
+   "default_pane": "detail",
+   "desc": "5월 재검토 기록(5/12 이형원 장계·1차 판단, 5/27 이조원 보고·비판, 5/28 안핵어사 차하)과 6월 재조사 이전 판단, gap G07·G08·G13의 후보를 표시합니다.",
+   "edges": [
+    "OE040",
+    "OE041",
+    "OE042",
+    "OE043",
+    "OE044",
+    "OE045",
+    "SD074",
+    "SD075",
+    "SD076",
+    "SD077",
+    "SD078",
+    "SD079",
+    "SD080",
+    "SD081",
+    "SD082",
+    "SD083",
+    "SD084",
+    "SD085",
+    "SD086",
+    "SD100",
+    "SD101",
+    "SD102",
+    "SD103",
+    "SD104",
+    "SD105",
+    "SD114"
+   ],
+   "hidden_observed": [
+    "EP01",
+    "EP02",
+    "EP03",
+    "EP04",
+    "EP05",
+    "EP06",
+    "EP07",
+    "EP08",
+    "EP09",
+    "EP10",
+    "EP11",
+    "EP12",
+    "EP21",
+    "EP22",
+    "EP23",
+    "EP24",
+    "EP25",
+    "EP26",
+    "EP27",
+    "EP28",
+    "EP29",
+    "EP30",
+    "EP31",
+    "EP32",
+    "EP33",
+    "EP34",
+    "EP35",
+    "EP36",
+    "EP37"
+   ],
+   "id": "may_review",
+   "initial": {
+    "max_zoom": 1.25,
+    "min_zoom": 0.95,
+    "read_px": 14.667
+   },
+   "key": "G",
+   "label": "G 5월 재검토",
+   "layout": {
+    "anchor": {
+     "x": -342,
+     "y": 0
+    },
+    "bands": [
+     {
+      "dated": true,
+      "id": "MAY",
+      "label": "1793-05 (5월)",
+      "sub": "장계 · 1차 판단 · 재조사",
+      "x0": -136,
+      "x1": 1576,
+      "y0": 10,
+      "y1": 794
+     }
+    ],
+    "extent": {
+     "label_x0": -425,
+     "x0": -235,
+     "x1": 1606,
+     "y0": 0,
+     "y1": 1728
+    },
+    "lanes": [
+     {
+      "id": "L_OBS_COMMAND_RESPONSIBILITY",
+      "kind": "observed",
+      "label": "지휘 책임",
+      "label_lines": [
+       "지휘 책임"
+      ],
+      "sub": "COMMAND_RESPONSIBILITY",
+      "sub_lines": [
+       "COMMAND_",
+       "RESPONSIBILIT",
+       "Y"
+      ],
+      "y0": 104,
+      "y1": 237
+     },
+     {
+      "id": "L_OBS_REINVESTIGATION",
+      "kind": "observed",
+      "label": "재조사 명령",
+      "label_lines": [
+       "재조사 명령"
+      ],
+      "sub": "REINVESTIGATION",
+      "sub_lines": [
+       "REINVESTIGATI",
+       "ON"
+      ],
+      "y0": 237,
+      "y1": 370
+     },
+     {
+      "id": "L_OBS_REVIEW",
+      "kind": "observed",
+      "label": "재검토",
+      "label_lines": [
+       "재검토"
+      ],
+      "sub": "REVIEW",
+      "sub_lines": [
+       "REVIEW"
+      ],
+      "y0": 370,
+      "y1": 503
+     },
+     {
+      "id": "L_OBS_THEFT_JUDGMENT",
+      "kind": "observed",
+      "label": "도난 판단",
+      "label_lines": [
+       "도난 판단"
+      ],
+      "sub": "THEFT_JUDGMENT",
+      "sub_lines": [
+       "THEFT_",
+       "JUDGMENT"
+      ],
+      "y0": 503,
+      "y1": 636
+     },
+     {
+      "id": "L_OBS_DETENTION_DEATH",
+      "kind": "observed",
+      "label": "구금·사망 보고",
+      "label_lines": [
+       "구금·사망 보고"
+      ],
+      "sub": "DETENTION_DEATH",
+      "sub_lines": [
+       "DETENTION_",
+       "DEATH"
+      ],
+      "y0": 636,
+      "y1": 794
+     },
+     {
+      "id": "L_SVAR",
+      "kind": "latent",
+      "label": "질적 구조 변수 V_*",
+      "label_lines": [
+       "질적 구조 변수 V_*"
+      ],
+      "sub": "OR · AND · XOR · ANCHORED 규칙",
+      "sub_lines": [
+       "OR · AND · XOR",
+       "· ANCHORED 규칙"
+      ],
+      "y0": 914,
+      "y1": 1021
+     },
+     {
+      "id": "L_CAND",
+      "kind": "latent",
+      "label": "LATENT 후보 bridge",
+      "label_lines": [
+       "LATENT 후보",
+       "bridge"
+      ],
+      "sub": "gap별 가설 · 등급 그대로",
+      "sub_lines": [
+       "gap별 가설 · 등급",
+       "그대로"
+      ],
+      "y0": 1021,
+      "y1": 1566
+     },
+     {
+      "id": "L_MECH",
+      "kind": "latent",
+      "label": "메커니즘 (분석 변수)",
+      "label_lines": [
+       "메커니즘 (분석",
+       "변수)"
+      ],
+      "sub": "LATENT_MECHANISM · 역사적 사실 아님",
+      "sub_lines": [
+       "LATENT_",
+       "MECHANISM ·",
+       "역사적 사실 아님"
+      ],
+      "y0": 1566,
+      "y1": 1728
+     }
+    ],
+    "positions": {
+     "EP13": {
+      "lane": "L_OBS_DETENTION_DEATH",
+      "x": 0,
+      "y": 715
+     },
+     "EP14": {
+      "lane": "L_OBS_COMMAND_RESPONSIBILITY",
+      "x": 0,
+      "y": 170
+     },
+     "EP15": {
+      "lane": "L_OBS_THEFT_JUDGMENT",
+      "x": 288,
+      "y": 570
+     },
+     "EP16": {
+      "lane": "L_OBS_REINVESTIGATION",
+      "x": 576,
+      "y": 304
+     },
+     "EP17": {
+      "lane": "L_OBS_THEFT_JUDGMENT",
+      "x": 864,
+      "y": 570
+     },
+     "EP18": {
+      "lane": "L_OBS_REVIEW",
+      "x": 1152,
+      "y": 436
+     },
+     "EP19": {
+      "lane": "L_OBS_REINVESTIGATION",
+      "x": 1152,
+      "y": 304
+     },
+     "EP20": {
+      "lane": "L_OBS_REVIEW",
+      "x": 1440,
+      "y": 436
+     },
+     "G07a": {
+      "lane": "L_CAND",
+      "x": 115,
+      "y": 1088
+     },
+     "G07b": {
+      "lane": "L_CAND",
+      "x": 115,
+      "y": 1216
+     },
+     "G07c": {
+      "lane": "L_CAND",
+      "x": 115,
+      "y": 1346
+     },
+     "G07d": {
+      "lane": "L_CAND",
+      "x": 115,
+      "y": 1487
+     },
+     "G08a": {
+      "lane": "L_CAND",
+      "x": 1344,
+      "y": 1088
+     },
+     "G08b": {
+      "lane": "L_CAND",
+      "x": 1344,
+      "y": 1216
+     },
+     "G13a": {
+      "lane": "L_CAND",
+      "x": 576,
+      "y": 1100
+     },
+     "G13b": {
+      "lane": "L_CAND",
+      "x": 576,
+      "y": 1254
+     },
+     "M2": {
+      "lane": "L_MECH",
+      "x": -25,
+      "y": 1647
+     },
+     "M5": {
+      "lane": "L_MECH",
+      "x": 887,
+      "y": 1647
+     },
+     "M6": {
+      "lane": "L_MECH",
+      "x": 395,
+      "y": 1647
+     },
+     "V_INITIAL_JUDGMENT_BASIS": {
+      "lane": "L_SVAR",
+      "x": 288,
+      "y": 968
+     },
+     "V_REVIEW_CORRECTION": {
+      "lane": "L_SVAR",
+      "x": 1296,
+      "y": 968
+     }
+    },
+    "ticks": [
+     {
+      "date_key": 512,
+      "label": "5/12",
+      "x": 288
+     },
+     {
+      "date_key": 527,
+      "label": "5/27",
+      "x": 1008
+     },
+     {
+      "date_key": 528,
+      "label": "5/28",
+      "x": 1440
+     }
+    ]
+   },
+   "nodes": [
+    "EP13",
+    "EP14",
+    "EP15",
+    "EP16",
+    "EP17",
+    "EP18",
+    "EP19",
+    "EP20",
+    "G07a",
+    "G07b",
+    "G07c",
+    "G07d",
+    "G08a",
+    "G08b",
+    "G13a",
+    "G13b",
+    "M2",
+    "M5",
+    "M6",
+    "V_INITIAL_JUDGMENT_BASIS",
+    "V_REVIEW_CORRECTION"
+   ],
+   "notice": "표시 범위만 줄인 화면입니다(시각적 필터). 숨긴 node는 삭제·부정된 것이 아니며 canonical graph에 그대로 있습니다. 분석상 ON/OFF가 아닙니다.",
+   "policy": "subset",
+   "scope_rule": "핵심 관측: EP13, EP14, EP15, EP16, EP17, EP18, EP19, EP20 · gap G07·G08·G13의 LATENT 후보 전부 · 명시 node: V_INITIAL_JUDGMENT_BASIS, V_REVIEW_CORRECTION · 포함 후보를 INSTANTIATED_BY로 잇는 메커니즘(M2, M5, M6)",
+   "title": "5월 재검토"
   },
   "overview": {
-   "desc": "모든 canonical node·edge. 왼쪽 → 오른쪽이 시간(2월 → 3월 → 5월 → 6월 → 최종 판단·처분)이고, 위쪽 lane은 날짜가 없는 분석 층이다. 휠·＋ 버튼으로 확대하면 라벨이 보인다.",
-   "emphasis": [],
+   "context": [],
+   "core": [
+    "CTX_F001",
+    "CTX_F002",
+    "CTX_F003",
+    "CTX_F004",
+    "CTX_F005",
+    "CTX_F006",
+    "CTX_F007",
+    "CTX_F008",
+    "CTX_F009",
+    "CTX_F010",
+    "CTX_F011",
+    "CTX_F012",
+    "CTX_F013",
+    "CTX_F014",
+    "CTX_F015",
+    "CTX_F016",
+    "CTX_F017",
+    "CTX_F018",
+    "CTX_F019",
+    "CTX_F020",
+    "ENV01",
+    "ENV02",
+    "ENV03",
+    "ENV04",
+    "EP01",
+    "EP02",
+    "EP03",
+    "EP04",
+    "EP05",
+    "EP06",
+    "EP07",
+    "EP08",
+    "EP09",
+    "EP10",
+    "EP11",
+    "EP12",
+    "EP13",
+    "EP14",
+    "EP15",
+    "EP16",
+    "EP17",
+    "EP18",
+    "EP19",
+    "EP20",
+    "EP21",
+    "EP22",
+    "EP23",
+    "EP24",
+    "EP25",
+    "EP26",
+    "EP27",
+    "EP28",
+    "EP29",
+    "EP30",
+    "EP31",
+    "EP32",
+    "EP33",
+    "EP34",
+    "EP35",
+    "EP36",
+    "EP37",
+    "G01a",
+    "G01b",
+    "G01c",
+    "G02a",
+    "G02b",
+    "G02c",
+    "G03a",
+    "G03b",
+    "G03c",
+    "G04a",
+    "G04b",
+    "G04c",
+    "G04d",
+    "G04e",
+    "G05a",
+    "G05b",
+    "G06a",
+    "G06b",
+    "G06c",
+    "G07a",
+    "G07b",
+    "G07c",
+    "G07d",
+    "G08a",
+    "G08b",
+    "G09a",
+    "G09b",
+    "G09c",
+    "G10a",
+    "G10b",
+    "G10c",
+    "G11a",
+    "G11b",
+    "G11c",
+    "G12a",
+    "G12b",
+    "G13a",
+    "G13b",
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M6",
+    "MB",
+    "U_G10",
+    "U_ID06",
+    "U_ID07",
+    "U_ID08",
+    "U_OE007",
+    "U_OE062",
+    "V_ARREST_PATH",
+    "V_COMMAND_SOURCE",
+    "V_COMPLAINT_TO_BARRACKS",
+    "V_CUSTODY_COURSE",
+    "V_INFO_TO_COMMANDER",
+    "V_INITIAL_JUDGMENT_BASIS",
+    "V_INVESTIGATION_SCOPE",
+    "V_RESPONSIBILITY",
+    "V_REVIEW_CORRECTION",
+    "V_SANCTION"
+   ],
+   "default_pane": "detail",
+   "desc": "모든 canonical node와 edge를 표시합니다. 왼쪽 → 오른쪽이 시간(2월 → 3월 → 5월 → 6월 → 최종 판단·처분)이고, 관측 lane 아래에 날짜 없는 분석 lane(구조 변수·후보·UNRESOLVED·메커니즘·context)이 있습니다.",
+   "edges": [
+    "OE001",
+    "OE002",
+    "OE003",
+    "OE004",
+    "OE005",
+    "OE006",
+    "OE007",
+    "OE008",
+    "OE009",
+    "OE010",
+    "OE011",
+    "OE013",
+    "OE020",
+    "OE021",
+    "OE022",
+    "OE023",
+    "OE024",
+    "OE025",
+    "OE026",
+    "OE027",
+    "OE028",
+    "OE029",
+    "OE030",
+    "OE031",
+    "OE040",
+    "OE041",
+    "OE042",
+    "OE043",
+    "OE044",
+    "OE045",
+    "OE046",
+    "OE047",
+    "OE048",
+    "OE050",
+    "OE051",
+    "OE052",
+    "OE053",
+    "OE054",
+    "OE055",
+    "OE056",
+    "OE060",
+    "OE061",
+    "OE062",
+    "OE063",
+    "OE070",
+    "OE071",
+    "OE072",
+    "OE073",
+    "OE074",
+    "OE080",
+    "OE081",
+    "OE082",
+    "OE083",
+    "OE084",
+    "OE090",
+    "OE091",
+    "OE095",
+    "OE096",
+    "OE097",
+    "OE098",
+    "OE100",
+    "OE101",
+    "OE102",
+    "OE103",
+    "OE104",
+    "OE105",
+    "OE106",
+    "OE107",
+    "SD001",
+    "SD002",
+    "SD003",
+    "SD004",
+    "SD005",
+    "SD006",
+    "SD007",
+    "SD008",
+    "SD009",
+    "SD010",
+    "SD011",
+    "SD012",
+    "SD013",
+    "SD014",
+    "SD015",
+    "SD016",
+    "SD017",
+    "SD018",
+    "SD019",
+    "SD020",
+    "SD021",
+    "SD022",
+    "SD023",
+    "SD024",
+    "SD025",
+    "SD026",
+    "SD027",
+    "SD028",
+    "SD029",
+    "SD030",
+    "SD031",
+    "SD032",
+    "SD033",
+    "SD034",
+    "SD035",
+    "SD036",
+    "SD037",
+    "SD038",
+    "SD039",
+    "SD040",
+    "SD041",
+    "SD042",
+    "SD043",
+    "SD044",
+    "SD045",
+    "SD046",
+    "SD047",
+    "SD048",
+    "SD049",
+    "SD050",
+    "SD051",
+    "SD052",
+    "SD053",
+    "SD054",
+    "SD055",
+    "SD056",
+    "SD057",
+    "SD058",
+    "SD059",
+    "SD060",
+    "SD061",
+    "SD062",
+    "SD063",
+    "SD064",
+    "SD065",
+    "SD066",
+    "SD067",
+    "SD068",
+    "SD069",
+    "SD070",
+    "SD071",
+    "SD072",
+    "SD073",
+    "SD074",
+    "SD075",
+    "SD076",
+    "SD077",
+    "SD078",
+    "SD079",
+    "SD080",
+    "SD081",
+    "SD082",
+    "SD083",
+    "SD084",
+    "SD085",
+    "SD086",
+    "SD087",
+    "SD088",
+    "SD089",
+    "SD090",
+    "SD091",
+    "SD092",
+    "SD093",
+    "SD094",
+    "SD095",
+    "SD096",
+    "SD097",
+    "SD098",
+    "SD099",
+    "SD100",
+    "SD101",
+    "SD102",
+    "SD103",
+    "SD104",
+    "SD105",
+    "SD106",
+    "SD107",
+    "SD108",
+    "SD109",
+    "SD110",
+    "SD111",
+    "SD112",
+    "SD113",
+    "SD114",
+    "SD115",
+    "SD116",
+    "SD117",
+    "SD118",
+    "SD119",
+    "SD120",
+    "SD121",
+    "SD122",
+    "SD123",
+    "SD124",
+    "SD125",
+    "SD126",
+    "SD127",
+    "SD128",
+    "SD129",
+    "SD130",
+    "SD131",
+    "SD132",
+    "SD133",
+    "SD134",
+    "SD135",
+    "SD136",
+    "SD137"
+   ],
+   "hidden_observed": [],
    "id": "overview",
-   "label": "1 Overview",
+   "initial": {
+    "max_zoom": 1.25,
+    "min_zoom": 0.95,
+    "read_px": 14.667
+   },
+   "key": "A",
+   "label": "A 전체 Overview",
    "nodes": [
     "CTX_F001",
     "CTX_F002",
@@ -275,25 +3770,519 @@
     "V_REVIEW_CORRECTION",
     "V_SANCTION"
    ],
-   "path": "",
+   "notice": "",
+   "policy": "all",
+   "scope_rule": "모든 canonical node",
    "title": "전체 Mechanism Super-DAG"
   },
-  "review": {
-   "desc": "5/12 → 5/27 → 5/28 → 6/11 → 6/13 → 책임 판단 → 처분. 재검토 backbone은 OBSERVED이고 M5는 그것을 설명하는 분석 변수다.",
-   "emphasis": [
-    "M5"
+  "suspect": {
+   "context": [
+    "EP07",
+    "EP29"
    ],
-   "id": "review",
-   "label": "3 재검토·판단·처분",
+   "core": [
+    "EP01",
+    "EP02",
+    "EP03",
+    "EP08",
+    "EP09",
+    "EP10",
+    "EP11",
+    "G03a",
+    "G03b",
+    "G03c",
+    "G04a",
+    "G04b",
+    "G04c",
+    "G04d",
+    "G04e",
+    "G05a",
+    "G05b",
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "U_ID06",
+    "U_ID08",
+    "U_OE007",
+    "V_INFO_TO_COMMANDER"
+   ],
+   "default_pane": "detail",
+   "desc": "구순 관련 진술·정보가 김명신 체포(EP11)까지 연결되는 canonical node와 edge, 그 사이 gap G03·G04·G05의 LATENT 후보와 관련 UNRESOLVED만 표시합니다.",
+   "edges": [
+    "OE001",
+    "OE002",
+    "OE008",
+    "OE009",
+    "OE010",
+    "OE070",
+    "OE071",
+    "OE072",
+    "SD050",
+    "SD051",
+    "SD052",
+    "SD053",
+    "SD054",
+    "SD055",
+    "SD056",
+    "SD057",
+    "SD058",
+    "SD059",
+    "SD061",
+    "SD062",
+    "SD063",
+    "SD064",
+    "SD066",
+    "SD067",
+    "SD068",
+    "SD111",
+    "SD129",
+    "SD131"
+   ],
+   "hidden_observed": [
+    "EP04",
+    "EP05",
+    "EP06",
+    "EP12",
+    "EP13",
+    "EP14",
+    "EP15",
+    "EP16",
+    "EP17",
+    "EP18",
+    "EP19",
+    "EP20",
+    "EP21",
+    "EP22",
+    "EP23",
+    "EP24",
+    "EP25",
+    "EP26",
+    "EP27",
+    "EP28",
+    "EP30",
+    "EP31",
+    "EP32",
+    "EP33",
+    "EP34",
+    "EP35",
+    "EP36",
+    "EP37"
+   ],
+   "id": "suspect",
+   "initial": {
+    "max_zoom": 1.25,
+    "min_zoom": 0.95,
+    "read_px": 14.667
+   },
+   "key": "C",
+   "label": "C 구순→김명신 수사선상",
+   "layout": {
+    "anchor": {
+     "x": -342,
+     "y": 0
+    },
+    "bands": [
+     {
+      "dated": false,
+      "id": "UNDATED",
+      "label": "날짜 미기록",
+      "sub": "시간 축 밖 · 위치는 날짜를 뜻하지 않음",
+      "x0": -136,
+      "x1": 136,
+      "y0": 10,
+      "y1": 717
+     },
+     {
+      "dated": true,
+      "id": "FEB",
+      "label": "1793-02 (2월)",
+      "sub": "관계 · 도난 · 병영 출동",
+      "x0": 232,
+      "x1": 1368,
+      "y0": 10,
+      "y1": 717
+     },
+     {
+      "dated": true,
+      "id": "MAR",
+      "label": "1793-03 (3월)",
+      "sub": "3/4 체포 지시 · 체포",
+      "x0": 1464,
+      "x1": 2312,
+      "y0": 10,
+      "y1": 717
+     },
+     {
+      "dated": true,
+      "id": "FINAL",
+      "label": "최종 판단·처분",
+      "sub": "6/13 정조 판단 → 처분 → 6/16",
+      "x0": 2408,
+      "x1": 2680,
+      "y0": 10,
+      "y1": 717
+     }
+    ],
+    "extent": {
+     "label_x0": -356,
+     "x0": -166,
+     "x1": 2710,
+     "y0": 0,
+     "y1": 2018
+    },
+    "lanes": [
+     {
+      "id": "L_OBS_RELATION",
+      "kind": "observed",
+      "label": "관계",
+      "label_lines": [
+       "관계"
+      ],
+      "sub": "RELATION",
+      "sub_lines": [
+       "RELATION"
+      ],
+      "y0": 104,
+      "y1": 211
+     },
+     {
+      "id": "L_OBS_THEFT",
+      "kind": "observed",
+      "label": "도난·소장",
+      "label_lines": [
+       "도난·소장"
+      ],
+      "sub": "THEFT",
+      "sub_lines": [
+       "THEFT"
+      ],
+      "y0": 211,
+      "y1": 344
+     },
+     {
+      "id": "L_OBS_SUSPECT_INFORMATION",
+      "kind": "observed",
+      "label": "혐의 정보",
+      "label_lines": [
+       "혐의 정보"
+      ],
+      "sub": "SUSPECT_INFORMATION",
+      "sub_lines": [
+       "SUSPECT_",
+       "INFORMATION"
+      ],
+      "y0": 344,
+      "y1": 477
+     },
+     {
+      "id": "L_OBS_BARRACKS_OPERATION",
+      "kind": "observed",
+      "label": "병영 작전·체포",
+      "label_lines": [
+       "병영 작전·체포"
+      ],
+      "sub": "BARRACKS_OPERATION",
+      "sub_lines": [
+       "BARRACKS_",
+       "OPERATION"
+      ],
+      "y0": 477,
+      "y1": 610
+     },
+     {
+      "id": "L_OBS_RESPONSIBILITY",
+      "kind": "observed",
+      "label": "책임 판단",
+      "label_lines": [
+       "책임 판단"
+      ],
+      "sub": "RESPONSIBILITY",
+      "sub_lines": [
+       "RESPONSIBILIT",
+       "Y"
+      ],
+      "y0": 610,
+      "y1": 717
+     },
+     {
+      "id": "L_SVAR",
+      "kind": "latent",
+      "label": "질적 구조 변수 V_*",
+      "label_lines": [
+       "질적 구조 변수 V_*"
+      ],
+      "sub": "OR · AND · XOR · ANCHORED 규칙",
+      "sub_lines": [
+       "OR · AND · XOR",
+       "· ANCHORED 규칙"
+      ],
+      "y0": 837,
+      "y1": 919
+     },
+     {
+      "id": "L_CAND",
+      "kind": "latent",
+      "label": "LATENT 후보 bridge",
+      "label_lines": [
+       "LATENT 후보",
+       "bridge"
+      ],
+      "sub": "gap별 가설 · 등급 그대로",
+      "sub_lines": [
+       "gap별 가설 · 등급",
+       "그대로"
+      ],
+      "y0": 919,
+      "y1": 1694
+     },
+     {
+      "id": "L_UNRES",
+      "kind": "unresolved",
+      "label": "UNRESOLVED",
+      "label_lines": [
+       "UNRESOLVED"
+      ],
+      "sub": "확정하지 않은 동일성·범위·사유",
+      "sub_lines": [
+       "확정하지 않은",
+       "동일성·범위·사유"
+      ],
+      "y0": 1694,
+      "y1": 1856
+     },
+     {
+      "id": "L_MECH",
+      "kind": "latent",
+      "label": "메커니즘 (분석 변수)",
+      "label_lines": [
+       "메커니즘 (분석",
+       "변수)"
+      ],
+      "sub": "LATENT_MECHANISM · 역사적 사실 아님",
+      "sub_lines": [
+       "LATENT_",
+       "MECHANISM ·",
+       "역사적 사실 아님"
+      ],
+      "y0": 1856,
+      "y1": 2018
+     }
+    ],
+    "positions": {
+     "EP01": {
+      "lane": "L_OBS_RELATION",
+      "x": 368,
+      "y": 158
+     },
+     "EP02": {
+      "lane": "L_OBS_THEFT",
+      "x": 656,
+      "y": 278
+     },
+     "EP03": {
+      "lane": "L_OBS_THEFT",
+      "x": 944,
+      "y": 278
+     },
+     "EP07": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 1232,
+      "y": 544
+     },
+     "EP08": {
+      "lane": "L_OBS_SUSPECT_INFORMATION",
+      "x": 0,
+      "y": 410
+     },
+     "EP09": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 1600,
+      "y": 544
+     },
+     "EP10": {
+      "lane": "L_OBS_SUSPECT_INFORMATION",
+      "x": 1888,
+      "y": 410
+     },
+     "EP11": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 2176,
+      "y": 544
+     },
+     "EP29": {
+      "lane": "L_OBS_RESPONSIBILITY",
+      "x": 2544,
+      "y": 664
+     },
+     "G03a": {
+      "lane": "L_CAND",
+      "x": 1647,
+      "y": 998
+     },
+     "G03b": {
+      "lane": "L_CAND",
+      "x": 1647,
+      "y": 1152
+     },
+     "G03c": {
+      "lane": "L_CAND",
+      "x": 1647,
+      "y": 1294
+     },
+     "G04a": {
+      "lane": "L_CAND",
+      "x": 1363,
+      "y": 998
+     },
+     "G04b": {
+      "lane": "L_CAND",
+      "x": 1363,
+      "y": 1152
+     },
+     "G04c": {
+      "lane": "L_CAND",
+      "x": 1363,
+      "y": 1319
+     },
+     "G04d": {
+      "lane": "L_CAND",
+      "x": 1363,
+      "y": 1486
+     },
+     "G04e": {
+      "lane": "L_CAND",
+      "x": 1363,
+      "y": 1628
+     },
+     "G05a": {
+      "lane": "L_CAND",
+      "x": 1931,
+      "y": 986
+     },
+     "G05b": {
+      "lane": "L_CAND",
+      "x": 1931,
+      "y": 1114
+     },
+     "M1": {
+      "lane": "L_MECH",
+      "x": 1342,
+      "y": 1937
+     },
+     "M2": {
+      "lane": "L_MECH",
+      "x": 922,
+      "y": 1937
+     },
+     "M3": {
+      "lane": "L_MECH",
+      "x": 1762,
+      "y": 1937
+     },
+     "M4": {
+      "lane": "L_MECH",
+      "x": 2182,
+      "y": 1937
+     },
+     "U_ID06": {
+      "lane": "L_UNRES",
+      "x": 1226,
+      "y": 1775
+     },
+     "U_ID08": {
+      "lane": "L_UNRES",
+      "x": 1946,
+      "y": 1775
+     },
+     "U_OE007": {
+      "lane": "L_UNRES",
+      "x": 1586,
+      "y": 1775
+     },
+     "V_INFO_TO_COMMANDER": {
+      "lane": "L_SVAR",
+      "x": 1600,
+      "y": 878
+     }
+    },
+    "ticks": [
+     {
+      "date_key": 210,
+      "label": "2/10",
+      "x": 368
+     },
+     {
+      "date_key": 222,
+      "label": "2/22",
+      "x": 800
+     },
+     {
+      "date_key": 229,
+      "label": "2/29",
+      "x": 1232
+     },
+     {
+      "date_key": 304,
+      "label": "3/4",
+      "x": 1888
+     },
+     {
+      "date_key": 613,
+      "label": "6/13",
+      "x": 2544
+     }
+    ]
+   },
    "nodes": [
-    "CTX_F006",
-    "CTX_F011",
-    "CTX_F012",
-    "CTX_F013",
-    "CTX_F014",
-    "CTX_F017",
-    "CTX_F018",
-    "CTX_F020",
+    "EP01",
+    "EP02",
+    "EP03",
+    "EP07",
+    "EP08",
+    "EP09",
+    "EP10",
+    "EP11",
+    "EP29",
+    "G03a",
+    "G03b",
+    "G03c",
+    "G04a",
+    "G04b",
+    "G04c",
+    "G04d",
+    "G04e",
+    "G05a",
+    "G05b",
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "U_ID06",
+    "U_ID08",
+    "U_OE007",
+    "V_INFO_TO_COMMANDER"
+   ],
+   "notice": "표시 범위만 줄인 화면입니다(시각적 필터). 숨긴 node는 삭제·부정된 것이 아니며 canonical graph에 그대로 있습니다. 분석상 ON/OFF가 아닙니다.",
+   "policy": "subset",
+   "scope_rule": "핵심 관측: EP01, EP02, EP03, EP08, EP09, EP10, EP11 · 맥락 관측: EP07, EP29 · gap G03·G04·G05의 LATENT 후보 전부 · 명시 node: V_INFO_TO_COMMANDER · 포함 후보를 INSTANTIATED_BY로 잇는 메커니즘(M1, M2, M3, M4) · 포함 후보에 CONDITIONS를 걸거나 View 안 관측 edge를 가리키는 UNRESOLVED(U_ID06, U_ID08, U_OE007)",
+   "title": "구순 관련 정보 → 김명신 체포"
+  },
+  "timeline": {
+   "context": [],
+   "core": [
+    "EP01",
+    "EP02",
+    "EP03",
+    "EP04",
+    "EP05",
+    "EP06",
+    "EP07",
+    "EP08",
+    "EP09",
+    "EP10",
+    "EP11",
+    "EP12",
     "EP13",
     "EP14",
     "EP15",
@@ -318,34 +4307,651 @@
     "EP34",
     "EP35",
     "EP36",
-    "EP37",
-    "G07a",
-    "G07b",
-    "G07c",
-    "G07d",
-    "G08a",
-    "G08b",
-    "G09a",
-    "G09b",
-    "G09c",
-    "G10a",
-    "G10b",
-    "G10c",
-    "G13a",
-    "G13b",
-    "M2",
-    "M5",
-    "M6",
-    "U_G10",
-    "U_OE007",
-    "V_ARREST_PATH",
-    "V_INITIAL_JUDGMENT_BASIS",
-    "V_RESPONSIBILITY",
-    "V_REVIEW_CORRECTION",
-    "V_SANCTION"
+    "EP37"
    ],
-   "path": "5/12 → 5/27 → 5/28 → 6/11 → 6/13 → 책임 판단 → 처분",
-   "title": "재검토·판단·처분 (M5 중심)"
+   "default_pane": "detail",
+   "desc": "OBSERVED 사건 node(EP01–EP37)와 그 사이 canonical edge만 날짜 순서로 표시합니다. LATENT·CONTEXT·UNRESOLVED node는 이 View에서 숨깁니다('전체 주변 맥락 표시'로 함께 볼 수 있음).",
+   "edges": [
+    "OE001",
+    "OE002",
+    "OE003",
+    "OE004",
+    "OE005",
+    "OE006",
+    "OE007",
+    "OE008",
+    "OE009",
+    "OE010",
+    "OE011",
+    "OE013",
+    "OE020",
+    "OE021",
+    "OE022",
+    "OE023",
+    "OE024",
+    "OE025",
+    "OE026",
+    "OE027",
+    "OE028",
+    "OE029",
+    "OE030",
+    "OE031",
+    "OE040",
+    "OE041",
+    "OE042",
+    "OE043",
+    "OE044",
+    "OE045",
+    "OE046",
+    "OE047",
+    "OE048",
+    "OE050",
+    "OE051",
+    "OE052",
+    "OE053",
+    "OE054",
+    "OE055",
+    "OE056",
+    "OE060",
+    "OE061",
+    "OE062",
+    "OE063",
+    "OE070",
+    "OE071",
+    "OE072",
+    "OE073",
+    "OE074",
+    "OE080",
+    "OE081",
+    "OE082",
+    "OE083",
+    "OE084",
+    "OE090",
+    "OE091",
+    "OE095",
+    "OE096",
+    "OE097",
+    "OE098"
+   ],
+   "hidden_observed": [],
+   "id": "timeline",
+   "initial": {
+    "max_zoom": 1.25,
+    "min_zoom": 0.95,
+    "read_px": 14.667
+   },
+   "key": "B",
+   "label": "B 시간순 사건",
+   "layout": {
+    "anchor": {
+     "x": -342,
+     "y": 0
+    },
+    "bands": [
+     {
+      "dated": false,
+      "id": "UNDATED",
+      "label": "날짜 미기록",
+      "sub": "시간 축 밖 · 위치는 날짜를 뜻하지 않음",
+      "x0": -136,
+      "x1": 136,
+      "y0": 10,
+      "y1": 2247
+     },
+     {
+      "dated": true,
+      "id": "FEB",
+      "label": "1793-02 (2월)",
+      "sub": "관계 · 도난 · 병영 출동",
+      "x0": 232,
+      "x1": 2232,
+      "y0": 10,
+      "y1": 2247
+     },
+     {
+      "dated": true,
+      "id": "MAR",
+      "label": "1793-03 (3월)",
+      "sub": "3/4 체포 지시 · 체포",
+      "x0": 2328,
+      "x1": 3176,
+      "y0": 10,
+      "y1": 2247
+     },
+     {
+      "dated": true,
+      "id": "MAY",
+      "label": "1793-05 (5월)",
+      "sub": "장계 · 1차 판단 · 재조사",
+      "x0": 3272,
+      "x1": 4984,
+      "y0": 10,
+      "y1": 2247
+     },
+     {
+      "dated": true,
+      "id": "JUN",
+      "label": "1793-06 (6월)",
+      "sub": "별단 · 안핵 신문·복명",
+      "x0": 5080,
+      "x1": 6504,
+      "y0": 10,
+      "y1": 2247
+     },
+     {
+      "dated": true,
+      "id": "FINAL",
+      "label": "최종 판단·처분",
+      "sub": "6/13 정조 판단 → 처분 → 6/16",
+      "x0": 6600,
+      "x1": 7736,
+      "y0": 10,
+      "y1": 2247
+     }
+    ],
+    "extent": {
+     "label_x0": -356,
+     "x0": -166,
+     "x1": 7766,
+     "y0": 0,
+     "y1": 2247
+    },
+    "lanes": [
+     {
+      "id": "L_OBS_RELATION",
+      "kind": "observed",
+      "label": "관계",
+      "label_lines": [
+       "관계"
+      ],
+      "sub": "RELATION",
+      "sub_lines": [
+       "RELATION"
+      ],
+      "y0": 104,
+      "y1": 211
+     },
+     {
+      "id": "L_OBS_THEFT",
+      "kind": "observed",
+      "label": "도난·소장",
+      "label_lines": [
+       "도난·소장"
+      ],
+      "sub": "THEFT",
+      "sub_lines": [
+       "THEFT"
+      ],
+      "y0": 211,
+      "y1": 344
+     },
+     {
+      "id": "L_OBS_SUSPECT_INFORMATION",
+      "kind": "observed",
+      "label": "혐의 정보",
+      "label_lines": [
+       "혐의 정보"
+      ],
+      "sub": "SUSPECT_INFORMATION",
+      "sub_lines": [
+       "SUSPECT_",
+       "INFORMATION"
+      ],
+      "y0": 344,
+      "y1": 477
+     },
+     {
+      "id": "L_OBS_BARRACKS_OPERATION",
+      "kind": "observed",
+      "label": "병영 작전·체포",
+      "label_lines": [
+       "병영 작전·체포"
+      ],
+      "sub": "BARRACKS_OPERATION",
+      "sub_lines": [
+       "BARRACKS_",
+       "OPERATION"
+      ],
+      "y0": 477,
+      "y1": 610
+     },
+     {
+      "id": "L_OBS_COMMAND_RESPONSIBILITY",
+      "kind": "observed",
+      "label": "지휘 책임",
+      "label_lines": [
+       "지휘 책임"
+      ],
+      "sub": "COMMAND_RESPONSIBILITY",
+      "sub_lines": [
+       "COMMAND_",
+       "RESPONSIBILIT",
+       "Y"
+      ],
+      "y0": 610,
+      "y1": 743
+     },
+     {
+      "id": "L_OBS_RESPONSIBILITY",
+      "kind": "observed",
+      "label": "책임 판단",
+      "label_lines": [
+       "책임 판단"
+      ],
+      "sub": "RESPONSIBILITY",
+      "sub_lines": [
+       "RESPONSIBILIT",
+       "Y"
+      ],
+      "y0": 743,
+      "y1": 850
+     },
+     {
+      "id": "L_OBS_DISPOSITION",
+      "kind": "observed",
+      "label": "처분",
+      "label_lines": [
+       "처분"
+      ],
+      "sub": "DISPOSITION",
+      "sub_lines": [
+       "DISPOSITION"
+      ],
+      "y0": 850,
+      "y1": 1266
+     },
+     {
+      "id": "L_OBS_REINVESTIGATION",
+      "kind": "observed",
+      "label": "재조사 명령",
+      "label_lines": [
+       "재조사 명령"
+      ],
+      "sub": "REINVESTIGATION",
+      "sub_lines": [
+       "REINVESTIGATI",
+       "ON"
+      ],
+      "y0": 1266,
+      "y1": 1399
+     },
+     {
+      "id": "L_OBS_REVIEW",
+      "kind": "observed",
+      "label": "재검토",
+      "label_lines": [
+       "재검토"
+      ],
+      "sub": "REVIEW",
+      "sub_lines": [
+       "REVIEW"
+      ],
+      "y0": 1399,
+      "y1": 1532
+     },
+     {
+      "id": "L_OBS_THEFT_JUDGMENT",
+      "kind": "observed",
+      "label": "도난 판단",
+      "label_lines": [
+       "도난 판단"
+      ],
+      "sub": "THEFT_JUDGMENT",
+      "sub_lines": [
+       "THEFT_",
+       "JUDGMENT"
+      ],
+      "y0": 1532,
+      "y1": 1665
+     },
+     {
+      "id": "L_OBS_JISE",
+      "kind": "observed",
+      "label": "지세 호칭",
+      "label_lines": [
+       "지세 호칭"
+      ],
+      "sub": "JISE",
+      "sub_lines": [
+       "JISE"
+      ],
+      "y0": 1665,
+      "y1": 1798
+     },
+     {
+      "id": "L_OBS_CAUSATION_BOUNDARY",
+      "kind": "observed",
+      "label": "인과 경계",
+      "label_lines": [
+       "인과 경계"
+      ],
+      "sub": "CAUSATION_BOUNDARY",
+      "sub_lines": [
+       "CAUSATION_",
+       "BOUNDARY"
+      ],
+      "y0": 1798,
+      "y1": 1931
+     },
+     {
+      "id": "L_OBS_DETENTION_DEATH",
+      "kind": "observed",
+      "label": "구금·사망 보고",
+      "label_lines": [
+       "구금·사망 보고"
+      ],
+      "sub": "DETENTION_DEATH",
+      "sub_lines": [
+       "DETENTION_",
+       "DEATH"
+      ],
+      "y0": 1931,
+      "y1": 2089
+     },
+     {
+      "id": "L_OBS_BIOLOGICAL",
+      "kind": "observed",
+      "label": "사인 판단 (branch A)",
+      "label_lines": [
+       "사인 판단 (branch",
+       "A)"
+      ],
+      "sub": "BIOLOGICAL",
+      "sub_lines": [
+       "BIOLOGICAL"
+      ],
+      "y0": 2089,
+      "y1": 2247
+     }
+    ],
+    "positions": {
+     "EP01": {
+      "lane": "L_OBS_RELATION",
+      "x": 368,
+      "y": 158
+     },
+     "EP02": {
+      "lane": "L_OBS_THEFT",
+      "x": 656,
+      "y": 278
+     },
+     "EP03": {
+      "lane": "L_OBS_THEFT",
+      "x": 944,
+      "y": 278
+     },
+     "EP04": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 1232,
+      "y": 544
+     },
+     "EP05": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 1520,
+      "y": 544
+     },
+     "EP06": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 1808,
+      "y": 544
+     },
+     "EP07": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 2096,
+      "y": 544
+     },
+     "EP08": {
+      "lane": "L_OBS_SUSPECT_INFORMATION",
+      "x": 0,
+      "y": 410
+     },
+     "EP09": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 2464,
+      "y": 544
+     },
+     "EP10": {
+      "lane": "L_OBS_SUSPECT_INFORMATION",
+      "x": 2752,
+      "y": 410
+     },
+     "EP11": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 3040,
+      "y": 544
+     },
+     "EP12": {
+      "lane": "L_OBS_BARRACKS_OPERATION",
+      "x": 5792,
+      "y": 544
+     },
+     "EP13": {
+      "lane": "L_OBS_DETENTION_DEATH",
+      "x": 3408,
+      "y": 2010
+     },
+     "EP14": {
+      "lane": "L_OBS_COMMAND_RESPONSIBILITY",
+      "x": 3408,
+      "y": 676
+     },
+     "EP15": {
+      "lane": "L_OBS_THEFT_JUDGMENT",
+      "x": 3696,
+      "y": 1598
+     },
+     "EP16": {
+      "lane": "L_OBS_REINVESTIGATION",
+      "x": 3984,
+      "y": 1332
+     },
+     "EP17": {
+      "lane": "L_OBS_THEFT_JUDGMENT",
+      "x": 4272,
+      "y": 1598
+     },
+     "EP18": {
+      "lane": "L_OBS_REVIEW",
+      "x": 4560,
+      "y": 1466
+     },
+     "EP19": {
+      "lane": "L_OBS_REINVESTIGATION",
+      "x": 4560,
+      "y": 1332
+     },
+     "EP20": {
+      "lane": "L_OBS_REVIEW",
+      "x": 4848,
+      "y": 1466
+     },
+     "EP21": {
+      "lane": "L_OBS_DETENTION_DEATH",
+      "x": 5216,
+      "y": 2010
+     },
+     "EP22": {
+      "lane": "L_OBS_REVIEW",
+      "x": 5504,
+      "y": 1466
+     },
+     "EP23": {
+      "lane": "L_OBS_REVIEW",
+      "x": 6080,
+      "y": 1466
+     },
+     "EP24": {
+      "lane": "L_OBS_THEFT_JUDGMENT",
+      "x": 6368,
+      "y": 1598
+     },
+     "EP25": {
+      "lane": "L_OBS_THEFT_JUDGMENT",
+      "x": 6736,
+      "y": 1598
+     },
+     "EP26": {
+      "lane": "L_OBS_BIOLOGICAL",
+      "x": 6368,
+      "y": 2168
+     },
+     "EP27": {
+      "lane": "L_OBS_BIOLOGICAL",
+      "x": 6736,
+      "y": 2168
+     },
+     "EP28": {
+      "lane": "L_OBS_CAUSATION_BOUNDARY",
+      "x": 7024,
+      "y": 1864
+     },
+     "EP29": {
+      "lane": "L_OBS_RESPONSIBILITY",
+      "x": 6736,
+      "y": 796
+     },
+     "EP30": {
+      "lane": "L_OBS_COMMAND_RESPONSIBILITY",
+      "x": 7024,
+      "y": 676
+     },
+     "EP31": {
+      "lane": "L_OBS_JISE",
+      "x": 6368,
+      "y": 1732
+     },
+     "EP32": {
+      "lane": "L_OBS_JISE",
+      "x": 6736,
+      "y": 1732
+     },
+     "EP33": {
+      "lane": "L_OBS_DISPOSITION",
+      "x": 7312,
+      "y": 904
+     },
+     "EP34": {
+      "lane": "L_OBS_DISPOSITION",
+      "x": 7312,
+      "y": 1006
+     },
+     "EP35": {
+      "lane": "L_OBS_DISPOSITION",
+      "x": 7312,
+      "y": 1110
+     },
+     "EP36": {
+      "lane": "L_OBS_DISPOSITION",
+      "x": 7312,
+      "y": 1212
+     },
+     "EP37": {
+      "lane": "L_OBS_DISPOSITION",
+      "x": 7600,
+      "y": 1058
+     }
+    },
+    "ticks": [
+     {
+      "date_key": 210,
+      "label": "2/10",
+      "x": 368
+     },
+     {
+      "date_key": 222,
+      "label": "2/22",
+      "x": 800
+     },
+     {
+      "date_key": 229,
+      "label": "2/29",
+      "x": 1664
+     },
+     {
+      "date_key": 304,
+      "label": "3/4",
+      "x": 2752
+     },
+     {
+      "date_key": 512,
+      "label": "5/12",
+      "x": 3696
+     },
+     {
+      "date_key": 527,
+      "label": "5/27",
+      "x": 4416
+     },
+     {
+      "date_key": 528,
+      "label": "5/28",
+      "x": 4848
+     },
+     {
+      "date_key": 611,
+      "label": "6/11",
+      "x": 5360
+     },
+     {
+      "date_key": 613,
+      "label": "6/13",
+      "x": 6080
+     },
+     {
+      "date_key": 613,
+      "label": "6/13",
+      "x": 7024
+     },
+     {
+      "date_key": 616,
+      "label": "6/16",
+      "x": 7600
+     }
+    ]
+   },
+   "nodes": [
+    "EP01",
+    "EP02",
+    "EP03",
+    "EP04",
+    "EP05",
+    "EP06",
+    "EP07",
+    "EP08",
+    "EP09",
+    "EP10",
+    "EP11",
+    "EP12",
+    "EP13",
+    "EP14",
+    "EP15",
+    "EP16",
+    "EP17",
+    "EP18",
+    "EP19",
+    "EP20",
+    "EP21",
+    "EP22",
+    "EP23",
+    "EP24",
+    "EP25",
+    "EP26",
+    "EP27",
+    "EP28",
+    "EP29",
+    "EP30",
+    "EP31",
+    "EP32",
+    "EP33",
+    "EP34",
+    "EP35",
+    "EP36",
+    "EP37"
+   ],
+   "notice": "표시 범위만 줄인 화면입니다(시각적 필터). 숨긴 node는 삭제·부정된 것이 아니며 canonical graph에 그대로 있습니다. 분석상 ON/OFF가 아닙니다.",
+   "policy": "subset",
+   "scope_rule": "핵심 관측: OBSERVED_EVENT 전부",
+   "title": "시간순 관측 사건"
   }
  }
 }
