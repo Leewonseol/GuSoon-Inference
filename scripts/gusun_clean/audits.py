@@ -580,6 +580,37 @@ def bridge_support_checks(c, nodes):
     return out
 
 
+OUTCOME_WORLD_RE = re.compile(r"W\d\s*(?:에서는|에서|의 경우)[^.。]{0,40}(?:정배|유배|파직|유임|처분|형장|처벌)")
+
+
+def outcome_dependency_checks(worlds, candidates, nodes):
+    """[regression] 확정 판단·처분은 모든 world에 공통인 OBSERVED 결말이다. world마다 결말이 달라지는 서술·구조를 막는다."""
+    from stage5_worlds import COMMON_OUTCOME_NODES
+    out = []
+    nid = {n["node_id"]: n for n in nodes}
+    outcome_ids = {x for ids in COMMON_OUTCOME_NODES.values() for x in ids}
+    for x in sorted(outcome_ids):
+        if x not in nid or nid[x]["node_status"] != "OBSERVED":
+            out.append(F("outcome_world_dependency", "ERROR", x, "공통 결말 node가 observed graph에 없음"))
+    cand = {c["candidate_id"]: c for c in candidates}
+    for w in worlds:
+        if w.get("role_type") not in ("COMPETING_EXPLANATION", "REJECTED"):
+            out.append(F("outcome_world_dependency", "ERROR", w["world_id"], f"role_type 오류: {w.get('role_type')}"))
+        for fld in ("narrative", "story_implication", "work_role", "difference", "story_question"):
+            m = OUTCOME_WORLD_RE.search(w.get(fld, ""))
+            if m:
+                out.append(F("outcome_world_dependency", "ERROR", w["world_id"], f"{fld}: 결말을 world에 종속시킴 '{m.group(0)}'"))
+        for b in w["latent_bridges"]:
+            for le in cand[b]["latent_edges"]:
+                if le["dst"] in outcome_ids and le["edge_type"] == "ORDER_TO_ACTION":
+                    out.append(F("outcome_world_dependency", "ERROR", w["world_id"], f"{b}가 공통 결말 {le['dst']}를 latent 명령의 실행으로 만듦"))
+    out.append(F("outcome_world_dependency", "INFO", "worlds",
+                 f"공통 결말 node {len(outcome_ids)}개는 모든 world에 공통인 OBSERVED다. 경쟁 설명 "
+                 f"{sum(w.get('role_type') == 'COMPETING_EXPLANATION' for w in worlds)}개, 배제된 설명 "
+                 f"{sum(w.get('role_type') == 'REJECTED' for w in worlds)}개"))
+    return out
+
+
 def audit3(nodes, edges, frozen_hash, current_hash, gaps, candidates, props, worlds=None):
     from stage2_graph import EDGE_TYPES
     out = []
@@ -697,7 +728,7 @@ def audit3(nodes, edges, frozen_hash, current_hash, gaps, candidates, props, wor
             if not w.get("rejected"):
                 for b in w["latent_bridges"]:
                     if b in cand and cand[b]["contradiction_risk"] == "HIGH":
-                        out.append(F("world_integrity", "ERROR", w["world_id"], f"retained world가 대조용 후보 {b} 사용"))
+                        out.append(F("world_integrity", "ERROR", w["world_id"], f"경쟁 설명 world가 대조용 후보 {b} 사용"))
             from stage5_worlds import CONFLICT_PAIRS
             for a, b, why in CONFLICT_PAIRS:
                 if a in w["latent_bridges"] and b in w["latent_bridges"]:
@@ -723,13 +754,14 @@ def audit3(nodes, edges, frozen_hash, current_hash, gaps, candidates, props, wor
                 diff = sum(pa.get(g) != pb.get(g) for g in gap_ids)
                 if diff < 2:
                     out.append(F("world_integrity", "ERROR", f"{a['world_id']}/{b['world_id']}", f"차이 gap {diff}개 < 2"))
+        out.extend(outcome_dependency_checks(worlds, candidates, nodes))
         retained = [w for w in worlds if not w.get("rejected")]
         for g in sorted(gap_ids):
             if retained and all(g in w["unresolved_gaps"] for w in retained):
                 gi = next(x for x in gaps if x["gap_id"] == g)
                 cs = ", ".join(f"{c['candidate_id']}={c['overall']}" for c in by_gap[g])
                 out.append(F("unresolved_gap", "UNRESOLVED", g,
-                             f"{gi.get('gap_status') or 'OPEN'} — 어느 retained world도 이 gap을 메우지 않음 (후보 {cs}) · "
+                             f"{gi.get('gap_status') or 'OPEN'} — 어느 경쟁 설명 world도 이 gap을 메우지 않음 (후보 {cs}) · "
                              + (f"review_decision: {gi['review_decision']} · " if gi.get("review_decision") else "")
                              + f"unresolved_reason: {gi['why_gap']} 관측 근거({gi['observed_anchor_facts']})에 사유를 적은 문장이 없음"))
         # [regression] 사용자가 열어 두기로 한 gap(OPEN_UNRESOLVED)은 어떤 world도 채우면 안 된다
@@ -740,6 +772,6 @@ def audit3(nodes, edges, frozen_hash, current_hash, gaps, candidates, props, wor
                     if used:
                         out.append(F("open_gap_filled", "ERROR", w["world_id"], f"{gi['gap_id']}은 OPEN_UNRESOLVED인데 {used} 사용"))
         out.append(F("world_integrity", "INFO", "worlds",
-                     f"world {len(worlds)}개 (retained {sum(not w.get('rejected') for w in worlds)}, "
+                     f"world {len(worlds)}개 (경쟁 설명 {sum(not w.get('rejected') for w in worlds)}, "
                      f"rejected {sum(bool(w.get('rejected')) for w in worlds)}) — 쌍별 gap 차이 ≥2 확인"))
     return out

@@ -18,7 +18,7 @@ UNRESOLVED = 5
 Audit 3:
 ERROR = 0
 WARN = 0
-INFO = 10
+INFO = 11
 UNRESOLVED = 1
 
 ```
@@ -78,11 +78,11 @@ RESOLVED(사용자 확정) 5개 · UNRESOLVED 4개 (그중 사용자 판단 필�
 
 ### Audit 3
 
-- `unresolved_gap` **G10** — OPEN_UNRESOLVED — 어느 retained world도 이 gap을 메우지 않음 (후보 G10a=MEDIUM, G10b=LOW, G10c=LOW) · review_decision: 사용자 검토: latent bridge를 채택하지 않음. 이유를 억지로 채우지 않고 gap을 열어 둔다(world에서도 비움). · unresolved_reason: 파직과 3일 뒤 유임의 사유가 모두 기록되지 않았다. 관측 근거(CF049, CF050)에 사유를 적은 문장이 없음
+- `unresolved_gap` **G10** — OPEN_UNRESOLVED — 어느 경쟁 설명 world도 이 gap을 메우지 않음 (후보 G10a=MEDIUM, G10b=LOW, G10c=LOW) · review_decision: 사용자 검토: latent bridge를 채택하지 않음. 이유를 억지로 채우지 않고 gap을 열어 둔다(world에서도 비움). · unresolved_reason: 파직과 3일 뒤 유임의 사유가 모두 기록되지 않았다. 관측 근거(CF049, CF050)에 사유를 적은 문장이 없음
 
 ## Regression validation rules
 
-build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR로 잡히는지 확인한다(25/25 탐지).
+build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR로 잡히는지 확인한다(26/26 탐지).
 
 | rule | 케이스 | 탐지 |
 |---|---|---|
@@ -103,6 +103,7 @@ build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR�
 | institutional_inflation | 제도 가능성만으로 source_support=MEDIUM(G01c) | OK |
 | endpoint_leakage | endpoint 구성 fact(CF033·CF035)를 bridge 근거로 인용(G08a) | OK |
 | bridge_support_inflation | 재감사 이전 값 전체(source_consistency_v1)를 다시 넣으면 검사가 잡는지 | OK |
+| outcome_world_dependency | 확정 처분(구순 정배)을 특정 world의 결과로 서술 | OK |
 | closed_set | '등' 삭제(EP07) | OK |
 | semantic_strengthening | '극히 수상하다' → 범인 지목(EP08) | OK |
 | responsibility_to_causation | 책임 판단을 직접 사인으로(EP29) | OK |
@@ -118,15 +119,15 @@ build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR�
 - 직전 sha256(앞자리): `ccb7ec63763a715a…`
 - 구조 sha256(문구 제외): `0b69134457880767285c3516e1e9c962bb9b778a5c6f4e85b248c6b16b01c80d` — 이전과 동일
 - topology sha256(id·끝점·type): `04c84b0e24af31f5605800ae30bc2750563a1aeb3e72390aa6d6643676b68e84` — 이전과 동일
-- 변경 내용: LATENT 후보 재감사(bridge 자체 근거 평가). observed graph는 손대지 않음 — node·edge·condition·끝점·type 모두 그대로
+- 변경 내용: narrative world 사용 방식 재정리(경쟁하는 설명으로 병렬 보존). observed graph는 손대지 않음 — node·edge·condition·끝점·type 모두 그대로
 
 ## Narrative worlds
 
 | world | 상태 | bridge | 최저 등급 | bridge 근거 등급 분포 | 가정 수 | 미확정 동일성 의존 | 미해결 gap |
 |---|---|---|---|---|---|---|---|
-| W1 | RETAINED | G01a G02a G03a G04a G05a G06a G07a G08a G09a G11a G12a G13a | LOW | MEDIUM 5 / LOW 7 | 20 | ID06, ID07 | G10 |
-| W2 | RETAINED | G01a G02b G03a G04b G06b G07c G08a G09a G12a | LOW | MEDIUM 2 / LOW 7 | 18 | 0 | G05, G10, G11, G13 |
-| W3 | RETAINED | G01b G02a G04c G05a G06a G07a G08a G12a | LOW | MEDIUM 2 / LOW 5 / NONE 1 | 11 | ID07 | G03, G09, G10, G11, G13 |
-| W4 | RETAINED | G01a G02b G03c G06a G07b G08b G11a G13a | LOW | MEDIUM 3 / LOW 4 / NONE 1 | 14 | 0 | G04, G05, G09, G10, G12 |
-| W5 | RETAINED | G01a G06a G07a G08a | LOW | MEDIUM 2 / LOW 2 | 5 | 0 | G02, G03, G04, G05, G09, G10, G11, G12, G13 |
+| W1 | COMPETING_EXPLANATION | G01a G02a G03a G04a G05a G06a G07a G08a G09a G11a G12a G13a | LOW | MEDIUM 5 / LOW 7 | 20 | ID06, ID07 | G10 |
+| W2 | COMPETING_EXPLANATION | G01a G02b G03a G04b G06b G07c G08a G09a G12a | LOW | MEDIUM 2 / LOW 7 | 18 | 0 | G05, G10, G11, G13 |
+| W3 | COMPETING_EXPLANATION | G01b G02a G04c G05a G06a G07a G08a G12a | LOW | MEDIUM 2 / LOW 5 / NONE 1 | 11 | ID07 | G03, G09, G10, G11, G13 |
+| W4 | COMPETING_EXPLANATION | G01a G02b G03c G06a G07b G08b G11a G13a | LOW | MEDIUM 3 / LOW 4 / NONE 1 | 14 | 0 | G04, G05, G09, G10, G12 |
+| W5 | COMPETING_EXPLANATION | G01a G06a G07a G08a | LOW | MEDIUM 2 / LOW 2 | 5 | 0 | G02, G03, G04, G05, G09, G10, G11, G12, G13 |
 | W6 | REJECTED | G06c G07d G12b | LOW | LOW 3 | 4 | 0 | G01, G02, G03, G04, G05, G08, G09, G10, G11, G13 |

@@ -253,23 +253,85 @@ def write_gaps(path, gaps, cands, nodes):
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def _outcome_rows(nodes):
+    from stage5_worlds import COMMON_OUTCOME_NODES
+    by = {n["node_id"]: n for n in nodes}
+    rows = []
+    for phase, ids in COMMON_OUTCOME_NODES.items():
+        for x in ids:
+            n = by[x]
+            rows.append((phase, x, n["occurrence_text"], n["summary"], n["member_fact_ids"].replace("|", ", ")))
+    return rows
+
+
+def _usage_section():
+    return ["## Narrative Worlds를 작품에서 사용하는 방식", "",
+            "### 원칙 1 — 세계들은 서로 다른 설명 가설이다",
+            "W1–W5는 같은 OBSERVED 골격 위에서, 사료가 알려 주지 않은 중간 과정을 서로 다르게 채운 가설이다. "
+            "하나의 정답 후보가 아니라 경쟁하는 사건 설명으로 함께 보존한다. 서로 배타적이거나 긴장하는 LATENT 가설은 각 world 안에서만 유지하고, "
+            "여러 world의 가설을 동시에 역사적 사실로 합치지 않는다.", "",
+            "### 원칙 2 — 조사 단계에 따라 서로 다른 world가 차례로 제시될 수 있다",
+            "아래는 구조 설명용 예시다. 새 사건을 만들지 않는다.", "",
+            "| 작품 속 단계 | 제시될 수 있는 설명 |", "|---|---|",
+            "| 초기 조사 | W2처럼 보임: 구류·대질 진술이 수사를 넓힌 듯한 인상 |",
+            "| 다른 증언 검토 | W3 가능성이 제기됨: 기록되지 않은 사적 통로의 의심 |",
+            "| 기관별 기록 비교 | W4 가능성이 드러남: 진영·병영·공주진·의금부가 따로 움직인 흔적 |",
+            "| 정조 최종 판단 | W1과 가까운 책임 구조가 제시됨: 구순·이광섭 책임 판단(CF043·CF044) |",
+            "| 끝까지 확인되지 않는 부분 | W5처럼 빈칸으로 남김 |", "",
+            "### 원칙 3 — 한 world가 다른 world를 이긴다고 쓰지 않는다",
+            "비교는 다음 축으로만 한다: 어떤 설명은 bridge의 사료 근거가 더 강하다(evidence). 어떤 설명은 제도적으로 더 자연스럽다(plausibility). "
+            "어떤 설명은 가정이 더 적다(가정 수). 어떤 설명은 특정 증언을 더 많이 활용한다.", "",
+            "### 원칙 4 — 사료가 결정하지 않은 부분은 끝까지 '확정되지 않음'으로 남길 수 있다",
+            "UNRESOLVED 동일성(ID06·ID07·ID08), 부분 충돌(OE007), 범위 미확정(OE062), 열린 gap(G10)은 어느 world에서도 확정하지 않는다.", ""]
+
+
 def write_worlds(path, worlds, cands, gaps, nodes):
     cand = {c["candidate_id"]: c for c in cands}
     gap_t = {g["gap_id"]: g["title"] for g in gaps}
-    lines = ["# STAGE 5 — Narrative Worlds", "",
-             "동결된 observed backbone 위에 검증된 latent 후보를 **제한적으로** 얹은 설명 경로다. 하나의 정답 세계를 고르려는 것이 아니다. "
-             f"모든 world는 같은 observed backbone(node {len(nodes)}개 · 동결 해시 동일)을 공유하고, latent bridge만 다르다.", "",
-             "구성 방식: 전수 조합이 아니다. gap별 후보(최대 5개) 가운데 설명 축(정보 경로, 강요 진술, 사적 경로, 지휘 분산, 최소 가정)이 "
-             "서로 다르도록 직접 고른 뒤, 같은 gap에 후보 2개 이상 금지, INCOMPATIBLE 사용 금지, world 사이 최소 2개 gap에서 차이를 검사했다. "
-             "SMC·MCMC·posterior sampling은 쓰지 않았다.", "",
-             "## 비교표", "", "| world | 이름 | bridge 수 | 미해결 gap | 제도 적합 | 환경 적합 | 가정 수 | bridge 근거 등급 분포 | 최저 후보 등급 | 상태 |",
-             "|---|---|---|---|---|---|---|---|---|---|"]
+    comp = [w for w in worlds if w["role_type"] == "COMPETING_EXPLANATION"]
+    rej = [w for w in worlds if w["role_type"] == "REJECTED"]
+    lines = ["# STAGE 5 — Narrative Worlds (경쟁하는 사건 설명)", "",
+             "이 문서는 world 하나를 승자로 고르기 위한 것이 아니다. W1–W5는 작품에서 함께 쓸 수 있는 **경쟁하는 사건 설명**이고, "
+             "W6은 **검토했지만 배제된 설명**이다.", "",
+             "```",
+             "[확정된 OBSERVED 사건]            ← 모든 world 공통",
+             "        ↓",
+             "[사료가 알려주지 않은 중간 과정]   ← world마다 다른 LATENT bridge",
+             "        ├─ W1  ├─ W2  ├─ W3  ├─ W4  └─ W5",
+             "        ↓",
+             "[확정된 재검토·책임 판단·처분]      ← 모든 world 공통 (결말은 world마다 바뀌지 않는다)",
+             "```", "",
+             f"- 모든 world는 같은 동결 observed graph(node {len(nodes)}개)를 공유한다. LATENT bridge만 다르다.",
+             "- 서로 다른 world의 LATENT 가설을 하나로 합치지 않는다. 각 가설은 그 world 안에서만 유지된다.",
+             "- 구성 방식: 전수 조합이 아니다. 설명 축이 서로 다르도록 직접 골랐다. 같은 gap에 후보 2개 이상 금지, INCOMPATIBLE 금지, "
+             "world 사이 최소 2개 gap에서 차이가 나도록 했다. SMC·MCMC·posterior sampling은 쓰지 않았다.", "",
+             "## 모든 world에 공통인 OBSERVED 결말", "",
+             "아래 재검토·판단·처분은 world별 결과가 아니다. 모든 world에 공통인 관측 사실이고, world들은 여기에 이르기 전의 미확인 경로만 다르게 설명한다.", "",
+             "| 단계 | node | 시점 | 기록 내용 | 근거 fact |", "|---|---|---|---|---|"]
+    for phase, x, t, summ, facts in _outcome_rows(nodes):
+        lines.append(f"| {phase} | {x} | {_cell(t)} | {_cell(summ)} | {facts} |")
+    lines += ["", "## 경쟁하는 설명 W1–W5 비교", "",
+              "| World | 작품에서의 역할 | 공통 OBSERVED 골격 | 이 world만 추가하는 LATENT | 추가 가정 수 | evidence 분포 | 가장 약한 점 | 다른 world와 다른 점 | 작품에서 보여주는 질문 |",
+              "|---|---|---|---|---|---|---|---|---|"]
+    for w in comp:
+        uniq = ", ".join(f"{b}({cand[b]['evidence_grade']})" for b in w["unique_bridges"]) or "없음(다른 world와 공유하는 bridge만 사용)"
+        weak = w["main_weaknesses"][0] if w["main_weaknesses"] else ""
+        lines.append(f"| {w['world_id']} | {_cell(w['work_role'])} | 동결 observed graph 전체 + 공통 결말 | {uniq} | {w['n_assumptions']} | "
+                     f"{w.get('evidence_profile', '')} | {_cell(weak)} | {_cell(w['difference'])} | {_cell(w['story_question'])} |")
+    lines += ["", "## 검토했지만 배제된 설명", "", "| World | status | 역할 | 사용 bridge | 배제 이유 |", "|---|---|---|---|---|"]
+    for w in rej:
+        lines.append(f"| {w['world_id']} | REJECTED | {_cell(w['work_role'])} | {' '.join(w['latent_bridges'])} | {_cell(w['contradicted_evidence'])} |")
+    lines += [""] + _usage_section()
+    lines += ["## 수치 비교 (참고)", "", "| world | 이름 | bridge 수 | 미해결 gap | 제도 적합 | 환경 적합 | 가정 수 | bridge 근거 등급 분포 | 최저 후보 등급 | 구분 |",
+              "|---|---|---|---|---|---|---|---|---|---|"]
     for w in worlds:
         lines.append(f"| {w['world_id']} | {w['name']} | {len(w['latent_bridges'])} | {len(w['unresolved_gaps'])} | "
                      f"{w['institutional_fit']} | {w['environmental_fit']} | {w['n_assumptions']} | {w.get('evidence_profile', '')} | {w['min_grade']} | "
-                     f"{'REJECTED' if w.get('rejected') else 'RETAINED'} |")
+                     f"{w['role_type']} |")
     for w in worlds:
-        lines += ["", f"## {w['world_id']} — {w['name']}" + (" (REJECTED — 대조용)" if w.get("rejected") else ""), "",
+        lines += ["", f"## {w['world_id']} — {w['name']}" + (" (REJECTED — 검토했지만 배제된 설명)" if w.get("rejected") else " (경쟁하는 설명)"), "",
+                  f"**작품에서의 역할** — {w['work_role']}", "",
+                  f"**작품에서 보여주는 질문** — {w['story_question']}", "",
                   f"**story_implication** — {w['story_implication']}", "",
                   f"- observed_backbone: {w['observed_backbone']}",
                   "- latent_bridges (모두 LATENT):"]
@@ -372,13 +434,15 @@ def write_latent_csv(out, gaps, cands, worlds):
         w = csv.writer(f)
         w.writerow(["world_id", "name", "status", "latent_bridges", "unresolved_gaps", "institutional_fit",
                     "environmental_fit", "n_assumptions", "min_grade", "main_assumptions", "main_weaknesses",
-                    "contradicted_evidence", "story_implication", "identity_conditions", "resolved_identities", "evidence_profile", "narrative"])
+                    "contradicted_evidence", "story_implication", "identity_conditions", "resolved_identities", "evidence_profile",
+                    "work_role", "story_question", "difference", "unique_bridges", "narrative"])
         for x in worlds:
-            w.writerow([x["world_id"], x["name"], "REJECTED" if x.get("rejected") else "RETAINED",
+            w.writerow([x["world_id"], x["name"], x["role_type"],
                         "|".join(x["latent_bridges"]), "|".join(x["unresolved_gaps"]), x["institutional_fit"],
                         x["environmental_fit"], x["n_assumptions"], x["min_grade"], " / ".join(x["main_assumptions"]),
                         " / ".join(x["main_weaknesses"]), x["contradicted_evidence"], x["story_implication"],
-                        x.get("identity_conditions", ""), x.get("resolved_identities", ""), x.get("evidence_profile", ""), x.get("narrative", "")])
+                        x.get("identity_conditions", ""), x.get("resolved_identities", ""), x.get("evidence_profile", ""),
+                        x["work_role"], x["story_question"], x["difference"], "|".join(x["unique_bridges"]), x.get("narrative", "")])
 
 
 def write_validation_summary(path, audits_by_name, freeze, worlds, cands=None):
@@ -436,7 +500,7 @@ def write_validation_summary(path, audits_by_name, freeze, worlds, cands=None):
               f"- 변경 내용: {freeze['change_note']}",
               "", "## Narrative worlds", "", "| world | 상태 | bridge | 최저 등급 | bridge 근거 등급 분포 | 가정 수 | 미확정 동일성 의존 | 미해결 gap |", "|---|---|---|---|---|---|---|---|"]
     for w in worlds:
-        lines.append(f"| {w['world_id']} | {'REJECTED' if w.get('rejected') else 'RETAINED'} | {' '.join(w['latent_bridges'])} | "
+        lines.append(f"| {w['world_id']} | {w['role_type']} | {' '.join(w['latent_bridges'])} | "
                      f"{w['min_grade']} | {w.get('evidence_profile', '')} | {w['n_assumptions']} | {w['identity_conditions'].replace('|', ', ') or '0'} | "
                      f"{', '.join(w['unresolved_gaps']) or '-'} |")
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -515,4 +579,85 @@ def write_reaudit(path, cands, worlds_new, worlds_old):
           "- `endpoint_leakage`: endpoint node의 구성 fact를 bridge 근거로 인용한 경우",
           "- `latent_classification`: bridge가 사료에 직접 있는(YES) LATENT 후보 — 분류 점검 대상",
           "", "regression 케이스로 재감사 이전 값(예: G08a source HIGH)을 다시 넣으면 위 규칙이 ERROR를 내는지 build 때마다 확인한다."]
+    path.write_text("\n".join(L) + "\n", encoding="utf-8")
+
+
+def write_story_matrix(path, worlds, cands, gaps, nodes, identity_rows, edges):
+    cand = {c["candidate_id"]: c for c in cands}
+    by = {n["node_id"]: n for n in nodes}
+    comp = [w for w in worlds if w["role_type"] == "COMPETING_EXPLANATION"]
+    from stage5_worlds import COMMON_OUTCOME_NODES
+    outcome_ids = {x for ids in COMMON_OUTCOME_NODES.values() for x in ids}
+    L = ["# Narrative World Story Matrix — 무엇이 사실이고 무엇이 가설인가", "",
+         "- **OBSERVED** = 사료(01 confirmed facts)에서 확인된 내용. 모든 world에 공통이다. 진술·보고·판단은 그 인식 수준(진술/보고/판단)을 그대로 유지한다.",
+         "- **LATENT** = 사료가 비워 둔 중간 과정을 설명하려는 가설. world마다 다르고, 그 world 안에서만 유지한다. 여러 world의 가설을 합쳐 사실로 쓰지 않는다.",
+         "- W1–W5 = 경쟁하는 사건 설명(함께 보존). W6 = 검토했지만 배제된 설명(REJECTED).", "",
+         "# 1. 모든 world에 공통인 OBSERVED 사실", "",
+         "결말(재검토·판단·처분)은 8장에 따로 모았다. 여기에는 그 앞 단계의 관측 사실을 둔다. '진술'은 진술된 내용이지 객관 사실이 아니다.", "",
+         "| node | 시점 | 인식 수준 | 내용 | 근거 fact |", "|---|---|---|---|---|"]
+    for n in nodes:
+        if n["layer"] == "ENVIRONMENT" or n["node_id"] in outcome_ids:
+            continue
+        L.append(f"| {n['node_id']} | {_cell(n['occurrence_text'])} | {n['layer']} | {_cell(n['summary'])} | {n['member_fact_ids'].replace('|', ', ')} |")
+    L += ["", "환경 context(사건이 아님): " + "; ".join(f"{n['node_id']} {n['title']}" for n in nodes if n["layer"] == "ENVIRONMENT"), ""]
+    titles = {"W1": "2", "W2": "3", "W3": "4", "W4": "5"}
+    for w in comp:
+        if w["world_id"] == "W5":
+            continue
+        josa = {"W1": "이"}.get(w["world_id"], "가")
+        L += [f"# {titles[w['world_id']]}. {w['world_id']}{josa} 추가하는 LATENT", "",
+              f"**역할** — {w['work_role']}", "", f"**보여주는 질문** — {w['story_question']}", "",
+              f"이 world만 쓰는 가설: {', '.join(w['unique_bridges']) or '없음'} · 다른 world와 다른 점: {w['difference']}", "",
+              "| 후보 | gap | LATENT 가설 (bridge claim) | bridge 근거 | final | 다른 경쟁 world와 공유 |", "|---|---|---|---|---|---|"]
+        for b in w["latent_bridges"]:
+            c = cand[b]
+            share = [o["world_id"] for o in comp if o is not w and b in o["latent_bridges"]]
+            L.append(f"| {b} | {c['gap_id']} | [LATENT] {_cell(c['latent_bridge_claim'])} | {c['source_support']} | {c['overall']} | "
+                     f"{', '.join(share) or '이 world만'} |")
+        L += ["", f"비워 둔 gap: {', '.join(w['unresolved_gaps']) or '없음'}", ""]
+    w5 = next(w for w in comp if w["world_id"] == "W5")
+    L += ["# 6. W5가 비워 두는 부분", "", f"**역할** — {w5['work_role']}", "", f"**보여주는 질문** — {w5['story_question']}", "",
+          "W5가 쓰는 최소 bridge(모두 다른 world와 공유):", "",
+          "| 후보 | gap | LATENT 가설 | bridge 근거 | final |", "|---|---|---|---|---|"]
+    for b in w5["latent_bridges"]:
+        c = cand[b]
+        L.append(f"| {b} | {c['gap_id']} | [LATENT] {_cell(c['latent_bridge_claim'])} | {c['source_support']} | {c['overall']} |")
+    L += ["", "W5가 채우지 않고 빈칸으로 두는 gap:", "", "| gap | 무엇이 비어 있나 | 다른 world는 어떻게 채우나 |", "|---|---|---|"]
+    for g in gaps:
+        if g["gap_id"] in w5["unresolved_gaps"]:
+            fills = [f"{o['world_id']}:{b}" for o in comp for b in o["latent_bridges"] if cand[b]["gap_id"] == g["gap_id"]]
+            L.append(f"| {g['gap_id']} | {_cell(g['title'])} — {_cell(g['why_gap'])} | {', '.join(fills) or '어느 world도 채우지 않음'} |")
+    L += ["", "# 7. World 간 차이 비교표", "",
+          "칸의 값은 그 world가 해당 gap에 놓은 LATENT 후보다(괄호는 bridge 근거 등급). '·'는 비워 둠. W6은 배제된 설명이라 마지막 열에 따로 둔다.", "",
+          "| gap | " + " | ".join(w["world_id"] for w in comp) + " | W6 (REJECTED) |", "|---|" + "---|" * (len(comp) + 1)]
+    rej = [w for w in worlds if w["role_type"] == "REJECTED"]
+    for g in gaps:
+        row = []
+        for w in comp + rej:
+            pick = [b for b in w["latent_bridges"] if cand[b]["gap_id"] == g["gap_id"]]
+            row.append(f"{pick[0]}({cand[pick[0]]['source_support']})" if pick else "·")
+        L.append(f"| {g['gap_id']} {_cell(g['title'])} | " + " | ".join(row) + " |")
+    L += ["", "| World | 추가 가정 수 | evidence 분포 | 최저 등급 | 작품에서 보여주는 질문 |", "|---|---|---|---|---|"]
+    for w in comp + rej:
+        L.append(f"| {w['world_id']} ({w['role_type']}) | {w['n_assumptions']} | {w.get('evidence_profile', '')} | {w['min_grade']} | {_cell(w['story_question'])} |")
+    L += ["", "# 8. 최종 판단·처분 중 모든 world에 공통인 것", "",
+          "아래는 world별 결과가 아니다. 모든 world에 공통된 관측 사실이고, world들은 여기에 이르기 전의 미확인 사건 경로만 다르게 설명한다. "
+          "(예: 구순의 신지도 정배는 모든 world에 공통된 관측 사실이다.)", "",
+          "| 단계 | node | 시점 | 기록 내용 | 근거 fact |", "|---|---|---|---|---|"]
+    for phase, x, t, summ, facts in _outcome_rows(nodes):
+        L.append(f"| {phase} | {x} | {_cell(t)} | {_cell(summ)} | {facts} |")
+    L += ["", "참고: 처분문의 '한가'는 한재욱이다(ID03, 사용자 확정). 이형원은 6/13 파직 뒤 6/16 유임되었고, 그 이유는 열린 gap(G10)으로 남는다.", "",
+          "# 9. 끝까지 UNRESOLVED로 남는 것", "",
+          "| 항목 | 상태 | 내용 | 모델에서의 보존 형태 |", "|---|---|---|---|"]
+    for r in identity_rows:
+        if r["status"] == "UNRESOLVED":
+            L.append(f"| {r['identity_id']} | UNRESOLVED | {_cell(r['surface_a'])} ↔ {_cell(r['surface_b'])} | "
+                     f"{_cell(r['model_relevance'])} · {_cell(r.get('review_decision', ''))} |")
+    for e in edges:
+        if e.get("uncertainty_status") in ("PARTIAL_CONFLICT", "UNRESOLVED_SCOPE"):
+            L.append(f"| {e['edge_id']} | {e['uncertainty_status']} | {_cell(e['rationale'])} | {_cell(e.get('review_decision', ''))} |")
+    for g in gaps:
+        if g.get("gap_status") == "OPEN_UNRESOLVED":
+            L.append(f"| {g['gap_id']} | OPEN_UNRESOLVED | {_cell(g['title'])} | {_cell(g.get('review_decision', ''))} |")
+    L += ["", "이 항목들은 어느 world에서도 확정하지 않는다. 사료가 결정하지 못한 불확실성이며 오류가 아니다."]
     path.write_text("\n".join(L) + "\n", encoding="utf-8")

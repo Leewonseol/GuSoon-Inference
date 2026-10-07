@@ -1,6 +1,7 @@
 """STAGE 5 — 소수의 narrative world.
 
-- 전수 조합을 만들지 않는다. 설명 축이 서로 다른 world를 직접 골랐다(retained 5 + 기각 대조 1).
+- 전수 조합을 만들지 않는다. 설명 축이 서로 다른 world를 직접 골랐다(경쟁 설명 5 + 기각 대조 1).
+- W1–W5는 하나를 고르는 후보가 아니라 함께 보존하는 경쟁 설명(COMPETING_EXPLANATION)이다. 서로 다른 LATENT 가설은 각 world 안에서만 유지하고 하나의 세계로 합치지 않는다. 확정 판단·처분(COMMON_OUTCOME_NODES)은 모든 world에 공통인 OBSERVED 결말이다.
 - 모든 world는 동결된 observed DAG를 그대로 공유하고, gap마다 latent bridge를 최대 1개 얹는다.
 - world의 institutional_fit / environmental_fit / min_grade / n_assumptions는 구성 후보에서 기계적으로 계산한다.
 - 서술(narrative)에서 [L]은 LATENT bridge 부분이다. 진술은 '…라고 진술했다'로 남기고, 미확정 동일성은 IDxx로 표시한다.
@@ -135,14 +136,14 @@ WORLDS = [
             "철퇴 = 철편(ID07). 병사 = 이광섭은 ID01 사용자 확정",
         ],
         main_weaknesses=[
-            "LOW bridge(G04c)에 기댄다. 3/4 이전 접촉을 보여 주는 confirmed fact가 없고, 05 흔적(V3P0053·V3P0148)도 audit-only다. retained world 가운데 가장 약하다.",
+            "LOW bridge(G04c)에 기댄다. 3/4 이전 접촉을 보여 주는 confirmed fact가 없고, 05 흔적(V3P0053·V3P0148)도 audit-only다. 경쟁 설명 world 가운데 가장 약하다.",
             "G01b는 CF026(진영 영장 이문협의 위임·방관 평가)을 설명하지 못한다.",
             "구순은 공식 지휘권이 없으므로 이 경로는 정보 제공일 뿐 명령 경로가 아니다. 체포 지시의 공식 주체는 여전히 병사다(CF023).",
             "미확정 동일성 ID07에 기댄다(ID01은 사용자 확정).",
         ],
         contradicted_evidence="직접 충돌하는 confirmed fact 없음. 약한 반증: CF026(진영 영장이 수사를 병영 비장에게 맡김)은 병영 직접 접수(G01b)와 잘 맞지 않는다.",
         story_implication="구순과 병영 지휘관 사이의 사적 통로(3/4 이전 접촉과 3/4 서찰)를 사건의 축으로 본다. 정조가 이광섭이 '구순 편을 들었다'고 한 판단을 "
-                          "가장 직접적으로 풀어 쓰지만, 핵심 bridge가 LOW라서 retained world 가운데 가장 약하다.",
+                          "가장 직접적으로 풀어 쓰지만, 핵심 bridge가 LOW라서 경쟁 설명 world 가운데 가장 약하다.",
         narrative=(
             "명업은 김명신이 구순을 힐책한 뒤 왕래가 끊겼고, 구순이 소장을 올린 뒤 체포령이 내려졌다고 진술했다. "
             "[L] 소장은 병영에 직접 접수되었고 병영이 체포령을 내렸다(G01b). "
@@ -255,6 +256,42 @@ WORLDS = [
 ]
 
 
+# 모든 world에 공통인 OBSERVED 결말(재검토 과정·최종 판단·처분). world마다 달라지지 않는다.
+COMMON_OUTCOME_NODES = {
+    "재검토 과정": ["EP15", "EP16", "EP17", "EP18", "EP19", "EP20", "EP21", "EP22", "EP23"],
+    "최종 판단": ["EP24", "EP25", "EP26", "EP27", "EP28", "EP29", "EP30", "EP31", "EP32"],
+    "처분": ["EP33", "EP34", "EP35", "EP36", "EP37"],
+}
+
+# 작품에서의 역할. 어느 world가 '이긴다'는 뜻이 아니다. 근거·제도 적합·가정 수·증언 활용도로만 비교한다.
+WORLD_ROLES = {
+    "W1": dict(role_type="COMPETING_EXPLANATION",
+               work_role="정조의 최종 책임 판단(CF043·CF044)과 가장 가까운 방향으로 중간 경로를 재구성한 버전. '정조가 왜 이런 사람들에게 책임을 물었는가'를 가장 적극적으로 설명한다. 가장 참인 world라는 뜻은 아니다.",
+               story_question="정조는 어떤 책임 구조를 보고 처분했는가?",
+               difference="빈칸 12개를 공식 정보 경로(진영 → 병영 비장 → 병사)로 가장 많이 채운다. 구순의 의혹 발언이 비장 계통을 거쳐 병사에게 보고되었다는 G04a를 이 world만 쓴다."),
+    "W2": dict(role_type="COMPETING_EXPLANATION",
+               work_role="자미덕의 구류·대질 진술이 수사 확대에 영향을 주었다고 보는 버전. 증언이 수사 방향을 어떻게 키웠을 수 있는지 보여 준다.",
+               story_question="자미덕의 진술은 수사를 얼마나 확대시켰을 수 있는가?",
+               difference="체포 근거를 대질 진술(G04b)에서, 5월 판단을 구순 집 사람들의 진술 번복(G07c)에서 찾는다. 구금 경과는 형장 없는 조사 압박(G06b)으로 본다. 세 가설 모두 이 world만 쓴다."),
+    "W3": dict(role_type="COMPETING_EXPLANATION",
+               work_role="구순과 병영 사이에 사료에 기록되지 않은 사적 통로가 있었을 가능성을 시험하는 버전. 핵심 bridge의 근거가 약하다(G04c LOW, G01b NONE).",
+               story_question="구순의 사적 영향력이 별도로 작동했을 가능성이 있는가?",
+               difference="소장의 병영 직접 접수(G01b)와 3/4 이전 사적 접촉(G04c)을 이 world만 쓴다. 공식 정보 경로(G03·G04a)는 쓰지 않는다."),
+    "W4": dict(role_type="COMPETING_EXPLANATION",
+               work_role="하나의 중앙 지휘 경로가 아니라 여러 기관·실무자가 분산적으로 움직였다고 보는 버전. 사건이 한 사람의 설계가 아니라 기관별 판단의 누적으로 커졌을 가능성을 보여 준다.",
+               story_question="한 명의 지휘자가 아니라 여러 기관의 판단 누적이 사건을 키웠는가?",
+               difference="유제희의 병사 직보(G03c), 회동 조사 진술 채택(G07b), 지세 의문이 차하의 주목적(G08b)을 이 world만 쓴다. 구순 발언 → 3/4 지시 경로(G04)는 비워 둔다."),
+    "W5": dict(role_type="COMPETING_EXPLANATION",
+               work_role="최소가정 버전. 사료에 없는 중간 과정을 최대한 채우지 않고 확정 사실 사이의 빈칸을 가능한 한 그대로 둔다.",
+               story_question="사료에 없는 것을 거의 채우지 않으면 무엇만 남는가?",
+               difference="고유한 bridge가 없다. 다른 world와 공유하는 bridge 4개(G01a·G06a·G07a·G08a)만 쓰고 나머지 9개 gap은 비워 둔다."),
+    "W6": dict(role_type="REJECTED",
+               work_role="검토했지만 배제된 설명. 이조원·윤노동 쪽 주장(도난 날조, 형장 뒤 사망)을 따른다. confirmed fact와 정조 최종 판단(CF038–CF041)과 충돌한다.",
+               story_question="5월 단계의 '도난 날조·장형 사망' 주장은 왜 최종 판단에서 받아들여지지 않았는가?",
+               difference="세 bridge 모두 contradiction_risk HIGH인 대조 후보다. 경쟁 설명이 아니라 배제된 설명으로만 남긴다."),
+}
+
+
 def _min_grade(vals):
     vals = [v for v in vals if v and v != "N/A"]
     return NAME[min(SCORE[v] for v in vals)] if vals else "N/A"
@@ -320,6 +357,7 @@ def build(nodes, edges, gaps, cands):
             contradicted_evidence=w["contradicted_evidence"],
             story_implication=w["story_implication"],
             narrative=w["narrative"],
+            **WORLD_ROLES[w["world_id"]],
             identity_conditions="|".join(ids),
         ))
     # world 사이 최소 2개 gap에서 차이
@@ -329,4 +367,10 @@ def build(nodes, edges, gaps, cands):
         diff = sum(pa.get(g) != pb.get(g) for g in gap_ids)
         assert diff >= 2, f"{a['world_id']}·{b['world_id']} 차이 gap {diff}개 < 2"
     assert 3 <= len(out) <= 7
+    # 경쟁 설명 world끼리만 고유 bridge를 계산한다(W6은 배제된 설명이라 비교에서 뺀다)
+    comp = [w for w in out if w["role_type"] == "COMPETING_EXPLANATION"]
+    for w in out:
+        others = {b for o in comp if o is not w for b in o["latent_bridges"]}
+        w["unique_bridges"] = [b for b in w["latent_bridges"] if b not in others] if w in comp else list(w["latent_bridges"])
+        assert (w["role_type"] == "REJECTED") == bool(w.get("rejected")), w["world_id"]
     return out

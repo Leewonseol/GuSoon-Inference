@@ -2,7 +2,7 @@
 
 핵심 질문: **추론한 것을 사료에서 확인된 사실처럼 표시했는가?**
 
-- 판정: **PASS** (ERROR 0 · WARN 0 · UNRESOLVED 1 · INFO 10)
+- 판정: **PASS** (ERROR 0 · WARN 0 · UNRESOLVED 1 · INFO 11)
 - LATENT → OBSERVED 둔갑: **0건**
 - 동결 해시: `ccb7ec63763a715ae90c74dfff37d3ed7980fa705fd152f59de8bed2e31d4e0c` (Stage 4·5 뒤에도 observed DAG 변경 없음)
 
@@ -22,11 +22,12 @@ DERIVED는 원본에 한 문장으로 쓰여 있지는 않지만 원본 정보�
 |---|---|---|---|---|
 | audit_only_support | 0 | 0 | 0 | 3 |
 | freeze_violation | 0 | 0 | 0 | 1 |
+| outcome_world_dependency | 0 | 0 | 0 | 1 |
 | resolved_identity_conflict | 0 | 0 | 0 | 2 |
 | support_basis_cap | 0 | 0 | 0 | 3 |
 | unresolved_gap | 0 | 0 | 1 | 0 |
 | world_integrity | 0 | 0 | 0 | 1 |
-| **합계** | **0** | **0** | **1** | **10** |
+| **합계** | **0** | **0** | **1** | **11** |
 
 ### ERROR
 _없음_
@@ -44,7 +45,8 @@ _없음_
 - `support_basis_cap` **G10b** — ENVIRONMENTAL_CONTEXT만 근거 → LOW 상한 적용
 - `support_basis_cap` **G10c** — INSTITUTIONAL_COMPATIBILITY만 근거 → LOW 상한 적용
 - `audit_only_support` **G12b** — confirmed 지지 없이 05 흔적만 있음 — LATENT 유지
-- `world_integrity` **worlds** — world 6개 (retained 5, rejected 1) — 쌍별 gap 차이 ≥2 확인
+- `outcome_world_dependency` **worlds** — 공통 결말 node 23개는 모든 world에 공통인 OBSERVED다. 경쟁 설명 5개, 배제된 설명 1개
+- `world_integrity` **worlds** — world 6개 (경쟁 설명 5, rejected 1) — 쌍별 gap 차이 ≥2 확인
 
 ## 3. 수동 검토
 
@@ -84,7 +86,7 @@ _없음_
 
 ## 3-2. UNRESOLVED (사료 자체의 모호성 — 허용, 데이터에 보존)
 
-- `unresolved_gap` **G10** — OPEN_UNRESOLVED — 어느 retained world도 이 gap을 메우지 않음 (후보 G10a=MEDIUM, G10b=LOW, G10c=LOW) · review_decision: 사용자 검토: latent bridge를 채택하지 않음. 이유를 억지로 채우지 않고 gap을 열어 둔다(world에서도 비움). · unresolved_reason: 파직과 3일 뒤 유임의 사유가 모두 기록되지 않았다. 관측 근거(CF049, CF050)에 사유를 적은 문장이 없음
+- `unresolved_gap` **G10** — OPEN_UNRESOLVED — 어느 경쟁 설명 world도 이 gap을 메우지 않음 (후보 G10a=MEDIUM, G10b=LOW, G10c=LOW) · review_decision: 사용자 검토: latent bridge를 채택하지 않음. 이유를 억지로 채우지 않고 gap을 열어 둔다(world에서도 비움). · unresolved_reason: 파직과 3일 뒤 유임의 사유가 모두 기록되지 않았다. 관측 근거(CF049, CF050)에 사유를 적은 문장이 없음
 
 
 ## 4. 수정 이력

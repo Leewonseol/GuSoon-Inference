@@ -76,6 +76,7 @@ CASES = [
      lambda: _bridge_case("G08a", dict(bridge_evidence="CF033|CF035"), "endpoint_leakage")),
     ("bridge_support_inflation", "재감사 이전 값 전체(source_consistency_v1)를 다시 넣으면 검사가 잡는지",
      lambda: _old_values_case()),
+    ("outcome_world_dependency", "확정 처분(구순 정배)을 특정 world의 결과로 서술", lambda: _outcome_case()),
     ("closed_set", "'등' 삭제(EP07)",
      lambda: _episode_case("EP07", "자미덕은 한 비장이 정원돌·이집거·김갑득·김성손·김흥득을 큰 도적이라고 말하면 자신과 남편을 다음 날 "
                                    "석방하겠다고 말했다고 진술했고, 자미덕은 이집거와 대질했으며, 그때 한 비장의 지휘에 따라 거짓으로 꾸며 "
@@ -197,6 +198,21 @@ def _old_values_case():
             if any(f["severity"] == "ERROR" for f in audits.bridge_support_checks(c, nodes)):
                 flagged.append(c["candidate_id"])
     return {"G07a", "G08a"} <= set(flagged), flagged
+
+
+def _outcome_case():
+    import build
+    import stage4_latent
+    import stage5_worlds
+    cf = build.read_csv("01_confirmed_facts.csv")
+    env = build.read_csv("03_environment_1793.csv")
+    nodes, edges, _ = build.stage2(build.stage1(cf), env)
+    gaps, cands = stage4_latent.build(nodes, edges)
+    worlds = copy.deepcopy(stage5_worlds.build(nodes, edges, gaps, cands))
+    w5 = next(w for w in worlds if w["world_id"] == "W5")
+    w5["story_implication"] += " W5에서는 구순이 정배되지 않을 수도 있다."
+    hit = {f["check"] for f in audits.outcome_dependency_checks(worlds, cands, nodes) if f["severity"] == "ERROR"}
+    return "outcome_world_dependency" in hit, sorted(hit)
 
 
 def run():

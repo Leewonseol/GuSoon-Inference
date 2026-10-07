@@ -235,7 +235,7 @@ def main():
                   topology_sha256=topology_hash(nodes, edges),
                   previous_topology_sha256=PREVIOUS_FREEZE["topology_sha256"],
                   topology_unchanged=topology_hash(nodes, edges) == PREVIOUS_FREEZE["topology_sha256"],
-                  change_note="LATENT 후보 재감사(bridge 자체 근거 평가). observed graph는 손대지 않음 — "
+                  change_note="narrative world 사용 방식 재정리(경쟁하는 설명으로 병렬 보존). observed graph는 손대지 않음 — "
                               "node·edge·condition·끝점·type 모두 그대로",
                   n_nodes=len(nodes), n_edges=len(edges),
                   n_episode_nodes=len(ep_rows), n_env_nodes=len(ENV_NODES),
@@ -263,6 +263,8 @@ def main():
     report.write_reaudit(OUT / "latent_candidate_reaudit.md", cands, worlds, worlds_before)
     report.write_gaps(OUT / "gap_candidates.md", gaps, cands, nodes)
     report.write_worlds(OUT / "narrative_worlds.md", worlds, cands, gaps, nodes)
+    report.write_story_matrix(OUT / "narrative_world_story_matrix.md", worlds, cands, gaps, nodes,
+                              identity_relevance(edges, cands, worlds), edges)
     report.write_latent_csv(OUT, gaps, cands, worlds)
     write_csv(OUT / "identity_register.csv", identity_relevance(edges, cands, worlds), IDENTITY_COLS)
     report.write_validation_summary(OUT / "validation_summary.md",

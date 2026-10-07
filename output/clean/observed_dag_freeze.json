@@ -8,7 +8,7 @@
   "topology_sha256": "04c84b0e24af31f5605800ae30bc2750563a1aeb3e72390aa6d6643676b68e84",
   "previous_topology_sha256": "04c84b0e24af31f5605800ae30bc2750563a1aeb3e72390aa6d6643676b68e84",
   "topology_unchanged": true,
-  "change_note": "LATENT 후보 재감사(bridge 자체 근거 평가). observed graph는 손대지 않음 — node·edge·condition·끝점·type 모두 그대로",
+  "change_note": "narrative world 사용 방식 재정리(경쟁하는 설명으로 병렬 보존). observed graph는 손대지 않음 — node·edge·condition·끝점·type 모두 그대로",
   "n_nodes": 41,
   "n_edges": 68,
   "n_episode_nodes": 37,
