@@ -280,3 +280,13 @@ details > summary { cursor: pointer; }
   .pbody { padding: 10px 16px 24px; }
   .kv th { width: 40%; }
 }
+
+/* 초기화 실패·빈 View 안내(빈 흰 화면 대신) */
+.viz-error {
+  position: absolute; left: 50%; top: 40%; transform: translate(-50%, -50%); z-index: 20; max-width: min(560px, 90%);
+  display: flex; flex-direction: column; gap: 6px; padding: 14px 18px; border-radius: 8px;
+  background: #fdeeee; border: 1.5px solid var(--critical); color: #8f1f1f; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+.viz-error[hidden] { display: none; }
+.viz-error code { color: #5c1414; word-break: break-all; }
+.viz-error.notice { background: #fff8e8; border-color: #d99a00; color: #5a4300; cursor: pointer; }

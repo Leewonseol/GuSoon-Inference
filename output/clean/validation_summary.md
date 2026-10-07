@@ -121,7 +121,7 @@ _없음_
 
 ## Regression validation rules
 
-build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR로 잡히는지 확인한다(59/59 탐지).
+build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR로 잡히는지 확인한다(64/64 탐지).
 
 | rule | 케이스 | 탐지 |
 |---|---|---|
@@ -184,6 +184,11 @@ build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR�
 | view_node_overlap | B 시간순 View에서 EP11 좌표를 EP09 위로 옮김 | OK |
 | temporal_order | H 홍대협 재조사 View에서 EP02(2/22)와 EP24(6/13)의 x를 맞바꿈 | OK |
 | responsibility_to_biological | F 구금·사망 View에서 책임 판단 EP29를 branch A(생물학적 사인) 묶음에도 넣음 | OK |
+| dom_id_missing | app.js가 index.html에 없는 #foot-note에 글자를 넣음(25f81b6 배포 직후 옛 app.js가 멈춘 그 줄) | OK |
+| stale_asset_version | index.html의 js/app.js 주소를 옛 내용 해시(?v=000000000000)로 둠 | OK |
+| stale_asset_version | index.html이 data/bundle.js를 버전 없이 실음(캐시된 옛 데이터와 섞일 수 있음) | OK |
+| runtime_failsafe_missing | index.html에서 '시각화 초기화 오류' 표시 guard를 뺌 | OK |
+| runtime_failsafe_missing | app.js에서 보이는 node 0 → Overview 복구 guard 호출을 뺌 | OK |
 
 ## 동결 그래프
 

@@ -8,6 +8,9 @@ docs/를 로컬 http 서버로 띄우고 Chromium으로 연다. 항목별 PASS/F
 화면이 canonical 값을 그대로 보여 주는지(개수·configuration·후보 등급·개입 결과·공존 판정), OBSERVED backbone이
 어떤 world·개입·필터에서도 사라지지 않는지(관점별 View의 숨김은 안내와 함께인지), 날짜 순서가 화면 좌표에서도 지켜지는지,
 글자가 11pt·line-height 1.6 이상이고 node label이 잘리지 않는지, 첫 화면에서 label이 읽히는지 확인한다.
+'DOM 요소가 있다'가 아니라 '화면 픽셀에 node가 그려졌다'를 본다: 첫 로드와 A–J 각 View에서 cytoscape 생성, 보이는 node가 화면 창과
+겹치는지, canvas에 칠해진 픽셀, 그래프 영역 스크린샷이 흰색만이 아닌지, 옛 app.js가 캐시에서 섞여 초기화가 멈춰도 빈 흰 화면 대신
+'시각화 초기화 오류'가 보이는지 확인한다.
 """
 import argparse
 import csv
@@ -87,15 +90,52 @@ def main():
     srv, url = serve()
     errors = []
     with sync_playwright() as p:
-        browser = p.chromium.launch()
+        try:
+            browser = p.chromium.launch()
+        except Exception:  # noqa: BLE001 — Playwright 버전에 맞는 브라우저가 없으면 미리 설치된 Chromium 사용
+            browser = p.chromium.launch(executable_path=os.environ.get("CHROMIUM_PATH", "/opt/pw-browsers/chromium"))
         page = browser.new_page(viewport={"width": 1600, "height": 1000})
         page.on("console", lambda m: errors.append(f"console.{m.type}: {m.text}") if m.type == "error" else None)
         page.on("pageerror", lambda e: errors.append(f"pageerror: {e}"))
         page.on("requestfailed", lambda r: errors.append(f"requestfailed: {r.url}"))
         page.goto(url)
-        page.wait_for_function("window.__viz && window.__viz.cy")
-        page.wait_for_timeout(300)
+        try:
+            page.wait_for_function("window.__viz && window.__viz.cy", timeout=10000)
+        except Exception:  # noqa: BLE001 — 초기화 실패는 아래 '0 실제 렌더링' 검사가 FAIL로 기록한다
+            pass
+        page.wait_for_timeout(500)
         ev = page.evaluate
+        boot_errors = list(errors)
+
+        def render_probe(pg):
+            """실제 화면 픽셀에 node가 그려졌는지: 보이는 node 수, 화면 창과 겹치는 node, 좌표 이상, cytoscape canvas에 칠해진 픽셀."""
+            return pg.evaluate("""(() => {
+              const v = window.__viz; if (!v || !v.cy) return {cy: false};
+              const cy = v.cy, w = cy.width(), h = cy.height();
+              const shown = cy.nodes().filter(n => n.style('display') !== 'none');
+              const inView = shown.filter(n => { const b = n.renderedBoundingBox({includeLabels: false});
+                return b.x2 > 0 && b.y2 > 0 && b.x1 < w && b.y1 < h; }).map(n => n.id());
+              let bad = 0; cy.nodes().forEach(n => { const p = n.position();
+                if (!Number.isFinite(p.x) || !Number.isFinite(p.y) || Math.abs(p.x) > 1e6 || Math.abs(p.y) > 1e6) bad++; });
+              let painted = 0, total = 0;
+              document.querySelectorAll('#cy canvas').forEach(c => { if (!c.width || !c.height) return;
+                const d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data; total += d.length / 4;
+                for (let i = 3; i < d.length; i += 16) if (d[i] > 0) painted += 4; });
+              const el = document.getElementById('cy');
+              return {cy: true, nodes: cy.nodes().length, edges: cy.edges().length, visible: cy.nodes(':visible').length,
+                      shown: shown.length, inView: inView.length, inViewIds: inView.slice(0, 6), badPos: bad,
+                      painted: total ? painted / total : 0, w: el.offsetWidth, h: el.offsetHeight, zoom: cy.zoom(), pan: cy.pan(),
+                      error: (() => { const e = document.getElementById('viz-error'); return e && !e.hidden ? e.textContent : ''; })()};
+            })()""")
+
+        def white_ratio(pg, sel="#cy"):
+            """그래프 영역 스크린샷에서 거의 흰색(모든 채널 ≥ 245)인 픽셀 비율."""
+            import io
+            from PIL import Image
+            img = Image.open(io.BytesIO(pg.locator(sel).screenshot())).convert("RGB")
+            raw = img.tobytes()
+            n = len(raw) // 3
+            return sum(1 for i in range(0, len(raw), 3) if raw[i] >= 245 and raw[i + 1] >= 245 and raw[i + 2] >= 245) / max(1, n)
 
         def visible_ids(sel="node"):
             # visible()은 렌더 전까지 캐시될 수 있어 계산된 style(display)로 본다
@@ -112,6 +152,117 @@ def main():
             page.wait_for_timeout(80)
             page.mouse.click(pos[0], pos[1])
             page.wait_for_timeout(120)
+
+        @check("0 실제 렌더링(첫 로드: cy·개수·보이는 node·화면 창 교차·픽셀·필터 UI·View 탭·오류 0)")
+        def t_render():
+            r = render_probe(page)
+            msgs = []
+            if not r.get("cy"):
+                return False, f"window.__viz.cy 없음 — 초기화 실패 ({'; '.join(boot_errors[:3]) or 'pageerror 없음'})"
+            if r["nodes"] != len(sd_nodes) or r["edges"] != len(sd_edges):
+                msgs.append(f"cy node {r['nodes']} / edge {r['edges']} ≠ {len(sd_nodes)} / {len(sd_edges)}")
+            if r["visible"] <= 0 or r["shown"] <= 0:
+                msgs.append(f"보이는 node {r['visible']}")
+            if r["inView"] <= 0:
+                msgs.append(f"화면 창과 겹치는 node 0 (zoom {r['zoom']:.2f}, pan {r['pan']})")
+            if r["badPos"]:
+                msgs.append(f"좌표 NaN·Infinity·극단값 node {r['badPos']}")
+            if r["w"] <= 0 or r["h"] <= 0:
+                msgs.append(f"그래프 영역 크기 {r['w']}×{r['h']}")
+            if r["painted"] < 0.01:
+                msgs.append(f"cytoscape canvas에 칠해진 픽셀 {r['painted']:.4f}")
+            wr = white_ratio(page)
+            if wr > 0.985:
+                msgs.append(f"그래프 영역 스크린샷 {wr:.1%}가 흰색(빈 화면)")
+            if r["error"]:
+                msgs.append(f"오류 안내 표시: {r['error'][:60]}")
+            st = page.locator("#status-filters input[data-status]").count()
+            mf = page.locator("#mech-filters input[data-mech]").count()
+            tabs = page.locator("#view-tabs [data-view]").count()
+            nviews = len(json.loads((DOCS / "data" / "views.json").read_text(encoding="utf-8"))["order"])
+            if st <= 0 or mf <= 0:
+                msgs.append(f"Status 필터 {st}개 · Mechanism 필터 {mf}개")
+            if tabs != nviews:
+                msgs.append(f"View 탭 {tabs}개 ≠ {nviews}")
+            if boot_errors:
+                msgs.append("console·page error: " + "; ".join(boot_errors[:3]))
+            if shots:
+                page.screenshot(path=str(shots / "first_load.png"))
+            return not msgs, (f"cy node {r['nodes']} · edge {r['edges']}, 보이는 node {r['visible']}, 첫 화면 창 안 node {r['inView']} "
+                              f"({', '.join(r['inViewIds'])}), 좌표 이상 0, canvas 칠함 {r['painted']:.1%}, 흰 픽셀 {wr:.1%}, "
+                              f"Status {st} · Mechanism {mf} · View 탭 {tabs}, 오류 0") if not msgs else "; ".join(msgs)
+
+        @check("28 A–J 모든 View 실제 렌더링(보이는 node·화면 창 교차·좌표·픽셀)")
+        def t_render_views():
+            msgs, parts = [], []
+            order = json.loads((DOCS / "data" / "views.json").read_text(encoding="utf-8"))["order"]
+            n_err = len(errors)
+            for i, vid in enumerate(order):
+                ev(f"window.__viz.setView('{vid}')")
+                page.wait_for_timeout(250)
+                r = render_probe(page)
+                wr = white_ratio(page)
+                if r["shown"] <= 0 or r["inView"] <= 0 or r["badPos"] or r["painted"] < 0.01 or wr > 0.985 or r["error"]:
+                    msgs.append(f"{vid}: 보이는 {r['shown']} · 창 안 {r['inView']} · 좌표 이상 {r['badPos']} · 칠함 {r['painted']:.3f} · 흰색 {wr:.1%} {r['error'][:30]}")
+                parts.append(f"{'ABCDEFGHIJ'[i]} {vid} {r['shown']}/{r['inView']}")
+                if shots:
+                    page.screenshot(path=str(shots / f"render_{'ABCDEFGHIJ'[i]}_{vid}.png"))
+            ev("window.__viz.setView('overview')")
+            if len(errors) > n_err:
+                msgs.append("JS 오류: " + "; ".join(errors[n_err:n_err + 3]))
+            return not msgs, ("View별 보이는 node/첫 화면 창 안 node — " + ", ".join(parts) + ", JS 오류 0") if not msgs else "; ".join(msgs[:5])
+
+        @check("29 배포 캐시 섞임 방지: css·js 주소 ?v=내용 해시, 옛 app.js가 멈추면 '시각화 초기화 오류' 표시")
+        def t_stale():
+            import hashlib
+            import re as _re
+            msgs = []
+            html = page.content()
+            for rel in ["css/app.css", "vendor/cytoscape/cytoscape.min.js", "data/bundle.js", "js/app.js"]:
+                m = _re.search(_re.escape(rel) + r"\?v=([0-9a-f]+)", html)
+                want = hashlib.sha256((DOCS / rel).read_bytes()).hexdigest()[:12]
+                if not m or m.group(1) != want:
+                    msgs.append(f"{rel}?v={m.group(1) if m else '(없음)'} ≠ {want}")
+            # 25f81b6 배포 직후 상황 재현: 새 index.html + 캐시된 옛 app.js(없어진 #foot-note에 글자를 넣다가 멈춤)
+            js = (DOCS / "js" / "app.js").read_text(encoding="utf-8").replace(
+                "  // ------------------------------------------------------------------ cytoscape 요소",
+                "  $('foot-note').textContent = META.role_note;\n  // ------------------------------------------------------------------ cytoscape 요소", 1)
+            pg = browser.new_page(viewport={"width": 1440, "height": 900})
+            perr = []
+            pg.on("pageerror", lambda e: perr.append(str(e)))
+            pg.route("**/js/app.js*", lambda route: route.fulfill(body=js, content_type="application/javascript"))
+            pg.goto(url)
+            pg.wait_for_timeout(500)
+            shown = pg.is_visible("#viz-error")
+            text = pg.inner_text("#viz-error") if shown else ""
+            if not perr:
+                msgs.append("옛 app.js 재현이 오류를 내지 않음")
+            if not shown or "시각화 초기화 오류" not in text:
+                msgs.append(f"오류 안내 없음(빈 흰 화면) {text[:40]!r}")
+            if shots:
+                pg.screenshot(path=str(shots / "stale_app_js_guard.png"))
+            pg.close()
+            return not msgs, f"index.html의 css·js 4개 주소 ?v= = 현재 내용 해시. 옛 app.js 재현(pageerror '{perr[0] if perr else ''}') → 그래프 영역에 '시각화 초기화 오류' 표시" if not msgs else "; ".join(msgs)
+
+        @check("30 보이는 node 0인 View → 안내 후 Overview로 1회 복구")
+        def t_empty_guard():
+            pg = browser.new_page(viewport={"width": 1440, "height": 900})
+            perr = []
+            pg.on("pageerror", lambda e: perr.append(str(e)))
+            pg.goto(url)
+            pg.wait_for_function("window.__viz && window.__viz.cy")
+            # 화면 메모리 사본에서만 I View 범위를 비운다(파일·canonical 변경 없음)
+            pg.evaluate("(() => { const v = window.__viz.data.views.views.final; v.nodes = []; v.core = []; })()")
+            pg.evaluate("window.__viz.setView('final')")
+            pg.wait_for_timeout(300)
+            text = pg.inner_text("#viz-error") if pg.is_visible("#viz-error") else ""
+            st = pg.evaluate("window.__viz.getState().view")
+            r = render_probe(pg)
+            if shots:
+                pg.screenshot(path=str(shots / "empty_view_guard.png"))
+            pg.close()
+            ok = "현재 View에서 표시할 그래프를 찾지 못했습니다" in text and "Overview로 복구" in text and st == "overview" and r["inView"] > 0 and not perr
+            return ok, f"안내 '{text[:34]}…', 복구 후 View={st}, 첫 화면 창 안 node {r['inView']}, pageerror {len(perr)}"
 
         @check("1 page load")
         def t_load():
@@ -787,9 +938,9 @@ def main():
         def t_console():
             return not errors, "console error·page error·요청 실패 0" if not errors else "; ".join(errors[:5])
 
-        for t in [t_load, t_json, t_counts, t_worlds, t_w6, t_status, t_mech, t_node_detail, t_edge_detail, t_search, t_iv,
+        for t in [t_render, t_load, t_json, t_counts, t_worlds, t_w6, t_status, t_mech, t_node_detail, t_edge_detail, t_search, t_iv,
                   t_inter, t_views, t_backbone, t_outcome, t_temporal, t_reset, t_file, t_fonts, t_labels, t_initial,
-                  t_search_ux, t_pan, t_context, t_detail_sections, t_narrow]:
+                  t_search_ux, t_pan, t_context, t_detail_sections, t_narrow, t_render_views, t_stale, t_empty_guard]:
             t()
         if shots:
             page.click("#reset")
