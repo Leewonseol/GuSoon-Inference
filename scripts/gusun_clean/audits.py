@@ -426,9 +426,13 @@ def audit2(nodes, edges, episodes, feature_links, env_rows, edge_types, bases):
             if iid not in etext:
                 out.append(F("identity_forcing", "ERROR", eid, f"근거 문구가 {iid} 동일성에 기대는데 condition 없음"))
         if "PARTIAL" in e["caution"]:
+            label = e.get("uncertainty_status") or "PARTIAL"
             out.append(F("partial_tension", "UNRESOLVED", eid,
-                         "부분 충돌 — 원문 표현의 범위가 같은지 사료로 확정할 수 없어 충돌 강도를 PARTIAL로 보존 · unresolved_reason: "
-                         + e["caution"]))
+                         f"{label} — 원문 표현의 범위가 같은지 사료로 확정할 수 없어 보존 · "
+                         + (f"review_decision: {e['review_decision']} · " if e.get("review_decision") else "")
+                         + "unresolved_reason: " + e["caution"]))
+            if e["edge_type"] == "CONTRADICTS_AT_CLAIM_LEVEL" and not e.get("uncertainty_status"):
+                out.append(F("uncertainty_status", "ERROR", eid, "부분 충돌 edge에 uncertainty_status가 없음"))
         for chk, frag in text_regressions(etext):
             out.append(F(chk, "ERROR", eid, f"'{frag}'"))
 
@@ -673,8 +677,16 @@ def audit3(nodes, edges, frozen_hash, current_hash, gaps, candidates, props, wor
                 gi = next(x for x in gaps if x["gap_id"] == g)
                 cs = ", ".join(f"{c['candidate_id']}={c['overall']}" for c in by_gap[g])
                 out.append(F("unresolved_gap", "UNRESOLVED", g,
-                             f"어느 retained world도 이 gap을 메우지 않음 (후보 {cs}) · unresolved_reason: {gi['why_gap']} "
-                             f"관측 근거({gi['observed_anchor_facts']})에 사유를 적은 문장이 없어 어느 후보도 world backbone에 넣지 않음"))
+                             f"{gi.get('gap_status') or 'OPEN'} — 어느 retained world도 이 gap을 메우지 않음 (후보 {cs}) · "
+                             + (f"review_decision: {gi['review_decision']} · " if gi.get("review_decision") else "")
+                             + f"unresolved_reason: {gi['why_gap']} 관측 근거({gi['observed_anchor_facts']})에 사유를 적은 문장이 없음"))
+        # [regression] 사용자가 열어 두기로 한 gap(OPEN_UNRESOLVED)은 어떤 world도 채우면 안 된다
+        for gi in gaps:
+            if gi.get("gap_status") == "OPEN_UNRESOLVED":
+                for w in worlds:
+                    used = [b for b in w["latent_bridges"] if b in cand and cand[b]["gap_id"] == gi["gap_id"]]
+                    if used:
+                        out.append(F("open_gap_filled", "ERROR", w["world_id"], f"{gi['gap_id']}은 OPEN_UNRESOLVED인데 {used} 사용"))
         out.append(F("world_integrity", "INFO", "worlds",
                      f"world {len(worlds)}개 (retained {sum(not w.get('rejected') for w in worlds)}, "
                      f"rejected {sum(bool(w.get('rejected')) for w in worlds)}) — 쌍별 gap 차이 ≥2 확인"))

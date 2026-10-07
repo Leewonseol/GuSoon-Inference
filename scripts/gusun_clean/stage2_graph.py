@@ -271,3 +271,13 @@ ENV_FIT_LINKS = [
     L("EP21", "E001", "environmental_fit", "COMPATIBLE", "병사(病死) 보고와 부합."),
     L("EP21", "E003", "environmental_fit", "COMPATIBLE", "병사(病死) 보고와 부합."),
 ]
+
+
+# 사용자 수동 검토 결과 그대로 유지하는 edge 불확실성 상태(결정 대상 아님). 구조·condition은 바꾸지 않는다.
+EDGE_UNCERTAINTY = {
+    "OE007": ("PARTIAL_CONFLICT", "사용자 검토: 정면 충돌로 승격하지 않음. 자미덕의 '지휘' 주장과 한재욱의 '은밀한 사주' 부인은 범위가 완전히 같지 않다."),
+    "OE062": ("UNRESOLVED_SCOPE", "사용자 검토: 5월 장계의 '조사'와 정조의 '평범한 신문'이 같은 범위인지 확정하지 않음. 부분 긴장 유지."),
+    "OE010": ("CONDITIONAL_UNRESOLVED_IDENTITY", "ID08 KEEP_UNRESOLVED (사용자 수동 검토: 추가 사료 없이 확정하지 않고 현재 불확실성 유지)"),
+    "OE071": ("CONDITIONAL_UNRESOLVED_IDENTITY", "ID06 KEEP_UNRESOLVED (사용자 수동 검토: 추가 사료 없이 확정하지 않고 현재 불확실성 유지)"),
+    "OE080": ("CONDITIONAL_UNRESOLVED_IDENTITY", "ID07 KEEP_UNRESOLVED (사용자 수동 검토: 추가 사료 없이 확정하지 않고 현재 불확실성 유지)"),
+}

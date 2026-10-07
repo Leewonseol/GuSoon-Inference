@@ -49,7 +49,9 @@ GAPS = [
          why_gap="한가 처분(CF048)에 연결된 책임 판단 node가 없다. 한가=한재욱=한 비장은 사용자 확정(ID02·ID03 RESOLVED)이지만, 한가 처분의 근거 행위는 기록되지 않았다."),
     dict(gap_id="G10", title="이형원 6/13 파직 → 6/16 유임", gap_type="DISPOSITION",
          between=["EP36", "EP37"], observed_anchor_facts="CF049, CF050",
-         why_gap="파직과 3일 뒤 유임의 사유가 모두 기록되지 않았다."),
+         why_gap="파직과 3일 뒤 유임의 사유가 모두 기록되지 않았다.",
+         gap_status="OPEN_UNRESOLVED",
+         review_decision="사용자 검토: latent bridge를 채택하지 않음. 이유를 억지로 채우지 않고 gap을 열어 둔다(world에서도 비움)."),
     dict(gap_id="G11", title="변지돌의 공주진 선행 체포 경위", gap_type="PROCEDURAL",
          between=["EP04", "EP05"], observed_anchor_facts="CF009, CF011",
          why_gap="2/28 체포 지시 대상(변지돌)이 2/29에는 이미 공주진에 잡혀가 있었다. 누가 왜 잡았는지 비어 있다."),
@@ -489,6 +491,9 @@ def prune(c):
 
 
 def build(nodes, edges):
+    for g in GAPS:
+        g.setdefault("gap_status", "OPEN")
+        g.setdefault("review_decision", "")
     cands = []
     for c in CANDIDATES:
         c = dict(c)

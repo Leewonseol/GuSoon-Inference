@@ -158,6 +158,7 @@ _없음_
 | WARN 0 작업 — 6차 | regression 케이스 15개 중 '진술자 바꿔치기' 1개를 검사기가 놓침(이름이 summary 어딘가에 있으면 통과하던 약점) | actor_substitution에 'summary 첫 주어 = 원문 첫 주어' 검사를 추가 → 15/15 탐지. 최종 ERROR 0, WARN 0, UNRESOLVED 9(동일성), INFO 8 |
 | 사용자 동일성 확정 반영 | 사용자가 ID01·ID02·ID03·ID11을 확정 | 동일성 대장 status=RESOLVED(resolved_by=USER, 근거 기록). summary는 원문 표면형 유지. 확정 ID 치환은 surface_form_substitution, 미확정 ID 치환은 identity_forcing으로 구분. 재실행 ERROR 0, WARN 0, UNRESOLVED 9→5(ID04 참고용 포함), INFO 8→12(resolved_identity 4) |
 | 사용자 동일성 확정 반영 (ID05) | 사용자가 ID05(풍각 김상제=김명신)를 확정 | status=RESOLVED(resolved_by=USER, 근거 기록). EP08 summary는 표면형 '풍각 김상제' 유지. 재실행 ERROR 0, WARN 0, UNRESOLVED 5→4 |
+| 사용자 검토: 불확실성 유지 | 사용자가 ID06·ID07·ID08을 추가 사료 없이 확정하지 않기로 함 | status UNRESOLVED 유지, review_decision=KEEP_UNRESOLVED, manual_decision_required=NO. 구조 변경 없음. ERROR 0, WARN 0 |
 
 ## 5. confirmed set 밖의 사료 내용 (05에만 있음 — DAG node로 쓰지 않음)
 

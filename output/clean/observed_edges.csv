@@ -1,69 +1,69 @@
-edge_id,src,dst,edge_type,basis,status,claim_level,condition,supporting,rationale,caution
-OE001,EP01,EP02,TEMPORAL_BEFORE,TEMPORAL,DERIVED,True,,CF002|CF004,명업 진술상 힐책(2월 초순)이 2월 22일 밤 도적 전언보다 앞선다.,시간 선후일 뿐 원인 관계가 아님.
-OE002,EP02,EP03,TEMPORAL_BEFORE,TEMPORAL,DERIVED,True,,CF004|CF006,CF006 chronology '도난 신고 이후'.,
-OE003,EP02,EP04,TEMPORAL_BEFORE,TEMPORAL,DERIVED,True,,CF004|CF007,2/22 밤 → 2/28 밤 (서로 다른 진술자의 명시 날짜).,소장·체포령(EP03)과 2/28 출동 사이 연결은 미기록 → G01.
-OE004,EP04,EP05,ORDER_TO_ACTION,SOURCE_DIRECT|TEMPORAL,DERIVED,True,,CF008|CF011|CF012,같은 이진욱 진술 흐름에서 덕평 출동 지시(2/28) 뒤 2/29 장교 일행의 현장 체포 활동이 이어진다.,"실행이 확인되는 것은 출동 부분뿐이다. 변지돌·정원돌 체포 지시는 실행되지 않음(변지돌 기체포, 정원돌 미기록). 체포 대상이 자미덕으로 바뀐 경위는 기록되지 않았다."
-OE005,EP05,EP06,PROCEDURAL_NEXT,TEMPORAL,DERIVED,True,,CF012|CF013,CF013 chronology '자미덕 체포 뒤': 병영 압송·신문·구류.,두 진술(이진욱·자미덕)이 같은 체포 장면을 가리키는지는 확정하지 않는다.
-OE006,EP06,EP07,PROCEDURAL_NEXT,TEMPORAL,DERIVED,True,,CF015|CF016|CF017,"CF016 chronology '구류 중/그 후', CF017 '대질 때'.",
-OE007,EP07,EP12,CONTRADICTS_AT_CLAIM_LEVEL,SOURCE_DIRECT,DERIVED,True,,CF017|CF018,자미덕: 한 비장의 지휘에 따라 거짓으로 꾸며 말함 ↔ 한재욱: 자미덕을 은밀히 사주한 일 없음.,'한 비장'=한재욱은 ID02 사용자 확정(RESOLVED)이라 같은 인물에 대한 두 진술이다. 사주 주장(자미덕)과 은밀한 사주 부인(한재욱)은 서로 다른 진술로 유지하며 어느 쪽도 객관적 사실로 확정하지 않는다. 한재욱의 부인 범위는 '은밀한 사주'에 한정되므로 PARTIAL 충돌이다.
-OE008,EP09,EP11,ORDER_TO_ACTION,SOURCE_DIRECT,OBSERVED,True,,CF021|CF023,CF023 '병사의 분부에 따라' — 지시와 실행의 연결이 원문에 있다.,
-OE009,EP09,EP10,PROCEDURAL_NEXT,SOURCE_DIRECT|TEMPORAL,DERIVED,True,,CF021|CF024,조계완은 '김명신을 잡으러 가는 길에' 구순 집에 들렀다. 체포 임무가 먼저 주어져 있었음을 전제로 한다.,조계완이 3/4 장교 일행의 일원인지는 ID08로 미확정.
-OE010,EP10,EP11,TEMPORAL_BEFORE,SOURCE_DIRECT,DERIVED,True,ID08,CF024|CF023,'잡으러 가는 길에' → 방문이 체포보다 앞선다.,
-OE011,EP11,EP13,PROCEDURAL_NEXT,PROCEDURAL,DERIVED,False,,CF023|CF027,3/4 체포된 김명신 → 충청병영의 달포 이상 구금·조사 → 사망(5/12 보고).,CF027은 구금 시작일을 3/4로 주장하지 않는다. 같은 사람에 대한 체포→구금 절차 순서만 연결한다.
-OE020,EP01,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF001|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.
-OE021,EP02,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF004|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.
-OE022,EP03,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF006|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.
-OE023,EP04,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF007|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.
-OE024,EP05,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF011|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.
-OE025,EP06,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF013|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.
-OE026,EP07,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF016|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.
-OE027,EP08,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF020|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.
-OE028,EP09,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF021|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.
-OE029,EP10,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF024|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.
-OE030,EP11,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF023|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.
-OE031,EP12,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF018|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.
-OE013,EP02,EP24,CONTRADICTS_AT_CLAIM_LEVEL,SOURCE_DIRECT,DERIVED,True,,CF005|CF038,중첩 진술의 '도적 30여 명·횃불' ↔ 홍대협 '큰 화적 사건이 아니라 보통 좀도둑 수준'.,도난 존재 자체는 두 쪽 모두 인정한다. 충돌은 규모에 관한 것이다.
-OE040,EP13,EP15,REVIEW_OF,SOURCE_DIRECT,DERIVED,False,ID09,CF027|CF030,CF030 '당시 장계와 조사에 따라' 도난 부재 방향을 받아들임.,CF027 자체는 '확실한 장물 없음'만 보고하고 '도난 없음'을 직접 주장하지는 않는다.
-OE041,EP15,EP16,PROCEDURAL_NEXT,SOURCE_DIRECT|TEMPORAL,DERIVED,False,,CF030|CF031,같은 날 같은 기사(SRC3_001)의 판단 뒤 명령.,판단이 명령의 사유라는 문장은 confirmed set에 없다. 절차 순서만 연결한다.
-OE042,EP16,EP19,TEMPORAL_BEFORE,TEMPORAL,DERIVED,False,,CF031|CF034,5/12 의금부 구금 명 → 5/27 의금부 엄수·반복 신문 명.,
-OE043,EP17,EP18,REVIEW_OF,SOURCE_DIRECT,OBSERVED,False,,CF032|CF033,CF033: 정조가 이조원 서계의 조사 방식을 문제 삼음.,
-OE044,EP17,EP19,PROCEDURAL_NEXT,SOURCE_DIRECT,DERIVED,False,,CF032|CF034,CF034 출처 SRC3_002 제목 '이조원이 구순 사건을 아뢰고 엄핵을 청함'.,CF032(SRC3_003)와 CF034(SRC3_002)는 같은 날 다른 기록이다. 기록을 병합하지 않는다.
-OE045,EP18,EP20,TEMPORAL_BEFORE,TEMPORAL,DERIVED,False,,CF033|CF035,5/27 이조원 비판 → 5/28 홍대협 차하.,동기 연결은 사료에 없음 → G08.
-OE046,EP20,EP23,ORDER_TO_ACTION,SOURCE_DIRECT|PROCEDURAL,DERIVED,False,,CF035|CF037,"'사건을 자세히 조사해 오라'·안핵어사 차하 → 공주목 신문·안핵어사 복명(같은 인물, 같은 직함).",
-OE047,EP21,EP22,REVIEW_OF,SOURCE_DIRECT,OBSERVED,False,,CF029|CF036,CF036: 윤노동 별단에 따른 처리 보류.,
-OE048,EP22,EP23,PROCEDURAL_NEXT,SOURCE_DIRECT,OBSERVED,False,,CF036|CF037,CF036 '홍대협의 안핵 복명 전까지' 보류 → 복명.,
-OE050,EP23,EP24,PROCEDURAL_NEXT,SOURCE_DIRECT,DERIVED,False,,CF037|CF038,복명 속 도난 판단.,
-OE051,EP23,EP26,PROCEDURAL_NEXT,SOURCE_DIRECT,DERIVED,False,,CF037|CF040,복명 속 사인 평가.,
-OE052,EP23,EP31,PROCEDURAL_NEXT,SOURCE_DIRECT,DERIVED,False,,CF037|CF045,복명 속 지세 호칭 조사 결과.,
-OE053,EP15,EP24,CONTRADICTS_AT_CLAIM_LEVEL,SOURCE_DIRECT,DERIVED,False,,CF030|CF038,5/12 '도난 자체가 없었다는 방향' ↔ 6/13 홍대협 '약간의 실제 도난'.,
-OE054,EP17,EP24,CONTRADICTS_AT_CLAIM_LEVEL,SOURCE_DIRECT,DERIVED,False,,CF032|CF038,5/27 이조원 '도난이 없었다는 방향' ↔ 6/13 홍대협 '약간의 실제 도난'.,
-OE055,EP24,EP25,REVIEW_OF,SOURCE_DIRECT,DERIVED,False,,CF038|CF039,같은 복명 기사에서 정조가 안핵 판단을 검토해 최종 판단.,
-OE056,EP15,EP25,REVISES,SOURCE_DIRECT|TEMPORAL,DERIVED,False,,CF030|CF039,같은 주체(정조)의 도난 판단: 5/12 부재 방향 → 6/13 실재.,최종 판단만 남기지 않는다. 두 판단 node를 모두 유지한다.
-OE060,EP13,EP26,REVIEW_OF,PROCEDURAL,DERIVED,False,,CF027|CF035|CF040,5/12 장계는 사인 없이 사망만 보고 → 안핵어사(사건 자세히 조사 명)가 사인을 질병으로 평가.,
-OE061,EP26,EP27,REVIEW_OF,SOURCE_DIRECT,DERIVED,False,,CF040,"홍대협 '질병' → 정조 '부처가 전염병'. 대상이 부처로, 병명이 전염병으로 구체화된다.",
-OE062,EP13,EP27,CONTRADICTS_AT_CLAIM_LEVEL,SOURCE_DIRECT,DERIVED,False,,CF027|CF041,5/12 장계 '구금·조사' ↔ 6/13 정조 '평범한 신문도 받지 않았다'.,PARTIAL_TENSION: '조사'가 곧 '신문'이라고 확정할 수 없다. CF028의 '무고한 평민들 모진 형벌'은 김명신 포함 여부가 열린 집합이므로 충돌 근거로 쓰지 않는다.
-OE063,EP27,EP28,CONTEXT_SUPPORTS,SOURCE_DIRECT,DERIVED,False,,CF040|CF041|CF042,같은 날 정조 판단 안에서 전염병 사망·무장형 판단과 '직접 인과 불확실' 판단이 함께 놓인다.,앞 판단이 뒤 판단의 사유라는 문장은 confirmed set에 없다. 양립·맥락 관계로만 둔다.
-OE070,EP01,EP29,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,,CF043|CF002|CF003,정조 판단 '사적인 감정을 품고 갈등을 일으켰고' ↔ 명업 진술의 힐책·왕래 단절.,CF043은 박거사 일을 직접 언급하지 않는다. 판단 속 '갈등'을 EP01과 대응시킨 것은 DERIVED다.
-OE071,EP08,EP29,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,ID06,CF043|CF020,정조 판단 '병영의 염탐 담당자에게 김명신의 성명을 적어 주었으며' ↔ 유제희 진술.,"풍각 김상제=김명신은 ID05 사용자 확정(RESOLVED). 염탐 담당자=유제희(ID06)는 미확정이라 condition으로 남긴다. claim-level 차이: 정조는 '구순이 적어 주었다', 유제희는 '구순이 말했고 자신이 기록했다'. 두 행위를 합치지 않는다."
-OE072,EP11,EP29,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,,CF043|CF023,정조 판단의 '횡액' ↔ 3/4 체포.,'횡액'을 체포·구금과 대응시킨 것은 해석이다.
-OE073,EP13,EP29,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,,CF043|CF027,정조 판단의 '원통하게 죽는 결과' ↔ 구금 뒤 사망 보고.,책임 귀속이며 직접 사인 주장이 아니다(EP28 참조).
-OE074,EP29,EP33,PROCEDURAL_NEXT,SOURCE_DIRECT,DERIVED,False,,CF043|CF046,같은 기사에서 책임 판단 뒤 정배 처분.,처분 사유 문장(V3P0147)은 confirmed set 밖이다.
-OE080,EP04,EP30,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,ID07,CF010|CF044,정조 비판 '철퇴 네 개를 만들게 했으며' ↔ 이진욱 진술 '한재욱이 철편 네 개를 만들어 주었다'.,행위 층위 차이(제작 지시 vs 제작·지급). 모순으로도 동일 행위로도 확정하지 않는다.
-OE081,EP09,EP30,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,,CF021|CF044,3/4 '병사'의 체포 지시 ↔ 정조의 이광섭 지휘 책임 판단.,"병사=이광섭은 ID01 사용자 확정(RESOLVED)이라 직접 대응한다. 다만 3/4 지시 행위 자체는 이진욱 진술(CF021)로만 확인되며, 동일성 확정이 그 행위를 관측 사실로 올리지는 않는다."
-OE082,EP14,EP30,REVIEW_OF,PROCEDURAL,DERIVED,False,,CF025|CF026|CF044,5/12 이형원의 이광섭·이문협 평가 → 6/13 정조의 이광섭 책임 재평가.,"'비장에게 맡김'은 5/12에는 이문협, 6/13에는 이광섭에 대한 비판으로 나온다. 주체를 합치지 않는다."
-OE083,EP29,EP30,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,,CF043|CF044,CF044 '구순과 이광섭의 책임이 크게 다르지 않다' — 두 책임 판단의 비교.,
-OE084,EP30,EP34,PROCEDURAL_NEXT,SOURCE_DIRECT,DERIVED,False,,CF044|CF047,책임 판단 뒤 유배 처분.,
-OE090,EP02,EP31,REVIEW_OF,SOURCE_DIRECT,DERIVED,True,,CF005|CF045,중첩 진술의 '지세대감 자칭' → 홍대협 기원 미확정.,
-OE091,EP31,EP32,REVIEW_OF,SOURCE_DIRECT,DERIVED,False,,CF045,홍대협 미확정 → 정조의 날조 죄 불인정.,
-OE095,EP23,EP35,PROCEDURAL_NEXT,SOURCE_DIRECT,DERIVED,False,,CF037|CF048,안핵 복명 뒤 처분.,한가 처분의 근거 행위는 미기록 → G09.
-OE096,EP23,EP36,PROCEDURAL_NEXT,SOURCE_DIRECT,DERIVED,False,,CF037|CF049,안핵 복명 뒤 처분.,파직 사유는 미기록.
-OE097,EP36,EP37,REVISES,TEMPORAL|SOURCE_DIRECT,DERIVED,False,,CF049|CF050,6/13 파직 → 6/16 유임(같은 인물의 관직 상태 변경).,사유 미기록 → G10. 6/13 처분 자체를 지우지 않는다.
-OE098,EP25,EP36,TEMPORAL_BEFORE,TEMPORAL,DERIVED,False,,CF039|CF049,같은 날 최종 도난 판단과 이형원 파직.,최종 판단(도난 실재)이 5/12 장계와 어긋난다는 점이 파직 사유인지는 confirmed set에 없다 → G10.
-OE100,ENV01,EP26,CONTEXT_SUPPORTS,ENVIRONMENTAL_CONTEXT,DERIVED,False,,E001|CF040,1월 호서 전염병 사망 치계 — 질병 사망 평가와 시대적으로 부합.,
-OE101,ENV03,EP26,CONTEXT_SUPPORTS,ENVIRONMENTAL_CONTEXT,DERIVED,False,,E003|CF040,4월 호서 전염병 창궐 — 구금(3/4~)·사망(5/12 이전) 기간과 겹치는 지역 환경.,
-OE102,ENV01,EP27,CONTEXT_SUPPORTS,ENVIRONMENTAL_CONTEXT,DERIVED,False,,E001|CF040,정조의 '부처 전염병 사망' 판단과 부합하는 지역 환경.,
-OE103,ENV03,EP27,CONTEXT_SUPPORTS,ENVIRONMENTAL_CONTEXT,DERIVED,False,,E003|CF040,전염병 지속 — 정조 판단과 부합.,
-OE104,ENV04,EP27,CONTEXT_SUPPORTS,ENVIRONMENTAL_CONTEXT,DERIVED,False,,E004|CF040,5/12 옥수 전염병 치료 정책 — 옥중 전염병이 조정의 현안이었다는 custody-health context.,정책일(5/12)은 김명신 사망 보고와 같은 날이고 사망 이후다. 김명신 처우에 영향을 준 것으로 연결하지 않는다.
-OE105,ENV02,EP27,CONTEXT_SUPPORTS,ENVIRONMENTAL_CONTEXT,DERIVED,False,,E002|CF040,기근·구휼 — 영양·행정 부담이라는 거시 맥락(약함).,직접 사인으로 쓰지 않는다(E002 notes).
-OE106,ENV01,EP21,CONTEXT_SUPPORTS,ENVIRONMENTAL_CONTEXT,DERIVED,False,,E001|CF029,윤노동 별단 '보수·구금 중 병들어 죽었다'는 보고와 부합하는 환경.,
-OE107,ENV03,EP21,CONTEXT_SUPPORTS,ENVIRONMENTAL_CONTEXT,DERIVED,False,,E003|CF029,윤노동 보고와 부합하는 전염병 지속 환경.,
+edge_id,src,dst,edge_type,basis,status,claim_level,condition,supporting,rationale,caution,uncertainty_status,review_decision
+OE001,EP01,EP02,TEMPORAL_BEFORE,TEMPORAL,DERIVED,True,,CF002|CF004,명업 진술상 힐책(2월 초순)이 2월 22일 밤 도적 전언보다 앞선다.,시간 선후일 뿐 원인 관계가 아님.,,
+OE002,EP02,EP03,TEMPORAL_BEFORE,TEMPORAL,DERIVED,True,,CF004|CF006,CF006 chronology '도난 신고 이후'.,,,
+OE003,EP02,EP04,TEMPORAL_BEFORE,TEMPORAL,DERIVED,True,,CF004|CF007,2/22 밤 → 2/28 밤 (서로 다른 진술자의 명시 날짜).,소장·체포령(EP03)과 2/28 출동 사이 연결은 미기록 → G01.,,
+OE004,EP04,EP05,ORDER_TO_ACTION,SOURCE_DIRECT|TEMPORAL,DERIVED,True,,CF008|CF011|CF012,같은 이진욱 진술 흐름에서 덕평 출동 지시(2/28) 뒤 2/29 장교 일행의 현장 체포 활동이 이어진다.,"실행이 확인되는 것은 출동 부분뿐이다. 변지돌·정원돌 체포 지시는 실행되지 않음(변지돌 기체포, 정원돌 미기록). 체포 대상이 자미덕으로 바뀐 경위는 기록되지 않았다.",,
+OE005,EP05,EP06,PROCEDURAL_NEXT,TEMPORAL,DERIVED,True,,CF012|CF013,CF013 chronology '자미덕 체포 뒤': 병영 압송·신문·구류.,두 진술(이진욱·자미덕)이 같은 체포 장면을 가리키는지는 확정하지 않는다.,,
+OE006,EP06,EP07,PROCEDURAL_NEXT,TEMPORAL,DERIVED,True,,CF015|CF016|CF017,"CF016 chronology '구류 중/그 후', CF017 '대질 때'.",,,
+OE007,EP07,EP12,CONTRADICTS_AT_CLAIM_LEVEL,SOURCE_DIRECT,DERIVED,True,,CF017|CF018,자미덕: 한 비장의 지휘에 따라 거짓으로 꾸며 말함 ↔ 한재욱: 자미덕을 은밀히 사주한 일 없음.,'한 비장'=한재욱은 ID02 사용자 확정(RESOLVED)이라 같은 인물에 대한 두 진술이다. 사주 주장(자미덕)과 은밀한 사주 부인(한재욱)은 서로 다른 진술로 유지하며 어느 쪽도 객관적 사실로 확정하지 않는다. 한재욱의 부인 범위는 '은밀한 사주'에 한정되므로 PARTIAL 충돌이다.,PARTIAL_CONFLICT,사용자 검토: 정면 충돌로 승격하지 않음. 자미덕의 '지휘' 주장과 한재욱의 '은밀한 사주' 부인은 범위가 완전히 같지 않다.
+OE008,EP09,EP11,ORDER_TO_ACTION,SOURCE_DIRECT,OBSERVED,True,,CF021|CF023,CF023 '병사의 분부에 따라' — 지시와 실행의 연결이 원문에 있다.,,,
+OE009,EP09,EP10,PROCEDURAL_NEXT,SOURCE_DIRECT|TEMPORAL,DERIVED,True,,CF021|CF024,조계완은 '김명신을 잡으러 가는 길에' 구순 집에 들렀다. 체포 임무가 먼저 주어져 있었음을 전제로 한다.,조계완이 3/4 장교 일행의 일원인지는 ID08로 미확정.,,
+OE010,EP10,EP11,TEMPORAL_BEFORE,SOURCE_DIRECT,DERIVED,True,ID08,CF024|CF023,'잡으러 가는 길에' → 방문이 체포보다 앞선다.,,CONDITIONAL_UNRESOLVED_IDENTITY,ID08 KEEP_UNRESOLVED (사용자 수동 검토: 추가 사료 없이 확정하지 않고 현재 불확실성 유지)
+OE011,EP11,EP13,PROCEDURAL_NEXT,PROCEDURAL,DERIVED,False,,CF023|CF027,3/4 체포된 김명신 → 충청병영의 달포 이상 구금·조사 → 사망(5/12 보고).,CF027은 구금 시작일을 3/4로 주장하지 않는다. 같은 사람에 대한 체포→구금 절차 순서만 연결한다.,,
+OE020,EP01,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF001|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.,,
+OE021,EP02,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF004|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.,,
+OE022,EP03,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF006|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.,,
+OE023,EP04,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF007|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.,,
+OE024,EP05,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF011|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.,,
+OE025,EP06,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF013|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.,,
+OE026,EP07,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF016|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.,,
+OE027,EP08,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF020|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.,,
+OE028,EP09,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF021|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.,,
+OE029,EP10,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF024|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.,,
+OE030,EP11,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF023|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.,,
+OE031,EP12,EP23,INFORMATION_FLOW,SOURCE_DIRECT,DERIVED,False,,CF018|CF037,SRC3_006 공초는 홍대협의 공주목 신문(CF037)을 통해 기록되어 복명에 실렸다.,진술 내용의 진위가 아니라 '진술이 안핵 기록에 들어갔다'는 정보 흐름이다.,,
+OE013,EP02,EP24,CONTRADICTS_AT_CLAIM_LEVEL,SOURCE_DIRECT,DERIVED,True,,CF005|CF038,중첩 진술의 '도적 30여 명·횃불' ↔ 홍대협 '큰 화적 사건이 아니라 보통 좀도둑 수준'.,도난 존재 자체는 두 쪽 모두 인정한다. 충돌은 규모에 관한 것이다.,,
+OE040,EP13,EP15,REVIEW_OF,SOURCE_DIRECT,DERIVED,False,ID09,CF027|CF030,CF030 '당시 장계와 조사에 따라' 도난 부재 방향을 받아들임.,CF027 자체는 '확실한 장물 없음'만 보고하고 '도난 없음'을 직접 주장하지는 않는다.,,
+OE041,EP15,EP16,PROCEDURAL_NEXT,SOURCE_DIRECT|TEMPORAL,DERIVED,False,,CF030|CF031,같은 날 같은 기사(SRC3_001)의 판단 뒤 명령.,판단이 명령의 사유라는 문장은 confirmed set에 없다. 절차 순서만 연결한다.,,
+OE042,EP16,EP19,TEMPORAL_BEFORE,TEMPORAL,DERIVED,False,,CF031|CF034,5/12 의금부 구금 명 → 5/27 의금부 엄수·반복 신문 명.,,,
+OE043,EP17,EP18,REVIEW_OF,SOURCE_DIRECT,OBSERVED,False,,CF032|CF033,CF033: 정조가 이조원 서계의 조사 방식을 문제 삼음.,,,
+OE044,EP17,EP19,PROCEDURAL_NEXT,SOURCE_DIRECT,DERIVED,False,,CF032|CF034,CF034 출처 SRC3_002 제목 '이조원이 구순 사건을 아뢰고 엄핵을 청함'.,CF032(SRC3_003)와 CF034(SRC3_002)는 같은 날 다른 기록이다. 기록을 병합하지 않는다.,,
+OE045,EP18,EP20,TEMPORAL_BEFORE,TEMPORAL,DERIVED,False,,CF033|CF035,5/27 이조원 비판 → 5/28 홍대협 차하.,동기 연결은 사료에 없음 → G08.,,
+OE046,EP20,EP23,ORDER_TO_ACTION,SOURCE_DIRECT|PROCEDURAL,DERIVED,False,,CF035|CF037,"'사건을 자세히 조사해 오라'·안핵어사 차하 → 공주목 신문·안핵어사 복명(같은 인물, 같은 직함).",,,
+OE047,EP21,EP22,REVIEW_OF,SOURCE_DIRECT,OBSERVED,False,,CF029|CF036,CF036: 윤노동 별단에 따른 처리 보류.,,,
+OE048,EP22,EP23,PROCEDURAL_NEXT,SOURCE_DIRECT,OBSERVED,False,,CF036|CF037,CF036 '홍대협의 안핵 복명 전까지' 보류 → 복명.,,,
+OE050,EP23,EP24,PROCEDURAL_NEXT,SOURCE_DIRECT,DERIVED,False,,CF037|CF038,복명 속 도난 판단.,,,
+OE051,EP23,EP26,PROCEDURAL_NEXT,SOURCE_DIRECT,DERIVED,False,,CF037|CF040,복명 속 사인 평가.,,,
+OE052,EP23,EP31,PROCEDURAL_NEXT,SOURCE_DIRECT,DERIVED,False,,CF037|CF045,복명 속 지세 호칭 조사 결과.,,,
+OE053,EP15,EP24,CONTRADICTS_AT_CLAIM_LEVEL,SOURCE_DIRECT,DERIVED,False,,CF030|CF038,5/12 '도난 자체가 없었다는 방향' ↔ 6/13 홍대협 '약간의 실제 도난'.,,,
+OE054,EP17,EP24,CONTRADICTS_AT_CLAIM_LEVEL,SOURCE_DIRECT,DERIVED,False,,CF032|CF038,5/27 이조원 '도난이 없었다는 방향' ↔ 6/13 홍대협 '약간의 실제 도난'.,,,
+OE055,EP24,EP25,REVIEW_OF,SOURCE_DIRECT,DERIVED,False,,CF038|CF039,같은 복명 기사에서 정조가 안핵 판단을 검토해 최종 판단.,,,
+OE056,EP15,EP25,REVISES,SOURCE_DIRECT|TEMPORAL,DERIVED,False,,CF030|CF039,같은 주체(정조)의 도난 판단: 5/12 부재 방향 → 6/13 실재.,최종 판단만 남기지 않는다. 두 판단 node를 모두 유지한다.,,
+OE060,EP13,EP26,REVIEW_OF,PROCEDURAL,DERIVED,False,,CF027|CF035|CF040,5/12 장계는 사인 없이 사망만 보고 → 안핵어사(사건 자세히 조사 명)가 사인을 질병으로 평가.,,,
+OE061,EP26,EP27,REVIEW_OF,SOURCE_DIRECT,DERIVED,False,,CF040,"홍대협 '질병' → 정조 '부처가 전염병'. 대상이 부처로, 병명이 전염병으로 구체화된다.",,,
+OE062,EP13,EP27,CONTRADICTS_AT_CLAIM_LEVEL,SOURCE_DIRECT,DERIVED,False,,CF027|CF041,5/12 장계 '구금·조사' ↔ 6/13 정조 '평범한 신문도 받지 않았다'.,PARTIAL_TENSION: '조사'가 곧 '신문'이라고 확정할 수 없다. CF028의 '무고한 평민들 모진 형벌'은 김명신 포함 여부가 열린 집합이므로 충돌 근거로 쓰지 않는다.,UNRESOLVED_SCOPE,사용자 검토: 5월 장계의 '조사'와 정조의 '평범한 신문'이 같은 범위인지 확정하지 않음. 부분 긴장 유지.
+OE063,EP27,EP28,CONTEXT_SUPPORTS,SOURCE_DIRECT,DERIVED,False,,CF040|CF041|CF042,같은 날 정조 판단 안에서 전염병 사망·무장형 판단과 '직접 인과 불확실' 판단이 함께 놓인다.,앞 판단이 뒤 판단의 사유라는 문장은 confirmed set에 없다. 양립·맥락 관계로만 둔다.,,
+OE070,EP01,EP29,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,,CF043|CF002|CF003,정조 판단 '사적인 감정을 품고 갈등을 일으켰고' ↔ 명업 진술의 힐책·왕래 단절.,CF043은 박거사 일을 직접 언급하지 않는다. 판단 속 '갈등'을 EP01과 대응시킨 것은 DERIVED다.,,
+OE071,EP08,EP29,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,ID06,CF043|CF020,정조 판단 '병영의 염탐 담당자에게 김명신의 성명을 적어 주었으며' ↔ 유제희 진술.,"풍각 김상제=김명신은 ID05 사용자 확정(RESOLVED). 염탐 담당자=유제희(ID06)는 미확정이라 condition으로 남긴다. claim-level 차이: 정조는 '구순이 적어 주었다', 유제희는 '구순이 말했고 자신이 기록했다'. 두 행위를 합치지 않는다.",CONDITIONAL_UNRESOLVED_IDENTITY,ID06 KEEP_UNRESOLVED (사용자 수동 검토: 추가 사료 없이 확정하지 않고 현재 불확실성 유지)
+OE072,EP11,EP29,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,,CF043|CF023,정조 판단의 '횡액' ↔ 3/4 체포.,'횡액'을 체포·구금과 대응시킨 것은 해석이다.,,
+OE073,EP13,EP29,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,,CF043|CF027,정조 판단의 '원통하게 죽는 결과' ↔ 구금 뒤 사망 보고.,책임 귀속이며 직접 사인 주장이 아니다(EP28 참조).,,
+OE074,EP29,EP33,PROCEDURAL_NEXT,SOURCE_DIRECT,DERIVED,False,,CF043|CF046,같은 기사에서 책임 판단 뒤 정배 처분.,처분 사유 문장(V3P0147)은 confirmed set 밖이다.,,
+OE080,EP04,EP30,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,ID07,CF010|CF044,정조 비판 '철퇴 네 개를 만들게 했으며' ↔ 이진욱 진술 '한재욱이 철편 네 개를 만들어 주었다'.,행위 층위 차이(제작 지시 vs 제작·지급). 모순으로도 동일 행위로도 확정하지 않는다.,CONDITIONAL_UNRESOLVED_IDENTITY,ID07 KEEP_UNRESOLVED (사용자 수동 검토: 추가 사료 없이 확정하지 않고 현재 불확실성 유지)
+OE081,EP09,EP30,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,,CF021|CF044,3/4 '병사'의 체포 지시 ↔ 정조의 이광섭 지휘 책임 판단.,"병사=이광섭은 ID01 사용자 확정(RESOLVED)이라 직접 대응한다. 다만 3/4 지시 행위 자체는 이진욱 진술(CF021)로만 확인되며, 동일성 확정이 그 행위를 관측 사실로 올리지는 않는다.",,
+OE082,EP14,EP30,REVIEW_OF,PROCEDURAL,DERIVED,False,,CF025|CF026|CF044,5/12 이형원의 이광섭·이문협 평가 → 6/13 정조의 이광섭 책임 재평가.,"'비장에게 맡김'은 5/12에는 이문협, 6/13에는 이광섭에 대한 비판으로 나온다. 주체를 합치지 않는다.",,
+OE083,EP29,EP30,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,,CF043|CF044,CF044 '구순과 이광섭의 책임이 크게 다르지 않다' — 두 책임 판단의 비교.,,,
+OE084,EP30,EP34,PROCEDURAL_NEXT,SOURCE_DIRECT,DERIVED,False,,CF044|CF047,책임 판단 뒤 유배 처분.,,,
+OE090,EP02,EP31,REVIEW_OF,SOURCE_DIRECT,DERIVED,True,,CF005|CF045,중첩 진술의 '지세대감 자칭' → 홍대협 기원 미확정.,,,
+OE091,EP31,EP32,REVIEW_OF,SOURCE_DIRECT,DERIVED,False,,CF045,홍대협 미확정 → 정조의 날조 죄 불인정.,,,
+OE095,EP23,EP35,PROCEDURAL_NEXT,SOURCE_DIRECT,DERIVED,False,,CF037|CF048,안핵 복명 뒤 처분.,한가 처분의 근거 행위는 미기록 → G09.,,
+OE096,EP23,EP36,PROCEDURAL_NEXT,SOURCE_DIRECT,DERIVED,False,,CF037|CF049,안핵 복명 뒤 처분.,파직 사유는 미기록.,,
+OE097,EP36,EP37,REVISES,TEMPORAL|SOURCE_DIRECT,DERIVED,False,,CF049|CF050,6/13 파직 → 6/16 유임(같은 인물의 관직 상태 변경).,사유 미기록 → G10. 6/13 처분 자체를 지우지 않는다.,,
+OE098,EP25,EP36,TEMPORAL_BEFORE,TEMPORAL,DERIVED,False,,CF039|CF049,같은 날 최종 도난 판단과 이형원 파직.,최종 판단(도난 실재)이 5/12 장계와 어긋난다는 점이 파직 사유인지는 confirmed set에 없다 → G10.,,
+OE100,ENV01,EP26,CONTEXT_SUPPORTS,ENVIRONMENTAL_CONTEXT,DERIVED,False,,E001|CF040,1월 호서 전염병 사망 치계 — 질병 사망 평가와 시대적으로 부합.,,,
+OE101,ENV03,EP26,CONTEXT_SUPPORTS,ENVIRONMENTAL_CONTEXT,DERIVED,False,,E003|CF040,4월 호서 전염병 창궐 — 구금(3/4~)·사망(5/12 이전) 기간과 겹치는 지역 환경.,,,
+OE102,ENV01,EP27,CONTEXT_SUPPORTS,ENVIRONMENTAL_CONTEXT,DERIVED,False,,E001|CF040,정조의 '부처 전염병 사망' 판단과 부합하는 지역 환경.,,,
+OE103,ENV03,EP27,CONTEXT_SUPPORTS,ENVIRONMENTAL_CONTEXT,DERIVED,False,,E003|CF040,전염병 지속 — 정조 판단과 부합.,,,
+OE104,ENV04,EP27,CONTEXT_SUPPORTS,ENVIRONMENTAL_CONTEXT,DERIVED,False,,E004|CF040,5/12 옥수 전염병 치료 정책 — 옥중 전염병이 조정의 현안이었다는 custody-health context.,정책일(5/12)은 김명신 사망 보고와 같은 날이고 사망 이후다. 김명신 처우에 영향을 준 것으로 연결하지 않는다.,,
+OE105,ENV02,EP27,CONTEXT_SUPPORTS,ENVIRONMENTAL_CONTEXT,DERIVED,False,,E002|CF040,기근·구휼 — 영양·행정 부담이라는 거시 맥락(약함).,직접 사인으로 쓰지 않는다(E002 notes).,,
+OE106,ENV01,EP21,CONTEXT_SUPPORTS,ENVIRONMENTAL_CONTEXT,DERIVED,False,,E001|CF029,윤노동 별단 '보수·구금 중 병들어 죽었다'는 보고와 부합하는 환경.,,,
+OE107,ENV03,EP21,CONTEXT_SUPPORTS,ENVIRONMENTAL_CONTEXT,DERIVED,False,,E003|CF029,윤노동 보고와 부합하는 전염병 지속 환경.,,,

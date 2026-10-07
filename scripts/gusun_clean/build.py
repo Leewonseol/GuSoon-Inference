@@ -21,7 +21,7 @@ import report  # noqa: E402
 import regression  # noqa: E402
 from manual_review import WARN_DISPOSITIONS  # noqa: E402
 from stage1_episodes import EPISODES, EPISTEMIC_RANK, IDENTITY_REGISTER  # noqa: E402
-from stage2_graph import BASES, EDGE_TYPES, EDGES, ENV_FIT_LINKS, ENV_NODES, FEATURE_LINKS  # noqa: E402
+from stage2_graph import BASES, EDGE_TYPES, EDGE_UNCERTAINTY, EDGES, ENV_FIT_LINKS, ENV_NODES, FEATURE_LINKS  # noqa: E402
 
 ROOT = HERE.parents[1]
 PACK = ROOT / "gusun_clean_restart_csv_pack"
@@ -116,6 +116,9 @@ def stage2(ep_rows, env):
                           record_lunar_date=r["lunar_date"], epistemic_floor="EXTERNAL_CONTEXT",
                           confirmation_levels="EXTERNAL_CONTEXT", grouping_rationale="환경 context node (사건 아님)"))
     edges = [dict(e) for e in EDGES]
+    for e in edges:
+        st, note = EDGE_UNCERTAINTY.get(e["edge_id"], ("", ""))
+        e["uncertainty_status"], e["review_decision"] = st, note
     links = []
     for i, l in enumerate(FEATURE_LINKS + ENV_FIT_LINKS, 1):
         layer = "ENVIRONMENT" if l["feature_id"].startswith("E") else "INSTITUTIONAL"
@@ -125,8 +128,8 @@ def stage2(ep_rows, env):
 
 
 # 직전 동결본(커밋 1f7710c: WARN 처리 후, 사용자 동일성 확정 전)
-PREVIOUS_FREEZE = dict(sha256="005d4b7df0300681", structure_sha256="a43d862aa11b960ee1ee7bcbad9cea3659566eda756f05b2600faf7869e400fb",
-                       topology_sha256="04c84b0e24af31f5605800ae30bc2750563a1aeb3e72390aa6d6643676b68e84")  # 커밋 e0ca8de(ID05 확정 전)
+PREVIOUS_FREEZE = dict(sha256="ccb7ec63763a715a", structure_sha256="0b69134457880767285c3516e1e9c962bb9b778a5c6f4e85b248c6b16b01c80d",
+                       topology_sha256="04c84b0e24af31f5605800ae30bc2750563a1aeb3e72390aa6d6643676b68e84")  # 커밋 d069d2c(ID05 확정 직후)
 
 
 def topology_hash(nodes, edges):
@@ -158,13 +161,13 @@ NODE_COLS = ["node_id", "node_status", "layer", "branch", "title", "summary", "c
              "source_prop_ids", "attesting_actor", "occurrence_text", "t_min", "t_max", "record_lunar_date",
              "grouping_rationale", "identity_links", "env_id"]
 EDGE_COLS = ["edge_id", "src", "dst", "edge_type", "basis", "status", "claim_level", "condition", "supporting",
-             "rationale", "caution"]
+             "rationale", "caution", "uncertainty_status", "review_decision"]
 LINK_COLS = ["link_id", "target_kind", "target_id", "feature_layer", "feature_id", "dimension", "assessment",
              "creates_event", "rationale"]
 
 
 IDENTITY_COLS = ["identity_id", "surface_a", "surface_b", "status", "resolved_by", "resolution_basis", "unresolved_reason",
-                 "model_relevance", "manual_decision_required", "context", "referenced_facts"]
+                 "model_relevance", "manual_decision_required", "review_decision", "context", "referenced_facts"]
 
 
 def identity_relevance(edges, cands, worlds):
@@ -228,8 +231,8 @@ def main():
                   topology_sha256=topology_hash(nodes, edges),
                   previous_topology_sha256=PREVIOUS_FREEZE["topology_sha256"],
                   topology_unchanged=topology_hash(nodes, edges) == PREVIOUS_FREEZE["topology_sha256"],
-                  change_note="사용자 동일성 확정(ID05)으로 OE071의 condition에서 ID05를 제거(ID06은 유지)하고 caution 문구를 고침. "
-                              "node·edge 수, 끝점, edge type은 그대로",
+                  change_note="사용자 검토로 ID06·ID07·ID08·OE007·OE062·G10의 불확실성을 유지하기로 함. 상태 컬럼(uncertainty_status·review_decision·gap_status)만 추가했고 "
+                              "node·edge·condition·끝점·type은 그대로",
                   n_nodes=len(nodes), n_edges=len(edges),
                   n_episode_nodes=len(ep_rows), n_env_nodes=len(ENV_NODES),
                   edge_status=dict(Counter(e["status"] for e in edges)),

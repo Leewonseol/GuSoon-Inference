@@ -101,6 +101,8 @@ AUDIT1_REVISIONS = [
      "미확정 ID 치환은 identity_forcing으로 구분. 재실행 ERROR 0, WARN 0, UNRESOLVED 9→5(ID04 참고용 포함), INFO 8→12(resolved_identity 4)"),
     ("사용자 동일성 확정 반영 (ID05)", "사용자가 ID05(풍각 김상제=김명신)를 확정",
      "status=RESOLVED(resolved_by=USER, 근거 기록). EP08 summary는 표면형 '풍각 김상제' 유지. 재실행 ERROR 0, WARN 0, UNRESOLVED 5→4"),
+    ("사용자 검토: 불확실성 유지", "사용자가 ID06·ID07·ID08을 추가 사료 없이 확정하지 않기로 함",
+     "status UNRESOLVED 유지, review_decision=KEEP_UNRESOLVED, manual_decision_required=NO. 구조 변경 없음. ERROR 0, WARN 0"),
 ]
 
 # ============================================================================ AUDIT 2
@@ -175,6 +177,9 @@ AUDIT2_REVISIONS = AUDIT2_REVISIONS_PRE + [
      "재실행 ERROR 0, WARN 0, UNRESOLVED 8→6, INFO 1"),
     ("사용자 동일성 확정 반영 (ID05)", "OE071 condition에 확정 ID05가 남음",
      "condition을 ID06만 남기고 caution 수정. 재실행 ERROR 0, WARN 0, UNRESOLVED 6→5"),
+    ("사용자 검토: 불확실성 유지", "OE007 부분 충돌·OE062 범위 미확정을 결정하지 않기로 함",
+     "observed_edges.csv에 uncertainty_status(OE007=PARTIAL_CONFLICT, OE062=UNRESOLVED_SCOPE, OE010·OE071·OE080=CONDITIONAL_UNRESOLVED_IDENTITY)와 "
+     "review_decision 컬럼 추가. condition·끝점·type은 그대로. 부분 충돌 edge에 상태가 없으면 ERROR. ERROR 0, WARN 0"),
 ]
 
 # ============================================================================ AUDIT 3
@@ -257,6 +262,8 @@ AUDIT3_REVISIONS = [
      "world 서술의 'IDxx가 성립한다면'을 '(IDxx, 사용자 확정)'으로 바꿈. world 구성·bridge·미해결 gap은 그대로. 재실행 ERROR 0, WARN 0, UNRESOLVED 1"),
     ("사용자 동일성 확정 반영 (ID05)", "G03b·G03c·G04a 가정과 W1·W4 서술의 ID05 조건",
      "확정 ID 가정 제거(G03b 3→2, G03c 3→2, G04a 3→2, 등급 변화 없음). W1·W4 서술을 '(ID05, 사용자 확정)'으로 수정. world 구성 그대로"),
+    ("사용자 검토: 불확실성 유지", "G10(이형원 파직→유임 이유)에 latent bridge를 채택하지 않기로 함",
+     "gaps.csv에 gap_status=OPEN_UNRESOLVED와 review_decision 기록. 어떤 world든 G10 후보를 쓰면 ERROR(open_gap_filled). 후보 등급·world 구성 변경 없음"),
 ]
 
 

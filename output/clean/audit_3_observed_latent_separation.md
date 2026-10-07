@@ -83,7 +83,7 @@ _없음_
 
 ## 3-2. UNRESOLVED (사료 자체의 모호성 — 허용, 데이터에 보존)
 
-- `unresolved_gap` **G10** — 어느 retained world도 이 gap을 메우지 않음 (후보 G10a=MEDIUM, G10b=LOW, G10c=LOW) · unresolved_reason: 파직과 3일 뒤 유임의 사유가 모두 기록되지 않았다. 관측 근거(CF049, CF050)에 사유를 적은 문장이 없어 어느 후보도 world backbone에 넣지 않음
+- `unresolved_gap` **G10** — OPEN_UNRESOLVED — 어느 retained world도 이 gap을 메우지 않음 (후보 G10a=MEDIUM, G10b=LOW, G10c=LOW) · review_decision: 사용자 검토: latent bridge를 채택하지 않음. 이유를 억지로 채우지 않고 gap을 열어 둔다(world에서도 비움). · unresolved_reason: 파직과 3일 뒤 유임의 사유가 모두 기록되지 않았다. 관측 근거(CF049, CF050)에 사유를 적은 문장이 없음
 
 
 ## 4. 수정 이력
@@ -101,6 +101,7 @@ _없음_
 | WARN 0 작업 — 6차 | UNRESOLVED 문구 검토: G10 사유가 '모든 후보가 사료 지지 없음'으로 적혀 G10a(MEDIUM)와 어긋남 | 후보 등급과 gap 근거에서 문구를 생성하도록 수정. 최종 ERROR 0, WARN 0, UNRESOLVED 1(G10), INFO 8 |
 | 사용자 동일성 확정 반영 | G03a(ID11)·G04c·G05a(ID01)·G09a(ID02·ID03)의 확정 ID 가정, G09b·G09c의 확정 ID 부정 전제, world 서술의 조건문 | 확정 ID 가정을 빼고(G03a 4→3, G04c 3→2, G05a 3→2, G09a 3→1, 등급 변화 없음), G09b·G09c는 규칙 7로 INCOMPATIBLE·PRUNED(world 미사용). world 서술의 'IDxx가 성립한다면'을 '(IDxx, 사용자 확정)'으로 바꿈. world 구성·bridge·미해결 gap은 그대로. 재실행 ERROR 0, WARN 0, UNRESOLVED 1 |
 | 사용자 동일성 확정 반영 (ID05) | G03b·G03c·G04a 가정과 W1·W4 서술의 ID05 조건 | 확정 ID 가정 제거(G03b 3→2, G03c 3→2, G04a 3→2, 등급 변화 없음). W1·W4 서술을 '(ID05, 사용자 확정)'으로 수정. world 구성 그대로 |
+| 사용자 검토: 불확실성 유지 | G10(이형원 파직→유임 이유)에 latent bridge를 채택하지 않기로 함 | gaps.csv에 gap_status=OPEN_UNRESOLVED와 review_decision 기록. 어떤 world든 G10 후보를 쓰면 ERROR(open_gap_filled). 후보 등급·world 구성 변경 없음 |
 
 ## 5. 전체 요소 분류표
 

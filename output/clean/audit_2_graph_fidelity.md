@@ -64,9 +64,9 @@ _이 audit에서는 처리 대상 WARN이 발생하지 않았다(모든 실행�
 
 ## 2-2. UNRESOLVED (사료 자체의 모호성 — 허용, 데이터에 보존)
 
-- `partial_tension` **OE007** — 부분 충돌 — 원문 표현의 범위가 같은지 사료로 확정할 수 없어 충돌 강도를 PARTIAL로 보존 · unresolved_reason: '한 비장'=한재욱은 ID02 사용자 확정(RESOLVED)이라 같은 인물에 대한 두 진술이다. 사주 주장(자미덕)과 은밀한 사주 부인(한재욱)은 서로 다른 진술로 유지하며 어느 쪽도 객관적 사실로 확정하지 않는다. 한재욱의 부인 범위는 '은밀한 사주'에 한정되므로 PARTIAL 충돌이다.
+- `partial_tension` **OE007** — PARTIAL_CONFLICT — 원문 표현의 범위가 같은지 사료로 확정할 수 없어 보존 · review_decision: 사용자 검토: 정면 충돌로 승격하지 않음. 자미덕의 '지휘' 주장과 한재욱의 '은밀한 사주' 부인은 범위가 완전히 같지 않다. · unresolved_reason: '한 비장'=한재욱은 ID02 사용자 확정(RESOLVED)이라 같은 인물에 대한 두 진술이다. 사주 주장(자미덕)과 은밀한 사주 부인(한재욱)은 서로 다른 진술로 유지하며 어느 쪽도 객관적 사실로 확정하지 않는다. 한재욱의 부인 범위는 '은밀한 사주'에 한정되므로 PARTIAL 충돌이다.
 - `conditional_edge` **OE010** — ID08 미확정 — edge는 condition으로만 성립 · unresolved_reason: 3/4 '장교 일행'의 구성원은 기록되지 않았다.
-- `partial_tension` **OE062** — 부분 충돌 — 원문 표현의 범위가 같은지 사료로 확정할 수 없어 충돌 강도를 PARTIAL로 보존 · unresolved_reason: PARTIAL_TENSION: '조사'가 곧 '신문'이라고 확정할 수 없다. CF028의 '무고한 평민들 모진 형벌'은 김명신 포함 여부가 열린 집합이므로 충돌 근거로 쓰지 않는다.
+- `partial_tension` **OE062** — UNRESOLVED_SCOPE — 원문 표현의 범위가 같은지 사료로 확정할 수 없어 보존 · review_decision: 사용자 검토: 5월 장계의 '조사'와 정조의 '평범한 신문'이 같은 범위인지 확정하지 않음. 부분 긴장 유지. · unresolved_reason: PARTIAL_TENSION: '조사'가 곧 '신문'이라고 확정할 수 없다. CF028의 '무고한 평민들 모진 형벌'은 김명신 포함 여부가 열린 집합이므로 충돌 근거로 쓰지 않는다.
 - `conditional_edge` **OE071** — ID06 미확정 — edge는 condition으로만 성립 · unresolved_reason: 정조 판단(CF043)은 직책 표현('병영의 염탐 담당자')만 쓰고 이름을 적지 않았다.
 - `conditional_edge` **OE080** — ID07 미확정 — edge는 condition으로만 성립 · unresolved_reason: 개수(네 개)와 사건은 같지만 물건 이름(철편/철퇴)과 행위 층위(제작·지급/제작 지시)가 다르다.
 
@@ -80,6 +80,7 @@ _이 audit에서는 처리 대상 WARN이 발생하지 않았다(모든 실행�
 | WARN 0 작업 | WARN은 원래 0. 조건부 identity edge 6개를 INFO로 두던 것이 사료 모호성 성격이라 UNRESOLVED로 재분류했다. PARTIAL 충돌 edge 2개(OE007·OE062)도 UNRESOLVED로 표시했다. 근거 문구의 동일성 표면형 쌍 검사와 책임→직접 인과·환경→개인 사실 문구 검사를 추가 | edge 데이터는 변경 없음. 최종 ERROR 0, WARN 0, UNRESOLVED 8, INFO 1(OE060 절차 근거) |
 | 사용자 동일성 확정 반영 | OE007(ID02)·OE081(ID01)의 condition이 확정 ID를 가리킴 | condition 제거, caution을 '같은 인물에 대한 서로 다른 진술'·'행위는 진술로만 확인'으로 수정. 확정 ID가 condition에 남으면 ERROR(stale_identity_condition). 재실행 ERROR 0, WARN 0, UNRESOLVED 8→6, INFO 1 |
 | 사용자 동일성 확정 반영 (ID05) | OE071 condition에 확정 ID05가 남음 | condition을 ID06만 남기고 caution 수정. 재실행 ERROR 0, WARN 0, UNRESOLVED 6→5 |
+| 사용자 검토: 불확실성 유지 | OE007 부분 충돌·OE062 범위 미확정을 결정하지 않기로 함 | observed_edges.csv에 uncertainty_status(OE007=PARTIAL_CONFLICT, OE062=UNRESOLVED_SCOPE, OE010·OE071·OE080=CONDITIONAL_UNRESOLVED_IDENTITY)와 review_decision 컬럼 추가. condition·끝점·type은 그대로. 부분 충돌 edge에 상태가 없으면 ERROR. ERROR 0, WARN 0 |
 
 ## 4. Edge 전체 목록
 

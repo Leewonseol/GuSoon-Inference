@@ -333,9 +333,10 @@ def write_audit3(path, findings, nodes, edges, gaps, cands, worlds, frozen):
 def write_latent_csv(out, gaps, cands, worlds):
     with open(out / "gaps.csv", "w", encoding="utf-8", newline="") as f:
         w = csv.writer(f)
-        w.writerow(["gap_id", "title", "gap_type", "between", "observed_anchor_facts", "why_gap"])
+        w.writerow(["gap_id", "title", "gap_type", "between", "observed_anchor_facts", "why_gap", "gap_status", "review_decision"])
         for g in gaps:
-            w.writerow([g["gap_id"], g["title"], g["gap_type"], "|".join(g["between"]), g["observed_anchor_facts"], g["why_gap"]])
+            w.writerow([g["gap_id"], g["title"], g["gap_type"], "|".join(g["between"]), g["observed_anchor_facts"], g["why_gap"],
+                        g.get("gap_status", ""), g.get("review_decision", "")])
     cols = ["candidate_id", "gap_id", "status", "form", "label", "description", "source_consistency", "temporal_fit",
             "institutional_fit", "role_fit", "information_flow_fit", "environmental_fit", "contradiction_risk",
             "n_assumptions", "extra_assumptions", "identity_conditions", "overall", "prune_decision", "supports", "conflicts",
@@ -391,10 +392,10 @@ def write_validation_summary(path, audits_by_name, freeze, worlds):
               f"RESOLVED(사용자 확정) {cnt['RESOLVED']}개 · UNRESOLVED {cnt['UNRESOLVED']}개 "
               f"(그중 사용자 판단 필요 {sum(r['status'] == 'UNRESOLVED' and r['manual_decision_required'] == 'YES' for r in idr)}개) · "
               f"기타 {len(idr) - cnt['RESOLVED'] - cnt['UNRESOLVED']}개", "",
-              "| ID | 동일성 | status | 모델 사용처 | 사용자 판단 필요 |", "|---|---|---|---|---|"]
+              "| ID | 동일성 | status | 모델 사용처 | 사용자 판단 필요 | 검토 결정 |", "|---|---|---|---|---|---|"]
     for r in idr:
         lines.append(f"| {r['identity_id']} | {_cell(r['surface_a'])} ↔ {_cell(r['surface_b'])} | {r['status']} | "
-                     f"{_cell(r['model_relevance'])} | {r['manual_decision_required']} |")
+                     f"{_cell(r['model_relevance'])} | {r['manual_decision_required']} | {_cell(r.get('review_decision', ''))} |")
     lines += ["", "## UNRESOLVED 목록", ""]
     for name, fs in audits_by_name.items():
         lines += [f"### {name}", "", _unresolved_list(fs), ""]

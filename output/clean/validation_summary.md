@@ -36,21 +36,21 @@ UNRESOLVED = 1
 
 ## 동일성 상태
 
-RESOLVED(사용자 확정) 5개 · UNRESOLVED 4개 (그중 사용자 판단 필요 3개) · 기타 2개
+RESOLVED(사용자 확정) 5개 · UNRESOLVED 4개 (그중 사용자 판단 필요 0개) · 기타 2개
 
-| ID | 동일성 | status | 모델 사용처 | 사용자 판단 필요 |
-|---|---|---|---|---|
-| ID01 | 공초의 '병사' (CF021·CF023·CF024) ↔ 이광섭 | RESOLVED | 조건부 사용 없음(RESOLVED) | NO |
-| ID02 | '한 비장' (CF016·CF017) ↔ 한재욱 | RESOLVED | 조건부 사용 없음(RESOLVED); 확정과 충돌해 PRUNED된 후보: G09b | NO |
-| ID03 | 처분문의 '한가' (CF048) ↔ 한재욱 | RESOLVED | 조건부 사용 없음(RESOLVED); 확정과 충돌해 PRUNED된 후보: G09c | NO |
-| ID04 | '병영의 하급 보조자' (audit-only V3P0026·V3P0027·V3P0124) ↔ 한재욱 | UNRESOLVED | NONE | NO |
-| ID05 | '풍각 김상제' (CF020) ↔ 김명신 | RESOLVED | 조건부 사용 없음(RESOLVED) | NO |
-| ID06 | '병영의 염탐 담당자' (CF043) ↔ 유제희 | UNRESOLVED | OE071, G04a, W1 | YES |
-| ID07 | '철편 네 개' (CF010, 이진욱: 한재욱이 만들어 줌) ↔ '철퇴 네 개' (CF044, 정조: 이광섭이 만들게 함) | UNRESOLVED | OE080, G02a, W1, W3 | YES |
-| ID08 | 3/4 '장교 일행' (CF023) ↔ 조계완 포함 여부 (CF024) | UNRESOLVED | OE010 | YES |
-| ID09 | CF030 '당시 장계' ↔ 이형원 5/12 장계(CF027) | ACCEPTED_BY_PROVENANCE | OE040 | NO |
-| ID10 | 풍각 김생원 / 흥덕 김생원 ↔ 김명신 / 김갑득 | DOCUMENTED | NONE | NO |
-| ID11 | '원돌' (CF020 '원돌 등의 이름') ↔ 정원돌 (CF009·CF016) | RESOLVED | 조건부 사용 없음(RESOLVED) | NO |
+| ID | 동일성 | status | 모델 사용처 | 사용자 판단 필요 | 검토 결정 |
+|---|---|---|---|---|---|
+| ID01 | 공초의 '병사' (CF021·CF023·CF024) ↔ 이광섭 | RESOLVED | 조건부 사용 없음(RESOLVED) | NO | RESOLVED_BY_USER |
+| ID02 | '한 비장' (CF016·CF017) ↔ 한재욱 | RESOLVED | 조건부 사용 없음(RESOLVED); 확정과 충돌해 PRUNED된 후보: G09b | NO | RESOLVED_BY_USER |
+| ID03 | 처분문의 '한가' (CF048) ↔ 한재욱 | RESOLVED | 조건부 사용 없음(RESOLVED); 확정과 충돌해 PRUNED된 후보: G09c | NO | RESOLVED_BY_USER |
+| ID04 | '병영의 하급 보조자' (audit-only V3P0026·V3P0027·V3P0124) ↔ 한재욱 | UNRESOLVED | NONE | NO | REFERENCE_ONLY (모델 미사용) |
+| ID05 | '풍각 김상제' (CF020) ↔ 김명신 | RESOLVED | 조건부 사용 없음(RESOLVED) | NO | RESOLVED_BY_USER |
+| ID06 | '병영의 염탐 담당자' (CF043) ↔ 유제희 | UNRESOLVED | OE071, G04a, W1 | NO | KEEP_UNRESOLVED (사용자 수동 검토: 추가 사료 없이 확정하지 않고 현재 불확실성 유지) |
+| ID07 | '철편 네 개' (CF010, 이진욱: 한재욱이 만들어 줌) ↔ '철퇴 네 개' (CF044, 정조: 이광섭이 만들게 함) | UNRESOLVED | OE080, G02a, W1, W3 | NO | KEEP_UNRESOLVED (사용자 수동 검토: 추가 사료 없이 확정하지 않고 현재 불확실성 유지) |
+| ID08 | 3/4 '장교 일행' (CF023) ↔ 조계완 포함 여부 (CF024) | UNRESOLVED | OE010 | NO | KEEP_UNRESOLVED (사용자 수동 검토: 추가 사료 없이 확정하지 않고 현재 불확실성 유지) |
+| ID09 | CF030 '당시 장계' ↔ 이형원 5/12 장계(CF027) | ACCEPTED_BY_PROVENANCE | OE040 | NO |  |
+| ID10 | 풍각 김생원 / 흥덕 김생원 ↔ 김명신 / 김갑득 | DOCUMENTED | NONE | NO |  |
+| ID11 | '원돌' (CF020 '원돌 등의 이름') ↔ 정원돌 (CF009·CF016) | RESOLVED | 조건부 사용 없음(RESOLVED) | NO | RESOLVED_BY_USER |
 
 ## UNRESOLVED 목록
 
@@ -63,19 +63,19 @@ RESOLVED(사용자 확정) 5개 · UNRESOLVED 4개 (그중 사용자 판단 필�
 
 ### Audit 2
 
-- `partial_tension` **OE007** — 부분 충돌 — 원문 표현의 범위가 같은지 사료로 확정할 수 없어 충돌 강도를 PARTIAL로 보존 · unresolved_reason: '한 비장'=한재욱은 ID02 사용자 확정(RESOLVED)이라 같은 인물에 대한 두 진술이다. 사주 주장(자미덕)과 은밀한 사주 부인(한재욱)은 서로 다른 진술로 유지하며 어느 쪽도 객관적 사실로 확정하지 않는다. 한재욱의 부인 범위는 '은밀한 사주'에 한정되므로 PARTIAL 충돌이다.
+- `partial_tension` **OE007** — PARTIAL_CONFLICT — 원문 표현의 범위가 같은지 사료로 확정할 수 없어 보존 · review_decision: 사용자 검토: 정면 충돌로 승격하지 않음. 자미덕의 '지휘' 주장과 한재욱의 '은밀한 사주' 부인은 범위가 완전히 같지 않다. · unresolved_reason: '한 비장'=한재욱은 ID02 사용자 확정(RESOLVED)이라 같은 인물에 대한 두 진술이다. 사주 주장(자미덕)과 은밀한 사주 부인(한재욱)은 서로 다른 진술로 유지하며 어느 쪽도 객관적 사실로 확정하지 않는다. 한재욱의 부인 범위는 '은밀한 사주'에 한정되므로 PARTIAL 충돌이다.
 - `conditional_edge` **OE010** — ID08 미확정 — edge는 condition으로만 성립 · unresolved_reason: 3/4 '장교 일행'의 구성원은 기록되지 않았다.
-- `partial_tension` **OE062** — 부분 충돌 — 원문 표현의 범위가 같은지 사료로 확정할 수 없어 충돌 강도를 PARTIAL로 보존 · unresolved_reason: PARTIAL_TENSION: '조사'가 곧 '신문'이라고 확정할 수 없다. CF028의 '무고한 평민들 모진 형벌'은 김명신 포함 여부가 열린 집합이므로 충돌 근거로 쓰지 않는다.
+- `partial_tension` **OE062** — UNRESOLVED_SCOPE — 원문 표현의 범위가 같은지 사료로 확정할 수 없어 보존 · review_decision: 사용자 검토: 5월 장계의 '조사'와 정조의 '평범한 신문'이 같은 범위인지 확정하지 않음. 부분 긴장 유지. · unresolved_reason: PARTIAL_TENSION: '조사'가 곧 '신문'이라고 확정할 수 없다. CF028의 '무고한 평민들 모진 형벌'은 김명신 포함 여부가 열린 집합이므로 충돌 근거로 쓰지 않는다.
 - `conditional_edge` **OE071** — ID06 미확정 — edge는 condition으로만 성립 · unresolved_reason: 정조 판단(CF043)은 직책 표현('병영의 염탐 담당자')만 쓰고 이름을 적지 않았다.
 - `conditional_edge` **OE080** — ID07 미확정 — edge는 condition으로만 성립 · unresolved_reason: 개수(네 개)와 사건은 같지만 물건 이름(철편/철퇴)과 행위 층위(제작·지급/제작 지시)가 다르다.
 
 ### Audit 3
 
-- `unresolved_gap` **G10** — 어느 retained world도 이 gap을 메우지 않음 (후보 G10a=MEDIUM, G10b=LOW, G10c=LOW) · unresolved_reason: 파직과 3일 뒤 유임의 사유가 모두 기록되지 않았다. 관측 근거(CF049, CF050)에 사유를 적은 문장이 없어 어느 후보도 world backbone에 넣지 않음
+- `unresolved_gap` **G10** — OPEN_UNRESOLVED — 어느 retained world도 이 gap을 메우지 않음 (후보 G10a=MEDIUM, G10b=LOW, G10c=LOW) · review_decision: 사용자 검토: latent bridge를 채택하지 않음. 이유를 억지로 채우지 않고 gap을 열어 둔다(world에서도 비움). · unresolved_reason: 파직과 3일 뒤 유임의 사유가 모두 기록되지 않았다. 관측 근거(CF049, CF050)에 사유를 적은 문장이 없음
 
 ## Regression validation rules
 
-build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR로 잡히는지 확인한다(19/19 탐지).
+build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR로 잡히는지 확인한다(20/20 탐지).
 
 | rule | 케이스 | 탐지 |
 |---|---|---|
@@ -90,6 +90,7 @@ build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR�
 | identity_forcing | 미확정 동일성(ID06) 강제: '병영의 염탐 담당자'를 유제희로 치환(EP29) | OK |
 | stale_identity_condition | 사용자 확정 동일성(ID01)이 edge condition에 남아 있음(OE081) | OK |
 | resolved_identity_conflict | 확정 동일성(ID02)을 불성립으로 전제한 후보(G09b)가 INCOMPATIBLE이 아님 | OK |
+| open_gap_filled | 사용자가 열어 두기로 한 G10을 world가 채움 | OK |
 | closed_set | '등' 삭제(EP07) | OK |
 | semantic_strengthening | '극히 수상하다' → 범인 지목(EP08) | OK |
 | responsibility_to_causation | 책임 판단을 직접 사인으로(EP29) | OK |
@@ -102,10 +103,10 @@ build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR�
 ## 동결 그래프
 
 - 현재 sha256: `ccb7ec63763a715ae90c74dfff37d3ed7980fa705fd152f59de8bed2e31d4e0c`
-- 직전 sha256(앞자리): `005d4b7df0300681…`
-- 구조 sha256(문구 제외): `0b69134457880767285c3516e1e9c962bb9b778a5c6f4e85b248c6b16b01c80d` — 이전과 다름
+- 직전 sha256(앞자리): `ccb7ec63763a715a…`
+- 구조 sha256(문구 제외): `0b69134457880767285c3516e1e9c962bb9b778a5c6f4e85b248c6b16b01c80d` — 이전과 동일
 - topology sha256(id·끝점·type): `04c84b0e24af31f5605800ae30bc2750563a1aeb3e72390aa6d6643676b68e84` — 이전과 동일
-- 변경 내용: 사용자 동일성 확정(ID05)으로 OE071의 condition에서 ID05를 제거(ID06은 유지)하고 caution 문구를 고침. node·edge 수, 끝점, edge type은 그대로
+- 변경 내용: 사용자 검토로 ID06·ID07·ID08·OE007·OE062·G10의 불확실성을 유지하기로 함. 상태 컬럼(uncertainty_status·review_decision·gap_status)만 추가했고 node·edge·condition·끝점·type은 그대로
 
 ## Narrative worlds
 

@@ -12,7 +12,7 @@ python3 scripts/gusun_clean/build.py    # 저장소 루트에서 실행
 ```
 
 실행 순서는 STAGE 1 episode → AUDIT 1 → STAGE 2 graph → AUDIT 2 → STAGE 3 동결(sha256) → STAGE 4 gap·latent 후보 → AUDIT 3 → STAGE 5 world → AUDIT 3 재검사(world 포함) → md/CSV 작성 → DuckDB 작성이다.
-Audit 1 전에 regression 케이스 19개(`regression.py`)를 검사기에 넣어 모두 잡히는지 먼저 확인한다. audit에 ERROR 또는 disposition 없는 WARN이 있으면 그 자리에서 exit 1로 멈춘다. 같은 입력이면 출력이 바이트 단위로 같다.
+Audit 1 전에 regression 케이스 20개(`regression.py`)를 검사기에 넣어 모두 잡히는지 먼저 확인한다. audit에 ERROR 또는 disposition 없는 WARN이 있으면 그 자리에서 exit 1로 멈춘다. 같은 입력이면 출력이 바이트 단위로 같다.
 
 | 스크립트 | 역할 |
 |---|---|
@@ -22,7 +22,7 @@ Audit 1 전에 regression 케이스 19개(`regression.py`)를 검사기에 넣�
 | `stage4_latent.py` | gap 13개, latent 후보 38개, 기계적 등급 `grade()`·`prune()` |
 | `stage5_worlds.py` | world 6개(retained 5, rejected 1), 상충 후보 쌍, 무결성 assert |
 | `audits.py` | Audit 1·2·3 자동 검사 |
-| `regression.py` | 과거 결함 19개를 검사기가 다시 잡는지 확인하는 regression 케이스 |
+| `regression.py` | 과거 결함 20개를 검사기가 다시 잡는지 확인하는 regression 케이스 |
 | `manual_review.py` | 원본 CSV 대조 수동 검토표와 실제 수정 이력 |
 | `report.py` | md·CSV·mermaid 작성 |
 
@@ -56,7 +56,7 @@ Audit 1 전에 regression 케이스 19개(`regression.py`)를 검사기에 넣�
 | AUDIT 3 observed/latent 분리 | PASS | 0 | 0 | 1 (G10) | 10 |
 
 - 통과 조건은 ERROR 0, WARN 0이다. 이전 실행의 WARN 5건(A1-W1–W4, A3-W1)은 모두 FIXED로 처리했다. 새 regression 규칙이 찾아낸 EP07 1건(A1-E1)은 ESCALATED_ERROR로 올린 뒤 고쳤다. 처리 내역은 `warn_dispositions.csv`와 각 audit 문서의 WARN disposition 절에 있다.
-- 사용자 수동 검토로 ID01(병사=이광섭)·ID02(한 비장=한재욱)·ID03(한가=한재욱)·ID05(풍각 김상제=김명신)·ID11(원돌=정원돌)을 확정했다(`identity_register.csv`의 status=RESOLVED, resolved_by=USER). episode summary는 원문 표면형을 그대로 두고, 확정된 ID는 edge condition과 후보 가정에서 뺐다. 확정과 충돌하는 후보 G09b·G09c는 PRUNED 처리했다(어느 world에도 쓰이지 않던 후보). 사람이 판단할 항목은 `manual_review_table.md`에 있다.
+- 사용자 수동 검토로 ID01(병사=이광섭)·ID02(한 비장=한재욱)·ID03(한가=한재욱)·ID05(풍각 김상제=김명신)·ID11(원돌=정원돌)을 확정했다(`identity_register.csv`의 status=RESOLVED, resolved_by=USER). episode summary는 원문 표면형을 그대로 두고, 확정된 ID는 edge condition과 후보 가정에서 뺐다. 확정과 충돌하는 후보 G09b·G09c는 PRUNED 처리했다(어느 world에도 쓰이지 않던 후보). 사람이 판단할 항목은 `manual_review_table.md`에 있다. 사용자 검토에서 ID06·ID07·ID08·OE007·OE062·G10은 추가 사료 없이 확정하지 않기로 했다. 이 항목들은 오류가 아니라 보존된 불확실성이며 `identity_register.csv`(review_decision), `observed_edges.csv`(uncertainty_status), `gaps.csv`(gap_status)에 기록되어 있다.
 - UNRESOLVED는 사료 자체가 결정해 주지 않는 동일성·부분 충돌·gap이다. 데이터에는 condition·caution·unresolved_reason으로 보존한다. 전체 목록은 `validation_summary.md`에 있다.
 - AUDIT 1: 1차 실행의 ERROR 2건(EP15 '받아들였다', EP32 '인정하지 않았다')은 검사기 어휘 누락에 따른 오탐이었다. 내용이 아니라 검사기를 고쳤다. 이후 미등록 동일성 '원돌'↔'정원돌'을 찾아 ID11로 등록하고 다시 돌렸다.
 - AUDIT 3: 1차 실행의 ERROR 2건(audit_attestation 주석)을 고쳤다. 이어서 수동 검토로 찾은 서술상 동일성 단정, 판단 아닌 node로 가는 책임 edge, 진술의 사실화 등을 고치고, 같은 문제를 자동으로 잡는 검사를 추가했다.

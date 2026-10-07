@@ -427,5 +427,17 @@ for _i in IDENTITY_REGISTER:
     _i.setdefault("resolved_by", "")
     _i.setdefault("resolution_basis", "")
 
+# 사용자 수동 검토 결과 확정하지 않고 그대로 두기로 한 동일성. 결정 대상이 아니라 보존된 불확실성이다.
+for _i in IDENTITY_REGISTER:
+    if _i["identity_id"] in ("ID06", "ID07", "ID08"):
+        _i["review_decision"] = "KEEP_UNRESOLVED (사용자 수동 검토: 추가 사료 없이 확정하지 않고 현재 불확실성 유지)"
+        _i["manual_decision_required"] = "NO"
+    elif _i["identity_id"] == "ID04":
+        _i["review_decision"] = "REFERENCE_ONLY (모델 미사용)"
+    elif _i["status"] == "RESOLVED":
+        _i["review_decision"] = "RESOLVED_BY_USER"
+    else:
+        _i.setdefault("review_decision", "")
+
 RESOLVED_IDS = {i["identity_id"] for i in IDENTITY_REGISTER if i["status"] == "RESOLVED"}
 UNRESOLVED_IDS = {i["identity_id"] for i in IDENTITY_REGISTER if i["status"] == "UNRESOLVED"}
