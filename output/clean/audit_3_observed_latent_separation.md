@@ -4,7 +4,7 @@
 
 - 판정: **PASS** (ERROR 0 · WARN 0 · UNRESOLVED 1 · INFO 10)
 - LATENT → OBSERVED 둔갑: **0건**
-- 동결 해시: `005d4b7df0300681d936f3336c224df79c480b3fbac77bf9ba4db681bf1700db` (Stage 4·5 뒤에도 observed DAG 변경 없음)
+- 동결 해시: `ccb7ec63763a715ae90c74dfff37d3ed7980fa705fd152f59de8bed2e31d4e0c` (Stage 4·5 뒤에도 observed DAG 변경 없음)
 
 ## 1. 분류 집계
 
@@ -35,7 +35,7 @@ _없음_
 _없음_
 
 ### INFO
-- `freeze_violation` **observed_dag** — 동결 해시 일치 005d4b7df030
+- `freeze_violation` **observed_dag** — 동결 해시 일치 ccb7ec63763a
 - `support_basis_cap` **G01c** — INSTITUTIONAL_COMPATIBILITY만 근거 → LOW 상한 적용
 - `audit_only_support` **G04d** — confirmed 지지 없이 05 흔적만 있음 — LATENT 유지
 - `audit_only_support` **G07d** — confirmed 지지 없이 05 흔적만 있음 — LATENT 유지
@@ -100,6 +100,7 @@ _없음_
 | WARN 0 작업 — 5차 | 새 open_set_closure 검사가 G04b를 ERROR로 잡음. 원문 확인 결과 G04b는 '등'을 따옴표로 감싸 열린 목록을 표시하고 있어 검사기 오탐 | 후보 내용은 그대로 두고 정규식이 따옴표 붙은 '등'과 목록 중간 절단을 처리하도록 수정 → ERROR 0 |
 | WARN 0 작업 — 6차 | UNRESOLVED 문구 검토: G10 사유가 '모든 후보가 사료 지지 없음'으로 적혀 G10a(MEDIUM)와 어긋남 | 후보 등급과 gap 근거에서 문구를 생성하도록 수정. 최종 ERROR 0, WARN 0, UNRESOLVED 1(G10), INFO 8 |
 | 사용자 동일성 확정 반영 | G03a(ID11)·G04c·G05a(ID01)·G09a(ID02·ID03)의 확정 ID 가정, G09b·G09c의 확정 ID 부정 전제, world 서술의 조건문 | 확정 ID 가정을 빼고(G03a 4→3, G04c 3→2, G05a 3→2, G09a 3→1, 등급 변화 없음), G09b·G09c는 규칙 7로 INCOMPATIBLE·PRUNED(world 미사용). world 서술의 'IDxx가 성립한다면'을 '(IDxx, 사용자 확정)'으로 바꿈. world 구성·bridge·미해결 gap은 그대로. 재실행 ERROR 0, WARN 0, UNRESOLVED 1 |
+| 사용자 동일성 확정 반영 (ID05) | G03b·G03c·G04a 가정과 W1·W4 서술의 ID05 조건 | 확정 ID 가정 제거(G03b 3→2, G03c 3→2, G04a 3→2, 등급 변화 없음). W1·W4 서술을 '(ID05, 사용자 확정)'으로 수정. world 구성 그대로 |
 
 ## 5. 전체 요소 분류표
 

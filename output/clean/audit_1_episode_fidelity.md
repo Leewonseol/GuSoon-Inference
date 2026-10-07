@@ -2,7 +2,7 @@
 
 핵심 질문: **문장들을 episode로 묶으면서 원래 내용이 바뀌었는가?**
 
-- 판정: **PASS** (ERROR 0 · WARN 0 · UNRESOLVED 5 · INFO 12)
+- 판정: **PASS** (ERROR 0 · WARN 0 · UNRESOLVED 4 · INFO 13)
 - confirmed fact 50개 중 episode로 추적 가능: 50개
 - episode 37개 — 모두 confirmed fact로 역추적됨 (unsupported episode = 0)
 
@@ -14,9 +14,9 @@
 | clause_split | 0 | 0 | 0 | 2 |
 | outside_confirmed_set | 0 | 0 | 0 | 1 |
 | over_merge | 0 | 0 | 0 | 1 |
-| resolved_identity | 0 | 0 | 0 | 4 |
-| unresolved_identity | 0 | 0 | 5 | 0 |
-| **합계** | **0** | **0** | **5** | **12** |
+| resolved_identity | 0 | 0 | 0 | 5 |
+| unresolved_identity | 0 | 0 | 4 | 0 |
+| **합계** | **0** | **0** | **4** | **13** |
 
 검사 항목: omission, unsupported_episode, clause_fidelity, over_merge, order_execution_conflation, semantic_strengthening, semantic_weakening(한정 표현 보존 + 원문 어휘 보존율), epistemic_collapse, testimony_to_fact, temporal_conflation, identity_forcing, closed_set, clause_prop_alignment(05 대조), provenance(04·05 대조).
 
@@ -37,6 +37,7 @@ _없음_
 - `resolved_identity` **ID01** — 공초의 '병사' (CF021·CF023·CF024) = 이광섭 · 사용자 확정 · episode summary는 원문 표면형 유지
 - `resolved_identity` **ID02** — '한 비장' (CF016·CF017) = 한재욱 · 사용자 확정 · episode summary는 원문 표면형 유지
 - `resolved_identity` **ID03** — 처분문의 '한가' (CF048) = 한재욱 · 사용자 확정 · episode summary는 원문 표면형 유지
+- `resolved_identity` **ID05** — '풍각 김상제' (CF020) = 김명신 · 사용자 확정 · episode summary는 원문 표면형 유지
 - `resolved_identity` **ID11** — '원돌' (CF020 '원돌 등의 이름') = 정원돌 (CF009·CF016) · 사용자 확정 · episode summary는 원문 표면형 유지
 - `outside_confirmed_set` **05** — CF가 참조하지 않는 prop 83개 — DAG node로 쓰지 않음
 
@@ -98,7 +99,7 @@ _없음_
 | EP07 '한 비장' | surface form (ID02, 사용자 확정) | PASS | ID02(한 비장=한재욱)는 사용자 확정이다. summary는 '한 비장'을 유지한다. OE007은 condition 없이 같은 인물에 대한 두 진술(사주 주장 ↔ 은밀한 사주 부인)의 PARTIAL 충돌로 남고, 사주를 사실로 확정하지 않는다. |
 | EP35 '한가' | surface form (ID03, 사용자 확정) | PASS | ID03(한가=한재욱)은 사용자 확정이다. 처분문 표면형 '병영 비장으로 표기된 한가'를 유지했고(CF048 notes), 연결은 동일성 대장과 identity_links 컬럼에 둔다. 처분 근거 행위는 confirmed set에 없어 G09 gap으로 남는다. |
 | '병영의 하급 보조자' | identity_forcing (ID04, 참고용 미해결) | PASS | 이 표현은 05(이조원 V3P0026·V3P0027·V3P0124)에만 있다. confirmed set에 없으므로 episode·edge 어디에도 쓰지 않았다. UNRESOLVED로 두되 model_relevance=NONE, manual_decision_required=NO다. |
-| EP08 '풍각 김상제' · EP29 '병영의 염탐 담당자' | identity_forcing (ID05·ID06) | PASS | EP08은 '풍각 김상제'를 김명신으로, EP29는 '염탐 담당자'를 유제희로 바꾸지 않았다. 05 V3P0095의 object 필드(김명신)는 audit용 주석이라 summary에 반영하지 않았다. 두 node를 잇는 OE071은 condition=ID05·ID06이다. |
+| EP08 '풍각 김상제' · EP29 '병영의 염탐 담당자' | surface form (ID05 사용자 확정) · identity_forcing (ID06) | PASS | EP08은 '풍각 김상제'를 김명신으로, EP29는 '염탐 담당자'를 유제희로 바꾸지 않았다. 05 V3P0095의 object 필드(김명신)는 audit용 주석이라 summary에 반영하지 않았다. ID05(풍각 김상제=김명신)는 사용자 확정이지만 summary는 표면형을 유지한다. 두 node를 잇는 OE071은 condition=ID06만 남는다. |
 | EP04 '철편 네 개' · EP30 '철퇴 네 개' | identity_forcing (ID07) | PASS | 물건 이름과 행위자(이진욱: 한재욱이 만들어 줌 / 정조: 이광섭이 만들게 함)를 각 원문대로 두었다. 대응 edge OE080은 condition=ID07이다. |
 | EP08 '원돌 등' ↔ EP04·EP07 '정원돌' | identity_forcing (ID11) | PASS (수정 후) | Stage 4 준비 중 찾은 미등록 동일성이다. summary는 원문 그대로였지만 동일성 대장에 없었다. ID11(UNRESOLVED)을 추가하고 EP08 caution과 identity 검사 규칙에 넣은 뒤 Audit 1을 다시 돌렸다. |
 | EP02 (CF004·CF005) | epistemic_collapse (중첩 진술) | PASS | layer=NESTED_TESTIMONY, epistemic_floor=RECORDED_NESTED_TESTIMONY. '명업은 나복이 … 말했다고 진술했다'로 이중 귀속을 유지했다. 30여 명·횃불·지세대감은 CF005 notes대로 caution에서 객관적 사실이 아니라고 적었다. |
@@ -139,7 +140,6 @@ _없음_
 ## 3-2. UNRESOLVED (사료 자체의 모호성 — 허용, 데이터에 보존)
 
 - `unresolved_identity` **ID04** — '병영의 하급 보조자' (audit-only V3P0026·V3P0027·V3P0124) ↔ 한재욱 · 관련 episode 없음(DAG 미사용) · 참고용(model_relevance=NONE, manual_decision_required=NO) · unresolved_reason: audit-only 자료(05, 이조원 주장)에만 있고 인명이 직접 나오지 않는다. 현재 DAG·후보·world 어디에도 쓰이지 않아 결정해도 모델 결과가 바뀌지 않는다(참고용 미해결).
-- `unresolved_identity` **ID05** — '풍각 김상제' (CF020) ↔ 김명신 · 관련 episode EP08, EP09 · unresolved_reason: '풍각 김상제'(상주 호칭)와 '풍각 김생원'(=김명신, CF022)은 다른 호칭이다. 둘을 같은 사람으로 적은 confirmed 문장이 없다.
 - `unresolved_identity` **ID06** — '병영의 염탐 담당자' (CF043) ↔ 유제희 · 관련 episode EP08, EP29 · unresolved_reason: 정조 판단(CF043)은 직책 표현('병영의 염탐 담당자')만 쓰고 이름을 적지 않았다.
 - `unresolved_identity` **ID07** — '철편 네 개' (CF010, 이진욱: 한재욱이 만들어 줌) ↔ '철퇴 네 개' (CF044, 정조: 이광섭이 만들게 함) · 관련 episode EP04, EP30 · unresolved_reason: 개수(네 개)와 사건은 같지만 물건 이름(철편/철퇴)과 행위 층위(제작·지급/제작 지시)가 다르다.
 - `unresolved_identity` **ID08** — 3/4 '장교 일행' (CF023) ↔ 조계완 포함 여부 (CF024) · 관련 episode EP04, EP10, EP11 · unresolved_reason: 3/4 '장교 일행'의 구성원은 기록되지 않았다.
@@ -157,6 +157,7 @@ _없음_
 | WARN 0 작업 — 5차 | 새 regression 규칙(epistemic_marker_deletion·testimony_to_fact·actor_substitution·occurrence_record_confusion·responsibility_to_causation·environment_to_individual_fact) 추가 후 ERROR 2건: EP07 '진술' 표지 2→0 | ESCALATED_ERROR로 처리하고 EP07 문장마다 '진술했다' 복원 → ERROR 0, WARN 0 |
 | WARN 0 작업 — 6차 | regression 케이스 15개 중 '진술자 바꿔치기' 1개를 검사기가 놓침(이름이 summary 어딘가에 있으면 통과하던 약점) | actor_substitution에 'summary 첫 주어 = 원문 첫 주어' 검사를 추가 → 15/15 탐지. 최종 ERROR 0, WARN 0, UNRESOLVED 9(동일성), INFO 8 |
 | 사용자 동일성 확정 반영 | 사용자가 ID01·ID02·ID03·ID11을 확정 | 동일성 대장 status=RESOLVED(resolved_by=USER, 근거 기록). summary는 원문 표면형 유지. 확정 ID 치환은 surface_form_substitution, 미확정 ID 치환은 identity_forcing으로 구분. 재실행 ERROR 0, WARN 0, UNRESOLVED 9→5(ID04 참고용 포함), INFO 8→12(resolved_identity 4) |
+| 사용자 동일성 확정 반영 (ID05) | 사용자가 ID05(풍각 김상제=김명신)를 확정 | status=RESOLVED(resolved_by=USER, 근거 기록). EP08 summary는 표면형 '풍각 김상제' 유지. 재실행 ERROR 0, WARN 0, UNRESOLVED 5→4 |
 
 ## 5. confirmed set 밖의 사료 내용 (05에만 있음 — DAG node로 쓰지 않음)
 

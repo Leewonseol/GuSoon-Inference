@@ -95,7 +95,7 @@ EPISODES = [
         summary="유제희는 현지 탐문 중 구순이 풍각 김상제도 극히 수상하다고 말했고, "
                 "자신이 그 말을 원돌 등의 이름과 함께 기록해 올렸다고 진술했다.",
         caution="'극히 수상하다'는 범인 지목이 아님. 기록한 사람은 유제희 자신(정조 CF043의 '구순이 성명을 적어 주었다'와 "
-                "claim-level 차이). 탐문 시점·파견자·기록 수신자는 미기록(gap). 풍각 김상제=김명신은 ID05, "
+                "claim-level 차이). 탐문 시점·파견자·기록 수신자는 미기록(gap). 풍각 김상제=김명신은 ID05로 사용자 확정(RESOLVED, 표면형은 유지), "
                 "유제희=병영의 염탐 담당자는 ID06로 미확정. '원돌 등'은 열린 목록이며 원돌=정원돌은 ID11로 사용자 확정(RESOLVED, 표면형은 유지).",
         occurrence_text="현지 탐문(날짜 미기록)", t_min=None, t_max=None,
         attesting_actor="유제희", layer="TESTIMONY", branch="SUSPECT_INFORMATION",
@@ -366,7 +366,8 @@ IDENTITY_REGISTER = [
     dict(identity_id="ID04", surface_a="'병영의 하급 보조자' (audit-only V3P0026·V3P0027·V3P0124)", surface_b="한재욱",
          status="UNRESOLVED", model_relevance="NONE", manual_decision_required="NO", context="confirmed set 밖(이조원 주장). DAG에서는 사용하지 않음.", referenced_facts=""),
     dict(identity_id="ID05", surface_a="'풍각 김상제' (CF020)", surface_b="김명신",
-         status="UNRESOLVED", context="CF022는 '풍각 김생원'=김명신을 직접 식별. 김상제(상주 호칭)와의 동일성은 confirmed 문장에 없음 "
+         status="RESOLVED", resolved_by="USER", resolution_basis="사용자 확정: 같은 '풍각' 지명·호칭 맥락이고 같은 사건의 수사선상에서 등장한다. "
+         "'김상제'와 '김생원'은 이름이 아니라 서로 다른 호칭 표현이므로 호칭 차이만으로 별개 인물로 볼 이유가 없다(CF020·CF022).", context="CF022는 '풍각 김생원'=김명신을 직접 식별. 김상제(상주 호칭)와의 동일성은 confirmed 문장에 없음 "
          "(audit V3P0095 object 필드는 김명신).", referenced_facts="CF020|CF022"),
     dict(identity_id="ID06", surface_a="'병영의 염탐 담당자' (CF043)", surface_b="유제희",
          status="UNRESOLVED", context="CF020: 유제희가 현지 탐문 중 구순 발언을 기록해 올림. 정조 판단은 직책 표현만 씀.",

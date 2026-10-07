@@ -44,7 +44,7 @@ OE061,EP26,EP27,REVIEW_OF,SOURCE_DIRECT,DERIVED,False,,CF040,"홍대협 '질병'
 OE062,EP13,EP27,CONTRADICTS_AT_CLAIM_LEVEL,SOURCE_DIRECT,DERIVED,False,,CF027|CF041,5/12 장계 '구금·조사' ↔ 6/13 정조 '평범한 신문도 받지 않았다'.,PARTIAL_TENSION: '조사'가 곧 '신문'이라고 확정할 수 없다. CF028의 '무고한 평민들 모진 형벌'은 김명신 포함 여부가 열린 집합이므로 충돌 근거로 쓰지 않는다.
 OE063,EP27,EP28,CONTEXT_SUPPORTS,SOURCE_DIRECT,DERIVED,False,,CF040|CF041|CF042,같은 날 정조 판단 안에서 전염병 사망·무장형 판단과 '직접 인과 불확실' 판단이 함께 놓인다.,앞 판단이 뒤 판단의 사유라는 문장은 confirmed set에 없다. 양립·맥락 관계로만 둔다.
 OE070,EP01,EP29,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,,CF043|CF002|CF003,정조 판단 '사적인 감정을 품고 갈등을 일으켰고' ↔ 명업 진술의 힐책·왕래 단절.,CF043은 박거사 일을 직접 언급하지 않는다. 판단 속 '갈등'을 EP01과 대응시킨 것은 DERIVED다.
-OE071,EP08,EP29,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,ID05|ID06,CF043|CF020,정조 판단 '병영의 염탐 담당자에게 김명신의 성명을 적어 주었으며' ↔ 유제희 진술.,"claim-level 차이: 정조는 '구순이 적어 주었다', 유제희는 '구순이 말했고 자신이 기록했다'. 두 행위를 합치지 않는다."
+OE071,EP08,EP29,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,ID06,CF043|CF020,정조 판단 '병영의 염탐 담당자에게 김명신의 성명을 적어 주었으며' ↔ 유제희 진술.,"풍각 김상제=김명신은 ID05 사용자 확정(RESOLVED). 염탐 담당자=유제희(ID06)는 미확정이라 condition으로 남긴다. claim-level 차이: 정조는 '구순이 적어 주었다', 유제희는 '구순이 말했고 자신이 기록했다'. 두 행위를 합치지 않는다."
 OE072,EP11,EP29,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,,CF043|CF023,정조 판단의 '횡액' ↔ 3/4 체포.,'횡액'을 체포·구금과 대응시킨 것은 해석이다.
 OE073,EP13,EP29,RESPONSIBILITY_LINK,SOURCE_DIRECT,DERIVED,False,,CF043|CF027,정조 판단의 '원통하게 죽는 결과' ↔ 구금 뒤 사망 보고.,책임 귀속이며 직접 사인 주장이 아니다(EP28 참조).
 OE074,EP29,EP33,PROCEDURAL_NEXT,SOURCE_DIRECT,DERIVED,False,,CF043|CF046,같은 기사에서 책임 판단 뒤 정배 처분.,처분 사유 문장(V3P0147)은 confirmed set 밖이다.

@@ -125,8 +125,8 @@ def stage2(ep_rows, env):
 
 
 # 직전 동결본(커밋 1f7710c: WARN 처리 후, 사용자 동일성 확정 전)
-PREVIOUS_FREEZE = dict(sha256="c50402af878ffb4d", structure_sha256="7b4d97185d70baa95a2efdb55492b854a0d39dcf26411b70a1bf830f0b79a1b3",
-                       topology_sha256="04c84b0e24af31f5605800ae30bc2750563a1aeb3e72390aa6d6643676b68e84")
+PREVIOUS_FREEZE = dict(sha256="005d4b7df0300681", structure_sha256="a43d862aa11b960ee1ee7bcbad9cea3659566eda756f05b2600faf7869e400fb",
+                       topology_sha256="04c84b0e24af31f5605800ae30bc2750563a1aeb3e72390aa6d6643676b68e84")  # 커밋 e0ca8de(ID05 확정 전)
 
 
 def topology_hash(nodes, edges):
@@ -228,8 +228,8 @@ def main():
                   topology_sha256=topology_hash(nodes, edges),
                   previous_topology_sha256=PREVIOUS_FREEZE["topology_sha256"],
                   topology_unchanged=topology_hash(nodes, edges) == PREVIOUS_FREEZE["topology_sha256"],
-                  change_note="사용자 동일성 확정(ID01·ID02·ID03·ID11)으로 OE007(ID02)·OE081(ID01)의 condition을 제거하고 "
-                              "관련 caution 문구를 고침. node·edge 수, 끝점, edge type은 그대로",
+                  change_note="사용자 동일성 확정(ID05)으로 OE071의 condition에서 ID05를 제거(ID06은 유지)하고 caution 문구를 고침. "
+                              "node·edge 수, 끝점, edge type은 그대로",
                   n_nodes=len(nodes), n_edges=len(edges),
                   n_episode_nodes=len(ep_rows), n_env_nodes=len(ENV_NODES),
                   edge_status=dict(Counter(e["status"] for e in edges)),

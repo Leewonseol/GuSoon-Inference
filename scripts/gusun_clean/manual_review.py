@@ -35,9 +35,9 @@ AUDIT1_MANUAL = [
     ("'병영의 하급 보조자'", "identity_forcing (ID04, 참고용 미해결)", "PASS",
      "이 표현은 05(이조원 V3P0026·V3P0027·V3P0124)에만 있다. confirmed set에 없으므로 episode·edge 어디에도 쓰지 않았다. "
      "UNRESOLVED로 두되 model_relevance=NONE, manual_decision_required=NO다."),
-    ("EP08 '풍각 김상제' · EP29 '병영의 염탐 담당자'", "identity_forcing (ID05·ID06)", "PASS",
+    ("EP08 '풍각 김상제' · EP29 '병영의 염탐 담당자'", "surface form (ID05 사용자 확정) · identity_forcing (ID06)", "PASS",
      "EP08은 '풍각 김상제'를 김명신으로, EP29는 '염탐 담당자'를 유제희로 바꾸지 않았다. 05 V3P0095의 object 필드(김명신)는 audit용 주석이라 "
-     "summary에 반영하지 않았다. 두 node를 잇는 OE071은 condition=ID05·ID06이다."),
+     "summary에 반영하지 않았다. ID05(풍각 김상제=김명신)는 사용자 확정이지만 summary는 표면형을 유지한다. 두 node를 잇는 OE071은 condition=ID06만 남는다."),
     ("EP04 '철편 네 개' · EP30 '철퇴 네 개'", "identity_forcing (ID07)", "PASS",
      "물건 이름과 행위자(이진욱: 한재욱이 만들어 줌 / 정조: 이광섭이 만들게 함)를 각 원문대로 두었다. 대응 edge OE080은 condition=ID07이다."),
     ("EP08 '원돌 등' ↔ EP04·EP07 '정원돌'", "identity_forcing (ID11)", "PASS (수정 후)",
@@ -99,6 +99,8 @@ AUDIT1_REVISIONS = [
     ("사용자 동일성 확정 반영", "사용자가 ID01·ID02·ID03·ID11을 확정",
      "동일성 대장 status=RESOLVED(resolved_by=USER, 근거 기록). summary는 원문 표면형 유지. 확정 ID 치환은 surface_form_substitution, "
      "미확정 ID 치환은 identity_forcing으로 구분. 재실행 ERROR 0, WARN 0, UNRESOLVED 9→5(ID04 참고용 포함), INFO 8→12(resolved_identity 4)"),
+    ("사용자 동일성 확정 반영 (ID05)", "사용자가 ID05(풍각 김상제=김명신)를 확정",
+     "status=RESOLVED(resolved_by=USER, 근거 기록). EP08 summary는 표면형 '풍각 김상제' 유지. 재실행 ERROR 0, WARN 0, UNRESOLVED 5→4"),
 ]
 
 # ============================================================================ AUDIT 2
@@ -137,12 +139,12 @@ AUDIT2_MANUAL = [
     ("OE020–OE031 (진술 → EP23)", "testimony_to_fact", "PASS",
      "'진술이 안핵 기록에 들어갔다'는 정보 흐름이며 진술 내용의 진위를 주장하지 않는다(caution 명시)."),
     ("조건부 edge 4개 (OE010·OE040·OE071·OE080)", "identity_forcing", "PASS",
-     "미확정 동일성에 기대는 edge는 condition 컬럼에 ID08·ID09·ID05·ID06·ID07을 적었다. ID09는 같은 기사 provenance로 ACCEPTED_BY_PROVENANCE다. "
-     "OE007(ID02)·OE081(ID01)은 사용자 확정으로 condition을 지웠고, 확정 ID가 condition에 남으면 stale_identity_condition ERROR가 난다."),
+     "미확정 동일성에 기대는 edge는 condition 컬럼에 ID08·ID09·ID06·ID07을 적었다. ID09는 같은 기사 provenance로 ACCEPTED_BY_PROVENANCE다. "
+     "OE007(ID02)·OE081(ID01)과 OE071의 ID05는 사용자 확정으로 condition을 지웠고, 확정 ID가 condition에 남으면 stale_identity_condition ERROR가 난다."),
     ("OE080 (EP04 → EP30, 철편/철퇴)", "identity_forcing (ID07)", "PASS",
      "RESPONSIBILITY_LINK는 condition=ID07일 때만 성립한다. 제작·지급(한재욱)과 제작 지시(이광섭)는 행위 층위가 달라 모순으로도 동일 행위로도 확정하지 않는다."),
     ("OE071 (EP08 → EP29)", "identity_forcing / claim-level 차이", "PASS",
-     "정조의 '구순이 성명을 적어 주었다'와 유제희의 '구순이 말했고 자신이 기록했다'를 하나로 합치지 않았다. condition=ID05·ID06."),
+     "정조의 '구순이 성명을 적어 주었다'와 유제희의 '구순이 말했고 자신이 기록했다'를 하나로 합치지 않았다. condition=ID06(ID05는 사용자 확정으로 제거)."),
     ("OE082 (EP14 → EP30)", "judgment_flattening (주체 혼동)", "PASS",
      "'비장에게 맡김'은 5/12에는 이문협, 6/13에는 이광섭에 대한 비판이다. 주체를 합치지 않고 REVIEW_OF로만 이었다."),
     ("OE063 (EP27 → EP28)", "causal_inflation", "PASS (주의)",
@@ -171,6 +173,8 @@ AUDIT2_REVISIONS = AUDIT2_REVISIONS_PRE + [
     ("사용자 동일성 확정 반영", "OE007(ID02)·OE081(ID01)의 condition이 확정 ID를 가리킴",
      "condition 제거, caution을 '같은 인물에 대한 서로 다른 진술'·'행위는 진술로만 확인'으로 수정. 확정 ID가 condition에 남으면 ERROR(stale_identity_condition). "
      "재실행 ERROR 0, WARN 0, UNRESOLVED 8→6, INFO 1"),
+    ("사용자 동일성 확정 반영 (ID05)", "OE071 condition에 확정 ID05가 남음",
+     "condition을 ID06만 남기고 caution 수정. 재실행 ERROR 0, WARN 0, UNRESOLVED 6→5"),
 ]
 
 # ============================================================================ AUDIT 3
@@ -251,6 +255,8 @@ AUDIT3_REVISIONS = [
     ("사용자 동일성 확정 반영", "G03a(ID11)·G04c·G05a(ID01)·G09a(ID02·ID03)의 확정 ID 가정, G09b·G09c의 확정 ID 부정 전제, world 서술의 조건문",
      "확정 ID 가정을 빼고(G03a 4→3, G04c 3→2, G05a 3→2, G09a 3→1, 등급 변화 없음), G09b·G09c는 규칙 7로 INCOMPATIBLE·PRUNED(world 미사용). "
      "world 서술의 'IDxx가 성립한다면'을 '(IDxx, 사용자 확정)'으로 바꿈. world 구성·bridge·미해결 gap은 그대로. 재실행 ERROR 0, WARN 0, UNRESOLVED 1"),
+    ("사용자 동일성 확정 반영 (ID05)", "G03b·G03c·G04a 가정과 W1·W4 서술의 ID05 조건",
+     "확정 ID 가정 제거(G03b 3→2, G03c 3→2, G04a 3→2, 등급 변화 없음). W1·W4 서술을 '(ID05, 사용자 확정)'으로 수정. world 구성 그대로"),
 ]
 
 

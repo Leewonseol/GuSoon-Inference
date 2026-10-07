@@ -159,8 +159,8 @@ latent 요소:
 | 후보 | 요약 | src | temp | inst | role | info | env | 충돌위험 | 가정 | overall | 처리 |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | G03a | 한재욱이 유제희를 탐문에 보내고, 2/28 이전 기록이 한재욱에게 올라감 | MEDIUM | MEDIUM | HIGH | HIGH | HIGH | N/A | LOW | 3 | **MEDIUM** | KEPT |
-| G03b | 탐문은 2/29~3/4 사이, 김상제 언급이 3/4 지시를 직접 촉발 (ID05 조건) | MEDIUM | MEDIUM | HIGH | HIGH | HIGH | N/A | MEDIUM | 3 | **MEDIUM** | KEPT |
-| G03c | 유제희가 병사에게 직접 보고(비장 우회) | LOW | MEDIUM | MEDIUM | MEDIUM | MEDIUM | N/A | MEDIUM | 3 | **LOW** | KEPT_LOW (사용 시 약점 명시) |
+| G03b | 탐문은 2/29~3/4 사이, 김상제(=김명신) 언급이 3/4 지시를 직접 촉발 | MEDIUM | MEDIUM | HIGH | HIGH | HIGH | N/A | MEDIUM | 2 | **MEDIUM** | KEPT |
+| G03c | 유제희가 병사에게 직접 보고(비장 우회) | LOW | MEDIUM | MEDIUM | MEDIUM | MEDIUM | N/A | MEDIUM | 2 | **LOW** | KEPT_LOW (사용 시 약점 명시) |
 
 ### G03a [LATENT · MINI_DAG] 한재욱이 유제희를 탐문에 보내고, 2/28 이전 기록이 한재욱에게 올라감
 
@@ -180,7 +180,7 @@ latent 요소:
 - 주 근거 유형: SOURCE_DIRECT
 - 메모: 05 한재욱 공초(V3P0085–V3P0087, audit-only)는 자신이 유제희를 내보냈고 유제희가 변지돌·변재돌·정원돌·김명신 등의 성명을 적어 왔다고 진술한다. 이 후보는 그 진술을 사실로 올리지 않고 연결 가설로만 쓴다. 기록이 2/28 이전이라면 3/4 김생원 체포가 왜 2/28 대상에 없었는지는 이 후보로 설명되지 않는다. 원돌=정원돌은 ID11 사용자 확정(RESOLVED)이라 가정에서 뺐다(가정 4→3). 후보 자체는 여전히 LATENT이며 source_consistency(MEDIUM)는 그대로다.
 
-### G03b [LATENT · SINGLE] 탐문은 2/29~3/4 사이, 김상제 언급이 3/4 지시를 직접 촉발 (ID05 조건)
+### G03b [LATENT · SINGLE] 탐문은 2/29~3/4 사이, 김상제(=김명신) 언급이 3/4 지시를 직접 촉발
 
 유제희의 탐문과 기록은 2/29 이후 3/4 이전에 있었고, 기록 속 '풍각 김상제' 언급이 3/4 풍각 김생원 체포 지시를 직접 촉발했다.
 
@@ -189,10 +189,10 @@ latent 요소:
 - `EP08` —INFORMATION_FLOW→ `LN_G03b_1` (LATENT)
 - `LN_G03b_1` —INFORMATION_FLOW→ `EP09` (LATENT)
 
-- 추가 가정: 탐문 시점 2/29~3/4; 풍각 김상제 = 김명신 (ID05); 기록이 병사 지시 판단에 쓰임
+- 추가 가정: 탐문 시점 2/29~3/4; 기록이 병사 지시 판단에 쓰임
 - 지지 fact: CF043, CF020 · 긴장/충돌 fact: CF020('원돌 등'과 한 기록 — ID11 확정: 원돌(=정원돌)은 이미 2/28 체포 대상이었으므로 기록이 2/28 이전이라는 쪽과 긴장)
 - audit_attestation (05, AUDIT_ONLY): V3P0095
-- 미확정 동일성 조건: ID05
+- 미확정 동일성 조건: 없음
 - 주 근거 유형: SOURCE_DIRECT
 - 메모: 
 
@@ -205,10 +205,10 @@ latent 요소:
 - `EP08` —INFORMATION_FLOW→ `LN_G03c_1` (LATENT)
 - `LN_G03c_1` —INFORMATION_FLOW→ `EP09` (LATENT)
 
-- 추가 가정: 수신자 = 병사; 비장 계통 우회; 풍각 김상제 = 김명신 (ID05)
+- 추가 가정: 수신자 = 병사; 비장 계통 우회
 - 지지 fact: - · 긴장/충돌 fact: 05 V3P0085(한재욱: 유제희를 자신이 내보냈다 — audit-only)와 긴장
 - audit_attestation (05, AUDIT_ONLY): -
-- 미확정 동일성 조건: ID05
+- 미확정 동일성 조건: 없음
 - 주 근거 유형: SOURCE_DIRECT
 - 메모: 
 
@@ -221,25 +221,25 @@ latent 요소:
 
 | 후보 | 요약 | src | temp | inst | role | info | env | 충돌위험 | 가정 | overall | 처리 |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| G04a | 공식 정보 경로: 유제희 기록 → 비장 계통 → 병사 → 3/4 지시 (ID05 조건) | HIGH | MEDIUM | HIGH | HIGH | HIGH | N/A | LOW | 3 | **MEDIUM** | KEPT |
+| G04a | 공식 정보 경로: 유제희 기록 → 비장 계통 → 병사 → 3/4 지시 | HIGH | MEDIUM | HIGH | HIGH | HIGH | N/A | LOW | 2 | **MEDIUM** | KEPT |
 | G04b | 자미덕 대질 진술 경로: 회유 주장 진술(열린 목록) → 병사 지시 | MEDIUM | MEDIUM | MEDIUM | MEDIUM | MEDIUM | N/A | MEDIUM | 3 | **MEDIUM** | KEPT |
 | G04c | 사적 경로: 3/4 이전 구순→병사 사적 접촉으로 김명신을 의심 대상으로 알림 | LOW | MEDIUM | LOW | LOW | LOW | N/A | MEDIUM | 2 | **LOW** | KEPT_LOW (사용 시 약점 명시) |
 | G04d | 석단 공초 경로: 다른 피의자 공초가 김명신을 도적 괴수로 지목 | LOW | LOW | MEDIUM | MEDIUM | MEDIUM | N/A | MEDIUM | 3 | **LOW** | KEPT_LOW (사용 시 약점 명시) |
 | G04e | 구순이 장교에게 직접 공식 체포 명령 | INCOMPATIBLE | MEDIUM | INCOMPATIBLE | INCOMPATIBLE | LOW | N/A | HIGH | 1 | **INCOMPATIBLE** | PRUNED (incompatible) |
 
-### G04a [LATENT · MINI_DAG] 공식 정보 경로: 유제희 기록 → 비장 계통 → 병사 → 3/4 지시 (ID05 조건)
+### G04a [LATENT · MINI_DAG] 공식 정보 경로: 유제희 기록 → 비장 계통 → 병사 → 3/4 지시
 
-구순이 '풍각 김상제도 극히 수상하다'고 한 말이 유제희의 기록으로 병영 비장 계통에 들어갔고, 비장 계통이 병사에게 보고해 3/4 풍각 김생원 체포 지시의 근거가 되었다. ID05가 성립할 때만 이 경로가 김명신과 연결된다.
+구순이 '풍각 김상제도 극히 수상하다'고 한 말이 유제희의 기록으로 병영 비장 계통에 들어갔고, 비장 계통이 병사에게 보고해 3/4 풍각 김생원 체포 지시의 근거가 되었다. 풍각 김상제=김명신은 ID05 사용자 확정이다. 보고 경로는 가설이다.
 
 latent 요소:
 - `LN_G04a_1` [LATENT] 유제희 기록이 비장 계통을 거쳐 병사에게 보고됨
 - `EP08` —INFORMATION_FLOW→ `LN_G04a_1` (LATENT)
 - `LN_G04a_1` —INFORMATION_FLOW→ `EP09` (LATENT)
 
-- 추가 가정: 풍각 김상제 = 김명신 (ID05); 병영의 염탐 담당자 = 유제희 (ID06) — 정조 판단(CF043)과 대응시킬 때; 기록이 3/4 이전 비장 계통을 거쳐 병사에게 보고됨
+- 추가 가정: 병영의 염탐 담당자 = 유제희 (ID06) — 정조 판단(CF043)과 대응시킬 때; 기록이 3/4 이전 비장 계통을 거쳐 병사에게 보고됨
 - 지지 fact: CF043(성명 제공 → 횡액), CF020, CF044(비장에게 일을 맡김) · 긴장/충돌 fact: -
 - audit_attestation (05, AUDIT_ONLY): V3P0038|V3P0095
-- 미확정 동일성 조건: ID05|ID06
+- 미확정 동일성 조건: ID06
 - 주 근거 유형: SOURCE_DIRECT
 - 메모: 정조의 책임 사슬(CF043)을 event 수준으로 펼친 것이다. 정조는 '구순이 적어 주었다', 유제희는 '자신이 기록했다'고 했다. 이 차이는 해소하지 않는다.
 

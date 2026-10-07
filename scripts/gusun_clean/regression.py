@@ -57,9 +57,12 @@ CASES = [
      lambda: _episode_case("EP07", "자미덕은 한재욱이 정원돌·이집거·김갑득·김성손·김흥득 등을 큰 도적이라고 말하면 자신과 남편을 다음 날 "
                                    "석방하겠다고 말했다고 진술했고, 자미덕은 이집거와 대질했으며, 그때 한 비장의 지휘에 따라 거짓으로 꾸며 "
                                    "말했다고 진술했다.", "surface_form_substitution")),
-    ("identity_forcing", "미확정 동일성(ID05) 강제: '풍각 김상제'를 김명신으로 치환(EP08)",
+    ("surface_form_substitution", "확정 동일성(ID05)이라도 episode summary에서 '풍각 김상제'를 김명신으로 바꾸면 안 됨(EP08)",
      lambda: _episode_case("EP08", "유제희는 현지 탐문 중 구순이 김명신도 극히 수상하다고 말했고, 자신이 그 말을 원돌 등의 이름과 함께 "
-                                   "기록해 올렸다고 진술했다.", "identity_forcing")),
+                                   "기록해 올렸다고 진술했다.", "surface_form_substitution")),
+    ("identity_forcing", "미확정 동일성(ID06) 강제: '병영의 염탐 담당자'를 유제희로 치환(EP29)",
+     lambda: _episode_case("EP29", "정조는 구순이 김명신에게 사적인 감정을 품고 갈등을 일으켰고, 유제희에게 김명신의 성명을 적어 주었으며, "
+                                   "그 과정이 김명신이 횡액을 입고 원통하게 죽는 결과로 이어졌다고 책임을 연결해 판단했다.", "identity_forcing")),
     ("stale_identity_condition", "사용자 확정 동일성(ID01)이 edge condition에 남아 있음(OE081)", lambda: _stale_edge_case()),
     ("resolved_identity_conflict", "확정 동일성(ID02)을 불성립으로 전제한 후보(G09b)가 INCOMPATIBLE이 아님", lambda: _negation_case()),
     ("closed_set", "'등' 삭제(EP07)",
