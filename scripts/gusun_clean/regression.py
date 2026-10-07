@@ -4,6 +4,7 @@ build.py가 Audit 1 전에 run_or_exit()를 호출한다. 각 케이스는 과�
 검사기에 넣고, 기대한 check가 ERROR로 나오는지 본다. 하나라도 놓치면 파이프라인을 멈춘다.
 """
 import copy
+import re
 import sys
 from pathlib import Path
 
@@ -176,6 +177,20 @@ A5_CASES = [
      lambda: _ui_case(_ui_view_temporal, "temporal_order")),
     ("responsibility_to_biological", "F 구금·사망 View에서 책임 판단 EP29를 branch A(생물학적 사인) 묶음에도 넣음",
      lambda: _ui_case(_ui_view_ab, "responsibility_to_biological")),
+    # 실행 시 빈 그래프 방지(배포 캐시·DOM 계약·fail-safe)
+    ("dom_id_missing", "app.js가 index.html에 없는 #foot-note에 글자를 넣음(25f81b6 배포 직후 옛 app.js가 멈춘 그 줄)",
+     lambda: _ui_text_case(js=lambda j: j.replace("  // ------------------------------------------------------------------ cytoscape 요소",
+                                                   "  $('foot-note').textContent = META.role_note;\n"
+                                                   "  // ------------------------------------------------------------------ cytoscape 요소", 1),
+                           expect="dom_id_missing")),
+    ("stale_asset_version", "index.html의 js/app.js 주소를 옛 내용 해시(?v=000000000000)로 둠",
+     lambda: _ui_text_case(html=lambda h: re.sub(r'js/app\.js\?v=[0-9a-f]+', "js/app.js?v=000000000000", h), expect="stale_asset_version")),
+    ("stale_asset_version", "index.html이 data/bundle.js를 버전 없이 실음(캐시된 옛 데이터와 섞일 수 있음)",
+     lambda: _ui_text_case(html=lambda h: re.sub(r'data/bundle\.js\?v=[0-9a-f]+', "data/bundle.js", h), expect="stale_asset_version")),
+    ("runtime_failsafe_missing", "index.html에서 '시각화 초기화 오류' 표시 guard를 뺌",
+     lambda: _ui_text_case(html=lambda h: h.replace("시각화 초기화 오류", "오류"), expect="runtime_failsafe_missing")),
+    ("runtime_failsafe_missing", "app.js에서 보이는 node 0 → Overview 복구 guard 호출을 뺌",
+     lambda: _ui_text_case(js=lambda j: j.replace("initialViewport();\n  guardEmptyView();", "initialViewport();"), expect="runtime_failsafe_missing")),
 ]
 CASES = CASES + A5_CASES
 
@@ -402,16 +417,20 @@ def _ui_case(mutate, expect):
     return expect in hit, sorted(hit)
 
 
-def _ui_text_case(css=None, js=None, expect=""):
-    """화면 코드(app.css·app.js) 사본만 바꿔 넣는다. 파일은 건드리지 않는다."""
+def _ui_text_case(css=None, js=None, html=None, expect=""):
+    """화면 코드(app.css·app.js·index.html) 사본만 바꿔 넣는다. 파일은 건드리지 않는다."""
+    import build_visualization as bv
     x = _ui_inputs()
     frozen = x["canon"]["freeze"]["sha256"]
     docs = Path(__file__).resolve().parents[2] / "docs"
     app_js = (docs / "js" / "app.js").read_text(encoding="utf-8")
     app_css = (docs / "css" / "app.css").read_text(encoding="utf-8")
-    if any(f["severity"] == "ERROR" for f in audits.audit5(x["ui"], x["canon"], frozen, app_js, app_css)):
+    index_html = bv.stamped_index(docs)
+    vers = {rel: bv.asset_version(docs, rel) for rel in audits.REQUIRED_ASSETS}
+    if any(f["severity"] == "ERROR" for f in audits.audit5(x["ui"], x["canon"], frozen, app_js, app_css, index_html, vers)):
         return False, ["clean baseline already has ERROR"]
-    hit = {f["check"] for f in audits.audit5(x["ui"], x["canon"], frozen, js(app_js) if js else app_js, css(app_css) if css else app_css)
+    hit = {f["check"] for f in audits.audit5(x["ui"], x["canon"], frozen, js(app_js) if js else app_js, css(app_css) if css else app_css,
+                                              html(index_html) if html else index_html, vers)
            if f["severity"] == "ERROR"}
     return expect in hit, sorted(hit)
 

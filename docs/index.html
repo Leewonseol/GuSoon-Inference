@@ -6,7 +6,7 @@
 <title>구순–김명신 Super-DAG</title>
 <meta name="description" content="구순–김명신 사건(1793) Mechanism Super-DAG를 시간 순서 DAG로 탐색하는 화면. 확정된 사건은 고정하고, 사료가 알려주지 않는 중간 과정은 LATENT 메커니즘으로 비교한다.">
 <link rel="icon" href="data:,">
-<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/app.css?v=1e6b1fe442e3">
 </head>
 <body>
 <header class="app-header">
@@ -87,6 +87,7 @@
       <div id="lane-pins" class="lane-pins" aria-hidden="true" hidden></div>
       <canvas id="minimap" aria-label="미니맵: 눌러서 그 위치로 이동" role="img"></canvas>
       <div class="tooltip" id="tooltip" hidden></div>
+      <div class="viz-error" id="viz-error" role="alert" hidden></div>
     </div>
   </main>
 
@@ -104,8 +105,23 @@
   </aside>
 </div>
 
-<script src="vendor/cytoscape/cytoscape.min.js"></script>
-<script src="data/bundle.js"></script>
-<script src="js/app.js"></script>
+<script>
+/* AUDIT5:RUNTIME_GUARD — app.js가 초기화 중에 멈추면 빈 흰 화면 대신 그래프 영역에 오류를 보여 준다.
+   css·js 주소의 ?v=는 파일 내용 해시(build_visualization.stamp_assets). 새 index.html이 브라우저 캐시의 옛 app.js와 섞이지 않게 한다. */
+window.__vizBootErrors = [];
+window.addEventListener('error', function (e) { window.__vizBootErrors.push(e.message || String(e.error || '')); });
+</script>
+<script src="vendor/cytoscape/cytoscape.min.js?v=1bb5340e5495"></script>
+<script src="data/bundle.js?v=46556b4165e4"></script>
+<script src="js/app.js?v=6219de38296a"></script>
+<script>
+(function () {
+  if (window.__viz && window.__viz.cy) return;
+  var box = document.getElementById('viz-error'), errs = window.__vizBootErrors || [];
+  box.hidden = false;
+  box.innerHTML = '<b>시각화 초기화 오류</b><span>그래프를 그리지 못했습니다. 새로 고침(Ctrl+Shift+R, Mac은 ⌘+Shift+R)으로 최신 파일을 다시 받아 보세요.</span><code></code>';
+  box.querySelector('code').textContent = errs.length ? errs.join(' / ') : 'window.__viz 없음';
+})();
+</script>
 </body>
 </html>

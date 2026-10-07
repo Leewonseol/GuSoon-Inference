@@ -1144,10 +1144,50 @@ def audit5_views(ui, canon, app_js=None, app_css=None):
     return out
 
 
-def audit5(ui, canon, frozen_hash, app_js=None, app_css=None):
+UI_RUNTIME_GUARD = "AUDIT5:RUNTIME_GUARD"
+UI_EMPTY_VIEW_GUARD = "AUDIT5:EMPTY_VIEW_GUARD"
+_ASSET_REF = re.compile(r'(?:src|href)="((?:css|js|data|vendor)/[^"?]+)(?:\?v=([0-9a-f]*))?"')
+REQUIRED_ASSETS = ("css/app.css", "vendor/cytoscape/cytoscape.min.js", "data/bundle.js", "js/app.js")
+
+
+def audit5_runtime(index_html, app_js, asset_versions):
+    """실행 시 그래프가 빈 화면이 되지 않게 하는 조건(배포 캐시·DOM 계약·fail-safe)을 본다.
+    index_html: docs/index.html 문자열. asset_versions: {경로: 지금 파일 내용 해시(build_visualization.asset_version)}."""
+    out = []
+    # 14-1. index.html이 싣는 css·js 주소에 현재 내용 해시(?v=)가 붙어 있어야 새 HTML이 캐시된 옛 app.js와 섞이지 않는다
+    refs = {m.group(1): m.group(2) for m in _ASSET_REF.finditer(index_html)}
+    for rel in REQUIRED_ASSETS:
+        if rel not in refs:
+            out.append(F("stale_asset_version", "ERROR", "index.html", f"{rel}을 싣지 않음"))
+    for rel, v in sorted(refs.items()):
+        want = (asset_versions or {}).get(rel)
+        if not v or v != want:
+            out.append(F("stale_asset_version", "ERROR", "index.html",
+                         f"{rel}?v={v or '(없음)'} ≠ 현재 내용 해시 {want} — 배포 직후 브라우저가 옛 파일과 섞어 초기화가 멈출 수 있음"))
+    # 14-2. app.js가 찾는 DOM id가 index.html(또는 app.js가 직접 만드는 HTML)에 모두 있어야 한다(없으면 null 접근으로 초기화 중단)
+    have = set(re.findall(r'id="([\w-]+)"', index_html)) | set(re.findall(r'id="([\w-]+)"', app_js or ""))
+    want_ids = set(re.findall(r"\$\('([\w-]+)'\)", app_js or "")) | set(re.findall(r"getElementById\('([\w-]+)'\)", app_js or ""))
+    for i in sorted(want_ids - have):
+        out.append(F("dom_id_missing", "ERROR", "app.js", f"#{i}를 찾지만 index.html에 없음 — 초기화가 그 줄에서 멈춰 빈 그래프가 됨"))
+    # 14-3. fail-safe: 초기화 예외 → '시각화 초기화 오류', 보이는 node 0 → 안내 + Overview 1회 복구
+    i = index_html.find(UI_RUNTIME_GUARD)
+    tail = index_html[index_html.find('src="js/app.js'):] if 'src="js/app.js' in index_html else ""
+    if (i < 0 or i > index_html.find('src="vendor/') or 'id="viz-error"' not in index_html
+            or "시각화 초기화 오류" not in tail or "window.__viz" not in tail):
+        out.append(F("runtime_failsafe_missing", "ERROR", "index.html", "app.js 초기화 예외 시 그래프 영역에 '시각화 초기화 오류'를 보여 주는 guard가 없음"))
+    j = (app_js or "").find(UI_EMPTY_VIEW_GUARD)
+    seg = (app_js or "")[j:j + 1500] if j >= 0 else ""
+    if (not seg or "현재 View에서 표시할 그래프를 찾지 못했습니다" not in seg or "setView('overview')" not in seg
+            or "initialViewport();\n  guardEmptyView();" not in (app_js or "")):
+        out.append(F("runtime_failsafe_missing", "ERROR", "app.js", "보이는 node가 0일 때 안내하고 Overview로 복구하는 guard가 없음"))
+    return out
+
+
+def audit5(ui, canon, frozen_hash, app_js=None, app_css=None, index_html=None, asset_versions=None):
     """화면 데이터가 canonical 값을 그대로 옮겼는지, 화면 규칙이 관측·LATENT·context 경계를 지키는지 본다.
     ui: docs/data/*.json을 읽은 dict(+ '_bundle': bundle.js 문자열). canon: build_visualization.load_canonical() 결과.
-    app_js·app_css: 화면 코드(주어지면 backbone·View 숨김 안내·글자 크기·line-height도 검사)."""
+    app_js·app_css: 화면 코드(주어지면 backbone·View 숨김 안내·글자 크기·line-height도 검사).
+    index_html·asset_versions: 주어지면 실행 시 빈 그래프 방지 조건(audit5_runtime)도 검사."""
     import json as _json
     from stage5_worlds import COMMON_OUTCOME_NODES, WORLD_ROLES
     from stage6_mechanisms import BRANCH_A, BRANCH_B
@@ -1388,6 +1428,9 @@ def audit5(ui, canon, frozen_hash, app_js=None, app_css=None):
         out.append(F("interaction_changed", "ERROR", "rules", "구조 규칙이 qualitative_structural_rules.csv와 다름"))
     # 13. 관점별 View·가독성(시각화 개선 검사)
     out += audit5_views(ui, canon, app_js, app_css)
+    # 14. 실행 시 빈 그래프 방지(배포 캐시·DOM 계약·fail-safe)
+    if index_html is not None:
+        out += audit5_runtime(index_html, app_js, asset_versions)
     # INFO
     und = sorted(nid for nid, n in un.items() if n["canonical"].get("node_type") == "OBSERVED_EVENT" and not n["layout"].get("dated"))
     out.append(F("ui_summary", "INFO", "docs/data",

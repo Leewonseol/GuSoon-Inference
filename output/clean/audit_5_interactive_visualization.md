@@ -22,6 +22,8 @@ ERROR 검사: ui_node_not_canonical·ui_node_missing·ui_node_altered(1), ui_edg
 
 관점별 View·가독성 검사(13): view_not_subset(View node·edge가 canonical 부분집합이고 edge = View node 사이 canonical edge 전부, 새 node·edge 없음), view_status_changed(View metadata에 상태·판정·해석 필드 없음, 좌표 항목은 x·y·lane만), view_hidden_notice_missing(subset View의 숨긴 OBSERVED 목록 = 관측 node − View node, '시각적 필터·삭제 아님·분석상 ON/OFF 아님' 안내와 그 안내를 그리는 코드), label_clipped(node label이 canonical 글자를 모두 담고 말줄임 없음, 가장 긴 줄 ≤ 글자 영역, 높이 ≥ 줄 수 × 줄 높이), font_too_small(node·edge label과 CSS의 모든 font-size ≥ 11pt), line_height_too_small(CSS·node label line-height ≥ 1.6), initial_label_unreadable(모든 View의 첫 화면 최소 배율 × node 글자 ≥ 11pt, lane·시간 구간 글자 포함), responsibility_to_biological(View edge에도 branch A↔B 직접 edge 없음), layout_nondeterministic(같은 입력으로 두 번 계산한 좌표가 같고 화면 데이터와도 같음), view_node_overlap(Overview·View 좌표에서 node 상자 겹침 0), temporal_order·context_as_event(View 좌표에서도 날짜 순서·context lane 유지). W6 REJECTED는 4번 검사가 그대로 본다.
 
+실행 시 빈 그래프 방지 검사(14): stale_asset_version(index.html이 싣는 css·js 주소의 `?v=`가 지금 파일 내용 해시와 같음 — 배포 직후 새 index.html이 브라우저 캐시의 옛 app.js와 섞이지 않게), dom_id_missing(app.js가 찾는 DOM id가 index.html 또는 app.js가 만드는 HTML에 모두 있음), runtime_failsafe_missing(초기화 예외 시 그래프 영역에 '시각화 초기화 오류'를 보여 주는 `AUDIT5:RUNTIME_GUARD`, 보이는 node 0이면 안내 후 Overview로 1회 복구하는 `AUDIT5:EMPTY_VIEW_GUARD`). 실제 브라우저 렌더(첫 화면·A–J 각 View에서 보이는 node가 화면 창과 겹치고 그래프 영역 픽셀이 비어 있지 않음, console·pageerror 0)는 `scripts/gusun_clean/test_visualization.py`가 검사한다.
+
 ### ERROR
 _없음_
 
@@ -77,6 +79,11 @@ _없음_
 | `view_node_overlap` | B 시간순 View에서 EP11 좌표를 EP09 위로 옮김 | 탐지 | layout_nondeterministic, view_node_overlap |
 | `temporal_order` | H 홍대협 재조사 View에서 EP02(2/22)와 EP24(6/13)의 x를 맞바꿈 | 탐지 | layout_nondeterministic, temporal_order |
 | `responsibility_to_biological` | F 구금·사망 View에서 책임 판단 EP29를 branch A(생물학적 사인) 묶음에도 넣음 | 탐지 | responsibility_to_biological |
+| `dom_id_missing` | app.js가 index.html에 없는 #foot-note에 글자를 넣음(25f81b6 배포 직후 옛 app.js가 멈춘 그 줄) | 탐지 | dom_id_missing |
+| `stale_asset_version` | index.html의 js/app.js 주소를 옛 내용 해시(?v=000000000000)로 둠 | 탐지 | stale_asset_version |
+| `stale_asset_version` | index.html이 data/bundle.js를 버전 없이 실음(캐시된 옛 데이터와 섞일 수 있음) | 탐지 | stale_asset_version |
+| `runtime_failsafe_missing` | index.html에서 '시각화 초기화 오류' 표시 guard를 뺌 | 탐지 | runtime_failsafe_missing |
+| `runtime_failsafe_missing` | app.js에서 보이는 node 0 → Overview 복구 guard 호출을 뺌 | 탐지 | runtime_failsafe_missing |
 
 ## 생성 근거 파일 (sha256)
 
@@ -118,3 +125,4 @@ _없음_
 | 화면 확인(가독성 개선 1차) | 헤드리스 스크린샷: 1600px에서 그래프 영역이 머리글·배너에 밀려 520px 정도, 오른쪽 아래 확대 버튼과 미니맵이 node를 가림. 긴 같은 lane edge(OE007, 2/29 → 6/13)가 다른 edge(OE008)와 겹쳐 클릭이 엉뚱한 edge로 감 | 확대 버튼을 그래프 위 도구 막대로 옮기고 안내 문구를 한 줄로 줄임, 미니맵 끄기 버튼 추가. 직선이 다른 node 상자를 지나는 edge는 정해진 순서의 곡률 후보 중 상자를 피하는 가장 작은 값으로 곡선 처리(좌표에서 결정적으로 계산) |
 | 화면 확인(가독성 개선 2차) | H 홍대협 재조사 View는 맥락 node EP02(2/22) 때문에 첫 화면이 빈 2월 구간에서 시작. lane 이름 칸이 화면 밖으로 나가면 lane을 알 수 없음 | 첫 화면 기준점을 View 핵심 관측 node 앞으로 옮기고, 시간상 앞쪽 창에 핵심 node가 2개 미만일 때만 핵심 node가 가장 많이 들어오는 창을 고름. lane 이름·시간 구간 이름이 화면 밖으로 나가면 그래프 가장자리에 고정 표시(HTML, 11pt 이상) |
 | 최종 실행(가독성 개선) | Audit 1–5 ERROR 0·WARN 0, regression 59/59, UI 테스트 27/27 | PASS. 동결 해시 ccb7ec63763a 그대로, canonical CSV·json·md(output/clean)는 audit_5·validation_summary 문서 말고 바이트 동일 |
+| 배포 화면 빈 그래프(25f81b6) | 배포된 화면에서 머리글 node 122·edge 205만 보이고 그래프·Status·Mechanism 필터·상세 패널이 모두 빔. 재현: 새 index.html + 브라우저 캐시의 옛 app.js(7ea077b)에서 pageerror 'Cannot set properties of null (setting textContent)' — 옛 app.js가 머리글을 그린 직후 새 index.html에서 없어진 #foot-note에 글자를 넣다가 멈춰 cytoscape 생성·필터·상세가 실행되지 않음. css·js 주소에 버전이 없어 GitHub Pages 캐시(max-age 600) 동안 새 HTML과 옛 JS가 섞임. 기존 UI 테스트는 같은 버전 파일만 열고 머리글 글자만 확인해 이 실패를 볼 수 없었음 | index.html의 css·js 주소에 내용 해시 ?v=를 붙이고 build_visualization.stamp_assets가 build마다 맞춤. 초기화 예외 시 그래프 영역에 '시각화 초기화 오류'(AUDIT5:RUNTIME_GUARD), 보이는 node 0이면 안내 후 Overview 1회 복구(AUDIT5:EMPTY_VIEW_GUARD). Audit 5에 stale_asset_version·dom_id_missing·runtime_failsafe_missing 검사, regression 5건(64건), UI 테스트에 실제 렌더 검사 4항목(31항목: 첫 로드 cy·보이는 node·화면 창 교차·canvas 픽셀·스크린샷 흰색 비율·필터 UI·View 탭·오류 0, A–J View별 렌더, 옛 app.js 재현 시 오류 안내, 빈 View 복구). 데이터·판단·배치 변경 없음 |

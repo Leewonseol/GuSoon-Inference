@@ -362,6 +362,11 @@ def write_audit5(path, findings, ui, regression_results=()):
          "responsibility_to_biological(View edge에도 branch A↔B 직접 edge 없음), "
          "layout_nondeterministic(같은 입력으로 두 번 계산한 좌표가 같고 화면 데이터와도 같음), view_node_overlap(Overview·View 좌표에서 node 상자 겹침 0), "
          "temporal_order·context_as_event(View 좌표에서도 날짜 순서·context lane 유지). W6 REJECTED는 4번 검사가 그대로 본다.", "",
+         "실행 시 빈 그래프 방지 검사(14): stale_asset_version(index.html이 싣는 css·js 주소의 `?v=`가 지금 파일 내용 해시와 같음 — "
+         "배포 직후 새 index.html이 브라우저 캐시의 옛 app.js와 섞이지 않게), dom_id_missing(app.js가 찾는 DOM id가 index.html 또는 app.js가 만드는 HTML에 모두 있음), "
+         "runtime_failsafe_missing(초기화 예외 시 그래프 영역에 '시각화 초기화 오류'를 보여 주는 `AUDIT5:RUNTIME_GUARD`, 보이는 node 0이면 안내 후 Overview로 1회 복구하는 "
+         "`AUDIT5:EMPTY_VIEW_GUARD`). 실제 브라우저 렌더(첫 화면·A–J 각 View에서 보이는 node가 화면 창과 겹치고 그래프 영역 픽셀이 비어 있지 않음, console·pageerror 0)는 "
+         "`scripts/gusun_clean/test_visualization.py`가 검사한다.", "",
          "### ERROR", _findings_list(findings, "ERROR"), "", "### WARN", _findings_list(findings, "WARN"), "",
          "### UNRESOLVED", _findings_list(findings, "UNRESOLVED"), "", "### INFO", _findings_list(findings, "INFO"), "",
          "## 화면 규칙(검사 대상)", "",

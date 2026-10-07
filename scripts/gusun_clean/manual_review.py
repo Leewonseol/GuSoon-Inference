@@ -340,6 +340,16 @@ AUDIT5_REVISIONS = [
      "lane 이름·시간 구간 이름이 화면 밖으로 나가면 그래프 가장자리에 고정 표시(HTML, 11pt 이상)"),
     ("최종 실행(가독성 개선)", "Audit 1–5 ERROR 0·WARN 0, regression 59/59, UI 테스트 27/27",
      "PASS. 동결 해시 ccb7ec63763a 그대로, canonical CSV·json·md(output/clean)는 audit_5·validation_summary 문서 말고 바이트 동일"),
+    ("배포 화면 빈 그래프(25f81b6)", "배포된 화면에서 머리글 node 122·edge 205만 보이고 그래프·Status·Mechanism 필터·상세 패널이 모두 빔. "
+     "재현: 새 index.html + 브라우저 캐시의 옛 app.js(7ea077b)에서 pageerror 'Cannot set properties of null (setting textContent)' — "
+     "옛 app.js가 머리글을 그린 직후 새 index.html에서 없어진 #foot-note에 글자를 넣다가 멈춰 cytoscape 생성·필터·상세가 실행되지 않음. "
+     "css·js 주소에 버전이 없어 GitHub Pages 캐시(max-age 600) 동안 새 HTML과 옛 JS가 섞임. 기존 UI 테스트는 같은 버전 파일만 열고 "
+     "머리글 글자만 확인해 이 실패를 볼 수 없었음",
+     "index.html의 css·js 주소에 내용 해시 ?v=를 붙이고 build_visualization.stamp_assets가 build마다 맞춤. 초기화 예외 시 그래프 영역에 "
+     "'시각화 초기화 오류'(AUDIT5:RUNTIME_GUARD), 보이는 node 0이면 안내 후 Overview 1회 복구(AUDIT5:EMPTY_VIEW_GUARD). Audit 5에 "
+     "stale_asset_version·dom_id_missing·runtime_failsafe_missing 검사, regression 5건(64건), UI 테스트에 실제 렌더 검사 4항목(31항목: 첫 로드 "
+     "cy·보이는 node·화면 창 교차·canvas 픽셀·스크린샷 흰색 비율·필터 UI·View 탭·오류 0, A–J View별 렌더, 옛 app.js 재현 시 오류 안내, 빈 View 복구). "
+     "데이터·판단·배치 변경 없음"),
 ]
 
 # ============================================================================ WARN dispositions

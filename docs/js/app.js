@@ -1134,6 +1134,39 @@
     ids.forEach(function (id) { var n = cy.getElementById(id); if (n.length && !n.hasClass('hidden')) c = c.union(n); });
     return c;
   }
+  // AUDIT5:EMPTY_VIEW_GUARD — 보이는 node가 하나도 없으면 빈 흰 화면으로 두지 않는다: 알리고 Overview로 1회 복구.
+  // node는 있는데 첫 화면 창과 하나도 겹치지 않으면 핵심 node 하나를 읽기 배율로 가운데에 둔다(전체 맞춤 아님).
+  var emptyRecovered = false;
+  function showVizNotice(html, kind) {
+    var box = $('viz-error');
+    if (!box) return;
+    box.className = 'viz-error' + (kind === 'notice' ? ' notice' : '');
+    box.innerHTML = html;
+    box.hidden = false;
+  }
+  function guardEmptyView() {
+    var shown = cy.nodes().filter(function (n) { return n.style('display') !== 'none'; });
+    if (!shown.length) {
+      if (state.view !== 'overview' && !emptyRecovered) {
+        emptyRecovered = true;
+        setView('overview');
+        showVizNotice('<b>현재 View에서 표시할 그래프를 찾지 못했습니다.</b><span>Overview로 복구합니다. (눌러서 닫기)</span>', 'notice');
+      } else {
+        showVizNotice('<b>시각화 초기화 오류</b><span>표시할 node가 없습니다. ‘초기화’ 버튼이나 새로 고침으로 다시 시도하세요.</span>');
+      }
+      return false;
+    }
+    var sz = graphSize();
+    var inView = shown.filter(function (n) {
+      var b = n.renderedBoundingBox({ includeLabels: false });
+      return b.x2 > 0 && b.y2 > 0 && b.x1 < sz.w && b.y1 < sz.h;
+    });
+    if (!inView.length) {
+      var focus = visibleOf(focusIds(VIEWS.views[state.view]));
+      centerOn(focus.length ? focus[0] : shown[0], Math.max(READ_ZOOM, cy.zoom()));
+    }
+    return true;
+  }
   function setView(id) {
     state.view = id;
     state.showContext = false;            // View마다 그 View의 표시 범위에서 시작
@@ -1143,7 +1176,9 @@
     applyPositions();
     applyState();
     initialViewport();
-    showPane(VIEWS.views[id].default_pane || 'detail');
+    if ($('viz-error')) $('viz-error').hidden = true;
+    guardEmptyView();
+    showPane(VIEWS.views[state.view].default_pane || 'detail');
   }
   function setShowContext(on) {
     var keep = cy.$('node:selected').map(function (n) { return n.id(); })[0];
@@ -1212,6 +1247,8 @@
   renderInterPanel();
   defaultDetail();
   initialViewport();
+  guardEmptyView();
+  if ($('viz-error')) $('viz-error').addEventListener('click', function () { if (this.classList.contains('notice')) this.hidden = true; });
 
   // 테스트·디버깅용(읽기 전용 용도)
   window.__viz = {
