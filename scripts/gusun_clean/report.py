@@ -201,11 +201,15 @@ def write_gaps(path, gaps, cands, nodes):
         by[c["gap_id"]].append(c)
     lines = ["# STAGE 4 — Gap Detection + Latent Bridge Candidates", "",
              "동결된 observed DAG에서 설명이 실제로 끊기는 곳만 gap으로 지정했다. **아래 후보는 모두 LATENT**이며 사료에서 확인된 사실이 아니다.", "",
-             "등급: HIGH / MEDIUM / LOW / INCOMPATIBLE. 확률이 아니다. overall은 다음 규칙으로 기계적으로 정한다. "
-             "(1) 평가 차원 중 최소값, (2) contradiction_risk가 HIGH면 LOW 상한, MEDIUM이면 MEDIUM 상한, "
-             "(3) 추가 가정 3개 이상이면 MEDIUM 상한, 5개 이상이면 LOW 상한, (4) HIGH는 source_consistency=HIGH일 때만, "
-             "(5) 제도 compatibility 또는 환경 context만 근거인 후보는 LOW 상한, "
-             "(6) 미확정 동일성(IDxx)에 기대는 후보는 MEDIUM 상한(동일성을 확정하지 않기 위해).", "",
+             "등급은 확률이 아니다. LATENT 재감사 이후 두 축으로 나누어 평가한다(자세한 before/after는 `latent_candidate_reaudit.md`).", "",
+             "- **source support (evidence_grade)**: 후보가 새로 추가한 bridge 내용 자체를 사료가 얼마나 직접 지지하는가(HIGH/MEDIUM/LOW/NONE). "
+             "양끝 OBSERVED 사실의 확실성, 시간 인접성, 제도 가능성은 근거가 아니다. endpoint node의 구성 fact는 bridge 근거로 쓰지 않는다. "
+             "audit-only 근거만 있으면 MEDIUM이 상한이다.",
+             "- **plausibility_grade**: 시간·제도·역할·정보흐름·환경 적합의 최소값. 추가 가정 3개 이상이면 MEDIUM 상한, 5개 이상이면 LOW 상한이다. "
+             "미확정 동일성에 기대면 MEDIUM 상한이다.",
+             "- **overall(final)** = min(evidence, plausibility). evidence NONE은 LOW로 친다. contradiction_risk가 HIGH면 LOW 상한, MEDIUM이면 MEDIUM 상한이다. "
+             "제도·환경만 근거이면 LOW 상한이다. 사용자 확정 동일성을 부정하는 후보는 INCOMPATIBLE이다. "
+             "HIGH는 evidence와 plausibility가 모두 HIGH일 때만 나온다.", "",
              "`audit_attestation`은 05(AUDIT_ONLY)에 그런 진술·주장이 **기록되어 있다**는 표시일 뿐이다. 후보를 OBSERVED로 올리지 않는다.", "",
              "## Gap 요약", "", "| gap | 유형 | 끊긴 구간 | 후보 수 | 최고 등급 |", "|---|---|---|---|---|"]
     order = {"HIGH": 3, "MEDIUM": 2, "LOW": 1, "INCOMPATIBLE": 0}
@@ -219,12 +223,13 @@ def write_gaps(path, gaps, cands, nodes):
                   f"- 끊긴 구간: " + " / ".join(_title(nodes, x) for x in g["between"]),
                   f"- 관측 근거: {g['observed_anchor_facts']}",
                   f"- 왜 gap인가: {g['why_gap']}", ""]
-        lines += ["| 후보 | 요약 | src | temp | inst | role | info | env | 충돌위험 | 가정 | overall | 처리 |",
-                  "|---|---|---|---|---|---|---|---|---|---|---|---|"]
+        lines += ["| 후보 | 요약 | bridge 직접? | source support | temp | inst | role | info | env | 충돌위험 | 가정 | evidence | plausibility | overall | 처리 |",
+                  "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
         for c in by[g["gap_id"]]:
-            lines.append(f"| {c['candidate_id']} | {c['label']} | {c['source_consistency']} | {c['temporal_fit']} | "
+            lines.append(f"| {c['candidate_id']} | {c['label']} | {c['bridge_directly_attested']} | {c['source_support']} | {c['temporal_fit']} | "
                          f"{c['institutional_fit']} | {c['role_fit']} | {c['information_flow_fit']} | {c['environmental_fit']} | "
-                         f"{c['contradiction_risk']} | {c['n_assumptions']} | **{c['overall']}** | {c['prune_decision']} |")
+                         f"{c['contradiction_risk']} | {c['n_assumptions']} | {c['evidence_grade']} | {c['plausibility_grade']} | "
+                         f"**{c['overall']}** | {c['prune_decision']} |")
         for c in by[g["gap_id"]]:
             lines += ["", f"### {c['candidate_id']} [LATENT · {c['form']}] {c['label']}", "", c["description"], ""]
             if c["latent_nodes"] or c["latent_edges"]:
@@ -233,6 +238,12 @@ def write_gaps(path, gaps, cands, nodes):
                     lines.append(f"- `{ln['id']}` {ln['text']}")
                 for le in c["latent_edges"]:
                     lines.append(f"- `{le['src']}` —{le['edge_type']}→ `{le['dst']}` (LATENT)")
+            lines += ["", f"- observed_left: {c['observed_left']}", f"- observed_right: {c['observed_right']}",
+                      f"- latent_bridge_claim: {c['latent_bridge_claim']}",
+                      f"- bridge 직접 근거: {c['bridge_directly_attested']} · source support {c['source_support']} "
+                      f"(근거: {c['bridge_evidence'].replace('|', ', ') or '없음'} · 유형 {c['bridge_basis'].replace('|', ', ')}) · "
+                      f"endpoint support {c['endpoint_support']}",
+                      f"- 재감사 사유: {c['reaudit_reason']}"]
             lines += ["", f"- 추가 가정: " + ("; ".join(c["extra_assumptions"]) if c["extra_assumptions"] else "없음"),
                       f"- 지지 fact: {c['supports'] or '-'} · 긴장/충돌 fact: {c['conflicts'] or '-'}",
                       f"- audit_attestation (05, AUDIT_ONLY): {c['audit_attestation'] or '-'}",
@@ -251,11 +262,11 @@ def write_worlds(path, worlds, cands, gaps, nodes):
              "구성 방식: 전수 조합이 아니다. gap별 후보(최대 5개) 가운데 설명 축(정보 경로, 강요 진술, 사적 경로, 지휘 분산, 최소 가정)이 "
              "서로 다르도록 직접 고른 뒤, 같은 gap에 후보 2개 이상 금지, INCOMPATIBLE 사용 금지, world 사이 최소 2개 gap에서 차이를 검사했다. "
              "SMC·MCMC·posterior sampling은 쓰지 않았다.", "",
-             "## 비교표", "", "| world | 이름 | bridge 수 | 미해결 gap | 제도 적합 | 환경 적합 | 가정 수 | 최저 후보 등급 | 상태 |",
-             "|---|---|---|---|---|---|---|---|---|"]
+             "## 비교표", "", "| world | 이름 | bridge 수 | 미해결 gap | 제도 적합 | 환경 적합 | 가정 수 | bridge 근거 등급 분포 | 최저 후보 등급 | 상태 |",
+             "|---|---|---|---|---|---|---|---|---|---|"]
     for w in worlds:
         lines.append(f"| {w['world_id']} | {w['name']} | {len(w['latent_bridges'])} | {len(w['unresolved_gaps'])} | "
-                     f"{w['institutional_fit']} | {w['environmental_fit']} | {w['n_assumptions']} | {w['min_grade']} | "
+                     f"{w['institutional_fit']} | {w['environmental_fit']} | {w['n_assumptions']} | {w.get('evidence_profile', '')} | {w['min_grade']} | "
                      f"{'REJECTED' if w.get('rejected') else 'RETAINED'} |")
     for w in worlds:
         lines += ["", f"## {w['world_id']} — {w['name']}" + (" (REJECTED — 대조용)" if w.get("rejected") else ""), "",
@@ -340,7 +351,9 @@ def write_latent_csv(out, gaps, cands, worlds):
     cols = ["candidate_id", "gap_id", "status", "form", "label", "description", "source_consistency", "temporal_fit",
             "institutional_fit", "role_fit", "information_flow_fit", "environmental_fit", "contradiction_risk",
             "n_assumptions", "extra_assumptions", "identity_conditions", "overall", "prune_decision", "supports", "conflicts",
-            "audit_attestation", "support_basis", "notes"]
+            "audit_attestation", "support_basis", "notes", "observed_left", "observed_right", "latent_bridge_claim",
+            "bridge_directly_attested", "endpoint_support", "source_support", "bridge_evidence", "bridge_basis", "evidence_grade",
+            "plausibility_grade", "source_consistency_v1", "overall_v1", "reaudit_reason"]
     with open(out / "latent_candidates.csv", "w", encoding="utf-8", newline="") as f:
         w = csv.writer(f)
         w.writerow(cols)
@@ -359,16 +372,16 @@ def write_latent_csv(out, gaps, cands, worlds):
         w = csv.writer(f)
         w.writerow(["world_id", "name", "status", "latent_bridges", "unresolved_gaps", "institutional_fit",
                     "environmental_fit", "n_assumptions", "min_grade", "main_assumptions", "main_weaknesses",
-                    "contradicted_evidence", "story_implication", "identity_conditions", "resolved_identities", "narrative"])
+                    "contradicted_evidence", "story_implication", "identity_conditions", "resolved_identities", "evidence_profile", "narrative"])
         for x in worlds:
             w.writerow([x["world_id"], x["name"], "REJECTED" if x.get("rejected") else "RETAINED",
                         "|".join(x["latent_bridges"]), "|".join(x["unresolved_gaps"]), x["institutional_fit"],
                         x["environmental_fit"], x["n_assumptions"], x["min_grade"], " / ".join(x["main_assumptions"]),
                         " / ".join(x["main_weaknesses"]), x["contradicted_evidence"], x["story_implication"],
-                        x.get("identity_conditions", ""), x.get("resolved_identities", ""), x.get("narrative", "")])
+                        x.get("identity_conditions", ""), x.get("resolved_identities", ""), x.get("evidence_profile", ""), x.get("narrative", "")])
 
 
-def write_validation_summary(path, audits_by_name, freeze, worlds):
+def write_validation_summary(path, audits_by_name, freeze, worlds, cands=None):
     import regression
     lines = ["# Validation Summary", "",
              "통과 조건: 각 Audit의 ERROR = 0, WARN = 0. INFO와 UNRESOLVED는 허용하되, UNRESOLVED는 사료 자체의 불확실성 때문에 남은 것이어야 한다.", "",
@@ -396,6 +409,15 @@ def write_validation_summary(path, audits_by_name, freeze, worlds):
     for r in idr:
         lines.append(f"| {r['identity_id']} | {_cell(r['surface_a'])} ↔ {_cell(r['surface_b'])} | {r['status']} | "
                      f"{_cell(r['model_relevance'])} | {r['manual_decision_required']} | {_cell(r.get('review_decision', ''))} |")
+    if cands:
+        from collections import Counter as C
+        sa, fa = C(c["source_support"] for c in cands), C(c["overall"] for c in cands)
+        lines += ["", "## LATENT 후보 재감사 (bridge 자체의 사료 근거)", "",
+                  f"- source support: HIGH {sa['HIGH']} · MEDIUM {sa['MEDIUM']} · LOW {sa['LOW']} · NONE {sa['NONE']}",
+                  f"- final grade: HIGH {fa['HIGH']} · MEDIUM {fa['MEDIUM']} · LOW {fa['LOW']} · INCOMPATIBLE {fa['INCOMPATIBLE']}",
+                  f"- source support가 바뀐 후보 {sum(c['source_consistency_v1'] != c['source_support'] for c in cands)}개, "
+                  f"final이 바뀐 후보 {sum(c['overall_v1'] != c['overall'] for c in cands)}개. 상세: `latent_candidate_reaudit.md`",
+                  "- 검사: bridge_support_inflation · temporal_inflation · institutional_inflation · endpoint_leakage · latent_classification (모두 ERROR 0)"]
     lines += ["", "## UNRESOLVED 목록", ""]
     for name, fs in audits_by_name.items():
         lines += [f"### {name}", "", _unresolved_list(fs), ""]
@@ -412,9 +434,85 @@ def write_validation_summary(path, audits_by_name, freeze, worlds):
               f"{'동일' if freeze['structure_unchanged'] else '다름'}",
               f"- topology sha256(id·끝점·type): `{freeze['topology_sha256']}` — 이전과 {'동일' if freeze['topology_unchanged'] else '다름'}",
               f"- 변경 내용: {freeze['change_note']}",
-              "", "## Narrative worlds", "", "| world | 상태 | bridge | 최저 등급 | 가정 수 | 미확정 동일성 의존 | 미해결 gap |", "|---|---|---|---|---|---|---|"]
+              "", "## Narrative worlds", "", "| world | 상태 | bridge | 최저 등급 | bridge 근거 등급 분포 | 가정 수 | 미확정 동일성 의존 | 미해결 gap |", "|---|---|---|---|---|---|---|---|"]
     for w in worlds:
         lines.append(f"| {w['world_id']} | {'REJECTED' if w.get('rejected') else 'RETAINED'} | {' '.join(w['latent_bridges'])} | "
-                     f"{w['min_grade']} | {w['n_assumptions']} | {w['identity_conditions'].replace('|', ', ') or '0'} | "
+                     f"{w['min_grade']} | {w.get('evidence_profile', '')} | {w['n_assumptions']} | {w['identity_conditions'].replace('|', ', ') or '0'} | "
                      f"{', '.join(w['unresolved_gaps']) or '-'} |")
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def write_reaudit(path, cands, worlds_new, worlds_old):
+    from collections import Counter as C
+    lv = ["HIGH", "MEDIUM", "LOW", "NONE", "INCOMPATIBLE"]
+    sb, sa = C(c["source_consistency_v1"] for c in cands), C(c["source_support"] for c in cands)
+    fb, fa = C(c["overall_v1"] for c in cands), C(c["overall"] for c in cands)
+    ch_s = [c for c in cands if c["source_consistency_v1"] != c["source_support"]]
+    ch_f = [c for c in cands if c["overall_v1"] != c["overall"]]
+    L = ["# LATENT 후보 재감사 — bridge 자체의 사료 근거", "",
+         "문제: 일부 후보는 양끝 OBSERVED 사실이 확실하다는 이유로, 그 사이에 넣은 LATENT bridge의 source support까지 높게 받았다. "
+         "이번 재감사는 38개 후보 전부에 대해 **후보가 새로 추가한 내용 자체**의 사료 근거만 다시 평가했다. "
+         "새 역사적 사실은 만들지 않았고, OBSERVED·DERIVED·LATENT 경계도 바꾸지 않았다.", "",
+         "## 평가 원칙", "",
+         "- source support의 근거가 아닌 것: 양끝 OBSERVED 사건의 확실성(→ endpoint_support), 시간 인접성(→ temporal_fit), "
+         "제도상 가능성(→ institutional_fit), 정보 경로의 자연스러움(→ information_flow_fit), 정조 최종 판단과의 정합.",
+         "- endpoint node의 구성 fact는 bridge 근거로 쓰지 않는다(endpoint leakage는 Audit 3 ERROR).",
+         "- HIGH: bridge 내용 자체가 사료 문장으로 강하게 지지된다(이 경우 LATENT 분류부터 다시 점검). MEDIUM: bridge 자체는 없지만 같은 사건의 "
+         "비-endpoint 사료나 직접 연결되는 진술이 상당히 지지한다(audit-only 근거만 있으면 상한). LOW: 직접 근거 없이 시간·제도·주변 사실에서 나온 추론이다. "
+         "NONE: 제도상 가능성이나 이야기상 자연스러움 말고는 근거가 없다.",
+         "- 최종 등급 = min(evidence_grade, plausibility_grade) + 충돌·근거유형·동일성 상한. 확률 수치는 만들지 않았다.", "",
+         "## 요약", "",
+         f"- source support가 바뀐 후보: **{len(ch_s)}개 / {len(cands)}개**",
+         f"- final grade가 바뀐 후보: **{len(ch_f)}개** ({', '.join(c['candidate_id'] for c in ch_f)})",
+         f"- HIGH 후보(final): {fb['HIGH']}개 → **{fa['HIGH']}개**", "",
+         "| 등급 | source support 이전 | source support 이후 | final 이전 | final 이후 |", "|---|---|---|---|---|"]
+    for k in lv:
+        L.append(f"| {k} | {sb[k]} | {sa[k]} | {fb[k]} | {fa[k]} |")
+    L += ["", "이전 source 값에는 NONE 등급이 없었다. 이전의 INCOMPATIBLE 1개는 G04e의 source 칸 값이다.", "",
+          "## 집중 재검토 4건 (이전 HIGH)", "",
+          "| 후보 | observed_left | observed_right | latent_bridge_claim | bridge 직접? | endpoint support | source support | final | 사유 |",
+          "|---|---|---|---|---|---|---|---|---|"]
+    for cid in ("G01a", "G06a", "G07a", "G08a"):
+        c = next(x for x in cands if x["candidate_id"] == cid)
+        L.append(f"| {cid} | {_cell(c['observed_left'])} | {_cell(c['observed_right'])} | {_cell(c['latent_bridge_claim'])} | "
+                 f"{c['bridge_directly_attested']} | {_cell(c['endpoint_support'])} | {c['source_consistency_v1']} → **{c['source_support']}** | "
+                 f"{c['overall_v1']} → **{c['overall']}** | {_cell(c['reaudit_reason'])} |")
+    L += ["", "## 38개 후보 before / after", "",
+          "| candidate | old source support | new source support | old final grade | new final grade | changed? | reason |",
+          "|---|---|---|---|---|---|---|"]
+    for c in cands:
+        chg = []
+        if c["source_consistency_v1"] != c["source_support"]:
+            chg.append("source")
+        if c["overall_v1"] != c["overall"]:
+            chg.append("final")
+        L.append(f"| {c['candidate_id']} | {c['source_consistency_v1']} | {c['source_support']} | {c['overall_v1']} | {c['overall']} | "
+                 f"{'YES (' + '·'.join(chg) + ')' if chg else 'no'} | {_cell(c['reaudit_reason'])} |")
+    L += ["", "## 38개 후보 전체 재감사표", "",
+          "| candidate_id | gap_id | observed_left | observed_right | latent_bridge_claim | bridge_directly_attested | endpoint_support | "
+          "source_support | institutional_fit | temporal_fit | information_flow_fit | assumption_cost | contradiction_risk | final_grade | reason |",
+          "|" + "---|" * 15]
+    for c in cands:
+        L.append("| " + " | ".join(_cell(x) for x in [
+            c["candidate_id"], c["gap_id"], c["observed_left"], c["observed_right"], c["latent_bridge_claim"],
+            c["bridge_directly_attested"], c["endpoint_support"], c["source_support"], c["institutional_fit"], c["temporal_fit"],
+            c["information_flow_fit"], c["n_assumptions"], c["contradiction_risk"], c["overall"],
+            f"evidence {c['evidence_grade']} · plausibility {c['plausibility_grade']} · 근거 {c['bridge_evidence'] or '없음'} — {c['reaudit_reason']}"]) + " |")
+    L += ["", "## Narrative world 영향", "",
+          "| world | 최저 등급 이전 → 이후 | bridge 근거 등급 분포(이후) | bridge 구성 | 비고 |", "|---|---|---|---|---|"]
+    old = {w["world_id"]: w for w in worlds_old}
+    for w in worlds_new:
+        o = old.get(w["world_id"], {})
+        same = o.get("latent_bridges") == "|".join(w["latent_bridges"])
+        note = "설명 수정: 'HIGH 후보만' → '추가 가정이 가장 적은 world'" if w["world_id"] == "W5" else ""
+        L.append(f"| {w['world_id']} | {o.get('min_grade', '?')} → {w['min_grade']} | {w.get('evidence_profile', '')} | "
+                 f"{'그대로' if same else '변경'} | {note} |")
+    L += ["", "## 추가한 regression 규칙 (Audit 3)", "",
+          "- `bridge_support_inflation`: bridge 직접 근거가 없는데(NO) source support가 HIGH인 경우. bridge_evidence 없이 MEDIUM 이상인 경우. "
+          "confirmed 비-endpoint 근거 없이 HIGH인 경우. final HIGH인데 evidence·plausibility가 모두 HIGH가 아닌 경우",
+          "- `temporal_inflation`: 근거 유형이 시간 인접·endpoint 내용뿐인데 MEDIUM 이상인 경우",
+          "- `institutional_inflation`: 근거 유형이 제도·환경 가능성뿐인데 MEDIUM 이상인 경우",
+          "- `endpoint_leakage`: endpoint node의 구성 fact를 bridge 근거로 인용한 경우",
+          "- `latent_classification`: bridge가 사료에 직접 있는(YES) LATENT 후보 — 분류 점검 대상",
+          "", "regression 케이스로 재감사 이전 값(예: G08a source HIGH)을 다시 넣으면 위 규칙이 ERROR를 내는지 build 때마다 확인한다."]
+    path.write_text("\n".join(L) + "\n", encoding="utf-8")

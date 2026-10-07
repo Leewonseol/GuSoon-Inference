@@ -10,9 +10,11 @@
 import re
 
 from stage1_episodes import RESOLVED_IDS, UNRESOLVED_IDS
+from stage4_reaudit import REAUDIT
 
 SCORE = {"INCOMPATIBLE": 0, "LOW": 1, "MEDIUM": 2, "HIGH": 3}
 NAME = {v: k for k, v in SCORE.items()}
+EVIDENCE_SCORE = {"NONE": 0, "LOW": 1, "MEDIUM": 2, "HIGH": 3}
 
 GAPS = [
     dict(gap_id="G01", title="소장 접수 → 체포령 → 2/28 병영 출동의 연결", gap_type="PROCEDURAL / INFORMATION_FLOW",
@@ -440,17 +442,11 @@ CANDIDATES = [
 ]
 
 
-def grade(c):
-    """overall 등급. 확률이 아니라 규칙의 결과다.
-
-    (1) 평가 차원(N/A 제외) 최소값  (2) contradiction_risk HIGH → LOW 상한, MEDIUM → MEDIUM 상한
-    (3) 추가 가정 3개 이상 → MEDIUM 상한, 5개 이상 → LOW 상한  (4) HIGH는 source_consistency=HIGH일 때만
-    (5) 제도 compatibility 또는 환경 context만 근거 → LOW 상한  (6) 미확정(UNRESOLVED) 동일성에 기대면 → MEDIUM 상한
-    (7) 사용자 확정(RESOLVED) 동일성을 '불성립'으로 전제하면 → INCOMPATIBLE
-    """
+def grade_v1(c):
+    """재감사 이전 등급(비교용). source_consistency_v1을 다른 차원과 함께 최소값으로 썼다."""
     if negates_resolved(c):
         return "INCOMPATIBLE"
-    dims = [c["source_consistency"], c["temporal_fit"], c["institutional_fit"], c["role_fit"],
+    dims = [c["source_consistency_v1"], c["temporal_fit"], c["institutional_fit"], c["role_fit"],
             c["information_flow_fit"], c["environmental_fit"]]
     vals = [SCORE[d] for d in dims if d != "N/A"]
     s = min(vals)
@@ -464,13 +460,74 @@ def grade(c):
         s = min(s, 1)
     elif c["n_assumptions"] >= 3:
         s = min(s, 2)
-    if c["source_consistency"] != "HIGH":
+    if c["source_consistency_v1"] != "HIGH":
         s = min(s, 2)
     if c["support_basis"] in {"INSTITUTIONAL_COMPATIBILITY", "ENVIRONMENTAL_CONTEXT"}:
         s = min(s, 1)
     if set(c["identity_conditions"].split("|")) & UNRESOLVED_IDS:
         s = min(s, 2)
     return NAME[s]
+
+
+def plausibility_grade(c):
+    """개연성: 시간·제도·역할·정보흐름·환경 적합의 최소값. 추가 가정과 미확정 동일성으로 상한. 사료 근거는 보지 않는다."""
+    dims = [c["temporal_fit"], c["institutional_fit"], c["role_fit"], c["information_flow_fit"], c["environmental_fit"]]
+    vals = [SCORE[d] for d in dims if d != "N/A"]
+    s = min(vals)
+    if s == 0:
+        return "INCOMPATIBLE"
+    if c["n_assumptions"] >= 5:
+        s = min(s, 1)
+    elif c["n_assumptions"] >= 3:
+        s = min(s, 2)
+    if set(c["identity_conditions"].split("|")) & UNRESOLVED_IDS:
+        s = min(s, 2)
+    return NAME[s]
+
+
+def grade(c):
+    """overall(final_grade). 확률이 아니라 규칙의 결과다.
+
+    evidence_grade = source_support(bridge 자체의 사료 근거: HIGH/MEDIUM/LOW/NONE)
+    plausibility_grade = 시간·제도·역할·정보흐름·환경 적합(+가정 수, 미확정 동일성 상한)
+    final = min(evidence, plausibility). evidence NONE은 final에서 LOW로 친다.
+    추가 규칙: contradiction_risk HIGH → LOW 상한, MEDIUM → MEDIUM 상한. 제도·환경만 근거 → LOW 상한.
+    사용자 확정 동일성을 '불성립'으로 전제하거나 어떤 차원이 INCOMPATIBLE이면 INCOMPATIBLE.
+    HIGH는 evidence와 plausibility가 모두 HIGH일 때만 가능하다(endpoint의 확실성이나 시간 인접성은 evidence가 아니다).
+    """
+    if negates_resolved(c) or c["plausibility_grade"] == "INCOMPATIBLE" or c["support_basis"] == "NONE":
+        return "INCOMPATIBLE"
+    s = min(max(EVIDENCE_SCORE[c["source_support"]], 1), SCORE[c["plausibility_grade"]])
+    if c["contradiction_risk"] == "HIGH":
+        s = min(s, 1)
+    elif c["contradiction_risk"] == "MEDIUM":
+        s = min(s, 2)
+    if c["support_basis"] in {"INSTITUTIONAL_COMPATIBILITY", "ENVIRONMENTAL_CONTEXT"}:
+        s = min(s, 1)
+    return NAME[s]
+
+
+def endpoints(c, nodes):
+    """latent edge가 닿는 observed node를 왼쪽(bridge로 들어가는 쪽)과 오른쪽(bridge에서 나오는 쪽)으로 나눈다."""
+    lids = {ln["id"] for ln in c["latent_nodes"]}
+    left = sorted({e["src"] for e in c["latent_edges"] if e["src"] not in lids})
+    right = sorted({e["dst"] for e in c["latent_edges"] if e["dst"] not in lids})
+    by = {n["node_id"]: n for n in nodes}
+    facts = set()
+    for x in left + right:
+        if x in by:
+            facts |= set(filter(None, by[x].get("member_fact_ids", "").split("|")))
+    layers = {by[x]["layer"] for x in left + right if x in by}
+    if not layers:
+        sup = "UNKNOWN"
+    elif "NESTED_TESTIMONY" in layers:
+        sup = "LOW (중첩 진술 endpoint 포함)"
+    elif "TESTIMONY" in layers:
+        sup = "MEDIUM (진술 기록 endpoint 포함)"
+    else:
+        sup = "HIGH (공식 보고·판단·명령 endpoint)"
+    fmt = lambda xs: "; ".join(f"{x} {by[x]['title']}" if x in by else x for x in xs) or "(없음 — 위쪽 원인 가설)"
+    return fmt(left), fmt(right), sup, sorted(facts)
 
 
 def negates_resolved(c):
@@ -497,9 +554,18 @@ def build(nodes, edges):
     cands = []
     for c in CANDIDATES:
         c = dict(c)
+        c["source_consistency_v1"] = c["source_consistency"]
+        c["overall_v1"] = grade_v1(c)
+        r = REAUDIT[c["candidate_id"]]
+        c.update(r)
+        c["source_consistency"] = r["source_support"]  # 이후 모든 표·world는 재감사 값을 쓴다
+        c["observed_left"], c["observed_right"], c["endpoint_support"], c["endpoint_facts"] = endpoints(c, nodes)
+        c["evidence_grade"] = r["source_support"]
+        c["plausibility_grade"] = plausibility_grade(c)
         c["overall"] = grade(c)
         c["prune_decision"] = prune(c)
         cands.append(c)
+    assert set(REAUDIT) == {c["candidate_id"] for c in cands}, "재감사 누락 후보"
     by_gap = {}
     for c in cands:
         by_gap.setdefault(c["gap_id"], []).append(c)

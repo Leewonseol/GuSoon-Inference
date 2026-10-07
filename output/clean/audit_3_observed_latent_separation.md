@@ -50,13 +50,14 @@ _없음_
 
 | 대상 | 검사 | 판정 | 근거 |
 |---|---|---|---|
+| LATENT 후보 38개 전부 | bridge support 재감사 | FIXED | 이전 source_consistency는 양끝 OBSERVED 사실의 확실성까지 섞어 평가했다. 재감사는 후보가 새로 추가한 bridge 내용 자체의 근거만 본다. endpoint 구성 fact는 근거에서 뺐고, 시간·제도·환경 적합은 plausibility로 분리했다. 결과: source support HIGH 7 → 0, final HIGH 4 → 0. G01a·G06a HIGH → MEDIUM(비-endpoint 근거 CF026·CF029가 일부만 지지). G07a·G08a HIGH → LOW(이유·동기를 적은 사료 없음, endpoint 내용뿐). |
 | 후보 38개 · latent node 46 · latent edge 71 | latent_as_observed | PASS | 모든 후보는 status=LATENT다. latent node id는 LN_ 접두어를 쓰고 서술은 [LATENT]로 시작한다(C() helper). observed 표(episode_nodes.csv·observed_edges.csv)에는 LATENT가 하나도 없다. |
 | audit_attestation이 있는 후보 19개 | audit-only 승격 금지 | PASS | 05 prop을 인용한 후보도 모두 LATENT다. G04d(석단 공초)·G07d·G12b는 confirmed 지지 없이 05 흔적만 있어 INFO로 표시했고 LOW에 머문다. 05 prop은 node로도 edge로도 쓰지 않았다. |
-| G08a (A3-W1) | OBSERVED/DERIVED/LATENT 분류 | FIXED → LATENT | 원본 대조: CF033(이조원 비판·파직)과 CF035(홍대협 차하)는 각각 OBSERVED다. 둘 사이 동기를 적은 문장은 01·05·04 어디에도 없다(SRC3_004의 V3P0033은 정조가 사건을 물었다는 내용뿐). 명시 시간순서는 이미 OE045(DERIVED)가 담고 있으므로 동기 연결은 DERIVED가 아니라 LATENT다. 관측 node끼리 직접 잇던 latent edge를 latent 판단 node LN_G08a_1을 사이에 둔 mini-DAG로 바꿨다. 등급(HIGH)과 world 구성은 변하지 않았다. |
+| G08a (A3-W1) | OBSERVED/DERIVED/LATENT 분류 | FIXED → LATENT | 원본 대조: CF033(이조원 비판·파직)과 CF035(홍대협 차하)는 각각 OBSERVED다. 둘 사이 동기를 적은 문장은 01·05·04 어디에도 없다(SRC3_004의 V3P0033은 정조가 사건을 물었다는 내용뿐). 명시 시간순서는 이미 OE045(DERIVED)가 담고 있으므로 동기 연결은 DERIVED가 아니라 LATENT다. 관측 node끼리 직접 잇던 latent edge를 latent 판단 node LN_G08a_1을 사이에 둔 mini-DAG로 바꿨다. 당시 등급(HIGH)과 world 구성은 변하지 않았다. 이후 LATENT 재감사에서 동기 bridge 근거가 없다는 이유로 source support·final 모두 LOW가 되었다. |
 | G09b (원안 EP04 → EP35 RESPONSIBILITY_LINK) | causal_inflation | PASS (수정 후) | 원안은 observed 처분 node(royal order)로 RESPONSIBILITY_LINK를 바로 걸었다. 책임 귀속은 판단 수준이어야 하므로 latent 근거 node LN_G09b_2를 사이에 두고 처분에는 PROCEDURAL_NEXT로 잇게 고쳤다. |
 | G10b (환경만) · G01c·G10c (제도만) | support_basis 상한 | PASS | 근거가 환경 context 하나 또는 제도 compatibility 하나뿐인 후보는 grade 규칙 (5)로 LOW 상한이다. G10b의 latent node는 판단 사유 가설(individual_level=False)이고, 환경에서 개인 사건을 만들지 않았다. |
 | G06a·G06b·G12a (개인 발병·사망) | environmental_leakage | PASS | 개인 수준 latent node의 근거는 CF029(윤노동: '병들어 죽었다')와 CF040(정조: '부처가 전염병')이다. E001·E003은 environmental_fit 평가에만 썼고 ENV node에서 나가는 latent edge는 없다. |
-| 동일성에 기대는 후보 10개 | identity_forcing | PASS | 가정에 IDxx가 있으면 identity_conditions로 모으고 MEDIUM 상한을 적용했다(grade 규칙 6). 그래서 G02a(ID07)가 HIGH에서 MEDIUM으로 내려갔다. ID01·ID02·ID03·ID11은 사용자 확정(resolved_by=USER, 근거 기록)이고 ID04–ID08은 UNRESOLVED다. 모델이 스스로 확정한 동일성은 없다(자동 검사). 확정된 ID는 MEDIUM 상한(규칙 6)에서 빠지지만 G03a·G05a·G09a는 source_consistency MEDIUM이라 등급이 그대로다. |
+| 동일성에 기대는 후보 10개 | identity_forcing | PASS | 가정에 IDxx가 있으면 identity_conditions로 모으고 MEDIUM 상한을 적용했다(grade 규칙 6). 그래서 G02a(ID07)가 HIGH에서 MEDIUM으로 내려갔다(재감사 뒤에도 MEDIUM: CF044가 제작 지시 부분만 지지). ID01·ID02·ID03·ID11은 사용자 확정(resolved_by=USER, 근거 기록)이고 ID04–ID08은 UNRESOLVED다. 모델이 스스로 확정한 동일성은 없다(자동 검사). 확정된 ID는 MEDIUM 상한(규칙 6)에서 빠지지만 G03a·G05a·G09a는 source_consistency MEDIUM이라 등급이 그대로다. |
 | G09b·G09c | resolved_identity_conflict | PRUNED | G09b는 'ID02 불성립', G09c는 'ID03 불성립'을 전제한다. 사용자 확정과 충돌하므로 규칙 7로 INCOMPATIBLE·PRUNED 처리했다. 두 후보는 원래 어느 world에도 쓰이지 않았다. |
 | G02a·G03a·G09c 원안 서술 | identity_forcing | PASS (수정 후) | 원안 G02a는 '병사(이광섭)'로 ID01을 사실처럼 썼다. G03a는 '김상제' 언급 뒤 '김명신 체포'를 이어 ID05에 기댔고, G09c는 '한가 ≠ 한재욱'을 ID03 표시 없이 썼다. 서술을 조건형으로 고치고 가정에 IDxx를 넣었다. 보강한 검사를 원안에 다시 돌려 이 세 건이 ERROR로 잡히는 것을 확인했다. |
 | G04b·G07b·G07c 서술 | testimony_to_fact | PASS | '회유된 자미덕'처럼 진술 내용을 사실로 쓰던 원안 문구를 '자미덕은 …라고 진술했다'로 바꿨다. G07b의 '꾸몄다'와 G07c의 '위협'은 05 진술 내용으로만 귀속한다. |
@@ -102,6 +103,7 @@ _없음_
 | 사용자 동일성 확정 반영 | G03a(ID11)·G04c·G05a(ID01)·G09a(ID02·ID03)의 확정 ID 가정, G09b·G09c의 확정 ID 부정 전제, world 서술의 조건문 | 확정 ID 가정을 빼고(G03a 4→3, G04c 3→2, G05a 3→2, G09a 3→1, 등급 변화 없음), G09b·G09c는 규칙 7로 INCOMPATIBLE·PRUNED(world 미사용). world 서술의 'IDxx가 성립한다면'을 '(IDxx, 사용자 확정)'으로 바꿈. world 구성·bridge·미해결 gap은 그대로. 재실행 ERROR 0, WARN 0, UNRESOLVED 1 |
 | 사용자 동일성 확정 반영 (ID05) | G03b·G03c·G04a 가정과 W1·W4 서술의 ID05 조건 | 확정 ID 가정 제거(G03b 3→2, G03c 3→2, G04a 3→2, 등급 변화 없음). W1·W4 서술을 '(ID05, 사용자 확정)'으로 수정. world 구성 그대로 |
 | 사용자 검토: 불확실성 유지 | G10(이형원 파직→유임 이유)에 latent bridge를 채택하지 않기로 함 | gaps.csv에 gap_status=OPEN_UNRESOLVED와 review_decision 기록. 어떤 world든 G10 후보를 쓰면 ERROR(open_gap_filled). 후보 등급·world 구성 변경 없음 |
+| LATENT 재감사 | endpoint의 확실성이 bridge의 source support로 새어 들어간 문제(G01a·G06a·G07a·G08a 등) | 38개 후보 재평가(stage4_reaudit.py): observed_left·observed_right·latent_bridge_claim·bridge_directly_attested·bridge_evidence 분리, evidence_grade와 plausibility_grade 분리, final=min. 새 ERROR 규칙: bridge_support_inflation·temporal_inflation·institutional_inflation·endpoint_leakage·latent_classification. 재감사 이전 값을 넣으면 ERROR가 나는지 regression으로 확인. W5 설명을 '추가 가정이 가장 적은 world'로 수정(bridge 구성 그대로). observed graph 해시 변화 없음. 재실행 ERROR 0, WARN 0 |
 
 ## 5. 전체 요소 분류표
 

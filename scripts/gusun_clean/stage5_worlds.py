@@ -23,9 +23,10 @@ CONFLICT_PAIRS = [
 
 # 처음 지정된 world 구성 대비 조정 내역 (근거와 함께)
 ADJUSTMENTS = [
-    ("W5", "HIGH 후보만 쓰도록 지정됨. 계산 결과 HIGH는 G01a·G06a·G07a·G08a 네 개뿐이다. G02a는 ID07(철편=철퇴)에 기대므로 "
-           "grade 규칙 (6)에 따라 MEDIUM이 되어 W5에서 빠졌다."),
-    ("W1", "지정 목록 그대로. 다만 G02a·G03a·G04a·G05a·G09a·G11a·G12a·G13a가 MEDIUM이라 world 최저 등급은 MEDIUM이다. "
+    ("W5", "처음에는 HIGH 후보만 쓰도록 지정했고, 당시 HIGH는 G01a·G06a·G07a·G08a 네 개였다. LATENT 재감사(bridge 자체의 사료 근거만 평가) 뒤 "
+           "HIGH 후보는 0개가 되었다(G01a·G06a → MEDIUM, G07a·G08a → LOW). 등급을 올려 world를 맞추지 않았고, bridge 구성도 바꾸지 않았다. "
+           "대신 W5를 'HIGH만 쓴 world'가 아니라 '추가 가정 수가 가장 적은 world'로 다시 설명한다."),
+    ("W1", "지정 목록 그대로. LATENT 재감사 뒤 G05a·G07a·G08a·G09a·G11a·G12a·G13a가 LOW라 world 최저 등급은 LOW다. "
            "G04b·G05a의 institutional_fit은 '정보 전달 경로' 기준으로 MEDIUM이다(관측 행위의 합법성 LOW는 observed feature link에 남김)."),
     ("W2", "지정 목록 그대로. G03a(2/28 이전 기록)와 G04b(대질 진술 → 3/4 지시)는 시간상 양립한다. "
            "G03b와 G04b는 상충 쌍이라서 G03b 대신 G03a를 유지했다."),
@@ -196,7 +197,7 @@ WORLDS = [
             "공초의 병사는 이광섭이다(ID01, 사용자 확정)."),
     ),
     dict(
-        world_id="W5", name="최소 가정 (HIGH 후보만)",
+        world_id="W5", name="최소 가정 (추가 가정 수가 가장 적은 world)",
         latent_bridges=["G01a", "G06a", "G07a", "G08a"],
         inst_note="네 bridge 모두 제도 경로(진영·병영 비장, 병영 구금, 장계 → 국왕 판단, 안핵어사 차하) 안에 있다.",
         env_note="환경은 G06a의 environmental_fit 평가에만 썼다.",
@@ -209,10 +210,14 @@ WORLDS = [
         main_weaknesses=[
             "사건의 핵심 정보 경로(G03·G04·G05)를 비워 두므로 정조의 구순 책임 판단(CF043)이 event 수준에서 어떻게 성립하는지 말하지 못한다.",
             "설명력은 가장 낮고, 가정 비용도 가장 낮다.",
+            "LATENT 재감사 뒤 W5는 더 이상 'HIGH 후보만 쓴 world'가 아니다. 네 bridge 중 G01a·G06a는 MEDIUM, G07a·G08a는 LOW다. "
+            "G07a·G08a는 두 관측 사실 사이의 이유·동기만 추정한 bridge이고, 그 이유·동기를 적은 사료가 없다. "
+            "참고로 G07에서는 G07b(MEDIUM)의 근거 등급이 G07a(LOW)보다 높지만, world 구성은 바꾸지 않았다.",
         ],
         contradicted_evidence="직접 충돌하는 confirmed fact 없음. 긴장: CF027('구금·조사') ↔ G06a가 따르는 CF041(평문 없음) — PARTIAL.",
-        story_implication="HIGH 후보만 얹고 나머지 gap은 비워 둔 world다. 소장 → 진영 → 병영 비장 이관, 구금 중 발병·사망, 장물 미발견에서 나온 5월 도난 부재 판단, "
-                          "이조원 비판 뒤 독립 안핵이라는 네 다리만 놓는다. 구순의 말이 어떻게 3/4 체포 지시에 닿았는지는 미해결로 남긴다.",
+        story_implication="추가 가정이 가장 적은 bridge 4개만 얹고 나머지 gap은 비워 둔 world다. 소장 → 진영 → 병영 비장 이관(MEDIUM), 구금 중 발병·사망(MEDIUM), "
+                          "장물 미발견에서 나온 5월 도난 부재 판단(LOW), 이조원 비판 뒤 독립 안핵(LOW)이라는 네 다리만 놓는다. "
+                          "구순의 말이 어떻게 3/4 체포 지시에 닿았는지는 미해결로 남긴다.",
         narrative=(
             "명업은 구순이 소장을 올린 뒤 체포령이 내려졌다고 진술했다. "
             "[L] 소장은 청주 진영에 접수되었고 진영은 수사를 병영 비장 쪽에 넘겼다(G01a). "
@@ -253,6 +258,18 @@ WORLDS = [
 def _min_grade(vals):
     vals = [v for v in vals if v and v != "N/A"]
     return NAME[min(SCORE[v] for v in vals)] if vals else "N/A"
+
+
+def _evidence_counts(cs):
+    return {k: sum(c["evidence_grade"] == k for c in cs) for k in ("HIGH", "MEDIUM", "LOW", "NONE")}
+
+
+def _evidence_note(cs):
+    """LATENT 재감사 결과(bridge 자체의 사료 근거)를 world 약점에 자동으로 붙인다."""
+    weak = [f"{c['candidate_id']}({c['evidence_grade']})" for c in cs if c["evidence_grade"] in ("LOW", "NONE")]
+    if not weak:
+        return []
+    return [f"재감사: bridge 자체의 사료 근거가 LOW·NONE인 후보 — {', '.join(weak)}. 이 부분은 양끝 사실이 확실해도 연결 자체는 추정이다."]
 
 
 def build(nodes, edges, gaps, cands):
@@ -298,7 +315,8 @@ def build(nodes, edges, gaps, cands):
             main_assumptions=list(w["main_assumptions"]) + ([f"미확정 동일성 조건: {', '.join(ids)} (확정하지 않음)"] if ids else []),
             resolved_identities="|".join(sorted(i for i in RESOLVED_IDS if i in " ".join(
                 [w["narrative"], w["contradicted_evidence"]] + list(w["main_assumptions"]) + list(w["main_weaknesses"])))),
-            main_weaknesses=list(w["main_weaknesses"]),
+            main_weaknesses=list(w["main_weaknesses"]) + _evidence_note(cs),
+            evidence_profile=" / ".join(f"{k} {v}" for k, v in _evidence_counts(cs).items() if v),
             contradicted_evidence=w["contradicted_evidence"],
             story_implication=w["story_implication"],
             narrative=w["narrative"],

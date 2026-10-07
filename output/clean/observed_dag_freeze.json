@@ -8,7 +8,7 @@
   "topology_sha256": "04c84b0e24af31f5605800ae30bc2750563a1aeb3e72390aa6d6643676b68e84",
   "previous_topology_sha256": "04c84b0e24af31f5605800ae30bc2750563a1aeb3e72390aa6d6643676b68e84",
   "topology_unchanged": true,
-  "change_note": "사용자 검토로 ID06·ID07·ID08·OE007·OE062·G10의 불확실성을 유지하기로 함. 상태 컬럼(uncertainty_status·review_decision·gap_status)만 추가했고 node·edge·condition·끝점·type은 그대로",
+  "change_note": "LATENT 후보 재감사(bridge 자체 근거 평가). observed graph는 손대지 않음 — node·edge·condition·끝점·type 모두 그대로",
   "n_nodes": 41,
   "n_edges": 68,
   "n_episode_nodes": 37,

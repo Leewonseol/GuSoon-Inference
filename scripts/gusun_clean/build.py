@@ -129,7 +129,7 @@ def stage2(ep_rows, env):
 
 # 직전 동결본(커밋 1f7710c: WARN 처리 후, 사용자 동일성 확정 전)
 PREVIOUS_FREEZE = dict(sha256="ccb7ec63763a715a", structure_sha256="0b69134457880767285c3516e1e9c962bb9b778a5c6f4e85b248c6b16b01c80d",
-                       topology_sha256="04c84b0e24af31f5605800ae30bc2750563a1aeb3e72390aa6d6643676b68e84")  # 커밋 d069d2c(ID05 확정 직후)
+                       topology_sha256="04c84b0e24af31f5605800ae30bc2750563a1aeb3e72390aa6d6643676b68e84")  # 커밋 d069d2c 이후 구조 동일(9dd68aa에서도 변경 없음)
 
 
 def topology_hash(nodes, edges):
@@ -192,6 +192,10 @@ def identity_relevance(edges, cands, worlds):
     return rows
 
 
+# LATENT 재감사 이전(커밋 9dd68aa) world 상태 — before/after 비교 기준
+WORLDS_BEFORE_REAUDIT = {'W1': ('MEDIUM', 'G01a|G02a|G03a|G04a|G05a|G06a|G07a|G08a|G09a|G11a|G12a|G13a'), 'W2': ('MEDIUM', 'G01a|G02b|G03a|G04b|G06b|G07c|G08a|G09a|G12a'), 'W3': ('LOW', 'G01b|G02a|G04c|G05a|G06a|G07a|G08a|G12a'), 'W4': ('LOW', 'G01a|G02b|G03c|G06a|G07b|G08b|G11a|G13a'), 'W5': ('HIGH', 'G01a|G06a|G07a|G08a'), 'W6': ('LOW', 'G06c|G07d|G12b')}
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     DB.parent.mkdir(parents=True, exist_ok=True)
@@ -231,8 +235,8 @@ def main():
                   topology_sha256=topology_hash(nodes, edges),
                   previous_topology_sha256=PREVIOUS_FREEZE["topology_sha256"],
                   topology_unchanged=topology_hash(nodes, edges) == PREVIOUS_FREEZE["topology_sha256"],
-                  change_note="사용자 검토로 ID06·ID07·ID08·OE007·OE062·G10의 불확실성을 유지하기로 함. 상태 컬럼(uncertainty_status·review_decision·gap_status)만 추가했고 "
-                              "node·edge·condition·끝점·type은 그대로",
+                  change_note="LATENT 후보 재감사(bridge 자체 근거 평가). observed graph는 손대지 않음 — "
+                              "node·edge·condition·끝점·type 모두 그대로",
                   n_nodes=len(nodes), n_edges=len(edges),
                   n_episode_nodes=len(ep_rows), n_env_nodes=len(ENV_NODES),
                   edge_status=dict(Counter(e["status"] for e in edges)),
@@ -255,12 +259,14 @@ def main():
     apply_dispositions("AUDIT3", a3w)
     report.write_audit3(OUT / "audit_3_observed_latent_separation.md", a3w, nodes, edges, gaps, cands, worlds, frozen)
     gate("AUDIT 3 (worlds)", a3w)
+    worlds_before = [dict(world_id=k, min_grade=v[0], latent_bridges=v[1]) for k, v in WORLDS_BEFORE_REAUDIT.items()]
+    report.write_reaudit(OUT / "latent_candidate_reaudit.md", cands, worlds, worlds_before)
     report.write_gaps(OUT / "gap_candidates.md", gaps, cands, nodes)
     report.write_worlds(OUT / "narrative_worlds.md", worlds, cands, gaps, nodes)
     report.write_latent_csv(OUT, gaps, cands, worlds)
     write_csv(OUT / "identity_register.csv", identity_relevance(edges, cands, worlds), IDENTITY_COLS)
     report.write_validation_summary(OUT / "validation_summary.md",
-                                    {"Audit 1": a1, "Audit 2": a2, "Audit 3": a3w}, freeze, worlds)
+                                    {"Audit 1": a1, "Audit 2": a2, "Audit 3": a3w}, freeze, worlds, cands)
     write_csv(OUT / "warn_dispositions.csv", WARN_DISPOSITIONS, report.DISPOSITION_COLS)
 
     # canonical DB

@@ -529,6 +529,57 @@ def _identity_needs(text):
     return {iid for iid, a, b in IDENTITY_TEXT_RULES if a.search(text) and b.search(text)}
 
 
+EVIDENCE_LEVELS = {"HIGH": 3, "MEDIUM": 2, "LOW": 1, "NONE": 0}
+
+
+def bridge_support_checks(c, nodes):
+    """[regression] LATENT bridge 근거 부풀리기 검사. source_support는 bridge 자체의 근거만 평가해야 한다."""
+    out = []
+    cid = c["candidate_id"]
+    req = ["observed_left", "observed_right", "latent_bridge_claim", "bridge_directly_attested", "source_support",
+           "bridge_basis", "evidence_grade", "plausibility_grade", "reaudit_reason"]
+    miss = [k for k in req if k not in c or c[k] in (None, "")]
+    if miss:
+        return [F("bridge_reaudit_missing", "ERROR", cid, f"재감사 필드 누락: {miss}")]
+    att, sup = c["bridge_directly_attested"], c["source_support"]
+    if att not in {"YES", "NO", "PARTIAL"} or sup not in EVIDENCE_LEVELS:
+        out.append(F("bridge_reaudit_missing", "ERROR", cid, f"값 오류 attested={att} source_support={sup}"))
+        return out
+    lvl = EVIDENCE_LEVELS[sup]
+    basis = set(filter(None, c["bridge_basis"].split("|")))
+    ev = set(filter(None, c["bridge_evidence"].split("|")))
+    if att == "YES":
+        out.append(F("latent_classification", "ERROR", cid, "bridge가 사료에 직접 있음(YES) — LATENT 분류를 점검할 것"))
+    # LATENT bridge support inflation
+    if att == "NO" and lvl >= 3:
+        out.append(F("bridge_support_inflation", "ERROR", cid, "bridge 직접 근거가 없는데(NO) source_support=HIGH"))
+    if lvl >= 2 and not ev:
+        out.append(F("bridge_support_inflation", "ERROR", cid, f"bridge_evidence 없이 source_support={sup}"))
+    # temporal inflation
+    if lvl >= 2 and basis <= {"TEMPORAL", "ENDPOINT_ONLY"}:
+        out.append(F("temporal_inflation", "ERROR", cid, f"시간 인접·endpoint 내용만으로 source_support={sup}"))
+    # institutional inflation
+    if lvl >= 2 and basis <= {"INSTITUTIONAL", "ENVIRONMENT", "TEMPORAL"}:
+        out.append(F("institutional_inflation", "ERROR", cid, f"제도·환경 가능성만으로 source_support={sup}"))
+    # audit-only 상한
+    if lvl >= 3 and "CONFIRMED_NON_ENDPOINT" not in basis:
+        out.append(F("bridge_support_inflation", "ERROR", cid, "confirmed 비-endpoint 근거 없이 HIGH"))
+    # endpoint leakage: endpoint node의 구성 fact를 bridge 근거로 인용
+    by = {n["node_id"]: n for n in nodes}
+    lids = {ln["id"] for ln in c["latent_nodes"]}
+    ends = {x for e in c["latent_edges"] for x in (e["src"], e["dst"]) if x not in lids}
+    efacts = {f for x in ends if x in by for f in str(by[x].get("member_fact_ids", "")).split("|") if f}
+    leak = sorted(ev & efacts)
+    if leak:
+        out.append(F("endpoint_leakage", "ERROR", cid, f"endpoint 구성 fact {leak}를 bridge 근거로 인용"))
+    # final grade 일관성
+    if c["overall"] == "HIGH" and not (sup == "HIGH" and c["plausibility_grade"] == "HIGH"):
+        out.append(F("bridge_support_inflation", "ERROR", cid, "evidence·plausibility가 모두 HIGH가 아닌데 final HIGH"))
+    if sup == "NONE" and c["overall"] not in {"LOW", "INCOMPATIBLE"}:
+        out.append(F("bridge_support_inflation", "ERROR", cid, "source_support NONE인데 final이 LOW보다 높음"))
+    return out
+
+
 def audit3(nodes, edges, frozen_hash, current_hash, gaps, candidates, props, worlds=None):
     from stage2_graph import EDGE_TYPES
     out = []
@@ -595,6 +646,7 @@ def audit3(nodes, edges, frozen_hash, current_hash, gaps, candidates, props, wor
             out.append(F("grading", "ERROR", cid, "source_consistency가 HIGH가 아닌데 overall HIGH"))
         if c["overall"] == "HIGH" and c["n_assumptions"] >= 3:
             out.append(F("grading", "ERROR", cid, "추가 가정 3개 이상인데 HIGH"))
+        out.extend(bridge_support_checks(c, nodes))
         env_only = c.get("support_basis") == "ENVIRONMENTAL_CONTEXT"
         if env_only and any(ln.get("individual_level") for ln in c["latent_nodes"]):
             out.append(F("environmental_leakage", "ERROR", cid, "환경만으로 개인 수준 사건 생성"))

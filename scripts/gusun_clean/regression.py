@@ -66,6 +66,16 @@ CASES = [
     ("stale_identity_condition", "사용자 확정 동일성(ID01)이 edge condition에 남아 있음(OE081)", lambda: _stale_edge_case()),
     ("resolved_identity_conflict", "확정 동일성(ID02)을 불성립으로 전제한 후보(G09b)가 INCOMPATIBLE이 아님", lambda: _negation_case()),
     ("open_gap_filled", "사용자가 열어 두기로 한 G10을 world가 채움", lambda: _open_gap_case()),
+    ("bridge_support_inflation", "재감사 이전 G08a: 동기 bridge 근거 없음(NO)인데 source_support=HIGH",
+     lambda: _bridge_case("G08a", dict(source_support="HIGH", bridge_evidence="V3P0028"), "bridge_support_inflation")),
+    ("temporal_inflation", "시간 인접·endpoint 내용만으로 동기 bridge를 MEDIUM 이상으로 평가(G08a)",
+     lambda: _bridge_case("G08a", dict(source_support="MEDIUM", bridge_evidence="V3P0028"), "temporal_inflation")),
+    ("institutional_inflation", "제도 가능성만으로 source_support=MEDIUM(G01c)",
+     lambda: _bridge_case("G01c", dict(source_support="MEDIUM", bridge_evidence="F005"), "institutional_inflation")),
+    ("endpoint_leakage", "endpoint 구성 fact(CF033·CF035)를 bridge 근거로 인용(G08a)",
+     lambda: _bridge_case("G08a", dict(bridge_evidence="CF033|CF035"), "endpoint_leakage")),
+    ("bridge_support_inflation", "재감사 이전 값 전체(source_consistency_v1)를 다시 넣으면 검사가 잡는지",
+     lambda: _old_values_case()),
     ("closed_set", "'등' 삭제(EP07)",
      lambda: _episode_case("EP07", "자미덕은 한 비장이 정원돌·이집거·김갑득·김성손·김흥득을 큰 도적이라고 말하면 자신과 남편을 다음 날 "
                                    "석방하겠다고 말했다고 진술했고, 자미덕은 이집거와 대질했으며, 그때 한 비장의 지휘에 따라 거짓으로 꾸며 "
@@ -157,6 +167,36 @@ def _open_gap_case():
     found = audits.audit3(nodes, edges, "h", "h", gaps, cands, [], worlds)
     hit = {f["check"] for f in found if f["severity"] == "ERROR" and f["target"] == "W5"}
     return "open_gap_filled" in hit, sorted(hit)
+
+
+def _reaudit_inputs():
+    import build
+    import stage4_latent
+    cf = build.read_csv("01_confirmed_facts.csv")
+    env = build.read_csv("03_environment_1793.csv")
+    nodes, edges, _ = build.stage2(build.stage1(cf), env)
+    gaps, cands = stage4_latent.build(nodes, edges)
+    return nodes, copy.deepcopy(cands)
+
+
+def _bridge_case(cid, overrides, expect):
+    nodes, cands = _reaudit_inputs()
+    c = next(x for x in cands if x["candidate_id"] == cid)
+    c.update(overrides)
+    hit = {f["check"] for f in audits.bridge_support_checks(c, nodes) if f["severity"] == "ERROR"}
+    return expect in hit, sorted(hit)
+
+
+def _old_values_case():
+    """재감사 이전 HIGH 후보(G01a·G06a·G07a·G08a 등)의 옛 source 값을 그대로 넣었을 때 ERROR가 나는 후보를 센다."""
+    nodes, cands = _reaudit_inputs()
+    flagged = []
+    for c in cands:
+        if c["source_consistency_v1"] == "HIGH":
+            c["source_support"] = "HIGH"
+            if any(f["severity"] == "ERROR" for f in audits.bridge_support_checks(c, nodes)):
+                flagged.append(c["candidate_id"])
+    return {"G07a", "G08a"} <= set(flagged), flagged
 
 
 def run():

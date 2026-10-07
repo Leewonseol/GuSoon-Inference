@@ -12,7 +12,7 @@ python3 scripts/gusun_clean/build.py    # 저장소 루트에서 실행
 ```
 
 실행 순서는 STAGE 1 episode → AUDIT 1 → STAGE 2 graph → AUDIT 2 → STAGE 3 동결(sha256) → STAGE 4 gap·latent 후보 → AUDIT 3 → STAGE 5 world → AUDIT 3 재검사(world 포함) → md/CSV 작성 → DuckDB 작성이다.
-Audit 1 전에 regression 케이스 20개(`regression.py`)를 검사기에 넣어 모두 잡히는지 먼저 확인한다. audit에 ERROR 또는 disposition 없는 WARN이 있으면 그 자리에서 exit 1로 멈춘다. 같은 입력이면 출력이 바이트 단위로 같다.
+Audit 1 전에 regression 케이스 25개(`regression.py`)를 검사기에 넣어 모두 잡히는지 먼저 확인한다. audit에 ERROR 또는 disposition 없는 WARN이 있으면 그 자리에서 exit 1로 멈춘다. 같은 입력이면 출력이 바이트 단위로 같다.
 
 | 스크립트 | 역할 |
 |---|---|
@@ -22,7 +22,7 @@ Audit 1 전에 regression 케이스 20개(`regression.py`)를 검사기에 넣�
 | `stage4_latent.py` | gap 13개, latent 후보 38개, 기계적 등급 `grade()`·`prune()` |
 | `stage5_worlds.py` | world 6개(retained 5, rejected 1), 상충 후보 쌍, 무결성 assert |
 | `audits.py` | Audit 1·2·3 자동 검사 |
-| `regression.py` | 과거 결함 20개를 검사기가 다시 잡는지 확인하는 regression 케이스 |
+| `regression.py` | 과거 결함 25개를 검사기가 다시 잡는지 확인하는 regression 케이스 |
 | `manual_review.py` | 원본 CSV 대조 수동 검토표와 실제 수정 이력 |
 | `report.py` | md·CSV·mermaid 작성 |
 
@@ -44,6 +44,7 @@ Audit 1 전에 regression 케이스 20개(`regression.py`)를 검사기에 넣�
 | `audit_3_observed_latent_separation.md` | OBSERVED / DERIVED / LATENT 분리 audit |
 | `validation_summary.md` | 최종 audit count, UNRESOLVED 목록, regression 규칙, 해시 비교 |
 | `manual_review_table.md` | 사람이 판단할 항목만 모은 검토표 |
+| `latent_candidate_reaudit.md` | LATENT 후보 38개의 bridge 근거 재감사(before/after) |
 | `warn_dispositions.csv` | WARN별 disposition (FIXED / RECLASSIFIED_INFO / UNRESOLVED / ESCALATED_ERROR) |
 | `../../database/gusun_clean.duckdb` | 원본 6표(`raw_*`)와 위 산출물 표, `episode_members`, `dag_freeze`, `audit_findings` |
 
@@ -60,6 +61,7 @@ Audit 1 전에 regression 케이스 20개(`regression.py`)를 검사기에 넣�
 - UNRESOLVED는 사료 자체가 결정해 주지 않는 동일성·부분 충돌·gap이다. 데이터에는 condition·caution·unresolved_reason으로 보존한다. 전체 목록은 `validation_summary.md`에 있다.
 - AUDIT 1: 1차 실행의 ERROR 2건(EP15 '받아들였다', EP32 '인정하지 않았다')은 검사기 어휘 누락에 따른 오탐이었다. 내용이 아니라 검사기를 고쳤다. 이후 미등록 동일성 '원돌'↔'정원돌'을 찾아 ID11로 등록하고 다시 돌렸다.
 - AUDIT 3: 1차 실행의 ERROR 2건(audit_attestation 주석)을 고쳤다. 이어서 수동 검토로 찾은 서술상 동일성 단정, 판단 아닌 node로 가는 책임 edge, 진술의 사실화 등을 고치고, 같은 문제를 자동으로 잡는 검사를 추가했다.
+- LATENT 재감사: 후보가 새로 추가한 bridge 내용 자체의 사료 근거만 source support로 다시 평가했다(양끝 관측 사실의 확실성·시간 인접·제도 가능성은 제외). HIGH 후보는 4개에서 0개가 되었다. final 등급은 근거 등급(evidence)과 개연성(plausibility) 중 낮은 쪽이다. 상세: `latent_candidate_reaudit.md`.
 - 동결 해시: `86a529da3baf…` → `c50402af878f…`(WARN 처리로 EP01·EP04–EP07 문구 수정) → `005d4b7df030…`(동일성 확정으로 OE007·OE081 condition 제거) → `ccb7ec63763a…`(ID05 확정으로 OE071 condition에서 ID05 제거). node·edge id·끝점·type을 본 topology 해시는 그대로이고, Stage 4·5 뒤에도 observed DAG는 변하지 않는다. LATENT가 OBSERVED로 둔갑한 경우는 0건이다.
 
 자세한 수동 검토표와 수정 이력은 각 audit 문서 §3·§4에 있다.
