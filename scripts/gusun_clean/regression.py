@@ -5,6 +5,7 @@ build.py가 Audit 1 전에 run_or_exit()를 호출한다. 각 케이스는 과�
 """
 import copy
 import sys
+from pathlib import Path
 
 import audits
 from stage1_episodes import EPISODES
@@ -152,6 +153,29 @@ A5_CASES = [
      lambda: _ui_case(_ui_grade, "candidate_grade_changed")),
     ("intervention_changed", "화면에서 do(M1=OFF)·V_COMPLAINT_TO_BARRACKS 결과를 PATH_BREAKS → PATH_REMAINS로 표시",
      lambda: _ui_case(_ui_iv, "intervention_changed")),
+    # 관점별 View·가독성(시각화 개선) 검사
+    ("view_not_subset", "D 병영 지휘·체포 View에 canonical에 없는 edge(EP09 → EP33 직접 연결)를 추가",
+     lambda: _ui_case(_ui_view_edge, "view_not_subset")),
+    ("view_not_subset", "C 구순→김명신 View에 canonical에 없는 node(EP_NEW)와 그 좌표를 추가",
+     lambda: _ui_case(_ui_view_node, "view_not_subset")),
+    ("view_status_changed", "E 자미덕 View 좌표 항목에 G04b의 status를 OBSERVED로 적어 넣음",
+     lambda: _ui_case(_ui_view_status, "view_status_changed")),
+    ("view_hidden_notice_missing", "F 구금·사망 View의 '시각적 필터·삭제 아님' 안내를 빈 문자열로 바꿈",
+     lambda: _ui_case(_ui_view_notice, "view_hidden_notice_missing")),
+    ("label_clipped", "EP13 node label을 '5월 12일 이형원 장계…'로 잘라 말줄임 표시",
+     lambda: _ui_case(_ui_label_clip, "label_clipped")),
+    ("font_too_small", "화면 CSS의 본문 글자 크기를 12px(9pt)로 줄임",
+     lambda: _ui_text_case(css=lambda c: c.replace("--fs: 15px;", "--fs: 12px;"), expect="font_too_small")),
+    ("line_height_too_small", "화면 CSS의 기본 line-height를 1.3으로 줄임",
+     lambda: _ui_text_case(css=lambda c: c.replace("--lh: 1.6;", "--lh: 1.3;"), expect="line_height_too_small")),
+    ("initial_label_unreadable", "I 정조 최종 판단 View의 첫 화면 최소 배율을 0.5로 낮춤(글자 8px)",
+     lambda: _ui_case(_ui_initial_zoom, "initial_label_unreadable")),
+    ("view_node_overlap", "B 시간순 View에서 EP11 좌표를 EP09 위로 옮김",
+     lambda: _ui_case(_ui_view_overlap, "view_node_overlap")),
+    ("temporal_order", "H 홍대협 재조사 View에서 EP02(2/22)와 EP24(6/13)의 x를 맞바꿈",
+     lambda: _ui_case(_ui_view_temporal, "temporal_order")),
+    ("responsibility_to_biological", "F 구금·사망 View에서 책임 판단 EP29를 branch A(생물학적 사인) 묶음에도 넣음",
+     lambda: _ui_case(_ui_view_ab, "responsibility_to_biological")),
 ]
 CASES = CASES + A5_CASES
 
@@ -376,6 +400,63 @@ def _ui_case(mutate, expect):
     mutate(ui)
     hit = {f["check"] for f in audits.audit5(ui, x["canon"], frozen) if f["severity"] == "ERROR"}
     return expect in hit, sorted(hit)
+
+
+def _ui_text_case(css=None, js=None, expect=""):
+    """화면 코드(app.css·app.js) 사본만 바꿔 넣는다. 파일은 건드리지 않는다."""
+    x = _ui_inputs()
+    frozen = x["canon"]["freeze"]["sha256"]
+    docs = Path(__file__).resolve().parents[2] / "docs"
+    app_js = (docs / "js" / "app.js").read_text(encoding="utf-8")
+    app_css = (docs / "css" / "app.css").read_text(encoding="utf-8")
+    if any(f["severity"] == "ERROR" for f in audits.audit5(x["ui"], x["canon"], frozen, app_js, app_css)):
+        return False, ["clean baseline already has ERROR"]
+    hit = {f["check"] for f in audits.audit5(x["ui"], x["canon"], frozen, js(app_js) if js else app_js, css(app_css) if css else app_css)
+           if f["severity"] == "ERROR"}
+    return expect in hit, sorted(hit)
+
+
+def _ui_view_edge(ui):
+    ui["views"]["views"]["barracks"]["edges"].append("SD_FAKE_EP09_EP33")
+
+
+def _ui_view_node(ui):
+    v = ui["views"]["views"]["suspect"]
+    v["nodes"].append("EP_NEW")
+    v["core"].append("EP_NEW")
+    v["layout"]["positions"]["EP_NEW"] = dict(x=0, y=0, lane="L_OBS_THEFT")
+
+
+def _ui_view_status(ui):
+    ui["views"]["views"]["jamideok"]["layout"]["positions"]["G04b"]["status"] = "OBSERVED"
+
+
+def _ui_view_notice(ui):
+    ui["views"]["views"]["death"]["notice"] = ""
+
+
+def _ui_label_clip(ui):
+    d = _ui_node(ui, "EP13")["display"]
+    d["lines"] = ["EP13", "5월 12일 이형원 장계…"]
+    d["label"] = "\n".join(d["lines"])
+
+
+def _ui_initial_zoom(ui):
+    ui["views"]["views"]["final"]["initial"]["min_zoom"] = 0.5
+
+
+def _ui_view_overlap(ui):
+    pos = ui["views"]["views"]["timeline"]["layout"]["positions"]
+    pos["EP11"] = dict(pos["EP09"])
+
+
+def _ui_view_temporal(ui):
+    pos = ui["views"]["views"]["hong_review"]["layout"]["positions"]
+    pos["EP02"]["x"], pos["EP24"]["x"] = pos["EP24"]["x"], pos["EP02"]["x"]
+
+
+def _ui_view_ab(ui):
+    ui["views"]["views"]["death"]["groups"]["A"].append("EP29")
 
 
 def _ui_node(ui, nid):

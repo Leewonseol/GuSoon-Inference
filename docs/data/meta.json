@@ -230,7 +230,7 @@
   "output/clean/qualitative_structural_rules.csv": "ca7d7ec15e0283a268fe7360ed1c14867cdb0237ba11435d447e37d1b6f6e05d",
   "output/clean/world_mechanism_configurations.csv": "2f66ef0e2cff1065fbb7db76c0d3161bc1c6cb9936ef68894943b1c14b04fb0d"
  },
- "layout_rule": "x: 날짜가 있는 관측 node는 정렬 기준일(t_max, 없으면 t_min) 순서의 column에 놓는다. 같은 날짜 안에서는 frozen edge 깊이 순서. y: 관측 node는 branch lane, 날짜 없는 node는 분석 lane. 날짜 없는 node의 x는 연결된 node 근처일 뿐 날짜를 뜻하지 않는다.",
+ "layout_rule": "x: 날짜가 있는 관측 node는 정렬 기준일(t_max, 없으면 t_min) 순서의 column에 놓는다. 같은 날짜 안에서는 frozen edge 깊이 순서. y: 관측 node는 branch lane, 날짜 없는 node는 분석 lane. 날짜 없는 node의 x는 연결된 node 근처일 뿐 날짜를 뜻하지 않는다. 관점별 View는 그 View의 node만으로 같은 규칙을 다시 적용한 좌표를 쓴다.",
  "mechanism_display": {
   "M1": "공식 정보 경로",
   "M2": "진술 증폭",
@@ -257,5 +257,24 @@
   "OBSERVED": "OBSERVED",
   "UNRESOLVED": "UNRESOLVED"
  },
- "title": "구순–김명신 사건 Mechanism Super-DAG"
+ "title": "구순–김명신 사건 Mechanism Super-DAG",
+ "typography": {
+  "band_font_px": 22,
+  "band_sub_font_px": 16,
+  "edge_font_px": 16,
+  "far_id_font_px": 30,
+  "initial_zoom_max": 1.25,
+  "initial_zoom_min": 0.95,
+  "label_w": 190,
+  "lane_font_px": 17,
+  "lane_sub_font_px": 16,
+  "line_height": 1.6,
+  "line_px": 25.6,
+  "node_font_px": 16,
+  "note": "node label·UI 글자는 11pt(14.667px) 이상, line-height 1.6 이상. 첫 화면 zoom은 0.95 이상이라 node label이 15.2px로 그려진다.",
+  "read_pt": 11,
+  "read_px": 14.667,
+  "read_zoom": 0.9167,
+  "tick_font_px": 17
+ }
 }
