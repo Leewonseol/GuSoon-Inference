@@ -1,0 +1,63 @@
+finding_seq,audit_name,check_name,severity,target,message
+1,AUDIT1,clause_split,INFO,CF040,2개 절로 분할 — 합치면 원문 전체를 덮음
+2,AUDIT1,clause_split,INFO,CF045,2개 절로 분할 — 합치면 원문 전체를 덮음
+3,AUDIT1,over_merge,INFO,EP09,"허용된 혼합 ['IDENT', 'TESTIMONY'] — 근거: 지시 행위와 지시 대상의 사료 식별은 같은 문장 단위로 묶는다. 실행(EP11)은 분리."
+4,AUDIT1,clause_prop_alignment,INFO,EP26,CF040 절 → V3P0101
+5,AUDIT1,clause_prop_alignment,INFO,EP27,CF040 절 → V3P0105
+6,AUDIT1,clause_prop_alignment,INFO,EP31,CF045 절 → V3P0136
+7,AUDIT1,clause_prop_alignment,INFO,EP32,CF045 절 → V3P0146
+8,AUDIT1,resolved_identity,INFO,ID01,공초의 '병사' (CF021·CF023·CF024) = 이광섭 · 사용자 확정 · episode summary는 원문 표면형 유지
+9,AUDIT1,resolved_identity,INFO,ID02,'한 비장' (CF016·CF017) = 한재욱 · 사용자 확정 · episode summary는 원문 표면형 유지
+10,AUDIT1,resolved_identity,INFO,ID03,처분문의 '한가' (CF048) = 한재욱 · 사용자 확정 · episode summary는 원문 표면형 유지
+11,AUDIT1,unresolved_identity,UNRESOLVED,ID04,"'병영의 하급 보조자' (audit-only V3P0026·V3P0027·V3P0124) ↔ 한재욱 · 관련 episode 없음(DAG 미사용) · 참고용(model_relevance=NONE, manual_decision_required=NO) · unresolved_reason: audit-only 자료(05, 이조원 주장)에만 있고 인명이 직접 나오지 않는다. 현재 DAG·후보·world 어디에도 쓰이지 않아 결정해도 모델 결과가 바뀌지 않는다(참고용 미해결)."
+12,AUDIT1,resolved_identity,INFO,ID05,'풍각 김상제' (CF020) = 김명신 · 사용자 확정 · episode summary는 원문 표면형 유지
+13,AUDIT1,unresolved_identity,UNRESOLVED,ID06,"'병영의 염탐 담당자' (CF043) ↔ 유제희 · 관련 episode EP08, EP29 · unresolved_reason: 정조 판단(CF043)은 직책 표현('병영의 염탐 담당자')만 쓰고 이름을 적지 않았다."
+14,AUDIT1,unresolved_identity,UNRESOLVED,ID07,"'철편 네 개' (CF010, 이진욱: 한재욱이 만들어 줌) ↔ '철퇴 네 개' (CF044, 정조: 이광섭이 만들게 함) · 관련 episode EP04, EP30 · unresolved_reason: 개수(네 개)와 사건은 같지만 물건 이름(철편/철퇴)과 행위 층위(제작·지급/제작 지시)가 다르다."
+15,AUDIT1,unresolved_identity,UNRESOLVED,ID08,"3/4 '장교 일행' (CF023) ↔ 조계완 포함 여부 (CF024) · 관련 episode EP04, EP10, EP11 · unresolved_reason: 3/4 '장교 일행'의 구성원은 기록되지 않았다."
+16,AUDIT1,resolved_identity,INFO,ID11,'원돌' (CF020 '원돌 등의 이름') = 정원돌 (CF009·CF016) · 사용자 확정 · episode summary는 원문 표면형 유지
+17,AUDIT1,outside_confirmed_set,INFO,05,CF가 참조하지 않는 prop 83개 — DAG node로 쓰지 않음
+18,AUDIT2,partial_tension,UNRESOLVED,OE007,PARTIAL_CONFLICT — 원문 표현의 범위가 같은지 사료로 확정할 수 없어 보존 · review_decision: 사용자 검토: 정면 충돌로 승격하지 않음. 자미덕의 '지휘' 주장과 한재욱의 '은밀한 사주' 부인은 범위가 완전히 같지 않다. · unresolved_reason: '한 비장'=한재욱은 ID02 사용자 확정(RESOLVED)이라 같은 인물에 대한 두 진술이다. 사주 주장(자미덕)과 은밀한 사주 부인(한재욱)은 서로 다른 진술로 유지하며 어느 쪽도 객관적 사실로 확정하지 않는다. 한재욱의 부인 범위는 '은밀한 사주'에 한정되므로 PARTIAL 충돌이다.
+19,AUDIT2,conditional_edge,UNRESOLVED,OE010,ID08 미확정 — edge는 condition으로만 성립 · unresolved_reason: 3/4 '장교 일행'의 구성원은 기록되지 않았다.
+20,AUDIT2,unsupported_edge,INFO,OE060,절차 근거로 endpoint 밖 fact 인용: ['CF035']
+21,AUDIT2,partial_tension,UNRESOLVED,OE062,UNRESOLVED_SCOPE — 원문 표현의 범위가 같은지 사료로 확정할 수 없어 보존 · review_decision: 사용자 검토: 5월 장계의 '조사'와 정조의 '평범한 신문'이 같은 범위인지 확정하지 않음. 부분 긴장 유지. · unresolved_reason: PARTIAL_TENSION: '조사'가 곧 '신문'이라고 확정할 수 없다. CF028의 '무고한 평민들 모진 형벌'은 김명신 포함 여부가 열린 집합이므로 충돌 근거로 쓰지 않는다.
+22,AUDIT2,conditional_edge,UNRESOLVED,OE071,ID06 미확정 — edge는 condition으로만 성립 · unresolved_reason: 정조 판단(CF043)은 직책 표현('병영의 염탐 담당자')만 쓰고 이름을 적지 않았다.
+23,AUDIT2,conditional_edge,UNRESOLVED,OE080,ID07 미확정 — edge는 condition으로만 성립 · unresolved_reason: 개수(네 개)와 사건은 같지만 물건 이름(철편/철퇴)과 행위 층위(제작·지급/제작 지시)가 다르다.
+24,AUDIT3,freeze_violation,INFO,observed_dag,동결 해시 일치 ccb7ec63763a
+25,AUDIT3,support_basis_cap,INFO,G01c,INSTITUTIONAL_COMPATIBILITY만 근거 → LOW 상한 적용
+26,AUDIT3,audit_only_support,INFO,G04d,confirmed 지지 없이 05 흔적만 있음 — LATENT 유지
+27,AUDIT3,audit_only_support,INFO,G07d,confirmed 지지 없이 05 흔적만 있음 — LATENT 유지
+28,AUDIT3,resolved_identity_conflict,INFO,G09b,사용자 확정 ['ID02']과 충돌 → INCOMPATIBLE·PRUNED
+29,AUDIT3,resolved_identity_conflict,INFO,G09c,사용자 확정 ['ID03']과 충돌 → INCOMPATIBLE·PRUNED
+30,AUDIT3,support_basis_cap,INFO,G10b,ENVIRONMENTAL_CONTEXT만 근거 → LOW 상한 적용
+31,AUDIT3,support_basis_cap,INFO,G10c,INSTITUTIONAL_COMPATIBILITY만 근거 → LOW 상한 적용
+32,AUDIT3,audit_only_support,INFO,G12b,confirmed 지지 없이 05 흔적만 있음 — LATENT 유지
+33,AUDIT3,outcome_world_dependency,INFO,worlds,"공통 결말 node 23개는 모든 world에 공통인 OBSERVED다. 경쟁 설명 5개, 배제된 설명 1개"
+34,AUDIT3,unresolved_gap,UNRESOLVED,G10,"OPEN_UNRESOLVED — 어느 경쟁 설명 world도 이 gap을 메우지 않음 (후보 G10a=MEDIUM, G10b=LOW, G10c=LOW) · review_decision: 사용자 검토: latent bridge를 채택하지 않음. 이유를 억지로 채우지 않고 gap을 열어 둔다(world에서도 비움). · unresolved_reason: 파직과 3일 뒤 유임의 사유가 모두 기록되지 않았다. 관측 근거(CF049, CF050)에 사유를 적은 문장이 없음"
+35,AUDIT3,world_integrity,INFO,worlds,"world 6개 (경쟁 설명 5, rejected 1) — 쌍별 gap 차이 ≥2 확인"
+36,AUDIT4,interaction_direction,UNRESOLVED,M1×M2,함께 쓰이는 world(W2)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음
+37,AUDIT4,interaction_direction,UNRESOLVED,M1×M3,"함께 쓰이는 world(W1, W3)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음"
+38,AUDIT4,interaction_direction,UNRESOLVED,M1×M4,"함께 쓰이는 world(W1, W2, W4)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음"
+39,AUDIT4,interaction_direction,UNRESOLVED,M1×M6,"함께 쓰이는 world(W1, W3, W5)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음"
+40,AUDIT4,coexistence_undetermined,UNRESOLVED,M2×M3,"COMPATIBLE — 충돌 근거는 없지만 어느 경쟁 world도 둘을 함께 쓰지 않아, 함께 작동했는지는 사료로 결정되지 않음"
+41,AUDIT4,interaction_direction,UNRESOLVED,M2×M4,"함께 쓰이는 world(W2, W4)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음"
+42,AUDIT4,interaction_direction,UNRESOLVED,M2×M6,함께 쓰이는 world(W2)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음
+43,AUDIT4,coexistence_undetermined,UNRESOLVED,M3×M4,"COMPATIBLE — 충돌 근거는 없지만 어느 경쟁 world도 둘을 함께 쓰지 않아, 함께 작동했는지는 사료로 결정되지 않음"
+44,AUDIT4,interaction_direction,UNRESOLVED,M3×M6,"함께 쓰이는 world(W1, W3)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음"
+45,AUDIT4,interaction_direction,UNRESOLVED,M4×M6,"함께 쓰이는 world(W1, W2, W4)가 있지만 어느 메커니즘이 다른 쪽을 이끌었는지(방향)는 사료에 없음"
+46,AUDIT4,multiple_explanations,UNRESOLVED,V_COMMAND_SOURCE,"XOR: M1, M4가 같은 관측 전이(EP04)를 설명할 수 있음. 어느 쪽이 실제로 작동했는지는 사료로 결정되지 않음"
+47,AUDIT4,multiple_explanations,UNRESOLVED,V_INFO_TO_COMMANDER,"OR: M1, M2, M3, M4가 같은 관측 전이(EP09)를 설명할 수 있음. 어느 쪽이 실제로 작동했는지는 사료로 결정되지 않음"
+48,AUDIT4,multiple_explanations,UNRESOLVED,V_INVESTIGATION_SCOPE,"OR: M2, M4가 같은 관측 전이(EP11)를 설명할 수 있음. 어느 쪽이 실제로 작동했는지는 사료로 결정되지 않음"
+49,AUDIT4,multiple_explanations,UNRESOLVED,V_INITIAL_JUDGMENT_BASIS,"OR: M2, M6가 같은 관측 전이(EP15)를 설명할 수 있음. 어느 쪽이 실제로 작동했는지는 사료로 결정되지 않음"
+50,AUDIT4,unresolved_item,UNRESOLVED,U_ID06,ID06 병영의 염탐 담당자 = 유제희?
+51,AUDIT4,unresolved_item,UNRESOLVED,U_ID07,ID07 철편 네 개 = 철퇴 네 개?
+52,AUDIT4,unresolved_item,UNRESOLVED,U_ID08,ID08 3/4 장교 일행에 조계완 포함?
+53,AUDIT4,unresolved_item,UNRESOLVED,U_OE007,OE007 자미덕 '지휘' 주장 ↔ 한재욱 '은밀한 사주' 부인 (PARTIAL_CONFLICT)
+54,AUDIT4,unresolved_item,UNRESOLVED,U_OE062,OE062 5월 '조사' = 정조 '평범한 신문'? (UNRESOLVED_SCOPE)
+55,AUDIT4,unresolved_item,UNRESOLVED,U_G10,G10 이형원 파직 → 유임 이유 (OPEN_UNRESOLVED)
+56,AUDIT4,super_dag_summary,INFO,super_dag,"node CONTEXT 24, LATENT_MECHANISM 55, OBSERVED 37, UNRESOLVED 6 · edge CONTEXT 38, DERIVED 64, LATENT_MECHANISM 90, OBSERVED 4, UNRESOLVED 9"
+57,AUDIT4,frozen_graph_changed,INFO,observed_dag,동결 해시 일치 ccb7ec63763a
+58,AUDIT5,view_summary,INFO,views,"View 10개(subset 8) 모두 canonical node·edge 부분집합, 좌표 결정적·겹침 0. node 글자 16px·line-height 1.6·첫 화면 배율 ≥ 0.95"
+59,AUDIT5,ui_summary,INFO,docs/data,node 122 · edge 205 · 후보 38 · world 선택 7 · view 10 · 개입 행 13 · 공존 쌍 21 (canonical과 같음)
+60,AUDIT5,temporal_order,INFO,layout,날짜 있는 관측 node 36개가 기준일 순서대로 왼쪽 → 오른쪽에 놓임. 날짜 미기록 node EP08는 시간 축 밖 '날짜 미기록' 구간에 두었다(위치가 날짜를 뜻하지 않음).
+61,AUDIT5,responsibility_to_biological,INFO,view:death,A branch 13개 · B branch 5개 node 사이 직접 edge 0개
+62,AUDIT5,frozen_graph_changed,INFO,observed_dag,동결 해시 일치 ccb7ec63763a
