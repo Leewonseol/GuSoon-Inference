@@ -191,6 +191,17 @@ A5_CASES = [
      lambda: _ui_text_case(html=lambda h: h.replace("시각화 초기화 오류", "오류"), expect="runtime_failsafe_missing")),
     ("runtime_failsafe_missing", "app.js에서 보이는 node 0 → Overview 복구 guard 호출을 뺌",
      lambda: _ui_text_case(js=lambda j: j.replace("initialViewport();\n  guardEmptyView();", "initialViewport();"), expect="runtime_failsafe_missing")),
+    # 간단히 보기(시각화 UX 간소화): 표시 유형 3종·추이적 축약·접기 규칙
+    ("edge_display_mapping", "주장 수준 상충(CONTRADICTS_AT_CLAIM_LEVEL)을 분석·추론 표시 유형으로 옮김",
+     lambda: _ui_case(_ui_display_move, "edge_display_mapping")),
+    ("edge_type_changed", "화면 관계 유형 목록에서 RESPONSIBILITY_LINK를 뺌(19종 → 18종)",
+     lambda: _ui_case(_ui_display_drop, "edge_type_changed")),
+    ("transitive_misapplied", "REVIEW_OF를 추이적 축약 대상에 넣음(검토 관계를 시간 선후처럼 줄임)",
+     lambda: _ui_case(_ui_transitive_review, "transitive_misapplied")),
+    ("edge_display_mapping", "분석·추론과 맥락·제약을 같은 선 모양·색으로 그림(3종 구분이 사라짐)",
+     lambda: _ui_case(_ui_display_same_line, "edge_display_mapping")),
+    ("outcome_dropped", "app.js에서 간단히 보기 접기 규칙의 backbone 보호 순서 표시(AUDIT5:SIMPLE_COLLAPSE)를 뺌",
+     lambda: _ui_text_case(js=lambda j: j.replace("AUDIT5:SIMPLE_COLLAPSE", "SIMPLE_COLLAPSE"), expect="outcome_dropped")),
 ]
 CASES = CASES + A5_CASES
 
@@ -476,6 +487,23 @@ def _ui_view_temporal(ui):
 
 def _ui_view_ab(ui):
     ui["views"]["views"]["death"]["groups"]["A"].append("EP29")
+
+
+def _ui_display_move(ui):
+    ui["meta"]["edge_styles"]["CONTRADICTS_AT_CLAIM_LEVEL"]["display"] = "analysis"
+
+
+def _ui_display_drop(ui):
+    del ui["meta"]["edge_styles"]["RESPONSIBILITY_LINK"]
+
+
+def _ui_transitive_review(ui):
+    ui["meta"]["simple_view"]["transitive_types"] = ui["meta"]["simple_view"]["transitive_types"] + ["REVIEW_OF"]
+
+
+def _ui_display_same_line(ui):
+    d = ui["meta"]["edge_display"]
+    d["context"] = dict(d["context"], line=d["analysis"]["line"], color=d["analysis"]["color"])
 
 
 def _ui_node(ui, nid):

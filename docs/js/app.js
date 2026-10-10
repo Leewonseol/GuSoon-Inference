@@ -30,8 +30,14 @@
     OBSERVED: '#256abf', DERIVED: '#8ea0bd', LATENT: '#c4501f', CONTEXT: '#008300', UNRESOLVED: '#b83a6b',
     MECH: '#4a3aa7'
   };
+  // 간단히 보기(meta.simple_view): 화면 표시만 줄인다. node·edge·world·개입·공존 데이터는 그대로다.
+  var SV = META.simple_view, EDISP = META.edge_display, EORDER = META.edge_display_order;
+  var CORE_FLOW = toSet(SV.core_flow_types), TRANSITIVE = toSet(SV.transitive_types), NO_MERGE = toSet(SV.merge_exclude_types);
+  function catOf(t) { return (META.edge_styles[t] || {}).display || 'record'; }
+  function relText(t) { var s = META.edge_styles[t] || {}; return t + (s.ko ? ' · ' + s.ko : ''); }
   var DEFAULT_STATE = function () {
-    return { view: 'overview', world: 'ALL', hideOthers: false, showContext: false, status: toSet(STATUS_KEYS), mech: toSet(MECHS), iv: null, pair: ['M1', 'M2'] };
+    return { view: 'overview', world: 'ALL', hideOthers: false, showContext: false, status: toSet(STATUS_KEYS), mech: toSet(MECHS), iv: null, pair: ['M1', 'M2'],
+      level: SV.default_level, hops: SV.default_hops, sel: null, focusMech: null };
   };
   var state = DEFAULT_STATE();
 
@@ -76,9 +82,105 @@
     var c = e.canonical;
     elements.push({
       group: 'edges',
-      data: { id: e.id, source: c.src, target: c.dst, etype: c.edge_type, sgroup: e.status_group, origin: c.origin },
-      classes: ['et-' + c.edge_type, 'eo-' + c.origin, 'es-' + e.status_group].join(' ')
+      data: { id: e.id, source: c.src, target: c.dst, etype: c.edge_type, sgroup: e.status_group, origin: c.origin, cat: catOf(c.edge_type), elabel: relText(c.edge_type) },
+      classes: ['et-' + c.edge_type, 'eo-' + c.origin, 'es-' + e.status_group, 'cat-' + catOf(c.edge_type)].join(' ')
     });
+  });
+
+  // ------------------------------------------------------------------ 표시 전용 계산(원본 edge는 그대로 두고 화면에서만 묶거나 접는다)
+  // 같은 두 node·같은 방향·같은 표시 유형·같은 증거 상태인 관계 여럿 → 화면에서는 선 하나(MG~…). 원본 edge는 cy에 그대로 있고 눌러서 모두 볼 수 있다.
+  // 방향이 다르거나 증거 상태가 다르거나 merge_exclude_types(주장 수준 상충)이면 따로 그린다.
+  function mergeGroups(edges) {
+    var g = {};
+    edges.forEach(function (e) {
+      var c = e.canonical;
+      if (NO_MERGE[c.edge_type]) return;
+      var k = [c.src, c.dst, catOf(c.edge_type), e.status_group].join('\u0001');
+      (g[k] = g[k] || []).push(e.id);
+    });
+    return Object.keys(g).filter(function (k) { return g[k].length > 1; }).sort().map(function (k) {
+      var p = k.split('\u0001');
+      return { id: 'MG~' + g[k].slice().sort().join('~'), src: p[0], dst: p[1], cat: p[2], sgroup: p[3], members: g[k].slice().sort() };
+    });
+  }
+  // 추이적 관계(meta.simple_view.transitive_types, 지금은 TEMPORAL_BEFORE만)에서 같은 유형만으로 된 길이 2 이상 경로가 따로 있는 직접 edge.
+  // REVIEW_OF·REVISES·INFORMATION_FLOW·RESPONSIBILITY_LINK 등은 추이적이라고 가정하지 않는다.
+  function transitiveRedundant(edges) {
+    var out = {}, byType = {};
+    edges.forEach(function (e) { var t = e.canonical.edge_type; if (TRANSITIVE[t]) (byType[t] = byType[t] || []).push(e); });
+    Object.keys(byType).forEach(function (t) {
+      var succ = {};
+      byType[t].forEach(function (e) { (succ[e.canonical.src] = succ[e.canonical.src] || []).push(e.canonical.dst); });
+      byType[t].forEach(function (e) {
+        var s = e.canonical.src, d = e.canonical.dst, seen = {}, stack = (succ[s] || []).filter(function (x) { return x !== d; });
+        while (stack.length) {
+          var x = stack.pop();
+          if (x === d) { out[e.id] = true; break; }
+          if (seen[x] || x === s) continue;
+          seen[x] = true;
+          (succ[x] || []).forEach(function (y) { stack.push(y); });
+        }
+      });
+    });
+    return out;
+  }
+  var MERGED = mergeGroups(SD.edges), MERGE_OF = {}, REDUNDANT = transitiveRedundant(SD.edges);
+  MERGED.forEach(function (m) {
+    m.members.forEach(function (id) { MERGE_OF[id] = m.id; });
+    elements.push({
+      group: 'edges',
+      data: { id: m.id, source: m.src, target: m.dst, etype: 'MERGED', sgroup: m.sgroup, origin: 'DISPLAY', cat: m.cat, members: m.members,
+        mlabel: '관계 ' + m.members.length + '개', elabel: '관계 ' + m.members.length + '개: ' + m.members.map(function (id) { return edgeById[id].canonical.edge_type; }).join(' · ') },
+      classes: ['merged', 'cat-' + m.cat, 'es-' + m.sgroup].join(' ')
+    });
+  });
+  // 원본 인접 목록(펼치기 계산용, 표시 전용 묶음 edge는 넣지 않음)
+  var ADJ = {};
+  SD.edges.forEach(function (e) {
+    (ADJ[e.canonical.src] = ADJ[e.canonical.src] || []).push(e);
+    (ADJ[e.canonical.dst] = ADJ[e.canonical.dst] || []).push(e);
+  });
+  function isObs(id) { return nodeById[id] && nodeById[id].canonical.node_type === 'OBSERVED_EVENT'; }
+  // 선택 node에서 k-hop 안의 node와 그 사이를 지나간 원본 edge(방향 무시)
+  function hopBall(id, k) {
+    var nodes = {}, edges = {}, ring = [id], d;
+    nodes[id] = 0;
+    for (d = 1; d <= k; d++) {
+      var next = [];
+      ring.forEach(function (u) {
+        (ADJ[u] || []).forEach(function (e) {
+          var v = e.canonical.src === u ? e.canonical.dst : e.canonical.src;
+          edges[e.id] = true;
+          if (!(v in nodes)) { nodes[v] = d; next.push(v); }
+        });
+      });
+      ring = next;
+    }
+    return { nodes: nodes, edges: edges };
+  }
+  // 메커니즘 펼치기 범위: 메커니즘 → 후보(INSTANTIATED_BY·_SECONDARY) → 구조 변수(CONTRIBUTES_TO, ANCHORED_TO) → 설명 대상 관측 사건,
+  // 그리고 이 묶음에 걸린 context(CONSTRAINS·CONTEXT_COMPATIBLE)·UNRESOLVED(CONDITIONS). 원본 edge를 따라가기만 한다.
+  var MECH_SCOPE = {};
+  MECHS.forEach(function (m) {
+    var core = {}, nodes = {}, edges = {};
+    core[m] = true;
+    SD.edges.forEach(function (e) {
+      var c = e.canonical;
+      if (c.src === m && (c.edge_type === 'INSTANTIATED_BY' || c.edge_type === 'INSTANTIATED_BY_SECONDARY' || c.edge_type === 'ANCHORED_TO')) core[c.dst] = true;
+    });
+    SD.edges.forEach(function (e) {
+      var c = e.canonical;
+      if (c.edge_type === 'CONTRIBUTES_TO' && core[c.src]) core[c.dst] = true;
+    });
+    SD.edges.forEach(function (e) {
+      var c = e.canonical, st = nodeById[c.src].canonical.sd_status;
+      if (c.origin !== 'SUPER_DAG') return;
+      if ((core[c.src] && core[c.dst]) || (core[c.src] && isObs(c.dst)) || (core[c.dst] && (st === 'CONTEXT' || st === 'UNRESOLVED'))) {
+        edges[e.id] = true; nodes[c.src] = true; nodes[c.dst] = true;
+      }
+    });
+    Object.keys(core).forEach(function (x) { nodes[x] = true; });
+    MECH_SCOPE[m] = { nodes: nodes, edges: edges };
   });
 
   var DASH = { solid: 'solid', dashed: 'dashed', dotted: 'dotted' };
@@ -109,16 +211,23 @@
       'text-rotation': 'autorotate', 'color': '#0b0b0b', 'min-zoomed-font-size': 0
     } },
     // 다른 node 밑을 지나가는 edge는 결정적으로 고른 곡선으로 돌려 그린다(routeEdges)
-    { selector: 'edge.arc', style: { 'curve-style': 'unbundled-bezier', 'control-point-distances': 'data(cpd)', 'control-point-weights': 0.5 } },
-    { selector: 'edge.eo-SUPER_DAG', style: { 'opacity': 0.6, 'width': 1.6 } },
-    { selector: 'edge.es-DERIVED', style: { 'width': 2.4 } },
-    { selector: 'edge.es-OBSERVED', style: { 'width': 4.2 } }
+    { selector: 'edge.arc', style: { 'curve-style': 'unbundled-bezier', 'control-point-distances': 'data(cpd)', 'control-point-weights': 0.5 } }
   ];
+  // 표시 유형 3종(기록·절차 진한 실선 / 분석·추론 얇은 점선 / 맥락·제약 옅은 점선). 세부 관계 19종은 선택·hover·상세 패널에서 보인다.
+  EORDER.forEach(function (k) {
+    var s = EDISP[k];
+    style.push({ selector: 'edge.cat-' + k, style: { 'line-color': s.color, 'target-arrow-color': s.color, 'line-style': DASH[s.line] || 'solid',
+      'width': s.width, 'opacity': s.opacity } });
+  });
+  // 증거 상태는 관계 유형과 따로: 기록·절차 선의 굵기(OBSERVED 굵게, DERIVED 보통)
+  style.push({ selector: 'edge.cat-record.es-OBSERVED', style: { 'width': 4.2 } });
   Object.keys(META.edge_styles).forEach(function (t) {
     var s = META.edge_styles[t];
-    style.push({ selector: 'edge.et-' + t, style: { 'line-color': s.color, 'target-arrow-color': s.color, 'target-arrow-shape': s.arrow, 'line-style': DASH[s.line] || 'solid' } });
+    if (s.arrow && s.arrow !== 'triangle') style.push({ selector: 'edge.et-' + t, style: { 'target-arrow-shape': s.arrow, 'arrow-scale': 1.5 } });
   });
   style = style.concat([
+    { selector: 'edge.merged', style: { 'label': 'data(mlabel)', 'width': 4, 'font-weight': 700 } },
+    { selector: 'edge.merged-member', style: { 'display': 'none' } },
     { selector: '.dim', style: { 'opacity': 0.2 } },
     { selector: 'edge.dim', style: { 'opacity': 0.07 } },
     { selector: '.hidden', style: { 'display': 'none' } },
@@ -140,12 +249,16 @@
     { selector: 'node.iv-target', style: { 'underlay-color': '#2a78d6', 'underlay-opacity': 0.30, 'underlay-padding': 11 } },
     { selector: 'edge.iv-path', style: { 'opacity': 1, 'width': 4, 'z-index': 9 } },
     // 선택한 node의 들어오는/나가는 edge 강조, 나머지 edge 흐림
+    { selector: 'node.mfocus', style: { 'underlay-color': '#6b55c9', 'underlay-opacity': 0.28, 'underlay-padding': 10 } },
+    { selector: 'edge.mfocus', style: { 'opacity': 1, 'width': 3, 'z-index': 20 } },
     { selector: 'edge.faded', style: { 'opacity': 0.08 } },
-    { selector: 'edge.sel-in, edge.sel-out', style: { 'opacity': 1, 'width': 5, 'z-index': 30, 'label': 'data(etype)' } },
-    { selector: 'edge.sel-in', style: { 'line-style': 'solid' } },
+    // 선택 node의 직접 관계는 원래 관계 이름(유형 · 의미)을 선 위에 보여 준다. 선 모양(표시 유형)은 그대로 둔다.
+    { selector: 'edge.sel-in, edge.sel-out', style: { 'opacity': 1, 'width': 5, 'z-index': 30, 'label': 'data(elabel)' } },
+    { selector: 'edge.sel-2', style: { 'opacity': 0.9, 'width': 3, 'z-index': 25 } },
     { selector: 'node.sel-nbr', style: { 'underlay-color': '#2a78d6', 'underlay-opacity': 0.18, 'underlay-padding': 8 } },
+    { selector: 'node.sel-nbr2', style: { 'underlay-color': '#2a78d6', 'underlay-opacity': 0.09, 'underlay-padding': 6 } },
     { selector: 'node.search-hit', style: { 'underlay-color': '#2a78d6', 'underlay-opacity': 0.45, 'underlay-padding': 14 } },
-    { selector: 'edge.hover, edge:selected', style: { 'label': 'data(etype)', 'opacity': 1, 'width': 5, 'z-index': 40 } },
+    { selector: 'edge.hover, edge:selected', style: { 'label': 'data(elabel)', 'opacity': 1, 'width': 5, 'z-index': 40 } },
     { selector: 'node:selected', style: { 'border-color': '#0b0b0b', 'border-width': 5, 'border-style': 'solid' } }
   ]);
 
@@ -388,9 +501,18 @@
     });
     return best;
   }
+  // 간단히 보기에서는 접힌 분석 lane 아래쪽을 빼고 지금 보이는 node까지만 지도 범위로 쓴다(좌표는 그대로)
+  function liveExtent() {
+    var ex = activeLayout().extent;
+    if (!isCollapseMode()) return ex;
+    var vis = cy.nodes().filter(function (n) { return !n.hasClass('hidden'); });
+    if (!vis.length) return ex;
+    var bb = vis.boundingBox({ includeLabels: false });
+    return { x0: ex.x0, x1: ex.x1, label_x0: ex.label_x0, y0: ex.y0, y1: Math.min(ex.y1, Math.max(bb.y2 + 60, ex.y0 + 200)) };
+  }
   function fitAll() {
     // 전체 보기(지도): 글자가 11pt보다 작아질 수 있다. node는 ID만 표시된다.
-    var ex = activeLayout().extent, sz = graphSize(), pad = 20;
+    var ex = liveExtent(), sz = graphSize(), pad = 20;
     var z = Math.min((sz.w - 2 * pad) / (ex.x1 - ex.label_x0), (sz.h - 2 * pad) / (ex.y1 - ex.y0));
     z = Math.max(cy.minZoom(), Math.min(1.2, z));
     cy.viewport({ zoom: z, pan: { x: (sz.w - z * (ex.label_x0 + ex.x1)) / 2, y: (sz.h - z * (ex.y0 + ex.y1)) / 2 } });
@@ -402,8 +524,42 @@
   }
 
   // ------------------------------------------------------------------ 상태 적용(보이기·흐리기·강조)
-  var CLASS_RESET = 'hidden dim hl hl-rej grpA grpB pair iv-off iv-removed iv-remaining iv-PATH_BREAKS iv-PATH_WEAKENS iv-PATH_REMAINS iv-UNKNOWN iv-target iv-path cfg-ON cfg-PARTIAL cfg-UNSPECIFIED cfg-OFF';
+  var CLASS_RESET = 'hidden collapsed dim hl hl-rej grpA grpB pair iv-off iv-removed iv-remaining iv-PATH_BREAKS iv-PATH_WEAKENS iv-PATH_REMAINS iv-UNKNOWN iv-target iv-path cfg-ON cfg-PARTIAL cfg-UNSPECIFIED cfg-OFF mfocus merged-member reduced';
   function ivRows() { return state.iv ? IV.rows.filter(function (r) { return r.canonical.mechanism === state.iv; }) : []; }
+  // 간단히 보기는 전체 Overview(A)에만 쓴다. 관점별 View(B–J)는 이미 고른 범위라 그 범위를 그대로 펼쳐 보여 준다.
+  function isCollapseMode() { return VIEWS.views[state.view].policy === 'all' && state.level !== 'full'; }
+  // 접힌 화면에서 펼칠 node·edge: 선택 node의 k-hop, 메커니즘 펼치기, 고른 world가 쓰는 후보·메커니즘, 개입 경로, 공존 쌍
+  function revealSets(rows) {
+    var nodes = {}, edges = {};
+    function addN(x) { nodes[x] = true; }
+    if (state.sel && nodeById[state.sel]) {
+      var b = hopBall(state.sel, state.hops);
+      Object.keys(b.nodes).forEach(addN);
+      Object.keys(b.edges).forEach(function (x) { edges[x] = true; });
+    }
+    if (state.focusMech && MECH_SCOPE[state.focusMech]) {
+      Object.keys(MECH_SCOPE[state.focusMech].nodes).forEach(addN);
+      Object.keys(MECH_SCOPE[state.focusMech].edges).forEach(function (x) { edges[x] = true; });
+    }
+    var hl = W.selections[state.world].highlight;
+    hl.forEach(addN);
+    var hlS = toSet(hl), ivS = {};
+    rows.forEach(function (r) { r.path_nodes.forEach(function (x) { addN(x); ivS[x] = true; }); });
+    if (state.pairOn) state.pair.forEach(addN);
+    SD.edges.forEach(function (e) {
+      var s = e.canonical.src, t = e.canonical.dst;
+      if ((hlS[s] && (hlS[t] || isObs(t))) || (hlS[t] && isObs(s)) || (ivS[s] && ivS[t])) edges[e.id] = true;
+    });
+    return { nodes: nodes, edges: edges };
+  }
+  // 접힌 화면에서 기본으로 보이는 관측 사건 사이 관계: simple = 핵심 시간·절차 흐름(추이적으로 중복된 edge 제외), records = 관측 사건 사이 관계 전부
+  function baseEdgeShown(e) {
+    var c = e.canonical;
+    if (!isObs(c.src) || !isObs(c.dst)) return false;
+    if (state.level === 'records') return true;
+    return !!CORE_FLOW[c.edge_type] && !REDUNDANT[e.id];
+  }
+  var lastCounts = null;
 
   function applyState() {
     var sel = W.selections[state.world];
@@ -415,6 +571,8 @@
     var rows = ivRows();
     var ivPath = {};
     rows.forEach(function (r) { r.path_nodes.forEach(function (x) { ivPath[x] = true; }); });
+    var collapse = isCollapseMode(), reveal = collapse ? revealSets(rows) : null;
+    var mscope = state.focusMech ? MECH_SCOPE[state.focusMech] : null;
     cy.batch(function () {
       cy.elements().removeClass(CLASS_RESET);
       cy.nodes().forEach(function (n) {
@@ -425,12 +583,19 @@
         if (!has(state.status, d.sgroup)) hide = true;
         if (d.mech && !has(state.mech, d.mech)) hide = true;
         if (has(dimW, id)) { if (state.hideOthers && has(hideW, id)) hide = true; else dim = true; }
-        // AUDIT5:BACKBONE_GUARD — 필터·world 선택·개입은 OBSERVED backbone(관측 사건·공통 결말)을 숨기지 못한다
-        if (BACKBONE[id] || has(always, id)) hide = false;
+        // 메커니즘 펼치기: 전체 표시에서는 그 메커니즘 범위 밖 분석 node를 흐리게만 한다(삭제·계산 제외 아님)
+        if (mscope && !collapse && !has(mscope.nodes, id) && !BACKBONE[id]) dim = true;
+        // AUDIT5:SIMPLE_COLLAPSE — 간단히 보기: 펼치지 않은 LATENT·CONTEXT·UNRESOLVED node는 화면에서만 접는다(collapsed). 계산·world·개입 데이터는 그대로이며 바로 아래 BACKBONE_GUARD가 OBSERVED를 되살린다.
+        var collapsed = collapse && !has(reveal.nodes, id);
+        if (collapsed) hide = true;
+        // AUDIT5:BACKBONE_GUARD — 필터·world 선택·개입·간단히 보기는 OBSERVED backbone(관측 사건·공통 결말)을 숨기지 못한다
+        if (BACKBONE[id] || has(always, id)) { hide = false; collapsed = false; }
         // AUDIT5:VIEW_SCOPE — View 범위 밖 node는 subset View에서만 숨긴다. 숨긴 OBSERVED 수는 #banner-view에 항상 표시된다.
         if (outside) hide = true;
         if (hide) n.addClass('hidden');
         else if (dim) n.addClass('dim');
+        if (collapsed && !outside) n.addClass('collapsed');
+        if (mscope && has(mscope.nodes, id) && !hide && !BACKBONE[id]) n.addClass('mfocus');
         if (has(hlW, id)) n.addClass(sel.rejected ? 'hl-rej' : 'hl');
         var label = d.base, extra = 0;
         if (d.ntype === 'MECHANISM' && state.world !== 'ALL') {
@@ -454,17 +619,44 @@
         cy.getElementById(c.variable).addClass('iv-' + c.result);
         splitIds(c.target).forEach(function (id) { cy.getElementById(id).addClass('iv-target'); });
       });
+      var nEdge = 0, nCollapsedEdge = 0;
       cy.edges().forEach(function (e) {
         var d = e.data(), s = e.source(), t = e.target();
+        if (d.members) return;                       // 표시 전용 묶음 edge는 아래에서 구성원 상태로 정한다
         var hide = s.hasClass('hidden') || t.hasClass('hidden') || (!has(state.status, d.sgroup) && d.sgroup !== 'OBSERVED');
-        if (hide) { e.addClass('hidden'); return; }
+        if (hide) {
+          e.addClass('hidden');
+          if (s.hasClass('collapsed') || t.hasClass('collapsed')) { e.addClass('collapsed'); nCollapsedEdge++; }
+          return;
+        }
+        // 간단히 보기: 기본 흐름 edge와 펼친 관계만 보이고 나머지는 화면에서만 접는다(원본 edge·분석은 그대로)
+        if (collapse && !has(reveal.edges, d.id) && !baseEdgeShown(edgeById[d.id])) {
+          e.addClass('hidden'); e.addClass('collapsed'); nCollapsedEdge++;
+          if (REDUNDANT[d.id]) e.addClass('reduced');
+          return;
+        }
         if (rows.length && ivPath[d.source] && ivPath[d.target]) e.addClass('iv-path');
         else if (s.hasClass('dim') || t.hasClass('dim') || (rows.length && d.origin === 'SUPER_DAG')) e.addClass('dim');
+        else if (mscope && !collapse && d.origin === 'SUPER_DAG' && !has(mscope.edges, d.id)) e.addClass('dim');
+        if (mscope && has(mscope.edges, d.id)) e.addClass('mfocus');
       });
+      // 같은 node 쌍 묶음: 구성원 중 하나라도 보이면 묶음 선 하나로 그리고, 구성원 선은 화면에서만 감춘다(원본 edge는 그대로).
+      MERGED.forEach(function (m) {
+        var me = cy.getElementById(m.id), vis = m.members.map(function (x) { return cy.getElementById(x); }).filter(function (x) { return !x.hasClass('hidden'); });
+        if (!vis.length) { me.addClass('hidden'); return; }
+        vis.forEach(function (x) { x.addClass('merged-member'); });
+        if (vis.every(function (x) { return x.hasClass('dim'); })) me.addClass('dim');
+        if (vis.some(function (x) { return x.hasClass('iv-path'); })) me.addClass('iv-path');
+        if (vis.some(function (x) { return x.hasClass('mfocus'); })) me.addClass('mfocus');
+      });
+      cy.edges().forEach(function (e) { if (!e.hasClass('hidden') && !e.hasClass('merged-member')) nEdge++; });
+      lastCounts = { nodes: cy.nodes().filter(function (n) { return !n.hasClass('hidden'); }).length, edges: nEdge,
+        collapsedNodes: cy.nodes('.collapsed').length, collapsedEdges: nCollapsedEdge, reduced: cy.edges('.reduced').length };
       if (state.pairOn) { cy.getElementById(state.pair[0]).addClass('pair'); cy.getElementById(state.pair[1]).addClass('pair'); }
     });
     applySelection();
     renderBanners();
+    renderSimplifyControls();
     renderWorldButtons();
     renderTabs();
     renderWorldPanel();
@@ -473,15 +665,26 @@
   }
 
   // 선택한 node의 들어오는·나가는 edge 강조, 관련 없는 edge 흐림
+  // 2-hop이면 이웃의 이웃과 그 관계도 옅게 강조한다(원본 edge 기준, 묶음 선은 구성원을 따라감).
   function applySelection() {
     cy.batch(function () {
-      cy.elements().removeClass('sel-in sel-out sel-nbr faded');
+      cy.elements().removeClass('sel-in sel-out sel-2 sel-nbr sel-nbr2 faded');
       var n = cy.$('node:selected');
       if (!n.length) return;
       n.incomers('edge').addClass('sel-in');
       n.outgoers('edge').addClass('sel-out');
       n.neighborhood('node').addClass('sel-nbr');
-      cy.edges().difference(n.connectedEdges()).addClass('faded');
+      var keep = n.connectedEdges();
+      if (state.hops > 1) {
+        var b = hopBall(n.id(), state.hops);
+        Object.keys(b.edges).forEach(function (id) {
+          var e = cy.getElementById(MERGE_OF[id] || id);
+          if (!e.hasClass('sel-in') && !e.hasClass('sel-out')) e.addClass('sel-2');
+          keep = keep.union(e);
+        });
+        Object.keys(b.nodes).forEach(function (id) { if (b.nodes[id] > 1) cy.getElementById(id).addClass('sel-nbr2'); });
+      }
+      cy.edges().difference(keep).addClass('faded');
     });
   }
 
@@ -527,7 +730,58 @@
     } else if (v.policy === 'dim') {
       vb.hidden = false;
       vb.innerHTML = '<b>시각적 강조</b> · 이 View 밖 OBSERVED node는 숨기지 않고 흐리게 남깁니다. 분석상 ON/OFF가 아닙니다.';
-    } else { vb.hidden = true; vb.innerHTML = ''; }
+    } else if (isCollapseMode()) {
+      // AUDIT5:SIMPLE_NOTICE — 접힌 node·관계가 사라진 것으로 읽히지 않도록 개수와 '화면에서만 접음' 안내를 항상 보여 준다
+      var k = lastCounts || {}, selTxt = '';
+      if (state.sel && nodeById[state.sel]) {
+        var ball = hopBall(state.sel, state.hops);
+        selTxt = ' <span class="sel-note">선택 <b>' + esc(state.sel) + '</b>: ' + state.hops + '-hop 관련 node ' + (Object.keys(ball.nodes).length - 1) +
+          '개·관계 ' + Object.keys(ball.edges).length + '개 펼침 <button type="button" class="btn btn-sm" id="show-revealed">펼친 범위 보기</button></span>';
+      }
+      vb.hidden = false;
+      vb.innerHTML = '<b>' + esc(SV.level_labels[state.level]) + '</b> · 보이는 node <b id="simple-node-count">' + k.nodes + '</b>개(관측 사건 ' + W.backbone.length +
+        '개 모두 포함) · 관계 <b id="simple-edge-count">' + k.edges + '</b>개 — 접힌 node ' + k.collapsedNodes + '개·관계 ' + k.collapsedEdges + '개' +
+        (k.reduced ? '(시간 선후 중복 ' + k.reduced + '개 포함)' : '') +
+        ' <span class="notice-text">삭제가 아니라 화면에서만 접은 것(world·공존·개입 결과와 상세 패널에 그대로 포함). node를 누르면 관련 관계가 펼쳐집니다.</span>' + selTxt +
+        ' <button type="button" class="btn btn-sm" id="level-toggle" data-to="full">전체 보기</button>';
+      $('level-toggle').addEventListener('click', function () { setLevel('full'); });
+      if ($('show-revealed')) $('show-revealed').addEventListener('click', showRevealed);
+    } else {
+      vb.hidden = false;
+      vb.innerHTML = '<b>전체 보기</b> · 모든 node ' + META.counts.nodes + '개와 관계 ' + META.counts.edges + '개(분석·맥락 포함)를 표시합니다. ' +
+        '<button type="button" class="btn btn-sm" id="level-toggle" data-to="simple">간단히 보기</button>';
+      $('level-toggle').addEventListener('click', function () { setLevel('simple'); });
+    }
+  }
+  // ------------------------------------------------------------------ 화면 단순화 조작(표시 수준·선택 확장·메커니즘 펼치기)
+  function renderSimplifyControls() {
+    var lb = $('level-buttons'), hb = $('hop-buttons'), mf = $('mech-focus');
+    if (!lb.childElementCount) {
+      SV.levels.forEach(function (lv) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.setAttribute('role', 'radio'); b.dataset.level = lv; b.textContent = SV.level_labels[lv];
+        b.addEventListener('click', function () { setLevel(lv); });
+        lb.appendChild(b);
+      });
+      for (var h = 1; h <= SV.max_hops; h++) (function (h) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.setAttribute('role', 'radio'); b.dataset.hops = h; b.textContent = h + '-hop';
+        b.title = h === 1 ? '선택한 node와 직접 연결된 관계' : '이웃의 이웃까지';
+        b.addEventListener('click', function () { setHops(h); });
+        hb.appendChild(b);
+      })(h);
+      MECHS.forEach(function (m) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.dataset.focusMech = m; b.innerHTML = '<b>' + m + '</b> ' + esc(META.mechanism_display[m]);
+        b.addEventListener('click', function () { setFocusMech(state.focusMech === m ? null : m); });
+        mf.appendChild(b);
+      });
+    }
+    Array.prototype.forEach.call(lb.children, function (b) { b.setAttribute('aria-checked', String(b.dataset.level === state.level)); });
+    Array.prototype.forEach.call(hb.children, function (b) { b.setAttribute('aria-checked', String(+b.dataset.hops === state.hops)); });
+    Array.prototype.forEach.call(mf.children, function (b) { b.setAttribute('aria-pressed', String(b.dataset.focusMech === state.focusMech)); });
+    $('level-scope-note').textContent = VIEWS.views[state.view].policy === 'all' ? '' :
+      '지금 View(' + VIEWS.views[state.view].label + ')는 이미 고른 범위라 그 범위를 그대로 표시합니다. 표시 수준은 A 전체 Overview에 적용됩니다.';
   }
   function renderTabs() {
     var nav = $('view-tabs');
@@ -596,6 +850,33 @@
   }
 
   // ------------------------------------------------------------------ 범례
+  function edgeSwatch(k, extraArrow) {
+    var s = EDISP[k], da = s.line === 'dashed' ? '6 3' : (s.line === 'dotted' ? '1.5 3' : '');
+    var head = extraArrow === 'tee' ? '<line x1="33" y1="1" x2="33" y2="11" stroke="' + s.color + '" stroke-width="2.4"/>' : '<path d="M35 6 l-7 -5 l0 10 z" fill="' + s.color + '"/>';
+    return '<svg width="36" height="12" aria-hidden="true" style="opacity:' + Math.max(0.55, s.opacity) + '"><line x1="1" y1="6" x2="28" y2="6" stroke="' + s.color +
+      '" stroke-width="' + Math.max(1.6, s.width) + '" stroke-dasharray="' + da + '"/>' + head + '</svg>';
+  }
+  function nodeSwatch(r) {
+    var shape;
+    if (r[4] === 'hex') shape = '<polygon points="8,1 28,1 35,9 28,17 8,17 1,9" ';
+    else if (r[4] === 'cut') shape = '<polygon points="5,1 31,1 35,5 35,13 31,17 5,17 1,13 1,5" ';
+    else if (r[4] === 'barrel') shape = '<rect x="1" y="1" width="34" height="16" rx="10" ry="8" ';
+    else if (r[4] === 'sq') shape = '<rect x="1" y="1" width="34" height="16" ';
+    else shape = '<rect x="1" y="1" width="34" height="16" rx="4" ';
+    var extra = r[4] === 'double' ? '<rect x="4" y="4" width="28" height="10" rx="2" fill="none" stroke="' + r[2] + '" stroke-width="1.4"/>' : '';
+    return '<svg width="36" height="18" aria-hidden="true">' + shape + 'fill="' + r[1] + '" stroke="' + r[2] + '" stroke-width="' + (r[4] === 'double' ? 1.4 : 2) + '" stroke-dasharray="' + r[3] + '"/>' + extra + '</svg>';
+  }
+  // 기본 범례: node 4종·edge 3종. 기존 세부 범례(node 9종·관계 19종·선 굵기·이중 테두리)는 '상세 범례 보기'에 그대로 있다.
+  (function buildSimpleLegend() {
+    var nodesS = [['관측 사건', '#eaf2fc', '#256abf', '', 'rect', 'OBSERVED · 항상 표시'], ['추론·가설', '#fdf1ea', '#c4501f', '5 3', 'rect', 'LATENT 메커니즘·구조 변수·후보 · 기본은 접힘'],
+      ['제도·환경', '#eef6ee', '#008300', '1 3', 'sq', 'CONTEXT · 사건 아님'], ['미확정 항목', '#fcf0f5', '#b83a6b', '', 'double', 'UNRESOLVED · 이중 테두리']];
+    $('legend-nodes').innerHTML = '<div class="grp">Node</div>' + nodesS.map(function (r) {
+      return '<div class="row">' + nodeSwatch(r) + '<span>' + esc(r[0]) + ' <span class="muted">' + esc(r[5]) + '</span></span></div>';
+    }).join('');
+    $('legend-edges').innerHTML = '<div class="grp">Edge</div>' + EORDER.map(function (k) {
+      return '<div class="row" data-legend-cat="' + k + '">' + edgeSwatch(k) + '<span>' + esc(EDISP[k].label) + '</span></div>';
+    }).join('');
+  })();
   (function buildLegend() {
     var nodesL = [
       ['OBSERVED 관측 사건', '#eaf2fc', '#256abf', '', 'rect'], ['공통 결말 (모든 world)', '#eaf2fc', '#1c5cab', '', 'double'],
@@ -606,33 +887,25 @@
     ];
     var h = '<div class="grp">Node (색 + 모양 + 테두리)</div>';
     nodesL.forEach(function (r) {
-      var shape;
-      if (r[4] === 'hex') shape = '<polygon points="8,1 28,1 35,9 28,17 8,17 1,9" ';
-      else if (r[4] === 'cut') shape = '<polygon points="5,1 31,1 35,5 35,13 31,17 5,17 1,13 1,5" ';
-      else if (r[4] === 'barrel') shape = '<rect x="1" y="1" width="34" height="16" rx="10" ry="8" ';
-      else if (r[4] === 'sq') shape = '<rect x="1" y="1" width="34" height="16" ';
-      else shape = '<rect x="1" y="1" width="34" height="16" rx="4" ';
-      var extra = r[4] === 'double' ? '<rect x="4" y="4" width="28" height="10" rx="2" fill="none" stroke="' + r[2] + '" stroke-width="1.4"/>' : '';
-      h += '<div class="row"><svg width="36" height="18" aria-hidden="true">' + shape + 'fill="' + r[1] + '" stroke="' + r[2] + '" stroke-width="' + (r[4] === 'double' ? 1.4 : 2) + '" stroke-dasharray="' + r[3] + '"/>' + extra + '</svg><span>' + esc(r[0]) + '</span></div>';
+      h += '<div class="row">' + nodeSwatch(r) + '<span>' + esc(r[0]) + '</span></div>';
     });
-    h += '<div class="row muted">강조: <span style="background:rgba(237,161,0,.4);padding:0 4px;border-radius:3px">world 사용</span> <span style="background:rgba(208,59,59,.3);padding:0 4px;border-radius:3px">W6 배제</span></div>';
-    $('legend-nodes').innerHTML = h;
-    var groups = {};
-    Object.keys(META.edge_styles).forEach(function (t) {
-      var s = META.edge_styles[t];
-      (groups[s.group] = groups[s.group] || []).push([t, s]);
-    });
+    h += '<div class="row muted">강조: <span style="background:rgba(237,161,0,.4);padding:0 4px;border-radius:3px">world 사용</span> <span style="background:rgba(208,59,59,.3);padding:0 4px;border-radius:3px">W6 배제</span> ' +
+      '<span style="background:rgba(107,85,201,.3);padding:0 4px;border-radius:3px">메커니즘 펼치기</span></div>';
+    $('legend-detail-nodes').innerHTML = h;
+    // 관계 19종을 표시 유형 3종 아래에 원래 이름·의미 그대로 나열한다
     var eh = '';
-    Object.keys(groups).sort().forEach(function (gname) {
-      eh += '<div class="grp">Edge — ' + esc(gname) + '</div>';
-      groups[gname].forEach(function (p) {
-        var s = p[1], da = s.line === 'dashed' ? '6 3' : (s.line === 'dotted' ? '1.5 3' : '');
-        eh += '<div class="row" title="' + esc(s.ko) + '"><svg width="36" height="12" aria-hidden="true"><line x1="1" y1="6" x2="28" y2="6" stroke="' + s.color + '" stroke-width="2.4" stroke-dasharray="' + da + '"/>' +
-          '<path d="M35 6 l-7 -5 l0 10 z" fill="' + s.color + '"/></svg><span><code>' + esc(p[0]) + '</code> <span class="muted">' + esc(s.ko) + '</span></span></div>';
+    EORDER.forEach(function (k) {
+      eh += '<div class="grp">Edge — ' + esc(EDISP[k].label) + ' <span class="muted">(' + esc(EDISP[k].desc) + ')</span></div>';
+      Object.keys(META.edge_styles).filter(function (t) { return META.edge_styles[t].display === k; }).forEach(function (t) {
+        var s = META.edge_styles[t];
+        eh += '<div class="row" data-legend-type="' + esc(t) + '" title="' + esc(s.ko) + '">' + edgeSwatch(k, s.arrow) + '<span><code>' + esc(t) + '</code> <span class="muted">' + esc(s.ko) + '</span></span></div>';
       });
     });
-    eh += '<div class="row muted">선 굵기: OBSERVED edge 굵게, DERIVED edge 보통, 분석 edge 얇고 옅게. edge 이름은 마우스를 올리거나 node·edge를 선택하면 보입니다.</div>';
-    $('legend-edges').innerHTML = eh;
+    eh += '<div class="row muted">선 굵기 = 증거 상태: 기록·절차 선 중 OBSERVED edge는 굵게, DERIVED edge는 보통. 관계 유형과 증거 상태는 따로 표시됩니다(상세 패널의 status).</div>' +
+      '<div class="row muted">주장 수준 상충(CONTRADICTS_AT_CLAIM_LEVEL)은 흐름이 아니므로 끝을 ⊣ 모양으로 그리고 다른 관계와 묶지 않습니다.</div>' +
+      '<div class="row muted">‘관계 N개’ 선 = 같은 두 node·같은 방향·같은 표시 유형·같은 증거 상태인 관계 묶음. 누르면 원래 관계가 모두 나옵니다.</div>' +
+      '<div class="row muted">관계 이름(유형 · 의미)은 마우스를 올리거나 node·edge를 선택하면 선 위에 보입니다.</div>';
+    $('legend-detail-edges').innerHTML = eh;
   })();
 
   // ------------------------------------------------------------------ 상세 패널
@@ -656,6 +929,41 @@
       return '<li>' + nodeLink(m) + ' ' + esc(META.mechanism_display[m] || '') + ' <span class="muted">via ' + rm[m].map(edgeLink).join(' → ') + '</span></li>';
     }).join('') + '</ul>';
   }
+  // 이 node와 분석 edge(SUPER_DAG)로 이어진 LATENT 후보: 메커니즘이면 그 메커니즘이 INSTANTIATED_BY로 잇는 후보,
+  // 그 밖에는 분석 edge를 거꾸로 따라가며 만나는 후보(메커니즘에서 멈춤). 등급은 canonical 값 그대로.
+  function relatedCandidatesHtml(n) {
+    var found = {}, via = {};
+    if (n.canonical.node_type === 'MECHANISM') {
+      SD.edges.forEach(function (e) {
+        var c = e.canonical;
+        if (c.src === n.id && (c.edge_type === 'INSTANTIATED_BY' || c.edge_type === 'INSTANTIATED_BY_SECONDARY')) { found[c.dst] = true; via[c.dst] = c.edge_type; }
+      });
+    } else {
+      var seen = {}, frontier = [n.id];
+      seen[n.id] = true;
+      while (frontier.length) {
+        var next = [];
+        frontier.forEach(function (u) {
+          SD.edges.forEach(function (e) {
+            var c = e.canonical;
+            if (c.origin !== 'SUPER_DAG' || c.dst !== u || seen[c.src]) return;
+            seen[c.src] = true;
+            var t = nodeById[c.src].canonical.node_type;
+            if (t === 'CANDIDATE_BRIDGE') { found[c.src] = true; via[c.src] = c.edge_type + ' → ' + u; }
+            else if (t === 'STRUCTURAL_VARIABLE') next.push(c.src);
+          });
+        });
+        frontier = next;
+      }
+      if (n.canonical.node_type === 'CANDIDATE_BRIDGE') delete found[n.id];
+    }
+    var ids = Object.keys(found).sort();
+    if (!ids.length) return '<p class="muted">분석 edge로 이어진 LATENT 후보 없음</p>';
+    return '<ul class="plain">' + ids.map(function (c) {
+      var r = CAND.rows[c] || {};
+      return '<li>' + nodeLink(c) + ' <span class="muted">' + esc(nodeById[c].canonical.mechanism || '') + ' · overall ' + esc(r.overall || '-') + ' · via ' + esc(via[c]) + '</span></li>';
+    }).join('') + '</ul>';
+  }
   function incidentEdgesHtml(id) {
     var ins = [], outs = [];
     SD.edges.forEach(function (e) {
@@ -664,7 +972,7 @@
     });
     function li(e, other) {
       var s = META.edge_styles[e.canonical.edge_type] || {};
-      return '<li>' + edgeLink(e.id) + ' <code>' + esc(e.canonical.edge_type) + '</code> <span class="muted">' + esc(s.ko || '') + '</span> ' +
+      return '<li>' + edgeLink(e.id) + ' <code>' + esc(e.canonical.edge_type) + '</code> <span class="muted">' + esc(s.ko || '') + ' · ' + esc((EDISP[s.display] || {}).label || '') + '</span> ' +
         nodeLink(other) + ' ' + esc((nodeById[other] || {}).short_label ? nodeById[other].short_label.replace(other + ' · ', '') : '') + ' ' + chip('st-' + e.status_group, e.canonical.sd_status) + '</li>';
     }
     return '<h4>관련 edge — 들어오는 edge (' + ins.length + ')</h4><ul class="plain">' + (ins.map(function (e) { return li(e, e.canonical.src); }).join('') || '<li class="muted">없음</li>') + '</ul>' +
@@ -785,6 +1093,7 @@
     }
     h += incidentEdgesHtml(id);
     h += '<h4>관련 Mechanism (canonical edge 경로)</h4>' + relatedMechHtml(n);
+    h += '<h4>관련 LATENT 후보</h4>' + relatedCandidatesHtml(n);
     h += '<h4>관련 World</h4>' + worldsHtml(n);
     h += '<h4>UNRESOLVED 의존</h4>' + unresolvedHtml(id);
     h += '<h4>이 node가 들어 있는 View</h4>' + viewsHtml(id);
@@ -797,8 +1106,13 @@
     if (!e) return;
     var c = e.canonical, s = META.edge_styles[c.edge_type] || {}, f = e.frozen || {};
     var h = '<div class="card-head"><div class="nid">edge ' + esc(id) + '</div><div class="ntitle">' + esc(c.edge_type) + (s.ko ? ' · ' + esc(s.ko) : '') + '</div>' +
-      '<p class="chips">' + chip('st-' + e.status_group, c.sd_status) + ' ' + chip('flag', c.origin) + '</p></div>';
-    h += kv([['edge ID', id], ['type', c.edge_type + (s.ko ? ' · ' + s.ko : '')], ['status', c.sd_status], ['origin', c.origin],
+      '<p class="chips">' + chip('st-' + e.status_group, c.sd_status) + ' ' + chip('flag', c.origin) + ' ' + chip('flag', '화면 표시: ' + ((EDISP[s.display] || {}).label || '')) + '</p></div>';
+    if (c.edge_type === 'CONTRADICTS_AT_CLAIM_LEVEL') {
+      h += '<div class="callout warn">원래 관계: <b>CONTRADICTS_AT_CLAIM_LEVEL</b> — ' + esc(s.ko) + '. 시간 흐름이나 원인 방향을 뜻하지 않으며, 화면의 기록·절차 선 모양은 표시 묶음일 뿐입니다.</div>';
+    }
+    if (MERGE_OF[id]) h += '<p class="muted">화면에서는 같은 두 node 사이 관계와 함께 선 하나(' + esc(MERGE_OF[id]) + ')로 묶여 그려집니다. 원본 edge는 그대로입니다.</p>';
+    h += kv([['edge ID', id], ['type', c.edge_type + (s.ko ? ' · ' + s.ko : '')], ['화면 표시 유형', (EDISP[s.display] || {}).label + ' — ' + ((EDISP[s.display] || {}).desc || '')],
+      ['status', c.sd_status], ['origin', c.origin],
       ['src', nodeLink(c.src) + ' ' + esc((nodeById[c.src] || {}).short_label || ''), true],
       ['dst', nodeLink(c.dst) + ' ' + esc((nodeById[c.dst] || {}).short_label || ''), true],
       ['source basis', e.frozen ? [f.basis, f.supporting].filter(Boolean).join(' · ') : (c.note || '분석 edge(Super-DAG) — 근거는 node 상세의 canonical 값')],
@@ -812,6 +1126,22 @@
     showPane('detail');
   }
 
+  // 표시 전용 묶음 선: 원래 관계를 하나도 빼지 않고 모두 보여 준다(각 항목을 누르면 그 edge 상세)
+  function renderMergedDetail(mid) {
+    var me = cy.getElementById(mid);
+    if (!me.length) return;
+    var d = me.data(), members = d.members.map(function (x) { return edgeById[x]; });
+    var h = '<div class="card-head"><div class="nid">관계 ' + members.length + '개</div><div class="ntitle">' + nodeLink(d.source) + ' → ' + nodeLink(d.target) + '</div>' +
+      '<p class="chips">' + chip('flag', '화면 표시: ' + EDISP[d.cat].label) + ' ' + chip('st-' + d.sgroup, d.sgroup) + '</p></div>';
+    h += '<div class="callout info">같은 두 node·같은 방향·같은 표시 유형·같은 증거 상태인 관계를 화면에서만 선 하나로 묶었습니다. 원본 edge ' + members.length + '개는 그대로이며 아래에 모두 있습니다.</div>';
+    h += '<h4>원래 관계 (' + members.length + ')</h4><ul class="plain" id="merged-members">' + members.map(function (e) {
+      return '<li>' + edgeLink(e.id) + ' <code>' + esc(e.canonical.edge_type) + '</code> <span class="muted">' + esc((META.edge_styles[e.canonical.edge_type] || {}).ko || '') + '</span> ' +
+        chip('st-' + e.status_group, e.canonical.sd_status) + ' <span class="muted">' + esc(e.canonical.origin) + '</span></li>';
+    }).join('') + '</ul>';
+    $('p-detail').innerHTML = h;
+    showPane('detail');
+  }
+
   function defaultDetail() {
     $('p-detail').innerHTML = '<h3>상세</h3><p class="empty">그래프에서 node나 edge를 누르면 canonical 값이 여기에 나옵니다.</p>' +
       '<div class="callout info">OBSERVED = 확정 사실에서 만든 관측 사건(고정). LATENT = 사료가 알려주지 않는 중간 과정을 설명하는 가설·분석 변수. ' +
@@ -820,6 +1150,7 @@
         ['node status', Object.keys(META.counts.node_status).map(function (k) { return k + ' ' + META.counts.node_status[k]; }).join(' · ')],
         ['edge status', Object.keys(META.counts.edge_status).map(function (k) { return k + ' ' + META.counts.edge_status[k]; }).join(' · ')]]) +
       '<p class="muted">' + esc(VIEWS.note) + '</p>' +
+      '<p class="muted">' + esc(SV.note) + '</p>' +
       '<h4>화면 규칙</h4><p class="muted">' + esc(META.role_note) + ' 좌표 규칙: ' + esc(META.layout_rule) + '</p>' +
       '<p class="muted">' + esc(TY.note) + '</p>';
   }
@@ -1026,6 +1357,8 @@
   function focusNode(id) {
     var n = cy.getElementById(id);
     if (!n || !n.length) return false;
+    state.sel = id;                         // 간단히 보기에서는 이 node와 관련 관계를 펼친다
+    if (isCollapseMode() && !n.hasClass('hidden')) applyState();
     if (n.hasClass('hidden')) {
       // 지금 View 범위 밖이거나 필터로 숨겨진 node: View를 Overview로 바꾸고 그 node를 가리는 필터를 푼다
       var view = VIEWS.views[state.view];
@@ -1049,16 +1382,33 @@
     var e = cy.getElementById(id);
     if (!e || !e.length) return false;
     if (e.hasClass('hidden')) { focusNode(e.data('source')); }
+    // 묶음 선의 구성원이면 화면에서는 묶음 선을 고르고, 상세는 요청한 원래 관계를 보여 준다
+    var shown = MERGE_OF[id] && e.hasClass('merged-member') ? cy.getElementById(MERGE_OF[id]) : e;
     cy.$(':selected').unselect();
-    e.select();
+    shown.select();
     applySelection();
-    centerOn(e, Math.min(1.8, Math.max(cy.zoom(), READ_ZOOM + 0.05)));
-    renderEdgeDetail(id);
+    centerOn(shown, Math.min(1.8, Math.max(cy.zoom(), READ_ZOOM + 0.05)));
+    if (e.data('members')) renderMergedDetail(id); else renderEdgeDetail(id);
     return true;
   }
-  cy.on('tap', 'node', function (ev) { cy.nodes().removeClass('search-hit'); renderNodeDetail(ev.target.id()); setTimeout(applySelection, 0); });
-  cy.on('tap', 'edge', function (ev) { renderEdgeDetail(ev.target.id()); setTimeout(applySelection, 0); });
-  cy.on('tap', function (ev) { if (ev.target === cy) setTimeout(applySelection, 0); });
+  cy.on('tap', 'node', function (ev) {
+    cy.nodes().removeClass('search-hit');
+    var id = ev.target.id();
+    renderNodeDetail(id);
+    state.sel = id;
+    setTimeout(applyState, 0);
+  });
+  cy.on('tap', 'edge', function (ev) {
+    var d = ev.target.data();
+    if (d.members) renderMergedDetail(d.id); else renderEdgeDetail(d.id);
+    setTimeout(applySelection, 0);
+  });
+  cy.on('tap', function (ev) {
+    if (ev.target !== cy) return;
+    var had = state.sel;
+    state.sel = null;
+    setTimeout(had ? applyState : applySelection, 0);
+  });
   var tip = $('tooltip');
   cy.on('mouseover', 'node', function (ev) {
     var n = nodeById[ev.target.id()], c = n.canonical, p = ev.renderedPosition;
@@ -1092,7 +1442,7 @@
   var MM_FILL = { OBSERVED: '#256abf', LATENT: '#c4501f', CONTEXT: '#008300', UNRESOLVED: '#b83a6b', DERIVED: '#8ea0bd' };
   function scheduleMinimap() { if (!mmPending) { mmPending = true; requestAnimationFrame(drawMinimap); } }
   function mmTransform() {
-    var ex = activeLayout().extent, W0 = mm.width, H0 = mm.height;
+    var ex = liveExtent(), W0 = mm.width, H0 = mm.height;
     var s = Math.min(W0 / (ex.x1 - ex.label_x0), H0 / (ex.y1 - ex.y0));
     return { s: s, ox: (W0 - s * (ex.x1 - ex.label_x0)) / 2 - s * ex.label_x0, oy: (H0 - s * (ex.y1 - ex.y0)) / 2 - s * ex.y0 };
   }
@@ -1170,6 +1520,7 @@
   function setView(id) {
     state.view = id;
     state.showContext = false;            // View마다 그 View의 표시 범위에서 시작
+    state.sel = null;
 
     cy.$(':selected').unselect();
     cy.nodes().removeClass('search-hit');
@@ -1189,20 +1540,40 @@
     if (keep) focusNode(keep);
   }
   function setWorld(wid) { state.world = wid; applyState(); }
+  // 보이는 node 묶음을 읽을 수 있는 배율로 화면 가운데에 둔다(다 들어오지 않으면 가운데 기준)
+  function frameNodes(vis) {
+    if (!vis.length) return;
+    var bb = vis.boundingBox({ includeLabels: false }), sz = graphSize();
+    var z = Math.max(READ_ZOOM + 0.05, Math.min(1.2, Math.min((sz.w - 60) / (bb.w || 1), (sz.h - 60) / (bb.h || 1))));
+    cy.viewport({ zoom: z, pan: { x: sz.w / 2 - z * (bb.x1 + bb.x2) / 2, y: sz.h / 2 - z * (bb.y1 + bb.y2) / 2 } });
+    syncOverlay();
+  }
   function setIntervention(m) {
     state.iv = m || null;
     applyState();
     showPane('iv');
-    if (state.iv) {
-      var ids = ivRows().reduce(function (a, r) { return a.concat(r.path_nodes); }, []);
-      var vis = visibleOf(ids);
-      if (vis.length) {
-        var bb = vis.boundingBox({ includeLabels: false }), sz = graphSize();
-        var z = Math.max(READ_ZOOM + 0.05, Math.min(1.2, Math.min((sz.w - 60) / (bb.w || 1), (sz.h - 60) / (bb.h || 1))));
-        cy.viewport({ zoom: z, pan: { x: sz.w / 2 - z * (bb.x1 + bb.x2) / 2, y: sz.h / 2 - z * (bb.y1 + bb.y2) / 2 } });
-        syncOverlay();
-      }
+    if (state.iv) frameNodes(visibleOf(ivRows().reduce(function (a, r) { return a.concat(r.path_nodes); }, [])));
+  }
+  // 표시 수준(간단히·관측 사건 사이 관계 전체·전체). 화면 표시만 바뀐다.
+  function setLevel(lv) {
+    if (SV.levels.indexOf(lv) < 0) return;
+    state.level = lv;
+    applyState();
+  }
+  function setHops(h) { state.hops = Math.max(1, Math.min(SV.max_hops, +h || 1)); applyState(); }
+  // 메커니즘 펼치기: 그 메커니즘의 후보·구조 변수·관련 context·UNRESOLVED와 분석 관계만 펼치고 강조한다(나머지는 삭제·계산 제외 아님)
+  function setFocusMech(m) {
+    state.focusMech = m && MECH_SCOPE[m] ? m : null;
+    applyState();
+    if (state.focusMech) {
+      var mn = cy.getElementById(state.focusMech);
+      if (!mn.hasClass('hidden')) centerOn(mn, Math.max(READ_ZOOM + 0.05, Math.min(1.2, cy.zoom())));
+      renderNodeDetail(state.focusMech);
     }
+  }
+  function showRevealed() {
+    if (!state.sel) return;
+    frameNodes(visibleOf(Object.keys(hopBall(state.sel, state.hops).nodes)));
   }
   function reset() {
     state = DEFAULT_STATE();
@@ -1254,6 +1625,9 @@
   window.__viz = {
     cy: cy, data: D, getState: function () { return JSON.parse(JSON.stringify(state)); },
     setView: setView, setWorld: setWorld, setIntervention: setIntervention, setPair: setPair, setShowContext: setShowContext,
-    focusNode: focusNode, focusEdge: focusEdge, search: search, reset: reset, fitAll: fitAll, initialViewport: initialViewport
+    focusNode: focusNode, focusEdge: focusEdge, search: search, reset: reset, fitAll: fitAll, initialViewport: initialViewport,
+    setLevel: setLevel, setHops: setHops, setFocusMech: setFocusMech, counts: function () { return JSON.parse(JSON.stringify(lastCounts)); },
+    // 표시 전용 계산(검증용). 입력 데이터를 바꾸지 않는다.
+    display: { mergeGroups: mergeGroups, transitiveRedundant: transitiveRedundant, hopBall: hopBall, mechScope: MECH_SCOPE, merged: MERGED, redundant: REDUNDANT }
   };
 })();

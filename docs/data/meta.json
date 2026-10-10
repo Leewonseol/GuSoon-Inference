@@ -73,139 +73,151 @@
   "worlds": 6
  },
  "description": "확정된 사건은 고정하고, 사료가 알려주지 않는 중간 과정은 LATENT 메커니즘으로 비교한다.",
+ "edge_display": {
+  "analysis": {
+   "color": "#6b55c9",
+   "desc": "메커니즘·구조 변수·후보 사이의 분석 연결(얇은 점선). 사료에 직접 적힌 연결이 아님",
+   "label": "분석·추론",
+   "line": "dashed",
+   "opacity": 0.85,
+   "width": 1.6
+  },
+  "context": {
+   "color": "#4f9a4f",
+   "desc": "제도·환경 context의 뒷받침·제약·호환성(옅은 점선). 사건 발생을 증명하지 않음",
+   "label": "맥락·제약",
+   "line": "dotted",
+   "opacity": 0.6,
+   "width": 1.6
+  },
+  "record": {
+   "color": "#2b2a27",
+   "desc": "사료 기록으로 이어진 시간·절차·검토·책임 연결(진한 실선)",
+   "label": "기록·절차",
+   "line": "solid",
+   "opacity": 0.9,
+   "width": 2.6
+  }
+ },
+ "edge_display_order": [
+  "record",
+  "analysis",
+  "context"
+ ],
  "edge_styles": {
   "ANCHORED_TO": {
-   "arrow": "square",
-   "color": "#4a3aa7",
+   "arrow": "triangle",
+   "display": "analysis",
    "group": "Super-DAG 분석",
-   "ko": "M5가 관측 backbone에 고정",
-   "line": "dotted"
+   "ko": "M5가 관측 backbone에 고정"
   },
   "CONDITIONS": {
-   "arrow": "diamond",
-   "color": "#d55181",
+   "arrow": "triangle",
+   "display": "analysis",
    "group": "Super-DAG 분석",
-   "ko": "미해결 항목이 후보의 성립 조건",
-   "line": "dashed"
+   "ko": "미해결 항목이 후보의 성립 조건"
   },
   "CONSTRAINS": {
-   "arrow": "square",
-   "color": "#008300",
+   "arrow": "triangle",
+   "display": "context",
    "group": "Super-DAG 분석",
-   "ko": "제도 context가 메커니즘을 제약",
-   "line": "dotted"
+   "ko": "제도 context가 메커니즘을 제약"
   },
   "CONTEXT_COMPATIBLE": {
-   "arrow": "circle-triangle",
-   "color": "#008300",
+   "arrow": "triangle",
+   "display": "context",
    "group": "Super-DAG 분석",
-   "ko": "환경 호환성(개인 감염 아님)",
-   "line": "dotted"
+   "ko": "환경 호환성(개인 감염 아님)"
   },
   "CONTEXT_SUPPORTS": {
-   "arrow": "circle",
-   "color": "#008300",
+   "arrow": "triangle",
+   "display": "context",
    "group": "관측 (frozen)",
-   "ko": "context가 판단을 뒷받침",
-   "line": "dotted"
+   "ko": "context가 판단을 뒷받침"
   },
   "CONTRADICTS_AT_CLAIM_LEVEL": {
    "arrow": "tee",
-   "color": "#e34948",
+   "display": "record",
    "group": "관측 (frozen)",
-   "ko": "주장 수준 상충",
-   "line": "dashed"
+   "ko": "주장 수준 상충(흐름·인과가 아니라 두 기록의 주장이 서로 어긋남)"
   },
   "CONTRIBUTES_TO": {
    "arrow": "triangle",
-   "color": "#eb6834",
+   "display": "analysis",
    "group": "Super-DAG 분석",
-   "ko": "후보 → 구조 변수(규칙 입력)",
-   "line": "solid"
+   "ko": "후보 → 구조 변수(규칙 입력)"
   },
   "EXPLAINS_OBSERVED": {
    "arrow": "triangle",
-   "color": "#eb6834",
+   "display": "analysis",
    "group": "Super-DAG 분석",
-   "ko": "관측 재검토 사건을 설명(사건은 그대로)",
-   "line": "dotted"
+   "ko": "관측 재검토 사건을 설명(사건은 그대로)"
   },
   "EXPLAINS_TRANSITION_TO": {
    "arrow": "triangle",
-   "color": "#eb6834",
+   "display": "analysis",
    "group": "Super-DAG 분석",
-   "ko": "구조 변수가 관측 전이를 설명",
-   "line": "dashed"
+   "ko": "구조 변수가 관측 전이를 설명"
   },
   "INFORMATION_FLOW": {
    "arrow": "triangle",
-   "color": "#1baf7a",
+   "display": "record",
    "group": "관측 (frozen)",
-   "ko": "정보 흐름(기록 근거)",
-   "line": "dashed"
+   "ko": "정보 흐름(기록 근거)"
   },
   "INSTANTIATED_BY": {
    "arrow": "triangle",
-   "color": "#4a3aa7",
+   "display": "analysis",
    "group": "Super-DAG 분석",
-   "ko": "메커니즘 → 후보(core/보조)",
-   "line": "solid"
+   "ko": "메커니즘 → 후보(core/보조)"
   },
   "INSTANTIATED_BY_SECONDARY": {
    "arrow": "triangle",
-   "color": "#4a3aa7",
+   "display": "analysis",
    "group": "Super-DAG 분석",
-   "ko": "메커니즘 → 후보(보조 메커니즘)",
-   "line": "dashed"
+   "ko": "메커니즘 → 후보(보조 메커니즘)"
   },
   "ORDER_TO_ACTION": {
-   "arrow": "triangle-tee",
-   "color": "#0b0b0b",
+   "arrow": "triangle",
+   "display": "record",
    "group": "관측 (frozen)",
-   "ko": "명령 → 실행",
-   "line": "solid"
+   "ko": "명령 → 실행"
   },
   "PROCEDURAL_NEXT": {
    "arrow": "triangle",
-   "color": "#256abf",
+   "display": "record",
    "group": "관측 (frozen)",
-   "ko": "절차상 다음 단계",
-   "line": "solid"
+   "ko": "절차상 다음 단계"
   },
   "RESPONSIBILITY_LINK": {
-   "arrow": "diamond",
-   "color": "#c98500",
+   "arrow": "triangle",
+   "display": "record",
    "group": "관측 (frozen)",
-   "ko": "책임 귀속(판단 node로만)",
-   "line": "dashed"
+   "ko": "책임 귀속(판단 node로만)"
   },
   "REVIEW_OF": {
-   "arrow": "vee",
-   "color": "#4a3aa7",
+   "arrow": "triangle",
+   "display": "record",
    "group": "관측 (frozen)",
-   "ko": "검토·심리",
-   "line": "solid"
+   "ko": "검토·심리"
   },
   "REVISES": {
-   "arrow": "triangle-backcurve",
-   "color": "#e34948",
+   "arrow": "triangle",
+   "display": "record",
    "group": "관측 (frozen)",
-   "ko": "판단 수정",
-   "line": "solid"
+   "ko": "판단 수정"
   },
   "RULE_INPUT": {
-   "arrow": "vee",
-   "color": "#4a3aa7",
+   "arrow": "triangle",
+   "display": "analysis",
    "group": "Super-DAG 분석",
-   "ko": "구조 변수 → 구조 변수",
-   "line": "dashed"
+   "ko": "구조 변수 → 구조 변수"
   },
   "TEMPORAL_BEFORE": {
    "arrow": "triangle",
-   "color": "#898781",
+   "display": "record",
    "group": "관측 (frozen)",
-   "ko": "시간 선후",
-   "line": "solid"
+   "ko": "시간 선후"
   }
  },
  "frozen_hash": "ccb7ec63763a715ae90c74dfff37d3ed7980fa705fd152f59de8bed2e31d4e0c",
@@ -250,6 +262,35 @@
   "MB": "MB_CUSTODY_BIOLOGICAL_COURSE"
  },
  "role_note": "Mermaid(output/clean/mechanism_super_dag.mmd)는 정적 문서 요약이고, 이 화면은 탐색용이다. 두 산출물은 같은 canonical CSV에서 나온다.",
+ "simple_view": {
+  "core_flow_types": [
+   "TEMPORAL_BEFORE",
+   "PROCEDURAL_NEXT",
+   "ORDER_TO_ACTION",
+   "REVIEW_OF",
+   "REVISES"
+  ],
+  "default_hops": 1,
+  "default_level": "simple",
+  "level_labels": {
+   "full": "전체(분석·맥락 포함)",
+   "records": "기록 관계 전체",
+   "simple": "간단히(핵심 흐름)"
+  },
+  "levels": [
+   "simple",
+   "records",
+   "full"
+  ],
+  "max_hops": 2,
+  "merge_exclude_types": [
+   "CONTRADICTS_AT_CLAIM_LEVEL"
+  ],
+  "note": "간단히 보기는 화면 표시만 줄인다. 접힌 LATENT·CONTEXT·UNRESOLVED node와 숨긴 edge는 삭제되지 않았고 world·공존·개입 결과와 상세 패널 계산에 그대로 들어 있다.",
+  "transitive_types": [
+   "TEMPORAL_BEFORE"
+  ]
+ },
  "status_groups": {
   "CONTEXT": "CONTEXT",
   "DERIVED": "DERIVED",

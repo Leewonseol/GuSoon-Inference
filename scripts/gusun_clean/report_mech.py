@@ -362,6 +362,11 @@ def write_audit5(path, findings, ui, regression_results=()):
          "responsibility_to_biological(View edge에도 branch A↔B 직접 edge 없음), "
          "layout_nondeterministic(같은 입력으로 두 번 계산한 좌표가 같고 화면 데이터와도 같음), view_node_overlap(Overview·View 좌표에서 node 상자 겹침 0), "
          "temporal_order·context_as_event(View 좌표에서도 날짜 순서·context lane 유지). W6 REJECTED는 4번 검사가 그대로 본다.", "",
+         "간단히 보기 검사(13-13): edge_type_changed(canonical 관계 유형 19종과 화면 관계 목록이 같음), "
+         "edge_display_mapping(19종 → 표시 유형 3종 기록·절차/분석·추론/맥락·제약 대응이 명세 표와 같고, 세 유형이 선 모양·색으로 구분되며, "
+         "관계마다 원래 의미(ko)가 있고, 주장 수준 상충은 묶지 않고 다른 끝 모양으로 그림, 기본 흐름 관계는 기록·절차 유형, 기본 화면 = 간단히·1-hop), "
+         "transitive_misapplied(추이적 축약은 TEMPORAL_BEFORE에만), outcome_dropped(간단히 보기 접기 규칙 `AUDIT5:SIMPLE_COLLAPSE`가 "
+         "`AUDIT5:BACKBONE_GUARD`보다 먼저 적용되어 OBSERVED를 접지 못함).", "",
          "실행 시 빈 그래프 방지 검사(14): stale_asset_version(index.html이 싣는 css·js 주소의 `?v=`가 지금 파일 내용 해시와 같음 — "
          "배포 직후 새 index.html이 브라우저 캐시의 옛 app.js와 섞이지 않게), dom_id_missing(app.js가 찾는 DOM id가 index.html 또는 app.js가 만드는 HTML에 모두 있음), "
          "runtime_failsafe_missing(초기화 예외 시 그래프 영역에 '시각화 초기화 오류'를 보여 주는 `AUDIT5:RUNTIME_GUARD`, 보이는 node 0이면 안내 후 Overview로 1회 복구하는 "
@@ -381,6 +386,12 @@ def write_audit5(path, findings, ui, regression_results=()):
          "'전체 주변 맥락 표시'로 Overview 좌표에 흐리게 다시 표시), J LATENT·World 비교(dim: 밖의 OBSERVED는 흐리게만). "
          "View는 node·edge 부분집합과 표시 좌표만 담는다. 필터·world·개입은 여전히 OBSERVED를 숨기지 못한다(BACKBONE_GUARD). "
          "subset View의 범위 숨김만 OBSERVED를 숨길 수 있고(`AUDIT5:VIEW_SCOPE`), 그때는 안내(`AUDIT5:VIEW_HIDDEN_NOTICE`)가 항상 보인다.",
+         "- 간단히 보기(기본 화면, A 전체 Overview): 관측 사건 node 전부 + 관측 사건 사이 핵심 시간·절차 흐름(TEMPORAL_BEFORE·PROCEDURAL_NEXT·"
+         "ORDER_TO_ACTION·REVIEW_OF·REVISES, 같은 TEMPORAL_BEFORE만으로 된 다른 경로가 있는 직접 TEMPORAL_BEFORE는 접음)만 그린다. "
+         "LATENT·CONTEXT·UNRESOLVED node와 나머지 관계는 화면에서만 접고(node 선택 1-hop/2-hop·메커니즘 펼치기·world·개입·공존 쌍으로 펼침), "
+         "접힌 개수와 '삭제 아님' 안내를 배너에 항상 보인다. 관계 19종은 표시 유형 3종(기록·절차 진한 실선 / 분석·추론 얇은 점선 / 맥락·제약 옅은 점선)으로 그리고 "
+         "원래 관계 이름·의미·증거 상태는 선택·hover·상세 패널에 그대로 보인다. 같은 두 node·같은 방향·같은 표시 유형·같은 증거 상태의 관계 여럿은 "
+         "선 하나로 묶어 그리고 누르면 원래 관계를 모두 보인다. 관점별 View B–J와 '전체' 표시 수준은 예전처럼 범위의 node·edge를 모두 그린다.",
          "- 가독성: node label 16px(12pt)·line-height 1.6, UI 글자 15px(11.25pt) 이상·line-height 1.6. 모든 View의 첫 화면 배율 ≥ 0.95(node 글자 ≥ 15.2px). "
          "그보다 작게 축소하면(전체 지도) node는 ID만 크게 표시한다. node 폭은 종류별 고정, 높이는 줄 수로 정하고, label은 자르지 않고 줄바꿈한다.", "",
          "## Regression (Audit 5)", "",
