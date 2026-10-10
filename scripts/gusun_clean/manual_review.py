@@ -350,6 +350,16 @@ AUDIT5_REVISIONS = [
      "stale_asset_version·dom_id_missing·runtime_failsafe_missing 검사, regression 5건(64건), UI 테스트에 실제 렌더 검사 4항목(31항목: 첫 로드 "
      "cy·보이는 node·화면 창 교차·canvas 픽셀·스크린샷 흰색 비율·필터 UI·View 탭·오류 0, A–J View별 렌더, 옛 app.js 재현 시 오류 안내, 빈 View 복구). "
      "데이터·판단·배치 변경 없음"),
+    ("시각화 UX 간소화(간단히 보기)", "첫 화면(A 전체 Overview)에 node 122개·edge 205개와 관계 19종이 각기 다른 색·선·화살표로 한꺼번에 그려져 "
+     "사건 흐름을 읽기 어려움. 실제 데이터 확인: 같은 두 node 사이 여러 관계 0쌍, TEMPORAL_BEFORE 7개 중 같은 유형 다른 경로로 중복되는 것 0개 — "
+     "선 수를 줄이려면 분석 layer를 접어야 함",
+     "시각화 계층만 고침(canonical CSV·DB·world·개입·공존·후보 값 변경 없음). 기본 표시 수준 '간단히': 관측 사건 37개 전부 + 관측 사건 사이 핵심 "
+     "시간·절차 흐름 35개만 그리고 LATENT·CONTEXT·UNRESOLVED 85개·나머지 관계 170개는 화면에서만 접음(배너에 개수·'삭제 아님' 안내, "
+     "AUDIT5:SIMPLE_COLLAPSE는 BACKBONE_GUARD보다 먼저 적용). node 선택 1-hop(기본)/2-hop, 메커니즘 펼치기 M1–MB, world·개입·공존 선택이 관련 node·관계를 펼침. "
+     "관계 19종 → 표시 유형 3종(기록·절차 진한 실선 / 분석·추론 얇은 점선 / 맥락·제약 옅은 점선), 증거 상태는 선 굵기, 원래 관계 이름·의미는 선택·hover·상세 패널. "
+     "주장 수준 상충은 ⊣ 끝 모양·묶지 않음. 같은 두 node·방향·표시 유형·증거 상태 관계는 선 하나로 묶어 누르면 원래 관계 모두 표시, "
+     "추이적 축약은 TEMPORAL_BEFORE에만. 범례는 node 4·edge 3, 세부 범례는 '상세 범례 보기'. Audit 5에 edge_type_changed·edge_display_mapping·"
+     "transitive_misapplied 검사와 접기 순서 검사, regression 5건(69건), UI 테스트 8항목(39항목: 기존 31항목은 '전체' 표시 수준에서 같은 기대값으로 회귀 확인)"),
 ]
 
 # ============================================================================ WARN dispositions

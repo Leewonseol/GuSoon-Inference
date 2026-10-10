@@ -121,7 +121,7 @@ _없음_
 
 ## Regression validation rules
 
-build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR로 잡히는지 확인한다(64/64 탐지).
+build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR로 잡히는지 확인한다(69/69 탐지).
 
 | rule | 케이스 | 탐지 |
 |---|---|---|
@@ -189,6 +189,11 @@ build.py는 Audit 1 전에 아래 케이스를 검사기에 넣어 모두 ERROR�
 | stale_asset_version | index.html이 data/bundle.js를 버전 없이 실음(캐시된 옛 데이터와 섞일 수 있음) | OK |
 | runtime_failsafe_missing | index.html에서 '시각화 초기화 오류' 표시 guard를 뺌 | OK |
 | runtime_failsafe_missing | app.js에서 보이는 node 0 → Overview 복구 guard 호출을 뺌 | OK |
+| edge_display_mapping | 주장 수준 상충(CONTRADICTS_AT_CLAIM_LEVEL)을 분석·추론 표시 유형으로 옮김 | OK |
+| edge_type_changed | 화면 관계 유형 목록에서 RESPONSIBILITY_LINK를 뺌(19종 → 18종) | OK |
+| transitive_misapplied | REVIEW_OF를 추이적 축약 대상에 넣음(검토 관계를 시간 선후처럼 줄임) | OK |
+| edge_display_mapping | 분석·추론과 맥락·제약을 같은 선 모양·색으로 그림(3종 구분이 사라짐) | OK |
+| outcome_dropped | app.js에서 간단히 보기 접기 규칙의 backbone 보호 순서 표시(AUDIT5:SIMPLE_COLLAPSE)를 뺌 | OK |
 
 ## 동결 그래프
 

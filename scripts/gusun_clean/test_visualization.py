@@ -122,7 +122,7 @@ def main():
                 const d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data; total += d.length / 4;
                 for (let i = 3; i < d.length; i += 16) if (d[i] > 0) painted += 4; });
               const el = document.getElementById('cy');
-              return {cy: true, nodes: cy.nodes().length, edges: cy.edges().length, visible: cy.nodes(':visible').length,
+              return {cy: true, nodes: cy.nodes().length, edges: cy.edges().filter(e => !e.data('members')).length, visible: cy.nodes(':visible').length,
                       shown: shown.length, inView: inView.length, inViewIds: inView.slice(0, 6), badPos: bad,
                       painted: total ? painted / total : 0, w: el.offsetWidth, h: el.offsetHeight, zoom: cy.zoom(), pan: cy.pan(),
                       error: (() => { const e = document.getElementById('viz-error'); return e && !e.hidden ? e.textContent : ''; })()};
@@ -143,6 +143,11 @@ def main():
 
         def classes(nid):
             return set(ev(f"window.__viz.cy.getElementById('{nid}').classes()"))
+
+        def full():
+            """기존 화면 기능 회귀 검사는 '전체' 표시 수준(예전 화면과 같은 node·edge 범위)에서 같은 기대값으로 돌린다."""
+            ev("window.__viz.setLevel('full')")
+            page.wait_for_timeout(60)
 
         def click_node(nid):
             pos = ev(f"""(() => {{ const cy = window.__viz.cy; const n = cy.getElementById('{nid}');
@@ -285,12 +290,13 @@ def main():
 
         @check("3 node·edge 개수 = canonical")
         def t_counts():
-            n, e = ev("window.__viz.cy.nodes().length"), ev("window.__viz.cy.edges().length")
+            n, e = ev("window.__viz.cy.nodes().length"), ev("window.__viz.cy.edges().filter(e => !e.data('members')).length")
             return n == len(sd_nodes) and e == len(sd_edges), f"화면 node {n} / edge {e}, canonical {len(sd_nodes)} / {len(sd_edges)}"
 
         @check("4 W1–W5 선택")
         def t_worlds():
             msgs = []
+            full()
             for wid in ["W1", "W2", "W3", "W4", "W5"]:
                 page.click(f"#world-buttons button[data-world='{wid}']")
                 page.wait_for_timeout(60)
@@ -336,6 +342,7 @@ def main():
         @check("6 status filter")
         def t_status():
             msgs = []
+            full()
             latent = {n["node_id"] for n in sd_nodes if n["sd_status"] == "LATENT_MECHANISM"}
             ctx = {n["node_id"] for n in sd_nodes if n["sd_status"] == "CONTEXT"}
             derived = {e["edge_id"] for e in sd_edges if e["sd_status"] == "DERIVED"}
@@ -360,6 +367,7 @@ def main():
 
         @check("7 mechanism filter")
         def t_mech():
+            full()
             page.uncheck("input[data-mech='M1']")
             m1c = {n["node_id"] for n in sd_nodes if n["node_type"] == "CANDIDATE_BRIDGE" and n["mechanism"] == "M1"}
             v = visible_ids()
@@ -371,6 +379,7 @@ def main():
         @check("8 node 상세 패널")
         def t_node_detail():
             msgs = []
+            full()
             click_node("EP09")
             d = page.inner_text("#p-detail")
             for want in ["EP09", "OBSERVED", "모든 world 공통"] + eps["EP09"]["member_fact_ids"].split("|") + eps["EP09"]["source_record_ids"].split("|"):
@@ -498,6 +507,7 @@ def main():
         @check("13 View A–J 전환·표시 범위")
         def t_views():
             msgs = []
+            full()
             for vid in VORDER:
                 set_view(vid)
                 v = VIEWS["views"][vid]
@@ -546,8 +556,8 @@ def main():
                 document.getElementById('hide-others').click();
                 for (const st of ['LATENT','CONTEXT','UNRESOLVED','DERIVED']) document.querySelector(`input[data-status='${st}']`).click();
                 for (const m of ['M1','M5','MB']) document.querySelector(`input[data-mech='${m}']`).click();
-                for (const w of worlds) for (const v of views) for (const iv of ivs) for (const ctx of (D.views.views[v].policy === 'subset' ? [false, true] : [false])) {
-                  V.setWorld(w); V.setView(v); if (ctx) V.setShowContext(true); V.setIntervention(iv); n++;
+                for (const lv of ['simple', 'full']) for (const w of worlds) for (const v of views) for (const iv of ivs) for (const ctx of (D.views.views[v].policy === 'subset' ? [false, true] : [false])) {
+                  V.setLevel(lv); V.setWorld(w); V.setView(v); if (ctx) V.setShowContext(true); V.setIntervention(iv); V.setFocusMech(iv ? 'MB' : null); n++;
                   const scope = D.views.views[v].policy === 'subset' && !ctx ? new Set(D.views.views[v].nodes) : null;
                   for (const id of obs) {
                     const shown = cy.getElementById(id).style('display') !== 'none';
@@ -556,7 +566,7 @@ def main():
                 }
                 V.reset(); return {n: n, bad: bad.slice(0, 5), nbad: bad.length, nobs: obs.length}; })()""")
             return res["nbad"] == 0 and res["nobs"] == len(observed), \
-                f"{res['n']}개 조합(숨기기·필터 켠 상태): Overview·J·전체 맥락 표시에서는 관측 node {res['nobs']}개 전부, subset View에서는 View 범위의 관측 node 전부 표시(필터·world·개입이 숨기지 않음)" + (f" — 실패 {res['bad']}" if res["nbad"] else "")
+                f"{res['n']}개 조합(표시 수준 간단히·전체 × world × View × 개입 × 메커니즘 펼치기, 숨기기·필터 켠 상태): Overview·J·전체 맥락 표시에서는 관측 node {res['nobs']}개 전부, subset View에서는 View 범위의 관측 node 전부 표시(필터·world·개입이 숨기지 않음)" + (f" — 실패 {res['bad']}" if res["nbad"] else "")
 
         @check("15 공통 결말 유지")
         def t_outcome():
@@ -618,9 +628,12 @@ def main():
             page.wait_for_timeout(200)
             st = ev("window.__viz.getState()")
             ok = (st["world"] == "ALL" and st["view"] == "overview" and st["iv"] is None and not st["hideOthers"] and not st["showContext"]
-                  and visible_ids() == {n["node_id"] for n in sd_nodes} and ev("window.__viz.cy.$('.dim').length") == 0
+                  and st["level"] == "simple" and st["hops"] == 1 and st["sel"] is None and st["focusMech"] is None
+                  and visible_ids() == set(observed) and ev("window.__viz.cy.$('.dim').length") == 0
                   and page.input_value("#search") == "" and page.is_checked("input[data-status='LATENT']"))
-            return ok, "world·view·필터·개입·검색이 기본값으로 돌아오고 전체 node 표시"
+            full()
+            ok = ok and visible_ids() == {n["node_id"] for n in sd_nodes}
+            return ok, "world·view·필터·개입·검색·표시 수준이 기본값(간단히·1-hop)으로 돌아오고 관측 사건 전부 표시, '전체'로 바꾸면 전체 node 표시"
 
         @check("18 file:// 열기(bundle.js)")
         def t_file():
@@ -705,6 +718,7 @@ def main():
         @check("20 node label clipping 없음 · node 겹침 없음 (View별 렌더링)")
         def t_labels():
             msgs, total = [], 0
+            full()
             for vid in VORDER:
                 set_view(vid)
                 if ev("window.__viz.cy.zoom()") < TYPO["read_zoom"]:
@@ -934,13 +948,456 @@ def main():
             pg.close()
             return not msgs and not errs, f"가로 넘침 0px, 보이는 글자 {total}개 모두 ≥ 11pt·line-height ≥ 1.6, 그래프 폭 {gw}px, View 첫 화면 node 글자 ≥ 11pt, 오류 {len(errs)}" if not msgs and not errs else "; ".join((msgs + errs)[:5])
 
+        # ------------------------------------------------------------------ 간단히 보기(시각화 UX 간소화) 검사
+        META_J = json.loads((DOCS / "data" / "meta.json").read_text(encoding="utf-8"))
+        SVJ = META_J["simple_view"]
+        SPEC = {"record": {"INFORMATION_FLOW", "ORDER_TO_ACTION", "PROCEDURAL_NEXT", "RESPONSIBILITY_LINK", "REVIEW_OF", "REVISES",
+                           "TEMPORAL_BEFORE", "CONTRADICTS_AT_CLAIM_LEVEL"},
+                "analysis": {"ANCHORED_TO", "CONDITIONS", "CONTRIBUTES_TO", "EXPLAINS_OBSERVED", "EXPLAINS_TRANSITION_TO", "INSTANTIATED_BY",
+                             "INSTANTIATED_BY_SECONDARY", "RULE_INPUT"},
+                "context": {"CONTEXT_SUPPORTS", "CONSTRAINS", "CONTEXT_COMPATIBLE"}}
+        ntype = {n["node_id"]: n["node_type"] for n in sd_nodes}
+        nstat = {n["node_id"]: n["sd_status"] for n in sd_nodes}
+
+        def py_redundant(edges, types=("TEMPORAL_BEFORE",)):
+            """화면 코드와 따로 계산: 같은 추이적 유형만으로 된 길이 ≥ 2 경로가 있는 직접 edge."""
+            out = set()
+            for t in types:
+                es = [e for e in edges if e["edge_type"] == t]
+                succ = {}
+                for e in es:
+                    succ.setdefault(e["src"], []).append(e["dst"])
+                for e in es:
+                    stack, seen = [x for x in succ.get(e["src"], []) if x != e["dst"]], set()
+                    while stack:
+                        x = stack.pop()
+                        if x == e["dst"]:
+                            out.add(e["edge_id"])
+                            break
+                        if x in seen or x == e["src"]:
+                            continue
+                        seen.add(x)
+                        stack += succ.get(x, [])
+            return out
+
+        def py_core(edges):
+            red = py_redundant(edges)
+            return {e["edge_id"] for e in edges if ntype.get(e["src"]) == "OBSERVED_EVENT" and ntype.get(e["dst"]) == "OBSERVED_EVENT"
+                    and e["edge_type"] in SVJ["core_flow_types"] and e["edge_id"] not in red}
+
+        def py_merge_count(edges):
+            from collections import Counter
+            disp = {t: k for k, v in SPEC.items() for t in v}
+            c = Counter((e["src"], e["dst"], disp[e["edge_type"]], e["sd_status"]) for e in edges if e["edge_type"] not in SVJ["merge_exclude_types"])
+            return sum(1 for v in c.values() if v > 1)
+
+        def py_ball(nid, k):
+            nodes, ring = {nid}, {nid}
+            for _ in range(k):
+                nxt = set()
+                for e in sd_edges:
+                    for a, b in ((e["src"], e["dst"]), (e["dst"], e["src"])):
+                        if a in ring and b not in nodes:
+                            nxt.add(b)
+                nodes |= nxt
+                ring = nxt
+            return nodes
+
+        def py_mech_scope(m):
+            core = {m} | {e["dst"] for e in sd_edges if e["src"] == m and e["edge_type"] in ("INSTANTIATED_BY", "INSTANTIATED_BY_SECONDARY", "ANCHORED_TO")}
+            core |= {e["dst"] for e in sd_edges if e["edge_type"] == "CONTRIBUTES_TO" and e["src"] in core}
+            nodes = set(core)
+            for e in sd_edges:
+                if e["origin"] != "SUPER_DAG":
+                    continue
+                if (e["src"] in core and e["dst"] in core) or (e["src"] in core and ntype[e["dst"]] == "OBSERVED_EVENT") or \
+                        (e["dst"] in core and nstat[e["src"]] in ("CONTEXT", "UNRESOLVED")):
+                    nodes |= {e["src"], e["dst"]}
+            return nodes
+
+        def fresh_page(route_bundle_extra=None):
+            pg = browser.new_page(viewport={"width": 1600, "height": 1000})
+            perr = []
+            pg.on("pageerror", lambda e: perr.append(str(e)))
+            pg.on("console", lambda m: perr.append(m.text) if m.type == "error" else None)
+            if route_bundle_extra:
+                body = (DOCS / "data" / "bundle.js").read_text(encoding="utf-8") + route_bundle_extra
+                pg.route("**/data/bundle.js*", lambda route: route.fulfill(body=body, content_type="application/javascript"))
+            pg.goto(url)
+            pg.wait_for_function("window.__viz && window.__viz.cy")
+            pg.wait_for_timeout(300)
+            return pg, perr
+
+        def vis_in(pg, sel="node"):
+            return set(pg.evaluate(f"window.__viz.cy.$('{sel}').filter(e => e.style('display') !== 'none' && (e.isNode() || (e.source().style('display') !== 'none' && e.target().style('display') !== 'none'))).map(e => e.id())"))
+
+        @check("31 간단히 보기 기본 화면: 관측 사건 전부 + 핵심 흐름만, 접힌 개수 안내, 범례 단순화")
+        def t_simple_default():
+            pg, perr = fresh_page()
+            msgs = []
+            st = pg.evaluate("window.__viz.getState()")
+            if st["level"] != "simple" or st["hops"] != 1:
+                msgs.append(f"기본 상태 {st['level']}/{st['hops']}")
+            vn, ve = vis_in(pg), vis_in(pg, "edge")
+            want_e = py_core(sd_edges)
+            if vn != set(observed):
+                msgs.append(f"보이는 node ≠ 관측 사건 (+{sorted(vn - set(observed))[:3]} −{sorted(set(observed) - vn)[:3]})")
+            if ve != want_e:
+                msgs.append(f"보이는 edge ≠ 핵심 흐름 (+{sorted(ve - want_e)[:3]} −{sorted(want_e - ve)[:3]})")
+            banner = pg.inner_text("#banner-view")
+            cnt = pg.evaluate("window.__viz.counts()")
+            for w in [f"보이는 node {len(observed)}개", f"관계 {len(want_e)}개", f"접힌 node {len(sd_nodes) - len(observed)}개",
+                      f"관계 {len(sd_edges) - len(want_e)}개", "삭제가 아니라 화면에서만 접은 것"]:
+                if w not in banner:
+                    msgs.append(f"배너에 '{w}' 없음")
+            ln, le = pg.locator("#legend-nodes .row").count(), pg.locator("#legend-edges .row").count()
+            if (ln, le) != (4, 3):
+                msgs.append(f"기본 범례 node {ln}·edge {le}행 ≠ 4·3")
+            if pg.evaluate("document.getElementById('legend-detail').open"):
+                msgs.append("상세 범례가 처음부터 펼쳐져 있음")
+            pg.click("#legend-detail summary")
+            det = pg.inner_text("#legend-detail")
+            miss = [t for t in sorted(set().union(*SPEC.values())) if t not in det] + [w for w in ["UNRESOLVED (이중 테두리)", "선 굵기 = 증거 상태"] if w not in det]
+            if miss:
+                msgs.append(f"상세 범례에 없음 {miss[:4]}")
+            if shots:
+                pg.screenshot(path=str(shots / "simple_default.png"))
+            pg.close()
+            msgs += perr
+            return not msgs, (f"첫 화면 node {len(observed)}/{len(sd_nodes)}(관측 사건 전부) · edge {len(want_e)}/{len(sd_edges)}(관측 사건 사이 핵심 시간·절차 흐름 = Python으로 따로 계산한 집합과 같음, "
+                              f"시간 선후 중복 {cnt['reduced']}개), 배너에 접힌 node {cnt['collapsedNodes']}·관계 {cnt['collapsedEdges']}개와 '화면에서만 접음' 안내, "
+                              f"범례 node 4·edge 3, 상세 범례에 관계 19종·이중 테두리 유지") if not msgs else "; ".join(msgs[:5])
+
+        @check("32 표시 유형 3종: 19종 관계 → 기록·절차 실선 / 분석·추론 점선 / 맥락·제약 옅은 점선, 원래 관계·증거 상태 보존")
+        def t_edge_types():
+            pg, perr = fresh_page()
+            pg.evaluate("window.__viz.setLevel('full')")
+            msgs = []
+            rows = pg.evaluate("""window.__viz.cy.edges().filter(e => !e.data('members')).map(e => ({id: e.id(), t: e.data('etype'), cat: e.data('cat'),
+                ls: e.style('line-style'), lc: e.style('line-color'), w: parseFloat(e.style('width')), op: parseFloat(e.style('opacity')), sg: e.data('sgroup'),
+                cls: e.classes().filter(c => c.startsWith('cat-'))}))""")
+            canon_t = {e["edge_id"]: e["edge_type"] for e in sd_edges}
+            if {r["id"]: r["t"] for r in rows} != canon_t:
+                msgs.append("화면 edge의 관계 유형이 canonical과 다름")
+            if len(set(canon_t.values())) != 19:
+                msgs.append(f"관계 유형 {len(set(canon_t.values()))}종")
+            looks = {}
+            for r in rows:
+                want = next(k for k, v in SPEC.items() if r["t"] in v)
+                if r["cat"] != want or r["cls"] != ["cat-" + want]:
+                    msgs.append(f"{r['id']} {r['t']} → {r['cat']} {r['cls']} ≠ {want}")
+                looks.setdefault(want, set()).add((r["ls"], r["lc"]))
+            if any(len(v) != 1 for v in looks.values()) or len({next(iter(v)) for v in looks.values()}) != 3:
+                msgs.append(f"표시 유형별 선 모양·색이 하나로 모이지 않음 {looks}")
+            if {k: next(iter(v))[0] for k, v in looks.items()} != {"record": "solid", "analysis": "dashed", "context": "dotted"}:
+                msgs.append(f"선 모양 {looks}")
+            wo = {r["w"] for r in rows if r["cat"] == "record" and r["sg"] == "OBSERVED"}
+            wd = {r["w"] for r in rows if r["cat"] == "record" and r["sg"] == "DERIVED"}
+            wa = {r["w"] for r in rows if r["cat"] == "analysis"}
+            if not (min(wo) > max(wd) > max(wa)):
+                msgs.append(f"굵기(증거 상태·유형) OBSERVED {wo} DERIVED {wd} 분석 {wa}")
+            op = {k: {r["op"] for r in rows if r["cat"] == k} for k in SPEC}
+            if not max(op["context"]) < min(op["record"]):
+                msgs.append(f"맥락·제약이 옅지 않음 {op}")
+            # 주장 수준 상충: 선택 시 원래 관계 의미, 다른 끝 모양
+            pg.evaluate("window.__viz.focusEdge('OE007')")
+            pg.wait_for_timeout(150)
+            lab = pg.evaluate("window.__viz.cy.getElementById('OE007').style('label')")
+            arrow = pg.evaluate("[window.__viz.cy.getElementById('OE007').style('target-arrow-shape'), window.__viz.cy.getElementById('OE008').style('target-arrow-shape')]")
+            d = pg.inner_text("#p-detail")
+            if "CONTRADICTS_AT_CLAIM_LEVEL" not in lab or "상충" not in lab:
+                msgs.append(f"OE007 선택 label {lab!r}")
+            if arrow[0] == arrow[1]:
+                msgs.append(f"상충 edge 끝 모양이 흐름 edge와 같음 {arrow}")
+            for w in ["원래 관계", "CONTRADICTS_AT_CLAIM_LEVEL", "주장 수준 상충", "화면 표시 유형", "기록·절차", "DERIVED"]:
+                if w not in d:
+                    msgs.append(f"OE007 상세에 '{w}' 없음")
+            pg.evaluate("window.__viz.focusEdge('SD058')")
+            d = pg.inner_text("#p-detail")
+            if "분석·추론" not in d or "LATENT_MECHANISM" not in d:
+                msgs.append("SD058 상세에 표시 유형·상태 없음")
+            if shots:
+                pg.screenshot(path=str(shots / "edge_contradicts.png"))
+            pg.close()
+            msgs += perr
+            return not msgs, (f"edge {len(rows)}개 관계 유형 = canonical(19종), 표시 유형 기록·절차 {len(SPEC['record'])}종 실선 · 분석·추론 {len(SPEC['analysis'])}종 점선 · "
+                              f"맥락·제약 {len(SPEC['context'])}종 옅은 점선(유형별 모양·색 하나), 굵기 OBSERVED {min(wo)} > DERIVED {max(wd)} > 분석 {max(wa)}, "
+                              f"OE007 선택 시 '{lab[:40]}'·끝 모양 {arrow[0]}(흐름 {arrow[1]})·상세에 원래 관계 의미") if not msgs else "; ".join(msgs[:6])
+
+        @check("33 선택 중심 펼치기: 1-hop 기본 · 2-hop · 해제, 상세 패널(관계·메커니즘·후보·출처·상태)")
+        def t_select_expand():
+            pg, perr = fresh_page()
+            msgs = []
+            pos = pg.evaluate("""(() => { const cy = window.__viz.cy; const n = cy.getElementById('EP09');
+                cy.center(n); cy.zoom({level: 1.0, position: n.position()});
+                const r = n.renderedPosition(); const b = document.getElementById('cy').getBoundingClientRect(); return [b.left + r.x, b.top + r.y]; })()""")
+            pg.wait_for_timeout(80)
+            pg.mouse.click(pos[0], pos[1])
+            pg.wait_for_timeout(250)
+            b1 = py_ball("EP09", 1)
+            inc = {e["edge_id"] for e in sd_edges if "EP09" in (e["src"], e["dst"])}
+            vn, ve = vis_in(pg), vis_in(pg, "edge")
+            if vn != set(observed) | b1:
+                msgs.append(f"1-hop 펼침 node 다름 (+{sorted(vn - set(observed) - b1)[:3]} −{sorted(b1 - vn)[:3]})")
+            if not inc <= ve:
+                msgs.append(f"EP09 직접 관계 중 안 보임 {sorted(inc - ve)[:4]}")
+            hl = pg.evaluate("window.__viz.cy.getElementById('EP09').connectedEdges().filter(e => e.style('display') !== 'none' && !(e.hasClass('sel-in') || e.hasClass('sel-out'))).length")
+            if hl:
+                msgs.append(f"직접 관계 강조 빠짐 {hl}")
+            d = pg.inner_text("#p-detail")
+            for w in ["EP09", "OBSERVED", "관련 edge", "관련 Mechanism", "관련 LATENT 후보", "Source fact ID", "Source record", "관련 World", "UNRESOLVED 의존"] + \
+                    eps["EP09"]["member_fact_ids"].split("|"):
+                if w not in d:
+                    msgs.append(f"상세에 '{w}' 없음")
+            if "선택 EP09: 1-hop" not in pg.inner_text("#banner-view"):
+                msgs.append("배너에 선택 펼침 안내 없음")
+            pg.click("#hop-buttons button[data-hops='2']")
+            pg.wait_for_timeout(200)
+            b2 = py_ball("EP09", 2)
+            vn2 = vis_in(pg)
+            if vn2 != set(observed) | b2:
+                msgs.append(f"2-hop 펼침 node 다름 (+{sorted(vn2 - set(observed) - b2)[:3]} −{sorted(b2 - vn2)[:3]})")
+            n2 = pg.evaluate("window.__viz.cy.edges('.sel-2').length")
+            if not n2:
+                msgs.append("2-hop 관계 강조 없음")
+            if shots:
+                pg.screenshot(path=str(shots / "select_EP09_2hop.png"))
+            box = pg.locator("#cy").bounding_box()
+            pg.evaluate("window.__viz.cy.zoom(0.2)")
+            pg.mouse.click(box["x"] + box["width"] - 20, box["y"] + box["height"] - 20)   # 빈 배경
+            pg.wait_for_timeout(250)
+            if vis_in(pg) != set(observed):
+                msgs.append("배경을 눌러도 펼친 node가 접히지 않음")
+            pg.close()
+            msgs += perr
+            return not msgs, (f"EP09 클릭 → 1-hop node {len(b1) - 1}개·직접 관계 {len(inc)}개 펼침·강조, 상세에 관계·메커니즘·후보·CF·출처·상태·World·UNRESOLVED, "
+                              f"2-hop → node {len(b2) - 1}개(Python BFS와 같음)·2번째 고리 관계 {n2}개 강조, 배경 클릭 → 관측 사건 {len(observed)}개로 복귀") if not msgs else "; ".join(msgs[:5])
+
+        @check("34 메커니즘 펼치기 M1–MB: 그 메커니즘 범위만 펼침·강조, 다른 메커니즘 데이터·world·개입 결과 그대로")
+        def t_mech_focus():
+            pg, perr = fresh_page()
+            msgs, parts = [], []
+            before = pg.evaluate("JSON.stringify(window.__viz.data)")
+            pg.click(".ptabs button[data-ptab='world']")
+            wtxt = pg.inner_text("#p-world")
+            for m in mechs:
+                pg.click(f"#mech-focus button[data-focus-mech='{m}']")
+                pg.wait_for_timeout(150)
+                scope = py_mech_scope(m)
+                vn = vis_in(pg)
+                if vn != set(observed) | scope:
+                    msgs.append(f"{m}: 펼친 node 다름 (+{sorted(vn - set(observed) - scope)[:3]} −{sorted(scope - vn)[:3]})")
+                mf = set(pg.evaluate("window.__viz.cy.nodes('.mfocus').map(n => n.id())"))
+                if mf != scope - set(observed):
+                    msgs.append(f"{m}: 강조 node 다름")
+                if pg.get_attribute(f"#mech-focus button[data-focus-mech='{m}']", "aria-pressed") != "true":
+                    msgs.append(f"{m}: 버튼 상태")
+                parts.append(f"{m} {len(scope - set(observed))}")
+            pg.click(f"#mech-focus button[data-focus-mech='MB']")
+            pg.wait_for_timeout(150)
+            if vis_in(pg) != set(observed):
+                msgs.append("다시 눌러 해제해도 접히지 않음")
+            # 전체 표시에서는 숨기지 않고 범위 밖 분석 node만 흐리게
+            pg.evaluate("window.__viz.setLevel('full'); window.__viz.setFocusMech('M3')")
+            pg.wait_for_timeout(150)
+            if vis_in(pg) != {n["node_id"] for n in sd_nodes}:
+                msgs.append("전체 표시에서 메커니즘 펼치기가 node를 숨김")
+            dim = set(pg.evaluate("window.__viz.cy.nodes('.dim').map(n => n.id())"))
+            out_scope = {n["node_id"] for n in sd_nodes if n["node_type"] != "OBSERVED_EVENT"} - py_mech_scope("M3")
+            if dim != out_scope:
+                msgs.append(f"전체 표시 흐림 범위 다름 ({len(dim)} vs {len(out_scope)})")
+            pg.evaluate("window.__viz.setFocusMech(null)")
+            pg.click(".ptabs button[data-ptab='world']")
+            if pg.inner_text("#p-world") != wtxt:
+                msgs.append("메커니즘 펼치기 뒤 World 구성 패널이 바뀜")
+            if pg.evaluate("JSON.stringify(window.__viz.data)") != before:
+                msgs.append("메커니즘 펼치기가 화면 데이터(canonical 값)를 바꿈")
+            if shots:
+                pg.evaluate("window.__viz.setLevel('simple'); window.__viz.setFocusMech('M1')")
+                pg.wait_for_timeout(200)
+                pg.screenshot(path=str(shots / "focus_M1.png"))
+            pg.close()
+            msgs += perr
+            return not msgs, ("메커니즘별 펼친 분석 node 수(Python으로 따로 계산한 범위와 같음) — " + ", ".join(parts) +
+                              "; 해제 시 관측 사건만, 전체 표시에서는 숨기지 않고 범위 밖 분석 node만 흐림, World 패널·화면 데이터 그대로") if not msgs else "; ".join(msgs[:5])
+
+        @check("35 간단히 보기에서도 world 선택·W6 배제·개입 결과 그대로(전체 표시와 패널 내용 같음)")
+        def t_simple_world_iv():
+            pg, perr = fresh_page()
+            msgs = []
+            for wid in ["W1", "W2", "W3", "W4", "W5", "W6"]:
+                txt = {}
+                for lv in ["full", "simple"]:
+                    pg.evaluate(f"window.__viz.setLevel('{lv}'); window.__viz.setWorld('{wid}')")
+                    pg.click(".ptabs button[data-ptab='world']")
+                    txt[lv] = pg.inner_text("#p-world")
+                if txt["full"] != txt["simple"]:
+                    msgs.append(f"{wid}: World 패널이 표시 수준에 따라 다름")
+                bridges = set(filter(None, configs[wid]["latent_bridges"].split("|")))
+                vn = vis_in(pg)
+                if not set(observed) <= vn or not bridges <= vn:
+                    msgs.append(f"{wid}: 간단히 보기에서 관측 사건·world 후보가 안 보임 {sorted(bridges - vn)[:3]}")
+                cls = "hl-rej" if wid == "W6" else "hl"
+                if not all(cls in set(pg.evaluate(f"window.__viz.cy.getElementById('{b}').classes()")) for b in bridges):
+                    msgs.append(f"{wid}: 후보 강조({cls}) 없음")
+                for m in mechs:
+                    lab = pg.evaluate(f"window.__viz.cy.getElementById('{m}').data('label')")
+                    if f"\n{wid}: {configs[wid][m]}" not in lab:
+                        msgs.append(f"{wid}.{m} 표시 {lab!r}")
+                if wid == "W6" and "REJECTED" not in (pg.inner_text("#banner-world") if pg.is_visible("#banner-world") else ""):
+                    msgs.append("W6 REJECTED 배너 없음")
+            pg.evaluate("window.__viz.setWorld('ALL')")
+            for m in mechs:
+                txt = {}
+                for lv in ["full", "simple"]:
+                    pg.evaluate(f"window.__viz.setLevel('{lv}'); window.__viz.setIntervention('{m}')")
+                    txt[lv] = pg.inner_text("#iv-table")
+                if txt["full"] != txt["simple"]:
+                    msgs.append(f"do({m}): 개입 표가 표시 수준에 따라 다름")
+                for r in [r for r in ivs if r["mechanism"] == m]:
+                    path = {r["mechanism"], r["variable"], *filter(None, r["removed"].split("|")), *filter(None, r["remaining"].split("|")), *filter(None, r["target"].split("|"))}
+                    if not path <= vis_in(pg):
+                        msgs.append(f"do({m}): 간단히 보기에서 경로 node 안 보임 {sorted(path - vis_in(pg))[:3]}")
+                    if "iv-" + r["result"] not in set(pg.evaluate(f"window.__viz.cy.getElementById('{r['variable']}').classes()")):
+                        msgs.append(f"do({m}) {r['variable']} 결과 강조 없음")
+                if not set(observed) <= vis_in(pg):
+                    msgs.append(f"do({m}): 관측 node 사라짐")
+            if shots:
+                pg.evaluate("window.__viz.setIntervention('M1')")
+                pg.screenshot(path=str(shots / "simple_iv_M1.png"))
+            pg.close()
+            msgs += perr
+            return not msgs, "W1–W6 각각: World 패널 = 전체 표시와 같음, world 후보 펼침·강조(W6 hl-rej·REJECTED 배너), 메커니즘 값 = CSV; do(M=OFF) 7개: 개입 표 = 전체 표시와 같음, 경로 node 펼침·결과 강조, 관측 node 유지" if not msgs else "; ".join(msgs[:5])
+
+        @check("36 같은 node 쌍 관계 묶음·시간 선후 중복 축소(시험용 관계를 메모리에만 주입)")
+        def t_merge_reduce():
+            extra = """
+(function () { var E = window.GUSUN_DATA.super_dag.edges;
+  function add(id, s, d, t, st, g, o) { E.push({id: id, status_group: g, canonical: {edge_id: id, src: s, dst: d, edge_type: t, sd_status: st, origin: o, note: 'TEST FIXTURE'}}); }
+  add('X_DUP', 'EP09', 'EP10', 'REVIEW_OF', 'DERIVED', 'DERIVED', 'FROZEN');
+  add('X_REV', 'EP10', 'EP09', 'INFORMATION_FLOW', 'DERIVED', 'DERIVED', 'FROZEN');
+  add('X_CON', 'EP09', 'EP10', 'CONTRADICTS_AT_CLAIM_LEVEL', 'DERIVED', 'DERIVED', 'FROZEN');
+  add('X_TB', 'EP01', 'EP03', 'TEMPORAL_BEFORE', 'DERIVED', 'DERIVED', 'FROZEN');
+  add('X_RV', 'EP13', 'EP16', 'REVIEW_OF', 'DERIVED', 'DERIVED', 'FROZEN');
+  add('X_RV2', 'EP15', 'EP16', 'REVIEW_OF', 'DERIVED', 'DERIVED', 'FROZEN');
+})();
+"""
+            pg, perr = fresh_page(extra)
+            msgs = []
+            merged = pg.evaluate("window.__viz.display.merged.map(m => m.id)")
+            red = sorted(pg.evaluate("Object.keys(window.__viz.display.redundant)"))
+            fx = [dict(edge_id=i, src=s_, dst=d_, edge_type=t_) for i, s_, d_, t_ in [("X_DUP", "EP09", "EP10", "REVIEW_OF"), ("X_REV", "EP10", "EP09", "INFORMATION_FLOW"),
+                  ("X_CON", "EP09", "EP10", "CONTRADICTS_AT_CLAIM_LEVEL"), ("X_TB", "EP01", "EP03", "TEMPORAL_BEFORE"), ("X_RV", "EP13", "EP16", "REVIEW_OF"),
+                  ("X_RV2", "EP15", "EP16", "REVIEW_OF")]]
+            want_red = sorted(py_redundant(sd_edges + fx))
+            if sorted(merged) != ["MG~OE009~X_DUP", "MG~OE041~X_RV2"]:
+                msgs.append(f"묶음 {merged}")
+            if red != ["X_TB"] or want_red != ["X_TB"]:
+                msgs.append(f"시간 선후 중복 {red} (Python {want_red}) ≠ ['X_TB'] — REVIEW_OF 지름길 X_RV는 줄이면 안 됨")
+            ve = vis_in(pg, "edge")
+            if "X_TB" in ve or "reduced" not in pg.evaluate("window.__viz.cy.getElementById('X_TB').classes()"):
+                msgs.append("간단히 보기에서 중복 시간 선후 X_TB가 보이거나 reduced 표시 없음")
+            if "X_RV" not in ve:
+                msgs.append("추이적이 아닌 REVIEW_OF 지름길 X_RV가 숨겨짐")
+            if "MG~OE009~X_DUP" not in ve or {"OE009", "X_DUP"} & ve:
+                msgs.append("EP09→EP10 묶음 선이 하나로 그려지지 않음")
+            pg.evaluate("window.__viz.setLevel('full')")
+            pg.wait_for_timeout(120)
+            ve = vis_in(pg, "edge")
+            if not {"X_TB", "X_REV", "X_CON", "X_RV"} <= ve:
+                msgs.append(f"전체 표시에서 따로 그려야 할 관계가 안 보임 {sorted({'X_TB', 'X_REV', 'X_CON', 'X_RV'} - ve)}")
+            pg.evaluate("window.__viz.focusEdge('MG~OE009~X_DUP')")
+            pg.wait_for_timeout(120)
+            d = pg.inner_text("#p-detail")
+            for w in ["관계 2개", "OE009", "PROCEDURAL_NEXT", "X_DUP", "REVIEW_OF", "원래 관계"]:
+                if w not in d:
+                    msgs.append(f"묶음 선 상세에 '{w}' 없음")
+            pg.click("#merged-members [data-goto-edge='X_DUP']")
+            pg.wait_for_timeout(120)
+            d = pg.inner_text("#p-detail")
+            sel = pg.evaluate("window.__viz.cy.$('edge:selected').map(e => e.id())")
+            if "edge X_DUP" not in d or "REVIEW_OF" not in d or sel != ["MG~OE009~X_DUP"]:
+                msgs.append(f"구성원 X_DUP 상세·선택 {sel}")
+            pg.evaluate("window.__viz.setLevel('simple'); window.__viz.focusNode('EP01')")
+            pg.wait_for_timeout(120)
+            if "X_TB" not in vis_in(pg, "edge"):
+                msgs.append("EP01을 고르면 중복 시간 선후 X_TB도 펼쳐져야 함")
+            n = pg.evaluate("window.__viz.cy.edges().filter(e => !e.data('members')).length")
+            if n != len(sd_edges) + 6:
+                msgs.append(f"원본 edge {n} ≠ {len(sd_edges) + 6}(묶음이 원본 edge를 지움)")
+            if shots:
+                pg.evaluate("window.__viz.focusEdge('MG~OE009~X_DUP')")
+                pg.screenshot(path=str(shots / "merged_fixture.png"))
+            pg.close()
+            msgs += perr
+            return not msgs, ("주입한 6개 관계: EP09→EP10 PROCEDURAL_NEXT+REVIEW_OF(같은 방향·기록·절차·DERIVED) → 선 하나 '관계 2개', 누르면 둘 다·구성원 상세; "
+                              "반대 방향 X_REV·상충 X_CON은 따로; TEMPORAL_BEFORE EP01→EP03(EP01→EP02→EP03 경로 있음)만 간단히 보기에서 접힘, "
+                              "REVIEW_OF 지름길 EP13→EP16은 그대로, 전체 표시·EP01 선택 시 다시 보임, 원본 edge 수 그대로. "
+                              f"실제 데이터에는 묶일 쌍 {py_merge_count(sd_edges)}개·중복 시간 선후 {len(py_redundant(sd_edges))}개") if not msgs else "; ".join(msgs[:5])
+
+        @check("37 화면 조작 전후 원본 데이터 불변 · 숨긴 관계도 상세·분석에 그대로")
+        def t_data_intact():
+            pg, perr = fresh_page()
+            msgs = []
+            before = pg.evaluate("JSON.stringify(window.__viz.data)")
+            disk = (DOCS / "data" / "bundle.js").read_text(encoding="utf-8")
+            disk_data = json.loads(disk[disk.index("window.GUSUN_DATA = ") + len("window.GUSUN_DATA = "):].rstrip().rstrip(";"))
+            if json.loads(before) != disk_data:
+                msgs.append("화면 메모리 데이터 ≠ bundle.js")
+            # 간단히 보기(아무것도 고르지 않음)에서 상세 패널은 숨긴 관계까지 모두 센다
+            pg.evaluate("window.__viz.focusNode('EP23')")
+            d = pg.inner_text("#p-detail")
+            nin = sum(1 for e in sd_edges if e["dst"] == "EP23")
+            nout = sum(1 for e in sd_edges if e["src"] == "EP23")
+            if f"들어오는 edge ({nin})" not in d or f"나가는 edge ({nout})" not in d:
+                msgs.append(f"EP23 상세 관계 수 ≠ canonical(in {nin} · out {nout})")
+            ops = ["window.__viz.setLevel('records')", "window.__viz.setHops(2)", "window.__viz.focusNode('G04a')", "window.__viz.setFocusMech('M2')",
+                   "window.__viz.setWorld('W6')", "window.__viz.setIntervention('M5')", "window.__viz.setPair('M1', 'M3')", "window.__viz.setView('death')",
+                   "window.__viz.setView('overview')", "window.__viz.setLevel('simple')", "window.__viz.focusEdge('OE007')", "window.__viz.fitAll()",
+                   "window.__viz.reset()"]
+            for op in ops:
+                pg.evaluate(op)
+            pg.click("#mech-filters input[data-mech='M4']")
+            pg.click("#status-filters input[data-status='CONTEXT']")
+            after = pg.evaluate("JSON.stringify(window.__viz.data)")
+            if after != before:
+                msgs.append("화면 조작 뒤 window.__viz.data가 바뀜")
+            n = pg.evaluate("[window.__viz.cy.nodes().length, window.__viz.cy.edges().filter(e => !e.data('members')).length]")
+            if n != [len(sd_nodes), len(sd_edges)]:
+                msgs.append(f"cy 원본 요소 {n}")
+            pg.close()
+            msgs += perr
+            return not msgs, (f"화면 메모리 데이터 = bundle.js, 간단히 보기에서 EP23 상세 관계 in {nin}·out {nout}(숨긴 관계 포함 canonical 전부), "
+                              f"표시 수준·2-hop·선택·메커니즘 펼치기·W6·개입·공존·View·필터 {len(ops) + 2}가지 조작 뒤 데이터 문자열 동일, cy node {n[0]}·edge {n[1]}") if not msgs else "; ".join(msgs[:5])
+
+        @check("38 좁은 화면(420px) 간단히 보기 조작 UI: 가로 넘침 없음·글자 ≥ 11pt")
+        def t_simple_narrow():
+            pg = browser.new_page(viewport={"width": 420, "height": 860})
+            perr = []
+            pg.on("pageerror", lambda e: perr.append(str(e)))
+            pg.goto(url)
+            pg.wait_for_function("window.__viz && window.__viz.cy")
+            pg.click("#legend-detail summary")
+            pg.evaluate("window.__viz.focusNode('EP09'); window.__viz.setFocusMech('M1')")
+            pg.wait_for_timeout(200)
+            over = pg.evaluate("document.documentElement.scrollWidth - window.innerWidth")
+            side = pg.evaluate("(() => { const s = document.getElementById('sidebar'); return s.scrollWidth - s.clientWidth; })()")
+            r = pg.evaluate(FONT_JS)
+            if shots:
+                pg.screenshot(path=str(shots / "narrow_simple.png"), full_page=True)
+            pg.close()
+            ok = over <= 0 and side <= 0 and not r["nbad"] and not perr
+            return ok, f"가로 넘침 문서 {over}px·사이드바 {side}px, 글자 요소 {r['n']}개 중 11pt·1.6 미만 {r['nbad']} {r['bad'][:2]}, 오류 {len(perr)}"
+
         @check("27 console error 없음")
         def t_console():
             return not errors, "console error·page error·요청 실패 0" if not errors else "; ".join(errors[:5])
 
         for t in [t_render, t_load, t_json, t_counts, t_worlds, t_w6, t_status, t_mech, t_node_detail, t_edge_detail, t_search, t_iv,
                   t_inter, t_views, t_backbone, t_outcome, t_temporal, t_reset, t_file, t_fonts, t_labels, t_initial,
-                  t_search_ux, t_pan, t_context, t_detail_sections, t_narrow, t_render_views, t_stale, t_empty_guard]:
+                  t_search_ux, t_pan, t_context, t_detail_sections, t_narrow, t_render_views, t_stale, t_empty_guard,
+                  t_simple_default, t_edge_types, t_select_expand, t_mech_focus, t_simple_world_iv, t_merge_reduce, t_data_intact,
+                  t_simple_narrow]:
             t()
         if shots:
             page.click("#reset")

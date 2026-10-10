@@ -89,28 +89,56 @@ BANDS = [
     dict(id="FINAL", label="최종 판단·처분", sub="6/13 정조 판단 → 처분 → 6/16", dated=True),
 ]
 
-# edge type 표시 규칙(범례). 색·선 모양·화살표를 함께 바꿔 색만으로 구분하지 않는다.
+# edge type 표시 규칙. 세부 관계 유형 19종(edge_type)은 canonical 값 그대로 두고, 화면 선 모양은 아래 EDGE_DISPLAY의
+# 3가지 표시 유형(display)으로만 그린다. ko = 원래 관계 의미(선택·hover·상세 패널에서 항상 보임). group = canonical origin 묶음.
+# arrow = 화살촉. 방향성 흐름과 의미가 다른 CONTRADICTS_AT_CLAIM_LEVEL만 'tee'(상충)로 따로 그린다.
 EDGE_STYLES = {
-    "TEMPORAL_BEFORE": dict(color="#898781", line="solid", arrow="triangle", group="관측 (frozen)", ko="시간 선후"),
-    "PROCEDURAL_NEXT": dict(color="#256abf", line="solid", arrow="triangle", group="관측 (frozen)", ko="절차상 다음 단계"),
-    "INFORMATION_FLOW": dict(color="#1baf7a", line="dashed", arrow="triangle", group="관측 (frozen)", ko="정보 흐름(기록 근거)"),
-    "ORDER_TO_ACTION": dict(color="#0b0b0b", line="solid", arrow="triangle-tee", group="관측 (frozen)", ko="명령 → 실행"),
-    "REVIEW_OF": dict(color="#4a3aa7", line="solid", arrow="vee", group="관측 (frozen)", ko="검토·심리"),
-    "REVISES": dict(color="#e34948", line="solid", arrow="triangle-backcurve", group="관측 (frozen)", ko="판단 수정"),
-    "RESPONSIBILITY_LINK": dict(color="#c98500", line="dashed", arrow="diamond", group="관측 (frozen)", ko="책임 귀속(판단 node로만)"),
-    "CONTEXT_SUPPORTS": dict(color="#008300", line="dotted", arrow="circle", group="관측 (frozen)", ko="context가 판단을 뒷받침"),
-    "CONTRADICTS_AT_CLAIM_LEVEL": dict(color="#e34948", line="dashed", arrow="tee", group="관측 (frozen)", ko="주장 수준 상충"),
-    "CONSTRAINS": dict(color="#008300", line="dotted", arrow="square", group="Super-DAG 분석", ko="제도 context가 메커니즘을 제약"),
-    "CONTEXT_COMPATIBLE": dict(color="#008300", line="dotted", arrow="circle-triangle", group="Super-DAG 분석", ko="환경 호환성(개인 감염 아님)"),
-    "INSTANTIATED_BY": dict(color="#4a3aa7", line="solid", arrow="triangle", group="Super-DAG 분석", ko="메커니즘 → 후보(core/보조)"),
-    "INSTANTIATED_BY_SECONDARY": dict(color="#4a3aa7", line="dashed", arrow="triangle", group="Super-DAG 분석", ko="메커니즘 → 후보(보조 메커니즘)"),
-    "CONTRIBUTES_TO": dict(color="#eb6834", line="solid", arrow="triangle", group="Super-DAG 분석", ko="후보 → 구조 변수(규칙 입력)"),
-    "RULE_INPUT": dict(color="#4a3aa7", line="dashed", arrow="vee", group="Super-DAG 분석", ko="구조 변수 → 구조 변수"),
-    "EXPLAINS_TRANSITION_TO": dict(color="#eb6834", line="dashed", arrow="triangle", group="Super-DAG 분석", ko="구조 변수가 관측 전이를 설명"),
-    "EXPLAINS_OBSERVED": dict(color="#eb6834", line="dotted", arrow="triangle", group="Super-DAG 분석", ko="관측 재검토 사건을 설명(사건은 그대로)"),
-    "ANCHORED_TO": dict(color="#4a3aa7", line="dotted", arrow="square", group="Super-DAG 분석", ko="M5가 관측 backbone에 고정"),
-    "CONDITIONS": dict(color="#d55181", line="dashed", arrow="diamond", group="Super-DAG 분석", ko="미해결 항목이 후보의 성립 조건"),
+    "TEMPORAL_BEFORE": dict(display="record", arrow="triangle", group="관측 (frozen)", ko="시간 선후"),
+    "PROCEDURAL_NEXT": dict(display="record", arrow="triangle", group="관측 (frozen)", ko="절차상 다음 단계"),
+    "INFORMATION_FLOW": dict(display="record", arrow="triangle", group="관측 (frozen)", ko="정보 흐름(기록 근거)"),
+    "ORDER_TO_ACTION": dict(display="record", arrow="triangle", group="관측 (frozen)", ko="명령 → 실행"),
+    "REVIEW_OF": dict(display="record", arrow="triangle", group="관측 (frozen)", ko="검토·심리"),
+    "REVISES": dict(display="record", arrow="triangle", group="관측 (frozen)", ko="판단 수정"),
+    "RESPONSIBILITY_LINK": dict(display="record", arrow="triangle", group="관측 (frozen)", ko="책임 귀속(판단 node로만)"),
+    "CONTRADICTS_AT_CLAIM_LEVEL": dict(display="record", arrow="tee", group="관측 (frozen)",
+                                       ko="주장 수준 상충(흐름·인과가 아니라 두 기록의 주장이 서로 어긋남)"),
+    "CONTEXT_SUPPORTS": dict(display="context", arrow="triangle", group="관측 (frozen)", ko="context가 판단을 뒷받침"),
+    "CONSTRAINS": dict(display="context", arrow="triangle", group="Super-DAG 분석", ko="제도 context가 메커니즘을 제약"),
+    "CONTEXT_COMPATIBLE": dict(display="context", arrow="triangle", group="Super-DAG 분석", ko="환경 호환성(개인 감염 아님)"),
+    "INSTANTIATED_BY": dict(display="analysis", arrow="triangle", group="Super-DAG 분석", ko="메커니즘 → 후보(core/보조)"),
+    "INSTANTIATED_BY_SECONDARY": dict(display="analysis", arrow="triangle", group="Super-DAG 분석", ko="메커니즘 → 후보(보조 메커니즘)"),
+    "CONTRIBUTES_TO": dict(display="analysis", arrow="triangle", group="Super-DAG 분석", ko="후보 → 구조 변수(규칙 입력)"),
+    "RULE_INPUT": dict(display="analysis", arrow="triangle", group="Super-DAG 분석", ko="구조 변수 → 구조 변수"),
+    "EXPLAINS_TRANSITION_TO": dict(display="analysis", arrow="triangle", group="Super-DAG 분석", ko="구조 변수가 관측 전이를 설명"),
+    "EXPLAINS_OBSERVED": dict(display="analysis", arrow="triangle", group="Super-DAG 분석", ko="관측 재검토 사건을 설명(사건은 그대로)"),
+    "ANCHORED_TO": dict(display="analysis", arrow="triangle", group="Super-DAG 분석", ko="M5가 관측 backbone에 고정"),
+    "CONDITIONS": dict(display="analysis", arrow="triangle", group="Super-DAG 분석", ko="미해결 항목이 후보의 성립 조건"),
 }
+# 화면 표시 유형 3종(선의 색상·형태). 관계 의미·증거 상태(OBSERVED/DERIVED…)는 바꾸지 않는 시각적 묶음이다.
+# 증거 상태는 선 굵기로 따로 보인다(OBSERVED edge 굵게, DERIVED 보통, 분석·context edge 얇게).
+EDGE_DISPLAY_ORDER = ["record", "analysis", "context"]
+EDGE_DISPLAY = {
+    "record": dict(label="기록·절차", color="#2b2a27", line="solid", width=2.6, opacity=0.9,
+                   desc="사료 기록으로 이어진 시간·절차·검토·책임 연결(진한 실선)"),
+    "analysis": dict(label="분석·추론", color="#6b55c9", line="dashed", width=1.6, opacity=0.85,
+                     desc="메커니즘·구조 변수·후보 사이의 분석 연결(얇은 점선). 사료에 직접 적힌 연결이 아님"),
+    "context": dict(label="맥락·제약", color="#4f9a4f", line="dotted", width=1.6, opacity=0.6,
+                    desc="제도·환경 context의 뒷받침·제약·호환성(옅은 점선). 사건 발생을 증명하지 않음"),
+}
+# 기본 화면(간단히 보기) 규칙. 시각적 표시만 정하며 node·edge·분석 결과를 바꾸지 않는다.
+# core_flow_types: OBSERVED 사건 사이에서 기본으로 보이는 시간·절차 흐름 관계(나머지 관계는 node를 선택하면 펼쳐짐).
+# transitive_types: 수학적으로 추이적인 관계. 같은 유형만으로 된 다른 경로가 있으면 직접 edge는 기본 화면에서 숨길 수 있다.
+#   REVIEW_OF·REVISES·INFORMATION_FLOW·RESPONSIBILITY_LINK 등은 추이적이라고 가정하지 않는다.
+# merge_exclude_types: 같은 두 node 사이 여러 관계를 한 선으로 묶을 때 묶지 않고 따로 그리는 관계(의미가 방향성 흐름과 다름).
+SIMPLE_VIEW = dict(
+    levels=["simple", "records", "full"], default_level="simple", default_hops=1, max_hops=2,
+    level_labels=dict(simple="간단히(핵심 흐름)", records="기록 관계 전체", full="전체(분석·맥락 포함)"),
+    core_flow_types=["TEMPORAL_BEFORE", "PROCEDURAL_NEXT", "ORDER_TO_ACTION", "REVIEW_OF", "REVISES"],
+    transitive_types=["TEMPORAL_BEFORE"],
+    merge_exclude_types=["CONTRADICTS_AT_CLAIM_LEVEL"],
+    note=("간단히 보기는 화면 표시만 줄인다. 접힌 LATENT·CONTEXT·UNRESOLVED node와 숨긴 edge는 삭제되지 않았고 "
+          "world·공존·개입 결과와 상세 패널 계산에 그대로 들어 있다."),
+)
 
 # ---- 글자·node 크기(가독성 기준). 화면 좌표 단위(model px)이며 zoom 1.0에서 CSS px과 같다.
 PT = 96 / 72                      # 1pt = 1.333px
@@ -573,8 +601,9 @@ def related_mechanisms(nid, sde, mech_ids):
 # edge = 양끝 node가 모두 View 안에 있는 canonical edge 전부(자동 계산).
 VIEW_SPECS = [
     dict(id="overview", key="A", label="A 전체 Overview", title="전체 Mechanism Super-DAG", policy="all",
-         desc="모든 canonical node와 edge를 표시합니다. 왼쪽 → 오른쪽이 시간(2월 → 3월 → 5월 → 6월 → 최종 판단·처분)이고, "
-              "관측 lane 아래에 날짜 없는 분석 lane(구조 변수·후보·UNRESOLVED·메커니즘·context)이 있습니다."),
+         desc="모든 canonical node와 edge가 들어 있는 View입니다. 왼쪽 → 오른쪽이 시간(2월 → 3월 → 5월 → 6월 → 최종 판단·처분)이고, "
+              "관측 lane 아래에 날짜 없는 분석 lane(구조 변수·후보·UNRESOLVED·메커니즘·context)이 있습니다. "
+              "기본 표시 수준 '간단히'에서는 관측 사건과 핵심 흐름만 보이고 나머지는 접혀 있습니다('전체 보기'로 모두 표시)."),
     dict(id="timeline", key="B", label="B 시간순 사건", title="시간순 관측 사건", policy="subset", observed="ALL",
          desc="OBSERVED 사건 node(EP01–EP37)와 그 사이 canonical edge만 날짜 순서로 표시합니다. "
               "LATENT·CONTEXT·UNRESOLVED node는 이 View에서 숨깁니다('전체 주변 맥락 표시'로 함께 볼 수 있음)."),
@@ -842,7 +871,8 @@ def make_ui(canon, a4_findings=()):
         generated_by="scripts/gusun_clean/build_visualization.py",
         status_groups=STATUS_GROUPS, mechanism_display=MECH_DISPLAY,
         mechanism_names={r["mechanism_id"]: r["mechanism_name"] for r in canon["definitions"]},
-        edge_styles=EDGE_STYLES, config_display=CONFIG_DISPLAY,
+        edge_styles=EDGE_STYLES, edge_display=EDGE_DISPLAY, edge_display_order=EDGE_DISPLAY_ORDER,
+        simple_view=SIMPLE_VIEW, config_display=CONFIG_DISPLAY,
         layout_rule=("x: 날짜가 있는 관측 node는 정렬 기준일(t_max, 없으면 t_min) 순서의 column에 놓는다. 같은 날짜 안에서는 frozen edge 깊이 순서. "
                      "y: 관측 node는 branch lane, 날짜 없는 node는 분석 lane. 날짜 없는 node의 x는 연결된 node 근처일 뿐 날짜를 뜻하지 않는다. "
                      "관점별 View는 그 View의 node만으로 같은 규칙을 다시 적용한 좌표를 쓴다."),

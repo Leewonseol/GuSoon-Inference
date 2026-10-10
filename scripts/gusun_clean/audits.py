@@ -1144,6 +1144,63 @@ def audit5_views(ui, canon, app_js=None, app_css=None):
     return out
 
 
+# 간단히 보기(시각화 UX 간소화) 명세. build_visualization과 따로 적어 두고 화면 데이터가 이 표와 같은지 본다.
+UI_EDGE_DISPLAY_SPEC = {
+    "record": {"INFORMATION_FLOW", "ORDER_TO_ACTION", "PROCEDURAL_NEXT", "RESPONSIBILITY_LINK", "REVIEW_OF", "REVISES",
+               "TEMPORAL_BEFORE", "CONTRADICTS_AT_CLAIM_LEVEL"},
+    "analysis": {"ANCHORED_TO", "CONDITIONS", "CONTRIBUTES_TO", "EXPLAINS_OBSERVED", "EXPLAINS_TRANSITION_TO", "INSTANTIATED_BY",
+                 "INSTANTIATED_BY_SECONDARY", "RULE_INPUT"},
+    "context": {"CONTEXT_SUPPORTS", "CONSTRAINS", "CONTEXT_COMPATIBLE"},
+}
+UI_TRANSITIVE_OK = {"TEMPORAL_BEFORE"}            # 수학적으로 추이적이라고 볼 수 있는 관계(그 밖에는 추이적 축약 금지)
+UI_SIMPLE_COLLAPSE = "AUDIT5:SIMPLE_COLLAPSE"
+
+
+def audit5_simplify(ui, canon, app_js=None):
+    """간단히 보기: 19종 관계 → 표시 유형 3종 대응, 추이적 축약 대상, 접기 규칙이 OBSERVED를 숨기지 못하는지 본다."""
+    out = []
+    meta = ui["meta"]
+    styles, disp = meta.get("edge_styles", {}), meta.get("edge_display", {})
+    canon_types = {e["edge_type"] for e in canon["sd_edges"]}
+    spec_types = set().union(*UI_EDGE_DISPLAY_SPEC.values())
+    if len(canon_types) != 19 or canon_types != spec_types:
+        out.append(F("edge_type_changed", "ERROR", "edge_type", f"canonical 관계 유형 {len(canon_types)}종이 명세 19종과 다름: "
+                                                                f"{sorted(canon_types ^ spec_types)}"))
+    if set(styles) != canon_types:
+        out.append(F("edge_type_changed", "ERROR", "meta.edge_styles", f"화면 관계 유형 목록이 canonical과 다름: {sorted(set(styles) ^ canon_types)}"))
+    if set(disp) != set(UI_EDGE_DISPLAY_SPEC) or meta.get("edge_display_order") != ["record", "analysis", "context"]:
+        out.append(F("edge_display_mapping", "ERROR", "meta.edge_display", f"표시 유형이 3종(기록·절차/분석·추론/맥락·제약)이 아님: {sorted(disp)}"))
+    for cat, types in UI_EDGE_DISPLAY_SPEC.items():
+        got = {t for t, s in styles.items() if s.get("display") == cat}
+        if got != types:
+            out.append(F("edge_display_mapping", "ERROR", f"display:{cat}", f"표시 유형 {cat}에 든 관계가 명세와 다름: 빠짐 {sorted(types - got)} · 더함 {sorted(got - types)}"))
+    for t, s in styles.items():
+        if not s.get("ko"):
+            out.append(F("edge_display_mapping", "ERROR", t, "원래 관계 의미(ko)가 없어 선택 시 관계 의미를 확인할 수 없음"))
+    lines = {c: (d.get("line"), d.get("color")) for c, d in disp.items()}
+    if len(set(lines.values())) != len(lines) or lines.get("record", (None,))[0] != "solid" \
+            or lines.get("analysis", (None,))[0] != "dashed" or lines.get("context", (None,))[0] != "dotted":
+        out.append(F("edge_display_mapping", "ERROR", "meta.edge_display", "표시 유형 3종이 선 모양(실선·점선·옅은 점선)과 색으로 서로 구분되지 않음"))
+    sv = meta.get("simple_view", {})
+    bad_t = sorted(set(sv.get("transitive_types", [])) - UI_TRANSITIVE_OK)
+    if bad_t:
+        out.append(F("transitive_misapplied", "ERROR", "simple_view.transitive_types", f"추이적이라고 가정할 수 없는 관계를 축약 대상에 넣음: {bad_t}"))
+    bad_c = sorted(t for t in sv.get("core_flow_types", []) if styles.get(t, {}).get("display") != "record")
+    if bad_c or not sv.get("core_flow_types"):
+        out.append(F("edge_display_mapping", "ERROR", "simple_view.core_flow_types", f"기본 흐름 관계가 기록·절차 유형이 아님: {bad_c}"))
+    if "CONTRADICTS_AT_CLAIM_LEVEL" not in sv.get("merge_exclude_types", []) or \
+            styles.get("CONTRADICTS_AT_CLAIM_LEVEL", {}).get("arrow") == styles.get("PROCEDURAL_NEXT", {}).get("arrow"):
+        out.append(F("edge_display_mapping", "ERROR", "CONTRADICTS_AT_CLAIM_LEVEL",
+                     "주장 수준 상충이 일반 방향성 흐름과 같은 모양으로 묶이거나 그려짐"))
+    if sv.get("default_level") != "simple" or sv.get("default_hops") != 1:
+        out.append(F("edge_display_mapping", "ERROR", "simple_view", "기본 화면이 간단히 보기·1-hop이 아님"))
+    if app_js is not None:
+        i, j = app_js.find(UI_SIMPLE_COLLAPSE), app_js.find(UI_BACKBONE_GUARD)
+        if i < 0 or j < 0 or i > j or "collapsed" not in app_js[i:i + 400]:
+            out.append(F("outcome_dropped", "ERROR", "app.js", "간단히 보기 접기 규칙이 backbone 보호 규칙보다 먼저 적용되지 않음(OBSERVED가 접힐 수 있음)"))
+    return out
+
+
 UI_RUNTIME_GUARD = "AUDIT5:RUNTIME_GUARD"
 UI_EMPTY_VIEW_GUARD = "AUDIT5:EMPTY_VIEW_GUARD"
 _ASSET_REF = re.compile(r'(?:src|href)="((?:css|js|data|vendor)/[^"?]+)(?:\?v=([0-9a-f]*))?"')
@@ -1428,6 +1485,8 @@ def audit5(ui, canon, frozen_hash, app_js=None, app_css=None, index_html=None, a
         out.append(F("interaction_changed", "ERROR", "rules", "구조 규칙이 qualitative_structural_rules.csv와 다름"))
     # 13. 관점별 View·가독성(시각화 개선 검사)
     out += audit5_views(ui, canon, app_js, app_css)
+    # 13-13. 간단히 보기(표시 유형 3종·추이적 축약·접기 규칙)
+    out += audit5_simplify(ui, canon, app_js)
     # 14. 실행 시 빈 그래프 방지(배포 캐시·DOM 계약·fail-safe)
     if index_html is not None:
         out += audit5_runtime(index_html, app_js, asset_versions)

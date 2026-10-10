@@ -6,7 +6,7 @@
 <title>구순–김명신 Super-DAG</title>
 <meta name="description" content="구순–김명신 사건(1793) Mechanism Super-DAG를 시간 순서 DAG로 탐색하는 화면. 확정된 사건은 고정하고, 사료가 알려주지 않는 중간 과정은 LATENT 메커니즘으로 비교한다.">
 <link rel="icon" href="data:,">
-<link rel="stylesheet" href="css/app.css?v=1e6b1fe442e3">
+<link rel="stylesheet" href="css/app.css?v=1fae62d2eebc">
 </head>
 <body>
 <header class="app-header">
@@ -22,6 +22,19 @@
     <section class="block">
       <h2>그래프 조작</h2>
       <p class="hint">휠 = 위아래 스크롤 · Shift+휠 = 좌우 · Ctrl/⌘+휠 또는 핀치 = 확대/축소 · 끌어서 이동 · 그래프 왼쪽 아래 미니맵을 눌러 위치 이동 · ‘전체 지도’는 글자가 작아져 ID만 보입니다.</p>
+    </section>
+
+    <section class="block" id="simplify-block">
+      <h2>화면 단순화 <span class="tag">보이기/숨기기만</span></h2>
+      <h3>표시 수준</h3>
+      <div class="seg" id="level-buttons" role="radiogroup" aria-label="표시 수준"></div>
+      <p class="hint" id="level-scope-note"></p>
+      <p class="hint">간단히 = 관측 사건과 핵심 시간·절차 흐름만. 추론·가설(LATENT)·제도·환경(CONTEXT)·미확정(UNRESOLVED)은 접혀 있다가 node를 누르거나 메커니즘·world를 고르면 펼쳐집니다. 접힌 항목도 분석·world·개입 계산에는 그대로 들어 있습니다.</p>
+      <h3>선택 확장</h3>
+      <div class="seg" id="hop-buttons" role="radiogroup" aria-label="선택 확장 범위"></div>
+      <h3>메커니즘 펼치기</h3>
+      <div class="mech-focus" id="mech-focus" role="group" aria-label="메커니즘 펼치기"></div>
+      <p class="hint">고른 메커니즘의 후보·구조 변수·관련 context·UNRESOLVED와 분석 관계만 펼쳐 강조합니다. 다시 누르면 해제. 다른 메커니즘은 삭제·계산 제외가 아닙니다.</p>
     </section>
 
     <section class="block">
@@ -58,6 +71,11 @@
         <summary><h2>범례</h2></summary>
         <div id="legend-nodes" class="legend"></div>
         <div id="legend-edges" class="legend"></div>
+        <details id="legend-detail" class="legend-detail">
+          <summary>상세 범례 보기</summary>
+          <div id="legend-detail-nodes" class="legend"></div>
+          <div id="legend-detail-edges" class="legend"></div>
+        </details>
       </details>
     </section>
   </aside>
@@ -112,8 +130,8 @@ window.__vizBootErrors = [];
 window.addEventListener('error', function (e) { window.__vizBootErrors.push(e.message || String(e.error || '')); });
 </script>
 <script src="vendor/cytoscape/cytoscape.min.js?v=1bb5340e5495"></script>
-<script src="data/bundle.js?v=46556b4165e4"></script>
-<script src="js/app.js?v=6219de38296a"></script>
+<script src="data/bundle.js?v=48878c95315b"></script>
+<script src="js/app.js?v=c39269265c81"></script>
 <script>
 (function () {
   if (window.__viz && window.__viz.cy) return;

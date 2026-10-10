@@ -290,3 +290,16 @@ details > summary { cursor: pointer; }
 .viz-error[hidden] { display: none; }
 .viz-error code { color: #5c1414; word-break: break-all; }
 .viz-error.notice { background: #fff8e8; border-color: #d99a00; color: #5a4300; cursor: pointer; }
+
+/* 화면 단순화(표시 수준·선택 확장·메커니즘 펼치기) */
+.seg { display: flex; flex-wrap: wrap; gap: 4px; }
+.seg button { padding: 3px 10px; border: 1px solid var(--axis); background: #fff; border-radius: 6px; cursor: pointer; }
+.seg button[aria-checked="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+.mech-focus { display: grid; grid-template-columns: 1fr; gap: 3px; }
+.mech-focus button { text-align: left; padding: 3px 10px; border: 1.5px dashed #6b55c9; background: #fff; border-radius: 6px; cursor: pointer; color: var(--ink); }
+.mech-focus button[aria-pressed="true"] { background: #efedfa; border-style: solid; font-weight: 600; }
+.btn.btn-sm { padding: 0 10px; margin-left: 4px; }
+.banner-view .sel-note { display: inline; color: #173d6e; }
+.legend-detail { margin-top: 6px; }
+.legend-detail > summary { color: var(--obs); text-decoration: underline; text-underline-offset: 2px; }
+.legend .row > span, .legend .grp { min-width: 0; overflow-wrap: anywhere; }

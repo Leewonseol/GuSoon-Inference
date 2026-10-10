@@ -3429,7 +3429,7 @@
     "V_SANCTION"
    ],
    "default_pane": "detail",
-   "desc": "모든 canonical node와 edge를 표시합니다. 왼쪽 → 오른쪽이 시간(2월 → 3월 → 5월 → 6월 → 최종 판단·처분)이고, 관측 lane 아래에 날짜 없는 분석 lane(구조 변수·후보·UNRESOLVED·메커니즘·context)이 있습니다.",
+   "desc": "모든 canonical node와 edge가 들어 있는 View입니다. 왼쪽 → 오른쪽이 시간(2월 → 3월 → 5월 → 6월 → 최종 판단·처분)이고, 관측 lane 아래에 날짜 없는 분석 lane(구조 변수·후보·UNRESOLVED·메커니즘·context)이 있습니다. 기본 표시 수준 '간단히'에서는 관측 사건과 핵심 흐름만 보이고 나머지는 접혀 있습니다('전체 보기'로 모두 표시).",
    "edges": [
     "OE001",
     "OE002",

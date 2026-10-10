@@ -22,6 +22,8 @@ ERROR 검사: ui_node_not_canonical·ui_node_missing·ui_node_altered(1), ui_edg
 
 관점별 View·가독성 검사(13): view_not_subset(View node·edge가 canonical 부분집합이고 edge = View node 사이 canonical edge 전부, 새 node·edge 없음), view_status_changed(View metadata에 상태·판정·해석 필드 없음, 좌표 항목은 x·y·lane만), view_hidden_notice_missing(subset View의 숨긴 OBSERVED 목록 = 관측 node − View node, '시각적 필터·삭제 아님·분석상 ON/OFF 아님' 안내와 그 안내를 그리는 코드), label_clipped(node label이 canonical 글자를 모두 담고 말줄임 없음, 가장 긴 줄 ≤ 글자 영역, 높이 ≥ 줄 수 × 줄 높이), font_too_small(node·edge label과 CSS의 모든 font-size ≥ 11pt), line_height_too_small(CSS·node label line-height ≥ 1.6), initial_label_unreadable(모든 View의 첫 화면 최소 배율 × node 글자 ≥ 11pt, lane·시간 구간 글자 포함), responsibility_to_biological(View edge에도 branch A↔B 직접 edge 없음), layout_nondeterministic(같은 입력으로 두 번 계산한 좌표가 같고 화면 데이터와도 같음), view_node_overlap(Overview·View 좌표에서 node 상자 겹침 0), temporal_order·context_as_event(View 좌표에서도 날짜 순서·context lane 유지). W6 REJECTED는 4번 검사가 그대로 본다.
 
+간단히 보기 검사(13-13): edge_type_changed(canonical 관계 유형 19종과 화면 관계 목록이 같음), edge_display_mapping(19종 → 표시 유형 3종 기록·절차/분석·추론/맥락·제약 대응이 명세 표와 같고, 세 유형이 선 모양·색으로 구분되며, 관계마다 원래 의미(ko)가 있고, 주장 수준 상충은 묶지 않고 다른 끝 모양으로 그림, 기본 흐름 관계는 기록·절차 유형, 기본 화면 = 간단히·1-hop), transitive_misapplied(추이적 축약은 TEMPORAL_BEFORE에만), outcome_dropped(간단히 보기 접기 규칙 `AUDIT5:SIMPLE_COLLAPSE`가 `AUDIT5:BACKBONE_GUARD`보다 먼저 적용되어 OBSERVED를 접지 못함).
+
 실행 시 빈 그래프 방지 검사(14): stale_asset_version(index.html이 싣는 css·js 주소의 `?v=`가 지금 파일 내용 해시와 같음 — 배포 직후 새 index.html이 브라우저 캐시의 옛 app.js와 섞이지 않게), dom_id_missing(app.js가 찾는 DOM id가 index.html 또는 app.js가 만드는 HTML에 모두 있음), runtime_failsafe_missing(초기화 예외 시 그래프 영역에 '시각화 초기화 오류'를 보여 주는 `AUDIT5:RUNTIME_GUARD`, 보이는 node 0이면 안내 후 Overview로 1회 복구하는 `AUDIT5:EMPTY_VIEW_GUARD`). 실제 브라우저 렌더(첫 화면·A–J 각 View에서 보이는 node가 화면 창과 겹치고 그래프 영역 픽셀이 비어 있지 않음, console·pageerror 0)는 `scripts/gusun_clean/test_visualization.py`가 검사한다.
 
 ### ERROR
@@ -48,6 +50,7 @@ _없음_
 - W6은 REJECTED 배너와 함께 표시되고 공존·개입 패널의 world 목록에 들어가지 않는다(canonical과 같음).
 - 상태 필터와 메커니즘 필터는 화면 보이기/숨기기일 뿐 분석상 ON/OFF가 아니다. 개입 do(M=OFF)는 저장된 결과만 보여 준다.
 - 관점별 View(views.json): A 전체 Overview(전체), B–I 관점별 View(subset: View 밖 node 숨김, 숨긴 OBSERVED 개수·ID 안내, '전체 주변 맥락 표시'로 Overview 좌표에 흐리게 다시 표시), J LATENT·World 비교(dim: 밖의 OBSERVED는 흐리게만). View는 node·edge 부분집합과 표시 좌표만 담는다. 필터·world·개입은 여전히 OBSERVED를 숨기지 못한다(BACKBONE_GUARD). subset View의 범위 숨김만 OBSERVED를 숨길 수 있고(`AUDIT5:VIEW_SCOPE`), 그때는 안내(`AUDIT5:VIEW_HIDDEN_NOTICE`)가 항상 보인다.
+- 간단히 보기(기본 화면, A 전체 Overview): 관측 사건 node 전부 + 관측 사건 사이 핵심 시간·절차 흐름(TEMPORAL_BEFORE·PROCEDURAL_NEXT·ORDER_TO_ACTION·REVIEW_OF·REVISES, 같은 TEMPORAL_BEFORE만으로 된 다른 경로가 있는 직접 TEMPORAL_BEFORE는 접음)만 그린다. LATENT·CONTEXT·UNRESOLVED node와 나머지 관계는 화면에서만 접고(node 선택 1-hop/2-hop·메커니즘 펼치기·world·개입·공존 쌍으로 펼침), 접힌 개수와 '삭제 아님' 안내를 배너에 항상 보인다. 관계 19종은 표시 유형 3종(기록·절차 진한 실선 / 분석·추론 얇은 점선 / 맥락·제약 옅은 점선)으로 그리고 원래 관계 이름·의미·증거 상태는 선택·hover·상세 패널에 그대로 보인다. 같은 두 node·같은 방향·같은 표시 유형·같은 증거 상태의 관계 여럿은 선 하나로 묶어 그리고 누르면 원래 관계를 모두 보인다. 관점별 View B–J와 '전체' 표시 수준은 예전처럼 범위의 node·edge를 모두 그린다.
 - 가독성: node label 16px(12pt)·line-height 1.6, UI 글자 15px(11.25pt) 이상·line-height 1.6. 모든 View의 첫 화면 배율 ≥ 0.95(node 글자 ≥ 15.2px). 그보다 작게 축소하면(전체 지도) node는 ID만 크게 표시한다. node 폭은 종류별 고정, 높이는 줄 수로 정하고, label은 자르지 않고 줄바꿈한다.
 
 ## Regression (Audit 5)
@@ -84,6 +87,11 @@ _없음_
 | `stale_asset_version` | index.html이 data/bundle.js를 버전 없이 실음(캐시된 옛 데이터와 섞일 수 있음) | 탐지 | stale_asset_version |
 | `runtime_failsafe_missing` | index.html에서 '시각화 초기화 오류' 표시 guard를 뺌 | 탐지 | runtime_failsafe_missing |
 | `runtime_failsafe_missing` | app.js에서 보이는 node 0 → Overview 복구 guard 호출을 뺌 | 탐지 | runtime_failsafe_missing |
+| `edge_display_mapping` | 주장 수준 상충(CONTRADICTS_AT_CLAIM_LEVEL)을 분석·추론 표시 유형으로 옮김 | 탐지 | edge_display_mapping |
+| `edge_type_changed` | 화면 관계 유형 목록에서 RESPONSIBILITY_LINK를 뺌(19종 → 18종) | 탐지 | edge_display_mapping, edge_type_changed |
+| `transitive_misapplied` | REVIEW_OF를 추이적 축약 대상에 넣음(검토 관계를 시간 선후처럼 줄임) | 탐지 | transitive_misapplied |
+| `edge_display_mapping` | 분석·추론과 맥락·제약을 같은 선 모양·색으로 그림(3종 구분이 사라짐) | 탐지 | edge_display_mapping |
+| `outcome_dropped` | app.js에서 간단히 보기 접기 규칙의 backbone 보호 순서 표시(AUDIT5:SIMPLE_COLLAPSE)를 뺌 | 탐지 | outcome_dropped |
 
 ## 생성 근거 파일 (sha256)
 
@@ -126,3 +134,4 @@ _없음_
 | 화면 확인(가독성 개선 2차) | H 홍대협 재조사 View는 맥락 node EP02(2/22) 때문에 첫 화면이 빈 2월 구간에서 시작. lane 이름 칸이 화면 밖으로 나가면 lane을 알 수 없음 | 첫 화면 기준점을 View 핵심 관측 node 앞으로 옮기고, 시간상 앞쪽 창에 핵심 node가 2개 미만일 때만 핵심 node가 가장 많이 들어오는 창을 고름. lane 이름·시간 구간 이름이 화면 밖으로 나가면 그래프 가장자리에 고정 표시(HTML, 11pt 이상) |
 | 최종 실행(가독성 개선) | Audit 1–5 ERROR 0·WARN 0, regression 59/59, UI 테스트 27/27 | PASS. 동결 해시 ccb7ec63763a 그대로, canonical CSV·json·md(output/clean)는 audit_5·validation_summary 문서 말고 바이트 동일 |
 | 배포 화면 빈 그래프(25f81b6) | 배포된 화면에서 머리글 node 122·edge 205만 보이고 그래프·Status·Mechanism 필터·상세 패널이 모두 빔. 재현: 새 index.html + 브라우저 캐시의 옛 app.js(7ea077b)에서 pageerror 'Cannot set properties of null (setting textContent)' — 옛 app.js가 머리글을 그린 직후 새 index.html에서 없어진 #foot-note에 글자를 넣다가 멈춰 cytoscape 생성·필터·상세가 실행되지 않음. css·js 주소에 버전이 없어 GitHub Pages 캐시(max-age 600) 동안 새 HTML과 옛 JS가 섞임. 기존 UI 테스트는 같은 버전 파일만 열고 머리글 글자만 확인해 이 실패를 볼 수 없었음 | index.html의 css·js 주소에 내용 해시 ?v=를 붙이고 build_visualization.stamp_assets가 build마다 맞춤. 초기화 예외 시 그래프 영역에 '시각화 초기화 오류'(AUDIT5:RUNTIME_GUARD), 보이는 node 0이면 안내 후 Overview 1회 복구(AUDIT5:EMPTY_VIEW_GUARD). Audit 5에 stale_asset_version·dom_id_missing·runtime_failsafe_missing 검사, regression 5건(64건), UI 테스트에 실제 렌더 검사 4항목(31항목: 첫 로드 cy·보이는 node·화면 창 교차·canvas 픽셀·스크린샷 흰색 비율·필터 UI·View 탭·오류 0, A–J View별 렌더, 옛 app.js 재현 시 오류 안내, 빈 View 복구). 데이터·판단·배치 변경 없음 |
+| 시각화 UX 간소화(간단히 보기) | 첫 화면(A 전체 Overview)에 node 122개·edge 205개와 관계 19종이 각기 다른 색·선·화살표로 한꺼번에 그려져 사건 흐름을 읽기 어려움. 실제 데이터 확인: 같은 두 node 사이 여러 관계 0쌍, TEMPORAL_BEFORE 7개 중 같은 유형 다른 경로로 중복되는 것 0개 — 선 수를 줄이려면 분석 layer를 접어야 함 | 시각화 계층만 고침(canonical CSV·DB·world·개입·공존·후보 값 변경 없음). 기본 표시 수준 '간단히': 관측 사건 37개 전부 + 관측 사건 사이 핵심 시간·절차 흐름 35개만 그리고 LATENT·CONTEXT·UNRESOLVED 85개·나머지 관계 170개는 화면에서만 접음(배너에 개수·'삭제 아님' 안내, AUDIT5:SIMPLE_COLLAPSE는 BACKBONE_GUARD보다 먼저 적용). node 선택 1-hop(기본)/2-hop, 메커니즘 펼치기 M1–MB, world·개입·공존 선택이 관련 node·관계를 펼침. 관계 19종 → 표시 유형 3종(기록·절차 진한 실선 / 분석·추론 얇은 점선 / 맥락·제약 옅은 점선), 증거 상태는 선 굵기, 원래 관계 이름·의미는 선택·hover·상세 패널. 주장 수준 상충은 ⊣ 끝 모양·묶지 않음. 같은 두 node·방향·표시 유형·증거 상태 관계는 선 하나로 묶어 누르면 원래 관계 모두 표시, 추이적 축약은 TEMPORAL_BEFORE에만. 범례는 node 4·edge 3, 세부 범례는 '상세 범례 보기'. Audit 5에 edge_type_changed·edge_display_mapping·transitive_misapplied 검사와 접기 순서 검사, regression 5건(69건), UI 테스트 8항목(39항목: 기존 31항목은 '전체' 표시 수준에서 같은 기대값으로 회귀 확인) |
