@@ -1,0 +1,257 @@
+{
+  "checked_at": "2026-10-31T15:47:40Z",
+  "results": {
+    "SIM": {
+      "url": "https://db.history.go.kr/joseon/item/level.do?levelId=jlawb_420_0020_0120_0040",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "SIL1783": {
+      "url": "https://sillok.history.go.kr/id/kva_10706003_004",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "CHUG": {
+      "url": "https://db.history.go.kr/joseon/item/level.do?levelId=jlawb_200r_0020_0020_0050_0080_0080",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "BIB1781": {
+      "url": "https://db.history.go.kr/item/compareViewer.do?levelId=bb_163r_001_03_0590",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "SIL178204": {
+      "url": "https://sillok.history.go.kr/id/kva_10604023_001",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "SIL1783M": {
+      "url": "https://sillok.history.go.kr/id/kva_10705009_002",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "SJW1780": {
+      "url": "https://sjw.history.go.kr/id/SJW-G04030140-02600",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "GYDJ_POPHYEOM": {
+      "url": "",
+      "status": "NO_URL",
+      "detail": "",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "SIL1780J": {
+      "url": "https://sillok.history.go.kr/id/kva_10401001_002",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "BIB178206": {
+      "url": "https://db.history.go.kr/item/compareViewer.do?levelId=bb_164_001_06_0220",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "BIB178207": {
+      "url": "https://db.history.go.kr/common/compareViewer.do?levelId=bb_165_001_01_0070&type=joseon",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "SJW1782": {
+      "url": "https://sjw.history.go.kr/search/inspectionDayList.do?wday=17821006L0",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "SIL1783A": {
+      "url": "https://sillok.history.go.kr/id/kva_10701018_004",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "SIL1783O": {
+      "url": "https://sillok.history.go.kr/id/kva_10710029_003",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "BIB1727": {
+      "url": "https://db.history.go.kr/item/compareViewer.do?levelId=bb_082_001_06_0310",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "BIB1731": {
+      "url": "https://db.history.go.kr/common/compareViewer.do?levelId=bb_090r_001_06_0190&type=joseon",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "BIB1741": {
+      "url": "https://db.history.go.kr/common/compareViewer.do?levelId=bb_109_001_05_0430&type=joseon",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "SIL1793": {
+      "url": "https://sillok.history.go.kr/id/kva_11709016_003",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "HOGU": {
+      "url": "https://db.history.go.kr/joseon/item/level.do?levelId=jlawb_590_0050_0160",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "YEO": {
+      "url": "https://db.history.go.kr/id/sa_037_0010_0210_0120",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "YJSIL1742": {
+      "url": "https://sillok.history.go.kr/id/wua_11801006_001",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "TGJS": {
+      "url": "https://db.history.go.kr/joseon/item/level.do?allViewYn=Y&levelId=jlawb_120_0020_0290",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "DMYJ_MOSAL": {
+      "url": "https://db.history.go.kr/joseon/item/level.do?levelId=jlawb_170_0190_0010_0010",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "DMYJ_MUGO": {
+      "url": "https://db.history.go.kr/joseon/item/level.do?levelId=jlawb_170_0220_0010_0050",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "LEE2009": {
+      "url": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE10953875",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "LEEJW2015": {
+      "url": "https://doi.org/10.33156/philos.2015.40..010",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "NIKH_NH36": {
+      "url": "https://contents.history.go.kr/mobile/nh/view.do?levelId=nh_036_0030_0010_0010",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "ROTHSCHILD2012": {
+      "url": "https://doi.org/10.1037/a0027413",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "JEDWAB2019": {
+      "url": "https://doi.org/10.1007/s10887-019-09167-1",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "GIRARD1986": {
+      "url": "",
+      "status": "NO_URL",
+      "detail": "",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "BOWEN1978": {
+      "url": "",
+      "status": "NO_URL",
+      "detail": "",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "KERR1988": {
+      "url": "",
+      "status": "NO_URL",
+      "detail": "",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "FAO2008": {
+      "url": "https://www.fao.org/agrifood-economics/publications/detail/en/c/122386/",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "ALLEN1983": {
+      "url": "https://doi.org/10.1145/182.358434",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "DECHTER1991": {
+      "url": "https://doi.org/10.1016/0004-3702(91)90006-6",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "DEMOURA2008": {
+      "url": "https://doi.org/10.1007/978-3-540-78800-3_24",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "LIFFITON2016": {
+      "url": "https://doi.org/10.1007/s10601-015-9183-0",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "PEARL2009": {
+      "url": "https://doi.org/10.1017/CBO9780511803161",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "SIGOK_PDF": {
+      "url": "https://drive.google.com/file/d/1hooBf4HYl7ma8Hmyj1BIWThTcKZzCT6w/view",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "SIGOK_CREPORT": {
+      "url": "https://drive.google.com/file/d/1ErIYuXcU-98y2GWldDtUKc3D8Ti9HOp8/view",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "SIGOK_DATASET": {
+      "url": "https://drive.google.com/file/d/1JgnSa9omaxrgCm1f9ksC1FVLMKeKhopE/view",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    },
+    "SIGOK_3CASE": {
+      "url": "https://drive.google.com/file/d/1fm79ThcInNPsOcnumEG_1vTTxA-UztgV/view",
+      "status": "NETWORK_BLOCKED",
+      "detail": "Tunnel connection failed: 403 Forbidden",
+      "checked_at": "2026-10-31T15:47:40Z"
+    }
+  }
+}

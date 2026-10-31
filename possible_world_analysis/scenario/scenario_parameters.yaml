@@ -1,0 +1,29 @@
+# scenario_parameters.yaml — 극중 실험값 전용 계층 (SCENARIO LAYER)
+#
+# ⚠ 이 파일의 모든 수치는 가상이다. 역사적 관측치·추정치가 아니며 01_claim_registry.csv,
+#   02_variables.yaml의 historical 층, sources.yaml에 들어가서는 안 된다(tests/test_scenario_isolation.py가 검사).
+# ⚠ 단위는 일부러 '가상 단위(u)'로 두었다. 석(石)·두(斗) 등 실제 도량형으로 표기하지 않는다.
+#
+# 관계식:  G_가용 = G_보유 − G_양식 − G_종자 − G_기타의무   (02_variables.yaml E8–E10, E12)
+# 판정:    extra_demand > G_가용  → u_extra_exceeds = True (윤씨의 경제적 거절 사유 성립)
+
+unit: "가상 단위 u (실측 아님)"
+status: FICTIONAL_SCENARIO_VALUES
+
+economic_scenarios:
+  ECON_A:
+    label: "추가 요구가 가용량을 넘는 세계 (종자·양식 잠식)"
+    G_hold: 100        # 출연 이후 남은 보유량(가상)
+    G_food: 45         # 식솔·소작 관련 양식(가상)
+    G_seed: 30         # 다음 파종 종자(가상)
+    G_other: 10        # 친정 부양 등 기타 의무(가상)
+    initial_contribution: 40   # E8 최초 출연(가상)
+    extra_demand: 25   # E9 추가 요구(가상)
+  ECON_B:
+    label: "추가 요구가 가용량 이내인 세계 (거절에 비경제적 사유 필요)"
+    G_hold: 100
+    G_food: 45
+    G_seed: 30
+    G_other: 10
+    initial_contribution: 40
+    extra_demand: 10

@@ -1,0 +1,1082 @@
+{
+  "index_note": "날짜는 음력 서수 인덱스(30일 월·윤달 미반영) 근사이며 양력 변환이 아님",
+  "modes": {
+    "H_SIM": {
+      "desc": "역사 고정(《심리록》 경자 6월 성옥 채택)",
+      "result": "SAT",
+      "hard": [
+        "STR_TENURE_JSJ",
+        "STR_SUCCESSOR",
+        "STR_TENURE_KJR",
+        "STR_BURIAL_AFTER_DEATH",
+        "STR_EXAM_ORDER",
+        "STR_DEATH_BEFORE_ACCUSE",
+        "STR_DETAIN",
+        "STR_REVIEW_AFTER_OKSA",
+        "STR_REINVEST_IN_TENURE",
+        "STR_KJR_EXAMINER",
+        "STR_LATE_ORDER",
+        "STR_POSTHUMOUS",
+        "STR_INSTIGATE_BEFORE_ACCUSE",
+        "STR_RELIEF_BY_KJR",
+        "STR_COMPLAINT_AFTER_RELIEF",
+        "INST_POPHYEOM_DATES",
+        "INST_POPHYEOM_SITTING",
+        "HT_JSJ_ARRIVE_SUMMER",
+        "HT_JSJ_IN_OFFICE_1781_9",
+        "HT_LKY_BY_1782_4",
+        "HT_JSJ_DAESASEONG_1783_5",
+        "HC_SONG",
+        "HC_INSTIGATION",
+        "HC_ACCUSATION",
+        "HC_OKSA",
+        "HC_NO_DIRECT_REINVEST",
+        "HC_HWAN_ILL",
+        "HC_BOKGEOM_NOT_CORRECTED",
+        "HC_CHOGEOM_ERROR",
+        "HT_SIM_OKSA_1780_6",
+        "HT_SIL_REVIEW_SPRING_1781",
+        "HT_SIM_HYEONGJO_1781_8",
+        "HT_JOKJAENG_1782_7",
+        "HT_FINAL_1783_6_3",
+        "HT_BURIAL_5",
+        "HT_ACCUSE_40"
+      ],
+      "windows": {
+        "JSJ_ARRIVE": [
+          "1780년 음력 4월 1일(서수 근사)",
+          "1780년 음력 6월 30일(서수 근사)"
+        ],
+        "POPHYEOM": [
+          "1778년 음력 6월 15일(서수 근사)",
+          "1784년 음력 12월 15일(서수 근사)"
+        ],
+        "DEATH": [
+          "1778년 음력 1월 1일(서수 근사)",
+          "1780년 음력 5월 24일(서수 근사)"
+        ],
+        "ACCUSE": [
+          "1778년 음력 2월 6일(서수 근사)",
+          "1780년 음력 6월 29일(서수 근사)"
+        ],
+        "OKSA": [
+          "1780년 음력 6월 1일(서수 근사)",
+          "1780년 음력 6월 30일(서수 근사)"
+        ],
+        "REVIEW_ORDER": [
+          "1781년 음력 1월 1일(서수 근사)",
+          "1781년 음력 3월 30일(서수 근사)"
+        ],
+        "JSJ_END": [
+          "1781년 음력 9월 29일(서수 근사)",
+          "1782년 음력 4월 23일(서수 근사)"
+        ]
+      }
+    },
+    "H_SIL": {
+      "desc": "역사 고정(《정조실록》 '事在辛丑'을 성옥 연도로 해석해 채택)",
+      "result": "SAT",
+      "hard": [
+        "STR_TENURE_JSJ",
+        "STR_SUCCESSOR",
+        "STR_TENURE_KJR",
+        "STR_BURIAL_AFTER_DEATH",
+        "STR_EXAM_ORDER",
+        "STR_DEATH_BEFORE_ACCUSE",
+        "STR_DETAIN",
+        "STR_REVIEW_AFTER_OKSA",
+        "STR_REINVEST_IN_TENURE",
+        "STR_KJR_EXAMINER",
+        "STR_LATE_ORDER",
+        "STR_POSTHUMOUS",
+        "STR_INSTIGATE_BEFORE_ACCUSE",
+        "STR_RELIEF_BY_KJR",
+        "STR_COMPLAINT_AFTER_RELIEF",
+        "INST_POPHYEOM_DATES",
+        "INST_POPHYEOM_SITTING",
+        "HT_JSJ_ARRIVE_SUMMER",
+        "HT_JSJ_IN_OFFICE_1781_9",
+        "HT_LKY_BY_1782_4",
+        "HT_JSJ_DAESASEONG_1783_5",
+        "HC_SONG",
+        "HC_INSTIGATION",
+        "HC_ACCUSATION",
+        "HC_OKSA",
+        "HC_NO_DIRECT_REINVEST",
+        "HC_HWAN_ILL",
+        "HC_BOKGEOM_NOT_CORRECTED",
+        "HC_CHOGEOM_ERROR",
+        "HT_SIL_CASE_1781",
+        "HT_SIL_REVIEW_SPRING_1781",
+        "HT_SIM_HYEONGJO_1781_8",
+        "HT_JOKJAENG_1782_7",
+        "HT_FINAL_1783_6_3",
+        "HT_BURIAL_5",
+        "HT_ACCUSE_40"
+      ],
+      "windows": {
+        "JSJ_ARRIVE": [
+          "1780년 음력 4월 1일(서수 근사)",
+          "1780년 음력 6월 30일(서수 근사)"
+        ],
+        "POPHYEOM": [
+          "1778년 음력 6월 15일(서수 근사)",
+          "1784년 음력 12월 15일(서수 근사)"
+        ],
+        "DEATH": [
+          "1778년 음력 1월 1일(서수 근사)",
+          "1781년 음력 2월 23일(서수 근사)"
+        ],
+        "ACCUSE": [
+          "1778년 음력 2월 6일(서수 근사)",
+          "1781년 음력 3월 28일(서수 근사)"
+        ],
+        "OKSA": [
+          "1781년 음력 1월 1일(서수 근사)",
+          "1781년 음력 3월 29일(서수 근사)"
+        ],
+        "REVIEW_ORDER": [
+          "1781년 음력 1월 2일(서수 근사)",
+          "1781년 음력 3월 30일(서수 근사)"
+        ],
+        "JSJ_END": [
+          "1781년 음력 9월 29일(서수 근사)",
+          "1782년 음력 4월 23일(서수 근사)"
+        ]
+      }
+    },
+    "H_BOTH": {
+      "desc": "상충 사료를 모두 절대 사실로 고정(금지된 방식의 시연)",
+      "result": "UNSAT",
+      "hard": [
+        "STR_TENURE_JSJ",
+        "STR_SUCCESSOR",
+        "STR_TENURE_KJR",
+        "STR_BURIAL_AFTER_DEATH",
+        "STR_EXAM_ORDER",
+        "STR_DEATH_BEFORE_ACCUSE",
+        "STR_DETAIN",
+        "STR_REVIEW_AFTER_OKSA",
+        "STR_REINVEST_IN_TENURE",
+        "STR_KJR_EXAMINER",
+        "STR_LATE_ORDER",
+        "STR_POSTHUMOUS",
+        "STR_INSTIGATE_BEFORE_ACCUSE",
+        "STR_RELIEF_BY_KJR",
+        "STR_COMPLAINT_AFTER_RELIEF",
+        "INST_POPHYEOM_DATES",
+        "INST_POPHYEOM_SITTING",
+        "HT_JSJ_ARRIVE_SUMMER",
+        "HT_JSJ_IN_OFFICE_1781_9",
+        "HT_LKY_BY_1782_4",
+        "HT_JSJ_DAESASEONG_1783_5",
+        "HT_SIM_OKSA_1780_6",
+        "HT_SIL_CASE_1781",
+        "HT_SIL_REVIEW_SPRING_1781",
+        "HT_SIM_HYEONGJO_1781_8",
+        "HT_JOKJAENG_1782_7",
+        "HT_FINAL_1783_6_3",
+        "HT_BURIAL_5",
+        "HT_ACCUSE_40",
+        "HC_SONG",
+        "HC_INSTIGATION",
+        "HC_ACCUSATION",
+        "HC_OKSA",
+        "HC_NO_DIRECT_REINVEST",
+        "HC_HWAN_ILL",
+        "HC_BOKGEOM_NOT_CORRECTED",
+        "HC_CHOGEOM_ERROR"
+      ],
+      "mus": [
+        [
+          {
+            "id": "HT_SIL_CASE_1781",
+            "layer": "HIST_T",
+            "text": "《정조실록》 '事在辛丑' → 성옥이 신축(1781)년",
+            "basis": [
+              "CL-SIL-01",
+              "SIL1783"
+            ],
+            "status": "사료 간 충돌·지시 대상 해석 필요"
+          },
+          {
+            "id": "HT_SIM_OKSA_1780_6",
+            "layer": "HIST_T",
+            "text": "《심리록》 경자(1780) 6월 성옥",
+            "basis": [
+              "CL-SIM-01",
+              "SIM"
+            ],
+            "status": "사료 간 충돌"
+          }
+        ]
+      ],
+      "mcs": [
+        [
+          {
+            "id": "HT_SIL_CASE_1781",
+            "layer": "HIST_T",
+            "text": "《정조실록》 '事在辛丑' → 성옥이 신축(1781)년",
+            "basis": [
+              "CL-SIL-01",
+              "SIL1783"
+            ],
+            "status": "사료 간 충돌·지시 대상 해석 필요"
+          }
+        ],
+        [
+          {
+            "id": "HT_SIM_OKSA_1780_6",
+            "layer": "HIST_T",
+            "text": "《심리록》 경자(1780) 6월 성옥",
+            "basis": [
+              "CL-SIM-01",
+              "SIM"
+            ],
+            "status": "사료 간 충돌"
+          }
+        ]
+      ]
+    },
+    "F_ON_H_SIM": {
+      "desc": "극중 필수 제약 + H_SIM 전체",
+      "result": "UNSAT",
+      "hard": [
+        "STR_TENURE_JSJ",
+        "STR_SUCCESSOR",
+        "STR_TENURE_KJR",
+        "STR_BURIAL_AFTER_DEATH",
+        "STR_EXAM_ORDER",
+        "STR_DEATH_BEFORE_ACCUSE",
+        "STR_DETAIN",
+        "STR_REVIEW_AFTER_OKSA",
+        "STR_REINVEST_IN_TENURE",
+        "STR_KJR_EXAMINER",
+        "STR_LATE_ORDER",
+        "STR_POSTHUMOUS",
+        "STR_INSTIGATE_BEFORE_ACCUSE",
+        "STR_RELIEF_BY_KJR",
+        "STR_COMPLAINT_AFTER_RELIEF",
+        "INST_POPHYEOM_DATES",
+        "INST_POPHYEOM_SITTING",
+        "HT_JSJ_ARRIVE_SUMMER",
+        "HT_JSJ_IN_OFFICE_1781_9",
+        "HT_LKY_BY_1782_4",
+        "HT_JSJ_DAESASEONG_1783_5",
+        "HC_SONG",
+        "HC_INSTIGATION",
+        "HC_ACCUSATION",
+        "HC_OKSA",
+        "HC_NO_DIRECT_REINVEST",
+        "HC_HWAN_ILL",
+        "HC_BOKGEOM_NOT_CORRECTED",
+        "HC_CHOGEOM_ERROR",
+        "FR_ORDER",
+        "FR_EVALUATOR",
+        "FR_RELIEF_BEFORE_POPHYEOM",
+        "FR_HOSTILITY_BEFORE_DEATH",
+        "FR_DUAL_OUTCOME",
+        "FR_HWAN_ACCUSES",
+        "FR_JSJ_MOTIVE",
+        "FR_INVESTIGABLE",
+        "HT_SIM_OKSA_1780_6",
+        "HT_SIL_REVIEW_SPRING_1781",
+        "HT_SIM_HYEONGJO_1781_8",
+        "HT_JOKJAENG_1782_7",
+        "HT_FINAL_1783_6_3",
+        "HT_BURIAL_5",
+        "HT_ACCUSE_40"
+      ],
+      "mus": [
+        [
+          {
+            "id": "FR_ORDER",
+            "layer": "FILM_REQ",
+            "text": "조상진 부임 < 포폄 < 윤씨 사망 < 옥사 성립",
+            "basis": [
+              "CL-FILM-REQ-01"
+            ],
+            "status": ""
+          },
+          {
+            "id": "HT_ACCUSE_40",
+            "layer": "HIST_T",
+            "text": "사망 후 약 40일 고발·검험(허용 35~45일)",
+            "basis": [
+              "CL-SIM-06",
+              "CL-CHUG-04"
+            ],
+            "status": "간접 확인(원문 미확보)"
+          },
+          {
+            "id": "HT_JSJ_ARRIVE_SUMMER",
+            "layer": "HIST_TEN",
+            "text": "조상진 1780년 여름(음력 4~6월) 부임",
+            "basis": [
+              "CL-OFF-04"
+            ],
+            "status": "미확인"
+          },
+          {
+            "id": "HT_SIM_OKSA_1780_6",
+            "layer": "HIST_T",
+            "text": "《심리록》 경자(1780) 6월 성옥",
+            "basis": [
+              "CL-SIM-01",
+              "SIM"
+            ],
+            "status": "사료 간 충돌"
+          },
+          {
+            "id": "INST_POPHYEOM_DATES",
+            "layer": "INST",
+            "text": "정기 포폄은 음력 6월·12월 (15일로 대표)",
+            "basis": [
+              "CL-INST-01",
+              "GYDJ_POPHYEOM"
+            ],
+            "status": "미확인(조문 원문 미확보)"
+          }
+        ]
+      ],
+      "mcs": [
+        [
+          {
+            "id": "FR_ORDER",
+            "layer": "FILM_REQ",
+            "text": "조상진 부임 < 포폄 < 윤씨 사망 < 옥사 성립",
+            "basis": [
+              "CL-FILM-REQ-01"
+            ],
+            "status": ""
+          }
+        ],
+        [
+          {
+            "id": "HT_ACCUSE_40",
+            "layer": "HIST_T",
+            "text": "사망 후 약 40일 고발·검험(허용 35~45일)",
+            "basis": [
+              "CL-SIM-06",
+              "CL-CHUG-04"
+            ],
+            "status": "간접 확인(원문 미확보)"
+          }
+        ],
+        [
+          {
+            "id": "HT_JSJ_ARRIVE_SUMMER",
+            "layer": "HIST_TEN",
+            "text": "조상진 1780년 여름(음력 4~6월) 부임",
+            "basis": [
+              "CL-OFF-04"
+            ],
+            "status": "미확인"
+          }
+        ],
+        [
+          {
+            "id": "HT_SIM_OKSA_1780_6",
+            "layer": "HIST_T",
+            "text": "《심리록》 경자(1780) 6월 성옥",
+            "basis": [
+              "CL-SIM-01",
+              "SIM"
+            ],
+            "status": "사료 간 충돌"
+          }
+        ],
+        [
+          {
+            "id": "INST_POPHYEOM_DATES",
+            "layer": "INST",
+            "text": "정기 포폄은 음력 6월·12월 (15일로 대표)",
+            "basis": [
+              "CL-INST-01",
+              "GYDJ_POPHYEOM"
+            ],
+            "status": "미확인(조문 원문 미확보)"
+          }
+        ]
+      ]
+    },
+    "F_ON_H_SIL": {
+      "desc": "극중 필수 제약 + H_SIL 전체",
+      "result": "SAT",
+      "hard": [
+        "STR_TENURE_JSJ",
+        "STR_SUCCESSOR",
+        "STR_TENURE_KJR",
+        "STR_BURIAL_AFTER_DEATH",
+        "STR_EXAM_ORDER",
+        "STR_DEATH_BEFORE_ACCUSE",
+        "STR_DETAIN",
+        "STR_REVIEW_AFTER_OKSA",
+        "STR_REINVEST_IN_TENURE",
+        "STR_KJR_EXAMINER",
+        "STR_LATE_ORDER",
+        "STR_POSTHUMOUS",
+        "STR_INSTIGATE_BEFORE_ACCUSE",
+        "STR_RELIEF_BY_KJR",
+        "STR_COMPLAINT_AFTER_RELIEF",
+        "INST_POPHYEOM_DATES",
+        "INST_POPHYEOM_SITTING",
+        "HT_JSJ_ARRIVE_SUMMER",
+        "HT_JSJ_IN_OFFICE_1781_9",
+        "HT_LKY_BY_1782_4",
+        "HT_JSJ_DAESASEONG_1783_5",
+        "HC_SONG",
+        "HC_INSTIGATION",
+        "HC_ACCUSATION",
+        "HC_OKSA",
+        "HC_NO_DIRECT_REINVEST",
+        "HC_HWAN_ILL",
+        "HC_BOKGEOM_NOT_CORRECTED",
+        "HC_CHOGEOM_ERROR",
+        "FR_ORDER",
+        "FR_EVALUATOR",
+        "FR_RELIEF_BEFORE_POPHYEOM",
+        "FR_HOSTILITY_BEFORE_DEATH",
+        "FR_DUAL_OUTCOME",
+        "FR_HWAN_ACCUSES",
+        "FR_JSJ_MOTIVE",
+        "FR_INVESTIGABLE",
+        "HT_SIL_CASE_1781",
+        "HT_SIL_REVIEW_SPRING_1781",
+        "HT_SIM_HYEONGJO_1781_8",
+        "HT_JOKJAENG_1782_7",
+        "HT_FINAL_1783_6_3",
+        "HT_BURIAL_5",
+        "HT_ACCUSE_40"
+      ],
+      "windows": {
+        "JSJ_ARRIVE": [
+          "1780년 음력 4월 1일(서수 근사)",
+          "1780년 음력 6월 30일(서수 근사)"
+        ],
+        "POPHYEOM": [
+          "1780년 음력 6월 15일(서수 근사)",
+          "1780년 음력 12월 15일(서수 근사)"
+        ],
+        "DEATH": [
+          "1780년 음력 6월 16일(서수 근사)",
+          "1781년 음력 2월 23일(서수 근사)"
+        ],
+        "ACCUSE": [
+          "1780년 음력 7월 21일(서수 근사)",
+          "1781년 음력 3월 28일(서수 근사)"
+        ],
+        "OKSA": [
+          "1781년 음력 1월 1일(서수 근사)",
+          "1781년 음력 3월 29일(서수 근사)"
+        ],
+        "REVIEW_ORDER": [
+          "1781년 음력 1월 2일(서수 근사)",
+          "1781년 음력 3월 30일(서수 근사)"
+        ],
+        "JSJ_END": [
+          "1781년 음력 9월 29일(서수 근사)",
+          "1782년 음력 4월 23일(서수 근사)"
+        ]
+      }
+    },
+    "F_SYNOPSIS_V4": {
+      "desc": "극중 필수 제약 + 인사 연표 + 시놉시스 v4 날짜 선택(사료 연대 앵커 미적용)",
+      "result": "UNSAT",
+      "hard": [
+        "STR_TENURE_JSJ",
+        "STR_SUCCESSOR",
+        "STR_TENURE_KJR",
+        "STR_BURIAL_AFTER_DEATH",
+        "STR_EXAM_ORDER",
+        "STR_DEATH_BEFORE_ACCUSE",
+        "STR_DETAIN",
+        "STR_REVIEW_AFTER_OKSA",
+        "STR_REINVEST_IN_TENURE",
+        "STR_KJR_EXAMINER",
+        "STR_LATE_ORDER",
+        "STR_POSTHUMOUS",
+        "STR_INSTIGATE_BEFORE_ACCUSE",
+        "STR_RELIEF_BY_KJR",
+        "STR_COMPLAINT_AFTER_RELIEF",
+        "INST_POPHYEOM_DATES",
+        "INST_POPHYEOM_SITTING",
+        "HT_JSJ_ARRIVE_SUMMER",
+        "HT_JSJ_IN_OFFICE_1781_9",
+        "HT_LKY_BY_1782_4",
+        "HT_JSJ_DAESASEONG_1783_5",
+        "HC_SONG",
+        "HC_INSTIGATION",
+        "HC_ACCUSATION",
+        "HC_OKSA",
+        "HC_NO_DIRECT_REINVEST",
+        "HC_HWAN_ILL",
+        "HC_BOKGEOM_NOT_CORRECTED",
+        "HC_CHOGEOM_ERROR",
+        "FR_ORDER",
+        "FR_EVALUATOR",
+        "FR_RELIEF_BEFORE_POPHYEOM",
+        "FR_HOSTILITY_BEFORE_DEATH",
+        "FR_DUAL_OUTCOME",
+        "FR_HWAN_ACCUSES",
+        "FR_JSJ_MOTIVE",
+        "FR_INVESTIGABLE",
+        "FS_DEATH_1780_4_LATE",
+        "FS_CHOGEOM_1780_6",
+        "FS_JSJ_ARRIVE_1780_6",
+        "FS_REVIEW_1780_12",
+        "FS_JOKJAENG_1781_SPRING",
+        "FS_FINAL_1781_H1",
+        "FS_OFFICIALS_IN_OFFICE_AT_END"
+      ],
+      "mus": [
+        [
+          {
+            "id": "FR_ORDER",
+            "layer": "FILM_REQ",
+            "text": "조상진 부임 < 포폄 < 윤씨 사망 < 옥사 성립",
+            "basis": [
+              "CL-FILM-REQ-01"
+            ],
+            "status": ""
+          },
+          {
+            "id": "FS_DEATH_1780_4_LATE",
+            "layer": "FILM_SYN",
+            "text": "윤씨 사망 1780 L4 하순",
+            "basis": [
+              "CL-FILM-03"
+            ],
+            "status": ""
+          },
+          {
+            "id": "FS_JSJ_ARRIVE_1780_6",
+            "layer": "FILM_SYN",
+            "text": "조상진 1780 L6 부임",
+            "basis": [
+              "CL-FILM-06"
+            ],
+            "status": ""
+          }
+        ],
+        [
+          {
+            "id": "FR_ORDER",
+            "layer": "FILM_REQ",
+            "text": "조상진 부임 < 포폄 < 윤씨 사망 < 옥사 성립",
+            "basis": [
+              "CL-FILM-REQ-01"
+            ],
+            "status": ""
+          },
+          {
+            "id": "FS_DEATH_1780_4_LATE",
+            "layer": "FILM_SYN",
+            "text": "윤씨 사망 1780 L4 하순",
+            "basis": [
+              "CL-FILM-03"
+            ],
+            "status": ""
+          },
+          {
+            "id": "HT_JSJ_ARRIVE_SUMMER",
+            "layer": "HIST_TEN",
+            "text": "조상진 1780년 여름(음력 4~6월) 부임",
+            "basis": [
+              "CL-OFF-04"
+            ],
+            "status": "미확인"
+          },
+          {
+            "id": "INST_POPHYEOM_DATES",
+            "layer": "INST",
+            "text": "정기 포폄은 음력 6월·12월 (15일로 대표)",
+            "basis": [
+              "CL-INST-01",
+              "GYDJ_POPHYEOM"
+            ],
+            "status": "미확인(조문 원문 미확보)"
+          }
+        ]
+      ],
+      "mcs": [
+        [
+          {
+            "id": "FR_ORDER",
+            "layer": "FILM_REQ",
+            "text": "조상진 부임 < 포폄 < 윤씨 사망 < 옥사 성립",
+            "basis": [
+              "CL-FILM-REQ-01"
+            ],
+            "status": ""
+          }
+        ],
+        [
+          {
+            "id": "FS_DEATH_1780_4_LATE",
+            "layer": "FILM_SYN",
+            "text": "윤씨 사망 1780 L4 하순",
+            "basis": [
+              "CL-FILM-03"
+            ],
+            "status": ""
+          }
+        ],
+        [
+          {
+            "id": "FS_JSJ_ARRIVE_1780_6",
+            "layer": "FILM_SYN",
+            "text": "조상진 1780 L6 부임",
+            "basis": [
+              "CL-FILM-06"
+            ],
+            "status": ""
+          },
+          {
+            "id": "HT_JSJ_ARRIVE_SUMMER",
+            "layer": "HIST_TEN",
+            "text": "조상진 1780년 여름(음력 4~6월) 부임",
+            "basis": [
+              "CL-OFF-04"
+            ],
+            "status": "미확인"
+          }
+        ],
+        [
+          {
+            "id": "FS_JSJ_ARRIVE_1780_6",
+            "layer": "FILM_SYN",
+            "text": "조상진 1780 L6 부임",
+            "basis": [
+              "CL-FILM-06"
+            ],
+            "status": ""
+          },
+          {
+            "id": "INST_POPHYEOM_DATES",
+            "layer": "INST",
+            "text": "정기 포폄은 음력 6월·12월 (15일로 대표)",
+            "basis": [
+              "CL-INST-01",
+              "GYDJ_POPHYEOM"
+            ],
+            "status": "미확인(조문 원문 미확보)"
+          }
+        ]
+      ]
+    },
+    "F_ADAPT": {
+      "desc": "MODE F: 극중 필수 + 제도 + 인사 연표 유지, 사료 연대 앵커는 최소 수정 대상",
+      "result": "SAT",
+      "hard": [
+        "STR_TENURE_JSJ",
+        "STR_SUCCESSOR",
+        "STR_TENURE_KJR",
+        "STR_BURIAL_AFTER_DEATH",
+        "STR_EXAM_ORDER",
+        "STR_DEATH_BEFORE_ACCUSE",
+        "STR_DETAIN",
+        "STR_REVIEW_AFTER_OKSA",
+        "STR_REINVEST_IN_TENURE",
+        "STR_KJR_EXAMINER",
+        "STR_LATE_ORDER",
+        "STR_POSTHUMOUS",
+        "STR_INSTIGATE_BEFORE_ACCUSE",
+        "STR_RELIEF_BY_KJR",
+        "STR_COMPLAINT_AFTER_RELIEF",
+        "INST_POPHYEOM_DATES",
+        "INST_POPHYEOM_SITTING",
+        "HT_JSJ_ARRIVE_SUMMER",
+        "HT_JSJ_IN_OFFICE_1781_9",
+        "HT_LKY_BY_1782_4",
+        "HT_JSJ_DAESASEONG_1783_5",
+        "HC_SONG",
+        "HC_INSTIGATION",
+        "HC_ACCUSATION",
+        "HC_OKSA",
+        "HC_NO_DIRECT_REINVEST",
+        "HC_HWAN_ILL",
+        "HC_BOKGEOM_NOT_CORRECTED",
+        "HC_CHOGEOM_ERROR",
+        "FR_ORDER",
+        "FR_EVALUATOR",
+        "FR_RELIEF_BEFORE_POPHYEOM",
+        "FR_HOSTILITY_BEFORE_DEATH",
+        "FR_DUAL_OUTCOME",
+        "FR_HWAN_ACCUSES",
+        "FR_JSJ_MOTIVE",
+        "FR_INVESTIGABLE"
+      ],
+      "windows": {
+        "JSJ_ARRIVE": [
+          "1780년 음력 4월 1일(서수 근사)",
+          "1780년 음력 6월 30일(서수 근사)"
+        ],
+        "POPHYEOM": [
+          "1780년 음력 6월 15일(서수 근사)",
+          "1781년 음력 12월 15일(서수 근사)"
+        ],
+        "DEATH": [
+          "1780년 음력 6월 16일(서수 근사)",
+          "1782년 음력 4월 18일(서수 근사)"
+        ],
+        "ACCUSE": [
+          "1780년 음력 6월 18일(서수 근사)",
+          "1782년 음력 4월 20일(서수 근사)"
+        ],
+        "OKSA": [
+          "1780년 음력 6월 19일(서수 근사)",
+          "1782년 음력 4월 21일(서수 근사)"
+        ],
+        "REVIEW_ORDER": [
+          "1780년 음력 6월 20일(서수 근사)",
+          "1782년 음력 4월 22일(서수 근사)"
+        ],
+        "JSJ_END": [
+          "1781년 음력 9월 29일(서수 근사)",
+          "1782년 음력 4월 23일(서수 근사)"
+        ]
+      }
+    }
+  },
+  "F_ADAPT_anchor_corrections": [
+    [
+      {
+        "id": "HT_SIM_OKSA_1780_6",
+        "layer": "HIST_T",
+        "text": "《심리록》 경자(1780) 6월 성옥",
+        "basis": [
+          "CL-SIM-01",
+          "SIM"
+        ],
+        "status": "사료 간 충돌"
+      }
+    ],
+    [
+      {
+        "id": "HT_ACCUSE_40",
+        "layer": "HIST_T",
+        "text": "사망 후 약 40일 고발·검험(허용 35~45일)",
+        "basis": [
+          "CL-SIM-06",
+          "CL-CHUG-04"
+        ],
+        "status": "간접 확인(원문 미확보)"
+      },
+      {
+        "id": "HT_SIL_CASE_1781",
+        "layer": "HIST_T",
+        "text": "《정조실록》 '事在辛丑' → 성옥이 신축(1781)년",
+        "basis": [
+          "CL-SIL-01",
+          "SIL1783"
+        ],
+        "status": "사료 간 충돌·지시 대상 해석 필요"
+      }
+    ]
+  ],
+  "F_ADAPT_witnesses": [
+    {
+      "relaxed_anchors": [
+        "HT_SIM_OKSA_1780_6"
+      ],
+      "kept_anchors": [
+        "HT_SIL_CASE_1781",
+        "HT_SIL_REVIEW_SPRING_1781",
+        "HT_SIM_HYEONGJO_1781_8",
+        "HT_JOKJAENG_1782_7",
+        "HT_FINAL_1783_6_3",
+        "HT_BURIAL_5",
+        "HT_ACCUSE_40"
+      ],
+      "witness": {
+        "events": {
+          "KJR_START": "1780년 음력 6월 13일(서수 근사)",
+          "KJR_END": "1780년 음력 7월 21일(서수 근사)",
+          "JSJ_ARRIVE": "1780년 음력 6월 1일(서수 근사)",
+          "JSJ_END": "1781년 음력 9월 29일(서수 근사)",
+          "LKY_START": "1781년 음력 9월 29일(서수 근사)",
+          "RELIEF_ADMIN": "1780년 음력 6월 13일(서수 근사)",
+          "COMPLAINT": "1780년 음력 6월 14일(서수 근사)",
+          "POPHYEOM": "1780년 음력 6월 15일(서수 근사)",
+          "HOSTILITY": "1780년 음력 6월 15일(서수 근사)",
+          "DEATH": "1780년 음력 6월 16일(서수 근사)",
+          "BURIAL": "1780년 음력 6월 20일(서수 근사)",
+          "MONEY_DEMAND": "1780년 음력 6월 17일(서수 근사)",
+          "SONG": "1780년 음력 6월 17일(서수 근사)",
+          "INSTIGATE": "1780년 음력 6월 17일(서수 근사)",
+          "ACCUSE": "1780년 음력 7월 21일(서수 근사)",
+          "CHOGEOM": "1780년 음력 7월 21일(서수 근사)",
+          "BOKGEOM": "1781년 음력 1월 1일(서수 근사)",
+          "OKSA": "1781년 음력 1월 1일(서수 근사)",
+          "DETAIN_START": "1780년 음력 7월 21일(서수 근사)",
+          "REVIEW_ORDER": "1781년 음력 1월 2일(서수 근사)",
+          "JSJ_REINVEST": "1781년 음력 1월 3일(서수 근사)",
+          "HYEONGJO_1781_8": "1781년 음력 8월 26일(서수 근사)",
+          "JOKJAENG": "1782년 음력 7월 28일(서수 근사)",
+          "FINAL": "1783년 음력 6월 3일(서수 근사)",
+          "DETAIN_END": "1783년 음력 6월 3일(서수 근사)",
+          "JSJ_LEARN": "1781년 음력 1월 3일(서수 근사)",
+          "LGW_PRE_CONTACT": "1780년 음력 1월 1일(서수 근사)"
+        },
+        "kept_preferences": [
+          "FS_JSJ_ARRIVE_1780_6"
+        ],
+        "dropped_preferences": [
+          "FS_DEATH_1780_4_LATE",
+          "FS_CHOGEOM_1780_6",
+          "FS_REVIEW_1780_12",
+          "FS_JOKJAENG_1781_SPRING",
+          "FS_FINAL_1781_H1",
+          "FS_OFFICIALS_IN_OFFICE_AT_END"
+        ]
+      }
+    },
+    {
+      "relaxed_anchors": [
+        "HT_ACCUSE_40",
+        "HT_SIL_CASE_1781"
+      ],
+      "kept_anchors": [
+        "HT_SIM_OKSA_1780_6",
+        "HT_SIL_REVIEW_SPRING_1781",
+        "HT_SIM_HYEONGJO_1781_8",
+        "HT_JOKJAENG_1782_7",
+        "HT_FINAL_1783_6_3",
+        "HT_BURIAL_5"
+      ],
+      "witness": {
+        "events": {
+          "KJR_START": "1780년 음력 6월 13일(서수 근사)",
+          "KJR_END": "1780년 음력 6월 18일(서수 근사)",
+          "JSJ_ARRIVE": "1780년 음력 6월 1일(서수 근사)",
+          "JSJ_END": "1782년 음력 4월 23일(서수 근사)",
+          "LKY_START": "1782년 음력 4월 23일(서수 근사)",
+          "RELIEF_ADMIN": "1780년 음력 6월 13일(서수 근사)",
+          "COMPLAINT": "1780년 음력 6월 14일(서수 근사)",
+          "POPHYEOM": "1780년 음력 6월 15일(서수 근사)",
+          "HOSTILITY": "1780년 음력 6월 15일(서수 근사)",
+          "DEATH": "1780년 음력 6월 16일(서수 근사)",
+          "BURIAL": "1780년 음력 6월 20일(서수 근사)",
+          "MONEY_DEMAND": "1780년 음력 6월 17일(서수 근사)",
+          "SONG": "1780년 음력 6월 17일(서수 근사)",
+          "INSTIGATE": "1780년 음력 6월 17일(서수 근사)",
+          "ACCUSE": "1780년 음력 6월 18일(서수 근사)",
+          "CHOGEOM": "1780년 음력 6월 18일(서수 근사)",
+          "BOKGEOM": "1780년 음력 6월 19일(서수 근사)",
+          "OKSA": "1780년 음력 6월 19일(서수 근사)",
+          "DETAIN_START": "1780년 음력 6월 18일(서수 근사)",
+          "REVIEW_ORDER": "1781년 음력 3월 30일(서수 근사)",
+          "JSJ_REINVEST": "1781년 음력 4월 1일(서수 근사)",
+          "HYEONGJO_1781_8": "1781년 음력 8월 1일(서수 근사)",
+          "JOKJAENG": "1782년 음력 7월 1일(서수 근사)",
+          "FINAL": "1783년 음력 6월 3일(서수 근사)",
+          "DETAIN_END": "1783년 음력 6월 3일(서수 근사)",
+          "JSJ_LEARN": "1781년 음력 4월 2일(서수 근사)",
+          "LGW_PRE_CONTACT": "1780년 음력 1월 1일(서수 근사)"
+        },
+        "kept_preferences": [
+          "FS_CHOGEOM_1780_6",
+          "FS_JSJ_ARRIVE_1780_6"
+        ],
+        "dropped_preferences": [
+          "FS_DEATH_1780_4_LATE",
+          "FS_REVIEW_1780_12",
+          "FS_JOKJAENG_1781_SPRING",
+          "FS_FINAL_1781_H1",
+          "FS_OFFICIALS_IN_OFFICE_AT_END"
+        ]
+      }
+    }
+  ],
+  "F_ADAPT_death_window_per_correction": {
+    "HT_SIM_OKSA_1780_6": [
+      "1780년 음력 6월 16일(서수 근사)",
+      "1781년 음력 2월 23일(서수 근사)"
+    ],
+    "HT_ACCUSE_40+HT_SIL_CASE_1781": [
+      "1780년 음력 6월 16일(서수 근사)",
+      "1780년 음력 6월 27일(서수 근사)"
+    ]
+  },
+  "F_COMPRESSED": {
+    "forced_synopsis_choices": [
+      "FS_REVIEW_1780_12",
+      "FS_JOKJAENG_1781_SPRING",
+      "FS_FINAL_1781_H1",
+      "FS_OFFICIALS_IN_OFFICE_AT_END"
+    ],
+    "base_result": "SAT",
+    "anchor_corrections": [
+      [
+        {
+          "id": "HT_ACCUSE_40",
+          "layer": "HIST_T",
+          "text": "사망 후 약 40일 고발·검험(허용 35~45일)",
+          "basis": [
+            "CL-SIM-06",
+            "CL-CHUG-04"
+          ],
+          "status": "간접 확인(원문 미확보)"
+        },
+        {
+          "id": "HT_FINAL_1783_6_3",
+          "layer": "HIST_T",
+          "text": "최종 판부 1783 L6 3",
+          "basis": [
+            "CL-SIL-07",
+            "SIL1783"
+          ],
+          "status": "간접 확인"
+        },
+        {
+          "id": "HT_JOKJAENG_1782_7",
+          "layer": "HIST_T",
+          "text": "조재정 격쟁 1782 L7",
+          "basis": [
+            "CL-SIM-04",
+            "SIM"
+          ],
+          "status": "간접 확인"
+        },
+        {
+          "id": "HT_SIL_CASE_1781",
+          "layer": "HIST_T",
+          "text": "《정조실록》 '事在辛丑' → 성옥이 신축(1781)년",
+          "basis": [
+            "CL-SIL-01",
+            "SIL1783"
+          ],
+          "status": "사료 간 충돌·지시 대상 해석 필요"
+        },
+        {
+          "id": "HT_SIL_REVIEW_SPRING_1781",
+          "layer": "HIST_T",
+          "text": "재조사 지시: 신축(1781) 봄 심리 때",
+          "basis": [
+            "CL-SIL-02",
+            "SIL1783"
+          ],
+          "status": "간접 확인"
+        },
+        {
+          "id": "HT_SIM_HYEONGJO_1781_8",
+          "layer": "HIST_T",
+          "text": "《심리록》 신축 8월 형조 심리",
+          "basis": [
+            "CL-SIM-03",
+            "SIM"
+          ],
+          "status": "간접 확인"
+        }
+      ],
+      [
+        {
+          "id": "HT_FINAL_1783_6_3",
+          "layer": "HIST_T",
+          "text": "최종 판부 1783 L6 3",
+          "basis": [
+            "CL-SIL-07",
+            "SIL1783"
+          ],
+          "status": "간접 확인"
+        },
+        {
+          "id": "HT_JOKJAENG_1782_7",
+          "layer": "HIST_T",
+          "text": "조재정 격쟁 1782 L7",
+          "basis": [
+            "CL-SIM-04",
+            "SIM"
+          ],
+          "status": "간접 확인"
+        },
+        {
+          "id": "HT_SIL_CASE_1781",
+          "layer": "HIST_T",
+          "text": "《정조실록》 '事在辛丑' → 성옥이 신축(1781)년",
+          "basis": [
+            "CL-SIL-01",
+            "SIL1783"
+          ],
+          "status": "사료 간 충돌·지시 대상 해석 필요"
+        },
+        {
+          "id": "HT_SIL_REVIEW_SPRING_1781",
+          "layer": "HIST_T",
+          "text": "재조사 지시: 신축(1781) 봄 심리 때",
+          "basis": [
+            "CL-SIL-02",
+            "SIL1783"
+          ],
+          "status": "간접 확인"
+        },
+        {
+          "id": "HT_SIM_HYEONGJO_1781_8",
+          "layer": "HIST_T",
+          "text": "《심리록》 신축 8월 형조 심리",
+          "basis": [
+            "CL-SIM-03",
+            "SIM"
+          ],
+          "status": "간접 확인"
+        },
+        {
+          "id": "HT_SIM_OKSA_1780_6",
+          "layer": "HIST_T",
+          "text": "《심리록》 경자(1780) 6월 성옥",
+          "basis": [
+            "CL-SIM-01",
+            "SIM"
+          ],
+          "status": "사료 간 충돌"
+        }
+      ]
+    ],
+    "witness_correction": [
+      "HT_FINAL_1783_6_3",
+      "HT_JOKJAENG_1782_7",
+      "HT_SIL_CASE_1781",
+      "HT_SIL_REVIEW_SPRING_1781",
+      "HT_SIM_HYEONGJO_1781_8",
+      "HT_SIM_OKSA_1780_6"
+    ],
+    "witness": {
+      "events": {
+        "KJR_START": "1780년 음력 6월 13일(서수 근사)",
+        "KJR_END": "1781년 음력 6월 30일(서수 근사)",
+        "JSJ_ARRIVE": "1780년 음력 6월 1일(서수 근사)",
+        "JSJ_END": "1781년 음력 9월 29일(서수 근사)",
+        "LKY_START": "1781년 음력 9월 29일(서수 근사)",
+        "RELIEF_ADMIN": "1780년 음력 6월 13일(서수 근사)",
+        "COMPLAINT": "1780년 음력 6월 14일(서수 근사)",
+        "POPHYEOM": "1780년 음력 6월 15일(서수 근사)",
+        "HOSTILITY": "1780년 음력 6월 15일(서수 근사)",
+        "DEATH": "1780년 음력 6월 16일(서수 근사)",
+        "BURIAL": "1780년 음력 6월 20일(서수 근사)",
+        "MONEY_DEMAND": "1780년 음력 6월 17일(서수 근사)",
+        "SONG": "1780년 음력 6월 17일(서수 근사)",
+        "INSTIGATE": "1780년 음력 6월 17일(서수 근사)",
+        "ACCUSE": "1780년 음력 7월 21일(서수 근사)",
+        "CHOGEOM": "1780년 음력 7월 21일(서수 근사)",
+        "BOKGEOM": "1780년 음력 12월 28일(서수 근사)",
+        "OKSA": "1780년 음력 12월 28일(서수 근사)",
+        "DETAIN_START": "1781년 음력 6월 29일(서수 근사)",
+        "REVIEW_ORDER": "1780년 음력 12월 29일(서수 근사)",
+        "JSJ_REINVEST": "1781년 음력 6월 29일(서수 근사)",
+        "HYEONGJO_1781_8": "1781년 음력 6월 29일(서수 근사)",
+        "JOKJAENG": "1781년 음력 3월 30일(서수 근사)",
+        "FINAL": "1781년 음력 6월 30일(서수 근사)",
+        "DETAIN_END": "1781년 음력 6월 30일(서수 근사)",
+        "JSJ_LEARN": "1781년 음력 6월 30일(서수 근사)",
+        "LGW_PRE_CONTACT": "1780년 음력 1월 1일(서수 근사)"
+      },
+      "kept_preferences": [
+        "FS_JSJ_ARRIVE_1780_6"
+      ],
+      "dropped_preferences": [
+        "FS_CHOGEOM_1780_6"
+      ]
+    }
+  }
+}

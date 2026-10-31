@@ -1,0 +1,158 @@
+%% 08_causal_graph.mmd — 03_constraints.py가 생성. 수정 시 생성기를 고칠 것.
+%% 굵은 화살표(==>) 사료에 나타난 관계 / 화살표(-->) 이론이 제안한 인과 / 점선 화살표(-.->) 극중 추가 가정 / 화살촉 없는 선(---|선후|) 시간 선후(인과 아님)
+flowchart LR
+  n0(["A5 구휼 실적 과장"]):::creative
+  n1["M14 조재항에 대한 공식 고발"]:::endo
+  n2["S5 윤씨에게 책임이 귀인되는 정보 경로"]:::endo
+  n3(["J2 복검이 초검 오류를 바로잡음"]):::hist
+  n4["E6 권분 부담의 조재항 집중"]:::endo
+  n5(["J1 초검 결론의 오류"]):::inference
+  n6(["E5 조재항의 강제 권분 회피 불가(서민지주·요호부민 설정)"]):::creative
+  n7["E12 경제적으로 합리적인 거절 사유(종자·양식 위협)"]:::endo
+  n8["A1 주민이 '관의 뜻'으로 출연을 요구할 명분"]:::endo
+  n9["S6 윤씨에 대한 집단적 책임 귀인·적대"]:::endo
+  n10["F10 조환의 사주 수용"]:::endo
+  n11["F12 조환이 이가원의 주장을 믿음"]:::endo
+  n12(["F10 조카의 죽음에 대한 조환의 죄책감"]):::creative
+  n13(["F6 조환의 병환"]):::hist
+  n14(["F4 조환이 윤씨의 거절 이유를 앎"]):::creative
+  n15(["F10 조환의 금전적 이해관계"]):::creative
+  n16(["F5 조환의 조재항 신뢰"]):::creative
+  n17(["J12 독립 조사관(암행어사)의 조사"]):::creative
+  n18["A13 조상진의 평가·감독 방어 동기"]:::endo
+  n19(["J9 조상진의 직접 조사"]):::hist
+  n20(["A7 조상진의 권중립 긍정 포폄"]):::creative
+  n21(["A11 포폄 당시 조상진의 강압 인지"]):::creative
+  n22(["A11 포폄 후 인지했으나 정정하지 않음"]):::creative
+  n23["J15 실제 살해범 식별 가능"]:::endo
+  n24["A6 권중립의 인사상 이해"]:::endo
+  n25(["A2 권중립 권분 운영의 강압성(늑분)"]):::creative
+  n26["A12 권중립의 책임 회피 동기"]:::endo
+  n27(["A10 권중립이 강압을 인지"]):::creative
+  n28(["S2 권중립의 책임 전가"]):::creative
+  n29["M9 이가원의 사주"]:::endo
+  n30(["M8 이가원의 금전 요구가 거절됨"]):::inference
+  n31["M8 이가원의 무고 동기"]:::endo
+  n32(["F9 이가원이 거절 이유를 부부 갈등으로 재구성"]):::creative
+  n33(["F9 이가원이 조환에게 부부 언쟁 정보를 제공"]):::creative
+  n34(["S3 이가원의 선택적 정보 공개"]):::creative
+  n35(["M11 이가원의 농요 수단 선택"]):::hist
+  n36["J7 장기 구금"]:::endo
+  n37["S9 일부 주민의 윤씨 살해(분노 ≠ 살인: 촉발 사건·의도 필요)"]:::endo
+  n38["J1 살인 옥사 성립"]:::endo
+  n39(["S9 일부 주도자의 사전 살해 결의"]):::creative
+  n40(["J10 이득준 원본 조사기록 보존"]):::creative
+  n41["A15 동기에 의한(고의적) 재조사 왜곡"]:::endo
+  n42["J9 재조사의 비독립성(직접 조사 없음)"]:::endo
+  n43(["S4 윤씨의 기존 출연이 주민에게 널리 알려짐"]):::creative
+  n44["M11 농요 조작"]:::endo
+  n45["J12 독립 조사로 진상 접근 가능"]:::endo
+  n46(["E7 상층 지주의 권분 회피"]):::creative
+  n47(["E9 추가 요구량 > 가용량 (시나리오 산술)"]):::creative
+  n48(["F10 가족 보호 의무감"]):::creative
+  n49(["F6 조환의 정보 고립(병환 외)"]):::creative
+  n50(["A13 감독 책임 추궁에 대한 우려(포폄과 무관)"]):::creative
+  n51(["A6 권중립의 인사상 이익 기대(포폄 외 경로)"]):::creative
+  n52(["F12 이가원의 추가 '증거'(가장된 목격담·혈의 주장 등)"]):::creative
+  n53(["M8 금전 외 이가원의 동기"]):::creative
+  n54(["M10 조환 외 고발자(이봉 등)"]):::creative
+  n55(["S1 주민 간 자생적 비난 소문"]):::creative
+  n56(["E13 일부 가구의 식량 부족"]):::creative
+  n57(["S9 현장에서 형성된 살해 의도"]):::creative
+  n58(["S11 살인을 촉발한 구체적 사건"]):::creative
+  n59(["F2 윤씨의 비경제적 거절 사유"]):::creative
+  n60(["S10 가담을 거부한 주민 증인의 존재"]):::creative
+  n61["F2 윤씨의 추가 출연 거부"]:::endo
+  n0 -.-> n26
+  n1 ==> n38
+  n2 --> n9
+  n3 ==> n38
+  n4 -.-> n7
+  n5 ==> n38
+  n6 --> n4
+  n7 -.-> n61
+  n8 --> n9
+  n9 -.-> n37
+  n10 ==> n1
+  n11 --> n10
+  n12 --> n10
+  n13 --> n11
+  n14 --> n11
+  n15 --> n10
+  n16 --> n11
+  n17 -.-> n45
+  n18 -.-> n41
+  n19 ==> n42
+  n20 -.-> n18
+  n20 -.-> n24
+  n21 -.-> n18
+  n22 -.-> n18
+  n24 -.-> n26
+  n25 --> n8
+  n25 -.-> n26
+  n27 -.-> n26
+  n28 --> n2
+  n28 -.-> n26
+  n29 ==> n1
+  n29 ==> n44
+  n30 ==> n31
+  n31 ==> n29
+  n32 --> n11
+  n33 --> n11
+  n34 --> n2
+  n34 --> n8
+  n35 ==> n44
+  n37 -.-> n23
+  n38 ==> n36
+  n39 -.-> n37
+  n40 -.-> n45
+  n42 ==> n36
+  n42 -.-> n41
+  n43 --> n9
+  n45 -.-> n23
+  n46 --> n4
+  n47 -.-> n7
+  n48 --> n10
+  n49 --> n11
+  n50 -.-> n18
+  n51 -.-> n24
+  n52 --> n11
+  n53 ==> n31
+  n54 ==> n1
+  n55 --> n2
+  n56 --> n4
+  n57 -.-> n37
+  n58 -.-> n37
+  n59 -.-> n61
+  n60 -.-> n23
+  n60 -.-> n45
+  n61 --> n9
+  subgraph TIME["시간 선후(인과 아님)"]
+    t_JSJ_ARRIVE["T2 조상진 황해감사 부임"]
+    t_POPHYEOM["T5 권중립에 대한 포폄(평가) 시점"]
+    t_DEATH["T8 윤씨 사망"]
+    t_BURIAL["T9 윤씨 매장"]
+    t_ACCUSE["T13 공식 고발"]
+    t_CHOGEOM["T14 권중립 초검"]
+    t_BOKGEOM["T15 이우배 복검"]
+    t_OKSA["T16 옥사 성립"]
+    t_REVIEW_ORDER["T18 정조의 재조사 명령"]
+    t_JSJ_REINVEST["J9 조상진 주관 재조사 수행"]
+    t_JOKJAENG["T19 조재정 격쟁"]
+    t_FINAL["T20 최종 판부(방면)"]
+    t_JSJ_ARRIVE ---|선후| t_POPHYEOM
+    t_POPHYEOM ---|선후| t_DEATH
+    t_DEATH ---|선후| t_BURIAL
+    t_DEATH ---|선후| t_ACCUSE
+    t_ACCUSE ---|선후| t_CHOGEOM
+    t_CHOGEOM ---|선후| t_BOKGEOM
+    t_BOKGEOM ---|선후| t_OKSA
+    t_OKSA ---|선후| t_REVIEW_ORDER
+    t_REVIEW_ORDER ---|선후| t_JSJ_REINVEST
+    t_JSJ_REINVEST ---|선후| t_JOKJAENG
+    t_JOKJAENG ---|선후| t_FINAL
+  end
+  classDef endo fill:#eef,stroke:#446;
+  classDef creative fill:#fee,stroke:#a44,stroke-dasharray:3;
+  classDef hist fill:#efe,stroke:#363;
+  classDef inference fill:#ffd,stroke:#984;
