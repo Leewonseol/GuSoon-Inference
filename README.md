@@ -19,3 +19,10 @@
 **상업성**
 ---
 병영, 관찰사, 암행어사, 안핵어사가 같은 사건을 거듭 조사하며 앞선 판단을 뒤집는다. ‘김명신은 정말 범인인가’를 반복해서 검증하는 구조를 통해 조선 수사 스릴러의 재미를 만든다.
+---
+
+## 《시곡 — 한 사발의 밥》 가능세계 분석 (별도 프로젝트)
+
+조재항 옥사 기반 《시곡》의 사료 검증·가능세계 계산 시스템은 [`possible_world_analysis/`](possible_world_analysis/README.md)에 있다. APA 참고문헌과 변수별 근거 추적표는 그 폴더의 README에 고정되어 있다.
+
+GitHub Pages 첫 화면(`docs/index.html`)은 《시곡》 분석 결과 사이트다(`possible_world_analysis/tools/build_site.py`로 생성). 구순–김명신 Mechanism Super-DAG 뷰어는 `docs/gusun.html`로 옮겼으며, `scripts/gusun_clean/build_visualization.py`·`build.py`·`test_visualization.py`가 그 경로를 쓴다.

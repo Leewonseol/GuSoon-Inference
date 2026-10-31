@@ -1,0 +1,18 @@
+{
+  "ECON_A": {
+    "label": "추가 요구가 가용량을 넘는 세계 (종자·양식 잠식)",
+    "G_available": 15,
+    "extra_demand": 25,
+    "u_extra_exceeds": true,
+    "unit": "가상 단위 u (실측 아님)",
+    "status": "가상 실험값(역사적 관측치 아님)"
+  },
+  "ECON_B": {
+    "label": "추가 요구가 가용량 이내인 세계 (거절에 비경제적 사유 필요)",
+    "G_available": 15,
+    "extra_demand": 10,
+    "u_extra_exceeds": false,
+    "unit": "가상 단위 u (실측 아님)",
+    "status": "가상 실험값(역사적 관측치 아님)"
+  }
+}

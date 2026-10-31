@@ -1,0 +1,10 @@
+source_id,title,provider,source_url,date_label,tier,caution
+SIM,《심리록》 白川 趙載恒獄,조선시대 법령자료,https://db.history.go.kr/joseon/item/level.do?levelId=jlawb_420_0020_0120_0040,후대 편찬/사건 서술 1780~1783,CASE,원문 일자와 편찬 시점을 분리; 경자 1780과 실록 신축 1781 충돌
+SIL1783,《정조실록》 정조7년 음6월3일,국사편찬위원회,https://sillok.history.go.kr/id/kva_10706003_004,기사일 1783 음력 6월 3일,CASE,판부의 명령과 후속 집행 혼동 금지; 회고 내용은 1781년을 지칭
+BIB178206,《비변사등록》 정조6년 음6월14일,국사편찬위원회,https://db.history.go.kr/item/compareViewer.do?levelId=bb_164_001_06_0220,기사일 1782 음력 6월 14일,ECON,"김안묵 요청한 3분의1 가분은 향곡(환곡) 제도, 권분 아님"
+BIB178207,《비변사등록》 정조6년 음7월4일,국사편찬위원회,https://db.history.go.kr/common/compareViewer.do?levelId=bb_165_001_01_0070&type=joseon,기사일 1782 음력 7월 4일,ECON,특별 허가 명령이며 실제 분배 완료 여부는 별도 확인
+SIL178204,《정조실록》 정조6년 음4월23일,국사편찬위원회,https://sillok.history.go.kr/id/kva_10604023_001,기사일 1782 음력 4월 23일,ECON,황해도 단위 보고 비판이지 배천군 실측값 아님
+CHUG,《추관지》 조재항 옥안,조선시대 법령자료,https://db.history.go.kr/joseon/item/level.do?levelId=jlawb_200r_0020_0020_0050_0080,후대 편찬/기재 개별 시점 확인 필요,CASE,"직전 연구 추출본에서 보존, 이번 웹에서 본문 전체 재검증하지 않음"
+YEO,《여지도서》 황해도 白川 강역,한국사료총서,https://db.history.go.kr/diachronic/level.do?levelId=sa_037_0010_0210_0010,"1757~1765 편찬사업, 백천 개별 관측시점 미상",REFERENCE_PRE,사용자 제공 강역 원문 확인; 1760 실측으로 간주 금지
+MAP,《팔도지도(초본)》 백천 지명색인,고려대학교 도서관,https://library.korea.ac.kr/oldmap/?id=461502053&mode=list&num=00000009_2,1770년경 추정 제작,REFERENCE_PRE,지명만 색인; 좌표·1780년 존속 자동 추정 금지
+HOGU,《호구총수》 白川,한국사데이터베이스,https://db.history.go.kr/joseon/item/level.do?levelId=jlawb_590_0050_0160,"1789 편찬, 개별 조사일 미상",REFERENCE_POST,"16면 호구 4994, 인구 12891; 1780년 인구로 복사 금지"

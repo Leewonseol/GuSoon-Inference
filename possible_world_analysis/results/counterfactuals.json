@@ -1,0 +1,697 @@
+[
+  {
+    "qid": "Q1",
+    "question": "조재항이 최상층 토호여서 권분을 회피할 수 있었다면?",
+    "changed": {
+      "e5_cannot_evade": false
+    },
+    "operation": "외생변수 값 설정(do)",
+    "kept_constraints": [
+      "STR_TENURE_JSJ",
+      "STR_SUCCESSOR",
+      "STR_TENURE_KJR",
+      "STR_BURIAL_AFTER_DEATH",
+      "STR_EXAM_ORDER",
+      "STR_DEATH_BEFORE_ACCUSE",
+      "STR_DETAIN",
+      "STR_REVIEW_AFTER_OKSA",
+      "STR_REINVEST_IN_TENURE",
+      "STR_KJR_EXAMINER",
+      "STR_LATE_ORDER",
+      "STR_POSTHUMOUS",
+      "STR_INSTIGATE_BEFORE_ACCUSE",
+      "STR_RELIEF_BY_KJR",
+      "STR_COMPLAINT_AFTER_RELIEF",
+      "HC_SONG",
+      "HC_INSTIGATION",
+      "HC_ACCUSATION",
+      "HC_OKSA",
+      "HC_NO_DIRECT_REINVEST",
+      "HC_HWAN_ILL",
+      "HC_BOKGEOM_NOT_CORRECTED",
+      "HC_CHOGEOM_ERROR",
+      "FR_ORDER",
+      "FR_EVALUATOR",
+      "FR_RELIEF_BEFORE_POPHYEOM",
+      "FR_HOSTILITY_BEFORE_DEATH",
+      "FR_HWAN_ACCUSES",
+      "FR_JSJ_MOTIVE"
+    ],
+    "dropped_film_requirements": [
+      "FR_DUAL_OUTCOME",
+      "FR_INVESTIGABLE"
+    ],
+    "dropped_historical_facts": [],
+    "baseline": {
+      "burden_concentrated": "가능(참·거짓 모두 성립)",
+      "econ_refusal": "가능(참·거짓 모두 성립)",
+      "yun_refuses": "가능(참·거짓 모두 성립)",
+      "hostility_to_yun": "가능(참·거짓 모두 성립)",
+      "murder_by_residents": "가능(참·거짓 모두 성립)"
+    },
+    "intervened": {
+      "burden_concentrated": "불가능(필연적으로 거짓)",
+      "econ_refusal": "불가능(필연적으로 거짓)",
+      "yun_refuses": "가능(참·거짓 모두 성립)",
+      "hostility_to_yun": "가능(참·거짓 모두 성립)",
+      "murder_by_residents": "가능(참·거짓 모두 성립)"
+    },
+    "conditioning_with_all_film_requirements_sat": true,
+    "minimal_extra_assumptions": {
+      "yun_refuses": {
+        "necessary_beyond_baseline": [
+          "u_yun_other_reason"
+        ]
+      },
+      "hostility_to_yun": {
+        "necessary_beyond_baseline": [
+          "u_yun_other_reason"
+        ]
+      },
+      "murder_by_residents": {
+        "necessary_beyond_baseline": [
+          "u_trigger",
+          "u_yun_other_reason"
+        ]
+      }
+    }
+  },
+  {
+    "qid": "Q2",
+    "question": "조재항에게 부담이 집중되지 않았다면(부담 집중에 직접 개입)?",
+    "changed": {
+      "burden_concentrated": false
+    },
+    "operation": "do() 개입(내생변수: 구조방정식 절단)",
+    "kept_constraints": [
+      "STR_TENURE_JSJ",
+      "STR_SUCCESSOR",
+      "STR_TENURE_KJR",
+      "STR_BURIAL_AFTER_DEATH",
+      "STR_EXAM_ORDER",
+      "STR_DEATH_BEFORE_ACCUSE",
+      "STR_DETAIN",
+      "STR_REVIEW_AFTER_OKSA",
+      "STR_REINVEST_IN_TENURE",
+      "STR_KJR_EXAMINER",
+      "STR_LATE_ORDER",
+      "STR_POSTHUMOUS",
+      "STR_INSTIGATE_BEFORE_ACCUSE",
+      "STR_RELIEF_BY_KJR",
+      "STR_COMPLAINT_AFTER_RELIEF",
+      "HC_SONG",
+      "HC_INSTIGATION",
+      "HC_ACCUSATION",
+      "HC_OKSA",
+      "HC_NO_DIRECT_REINVEST",
+      "HC_HWAN_ILL",
+      "HC_BOKGEOM_NOT_CORRECTED",
+      "HC_CHOGEOM_ERROR",
+      "FR_ORDER",
+      "FR_EVALUATOR",
+      "FR_RELIEF_BEFORE_POPHYEOM",
+      "FR_HOSTILITY_BEFORE_DEATH",
+      "FR_HWAN_ACCUSES",
+      "FR_JSJ_MOTIVE"
+    ],
+    "dropped_film_requirements": [
+      "FR_DUAL_OUTCOME",
+      "FR_INVESTIGABLE"
+    ],
+    "dropped_historical_facts": [],
+    "baseline": {
+      "econ_refusal": "가능(참·거짓 모두 성립)",
+      "yun_refuses": "가능(참·거짓 모두 성립)",
+      "hostility_to_yun": "가능(참·거짓 모두 성립)"
+    },
+    "intervened": {
+      "econ_refusal": "불가능(필연적으로 거짓)",
+      "yun_refuses": "가능(참·거짓 모두 성립)",
+      "hostility_to_yun": "가능(참·거짓 모두 성립)"
+    },
+    "conditioning_with_all_film_requirements_sat": true,
+    "minimal_extra_assumptions": {
+      "yun_refuses": {
+        "necessary_beyond_baseline": [
+          "u_yun_other_reason"
+        ]
+      },
+      "hostility_to_yun": {
+        "necessary_beyond_baseline": [
+          "u_yun_other_reason"
+        ]
+      }
+    }
+  },
+  {
+    "qid": "Q3",
+    "question": "권중립이 자발적 권분만 시행했다면?",
+    "changed": {
+      "kjr_coercive": false
+    },
+    "operation": "외생변수 값 설정(do)",
+    "kept_constraints": [
+      "STR_TENURE_JSJ",
+      "STR_SUCCESSOR",
+      "STR_TENURE_KJR",
+      "STR_BURIAL_AFTER_DEATH",
+      "STR_EXAM_ORDER",
+      "STR_DEATH_BEFORE_ACCUSE",
+      "STR_DETAIN",
+      "STR_REVIEW_AFTER_OKSA",
+      "STR_REINVEST_IN_TENURE",
+      "STR_KJR_EXAMINER",
+      "STR_LATE_ORDER",
+      "STR_POSTHUMOUS",
+      "STR_INSTIGATE_BEFORE_ACCUSE",
+      "STR_RELIEF_BY_KJR",
+      "STR_COMPLAINT_AFTER_RELIEF",
+      "HC_SONG",
+      "HC_INSTIGATION",
+      "HC_ACCUSATION",
+      "HC_OKSA",
+      "HC_NO_DIRECT_REINVEST",
+      "HC_HWAN_ILL",
+      "HC_BOKGEOM_NOT_CORRECTED",
+      "HC_CHOGEOM_ERROR",
+      "FR_ORDER",
+      "FR_EVALUATOR",
+      "FR_RELIEF_BEFORE_POPHYEOM",
+      "FR_HOSTILITY_BEFORE_DEATH",
+      "FR_HWAN_ACCUSES",
+      "FR_JSJ_MOTIVE"
+    ],
+    "dropped_film_requirements": [
+      "FR_DUAL_OUTCOME",
+      "FR_INVESTIGABLE"
+    ],
+    "dropped_historical_facts": [],
+    "baseline": {
+      "entitlement_framing": "가능(참·거짓 모두 성립)",
+      "hostility_to_yun": "가능(참·거짓 모두 성립)",
+      "kjr_cover_motive": "가능(참·거짓 모두 성립)",
+      "murder_by_residents": "가능(참·거짓 모두 성립)"
+    },
+    "intervened": {
+      "entitlement_framing": "가능(참·거짓 모두 성립)",
+      "hostility_to_yun": "가능(참·거짓 모두 성립)",
+      "kjr_cover_motive": "가능(참·거짓 모두 성립)",
+      "murder_by_residents": "가능(참·거짓 모두 성립)"
+    },
+    "conditioning_with_all_film_requirements_sat": true,
+    "minimal_extra_assumptions": {
+      "entitlement_framing": {
+        "necessary_beyond_baseline": [
+          "lgw_selective"
+        ]
+      },
+      "hostility_to_yun": {
+        "necessary_beyond_baseline": [
+          "lgw_selective"
+        ]
+      },
+      "kjr_cover_motive": {
+        "necessary_beyond_baseline": []
+      },
+      "murder_by_residents": {
+        "necessary_beyond_baseline": [
+          "lgw_selective",
+          "u_trigger"
+        ]
+      }
+    }
+  },
+  {
+    "qid": "Q4",
+    "question": "권중립이 윤씨에게 책임을 전가하지 않았다면?",
+    "changed": {
+      "kjr_shifts_blame": false
+    },
+    "operation": "외생변수 값 설정(do)",
+    "kept_constraints": [
+      "STR_TENURE_JSJ",
+      "STR_SUCCESSOR",
+      "STR_TENURE_KJR",
+      "STR_BURIAL_AFTER_DEATH",
+      "STR_EXAM_ORDER",
+      "STR_DEATH_BEFORE_ACCUSE",
+      "STR_DETAIN",
+      "STR_REVIEW_AFTER_OKSA",
+      "STR_REINVEST_IN_TENURE",
+      "STR_KJR_EXAMINER",
+      "STR_LATE_ORDER",
+      "STR_POSTHUMOUS",
+      "STR_INSTIGATE_BEFORE_ACCUSE",
+      "STR_RELIEF_BY_KJR",
+      "STR_COMPLAINT_AFTER_RELIEF",
+      "HC_SONG",
+      "HC_INSTIGATION",
+      "HC_ACCUSATION",
+      "HC_OKSA",
+      "HC_NO_DIRECT_REINVEST",
+      "HC_HWAN_ILL",
+      "HC_BOKGEOM_NOT_CORRECTED",
+      "HC_CHOGEOM_ERROR",
+      "FR_ORDER",
+      "FR_EVALUATOR",
+      "FR_RELIEF_BEFORE_POPHYEOM",
+      "FR_HOSTILITY_BEFORE_DEATH",
+      "FR_HWAN_ACCUSES",
+      "FR_JSJ_MOTIVE"
+    ],
+    "dropped_film_requirements": [
+      "FR_DUAL_OUTCOME",
+      "FR_INVESTIGABLE"
+    ],
+    "dropped_historical_facts": [],
+    "baseline": {
+      "blame_path": "가능(참·거짓 모두 성립)",
+      "hostility_to_yun": "가능(참·거짓 모두 성립)",
+      "murder_by_residents": "가능(참·거짓 모두 성립)"
+    },
+    "intervened": {
+      "blame_path": "가능(참·거짓 모두 성립)",
+      "hostility_to_yun": "가능(참·거짓 모두 성립)",
+      "murder_by_residents": "가능(참·거짓 모두 성립)"
+    },
+    "conditioning_with_all_film_requirements_sat": true,
+    "minimal_extra_assumptions": {
+      "blame_path": {
+        "necessary_beyond_baseline": []
+      },
+      "hostility_to_yun": {
+        "necessary_beyond_baseline": []
+      },
+      "murder_by_residents": {
+        "necessary_beyond_baseline": [
+          "u_trigger"
+        ]
+      }
+    }
+  },
+  {
+    "qid": "Q5",
+    "question": "조상진이 좋은 포폄을 내리지 않았다면?",
+    "changed": {
+      "jsj_good_pophyeom": false
+    },
+    "operation": "외생변수 값 설정(do)",
+    "kept_constraints": [
+      "STR_TENURE_JSJ",
+      "STR_SUCCESSOR",
+      "STR_TENURE_KJR",
+      "STR_BURIAL_AFTER_DEATH",
+      "STR_EXAM_ORDER",
+      "STR_DEATH_BEFORE_ACCUSE",
+      "STR_DETAIN",
+      "STR_REVIEW_AFTER_OKSA",
+      "STR_REINVEST_IN_TENURE",
+      "STR_KJR_EXAMINER",
+      "STR_LATE_ORDER",
+      "STR_POSTHUMOUS",
+      "STR_INSTIGATE_BEFORE_ACCUSE",
+      "STR_RELIEF_BY_KJR",
+      "STR_COMPLAINT_AFTER_RELIEF",
+      "HC_SONG",
+      "HC_INSTIGATION",
+      "HC_ACCUSATION",
+      "HC_OKSA",
+      "HC_NO_DIRECT_REINVEST",
+      "HC_HWAN_ILL",
+      "HC_BOKGEOM_NOT_CORRECTED",
+      "HC_CHOGEOM_ERROR",
+      "FR_ORDER",
+      "FR_RELIEF_BEFORE_POPHYEOM",
+      "FR_HOSTILITY_BEFORE_DEATH",
+      "FR_DUAL_OUTCOME",
+      "FR_HWAN_ACCUSES",
+      "FR_INVESTIGABLE"
+    ],
+    "dropped_film_requirements": [
+      "FR_EVALUATOR",
+      "FR_JSJ_MOTIVE"
+    ],
+    "dropped_historical_facts": [],
+    "baseline": {
+      "jsj_cover_motive": "가능(참·거짓 모두 성립)",
+      "reinvest_motivated": "가능(참·거짓 모두 성립)",
+      "kjr_career_stake": "가능(참·거짓 모두 성립)",
+      "kjr_cover_motive": "가능(참·거짓 모두 성립)"
+    },
+    "intervened": {
+      "jsj_cover_motive": "가능(참·거짓 모두 성립)",
+      "reinvest_motivated": "가능(참·거짓 모두 성립)",
+      "kjr_career_stake": "가능(참·거짓 모두 성립)",
+      "kjr_cover_motive": "가능(참·거짓 모두 성립)"
+    },
+    "conditioning_with_all_film_requirements_sat": false,
+    "minimal_extra_assumptions": {
+      "jsj_cover_motive": {
+        "necessary_beyond_baseline": [
+          "u_jsj_supervisory_fear"
+        ]
+      },
+      "reinvest_motivated": {
+        "necessary_beyond_baseline": [
+          "u_jsj_supervisory_fear"
+        ]
+      },
+      "kjr_career_stake": {
+        "necessary_beyond_baseline": [
+          "u_kjr_reward_expect"
+        ]
+      },
+      "kjr_cover_motive": {
+        "necessary_beyond_baseline": [
+          "u_kjr_reward_expect"
+        ]
+      }
+    }
+  },
+  {
+    "qid": "Q6",
+    "question": "조상진이 포폄 당시 강제 권분을 몰랐다면?",
+    "changed": {
+      "jsj_knew_at_pophyeom": false
+    },
+    "operation": "외생변수 값 설정(do)",
+    "kept_constraints": [
+      "STR_TENURE_JSJ",
+      "STR_SUCCESSOR",
+      "STR_TENURE_KJR",
+      "STR_BURIAL_AFTER_DEATH",
+      "STR_EXAM_ORDER",
+      "STR_DEATH_BEFORE_ACCUSE",
+      "STR_DETAIN",
+      "STR_REVIEW_AFTER_OKSA",
+      "STR_REINVEST_IN_TENURE",
+      "STR_KJR_EXAMINER",
+      "STR_LATE_ORDER",
+      "STR_POSTHUMOUS",
+      "STR_INSTIGATE_BEFORE_ACCUSE",
+      "STR_RELIEF_BY_KJR",
+      "STR_COMPLAINT_AFTER_RELIEF",
+      "HC_SONG",
+      "HC_INSTIGATION",
+      "HC_ACCUSATION",
+      "HC_OKSA",
+      "HC_NO_DIRECT_REINVEST",
+      "HC_HWAN_ILL",
+      "HC_BOKGEOM_NOT_CORRECTED",
+      "HC_CHOGEOM_ERROR",
+      "FR_ORDER",
+      "FR_EVALUATOR",
+      "FR_RELIEF_BEFORE_POPHYEOM",
+      "FR_HOSTILITY_BEFORE_DEATH",
+      "FR_DUAL_OUTCOME",
+      "FR_HWAN_ACCUSES",
+      "FR_INVESTIGABLE"
+    ],
+    "dropped_film_requirements": [
+      "FR_JSJ_MOTIVE"
+    ],
+    "dropped_historical_facts": [],
+    "baseline": {
+      "jsj_cover_motive": "가능(참·거짓 모두 성립)",
+      "reinvest_motivated": "가능(참·거짓 모두 성립)",
+      "jsj_learned_later_no_correct": "가능(참·거짓 모두 성립)"
+    },
+    "intervened": {
+      "jsj_cover_motive": "가능(참·거짓 모두 성립)",
+      "reinvest_motivated": "가능(참·거짓 모두 성립)",
+      "jsj_learned_later_no_correct": "가능(참·거짓 모두 성립)"
+    },
+    "conditioning_with_all_film_requirements_sat": true,
+    "minimal_extra_assumptions": {
+      "jsj_cover_motive": {
+        "necessary_beyond_baseline": []
+      },
+      "reinvest_motivated": {
+        "necessary_beyond_baseline": []
+      },
+      "jsj_learned_later_no_correct": {
+        "necessary_beyond_baseline": [
+          "jsj_learned_later_no_correct"
+        ]
+      }
+    }
+  },
+  {
+    "qid": "Q7",
+    "question": "조환이 조재항을 신뢰했다면?",
+    "changed": {
+      "hwan_trusts_jjh": true
+    },
+    "operation": "외생변수 값 설정(do)",
+    "kept_constraints": [
+      "STR_TENURE_JSJ",
+      "STR_SUCCESSOR",
+      "STR_TENURE_KJR",
+      "STR_BURIAL_AFTER_DEATH",
+      "STR_EXAM_ORDER",
+      "STR_DEATH_BEFORE_ACCUSE",
+      "STR_DETAIN",
+      "STR_REVIEW_AFTER_OKSA",
+      "STR_REINVEST_IN_TENURE",
+      "STR_KJR_EXAMINER",
+      "STR_LATE_ORDER",
+      "STR_POSTHUMOUS",
+      "STR_INSTIGATE_BEFORE_ACCUSE",
+      "STR_RELIEF_BY_KJR",
+      "STR_COMPLAINT_AFTER_RELIEF",
+      "HC_SONG",
+      "HC_INSTIGATION",
+      "HC_NO_DIRECT_REINVEST",
+      "HC_HWAN_ILL",
+      "HC_BOKGEOM_NOT_CORRECTED",
+      "HC_CHOGEOM_ERROR",
+      "FR_ORDER",
+      "FR_EVALUATOR",
+      "FR_RELIEF_BEFORE_POPHYEOM",
+      "FR_HOSTILITY_BEFORE_DEATH",
+      "FR_JSJ_MOTIVE",
+      "FR_INVESTIGABLE"
+    ],
+    "dropped_film_requirements": [
+      "FR_DUAL_OUTCOME",
+      "FR_HWAN_ACCUSES"
+    ],
+    "dropped_historical_facts": [
+      "HC_ACCUSATION",
+      "HC_OKSA"
+    ],
+    "baseline": {
+      "hwan_believes": "가능(참·거짓 모두 성립)",
+      "hwan_accepts": "가능(참·거짓 모두 성립)",
+      "accusation": "가능(참·거짓 모두 성립)"
+    },
+    "intervened": {
+      "hwan_believes": "가능(참·거짓 모두 성립)",
+      "hwan_accepts": "가능(참·거짓 모두 성립)",
+      "accusation": "가능(참·거짓 모두 성립)"
+    },
+    "conditioning_with_all_film_requirements_sat": true,
+    "minimal_extra_assumptions": {
+      "hwan_believes": {
+        "necessary_beyond_baseline": [
+          "lgw_reports_quarrel",
+          "u_lgw_extra_evidence"
+        ]
+      },
+      "hwan_accepts": {
+        "necessary_beyond_baseline": []
+      },
+      "accusation": {
+        "necessary_beyond_baseline": []
+      }
+    }
+  },
+  {
+    "qid": "Q8",
+    "question": "조환이 윤씨의 권분 반대 이유를 알고 있었다면?",
+    "changed": {
+      "hwan_knows_reason": true
+    },
+    "operation": "외생변수 값 설정(do)",
+    "kept_constraints": [
+      "STR_TENURE_JSJ",
+      "STR_SUCCESSOR",
+      "STR_TENURE_KJR",
+      "STR_BURIAL_AFTER_DEATH",
+      "STR_EXAM_ORDER",
+      "STR_DEATH_BEFORE_ACCUSE",
+      "STR_DETAIN",
+      "STR_REVIEW_AFTER_OKSA",
+      "STR_REINVEST_IN_TENURE",
+      "STR_KJR_EXAMINER",
+      "STR_LATE_ORDER",
+      "STR_POSTHUMOUS",
+      "STR_INSTIGATE_BEFORE_ACCUSE",
+      "STR_RELIEF_BY_KJR",
+      "STR_COMPLAINT_AFTER_RELIEF",
+      "HC_SONG",
+      "HC_INSTIGATION",
+      "HC_NO_DIRECT_REINVEST",
+      "HC_HWAN_ILL",
+      "HC_BOKGEOM_NOT_CORRECTED",
+      "HC_CHOGEOM_ERROR",
+      "FR_ORDER",
+      "FR_EVALUATOR",
+      "FR_RELIEF_BEFORE_POPHYEOM",
+      "FR_HOSTILITY_BEFORE_DEATH",
+      "FR_JSJ_MOTIVE",
+      "FR_INVESTIGABLE"
+    ],
+    "dropped_film_requirements": [
+      "FR_DUAL_OUTCOME",
+      "FR_HWAN_ACCUSES"
+    ],
+    "dropped_historical_facts": [
+      "HC_ACCUSATION",
+      "HC_OKSA"
+    ],
+    "baseline": {
+      "hwan_believes": "가능(참·거짓 모두 성립)",
+      "hwan_accepts": "가능(참·거짓 모두 성립)"
+    },
+    "intervened": {
+      "hwan_believes": "가능(참·거짓 모두 성립)",
+      "hwan_accepts": "가능(참·거짓 모두 성립)"
+    },
+    "conditioning_with_all_film_requirements_sat": true,
+    "minimal_extra_assumptions": {
+      "hwan_believes": {
+        "necessary_beyond_baseline": [
+          "lgw_reframes_reason",
+          "lgw_reports_quarrel"
+        ]
+      },
+      "hwan_accepts": {
+        "necessary_beyond_baseline": []
+      }
+    }
+  },
+  {
+    "qid": "Q9",
+    "question": "이가원이 실제 살해범을 몰랐다면?",
+    "changed": {
+      "lgw_knows_killers": false,
+      "lgw_prior_involvement": false
+    },
+    "operation": "외생변수 값 설정(do)",
+    "kept_constraints": [
+      "STR_TENURE_JSJ",
+      "STR_SUCCESSOR",
+      "STR_TENURE_KJR",
+      "STR_BURIAL_AFTER_DEATH",
+      "STR_EXAM_ORDER",
+      "STR_DEATH_BEFORE_ACCUSE",
+      "STR_DETAIN",
+      "STR_REVIEW_AFTER_OKSA",
+      "STR_REINVEST_IN_TENURE",
+      "STR_KJR_EXAMINER",
+      "STR_LATE_ORDER",
+      "STR_POSTHUMOUS",
+      "STR_INSTIGATE_BEFORE_ACCUSE",
+      "STR_RELIEF_BY_KJR",
+      "STR_COMPLAINT_AFTER_RELIEF",
+      "HC_INSTIGATION",
+      "HC_NO_DIRECT_REINVEST",
+      "HC_HWAN_ILL",
+      "HC_BOKGEOM_NOT_CORRECTED",
+      "HC_CHOGEOM_ERROR",
+      "FR_ORDER",
+      "FR_EVALUATOR",
+      "FR_RELIEF_BEFORE_POPHYEOM",
+      "FR_HOSTILITY_BEFORE_DEATH",
+      "FR_HWAN_ACCUSES",
+      "FR_JSJ_MOTIVE",
+      "FR_INVESTIGABLE"
+    ],
+    "dropped_film_requirements": [
+      "FR_DUAL_OUTCOME"
+    ],
+    "dropped_historical_facts": [
+      "HC_SONG",
+      "HC_ACCUSATION",
+      "HC_OKSA"
+    ],
+    "baseline": {
+      "song_fabricated": "가능(참·거짓 모두 성립)",
+      "accusation": "필연적으로 참",
+      "oksa_formed": "필연적으로 참"
+    },
+    "intervened": {
+      "song_fabricated": "가능(참·거짓 모두 성립)",
+      "accusation": "필연적으로 참",
+      "oksa_formed": "필연적으로 참"
+    },
+    "conditioning_with_all_film_requirements_sat": true,
+    "minimal_extra_assumptions": {
+      "song_fabricated": {
+        "necessary_beyond_baseline": []
+      },
+      "accusation": {
+        "necessary_beyond_baseline": []
+      },
+      "oksa_formed": {
+        "necessary_beyond_baseline": []
+      }
+    }
+  },
+  {
+    "qid": "Q10",
+    "question": "이우배가 초검의 오류를 바로잡았다면?",
+    "changed": {
+      "bokgeom_corrects": true
+    },
+    "operation": "외생변수 값 설정(do)",
+    "kept_constraints": [
+      "STR_TENURE_JSJ",
+      "STR_SUCCESSOR",
+      "STR_TENURE_KJR",
+      "STR_BURIAL_AFTER_DEATH",
+      "STR_EXAM_ORDER",
+      "STR_DEATH_BEFORE_ACCUSE",
+      "STR_DETAIN",
+      "STR_REVIEW_AFTER_OKSA",
+      "STR_REINVEST_IN_TENURE",
+      "STR_KJR_EXAMINER",
+      "STR_LATE_ORDER",
+      "STR_POSTHUMOUS",
+      "STR_INSTIGATE_BEFORE_ACCUSE",
+      "STR_RELIEF_BY_KJR",
+      "STR_COMPLAINT_AFTER_RELIEF",
+      "HC_SONG",
+      "HC_INSTIGATION",
+      "HC_ACCUSATION",
+      "HC_NO_DIRECT_REINVEST",
+      "HC_HWAN_ILL",
+      "HC_CHOGEOM_ERROR",
+      "FR_ORDER",
+      "FR_EVALUATOR",
+      "FR_RELIEF_BEFORE_POPHYEOM",
+      "FR_HOSTILITY_BEFORE_DEATH",
+      "FR_HWAN_ACCUSES",
+      "FR_JSJ_MOTIVE",
+      "FR_INVESTIGABLE"
+    ],
+    "dropped_film_requirements": [
+      "FR_DUAL_OUTCOME"
+    ],
+    "dropped_historical_facts": [
+      "HC_OKSA",
+      "HC_BOKGEOM_NOT_CORRECTED"
+    ],
+    "baseline": {
+      "oksa_formed": "가능(참·거짓 모두 성립)",
+      "long_detention": "가능(참·거짓 모두 성립)"
+    },
+    "intervened": {
+      "oksa_formed": "불가능(필연적으로 거짓)",
+      "long_detention": "불가능(필연적으로 거짓)"
+    },
+    "conditioning_with_all_film_requirements_sat": false,
+    "minimal_extra_assumptions": {}
+  }
+]

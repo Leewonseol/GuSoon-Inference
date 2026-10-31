@@ -916,6 +916,8 @@ def read_ui(docs):
 
 # index.html이 싣는 css·js 주소에 붙이는 ?v=<내용 해시>. GitHub Pages는 파일을 몇 분간 캐시하므로 버전이 없으면
 # 새 index.html이 브라우저 캐시의 옛 app.js와 섞여 초기화가 중간에 멈출 수 있다(빈 그래프). 내용이 바뀌면 주소도 바뀐다.
+# 구순 viewer 페이지. docs/index.html은 《시곡》 가능세계 분석 사이트(possible_world_analysis/tools/build_site.py)가 쓴다.
+VIEWER_HTML = "gusun.html"
 ASSET_REF = re.compile(r'((?:src|href)=")((?:css|js|data|vendor)/[^"?]+)(?:\?v=[0-9a-f]*)?(")')
 
 
@@ -924,14 +926,14 @@ def asset_version(docs, rel):
 
 
 def stamped_index(docs=DOCS):
-    """css·js 주소를 지금 파일 내용 해시로 맞춘 index.html 문자열(파일은 쓰지 않음)."""
-    html = (Path(docs) / "index.html").read_text(encoding="utf-8")
+    """css·js 주소를 지금 파일 내용 해시로 맞춘 viewer(gusun.html) 문자열(파일은 쓰지 않음)."""
+    html = (Path(docs) / VIEWER_HTML).read_text(encoding="utf-8")
     return ASSET_REF.sub(lambda m: f"{m.group(1)}{m.group(2)}?v={asset_version(docs, m.group(2))}{m.group(3)}", html)
 
 
 def stamp_assets(docs=DOCS):
-    """index.html의 css·js 주소를 지금 파일 내용 해시로 맞춘다. 바뀐 경우에만 다시 쓴다."""
-    path = Path(docs) / "index.html"
+    """viewer(gusun.html)의 css·js 주소를 지금 파일 내용 해시로 맞춘다. 바뀐 경우에만 다시 쓴다."""
+    path = Path(docs) / VIEWER_HTML
     new = stamped_index(docs)
     if new != path.read_text(encoding="utf-8"):
         path.write_text(new, encoding="utf-8")

@@ -1,0 +1,12 @@
+claim_id,topic,recorded_claim_type,recorded_content,record_year,source_id,source_passage,analytical_use,uncertainty,source_url
+C001,밥 한 사발,원래 혐의,조재항이 밥 한 사발 때문에 아내를 발로 차 숨지게 했다는 혐의로 옥사가 성립,,SIM,因一盂飯 毆踢其妻尹女,초기 고발 구조,가해·사인은 확정된 사실이 아님,https://db.history.go.kr/joseon/item/level.do?levelId=jlawb_420_0020_0120_0040
+C002,옥사 연대,사료상 시간 진술,《심리록》은 경자년 음력 6월 옥사 성립이라 기재,1780,SIM,庚子六月成獄,연대 검증,1783년 실록의 신축년 사건 서술과 충돌,https://db.history.go.kr/joseon/item/level.do?levelId=jlawb_420_0020_0120_0040
+C003,옥사 연대,회고 진술,1783년 실록은 사건이 신축년에 있었다고 기재,1781,SIL1783,事在辛丑,연대 검증,"기록 연도 1783, 회고 사건연도 1781",https://sillok.history.go.kr/id/kva_10706003_004
+C004,격쟁,절차 기록,조재정이 격쟁했음을 《심리록》이 기록,1782,SIM,載恒弟載鼎擊錚,상소·사법정보 경로,음력 7월까지만 확인,https://db.history.go.kr/joseon/item/level.do?levelId=jlawb_420_0020_0120_0040
+C005,농요,1783년 정조 판단,이가원이 촌녀에게 가사를 가르쳐 사람들이 들을 수 있도록 했다는 판단,1783,SIL1783,暗敎村女,소문 전파와 정보 거점,실제 가창자·청중·지리적 위치는 불명,https://sillok.history.go.kr/id/kva_10706003_004
+C006,농요 공간,1783년 정조 판단,밭 또는 길에서 농요를 듣게 하려 했다는 판단,1783,SIL1783,或在乎田 或行于路,환경범죄학의 활동장소 유형,밭/도로의 실제 위치·반경 미상,https://sillok.history.go.kr/id/kva_10706003_004
+C007,증거 모순,1783년 정조 판단,고발 측 증언의 출처가 상충되고 피 묻은 옷도 확인되지 않았다고 판단,1783,SIL1783,諸招互相枝梧 血衣則便沒下落,증거의 출처와 정합성,해당 물증이 무엇이었는지는 별도 원문 심층 검토,https://sillok.history.go.kr/id/kva_10706003_004
+C008,재조사,1783년 정조 판단,조상진이 직접 조사하지 않고 수령들의 보고에 의존했다고 비판,1783,SIL1783,不曾一番躬按 付之守宰,사법행정의 정보 전달/검증 실패,정조 판부의 평가임,https://sillok.history.go.kr/id/kva_10706003_004
+C009,재판 명령,판부,조재항의 방면을 지시,1783,SIL1783,詳細曉諭後 放送,최종 사법처분,시행 완료 기록과 구별,https://sillok.history.go.kr/id/kva_10706003_004
+C010,재판 명령,판부,이가원의 사형을 감하고 종신 원배 지시,1783,SIL1783,減死定配,최종 사법처분,실제 유배처·집행 미확인,https://sillok.history.go.kr/id/kva_10706003_004
+C011,재판 명령,판부,조상진의 파직 지시,1783,SIL1783,趙尙鎭罷職,수사 책임,실제 파직 실행 후 경력 별개 확인,https://sillok.history.go.kr/id/kva_10706003_004

@@ -1,0 +1,592 @@
+# sources.yaml — 서지·원문 링크의 단일 원천(single source of truth)
+#
+# 필드 규칙
+#   category        : primary(1차 사료) | scholarship(학술연구) | theory_institutional(이론·제도·방법 해설) | internal(프로젝트 내부 자료: 증거 아님)
+#   apa             : README에 그대로 출력되는 APA 7판(고문헌은 APA 응용) 문자열. 제목 부분은 {title_link} 자리표시자로 링크 삽입
+#   event_date      : 기록이 다루는 사건의 날짜(음력은 'L' 표기). 사건 날짜 ≠ 편찬 시기
+#   source_date     : 문헌이 작성·편찬된 시기. 미확인이면 '확인 필요'
+#   url             : 개별 기사/원문 링크. 비어 있으면 url_missing_reason 필수
+#   url_check       : tools/check_links.py가 실행 시점에 기록. status ∈ OK | AUTH_REQUIRED | NOT_FOUND | NETWORK_BLOCKED | ERROR | NO_URL | NOT_CHECKED
+#   text_verification: 본문(원문) 검증 수준. URL이 열려도 본문을 읽지 않았으면 'URL_ONLY'.
+#                      ORIGINAL_VERIFIED | INDIRECT_TRANSCRIPTION(사용자 데이터셋 전사 구절만 확인) | SECONDARY_SUMMARY(사용자 문서의 요약만 확인)
+#                      | BIBLIOGRAPHIC_ONLY(서지만, 본문 미열람) | NOT_VERIFIED
+#   missing_fields  : APA 필수 요소 중 확인하지 못한 항목(임의로 채우지 않음)
+#
+# 2026-10-31 실행 환경: 이 세션의 네트워크 정책이 sillok.history.go.kr, db.history.go.kr, sjw.history.go.kr,
+# riss.kr, dbpia.co.kr, doi.org, api.crossref.org, fao.org, contents.history.go.kr 를 모두 차단했다(프록시 CONNECT 403).
+# 차단은 '자료 부재'가 아니다. 모든 외부 원문 검증은 '검증 미완료'로 남긴다.
+
+sources:
+
+# ───────────────────────── 1차 사료: 사건 직접 기록 ─────────────────────────
+- source_id: SIM
+  category: primary
+  short: 《심리록》 白川 趙載恒獄
+  apa: "《심리록》. (편찬 시기 확인 필요). {title_link} [사건 범위: 1780(경자)~1783년]. 국사편찬위원회 한국사데이터베이스 조선시대 법령자료."
+  title: 제2권 황해도, 백천 조재항옥(白川 趙載恒獄)
+  url: https://db.history.go.kr/joseon/item/level.do?levelId=jlawb_420_0020_0120_0040
+  event_date: "1780(경자) L6 성옥 ~ 1782 L7 격쟁·판부 (기사 내 복수 시점)"
+  source_date: 확인 필요
+  missing_fields: [편찬연도]
+  text_verification: INDIRECT_TRANSCRIPTION
+  verification_note: "庚子六月成獄 / 因一盂飯 毆踢其妻尹女 / 辛丑八月 / 載恒弟載鼎擊錚 / 使之牢囚營獄 구절은 사용자 Drive 데이터셋(CORE_EVENTS·CORE_CASE_CLAIMS)의 전사본으로만 확인. 매장 5일·약 40일·초검 권중립·복검 이우배는 시곡 PDF p.11 [S09] 설명으로만 확인."
+  local_copy: source_extracts/drive_CORE_EVENTS.csv; source_extracts/drive_CORE_CASE_CLAIMS.csv
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: SIL1783
+  category: primary
+  short: 《정조실록》 1783-L06-03 조재항 판부
+  apa: "《정조실록》. (1783년 음력 6월 3일 기사; 편찬 시기 확인 필요). {title_link}. 국사편찬위원회 조선왕조실록."
+  title: 배천군 살해 죄인 조재항을 방면하고 계략을 꾸민 이가원을 귀양보내다
+  url: https://sillok.history.go.kr/id/kva_10706003_004
+  alt_urls: ["https://sillok.history.go.kr/id/wva_10706003_004"]
+  event_date: "1783 L6 3 (판부); 기사 내 회고: 辛丑(1781), 辛丑春 審理"
+  source_date: 확인 필요
+  missing_fields: [편찬연도]
+  text_verification: INDIRECT_TRANSCRIPTION
+  verification_note: "事在辛丑 / 辛丑春審理時 / 暗敎村女 / 或在乎田 或行于路 / 諸招互相枝梧 血衣則便沒下落 / 不曾一番躬按 付之守宰 / 詳細曉諭後 放送 / 極邊限己身減死定配 / 該道臣趙尙鎭罷職 / 從輕重決罪 구절은 사용자 데이터셋 전사본으로만 확인. '3년 동안 네 차례 조사', '먼 인척 이가원'은 사용자 3사례 비교 보고서의 국역 요지로만 확인."
+  local_copy: source_extracts/drive_CORE_CASE_CLAIMS.csv; source_extracts/drive_other_documents.md#D3
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: CHUG
+  category: primary
+  short: 《추관지》 조재항 옥안
+  apa: "《추관지》. (편찬 시기 확인 필요). {title_link}. 국사편찬위원회 한국사데이터베이스 조선시대 법령자료."
+  title: 권2 상복부·윤상·살처, 중보 — 조재항 옥안
+  url: https://db.history.go.kr/joseon/item/level.do?levelId=jlawb_200r_0020_0020_0050_0080_0080
+  alt_urls:
+    - https://db.history.go.kr/joseon/item/level.do?levelId=jlawb_200r_0020_0020_0050_0080
+    - https://db.history.go.kr/joseon/item/level.do?levelId=jlawb_200_0020_0020_0050_0080_0080
+  url_conflict: "사용자 자료 3종이 서로 다른 levelId를 사용(PDF: ..._0080_0080 / SOURCES.csv: ..._0080 / C안 보고서: jlawb_200_ 'r' 없음). 어느 것이 개별 기사인지 미검증."
+  event_date: "1780~1783 (개별 시점 미상)"
+  source_date: 확인 필요
+  missing_fields: [편찬연도, 확정 levelId]
+  text_verification: SECONDARY_SUMMARY
+  verification_note: "매장 5일, 이가원 금품 요구, 병든 조환 선동, 농요 조작, 지연 고발은 시곡 PDF p.11 [S14] 설명으로, '조재항이 넉넉하게 살았다'는 C안 보고서 표1로만 확인. 원문 구절 미확보."
+  local_copy: source_extracts/sigok_pdf_pages/p11.txt; source_extracts/drive_other_documents.md#D1
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+# ───────────────────────── 1차 사료: 인사·행정 연표 ─────────────────────────
+- source_id: BIB1781
+  category: primary
+  short: 《비변사등록》 1781-L09-29 황해감사 조상진 농황 장계
+  apa: "《비변사등록》. (1781년 음력 9월 29일 기사). {title_link}. 국사편찬위원회 한국사데이터베이스."
+  title: 황해감사 조상진의 도내 농황 분등 장계 관련 논의
+  url: https://db.history.go.kr/item/compareViewer.do?levelId=bb_163r_001_03_0590
+  event_date: "1781 L9 29"
+  source_date: "확인 필요 (등록류는 당대 작성으로 알려져 있으나 이번 실행 미검증)"
+  missing_fields: [편찬 시기]
+  text_verification: SECONDARY_SUMMARY
+  verification_note: "시곡 PDF p.10 [S05] 설명으로만 확인: 조상진이 실제 황해감사로 농업 상황을 보고."
+  local_copy: source_extracts/sigok_pdf_pages/p10.txt
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: SIL178204
+  category: primary
+  short: 《정조실록》 1782-L04-23 황해감사 이경양 감봉
+  apa: "《정조실록》. (1782년 음력 4월 23일 기사; 편찬 시기 확인 필요). {title_link}. 국사편찬위원회 조선왕조실록."
+  title: 황해감사 이경양의 농황 보고 부실을 질책하고 월봉 1등을 명하다
+  url: https://sillok.history.go.kr/id/kva_10604023_001
+  event_date: "1782 L4 23"
+  source_date: 확인 필요
+  missing_fields: [편찬연도, 기사 공식 제목]
+  text_verification: INDIRECT_TRANSCRIPTION
+  verification_note: "監司李敬養 越俸一等 / 雨澤則每每言周洽 農形則在在稱登熟 — 사용자 데이터셋 전사본. 이경양의 부임일 자체는 미확인(1782 L4 23 시점 재임만 함의)."
+  local_copy: source_extracts/drive_CORE_EVENTS.csv
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: SIL1783M
+  category: primary
+  short: 《정조실록》 1783-L05-09 조상진 대사성
+  apa: "《정조실록》. (1783년 음력 5월 9일 기사; 편찬 시기 확인 필요). {title_link}. 국사편찬위원회 조선왕조실록."
+  title: 조상진을 성균관 대사성으로 삼다
+  url: https://sillok.history.go.kr/id/kva_10705009_002
+  event_date: "1783 L5 9"
+  source_date: 확인 필요
+  missing_fields: [편찬연도]
+  text_verification: SECONDARY_SUMMARY
+  verification_note: "시곡 PDF p.11 [S12] 설명으로만 확인."
+  local_copy: source_extracts/sigok_pdf_pages/p11.txt
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: SJW1780
+  category: primary
+  short: 《승정원일기》 1780-L03-14 (이득준 평산부사 관련으로 사용자 계획서가 지목)
+  apa: "《승정원일기》. (1780년 음력 3월 14일 기사). {title_link}. 국사편찬위원회 승정원일기."
+  title: 정조 4년 3월 14일 기사(이득준 평산부사 임명 관련으로 지목됨 — 내용 미검증)
+  url: https://sjw.history.go.kr/id/SJW-G04030140-02600
+  event_date: "1780 L3 14"
+  source_date: 확인 필요
+  missing_fields: [편찬 시기, 기사 제목, 이득준 관련 여부]
+  text_verification: NOT_VERIFIED
+  verification_note: "시곡 PDF p.3은 '이득준의 1780년 3월 평산부사 임명은 사료에 근거'라고만 적고 URL이 없다. 3대 연구과제 계획서의 탐색 경로 목록에 이 URL이 있으나 이득준 기사인지 확인하지 못함."
+  local_copy: source_extracts/sigok_pdf_pages/p03.txt; source_extracts/drive_other_documents.md#D2
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: GYDJ_POPHYEOM
+  category: primary
+  short: 《경국대전》 이전(吏典) 포폄조
+  apa: "《경국대전》. (편찬 시기 확인 필요). *{title}* [원문 링크 미확보]."
+  title: 이전(吏典) 포폄(褒貶)조
+  url: ""
+  url_missing_reason: "개별 조문 링크를 이번 실행에서 찾거나 열 수 없었음(네트워크 차단). '정기 포폄은 음력 6월·12월'은 사용자 지시문의 진술이며 원문 미대조."
+  event_date: 해당 없음(법전 조문)
+  source_date: 확인 필요
+  missing_fields: [편찬연도, URL, 조문 원문]
+  text_verification: NOT_VERIFIED
+  url_check: {status: NO_URL, checked_at: '2026-10-31T15:47:40Z'}
+
+# ───────────────────────── 1차 사료: 지역 경제·제도 맥락(비교·후대 자료 포함) ─────────────────────────
+- source_id: SIL1780J
+  category: primary
+  short: 《정조실록》 1780-L01-01 권농 윤음
+  apa: "《정조실록》. (1780년 음력 1월 1일 기사; 편찬 시기 확인 필요). {title_link}. 국사편찬위원회 조선왕조실록."
+  title: 팔도와 양도에 내린 권농 윤음
+  url: https://sillok.history.go.kr/id/kva_10401001_002
+  event_date: "1780 L1 1 (1779년 수확 회복 언급)"
+  source_date: 확인 필요
+  missing_fields: [편찬연도]
+  text_verification: SECONDARY_SUMMARY
+  verification_note: "C안 보고서(D1) 요지로만 확인."
+  local_copy: source_extracts/drive_other_documents.md#D1
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: BIB178206
+  category: primary
+  short: 《비변사등록》 1782-L06-14 배천 향곡 가분 불허
+  apa: "《비변사등록》. (1782년 음력 6월 14일 기사). {title_link}. 국사편찬위원회 한국사데이터베이스."
+  title: 배천 향곡의 3분의 1 가분 요청과 불허 논의
+  url: https://db.history.go.kr/item/compareViewer.do?levelId=bb_164_001_06_0220
+  event_date: "1782 L6 14"
+  source_date: 확인 필요
+  missing_fields: [편찬 시기]
+  text_verification: INDIRECT_TRANSCRIPTION
+  verification_note: "白川餉穀 限三分一加分 — 사용자 데이터셋 전사본. 加分(관곡 추가 대여) ≠ 勸分(부민 출연)."
+  local_copy: source_extracts/drive_CORE_EVENTS.csv
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: BIB178207
+  category: primary
+  short: 《비변사등록》 1782-L07-04 배천 향곡 가분 특별 허가
+  apa: "《비변사등록》. (1782년 음력 7월 4일 기사). {title_link}. 국사편찬위원회 한국사데이터베이스."
+  title: 정창순이 배천의 향곡 가분을 다시 청하다
+  url: https://db.history.go.kr/common/compareViewer.do?levelId=bb_165_001_01_0070&type=joseon
+  event_date: "1782 L7 4"
+  source_date: 확인 필요
+  missing_fields: [편찬 시기]
+  text_verification: INDIRECT_TRANSCRIPTION
+  verification_note: "依狀請特爲許施可也 — 사용자 데이터셋 전사본."
+  local_copy: source_extracts/drive_CORE_EVENTS.csv
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: SJW1782
+  category: primary
+  short: 《승정원일기》 1782-L10-06 연안·배천 진전·포락전
+  apa: "《승정원일기》. (1782년 음력 10월 6일 기사). {title_link}. 국사편찬위원회 승정원일기."
+  title: 황해감사 황승원의 연안·배천 진전·포락전 보고
+  url: https://sjw.history.go.kr/search/inspectionDayList.do?wday=17821006L0
+  url_note: "일별 목록 페이지(개별 기사 아님)."
+  event_date: "1782 L10 6"
+  source_date: 확인 필요
+  missing_fields: [편찬 시기, 개별 기사 링크]
+  text_verification: SECONDARY_SUMMARY
+  local_copy: source_extracts/sigok_pdf_pages/p10.txt
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: SIL1783A
+  category: primary
+  short: 《정조실록》 1783-L01-18 권분 강요 경계
+  apa: "《정조실록》. (1783년 음력 1월 18일 기사; 편찬 시기 확인 필요). {title_link}. 국사편찬위원회 조선왕조실록."
+  title: 부민의 진휼을 권장하되 수령의 권분 강요를 경계하다
+  url: https://sillok.history.go.kr/id/kva_10701018_004
+  event_date: "1783 L1 18"
+  source_date: 확인 필요
+  missing_fields: [편찬연도]
+  text_verification: SECONDARY_SUMMARY
+  local_copy: source_extracts/sigok_pdf_pages/p11.txt
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: SIL1783O
+  category: primary
+  short: 《정조실록》 1783-L10-29 어사 사목·권분 강제징수 감찰
+  apa: "《정조실록》. (1783년 음력 10월 29일 기사; 편찬 시기 확인 필요). {title_link}. 국사편찬위원회 조선왕조실록."
+  title: 각도 어사 사목과 권분 강제징수 감찰
+  url: https://sillok.history.go.kr/id/kva_10710029_003
+  event_date: "1783 L10 29"
+  source_date: 확인 필요
+  missing_fields: [편찬연도]
+  text_verification: SECONDARY_SUMMARY
+  local_copy: source_extracts/drive_other_documents.md#D1
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: BIB1727
+  category: primary
+  short: 《비변사등록》 1727-L12-14 옥천 부민 강제징수
+  apa: "《비변사등록》. (1727년 음력 12월 14일 기사). {title_link}. 국사편찬위원회 한국사데이터베이스."
+  title: 첩문을 이용하여 곡물을 모으는 문제에 대한 논의
+  url: https://db.history.go.kr/item/compareViewer.do?levelId=bb_082_001_06_0310
+  event_date: "1727 L12 14"
+  source_date: 확인 필요
+  missing_fields: [편찬 시기]
+  text_verification: SECONDARY_SUMMARY
+  local_copy: source_extracts/drive_other_documents.md#D1
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: BIB1731
+  category: primary
+  short: 《비변사등록》 1731-L12-09 송징계 권분 폐단 상소
+  apa: "《비변사등록》. (1731년 음력 12월 9일 기사). {title_link}. 국사편찬위원회 한국사데이터베이스."
+  title: 정언 송징계가 권분의 폐단을 논한 상소
+  url: https://db.history.go.kr/common/compareViewer.do?levelId=bb_090r_001_06_0190&type=joseon
+  event_date: "1731 L12 9"
+  source_date: 확인 필요
+  missing_fields: [편찬 시기]
+  text_verification: SECONDARY_SUMMARY
+  local_copy: source_extracts/sigok_pdf_pages/p10.txt
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: BIB1741
+  category: primary
+  short: 《비변사등록》 1741-L11-21 북도 부민 권분 논상 절목
+  apa: "《비변사등록》. (1741년 음력 11월 21일 기사). {title_link}. 국사편찬위원회 한국사데이터베이스."
+  title: 북도 부민 권분 논상 절목과 별단
+  url: https://db.history.go.kr/common/compareViewer.do?levelId=bb_109_001_05_0430&type=joseon
+  event_date: "1741 L11 21"
+  source_date: 확인 필요
+  missing_fields: [편찬 시기]
+  text_verification: SECONDARY_SUMMARY
+  local_copy: source_extracts/sigok_pdf_pages/p10.txt
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: SIL1793
+  category: primary
+  short: 《정조실록》 1793-L09-16 연안 등 고을 윤음
+  apa: "《정조실록》. (1793년 음력 9월 16일 기사; 편찬 시기 확인 필요). {title_link}. 국사편찬위원회 조선왕조실록."
+  title: 연안 등 고을에 대한 윤음
+  url: https://sillok.history.go.kr/id/kva_11709016_003
+  event_date: "1793 L9 16"
+  source_date: 확인 필요
+  missing_fields: [편찬연도]
+  text_verification: SECONDARY_SUMMARY
+  local_copy: source_extracts/drive_other_documents.md#D1
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: HOGU
+  category: primary
+  short: 《호구총수》 백천
+  apa: "《호구총수》. (1789). {title_link}. 국사편찬위원회 한국사데이터베이스 조선시대 법령자료."
+  title: 황해도 백천군 호구
+  url: https://db.history.go.kr/joseon/item/level.do?levelId=jlawb_590_0050_0160
+  event_date: "1789 (조사일 미상)"
+  source_date: "1789 (사용자 데이터셋 표기; 이번 실행 미검증)"
+  missing_fields: []
+  text_verification: INDIRECT_TRANSCRIPTION
+  verification_note: "16면 4,994호 12,891구 — 사용자 데이터셋 전사. 1780년 인구로 복사 금지."
+  local_copy: source_extracts/drive_SOURCES.csv
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: YEO
+  category: primary
+  short: 《여지도서》 황해도 백천
+  apa: "《여지도서》. (18세기 중엽 편찬 사업; 백천 항목 기재 시점 확인 필요). {title_link}. 국사편찬위원회 한국사료총서."
+  title: 하권, 황해도·백천 (단묘·강역)
+  url: https://db.history.go.kr/id/sa_037_0010_0210_0120
+  alt_urls: ["https://db.history.go.kr/diachronic/level.do?levelId=sa_037_0010_0210_0010"]
+  event_date: "1780 이전(정확 시점 미상)"
+  source_date: 확인 필요
+  missing_fields: [편찬연도]
+  text_verification: SECONDARY_SUMMARY
+  local_copy: source_extracts/sigok_pdf_pages/p12.txt
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: YJSIL1742
+  category: primary
+  short: 《영조실록》 1742-L01-06 옥천 안핵어사 선례
+  apa: "《영조실록》. (1742년 음력 1월 6일 기사; 편찬 시기 확인 필요). {title_link}. 국사편찬위원회 조선왕조실록."
+  title: 이천보를 옥천 안핵어사로 삼다
+  url: https://sillok.history.go.kr/id/wua_11801006_001
+  event_date: "1742 L1 6"
+  source_date: 확인 필요
+  missing_fields: [편찬연도]
+  text_verification: SECONDARY_SUMMARY
+  local_copy: source_extracts/sigok_pdf_pages/p11.txt
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: TGJS
+  category: primary
+  short: 《특교정식》 사계정식 (1783)
+  apa: "《특교정식》. (1783년 음력 7월 8일 전거; 편찬 시기 확인 필요). {title_link}. 국사편찬위원회 조선시대 법령자료."
+  title: 사계정식
+  url: https://db.history.go.kr/joseon/item/level.do?allViewYn=Y&levelId=jlawb_120_0020_0290
+  event_date: "1783 L7 8"
+  source_date: 확인 필요
+  missing_fields: [편찬연도]
+  text_verification: SECONDARY_SUMMARY
+  local_copy: source_extracts/sigok_pdf_pages/p12.txt
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: DMYJ_MOSAL
+  category: primary
+  short: 《대명률직해》 제305조 모살인
+  apa: "《대명률직해》. (n.d.). {title_link}. 국사편찬위원회 조선시대 법령자료."
+  title: 권19 형률·인명, 제305조 모살인
+  url: https://db.history.go.kr/joseon/item/level.do?levelId=jlawb_170_0190_0010_0010
+  event_date: 해당 없음(법전 조문)
+  source_date: 확인 필요
+  missing_fields: [편찬연도]
+  text_verification: SECONDARY_SUMMARY
+  local_copy: source_extracts/sigok_pdf_pages/p09.txt
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: DMYJ_MUGO
+  category: primary
+  short: 《대명률직해》 제359조 무고
+  apa: "《대명률직해》. (n.d.). {title_link}. 국사편찬위원회 조선시대 법령자료."
+  title: 권22 형률·소송, 제359조 무고
+  url: https://db.history.go.kr/joseon/item/level.do?levelId=jlawb_170_0220_0010_0050
+  event_date: 해당 없음(법전 조문)
+  source_date: 확인 필요
+  missing_fields: [편찬연도]
+  text_verification: SECONDARY_SUMMARY
+  local_copy: source_extracts/sigok_pdf_pages/p10.txt
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+# ───────────────────────── 학술연구 ─────────────────────────
+- source_id: LEE2009
+  category: scholarship
+  short: 이세영(2009) 조선후기의 勸分과 富民의 실태
+  apa: "이세영. (2009). {title_link}. *역사문화연구, 34*, 157–264."
+  title: 조선후기의 勸分과 富民의 실태
+  url: https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE10953875
+  alt_urls: ["https://m.riss.kr/search/detail/DetailView.do?control_no=084cfac90c32987bffe0bdc3ef48d419&p_mat_type=1a0202e37d52c72d"]
+  event_date: 해당 없음(연구 문헌; 대상 시기 조선 후기)
+  source_date: "2009"
+  missing_fields: [호(번호), DOI]
+  text_verification: NOT_VERIFIED
+  verification_note: "본문·초록 모두 이번 실행에서 열람하지 못함. 서지(권 34, pp.157–264)는 사용자 지시문과 C안 보고서의 표기를 따른 것이며 재검증 미완료. '상층 양반지주·토호지주 대 부농·서민지주의 권분 부담 차이'는 사용자 지시문의 요약이며, 논문 원문에서 확인한 주장 아님."
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: LEEJW2015
+  category: scholarship
+  short: 이종원(2015) 희생양 메커니즘과 폭력의 윤리적 문제
+  apa: "이종원. (2015). {title_link}. *철학탐구, 40*, 273–301. https://doi.org/10.33156/philos.2015.40..010"
+  title: "희생양 메커니즘과 폭력의 윤리적 문제: 르네 지라르의 모방이론과 희생양 메커니즘을 중심으로"
+  url: https://doi.org/10.33156/philos.2015.40..010
+  event_date: 해당 없음
+  source_date: "2015"
+  missing_fields: []
+  text_verification: SECONDARY_SUMMARY
+  verification_note: "C안 보고서 7절의 인용 요지로만 확인. DOI 해석 불가(네트워크 차단)."
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: NIKH_NH36
+  category: scholarship
+  short: 국사편찬위원회 《신편 한국사》 36
+  apa: "국사편찬위원회. (n.d.). {title_link}. In *신편 한국사: 36. 조선 후기 민중사회의 성장*. 우리역사넷."
+  title: 1) 민중세계의 각성
+  url: https://contents.history.go.kr/mobile/nh/view.do?levelId=nh_036_0030_0010_0010
+  event_date: 해당 없음
+  source_date: 확인 필요
+  missing_fields: [발행연도]
+  text_verification: SECONDARY_SUMMARY
+  verification_note: "18세기 초 토지 소유 불평등 추계(상위 약 6%가 약 44%)는 C안 보고서 4절 요지로만 확인."
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: ROTHSCHILD2012
+  category: scholarship
+  short: Rothschild et al.(2012) 희생양화 이중동기 모형
+  apa: "Rothschild, Z. K., Landau, M. J., Sullivan, D., & Keefer, L. A. (2012). {title_link}. *Journal of Personality and Social Psychology, 102*(6), 1148–1163."
+  title: "A dual-motive model of scapegoating: Displacing blame to reduce guilt or increase control"
+  url: https://doi.org/10.1037/a0027413
+  event_date: 해당 없음
+  source_date: "2012"
+  missing_fields: []
+  text_verification: BIBLIOGRAPHIC_ONLY
+  verification_note: "서지는 작성자 지식에 근거. DOI 해석·본문 열람 불가(네트워크 차단) → 검증 미완료. 실험사회심리학의 책임 전가 연구로서 해석틀에만 사용."
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: JEDWAB2019
+  category: scholarship
+  short: Jedwab, Johnson & Koyama(2019) 부정적 충격과 대규모 박해
+  apa: "Jedwab, R., Johnson, N. D., & Koyama, M. (2019). {title_link}. *Journal of Economic Growth, 24*(4), 345–395."
+  title: "Negative shocks and mass persecutions: Evidence from the Black Death"
+  url: https://doi.org/10.1007/s10887-019-09167-1
+  event_date: 해당 없음
+  source_date: "2019"
+  missing_fields: []
+  text_verification: BIBLIOGRAPHIC_ONLY
+  verification_note: "서지·DOI는 작성자 지식에 근거하며 이번 실행에서 해석 불가 → 검증 미완료. 역사적 박해 연구의 비교 틀로만 사용(조선 사례 증거 아님)."
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+# ───────────────────────── 이론·제도·방법 해설 ─────────────────────────
+- source_id: GIRARD1986
+  category: theory_institutional
+  short: Girard(1986) The scapegoat
+  apa: "Girard, R. (1986). *{title}* (Y. Freccero, Trans.). Johns Hopkins University Press. (Original work published 1982)"
+  title: The scapegoat
+  url: ""
+  url_missing_reason: "단행본. 공개 원문 링크 없음. 서지는 작성자 지식에 근거하며 이번 실행에서 미검증."
+  event_date: 해당 없음
+  source_date: "1982(원저) / 1986(영역)"
+  missing_fields: [URL]
+  text_verification: BIBLIOGRAPHIC_ONLY
+  url_check: {status: NO_URL, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: BOWEN1978
+  category: theory_institutional
+  short: Bowen(1978) Family therapy in clinical practice
+  apa: "Bowen, M. (1978). *{title}*. Jason Aronson."
+  title: Family therapy in clinical practice
+  url: ""
+  url_missing_reason: "단행본. 공개 원문 링크 없음. 서지는 작성자 지식에 근거하며 이번 실행에서 미검증."
+  event_date: 해당 없음
+  source_date: "1978"
+  missing_fields: [URL]
+  text_verification: BIBLIOGRAPHIC_ONLY
+  url_check: {status: NO_URL, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: KERR1988
+  category: theory_institutional
+  short: Kerr & Bowen(1988) Family evaluation
+  apa: "Kerr, M. E., & Bowen, M. (1988). *{title}*. W. W. Norton."
+  title: "Family evaluation: An approach based on Bowen theory"
+  url: ""
+  url_missing_reason: "단행본. 공개 원문 링크 없음. 서지는 작성자 지식에 근거하며 이번 실행에서 미검증."
+  event_date: 해당 없음
+  source_date: "1988"
+  missing_fields: [URL]
+  text_verification: BIBLIOGRAPHIC_ONLY
+  url_check: {status: NO_URL, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: FAO2008
+  category: theory_institutional
+  short: FAO(2008) 식량안보 기본개념
+  apa: "Food and Agriculture Organization of the United Nations. (2008). {title_link} [Guide]."
+  title: An introduction to the basic concepts of food security
+  url: https://www.fao.org/agrifood-economics/publications/detail/en/c/122386/
+  event_date: 해당 없음
+  source_date: "2008"
+  missing_fields: []
+  text_verification: SECONDARY_SUMMARY
+  verification_note: "C안 보고서 4절 인용으로만 확인. 현대 분석개념(가용성·접근성)이며 18세기 조선의 정책 용어 아님."
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: ALLEN1983
+  category: theory_institutional
+  short: Allen(1983) 시간 구간 관계
+  apa: "Allen, J. F. (1983). {title_link}. *Communications of the ACM, 26*(11), 832–843."
+  title: Maintaining knowledge about temporal intervals
+  url: https://doi.org/10.1145/182.358434
+  event_date: 해당 없음
+  source_date: "1983"
+  missing_fields: []
+  text_verification: BIBLIOGRAPHIC_ONLY
+  verification_note: "방법론 참고. 서지는 작성자 지식 기반, DOI 미해석."
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: DECHTER1991
+  category: theory_institutional
+  short: Dechter, Meiri & Pearl(1991) 시간제약네트워크
+  apa: "Dechter, R., Meiri, I., & Pearl, J. (1991). {title_link}. *Artificial Intelligence, 49*(1–3), 61–95."
+  title: Temporal constraint networks
+  url: https://doi.org/10.1016/0004-3702(91)90006-6
+  event_date: 해당 없음
+  source_date: "1991"
+  missing_fields: []
+  text_verification: BIBLIOGRAPHIC_ONLY
+  verification_note: "방법론 참고. 서지는 작성자 지식 기반, DOI 미해석."
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: DEMOURA2008
+  category: theory_institutional
+  short: de Moura & Bjørner(2008) Z3
+  apa: "de Moura, L., & Bjørner, N. (2008). {title_link}. In C. R. Ramakrishnan & J. Rehof (Eds.), *Tools and algorithms for the construction and analysis of systems* (Lecture Notes in Computer Science, Vol. 4963, pp. 337–340). Springer."
+  title: "Z3: An efficient SMT solver"
+  url: https://doi.org/10.1007/978-3-540-78800-3_24
+  event_date: 해당 없음
+  source_date: "2008"
+  missing_fields: []
+  text_verification: BIBLIOGRAPHIC_ONLY
+  verification_note: "방법론 참고. 서지는 작성자 지식 기반, DOI 미해석."
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: LIFFITON2016
+  category: theory_institutional
+  short: Liffiton et al.(2016) MUS 열거
+  apa: "Liffiton, M. H., Previti, A., Malik, A., & Marques-Silva, J. (2016). {title_link}. *Constraints, 21*(2), 223–250."
+  title: Fast, flexible MUS enumeration
+  url: https://doi.org/10.1007/s10601-015-9183-0
+  event_date: 해당 없음
+  source_date: "2016"
+  missing_fields: []
+  text_verification: BIBLIOGRAPHIC_ONLY
+  verification_note: "방법론 참고(MUS/MCS 이중성). 서지는 작성자 지식 기반, DOI 미해석."
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: PEARL2009
+  category: theory_institutional
+  short: Pearl(2009) Causality
+  apa: "Pearl, J. (2009). {title_link} (2nd ed.). Cambridge University Press."
+  title: "Causality: Models, reasoning, and inference"
+  url: https://doi.org/10.1017/CBO9780511803161
+  event_date: 해당 없음
+  source_date: "2009"
+  missing_fields: []
+  text_verification: BIBLIOGRAPHIC_ONLY
+  verification_note: "개입(do) 연산과 조건화의 구분에 사용. 서지는 작성자 지식 기반, DOI 미해석."
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+# ───────────────────────── 프로젝트 내부 자료(증거 아님, 추적용) ─────────────────────────
+- source_id: SIGOK_PDF
+  category: internal
+  short: 《시곡》 기획의도·인물소개·시놉시스 v4·사료 부록 (PDF)
+  apa: "《시곡 — 한 사발의 밥》 제작팀. (2026). {title_link} [미간행 기획 문서, 12쪽]."
+  title: 시곡_인물소개_이득준_출생정보_검증_최종.pdf
+  url: https://drive.google.com/file/d/1hooBf4HYl7ma8Hmyj1BIWThTcKZzCT6w/view
+  event_date: 해당 없음(창작 문서)
+  source_date: "2026-10-30 (Drive 수정 시각)"
+  missing_fields: []
+  text_verification: ORIGINAL_VERIFIED
+  verification_note: "로컬 업로드본과 Drive 본을 모두 읽음. 로컬 사본 SHA-256은 source_local/SHA256SUMS."
+  local_copy: source_local/시곡_인물소개_이득준_출생정보_검증_최종.pdf
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: SIGOK_CREPORT
+  category: internal
+  short: 《시곡》 C안 고증보고서
+  apa: "《시곡 — 한 사발의 밥》 제작팀. (2026). {title_link} [미간행 연구 보고서]."
+  title: 배천군의 곡물 분급 제약과 권분 압박의 경제적 구조 (C안 고증·서사 설계 보고서)
+  url: https://drive.google.com/file/d/1ErIYuXcU-98y2GWldDtUKc3D8Ti9HOp8/view
+  event_date: 해당 없음
+  source_date: "2026-10-31"
+  missing_fields: []
+  text_verification: ORIGINAL_VERIFIED
+  local_copy: source_extracts/drive_other_documents.md#D1
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: SIGOK_DATASET
+  category: internal
+  short: 《시곡》 과제②·③ 연구-장면 데이터셋 (CORE_EVENTS 등)
+  apa: "《시곡 — 한 사발의 밥》 제작팀. (2026). {title_link} [미간행 데이터셋]."
+  title: CORE_EVENTS.csv · CORE_CASE_CLAIMS.csv · SOURCES.csv
+  url: https://drive.google.com/file/d/1JgnSa9omaxrgCm1f9ksC1FVLMKeKhopE/view
+  event_date: 해당 없음
+  source_date: "2026-10-30"
+  missing_fields: []
+  text_verification: ORIGINAL_VERIFIED
+  verification_note: "데이터셋 자체는 읽었음. 그 안의 한문 구절이 원사료와 일치하는지는 미검증(INDIRECT_TRANSCRIPTION의 근거)."
+  local_copy: source_extracts/drive_CORE_EVENTS.csv
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
+
+- source_id: SIGOK_3CASE
+  category: internal
+  short: 정조대 독립적 재검증 3사례 비교 보고서
+  apa: "《시곡》 제작팀. (2026). {title_link} [미간행 연구 보고서]."
+  title: 정조대 형사절차의 독립적 재검증 사례 비교
+  url: https://drive.google.com/file/d/1fm79ThcInNPsOcnumEG_1vTTxA-UztgV/view
+  event_date: 해당 없음
+  source_date: "2026-10-02"
+  missing_fields: []
+  text_verification: ORIGINAL_VERIFIED
+  local_copy: source_extracts/drive_other_documents.md#D3
+  url_check: {status: NETWORK_BLOCKED, checked_at: '2026-10-31T15:47:40Z'}
