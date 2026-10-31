@@ -46,7 +46,7 @@ def serve():
     srv = socketserver.ThreadingTCPServer(("127.0.0.1", 0), handler)
     srv.daemon_threads = True
     threading.Thread(target=srv.serve_forever, daemon=True).start()
-    return srv, f"http://127.0.0.1:{srv.server_address[1]}/"
+    return srv, f"http://127.0.0.1:{srv.server_address[1]}/gusun.html"
 
 
 RESULTS = []
@@ -641,7 +641,7 @@ def main():
             errs = []
             pg.on("pageerror", lambda e: errs.append(str(e)))
             pg.on("console", lambda m: errs.append(m.text) if m.type == "error" else None)
-            pg.goto((DOCS / "index.html").as_uri())
+            pg.goto((DOCS / "gusun.html").as_uri())
             pg.wait_for_function("window.__viz && window.__viz.cy")
             n = pg.evaluate("window.__viz.cy.nodes().length")
             pg.close()

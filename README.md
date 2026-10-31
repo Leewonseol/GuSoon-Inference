@@ -24,3 +24,5 @@
 ## 《시곡 — 한 사발의 밥》 가능세계 분석 (별도 프로젝트)
 
 조재항 옥사 기반 《시곡》의 사료 검증·가능세계 계산 시스템은 [`possible_world_analysis/`](possible_world_analysis/README.md)에 있다. APA 참고문헌과 변수별 근거 추적표는 그 폴더의 README에 고정되어 있다.
+
+GitHub Pages 첫 화면(`docs/index.html`)은 《시곡》 분석 결과 사이트다(`possible_world_analysis/tools/build_site.py`로 생성). 구순–김명신 Mechanism Super-DAG 뷰어는 `docs/gusun.html`로 옮겼으며, `scripts/gusun_clean/build_visualization.py`·`build.py`·`test_visualization.py`가 그 경로를 쓴다.

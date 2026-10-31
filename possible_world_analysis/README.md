@@ -52,8 +52,9 @@
 | [`results/`](results/) | `csp_results.json`·[`csp_report.md`](results/csp_report.md)·`worlds.json`·`counterfactuals.json`·`economic_scenarios.json`·`link_check.json` |
 | [`scenario/scenario_parameters.yaml`](scenario/scenario_parameters.yaml) | **가상** 곡식 수량(가상 단위). 역사 데이터와 분리 |
 | [`source_local/`](source_local/) · [`source_extracts/`](source_extracts/) | 원본 PDF 사본(읽기 전용, SHA-256)·입력자료 스냅숏 |
-| [`tools/`](tools/) | 링크 검사·주장/변수/README 생성기·보고서 생성기 |
-| [`tests/`](tests/) | 제약충족·출처 연결·시간 계산·README 일치 테스트 |
+| [`tools/`](tools/) | 링크 검사·주장/변수/README 생성기·보고서 생성기·사이트 생성기(`build_site.py`) |
+| [`../docs/index.html`](../docs/index.html) | 결과 열람 사이트(GitHub Pages). 데이터 `../docs/sigok/data.js`는 `tools/build_site.py`가 생성 |
+| [`tests/`](tests/) | 제약충족·출처 연결·시간 계산·README·사이트 일치 테스트 |
 
 ## 3. 실행 방법
 
@@ -74,8 +75,14 @@ cd possible_world_analysis && python tools/check_links.py --write && python tool
 ```
 
 ```bash
+cd possible_world_analysis && python tools/build_site.py
+```
+
+```bash
 cd possible_world_analysis && python -m pytest -q tests
 ```
+
+사이트 렌더링 테스트(`tests/test_site.py::test_site_renders`)는 Playwright가 설치된 경우에만 실행되고, 없으면 건너뛴다.
 
 `03_constraints.py`는 약 1분 걸린다. 링크 검사는 네트워크가 막혀 있으면 모든 항목을 `NETWORK_BLOCKED`로 기록한다(자료 부재로 기록하지 않음).
 
