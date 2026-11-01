@@ -1,0 +1,112 @@
+{
+  "name": "시곡: 사료 제약·미확정 가설 분리",
+  "source_registry": "../01_claim_registry.csv",
+  "primary_source": "https://sillok.history.go.kr/id/kva_10706003_004",
+  "source_claim_ids": [
+    "CL-SIM-01",
+    "CL-SIL-01",
+    "CL-SIL-02",
+    "CL-SIL-03",
+    "CL-SIL-05",
+    "CL-SIL-06",
+    "CL-SIL-07",
+    "CL-SIL-08",
+    "CL-SIL-09",
+    "CL-SIL-13",
+    "CL-SIM-06",
+    "CL-OFF-04",
+    "CL-INST-01",
+    "CL-FILM-03",
+    "CL-FILM-REQ-01"
+  ],
+  "world_variables": {
+    "killer": [
+      "resident_group",
+      "other_person",
+      "accused_husband",
+      "not_modeled"
+    ],
+    "resident_motive": [
+      "food_levy",
+      "personal",
+      "other",
+      "not_established",
+      "not_applicable"
+    ],
+    "levy_pressure": [
+      "coercive",
+      "non_coercive",
+      "not_established"
+    ],
+    "iga_murder_link": [
+      "premeditated_with_residents",
+      "postmortem_only",
+      "no_murder_link",
+      "not_established"
+    ],
+    "hwan_acceptance": [
+      "deceived",
+      "self_interest",
+      "mixed",
+      "not_established"
+    ],
+    "examination_gap": [
+      "shared_witnesses",
+      "investigative_omission",
+      "not_established"
+    ],
+    "jsj_intent": [
+      "intentional_suppression",
+      "delegation_without_proven_intent",
+      "not_established"
+    ]
+  },
+  "rules": [
+    {
+      "id": "R1",
+      "if": {
+        "killer": "resident_group"
+      },
+      "then": {
+        "resident_motive": [
+          "food_levy",
+          "personal",
+          "other",
+          "not_established"
+        ]
+      }
+    },
+    {
+      "id": "R2",
+      "if": {
+        "killer": [
+          "other_person",
+          "accused_husband",
+          "not_modeled"
+        ]
+      },
+      "then": {
+        "resident_motive": "not_applicable"
+      }
+    },
+    {
+      "id": "R3",
+      "if": {
+        "iga_murder_link": "premeditated_with_residents"
+      },
+      "then": {
+        "killer": "resident_group"
+      }
+    }
+  ],
+  "narrative_targets": {
+    "third_party_resident_murder": {
+      "killer": "resident_group"
+    },
+    "coercive_levy_motive": {
+      "killer": "resident_group",
+      "resident_motive": "food_levy",
+      "levy_pressure": "coercive"
+    }
+  }
+}
